@@ -32,9 +32,7 @@ export function Survivors() {
       setRows(x.rows);
       setTotal(x.total);
     });
-  useEffect(() => {
-    load();
-  }, [page, size, search]);
+  useEffect(load, [page, size, search]);
   useEffect(() => {
     const pin = String(f.pincode || "").replace(/\D/g, "");
     if (pin.length !== 6) {
@@ -246,10 +244,7 @@ export function CategoriesItems() {
     [cat, setCat] = useState(""),
     [items, setItems] = useState({ rows: [], total: 0, page: 1, pageSize: 10 }),
     [name, setName] = useState("");
-  const loadCats = async () => {
-    const result = await api("/meta/categories");
-    setCats(result);
-  };
+  const loadCats = () => api("/meta/categories").then(setCats);
   const load = () =>
     cat &&
     api(
@@ -258,9 +253,7 @@ export function CategoriesItems() {
   useEffect(() => {
     loadCats();
   }, []);
-  useEffect(() => {
-    load();
-  }, [cat, items.page, items.pageSize]);
+  useEffect(load, [cat, items.page, items.pageSize]);
   return (
     <section>
       <h2>Categories & Items</h2>
@@ -409,9 +402,7 @@ export function Units() {
     api(`/units?page=${data.page}&pageSize=${data.pageSize}&search=`).then(
       setData,
     );
-  useEffect(() => {
-    load();
-  }, [data.page, data.pageSize]);
+  useEffect(load, [data.page, data.pageSize]);
   return (
     <section>
       <h2>Units</h2>
