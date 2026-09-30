@@ -47,7 +47,7 @@ export function Survivors() {
 
         if (cancelled) return;
 
-        setRows(result?.rows || []);
+        setRows(Array.isArray(result?.rows) ? result.rows : []);
         setTotal(Number(result?.total || 0));
       } catch (error) {
         if (!cancelled) {
@@ -116,6 +116,24 @@ export function Survivors() {
     };
   }, [f.pincode]);
 
+  async function refreshSurvivors() {
+    try {
+      const result = await api(
+        `/survivors?page=${page}&pageSize=${size}&search=${encodeURIComponent(
+          search,
+        )}`,
+        {
+          loadingMessage: "Refreshing survivors…",
+        },
+      );
+
+      setRows(Array.isArray(result?.rows) ? result.rows : []);
+      setTotal(Number(result?.total || 0));
+    } catch (error) {
+      console.error("Failed to refresh survivors:", error);
+    }
+  }
+
   async function save(e) {
     e.preventDefault();
 
@@ -130,17 +148,7 @@ export function Survivors() {
       setF(empty);
       setPinStatus("");
 
-      const result = await api(
-        `/survivors?page=${page}&pageSize=${size}&search=${encodeURIComponent(
-          search,
-        )}`,
-        {
-          loadingMessage: "Refreshing survivors…",
-        },
-      );
-
-      setRows(result?.rows || []);
-      setTotal(Number(result?.total || 0));
+      await refreshSurvivors();
     } catch (error) {
       console.error("Failed to save survivor:", error);
     }
@@ -173,20 +181,16 @@ export function Survivors() {
         loadingMessage: "Deleting survivor…",
       });
 
-      const result = await api(
-        `/survivors?page=${page}&pageSize=${size}&search=${encodeURIComponent(
-          search,
-        )}`,
-        {
-          loadingMessage: "Refreshing survivors…",
-        },
-      );
-
-      setRows(result?.rows || []);
-      setTotal(Number(result?.total || 0));
+      await refreshSurvivors();
     } catch (error) {
       console.error("Failed to delete survivor:", error);
     }
+  }
+
+  function cancelEdit() {
+    setEdit(null);
+    setF(empty);
+    setPinStatus("");
   }
 
   return (
@@ -277,14 +281,7 @@ export function Survivors() {
           </button>
 
           {edit && (
-            <button
-              type="button"
-              onClick={() => {
-                setEdit(null);
-                setF(empty);
-                setPinStatus("");
-              }}
-            >
+            <button type="button" onClick={cancelEdit}>
               Cancel
             </button>
           )}
@@ -389,15 +386,14 @@ export function CategoriesItems() {
   const [editId, setEditId] = useState(null);
 
   /*
-   * Load categories.
+   * Backend:
+   * GET /api/meta/categories
    *
-   * IMPORTANT:
-   * The effect itself is synchronous. Do NOT do:
-   *
-   * useEffect(loadCats, []);
-   *
-   * when loadCats is async because React can interpret the
-   * returned Promise as an effect cleanup.
+   * Response:
+   * [
+   *   { id, name },
+   *   ...
+   * ]
    */
   useEffect(() => {
     let cancelled = false;
@@ -410,47 +406,9 @@ export function CategoriesItems() {
 
         if (cancelled) return;
 
-        /*
-         * Support both:
-         *   [...]
-         * and
-         *   { rows: [...] }
-         */
-        const categoryRows = Array.isArray(result)
-          ? result
-          : Array.isArray(result?.rows)
-            ? result.rows
-            : Array.isArray(result?.categories)
-              ? result.categories
-              : [];
-
         console.log("Categories API response:", result);
-        console.log("Categories parsed:", categoryRows);
 
-        setCats(categoryRows);
-
-        /*
-         * If the currently selected category disappeared,
-         * clear it.
-         */
-        if (categoryRows.length > 0) {
-          setCat((current) => {
-            if (!current) return current;
-
-            const exists = categoryRows.some((c) => {
-              const id =
-                c?.id ??
-                c?.category_id ??
-                c?.categoryId ??
-                c?.value ??
-                c?.code;
-
-              return String(id) === String(current);
-            });
-
-            return exists ? current : "";
-          });
-        }
+        setCats(Array.isArray(result) ? result : []);
       } catch (error) {
         if (!cancelled) {
           console.error("Failed to load categories:", error);
@@ -467,23 +425,30 @@ export function CategoriesItems() {
   }, []);
 
   /*
-   * Load items whenever category/page/pageSize changes.
+   * Backend:
+   * GET /api/items?categoryId=...&page=...&pageSize=...&search=
+   *
+   * Response:
+   * {
+   *   rows: [...],
+   *   total: number,
+   *   page: number,
+   *   pageSize: number
+   * }
    */
   useEffect(() => {
-    let cancelled = false;
-
     if (!cat) {
-      setItems({
+      setItems((previous) => ({
+        ...previous,
         rows: [],
         total: 0,
         page: 1,
-        pageSize: 10,
-      });
+      }));
 
-      return () => {
-        cancelled = true;
-      };
+      return undefined;
     }
+
+    let cancelled = false;
 
     async function loadItems() {
       try {
@@ -493,8 +458,12 @@ export function CategoriesItems() {
           `&pageSize=${items.pageSize}` +
           `&search=`;
 
-        console.log("Category selected:", cat);
-        console.log("Loading items:", url);
+        console.log("Loading items:", {
+          categoryId: cat,
+          page: items.page,
+          pageSize: items.pageSize,
+          url,
+        });
 
         const result = await api(url, {
           loadingMessage: "Loading items…",
@@ -504,54 +473,13 @@ export function CategoriesItems() {
 
         console.log("Items API response:", result);
 
-        /*
-         * Support all common response shapes:
-         *
-         * {
-         *   rows: [],
-         *   total: 10,
-         *   page: 1,
-         *   pageSize: 10
-         * }
-         *
-         * or:
-         *
-         * []
-         */
-        let rows = [];
-        let total = 0;
-        let page = items.page;
-        let pageSize = items.pageSize;
-
-        if (Array.isArray(result)) {
-          rows = result;
-          total = result.length;
-        } else if (result && typeof result === "object") {
-          if (Array.isArray(result.rows)) {
-            rows = result.rows;
-          } else if (Array.isArray(result.items)) {
-            rows = result.items;
-          } else if (Array.isArray(result.data)) {
-            rows = result.data;
-          }
-
-          total = Number(
-            result.total ??
-              result.count ??
-              result.totalCount ??
-              rows.length,
-          );
-
-          page = Number(result.page ?? items.page);
-          pageSize = Number(result.pageSize ?? items.pageSize);
-        }
-
-        setItems({
-          rows,
-          total,
-          page,
-          pageSize,
-        });
+        setItems((previous) => ({
+          ...previous,
+          rows: Array.isArray(result?.rows) ? result.rows : [],
+          total: Number(result?.total || 0),
+          page: Number(result?.page || previous.page),
+          pageSize: Number(result?.pageSize || previous.pageSize),
+        }));
       } catch (error) {
         if (!cancelled) {
           console.error("Failed to load items:", error);
@@ -572,42 +500,6 @@ export function CategoriesItems() {
     };
   }, [cat, items.page, items.pageSize]);
 
-  function getCategoryId(category) {
-    return (
-      category?.id ??
-      category?.category_id ??
-      category?.categoryId ??
-      category?.value ??
-      category?.code ??
-      ""
-    );
-  }
-
-  function getCategoryName(category) {
-    return (
-      category?.name ??
-      category?.label ??
-      category?.category_name ??
-      category?.categoryName ??
-      category?.code ??
-      getCategoryId(category)
-    );
-  }
-
-  function getItemId(item) {
-    return item?.id ?? item?.item_id ?? item?.itemId;
-  }
-
-  function getItemName(item) {
-    return (
-      item?.name ??
-      item?.item_name ??
-      item?.itemName ??
-      item?.label ??
-      ""
-    );
-  }
-
   function selectCategory(e) {
     const value = e.target.value;
 
@@ -615,15 +507,41 @@ export function CategoriesItems() {
 
     setCat(value);
 
-    /*
-     * Always restart pagination when changing category.
-     */
     setItems((previous) => ({
       ...previous,
       rows: [],
       total: 0,
       page: 1,
     }));
+
+    setName("");
+    setEditId(null);
+  }
+
+  async function refreshItems() {
+    if (!cat) return;
+
+    try {
+      const result = await api(
+        `/items?categoryId=${encodeURIComponent(cat)}` +
+          `&page=${items.page}` +
+          `&pageSize=${items.pageSize}` +
+          `&search=`,
+        {
+          loadingMessage: "Refreshing items…",
+        },
+      );
+
+      setItems((previous) => ({
+        ...previous,
+        rows: Array.isArray(result?.rows) ? result.rows : [],
+        total: Number(result?.total || 0),
+        page: Number(result?.page || previous.page),
+        pageSize: Number(result?.pageSize || previous.pageSize),
+      }));
+    } catch (error) {
+      console.error("Failed to refresh items:", error);
+    }
   }
 
   async function saveItem(e) {
@@ -631,9 +549,7 @@ export function CategoriesItems() {
 
     const trimmedName = name.trim();
 
-    if (!trimmedName) {
-      return;
-    }
+    if (!trimmedName) return;
 
     if (!cat) {
       window.alert("Please select a category.");
@@ -664,88 +580,31 @@ export function CategoriesItems() {
       setName("");
       setEditId(null);
 
-      /*
-       * Reload the current category.
-       *
-       * Changing page to itself does not trigger useEffect,
-       * so force the item state through a temporary refresh.
-       */
-      const result = await api(
-        `/items?categoryId=${encodeURIComponent(cat)}` +
-          `&page=${items.page}` +
-          `&pageSize=${items.pageSize}` +
-          `&search=`,
-        {
-          loadingMessage: "Refreshing items…",
-        },
-      );
-
-      const rows = Array.isArray(result)
-        ? result
-        : result?.rows || result?.items || result?.data || [];
-
-      const total = Array.isArray(result)
-        ? result.length
-        : Number(result?.total ?? result?.count ?? rows.length);
-
-      setItems((previous) => ({
-        ...previous,
-        rows,
-        total,
-      }));
+      await refreshItems();
     } catch (error) {
       console.error("Failed to save item:", error);
     }
   }
 
   function editItem(item) {
-    const id = getItemId(item);
-
-    setEditId(id);
-    setName(getItemName(item));
+    setEditId(item.id);
+    setName(item.name || "");
   }
 
   async function deleteItem(item) {
-    const id = getItemId(item);
+    if (!item?.id) return;
 
-    if (!id) return;
-
-    if (!window.confirm(`Delete "${getItemName(item)}"?`)) {
+    if (!window.confirm(`Delete "${item.name}"?`)) {
       return;
     }
 
     try {
-      await api(`/items/${id}`, {
+      await api(`/items/${item.id}`, {
         method: "DELETE",
         loadingMessage: "Deleting item…",
       });
 
-      /*
-       * Reload items after deletion.
-       */
-      const result = await api(
-        `/items?categoryId=${encodeURIComponent(cat)}` +
-          `&page=${items.page}` +
-          `&pageSize=${items.pageSize}` +
-          `&search=`,
-        {
-          loadingMessage: "Refreshing items…",
-        },
-      );
-
-      const rows = Array.isArray(result)
-        ? result
-        : result?.rows || result?.items || result?.data || [];
-
-      const total = Array.isArray(result)
-        ? result.length
-        : Number(result?.total ?? result?.count ?? rows.length);
-
-      setItems((previous) => ({
-        ...previous,
-        rows,
-        total,
-      }));
+      await refreshItems();
     } catch (error) {
       console.error("Failed to delete item:", error);
     }
@@ -765,16 +624,11 @@ export function CategoriesItems() {
         >
           <option value="">Select category</option>
 
-          {cats.map((category, index) => {
-            const id = getCategoryId(category);
-            const label = getCategoryName(category);
-
-            return (
-              <option key={String(id || index)} value={String(id)}>
-                {label}
-              </option>
-            );
-          })}
+          {cats.map((category) => (
+            <option key={category.id} value={String(category.id)}>
+              {category.name}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -815,51 +669,51 @@ export function CategoriesItems() {
           <div className="card">
             <h3>Items</h3>
 
-            {items.rows.length === 0 ? (
-              <p>No items found for this category.</p>
-            ) : (
-              <div className="tablewrap">
-                <table>
-                  <thead>
+            <div className="tablewrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {items.rows.length === 0 ? (
                     <tr>
-                      <th>Item</th>
-                      <th>Actions</th>
+                      <td colSpan="3">
+                        No items found for this category.
+                      </td>
                     </tr>
-                  </thead>
+                  ) : (
+                    items.rows.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>{item.category}</td>
+                        <td>
+                          <button
+                            type="button"
+                            onClick={() => editItem(item)}
+                            title="Edit"
+                          >
+                            <Edit size={16} />
+                          </button>
 
-                  <tbody>
-                    {items.rows.map((item, index) => {
-                      const id = getItemId(item);
-                      const itemName = getItemName(item);
-
-                      return (
-                        <tr key={String(id || index)}>
-                          <td>{itemName}</td>
-
-                          <td>
-                            <button
-                              type="button"
-                              onClick={() => editItem(item)}
-                              title="Edit"
-                            >
-                              <Edit size={16} />
-                            </button>
-
-                            <button
-                              type="button"
-                              onClick={() => deleteItem(item)}
-                              title="Delete"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
+                          <button
+                            type="button"
+                            onClick={() => deleteItem(item)}
+                            title="Delete"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
 
             <Pagination
               page={items.page}
@@ -916,7 +770,7 @@ export function Units() {
         if (cancelled) return;
 
         setData({
-          rows: result?.rows || [],
+          rows: Array.isArray(result?.rows) ? result.rows : [],
           total: Number(result?.total || 0),
           page: Number(result?.page || data.page),
           pageSize: Number(result?.pageSize || data.pageSize),
@@ -941,6 +795,26 @@ export function Units() {
     };
   }, [data.page, data.pageSize]);
 
+  async function refreshUnits() {
+    try {
+      const result = await api(
+        `/units?page=${data.page}&pageSize=${data.pageSize}&search=`,
+        {
+          loadingMessage: "Refreshing units…",
+        },
+      );
+
+      setData({
+        rows: Array.isArray(result?.rows) ? result.rows : [],
+        total: Number(result?.total || 0),
+        page: Number(result?.page || data.page),
+        pageSize: Number(result?.pageSize || data.pageSize),
+      });
+    } catch (error) {
+      console.error("Failed to refresh units:", error);
+    }
+  }
+
   async function saveUnit(e) {
     e.preventDefault();
 
@@ -960,19 +834,7 @@ export function Units() {
       setName("");
       setEditId(null);
 
-      const result = await api(
-        `/units?page=${data.page}&pageSize=${data.pageSize}&search=`,
-        {
-          loadingMessage: "Refreshing units…",
-        },
-      );
-
-      setData({
-        rows: result?.rows || [],
-        total: Number(result?.total || 0),
-        page: Number(result?.page || data.page),
-        pageSize: Number(result?.pageSize || data.pageSize),
-      });
+      await refreshUnits();
     } catch (error) {
       console.error("Failed to save unit:", error);
     }
@@ -992,19 +854,7 @@ export function Units() {
         loadingMessage: "Deleting unit…",
       });
 
-      const result = await api(
-        `/units?page=${data.page}&pageSize=${data.pageSize}&search=`,
-        {
-          loadingMessage: "Refreshing units…",
-        },
-      );
-
-      setData({
-        rows: result?.rows || [],
-        total: Number(result?.total || 0),
-        page: Number(result?.page || data.page),
-        pageSize: Number(result?.pageSize || data.pageSize),
-      });
+      await refreshUnits();
     } catch (error) {
       console.error("Failed to delete unit:", error);
     }

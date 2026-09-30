@@ -106,7 +106,27 @@ app.get("/api/survivors", auth, permit("add-survivor"), async (req, res) => {
     [like],
   );
   const rows = await q(
-    `SELECT * FROM survivors WHERE full_name ILIKE $1 OR COALESCE(nickname,'') ILIKE $1 ORDER BY full_name LIMIT $2 OFFSET $3`,
+    `SELECT
+       id,
+       full_name AS "fullName",
+       father_name AS "fatherName",
+       mother_name AS "motherName",
+       nickname,
+       house_no AS "houseNo",
+       street,
+       area,
+       village_city AS "villageCity",
+       pincode,
+       district,
+       state
+     FROM survivors
+     WHERE
+       full_name ILIKE $1
+       OR father_name ILIKE $1
+       OR mother_name ILIKE $1
+       OR nickname ILIKE $1
+     ORDER BY full_name
+     LIMIT $2 OFFSET $3`,
     [like, size, offset],
   );
   res.json({
@@ -202,15 +222,35 @@ app.delete(
 app.get("/api/items", auth, permit("add-item"), async (req, res) => {
   const { page, size, search, offset } = listQuery("items", req);
   const cat = req.query.categoryId;
-  const args = cat ? [cat, `%${search}%`] : [`%${search}%`];
+
+  const args = cat
+    ? [cat, `%${search}%`]
+    : [`%${search}%`];
+
   const where = cat
-    ? "WHERE category_id=$1 AND name ILIKE $2"
-    : "WHERE name ILIKE $1";
-  const count = await q(`SELECT count(*) FROM items ${where}`, args);
+    ? "WHERE i.category_id=$1 AND i.name ILIKE $2"
+    : "WHERE i.name ILIKE $1";
+
+  const count = await q(
+    `SELECT count(*)
+     FROM items i
+     ${where}`,
+    args,
+  );
+
   const rows = await q(
-    `SELECT i.*,c.name category FROM items i JOIN categories c ON c.id=i.category_id ${where} ORDER BY i.name LIMIT $${args.length + 1} OFFSET $${args.length + 2}`,
+    `SELECT
+       i.*,
+       c.name AS category
+     FROM items i
+     JOIN categories c ON c.id = i.category_id
+     ${where}
+     ORDER BY i.name
+     LIMIT $${args.length + 1}
+     OFFSET $${args.length + 2}`,
     [...args, size, offset],
   );
+
   res.json({
     rows: rows.rows,
     total: Number(count.rows[0].count),
@@ -303,7 +343,7 @@ async function saveExpense(b, userId, id = null) {
         [
           b.expenseDate,
           b.categoryId,
-          b.itemId || null,
+          b.itemId && b.itemId !== "other" ? b.itemId : null,
           b.otherItem || null,
           b.quantity || null,
           b.unitId || null,
@@ -318,7 +358,7 @@ async function saveExpense(b, userId, id = null) {
         [
           b.expenseDate,
           b.categoryId,
-          b.itemId || null,
+          b.itemId && b.itemId !== "other" ? b.itemId : null,
           b.otherItem || null,
           b.quantity || null,
           b.unitId || null,
