@@ -1,1 +1,106 @@
-import React,{useEffect,useState} from 'react';import {api} from '../lib/api';import Pagination from '../components/Pagination';import Password from '../components/Password';export default function Users(){const [rows,setRows]=useState([]),[total,setTotal]=useState(0),[page,setPage]=useState(1),[size,setSize]=useState(10),[f,setF]=useState({fullName:'',email:'',role:'editor',password:'',confirm:''});const load=()=>api(`/users?page=${page}&pageSize=${size}`).then(x=>{setRows(x.rows);setTotal(x.total)});useEffect(load,[page,size]);return <section><h2>Users</h2><form className="card formgrid" onSubmit={async e=>{e.preventDefault();await api('/users',{method:'POST',body:JSON.stringify({fullName:f.fullName,email:f.email,role:f.role,password:f.password})});setF({...f,fullName:'',email:'',password:'',confirm:''});load()}}><input required placeholder="Full name" value={f.fullName} onChange={e=>setF({...f,fullName:e.target.value})}/><input required type="email" placeholder="Email" value={f.email} onChange={e=>setF({...f,email:e.target.value})}/><select value={f.role} onChange={e=>setF({...f,role:e.target.value})}><option>editor</option><option>manager</option><option>admin</option></select><Password value={f.password} onChange={v=>setF({...f,password:v})} confirm confirmValue={f.confirm} onConfirmChange={v=>setF({...f,confirm:v})}/><button className="primary">Add user</button></form><Pagination page={page} total={total} pageSize={size} setPage={setPage} setPageSize={setSize} search="" setSearch={()=>{}}/><div className="list">{rows.map(u=><div className="row" key={u.id}><div><strong>{u.full_name}</strong><small>{u.email} • {u.role}</small></div><button onClick={async()=>{if(confirm('Remove user?')){await api('/users/'+u.id,{method:'DELETE'});load()}}}>Remove</button></div>)}</div></section>}
+import React, { useEffect, useState } from "react";
+import { api } from "../lib/api";
+import Pagination from "../components/Pagination";
+import Password from "../components/Password";
+export default function Users() {
+  const [rows, setRows] = useState([]),
+    [total, setTotal] = useState(0),
+    [page, setPage] = useState(1),
+    [size, setSize] = useState(10),
+    [f, setF] = useState({
+      fullName: "",
+      email: "",
+      role: "editor",
+      password: "",
+      confirm: "",
+    });
+  const load = () =>
+    api(`/users?page=${page}&pageSize=${size}`).then((x) => {
+      setRows(x.rows);
+      setTotal(x.total);
+    });
+  useEffect(load, [page, size]);
+  return (
+    <section>
+      <h2>Users</h2>
+      <form
+        className="card formgrid"
+        onSubmit={async (e) => {
+          e.preventDefault();
+          await api("/users", {
+            method: "POST",
+            body: JSON.stringify({
+              fullName: f.fullName,
+              email: f.email,
+              role: f.role,
+              password: f.password,
+            }),
+          });
+          setF({ ...f, fullName: "", email: "", password: "", confirm: "" });
+          load();
+        }}
+      >
+        <input
+          required
+          placeholder="Full name"
+          value={f.fullName}
+          onChange={(e) => setF({ ...f, fullName: e.target.value })}
+        />
+        <input
+          required
+          type="email"
+          placeholder="Email"
+          value={f.email}
+          onChange={(e) => setF({ ...f, email: e.target.value })}
+        />
+        <select
+          value={f.role}
+          onChange={(e) => setF({ ...f, role: e.target.value })}
+        >
+          <option>editor</option>
+          <option>manager</option>
+          <option>admin</option>
+        </select>
+        <Password
+          value={f.password}
+          onChange={(v) => setF({ ...f, password: v })}
+          confirm
+          confirmValue={f.confirm}
+          onConfirmChange={(v) => setF({ ...f, confirm: v })}
+        />
+        <button className="primary">Add user</button>
+      </form>
+      <Pagination
+        page={page}
+        total={total}
+        pageSize={size}
+        setPage={setPage}
+        setPageSize={setSize}
+        search=""
+        setSearch={() => {}}
+      />
+      <div className="list">
+        {rows.map((u) => (
+          <div className="row" key={u.id}>
+            <div>
+              <strong>{u.full_name}</strong>
+              <small>
+                {u.email} • {u.role}
+              </small>
+            </div>
+            <button
+              onClick={async () => {
+                if (confirm("Remove user?")) {
+                  await api("/users/" + u.id, { method: "DELETE" });
+                  load();
+                }
+              }}
+            >
+              Remove
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

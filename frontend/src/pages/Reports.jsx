@@ -1,1 +1,132 @@
-import React,{useEffect,useState} from 'react';import {api} from '../lib/api';import {BarChart,Bar,XAxis,YAxis,Tooltip,ResponsiveContainer} from 'recharts';export default function Reports(){const [from,setFrom]=useState(new Date(Date.now()-6*86400000).toISOString().slice(0,10)),[to,setTo]=useState(new Date().toISOString().slice(0,10)),[rows,setRows]=useState([]),[sum,setSum]=useState(true),[group,setGroup]=useState('category'),[chart,setChart]=useState(false),[name,setName]=useState('');const run=()=>api(`/reports/data?from=${from}&to=${to}`).then(setRows);useEffect(run,[]);const total=rows.reduce((a,r)=>a+Number(r.total_cost),0);const grouped=Object.values(rows.reduce((a,r)=>{const k=r[group]||'Unknown';a[k]??={name:k,total:0};a[k].total+=Number(r.total_cost);return a},{}));const save=async()=>{if(name)await api('/report-selections',{method:'POST',body:JSON.stringify({name,config:{from,to,sum,group,chart}})});};return <section><h2>Reports</h2><div className="card formgrid"><label>From<input type="date" value={from} onChange={e=>setFrom(e.target.value)}/></label><label>To<input type="date" value={to} onChange={e=>setTo(e.target.value)}/></label><label>Group by<select value={group} onChange={e=>setGroup(e.target.value)}><option>category</option><option>item</option><option>survivors</option><option>expense_date</option></select></label><label>Summarise<input type="checkbox" checked={sum} onChange={e=>setSum(e.target.checked)}/></label><button className="primary" onClick={run}>Apply filters</button></div>{sum&&<div className="summary">Total: ₹{total.toFixed(2)} <button onClick={()=>setChart(!chart)}>Show chart</button></div>}{chart&&sum&&<div className="card chart"><ResponsiveContainer width="100%" height={320}><BarChart data={grouped}><XAxis dataKey="name"/><YAxis/><Tooltip/><Bar dataKey="total"/></BarChart></ResponsiveContainer></div>}<div className="card"><table><thead><tr><th>Date</th><th>Category</th><th>Item</th><th>Survivors</th><th>Cost</th></tr></thead><tbody>{rows.map(r=><tr key={r.id}><td>{r.expense_date?.slice(0,10)}</td><td>{r.category}</td><td>{r.item}</td><td>{r.survivors}</td><td>₹{Number(r.total_cost).toFixed(2)}</td></tr>)}</tbody></table></div><div className="card inline"><input placeholder="Selection name" value={name} onChange={e=>setName(e.target.value)}/><button onClick={save}>Save selection</button></div></section>}
+import React, { useEffect, useState } from "react";
+import { api } from "../lib/api";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+export default function Reports() {
+  const [from, setFrom] = useState(
+      new Date(Date.now() - 6 * 86400000).toISOString().slice(0, 10),
+    ),
+    [to, setTo] = useState(new Date().toISOString().slice(0, 10)),
+    [rows, setRows] = useState([]),
+    [sum, setSum] = useState(true),
+    [group, setGroup] = useState("category"),
+    [chart, setChart] = useState(false),
+    [name, setName] = useState("");
+  const run = () => api(`/reports/data?from=${from}&to=${to}`).then(setRows);
+  useEffect(run, []);
+  const total = rows.reduce((a, r) => a + Number(r.total_cost), 0);
+  const grouped = Object.values(
+    rows.reduce((a, r) => {
+      const k = r[group] || "Unknown";
+      a[k] ??= { name: k, total: 0 };
+      a[k].total += Number(r.total_cost);
+      return a;
+    }, {}),
+  );
+  const save = async () => {
+    if (name)
+      await api("/report-selections", {
+        method: "POST",
+        body: JSON.stringify({ name, config: { from, to, sum, group, chart } }),
+      });
+  };
+  return (
+    <section>
+      <h2>Reports</h2>
+      <div className="card formgrid">
+        <label>
+          From
+          <input
+            type="date"
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+          />
+        </label>
+        <label>
+          To
+          <input
+            type="date"
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+          />
+        </label>
+        <label>
+          Group by
+          <select value={group} onChange={(e) => setGroup(e.target.value)}>
+            <option>category</option>
+            <option>item</option>
+            <option>survivors</option>
+            <option>expense_date</option>
+          </select>
+        </label>
+        <label>
+          Summarise
+          <input
+            type="checkbox"
+            checked={sum}
+            onChange={(e) => setSum(e.target.checked)}
+          />
+        </label>
+        <button className="primary" onClick={run}>
+          Apply filters
+        </button>
+      </div>
+      {sum && (
+        <div className="summary">
+          Total: ₹{total.toFixed(2)}{" "}
+          <button onClick={() => setChart(!chart)}>Show chart</button>
+        </div>
+      )}
+      {chart && sum && (
+        <div className="card chart">
+          <ResponsiveContainer width="100%" height={320}>
+            <BarChart data={grouped}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="total" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+      <div className="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Item</th>
+              <th>Survivors</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.id}>
+                <td>{r.expense_date?.slice(0, 10)}</td>
+                <td>{r.category}</td>
+                <td>{r.item}</td>
+                <td>{r.survivors}</td>
+                <td>₹{Number(r.total_cost).toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="card inline">
+        <input
+          placeholder="Selection name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <button onClick={save}>Save selection</button>
+      </div>
+    </section>
+  );
+}
