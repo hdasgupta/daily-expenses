@@ -1,0 +1,11 @@
+{
+  "name": "rehabilitation-center-expense-tracker",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write \"backend/**/*.{js,json}\" \"frontend/**/*.{js,jsx,json,css}\" \"*.json\" --ignore-path .prettierignore"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9"
+  }
+}

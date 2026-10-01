@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Layout from "./components/Layout";
+import React, { useEffect, useMemo, useState } from "react";
+import Layout, { getNavigationItems } from "./components/Layout";
+import Loader from "./components/Loader";
+import Toast from "./components/Toast";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import Login from "./pages/Login";
 import Expense from "./pages/Expense";
-import { Survivors, CategoriesItems, Units } from "./pages/Crud";
+import Survivors from "./pages/Survivors";
+import CategoriesItems from "./pages/CategoriesItems";
+import Units from "./pages/Units";
+import BulkUpload from "./pages/BulkUpload";
 import Reports from "./pages/Reports";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import { api } from "./lib/api";
-import {
-  BulkUploadExpenses,
-  BulkUploadCategoriesItems,
-} from "./pages/BulkUpload";
 
 const routes = {
   "/add-expense": { component: Expense, permission: "add-expense" },
@@ -19,97 +20,75 @@ const routes = {
   "/add-item": { component: CategoriesItems, permission: "add-item" },
   "/add-unit": { component: Units, permission: "add-unit" },
   "/bulk-upload-expenses": {
-    component: BulkUploadExpenses,
+    component: BulkUpload,
     permission: "bulk-upload-expenses",
+    type: "expenses",
   },
   "/bulk-upload-categories-items": {
-    component: BulkUploadCategoriesItems,
+    component: BulkUpload,
     permission: "bulk-upload-categories-items",
+    type: "categories-items",
   },
   "/report": { component: Reports, permission: "report" },
   "/dashboard": { component: Dashboard, permission: "dashboard" },
   "/add-user": { component: Users, permission: "add-user" },
 };
 
-const preferredPaths = [
-  "/dashboard",
-  "/add-expense",
-  "/report",
-  "/add-survivor",
-  "/add-item",
-  "/add-unit",
-  "/bulk-upload-expenses",
-  "/bulk-upload-categories-items",
-  "/add-user",
-];
-
-function normalizePath(path) {
-  const p = (path || "/")
-    .split("?")[0]
-    .replace(/\/+/g, "/")
-    .replace(/\/+$/, "");
-  return p || "/";
-}
-
-function firstAllowedPath(user) {
-  const permissions = Array.isArray(user?.permissions) ? user.permissions : [];
-  return (
-    preferredPaths.find((p) => permissions.includes(routes[p]?.permission)) ||
-    null
-  );
+function normalizePath(pathname) {
+  const result = (pathname || "/").split("?")[0].replace(/\/+/g, "/").replace(/\/$/, "");
+  return result || "/";
 }
 
 export default function App() {
+  const [path, setPath] = useState(() => normalizePath(window.location.pathname));
   const [user, setUser] = useState(null);
-  const [path, setPath] = useState(() =>
-    normalizePath(window.location.pathname),
-  );
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    document.documentElement.classList.toggle(
-      "dark",
-      localStorage.getItem("theme") === "dark",
-    );
-    const onPop = () => setPath(normalizePath(window.location.pathname));
-    window.addEventListener("popstate", onPop);
+    const popState = () => setPath(normalizePath(window.location.pathname));
+    const expired = () => {
+      localStorage.removeItem("token");
+      setUser(null);
+      setPath("/");
+      window.history.replaceState({}, "", "/");
+    };
+    window.addEventListener("popstate", popState);
+    window.addEventListener("app:auth-expired", expired);
     const token = localStorage.getItem("token");
     if (!token) {
       setChecking(false);
-      return () => window.removeEventListener("popstate", onPop);
+    } else {
+      api("/me", { loadingMessage: "Checking your session…" })
+        .then(setUser)
+        .catch(expired)
+        .finally(() => setChecking(false));
     }
-    api("/me", { loadingMessage: "Checking your session…" })
-      .then((u) => setUser(u))
-      .catch(() => {
-        localStorage.removeItem("token");
-        setUser(null);
-        if (window.location.pathname !== "/")
-          window.history.replaceState({}, "", "/");
-        setPath("/");
-      })
-      .finally(() => setChecking(false));
-    return () => window.removeEventListener("popstate", onPop);
+    return () => {
+      window.removeEventListener("popstate", popState);
+      window.removeEventListener("app:auth-expired", expired);
+    };
   }, []);
 
-  // Resolve the login/root entry point only after authentication state exists.
+  const allowedItems = useMemo(() => getNavigationItems(user?.permissions), [user]);
+
   useEffect(() => {
     if (checking || !user) return;
-    if (path === "/" || path === "/login") {
-      const next = firstAllowedPath(user);
-      if (next && next !== path) {
-        window.history.replaceState({}, "", next);
-        setPath(next);
-      }
+    const route = routes[path];
+    const allowed = route && user.permissions?.includes(route.permission);
+    if (allowed) return;
+    const fallback = allowedItems[0]?.path;
+    if (fallback) {
+      window.history.replaceState({}, "", fallback);
+      setPath(fallback);
     }
-  }, [checking, user, path]);
+  }, [allowedItems, checking, path, user]);
 
-  const go = (nextPath) => {
-    const next = normalizePath(nextPath);
-    if (next === path) return;
-    if (!routes[next]) return;
-    if (user && !user.permissions?.includes(routes[next].permission)) return;
-    window.history.pushState({}, "", next);
-    setPath(next);
+  const navigate = (next) => {
+    const target = normalizePath(next);
+    const route = routes[target];
+    if (!route || !user?.permissions?.includes(route.permission)) return;
+    window.history.pushState({}, "", target);
+    setPath(target);
   };
 
   const logout = () => {
@@ -121,83 +100,41 @@ export default function App() {
 
   if (checking)
     return (
-      <div className="login">
-        <div className="card">
-          <p>Checking your session…</p>
+      <>
+        <Loader />
+        <Toast />
+        <div className="auth-loading">
+          <div className="card">Checking your session…</div>
         </div>
-      </div>
+      </>
     );
-
-  if (!user) {
+  if (!user)
     return (
-      <Login
-        onLogin={(u) => {
-          localStorage.setItem(
-            "token",
-            u?.token || localStorage.getItem("token") || "",
-          );
-          setUser(u);
-          const current = normalizePath(window.location.pathname);
-          const currentRoute = routes[current];
-          const canOpenCurrent = Boolean(
-            currentRoute && u?.permissions?.includes(currentRoute.permission),
-          );
-          const next = canOpenCurrent ? current : firstAllowedPath(u);
-          const target = next || "/";
-          if (target !== current) window.history.replaceState({}, "", target);
-          setPath(target);
-        }}
-      />
+      <>
+        <Loader />
+        <Toast />
+        <Login onLogin={(nextUser) => setUser(nextUser)} initialPath={path} />
+      </>
     );
-  }
-
-  if (path === "/" || path === "/login") {
-    return (
-      <div className="login">
-        <div className="card">
-          <p>Opening your permitted module…</p>
-        </div>
-      </div>
-    );
-  }
 
   const route = routes[path];
-  if (!route) {
-    const fallback = firstAllowedPath(user);
-    if (fallback) {
-      window.history.replaceState({}, "", fallback);
-      setPath(fallback);
-      return null;
-    }
+  const Component = route?.component || routes[allowedItems[0]?.path]?.component;
+  if (!Component)
     return (
-      <Layout user={user} go={go} currentPath={path} onLogout={logout}>
-        <section className="card">
-          <h2>Page not found</h2>
-          <p className="notice">The requested page does not exist.</p>
-        </section>
-      </Layout>
+      <div className="auth-loading">
+        <div className="card">No module is assigned to this account.</div>
+      </div>
     );
-  }
 
-  if (!user.permissions?.includes(route.permission)) {
-    return (
-      <Layout user={user} go={go} currentPath={path} onLogout={logout}>
-        <section className="card">
-          <h2>Access denied</h2>
-          <p className="notice">
-            Your role does not have permission to open this module.
-          </p>
-        </section>
-      </Layout>
-    );
-  }
-
-  const C = route.component;
   return (
-    <Layout user={user} go={go} currentPath={path} onLogout={logout}>
-      <RouteErrorBoundary routeKey={path}>
-        <C key={path} />
-      </RouteErrorBoundary>
-    </Layout>
+    <>
+      <Loader />
+      <Toast />
+      <Layout user={user} path={path} navigate={navigate} logout={logout}>
+        <RouteErrorBoundary>
+          <Component type={route?.type} navigate={navigate} />
+        </RouteErrorBoundary>
+      </Layout>
+    </>
   );
 }

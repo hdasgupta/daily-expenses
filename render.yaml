@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: rehabilitation-center-expense-tracker-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: MAX_UPLOAD_MB
+        value: "10"
+      - key: AWS_ENDPOINT_URL_S3
+        value: https://br-shiny-glade-b54jbzv5.storage.c-7.us-east-2.aws.neon.tech
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_REGION
+        value: us-east-2
+      - key: AWS_S3_BUCKET
+        value: expense-proofs
+      - key: EMAIL_API_URL
+        sync: false
+      - key: EMAIL_API_KEY
+        sync: false
+      - key: EMAIL_API_KEY_HEADER
+        value: Authorization
+      - key: ADMIN_EMAIL
+        value: wbffmh@gmail.com
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: OTP_TTL_MINUTES
+        value: "10"
+      - key: DASHBOARD_CRON
+        value: "30 20 * * *"
+      - key: DASHBOARD_TIMEZONE
+        value: Asia/Kolkata
+      - key: ORGANIZATION_NAME
+        value: Rehabilitation Center
+      - key: ORGANIZATION_LOGO_URL
+        value: ""

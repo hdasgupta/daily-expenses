@@ -1,136 +1,166 @@
 import React, { useState } from "react";
-import { api } from "../lib/api";
-import { Upload, Download } from "lucide-react";
+import { CheckCircle2, Download, FileSpreadsheet, RotateCcw, UploadCloud } from "lucide-react";
+import { api, showToast } from "../lib/api";
 
 function downloadCsv(name, content) {
   const blob = new Blob([content], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = name;
-  a.click();
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = name;
+  link.click();
   URL.revokeObjectURL(url);
 }
+const expenseTemplate = [
+  "date,category,item,other_item,quantity,unit,price,total_cost,expense_type,shares,comment,added_by,added_on,proof_google_docs_id,contract_download_url",
+  '"2026,09,30",Food,Breakfast,,10,piece,1000,1000,cash,"Arun Kumar|600,Bipin Das|~",Morning food,operator@example.com,2026-09-30T10:00:00Z,,',
+].join("\n");
+const categoryItemTemplate = [
+  "Food,Medicines,Medical",
+  "Breakfast,Paracetamol,Doctor visiting",
+  "Dinner,Vitamin tablets,Medical Test",
+  "Lunch,,Physiotherapy",
+].join("\n");
 
-export function BulkUploadExpenses() {
-  const [file, setFile] = useState(null),
-    [message, setMessage] = useState(""),
-    [busy, setBusy] = useState(false);
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!file) return;
-    setBusy(true);
+export default function BulkUpload({ type }) {
+  const isExpenses = type === "expenses";
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [warnings, setWarnings] = useState([]);
+  const submit = async (event) => {
+    event.preventDefault();
+    if (!file) {
+      showToast("warning", "Please choose a CSV file.");
+      return;
+    }
     setMessage("");
+    setError("");
+    setWarnings([]);
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-      const r = await api("/bulk-upload/expenses", {
-        method: "POST",
-        body: fd,
-      });
-      setMessage(
-        `Imported ${r.imported} expense(s).${r.skipped ? ` Skipped ${r.skipped}.` : ""}`,
+      const data = new FormData();
+      data.append("file", file);
+      const result = await api(
+        isExpenses ? "/bulk-upload/expenses" : "/bulk-upload/categories-items",
+        {
+          method: "POST",
+          body: data,
+          loadingMessage: isExpenses
+            ? "Importing expenses from CSV…"
+            : "Importing categories and items…",
+          toast: {
+            type: "success",
+            message: isExpenses
+              ? "Expense CSV import completed."
+              : "Categories and items CSV import completed.",
+          },
+        },
       );
+      if (isExpenses) {
+        setMessage(`Imported ${result.imported} expense(s); skipped ${result.skipped}.`);
+        setWarnings(result.warnings || []);
+      } else
+        setMessage(`Imported ${result.categories} category column(s) and ${result.items} item(s).`);
+      setFile(null);
+      event.target.reset();
     } catch (err) {
-      setMessage(err.message);
-    } finally {
-      setBusy(false);
+      setError(err.message);
     }
   };
   return (
     <section>
-      <h2>Bulk Upload Expenses</h2>
-      <div className="card">
-        <p>
-          Upload a CSV using the predefined format. Share values use{" "}
-          <code>survivor:shareType:amount</code> separated by <code>|</code>;
-          amount is omitted for average/remaining shares.
-        </p>
-        <button
-          type="button"
-          onClick={() =>
-            downloadCsv(
-              "expenses-template.csv",
-              "date,category,item,other_item,quantity,unit,total_cost,expense_type,shares\n2026-09-30,Food,Breakfast,,1,piece,100,cash,John Doe:fixed:100\n",
-            )
-          }
-        >
-          <Download /> Download CSV template
-        </button>
+      <div className="page-heading">
+        <div>
+          <h1>{isExpenses ? "Bulk Upload Expenses" : "Bulk Upload Categories & Items"}</h1>
+          <p>
+            {isExpenses
+              ? "Import expenses using the predefined CSV format."
+              : "Each CSV column is a category; values below it are its items."}
+          </p>
+        </div>
       </div>
-      <form className="card inline" onSubmit={submit}>
-        <input
-          type="file"
-          accept=".csv,text/csv"
-          required
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-        />
-        <button className="primary" disabled={busy}>
-          <Upload /> {busy ? "Uploading…" : "Upload CSV"}
-        </button>
-      </form>
-      {message && <div className="notice">{message}</div>}
-    </section>
-  );
-}
-
-export function BulkUploadCategoriesItems() {
-  const [file, setFile] = useState(null),
-    [message, setMessage] = useState(""),
-    [busy, setBusy] = useState(false);
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!file) return;
-    setBusy(true);
-    setMessage("");
-    try {
-      const fd = new FormData();
-      fd.append("file", file);
-      const r = await api("/bulk-upload/categories-items", {
-        method: "POST",
-        body: fd,
-      });
-      setMessage(
-        `Imported ${r.categories} categor${r.categories === 1 ? "y" : "ies"} and ${r.items} item(s).`,
-      );
-    } catch (err) {
-      setMessage(err.message);
-    } finally {
-      setBusy(false);
-    }
-  };
-  return (
-    <section>
-      <h2>Bulk Upload Categories & Items</h2>
-      <div className="card">
-        <p>
-          Each CSV column represents one category. The first row is the category
-          name and following rows are its items.
-        </p>
-        <button
-          type="button"
-          onClick={() =>
-            downloadCsv(
-              "categories-items-template.csv",
-              "Food,Medicines,Medical\nBreakfast,Paracetamol,Doctor visiting\nDinner,Vitamin tablets,Medical Test\n",
-            )
-          }
-        >
-          <Download /> Download CSV template
-        </button>
+      <div className="card upload-instructions">
+        <div className="feature-icon">
+          <FileSpreadsheet size={24} />
+        </div>
+        {isExpenses ? (
+          <>
+            <h3>Expense CSV format</h3>
+            <p>
+              Use date as <code>yyyy,mm,dd</code> (the entire date field must be CSV-quoted),
+              price/total_cost, and shares such as{" "}
+              <code>Survivor Name|600,Other Survivor|25%,Last Survivor|~</code>.
+            </p>
+            <p>
+              Amounts and percentages are converted to database share amounts. Unknown survivor
+              names are skipped individually. A <code>~</code> share receives the remaining amount.
+            </p>
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => downloadCsv("expenses-template.csv", expenseTemplate)}
+            >
+              <Download size={17} /> Download predefined CSV
+            </button>
+          </>
+        ) : (
+          <>
+            <h3>Category / item CSV format</h3>
+            <p>
+              The first row contains category names. Every value below a category is an item for
+              that category.
+            </p>
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => downloadCsv("categories-items-template.csv", categoryItemTemplate)}
+            >
+              <Download size={17} /> Download predefined CSV
+            </button>
+          </>
+        )}
       </div>
-      <form className="card inline" onSubmit={submit}>
-        <input
-          type="file"
-          accept=".csv,text/csv"
-          required
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-        />
-        <button className="primary" disabled={busy}>
-          <Upload /> {busy ? "Uploading…" : "Upload CSV"}
-        </button>
+      <form
+        className="card form-stack"
+        onSubmit={submit}
+        onReset={() => {
+          setFile(null);
+          setMessage("");
+          setError("");
+          setWarnings([]);
+        }}
+      >
+        <label>
+          CSV file
+          <input
+            required
+            type="file"
+            accept=".csv,text/csv"
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
+          />
+        </label>
+        <div className="form-actions">
+          <button className="primary" type="submit" disabled={!file}>
+            <UploadCloud size={18} /> Upload CSV
+          </button>
+          <button className="secondary" type="reset">
+            <RotateCcw size={17} /> Reset
+          </button>
+        </div>
       </form>
-      {message && <div className="notice">{message}</div>}
+      {message ? (
+        <div className="notice success-notice">
+          <CheckCircle2 size={17} /> {message}
+        </div>
+      ) : null}
+      {warnings.length ? (
+        <div className="notice warning-notice">
+          {warnings.map((warning, index) => (
+            <div key={index}>{warning}</div>
+          ))}
+        </div>
+      ) : null}
+      {error ? <div className="notice error-notice">{error}</div> : null}
     </section>
   );
 }

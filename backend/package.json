@@ -1,21 +1,30 @@
 {
-  "name": "rehab-expense-backend",
-  "version": "1.0.0",
+  "name": "rehab-expense-tracker-backend",
+  "version": "2.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "format": "prettier --write . --ignore-path ../.prettierignore",
+    "check": "node --check src/server.js && node --check src/config/env.js && node --check src/db/index.js",
+    "dashboard:send": "node scripts/send-dashboard.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1144.0",
+    "@aws-sdk/s3-request-presigner": "^3.1144.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
-    "dotenv": "^18.0.4",
+    "csv-parse": "^7.0.3",
+    "dotenv": "^18.0.5",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.4.0",
-    "nodemailer": "^10.0.13",
-    "pg": "^8.23.0",
-    "@aws-sdk/client-s3": "^3.1143.0",
-    "@aws-sdk/s3-request-presigner": "^3.1143.0"
+    "node-cron": "^4.6.0",
+    "pdfkit": "^0.20.2",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9"
   }
 }
