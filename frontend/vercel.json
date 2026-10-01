@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://rehabilitation-center-expense-tracker-backend.onrender.com/api/:path*"
+      "destination": "https://daily-expenses-g4ze.onrender.com/api/:path*"
     },
     {
       "source": "/(.*)",
