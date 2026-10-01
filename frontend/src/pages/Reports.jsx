@@ -34,6 +34,14 @@ const SORT_OPTIONS = [
   ["item", "Item"],
   ["survivor", "Survivor"],
 ];
+
+const GROUP_SORT_BASE_OPTIONS = [
+  ["date", "Date"],
+  ["survivor", "Survivor"],
+  ["category", "Category"],
+  ["item", "Item"],
+  ["price", "Price"],
+];
 const FILTER_OPTIONS = [
   ["date", "Date / range / month / year"],
   ["hasProof", "Has proof"],
@@ -259,9 +267,15 @@ export default function Reports() {
     if (!result?.rows?.length) return;
     await downloadPdf("/reports/export-pdf", config);
   };
-  const sortChoices = config.groupBy.length
-    ? GROUP_OPTIONS.filter(([value]) => config.groupBy.includes(value))
-    : SORT_OPTIONS;
+  // When grouping is enabled, keep the standard report sort columns available
+  // and add any selected Group By columns that are not already present.
+  const groupSortOptions = [
+    ...GROUP_SORT_BASE_OPTIONS,
+    ...config.groupBy
+      .filter((value) => !GROUP_SORT_BASE_OPTIONS.some(([key]) => key === value))
+      .map((value) => [value, optionLabel(GROUP_OPTIONS, value)]),
+  ];
+  const sortChoices = config.groupBy.length ? groupSortOptions : SORT_OPTIONS;
   const availableFilters = FILTER_OPTIONS.filter(
     ([value]) => !config.activeFilters.includes(value),
   );
@@ -338,7 +352,7 @@ export default function Reports() {
         {config.groupBy.length ? (
           <SortArea
             sortColumns={config.sortColumns}
-            options={GROUP_OPTIONS}
+            options={groupSortOptions}
             onAdd={() => setSortModal(true)}
             onRemove={removeSort}
             onToggleDirection={toggleSortDirection}

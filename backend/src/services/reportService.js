@@ -5,6 +5,14 @@ import { signedObjectUrl } from "./storageService.js";
 
 const groupable = new Set(Object.keys(reportSql.groupExpr));
 const rawSortable = new Set(["date", "category", "item", "survivor"]);
+const groupedSortable = new Set([
+  "date",
+  "survivor",
+  "category",
+  "item",
+  "price",
+  ...groupable,
+]);
 
 function cleanConfig(config = {}) {
   const filters = config.filters || {};
@@ -12,7 +20,7 @@ function cleanConfig(config = {}) {
     ? config.groupBy.filter((x) => groupable.has(x))
     : [];
   const uniqueGroupBy = [...new Set(groupBy)];
-  const allowedSort = uniqueGroupBy.length ? groupable : rawSortable;
+  const allowedSort = uniqueGroupBy.length ? groupedSortable : rawSortable;
   const sortColumns = (Array.isArray(config.sortColumns) ? config.sortColumns : [])
     .filter((x) => allowedSort.has(x?.column))
     .map((x) => ({
@@ -99,19 +107,40 @@ function addFilter(where, params, filters, alias) {
   return reportSql.where(where);
 }
 
-function orderSql(config, forGroup) {
+function orderSql(config, forGroup, summarise = false) {
+  const rawExpressions = {
+    date: "expense_date",
+    category: "category",
+    item: "item",
+    survivor: "survivor",
+  };
   const expressions = forGroup
-    ? reportSql.groupExpr
-    : {
-        date: "expense_date",
-        category: "category",
-        item: "item",
-        survivor: "survivor",
-      };
+    ? {
+        ...reportSql.groupExpr,
+        ...rawExpressions,
+        price: summarise ? "SUM(report_amount)" : "report_amount",
+      }
+    : rawExpressions;
   const chosen = config.sortColumns.length ? config.sortColumns : [];
   const parts = chosen
-    .filter((x) => !forGroup || config.groupBy.includes(x.column))
-    .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
+    .filter((x) => expressions[x.column])
+    .map((x) => {
+      let expression = expressions[x.column];
+
+      // In a grouped summary, non-grouped dimensions need an aggregate so
+      // PostgreSQL can order the grouped rows without requiring that
+      // dimension in GROUP BY.
+      if (
+        forGroup &&
+        summarise &&
+        !config.groupBy.includes(x.column) &&
+        x.column !== "price"
+      ) {
+        expression = `MIN(${expression})`;
+      }
+
+      return reportSql.order(expression, x.direction.toUpperCase());
+    });
 
   if (parts.length) return parts.join(", ");
   if (!forGroup) return reportSql.defaultRawOrder;
@@ -183,7 +212,7 @@ export async function runReport(input) {
   if (!config.summarise) {
     const rawSelect = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;
     const select = [...groupSelect, rawSelect].join(", ");
-    const result = await q(reportSql.raw(cte, select, where, orderSql(config, true)), params);
+    const result = await q(reportSql.raw(cte, select, where, orderSql(config, true, false)), params);
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
@@ -219,7 +248,7 @@ export async function runReport(input) {
       [...groupSelect, `${amount} AS total`].join(", "),
       where,
       groupBySql,
-      orderSql(config, true),
+      orderSql(config, true, true),
     ),
     params,
   );
