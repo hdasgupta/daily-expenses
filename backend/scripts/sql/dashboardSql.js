@@ -1,9 +1,6 @@
 export const dashboardSql = {
   trend: {
-    day: {
-      expression: "e.expense_date",
-      start: "CURRENT_DATE - ($2::int - 1)",
-    },
+    day: { expression: "e.expense_date", start: "CURRENT_DATE - ($2::int - 1)" },
     week: {
       expression: "date_trunc('week', e.expense_date)::date",
       start: "date_trunc('week', CURRENT_DATE) - (($2::int - 1) * interval '1 week')",
@@ -21,12 +18,7 @@ export const dashboardSql = {
     FROM expenses e WHERE e.expense_date >= ${start}
     GROUP BY ${expression} ORDER BY bucket`,
   breakdown: {
-    category: {
-      idField: "c.id",
-      field: "c.name",
-      amount: "e.total_cost",
-      join: "",
-    },
+    category: { idField: "c.id", field: "c.name", amount: "e.total_cost", join: "" },
     survivor: {
       idField: "s.id",
       field: "s.full_name",
@@ -43,5 +35,5 @@ export const dashboardSql = {
     start,
   ) => `SELECT ${period} AS bucket,${idField} AS entity_id,${field} AS name,SUM(${amount}) AS total
     FROM expenses e JOIN categories c ON c.id=e.category_id ${join}
-    WHERE e.expense_date >= ${start} GROUP BY ${period},${field} ORDER BY bucket,total DESC`,
+    WHERE e.expense_date >= ${start} GROUP BY ${period},${idField},${field} ORDER BY bucket,total DESC`,
 };

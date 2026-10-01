@@ -5,12 +5,7 @@ import { sendDashboardEmail } from "./mailService.js";
 import { buildDashboardPdf } from "./dashboardPdfService.js";
 
 const limits = { day: 7, week: 4, month: 3, year: 2 };
-const publicNames = {
-  day: "daily",
-  week: "weekly",
-  month: "monthly",
-  year: "yearly",
-};
+const publicNames = { day: "daily", week: "weekly", month: "monthly", year: "yearly" };
 
 export async function buildDashboard() {
   const periods = {};

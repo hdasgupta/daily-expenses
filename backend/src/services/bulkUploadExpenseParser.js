@@ -43,11 +43,7 @@ function parseShares(text, totalCost, survivorRows) {
       continue;
     }
     if (raw === "~") {
-      shares.push({
-        survivorId: survivor.id,
-        shareType: "remaining",
-        amount: null,
-      });
+      shares.push({ survivorId: survivor.id, shareType: "remaining", amount: null });
       continue;
     }
     if (raw.endsWith("%")) {

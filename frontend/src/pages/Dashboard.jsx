@@ -74,11 +74,7 @@ export default function Dashboard() {
       groupBy: [],
       summarise: false,
     };
-    setDetail({
-      title: `${unit} expenses for ${row.label}`,
-      loading: true,
-      rows: [],
-    });
+    setDetail({ title: `${unit} expenses for ${row.label}`, loading: true, rows: [] });
     try {
       const result = await api("/reports/query", {
         method: "POST",
@@ -91,11 +87,7 @@ export default function Dashboard() {
         rows: result.rows || [],
       });
     } catch {
-      setDetail({
-        title: `${unit} expenses for ${row.label}`,
-        loading: false,
-        rows: [],
-      });
+      setDetail({ title: `${unit} expenses for ${row.label}`, loading: false, rows: [] });
     }
   };
   const openBreakdown = async (row) => {
@@ -129,17 +121,9 @@ export default function Dashboard() {
         body: JSON.stringify(cfg),
         loadingMessage: "Loading dashboard details…",
       });
-      setDetail({
-        title: `${row.name} · ${row.label}`,
-        loading: false,
-        rows: result.rows || [],
-      });
+      setDetail({ title: `${row.name} · ${row.label}`, loading: false, rows: result.rows || [] });
     } catch {
-      setDetail({
-        title: `${row.name} · ${row.label}`,
-        loading: false,
-        rows: [],
-      });
+      setDetail({ title: `${row.name} · ${row.label}`, loading: false, rows: [] });
     }
   };
   if (!data)

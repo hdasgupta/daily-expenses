@@ -16,9 +16,9 @@ export async function requestResetController(req, res) {
 export async function resetPasswordController(req, res) {
   const { email, otp, password, confirmPassword } = req.body || {};
   if (!email || !otp || !password || !confirmPassword) {
-    return res.status(400).json({
-      error: "Email, OTP, password and confirmed password are required",
-    });
+    return res
+      .status(400)
+      .json({ error: "Email, OTP, password and confirmed password are required" });
   }
   res.json(await resetPassword(email, otp, password, confirmPassword));
 }

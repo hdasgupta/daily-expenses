@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CheckCircle2, Info, TriangleAlert, X, XCircle } from "lucide-react";
 
-const icons = {
-  information: Info,
-  warning: TriangleAlert,
-  success: CheckCircle2,
-  error: XCircle,
-};
+const icons = { information: Info, warning: TriangleAlert, success: CheckCircle2, error: XCircle };
 export default function Toast() {
   const [messages, setMessages] = useState([]);
   useEffect(() => {

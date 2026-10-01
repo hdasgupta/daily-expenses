@@ -29,12 +29,7 @@ export async function removeCategory(req, res) {
 }
 
 export async function items(req, res) {
-  res.json(
-    await service.listItems({
-      ...paging(req),
-      categoryId: req.query.categoryId || null,
-    }),
-  );
+  res.json(await service.listItems({ ...paging(req), categoryId: req.query.categoryId || null }));
 }
 export async function addItem(req, res) {
   res.status(201).json(await service.addItem(req.body?.categoryId, req.body?.name));

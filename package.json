@@ -6,6 +6,6 @@
     "format": "prettier --write \"backend/**/*.{js,json}\" \"frontend/**/*.{js,jsx,json,css}\" \"*.json\" --ignore-path .prettierignore"
   },
   "devDependencies": {
-    "prettier": "^3.9.9"
+    "prettier": "^3.6.2"
   }
 }

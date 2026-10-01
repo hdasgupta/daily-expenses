@@ -1,10 +1,21 @@
+const listSortMap = {
+  expense_date: "e.expense_date",
+  category: "c.name",
+  item: "COALESCE(i.name,e.other_item,'Total')",
+  total_cost: "e.total_cost",
+  expense_type: "e.expense_type",
+};
+
 export const expenseSql = {
   countByDate: `SELECT COUNT(*)
     FROM expenses e JOIN categories c ON c.id=e.category_id LEFT JOIN items i ON i.id=e.item_id
     WHERE e.expense_date=$1
       AND (c.name ILIKE $2 OR COALESCE(i.name,'') ILIKE $2 OR COALESCE(e.other_item,'') ILIKE $2
            OR COALESCE(e.comment,'') ILIKE $2)`,
-  listByDate: (sort, dir) => `SELECT e.*, c.name AS category, i.name AS item, u.name AS unit,
+  listByDate: (sortColumn = "expense_date", direction = "desc") => {
+    const sort = listSortMap[sortColumn] || listSortMap.expense_date;
+    const dir = String(direction).toLowerCase() === "asc" ? "ASC" : "DESC";
+    return `SELECT e.*, c.name AS category, i.name AS item, u.name AS unit,
       COALESCE(json_agg(json_build_object(
         'survivorId',s.id,'survivorName',s.full_name,'shareType',es.share_type,'amount',es.amount
       ) ORDER BY s.full_name) FILTER (WHERE s.id IS NOT NULL),'[]') AS shares
@@ -14,7 +25,8 @@ export const expenseSql = {
     WHERE e.expense_date=$1
       AND (c.name ILIKE $2 OR COALESCE(i.name,'') ILIKE $2 OR COALESCE(e.other_item,'') ILIKE $2
            OR COALESCE(e.comment,'') ILIKE $2)
-    GROUP BY e.id,c.name,i.name,u.name ORDER BY ${sort} ${dir} LIMIT $3 OFFSET $4`,
+    GROUP BY e.id,c.name,i.name,u.name ORDER BY ${sort} ${dir} LIMIT $3 OFFSET $4`;
+  },
   find: `SELECT e.*, c.name AS category, i.name AS item, u.name AS unit,
       COALESCE(json_agg(json_build_object(
         'survivorId',s.id,'survivorName',s.full_name,'shareType',es.share_type,'amount',es.amount

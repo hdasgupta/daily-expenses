@@ -2,25 +2,11 @@ import { q } from "../db/index.js";
 import { survivorSql } from "../../scripts/sql/survivorSql.js";
 
 export async function listSurvivors({ page, pageSize, search, sortColumn, sortDirection }) {
-  const allowed = {
-    full_name: "full_name",
-    nickname: "nickname",
-    district: "district",
-    state: "state",
-    pincode: "pincode",
-  };
-  const sort = allowed[sortColumn] || "full_name";
-  const dir = sortDirection === "desc" ? "DESC" : "ASC";
   const like = `%${search || ""}%`;
   const count = await q(survivorSql.count, [like]);
   const offset = (page - 1) * pageSize;
-  const rows = await q(survivorSql.list(sort, dir), [like, pageSize, offset]);
-  return {
-    rows: rows.rows,
-    total: Number(count.rows[0].count),
-    page,
-    pageSize,
-  };
+  const rows = await q(survivorSql.list(sortColumn, sortDirection), [like, pageSize, offset]);
+  return { rows: rows.rows, total: Number(count.rows[0].count), page, pageSize };
 }
 export async function createSurvivor(data) {
   const result = await q(survivorSql.create, [

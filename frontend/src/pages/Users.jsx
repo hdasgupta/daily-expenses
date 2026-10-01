@@ -68,10 +68,7 @@ export default function Users() {
     await load();
   };
   const remove = async () => {
-    await api(`/users/${deleteId}`, {
-      method: "DELETE",
-      loadingMessage: "Removing user…",
-    });
+    await api(`/users/${deleteId}`, { method: "DELETE", loadingMessage: "Removing user…" });
     setDeleteId(null);
     await load();
   };

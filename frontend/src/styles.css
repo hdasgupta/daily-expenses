@@ -1180,3 +1180,10 @@ code {
     width: calc(100vw - 16px);
   }
 }
+.chart-selection {
+  margin-top: 14px;
+}
+.selected-chart-row {
+  margin-top: 10px;
+  border-color: var(--accent);
+}

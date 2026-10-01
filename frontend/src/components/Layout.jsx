@@ -17,25 +17,10 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  {
-    path: "/add-expense",
-    label: "Add expenses",
-    icon: ClipboardList,
-    permission: "add-expense",
-  },
-  {
-    path: "/add-survivor",
-    label: "Add survivors",
-    icon: Users,
-    permission: "add-survivor",
-  },
+  { path: "/add-expense", label: "Add expenses", icon: ClipboardList, permission: "add-expense" },
+  { path: "/add-survivor", label: "Add survivors", icon: Users, permission: "add-survivor" },
   { path: "/add-item", label: "Add items", icon: Tags, permission: "add-item" },
-  {
-    path: "/add-unit",
-    label: "Add units",
-    icon: Database,
-    permission: "add-unit",
-  },
+  { path: "/add-unit", label: "Add units", icon: Database, permission: "add-unit" },
   {
     path: "/bulk-upload-expenses",
     label: "Bulk upload expenses",
@@ -48,24 +33,9 @@ const navItems = [
     icon: Tags,
     permission: "bulk-upload-categories-items",
   },
-  {
-    path: "/report",
-    label: "Reports",
-    icon: FileBarChart,
-    permission: "report",
-  },
-  {
-    path: "/dashboard",
-    label: "Dashboard",
-    icon: Gauge,
-    permission: "dashboard",
-  },
-  {
-    path: "/add-user",
-    label: "Add users",
-    icon: UserRound,
-    permission: "add-user",
-  },
+  { path: "/report", label: "Reports", icon: FileBarChart, permission: "report" },
+  { path: "/dashboard", label: "Dashboard", icon: Gauge, permission: "dashboard" },
+  { path: "/add-user", label: "Add users", icon: UserRound, permission: "add-user" },
 ];
 
 export function getNavigationItems(permissions) {

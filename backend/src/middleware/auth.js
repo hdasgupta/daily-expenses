@@ -3,9 +3,7 @@ import { env } from "../config/env.js";
 import { findUserWithPermissions } from "../models/userModel.js";
 
 export function signUser(user) {
-  return jwt.sign({ id: user.id }, env.jwtSecret, {
-    expiresIn: env.jwtExpiresIn,
-  });
+  return jwt.sign({ id: user.id }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
 }
 
 export async function auth(req, res, next) {

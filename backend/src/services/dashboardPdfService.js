@@ -27,10 +27,7 @@ function drawBarChart(doc, title, data, width = 520) {
       width: barWidth + 10,
       align: "center",
     });
-    doc.text(formatMoney(item.total), x - 8, y - 12, {
-      width: barWidth + 16,
-      align: "center",
-    });
+    doc.text(formatMoney(item.total), x - 8, y - 12, { width: barWidth + 16, align: "center" });
   });
   doc.y = startY + 28;
 }

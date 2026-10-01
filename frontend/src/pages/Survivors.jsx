@@ -111,10 +111,7 @@ export default function Survivors() {
   };
 
   const remove = async () => {
-    await api(`/survivors/${deleteId}`, {
-      method: "DELETE",
-      loadingMessage: "Removing survivor…",
-    });
+    await api(`/survivors/${deleteId}`, { method: "DELETE", loadingMessage: "Removing survivor…" });
     setDeleteId(null);
     await load();
   };
@@ -191,10 +188,7 @@ export default function Survivors() {
             maxLength={6}
             value={form.pincode}
             onChange={(e) =>
-              setForm({
-                ...form,
-                pincode: e.target.value.replace(/\D/g, "").slice(0, 6),
-              })
+              setForm({ ...form, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) })
             }
           />
           {pincodeMessage ? (

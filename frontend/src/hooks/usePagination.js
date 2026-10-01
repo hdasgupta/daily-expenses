@@ -1,18 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../lib/api";
 
-const defaultState = {
-  pageSize: 10,
-  search: "",
-  sortColumn: null,
-  sortDirection: "asc",
-};
+const defaultState = { pageSize: 10, search: "", sortColumn: null, sortDirection: "asc" };
 
 export function usePagination(module, defaultSort = null) {
-  const [state, setState] = useState({
-    ...defaultState,
-    sortColumn: defaultSort,
-  });
+  const [state, setState] = useState({ ...defaultState, sortColumn: defaultSort });
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

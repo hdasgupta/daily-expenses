@@ -34,12 +34,7 @@ export async function listItems({ categoryId, page, pageSize, search, sortColumn
     masterDataSql.items(where, `${sort}`, `$${params.length - 1}`, `$${params.length}`),
     params,
   );
-  return {
-    rows: rows.rows,
-    total: Number(count.rows[0].count),
-    page,
-    pageSize,
-  };
+  return { rows: rows.rows, total: Number(count.rows[0].count), page, pageSize };
 }
 export async function createItem(categoryId, name) {
   const result = await q(masterDataSql.addItem, [categoryId, name]);
@@ -54,18 +49,11 @@ export async function deleteItem(id) {
 }
 
 export async function listUnits({ page, pageSize, search, sortColumn, sortDirection }) {
-  const sort = sortColumn === "created_at" ? "created_at" : "name";
-  const dir = sortDirection === "desc" ? "DESC" : "ASC";
   const like = `%${search || ""}%`;
   const count = await q(masterDataSql.unitCount, [like]);
   const offset = (page - 1) * pageSize;
-  const rows = await q(masterDataSql.units(sort, dir), [like, pageSize, offset]);
-  return {
-    rows: rows.rows,
-    total: Number(count.rows[0].count),
-    page,
-    pageSize,
-  };
+  const rows = await q(masterDataSql.units(sortColumn, sortDirection), [like, pageSize, offset]);
+  return { rows: rows.rows, total: Number(count.rows[0].count), page, pageSize };
 }
 export async function createUnit(name) {
   const result = await q(masterDataSql.addUnit, [name]);

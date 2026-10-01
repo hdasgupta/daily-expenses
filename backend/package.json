@@ -7,8 +7,9 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "format": "prettier --write . --ignore-path ../.prettierignore",
-    "check": "node --check src/server.js && node --check src/config/env.js && node --check src/db/index.js",
-    "dashboard:send": "node scripts/send-dashboard.js"
+    "check": "node --check src/server.js && node --check src/config/env.js && node --check src/db/index.js && node --check src/services/reportService.js && node --check scripts/sql/reportSql.js",
+    "dashboard:send": "node scripts/send-dashboard.js",
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1144.0",

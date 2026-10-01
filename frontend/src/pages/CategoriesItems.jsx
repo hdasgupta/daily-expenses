@@ -102,10 +102,7 @@ export default function CategoriesItems() {
   };
 
   const removeItem = async () => {
-    await api(`/items/${deleteItemId}`, {
-      method: "DELETE",
-      loadingMessage: "Removing item…",
-    });
+    await api(`/items/${deleteItemId}`, { method: "DELETE", loadingMessage: "Removing item…" });
     setDeleteItemId(null);
     await loadItems();
   };

@@ -34,12 +34,7 @@ function resolvedShares(totalCost, shares) {
   const average = shares.filter((share) => share.shareType === "average");
   const remaining = shares.find((share) => share.shareType === "remaining");
   let left = Math.round((total - fixed) * 100) / 100;
-  if (left < 0)
-    return {
-      values: {},
-      valid: false,
-      reason: "Fixed shares exceed total cost",
-    };
+  if (left < 0) return { values: {}, valid: false, reason: "Fixed shares exceed total cost" };
   const values = {};
   if (average.length) {
     const cents = Math.round(left * 100);
@@ -61,11 +56,7 @@ function resolvedShares(totalCost, shares) {
     });
   const hasDynamic = average.length || Boolean(remaining);
   const valid = Math.abs(left) < 0.01 && (hasDynamic || Math.abs(fixed - total) < 0.01);
-  return {
-    values,
-    valid,
-    reason: valid ? "" : "Share amounts must equal total cost",
-  };
+  return { values, valid, reason: valid ? "" : "Share amounts must equal total cost" };
 }
 
 export default function Expense() {
@@ -92,9 +83,7 @@ export default function Expense() {
 
   const loadMeta = async () => {
     const [categoryData, unitData, survivorData] = await Promise.all([
-      api("/meta/categories", {
-        loadingMessage: "Loading expense categories…",
-      }),
+      api("/meta/categories", { loadingMessage: "Loading expense categories…" }),
       api("/meta/units", { loadingMessage: "Loading expense units…" }),
       api("/meta/survivors", { loadingMessage: "Loading survivors…" }),
     ]);
@@ -108,9 +97,7 @@ export default function Expense() {
       setItems([]);
       return;
     }
-    const data = await api(`/meta/items/${selectedCategory}`, {
-      loadingMessage: "Loading items…",
-    });
+    const data = await api(`/meta/items/${selectedCategory}`, { loadingMessage: "Loading items…" });
     setItems(data);
   };
 
@@ -227,10 +214,7 @@ export default function Expense() {
   };
 
   const remove = async () => {
-    await api(`/expenses/${deleteId}`, {
-      method: "DELETE",
-      loadingMessage: "Removing expense…",
-    });
+    await api(`/expenses/${deleteId}`, { method: "DELETE", loadingMessage: "Removing expense…" });
     setDeleteId(null);
     await loadExpenses();
   };
@@ -251,9 +235,7 @@ export default function Expense() {
   };
 
   const openProof = async (row) => {
-    const result = await api(`/expenses/${row.id}/proof-url`, {
-      loadingMessage: "Opening proof…",
-    });
+    const result = await api(`/expenses/${row.id}/proof-url`, { loadingMessage: "Opening proof…" });
     window.open(result.url, "_blank", "noopener,noreferrer");
   };
 

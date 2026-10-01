@@ -67,13 +67,15 @@ function normalizeLoaded(config = {}) {
         ...(config.filters?.categoryItems?.length ? ["categoryItems"] : []),
         ...(config.filters?.survivors?.length ? ["survivors"] : []),
       ];
+  const groupBy = Array.isArray(config.groupBy) ? [...new Set(config.groupBy)] : [];
   return {
     ...initialConfig,
     ...config,
     activeFilters: [...new Set(active)],
     filters: { ...initialConfig.filters, ...(config.filters || {}) },
     sortColumns: Array.isArray(config.sortColumns) ? config.sortColumns : [],
-    groupBy: Array.isArray(config.groupBy) ? config.groupBy : [],
+    groupBy,
+    summarise: groupBy.length ? true : Boolean(config.summarise),
   };
 }
 function formatCell(value, column) {
@@ -102,6 +104,7 @@ export default function Reports() {
   const [selectionName, setSelectionName] = useState("");
   const [selections, setSelections] = useState([]);
   const [showChart, setShowChart] = useState(false);
+  const [selectedChartRow, setSelectedChartRow] = useState(null);
 
   useEffect(() => {
     Promise.all([
@@ -118,18 +121,13 @@ export default function Reports() {
     if (!categories.length) return;
     Promise.all(
       categories.map((category) =>
-        api(`/meta/items/${category.id}`, {
-          loadingMessage: "Loading report items…",
-        }),
+        api(`/meta/items/${category.id}`, { loadingMessage: "Loading report items…" }),
       ),
     )
       .then((lists) =>
         setItems(
           lists.flatMap((list, index) =>
-            list.map((item) => ({
-              ...item,
-              categoryName: categories[index].name,
-            })),
+            list.map((item) => ({ ...item, categoryName: categories[index].name })),
           ),
         ),
       )
@@ -166,10 +164,7 @@ export default function Reports() {
   };
   const removeFilter = (type) =>
     setConfig((current) => {
-      const next = {
-        ...current,
-        activeFilters: current.activeFilters.filter((x) => x !== type),
-      };
+      const next = { ...current, activeFilters: current.activeFilters.filter((x) => x !== type) };
       if (type === "date") next.dateFilterType = "none";
       if (type === "hasProof") next.filters = { ...next.filters, hasProof: "" };
       if (type === "categoryItems") next.filters = { ...next.filters, categoryItems: [] };
@@ -177,10 +172,7 @@ export default function Reports() {
       return next;
     });
   const setFilter = (key, value) =>
-    setConfig((current) => ({
-      ...current,
-      filters: { ...current.filters, [key]: value },
-    }));
+    setConfig((current) => ({ ...current, filters: { ...current.filters, [key]: value } }));
   const toggleUnique = (key, value) =>
     setFilter(
       key,
@@ -188,7 +180,8 @@ export default function Reports() {
         ? config.filters[key].filter((item) => item !== String(value))
         : [...config.filters[key], String(value)],
     );
-  const apply = async () =>
+  const apply = async () => {
+    setSelectedChartRow(null);
     setResult(
       await api("/reports/query", {
         method: "POST",
@@ -196,6 +189,7 @@ export default function Reports() {
         loadingMessage: "Running report query…",
       }),
     );
+  };
   const addSort = () => {
     if (!sortColumn || config.sortColumns.some((item) => item.column === sortColumn)) return;
     setConfig((current) => ({
@@ -253,9 +247,7 @@ export default function Reports() {
   };
   const loadSelections = async () => {
     setSelections(
-      await api("/report-selections", {
-        loadingMessage: "Loading saved report selections…",
-      }),
+      await api("/report-selections", { loadingMessage: "Loading saved report selections…" }),
     );
     setLoadModal(true);
   };
@@ -263,6 +255,7 @@ export default function Reports() {
     setConfig(initialConfig);
     setResult(null);
     setShowChart(false);
+    setSelectedChartRow(null);
   };
   const exportCsv = () => {
     if (!result?.rows?.length) return;
@@ -359,10 +352,7 @@ export default function Reports() {
             checked={config.summarise}
             disabled={Boolean(config.groupBy.length)}
             onChange={(e) => {
-              setConfig((current) => ({
-                ...current,
-                summarise: e.target.checked,
-              }));
+              setConfig((current) => ({ ...current, summarise: e.target.checked }));
               setShowChart(false);
             }}
           />
@@ -417,12 +407,39 @@ export default function Reports() {
               />
               <YAxis />
               <Tooltip formatter={(value) => [`₹${Number(value).toFixed(2)}`, "Total"]} />
-              <Bar dataKey="value" fill="var(--accent)" />
+              <Bar
+                dataKey="value"
+                fill="var(--accent)"
+                cursor="pointer"
+                onClick={(entry, index) => {
+                  setSelectedChartRow(result.rows[index] || null);
+                  document
+                    .getElementById("report-content")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
       ) : null}
-      <ReportContent result={result} />
+      {selectedChartRow ? (
+        <div className="card chart-selection">
+          <div className="section-title">
+            <BarChart3 size={18} /> Selected chart data
+          </div>
+          <div className="report-row selected-chart-row">
+            {result.columns.map((column) => (
+              <div key={column}>
+                <small>{column.replaceAll("_", " ")}</small>
+                <strong>{formatCell(selectedChartRow[column], column)}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+      <div id="report-content">
+        <ReportContent result={result} />
+      </div>
 
       <Modal
         open={filterModal}
@@ -554,6 +571,7 @@ export default function Reports() {
                 onClick={() => {
                   setConfig(normalizeLoaded(selection.config));
                   setShowChart(false);
+                  setSelectedChartRow(null);
                   setLoadModal(false);
                 }}
               >
@@ -619,10 +637,7 @@ function FilterCard({
             <select
               value={dateType}
               onChange={(e) =>
-                setConfig((current) => ({
-                  ...current,
-                  dateFilterType: e.target.value,
-                }))
+                setConfig((current) => ({ ...current, dateFilterType: e.target.value }))
               }
             >
               <option value="date">Specific date</option>

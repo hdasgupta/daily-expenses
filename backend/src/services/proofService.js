@@ -15,11 +15,7 @@ function imageToPdf(buffer, mimeType) {
     try {
       doc.fontSize(12).text("Expense proof", { align: "center" });
       doc.moveDown();
-      doc.image(buffer, 36, 72, {
-        fit: [523, 700],
-        align: "center",
-        valign: "center",
-      });
+      doc.image(buffer, 36, 72, { fit: [523, 700], align: "center", valign: "center" });
       doc.end();
     } catch (error) {
       reject(new Error(`Unable to convert ${mimeType} to PDF: ${error.message}`));

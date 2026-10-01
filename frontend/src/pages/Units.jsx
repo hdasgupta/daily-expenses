@@ -54,10 +54,7 @@ export default function Units() {
     await load();
   };
   const remove = async () => {
-    await api(`/units/${deleteId}`, {
-      method: "DELETE",
-      loadingMessage: "Removing unit…",
-    });
+    await api(`/units/${deleteId}`, { method: "DELETE", loadingMessage: "Removing unit…" });
     setDeleteId(null);
     await load();
   };
