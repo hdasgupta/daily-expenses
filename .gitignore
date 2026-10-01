@@ -13,3 +13,5 @@ coverage/
 .idea/
 frontend/.vercel/
 backend/.vercel/
+.vercel
+.env*
