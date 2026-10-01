@@ -3,35 +3,39 @@
 @@
  const SORT_OPTIONS = [
    ["date", "Date"],
-+  ["survivor", "Survivor"],
    ["category", "Category"],
    ["item", "Item"],
--  ["survivor", "Survivor"],
-+  ["price", "Price"],
+   ["survivor", "Survivor"],
  ];
++
++const GROUP_SORT_BASE_OPTIONS = [
++  ["date", "Date"],
++  ["survivor", "Survivor"],
++  ["category", "Category"],
++  ["item", "Item"],
++  ["price", "Price"],
++];
 @@
 -  const sortChoices = config.groupBy.length
 -    ? GROUP_OPTIONS.filter(([value]) => config.groupBy.includes(value))
 -    : SORT_OPTIONS;
-+  // The second Sort section (the one shown after Group By) has the normal
++  // The second Sort section (shown after Group By) contains the fixed
 +  // sortable columns plus the currently selected Group By columns.
-+  // Keep the order stable and remove duplicates when a Group By column is
-+  // already one of the normal sortable columns.
-+  const sortChoices = config.groupBy.length
-+    ? [
-+        ...SORT_OPTIONS,
-+        ...config.groupBy
-+          .filter((value) => !SORT_OPTIONS.some(([key]) => key === value))
-+          .map((value) => GROUP_OPTIONS.find(([key]) => key === value))
-+          .filter(Boolean),
-+      ]
-+    : SORT_OPTIONS;
++  // Remove duplicates when a Group By column is already in the base list.
++  const groupSortOptions = [
++    ...GROUP_SORT_BASE_OPTIONS,
++    ...config.groupBy
++      .filter((value) => !GROUP_SORT_BASE_OPTIONS.some(([key]) => key === value))
++      .map((value) => [value, optionLabel(GROUP_OPTIONS, value)]),
++  ];
++  const sortChoices = config.groupBy.length ? groupSortOptions : SORT_OPTIONS;
 @@
+         {config.groupBy.length ? (
            <SortArea
              sortColumns={config.sortColumns}
 -            options={GROUP_OPTIONS}
-+            options={sortChoices}
++            options={groupSortOptions}
              onAdd={() => setSortModal(true)}
              onRemove={removeSort}
              onToggleDirection={toggleSortDirection}
-***
+*** End Patch
