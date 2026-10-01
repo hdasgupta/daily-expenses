@@ -16,6 +16,23 @@ function formatCell(value, column) {
   return String(value);
 }
 
+function drawCell(doc, value, column, x, y, width, height, textColor, fontSize) {
+  const isProof = column === "proof_url" && value;
+  const text = isProof ? "View Proof" : formatCell(value, column);
+
+  doc
+    .fillColor(textColor)
+    .fontSize(fontSize)
+    .font(isProof ? "Helvetica-Bold" : "Helvetica")
+    .text(text, x + 3, y + 5, {
+      width: width - 6,
+      height: height - 7,
+      ellipsis: true,
+      link: isProof ? String(value) : undefined,
+      underline: Boolean(isProof),
+    });
+}
+
 function drawTable(doc, columns, rows) {
   const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
   const columnWidth = Math.max(60, usableWidth / Math.max(columns.length, 1));
@@ -40,20 +57,19 @@ function drawTable(doc, columns, rows) {
       doc.restore();
       doc.strokeColor("#b8c7da").rect(x, y, columnWidth, height).stroke();
 
-      doc
-        .fillColor(textColor)
-        .fontSize(header ? 7 : 6)
-        .font(header ? "Helvetica-Bold" : "Helvetica")
-        .text(
-          header ? column.replace(/_/g, " ").toUpperCase() : formatCell(row[column], column),
-          x + 3,
-          y + 5,
-          {
+      if (header) {
+        doc
+          .fillColor(textColor)
+          .fontSize(7)
+          .font("Helvetica-Bold")
+          .text(column.replace(/_/g, " ").toUpperCase(), x + 3, y + 5, {
             width: columnWidth - 6,
             height: height - 7,
             ellipsis: true,
-          },
-        );
+          });
+      } else {
+        drawCell(doc, row[column], column, x, y, columnWidth, height, textColor, 6);
+      }
     });
 
     doc.fillColor("black");
@@ -92,7 +108,8 @@ export function buildReportPdf(report, config = {}) {
     doc.fontSize(11).text(`Mode: ${report.mode}`);
     doc.moveDown(0.7);
 
-    const pdfColumns = (report.columns || []).filter((column) => column !== "proof_url");
+    // Remove duplicate columns while preserving the first occurrence, but keep proof_url.
+    const pdfColumns = [...new Set(report.columns || [])];
     drawTable(doc, pdfColumns, report.rows || []);
 
     doc.moveDown();
