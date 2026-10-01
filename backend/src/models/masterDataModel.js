@@ -49,10 +49,12 @@ export async function deleteItem(id) {
 }
 
 export async function listUnits({ page, pageSize, search, sortColumn, sortDirection }) {
+  const sort = sortColumn === "created_at" ? "created_at" : "name";
+  const dir = sortDirection === "desc" ? "DESC" : "ASC";
   const like = `%${search || ""}%`;
   const count = await q(masterDataSql.unitCount, [like]);
   const offset = (page - 1) * pageSize;
-  const rows = await q(masterDataSql.units(sortColumn, sortDirection), [like, pageSize, offset]);
+  const rows = await q(masterDataSql.units(sort, dir), [like, pageSize, offset]);
   return { rows: rows.rows, total: Number(count.rows[0].count), page, pageSize };
 }
 export async function createUnit(name) {

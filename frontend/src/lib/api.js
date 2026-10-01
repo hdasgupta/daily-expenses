@@ -5,8 +5,10 @@ export function showToast(type, message) {
 export async function api(path, options = {}) {
   const token = localStorage.getItem("token");
   const isFormData = options.body instanceof FormData;
+  const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const headers = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
+    "X-App-Timezone": clientTimezone,
     ...(options.headers || {}),
   };
   if (token) headers.Authorization = `Bearer ${token}`;

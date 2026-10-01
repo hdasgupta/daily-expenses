@@ -77,7 +77,3 @@ Run the configured Prettier script from the repository root:
 `npm run format`
 
 The repository includes `.prettierrc.json` and `.prettierignore` and excludes dependency/build artifacts from formatting.
-
-## Verification
-
-Backend query-builder tests are included under `backend/test/`. Run `npm test` from `backend/`. The report query builders cover raw, grouped-raw, total-summary, grouped-summary, survivor-share aggregation, filters, and safe sort construction.

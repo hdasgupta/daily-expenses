@@ -89,13 +89,10 @@ export async function normalizeForBulkExpense(client, input, userId) {
   let itemId = null;
   let otherItem = null;
   const item = String(input.item || "").trim();
-  if (item && item.toLowerCase() !== "total" && item.toLowerCase() !== "other") {
+  if (item && item.toLowerCase() !== "total") {
     const itemResult = await client.query(bulkUploadSql.itemByName, [categoryId, item]);
-    if (!itemResult.rows[0]) throw new Error(`Item not found in category: ${item}`);
-    itemId = itemResult.rows[0].id;
-  } else if (item.toLowerCase() === "other") {
-    otherItem = String(input.other_item || "").trim();
-    if (!otherItem) throw new Error("other_item is required when item is Other");
+    if (itemResult.rows[0]) itemId = itemResult.rows[0].id;
+    else otherItem = item;
   }
   const unitResult = input.unit
     ? await client.query(bulkUploadSql.unitByName, [input.unit])

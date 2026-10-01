@@ -6,6 +6,7 @@ import {
 } from "../services/expenseService.js";
 import { uploadExpenseProof } from "../services/proofService.js";
 import { signedObjectUrl } from "../services/storageService.js";
+import { todayIso } from "../utils/dates.js";
 
 function paging(req) {
   return {
@@ -20,7 +21,7 @@ function paging(req) {
 }
 
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  return todayIso();
 }
 
 export async function list(req, res) {

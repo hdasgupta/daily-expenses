@@ -13,6 +13,7 @@ import Reports from "./pages/Reports";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import { api } from "./lib/api";
+import { isIndiaTimezone } from "./utils/dates.js";
 
 const routes = {
   "/add-expense": { component: Expense, permission: "add-expense" },
@@ -43,6 +44,7 @@ export default function App() {
   const [path, setPath] = useState(() => normalizePath(window.location.pathname));
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(true);
+  const indiaTimezone = isIndiaTimezone();
 
   useEffect(() => {
     const popState = () => setPath(normalizePath(window.location.pathname));
@@ -98,6 +100,22 @@ export default function App() {
     setPath("/");
   };
 
+  if (!indiaTimezone)
+    return (
+      <>
+        <Toast />
+        <div className="auth-loading">
+          <div className="card">
+            <h2>Access unavailable</h2>
+            <p>This application is available only in India (Indian Standard Time).</p>
+            <p>
+              Your browser reports a time zone that is not recognized as Indian Standard Time. If
+              you are in India, check your device date/time and time zone settings.
+            </p>
+          </div>
+        </div>
+      </>
+    );
   if (checking)
     return (
       <>

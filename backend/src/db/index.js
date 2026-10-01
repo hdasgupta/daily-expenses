@@ -3,8 +3,10 @@ import { env } from "../config/env.js";
 import { schemaSql, transactionSql } from "../../scripts/sql/schemaSql.js";
 
 const { Pool } = pg;
+
 export const pool = new Pool({
   connectionString: env.databaseUrl,
+  options: "-c timezone=Asia/Kolkata",
   ssl: env.databaseUrl.includes("sslmode=require") ? { rejectUnauthorized: false } : undefined,
   max: Number(process.env.DB_POOL_MAX || 10),
   idleTimeoutMillis: 30000,

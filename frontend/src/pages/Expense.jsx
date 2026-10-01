@@ -2,13 +2,19 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Check, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
+import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
+import ProofViewer from "../components/ProofViewer";
 import ConfirmDialog from "../components/ConfirmDialog";
 import { usePagination } from "../hooks/usePagination";
 
 const TOTAL_ITEM = "__total__";
 const OTHER_ITEM = "__other__";
-const today = () => new Date().toISOString().slice(0, 10);
+
+function formatExpenseDate(value) {
+  return formatDateKolkata(value);
+}
+const today = todayKolkata;
 
 function emptyForm(date = today()) {
   return {
@@ -73,6 +79,7 @@ export default function Expense() {
   const [total, setTotal] = useState(0);
   const [proofExpense, setProofExpense] = useState(null);
   const [proofFile, setProofFile] = useState(null);
+  const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [deleteId, setDeleteId] = useState(null);
   const [formError, setFormError] = useState("");
 
@@ -101,14 +108,14 @@ export default function Expense() {
     setItems(data);
   };
 
-  const loadExpenses = async () => {
+  const loadExpenses = async (requestedPage = page, requestedDate = date) => {
     if (!pagination.ready) return;
     const result = await api(
-      `/expenses?date=${date}&page=${page}&pageSize=${pagination.pageSize}&search=${encodeURIComponent(pagination.search)}&sortColumn=${encodeURIComponent(pagination.sortColumn || "expense_date")}&sortDirection=${pagination.sortDirection}`,
+      `/expenses?date=${encodeURIComponent(requestedDate)}&page=${requestedPage}&pageSize=${pagination.pageSize}&search=${encodeURIComponent(pagination.search)}&sortColumn=${encodeURIComponent(pagination.sortColumn || "expense_date")}&sortDirection=${pagination.sortDirection}`,
       { loadingMessage: "Loading expenses…" },
     );
-    setRows(result.rows);
-    setTotal(result.total);
+    setRows(result.rows || []);
+    setTotal(Number(result.total || 0));
   };
 
   useEffect(() => {
@@ -185,9 +192,12 @@ export default function Expense() {
         loadingMessage: "Uploading proof…",
       });
     }
+    const savedDate = String(payload.expenseDate);
     setEditingId(null);
-    setForm(emptyForm(date));
-    await loadExpenses();
+    setDate(savedDate);
+    setPage(1);
+    setForm(emptyForm(savedDate));
+    await loadExpenses(1, savedDate);
   };
 
   const beginEdit = async (row) => {
@@ -236,7 +246,7 @@ export default function Expense() {
 
   const openProof = async (row) => {
     const result = await api(`/expenses/${row.id}/proof-url`, { loadingMessage: "Opening proof…" });
-    window.open(result.url, "_blank", "noopener,noreferrer");
+    setProofViewerUrl(result.url || "");
   };
 
   return (
@@ -423,7 +433,7 @@ export default function Expense() {
                 </select>
               </label>
               <label>
-                {share.shareType === "fixed" ? "Amount" : "Resolved amount"}
+                {share.shareType === "fixed" ? "Share price" : "Share price"}
                 <input
                   type="number"
                   step="0.01"
@@ -510,14 +520,16 @@ export default function Expense() {
           <article className="list-card expense-card" key={row.id}>
             <div className="list-main">
               <strong>
-                ₹{Number(row.total_cost).toFixed(2)} · {row.category} ·{" "}
-                {row.item || row.other_item || "Total"}
+                {formatExpenseDate(row.expense_date)} · ₹{Number(row.total_cost).toFixed(2)} ·{" "}
+                {row.category} · {row.item || row.other_item || "Total"}
               </strong>
-              <span>
-                {row.expense_type} ·{" "}
-                {row.quantity ? `${row.quantity} ${row.unit || ""}` : "No quantity"} ·{" "}
-                {row.comment || "No comment"}
-              </span>
+              {row.quantity !== null && row.quantity !== undefined && row.quantity !== "" ? (
+                <span>
+                  {row.quantity}
+                  {row.unit ? ` ${row.unit}` : ""}
+                </span>
+              ) : null}
+              <span>{row.comment || "No comment"}</span>
               <span>
                 Shares:{" "}
                 {(row.shares || [])
@@ -615,6 +627,11 @@ export default function Expense() {
         message="This will permanently remove the expense and its survivor shares."
         onCancel={() => setDeleteId(null)}
         onConfirm={remove}
+      />
+      <ProofViewer
+        url={proofViewerUrl}
+        title="Expense proof"
+        onClose={() => setProofViewerUrl("")}
       />
     </section>
   );

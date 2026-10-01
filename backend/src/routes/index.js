@@ -9,7 +9,7 @@ import * as userController from "../controllers/userController.js";
 import * as reportController from "../controllers/reportController.js";
 import * as dashboardController from "../controllers/dashboardController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
-import { auth, permit } from "../middleware/auth.js";
+import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
 
 export function createRouter(maxUploadBytes) {
   const router = Router();
@@ -19,6 +19,8 @@ export function createRouter(maxUploadBytes) {
   });
 
   router.get("/health", (req, res) => res.json({ ok: true }));
+  router.use(indiaTimezoneOnly);
+
   router.post("/auth/login", authController.loginController);
   router.post("/auth/request-reset", authController.requestResetController);
   router.post("/auth/reset-password", authController.resetPasswordController);
@@ -80,6 +82,7 @@ export function createRouter(maxUploadBytes) {
   );
 
   router.post("/reports/query", auth, permit("report"), reportController.query);
+  router.post("/reports/export-pdf", auth, permit("report"), reportController.exportPdf);
   router.get("/report-selections", auth, permit("report"), reportController.selections);
   router.post("/report-selections", auth, permit("report"), reportController.save);
   router.delete("/report-selections/:id", auth, permit("report"), reportController.remove);

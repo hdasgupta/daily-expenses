@@ -4,6 +4,7 @@ import {
   runReport,
   saveSelection,
 } from "../services/reportService.js";
+import { buildReportPdf } from "../services/reportPdfService.js";
 
 export async function query(req, res) {
   res.json(await runReport(req.body || {}));
@@ -19,4 +20,12 @@ export async function save(req, res) {
 export async function remove(req, res) {
   await deleteSelection(req.user.id, req.params.id);
   res.json({ ok: true });
+}
+
+export async function exportPdf(req, res) {
+  const report = await runReport(req.body || {});
+  const pdf = await buildReportPdf(report, req.body || {});
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Disposition", 'attachment; filename="expense-report.pdf"');
+  res.send(pdf);
 }

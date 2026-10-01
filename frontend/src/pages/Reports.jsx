@@ -14,7 +14,10 @@ import {
   X,
 } from "lucide-react";
 import { api } from "../lib/api";
+import { downloadPdf } from "../lib/download";
 import Modal from "../components/Modal";
+import ProofViewer from "../components/ProofViewer";
+import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
 
 const GROUP_OPTIONS = [
   ["date", "Date"],
@@ -67,22 +70,25 @@ function normalizeLoaded(config = {}) {
         ...(config.filters?.categoryItems?.length ? ["categoryItems"] : []),
         ...(config.filters?.survivors?.length ? ["survivors"] : []),
       ];
-  const groupBy = Array.isArray(config.groupBy) ? [...new Set(config.groupBy)] : [];
   return {
     ...initialConfig,
     ...config,
     activeFilters: [...new Set(active)],
     filters: { ...initialConfig.filters, ...(config.filters || {}) },
     sortColumns: Array.isArray(config.sortColumns) ? config.sortColumns : [],
-    groupBy,
-    summarise: groupBy.length ? true : Boolean(config.summarise),
+    groupBy: Array.isArray(config.groupBy) ? config.groupBy : [],
   };
 }
 function formatCell(value, column) {
   if (value === null || value === undefined || value === "") return "—";
-  if (column === "total" || column === "total_cost" || column === "report_amount")
+  if (
+    column === "total" ||
+    column === "total_cost" ||
+    column === "report_amount" ||
+    column === "share_price"
+  )
     return `₹${Number(value).toFixed(2)}`;
-  if (column === "has_proof") return value ? "Yes" : "No";
+  if (column === "expense_date") return formatDateKolkata(value);
   return String(value);
 }
 
@@ -104,7 +110,7 @@ export default function Reports() {
   const [selectionName, setSelectionName] = useState("");
   const [selections, setSelections] = useState([]);
   const [showChart, setShowChart] = useState(false);
-  const [selectedChartRow, setSelectedChartRow] = useState(null);
+  const [proofViewerUrl, setProofViewerUrl] = useState("");
 
   useEffect(() => {
     Promise.all([
@@ -180,8 +186,7 @@ export default function Reports() {
         ? config.filters[key].filter((item) => item !== String(value))
         : [...config.filters[key], String(value)],
     );
-  const apply = async () => {
-    setSelectedChartRow(null);
+  const apply = async () =>
     setResult(
       await api("/reports/query", {
         method: "POST",
@@ -189,7 +194,6 @@ export default function Reports() {
         loadingMessage: "Running report query…",
       }),
     );
-  };
   const addSort = () => {
     if (!sortColumn || config.sortColumns.some((item) => item.column === sortColumn)) return;
     setConfig((current) => ({
@@ -216,11 +220,7 @@ export default function Reports() {
     }));
   const addGroup = () => {
     if (!groupColumn || config.groupBy.includes(groupColumn)) return;
-    setConfig((current) => ({
-      ...current,
-      groupBy: [...current.groupBy, groupColumn],
-      summarise: true,
-    }));
+    setConfig((current) => ({ ...current, groupBy: [...current.groupBy, groupColumn] }));
     setGroupModal(false);
     setGroupColumn("");
   };
@@ -231,7 +231,6 @@ export default function Reports() {
         ...current,
         groupBy: nextGroup,
         sortColumns: current.sortColumns.filter((sort) => sort.column !== column),
-        summarise: nextGroup.length ? true : current.summarise,
       };
     });
   const saveSelection = async (event) => {
@@ -255,22 +254,10 @@ export default function Reports() {
     setConfig(initialConfig);
     setResult(null);
     setShowChart(false);
-    setSelectedChartRow(null);
   };
-  const exportCsv = () => {
+  const exportPdf = async () => {
     if (!result?.rows?.length) return;
-    const csv = [
-      result.columns.join(","),
-      ...result.rows.map((row) =>
-        result.columns.map((column) => JSON.stringify(row[column] ?? "")).join(","),
-      ),
-    ].join("\n");
-    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "expense-report.csv";
-    link.click();
-    URL.revokeObjectURL(url);
+    await downloadPdf("/reports/export-pdf", config);
   };
   const sortChoices = config.groupBy.length
     ? GROUP_OPTIONS.filter(([value]) => config.groupBy.includes(value))
@@ -279,6 +266,20 @@ export default function Reports() {
     ([value]) => !config.activeFilters.includes(value),
   );
 
+  const openProof = (row) => {
+    if (row.proof_url) setProofViewerUrl(row.proof_url);
+  };
+  const renderCell = (row, column) => {
+    if (column === "proof_url")
+      return row.proof_url ? (
+        <button type="button" className="text-link" onClick={() => openProof(row)}>
+          View proof
+        </button>
+      ) : (
+        "—"
+      );
+    return formatCell(row[column], column);
+  };
   return (
     <section>
       <div className="page-heading">
@@ -350,7 +351,6 @@ export default function Reports() {
           <input
             type="checkbox"
             checked={config.summarise}
-            disabled={Boolean(config.groupBy.length)}
             onChange={(e) => {
               setConfig((current) => ({ ...current, summarise: e.target.checked }));
               setShowChart(false);
@@ -359,7 +359,7 @@ export default function Reports() {
           <span className="switch"></span>
           <strong>Summarise</strong>
           {config.groupBy.length ? (
-            <small className="field-note">Grouping automatically enables summarise.</small>
+            <small className="field-note">Grouping does not automatically enable summarise.</small>
           ) : null}
         </label>
         <button className="secondary" type="button" onClick={apply}>
@@ -386,9 +386,9 @@ export default function Reports() {
           className="secondary"
           type="button"
           disabled={!result?.rows?.length}
-          onClick={exportCsv}
+          onClick={exportPdf}
         >
-          <Download size={17} /> Export CSV
+          <Download size={17} /> Export PDF
         </button>
       </div>
 
@@ -407,39 +407,12 @@ export default function Reports() {
               />
               <YAxis />
               <Tooltip formatter={(value) => [`₹${Number(value).toFixed(2)}`, "Total"]} />
-              <Bar
-                dataKey="value"
-                fill="var(--accent)"
-                cursor="pointer"
-                onClick={(entry, index) => {
-                  setSelectedChartRow(result.rows[index] || null);
-                  document
-                    .getElementById("report-content")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-              />
+              <Bar dataKey="value" fill="var(--accent)" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       ) : null}
-      {selectedChartRow ? (
-        <div className="card chart-selection">
-          <div className="section-title">
-            <BarChart3 size={18} /> Selected chart data
-          </div>
-          <div className="report-row selected-chart-row">
-            {result.columns.map((column) => (
-              <div key={column}>
-                <small>{column.replaceAll("_", " ")}</small>
-                <strong>{formatCell(selectedChartRow[column], column)}</strong>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-      <div id="report-content">
-        <ReportContent result={result} />
-      </div>
+      <ReportContent result={result} renderCell={renderCell} />
 
       <Modal
         open={filterModal}
@@ -571,7 +544,6 @@ export default function Reports() {
                 onClick={() => {
                   setConfig(normalizeLoaded(selection.config));
                   setShowChart(false);
-                  setSelectedChartRow(null);
                   setLoadModal(false);
                 }}
               >
@@ -600,6 +572,11 @@ export default function Reports() {
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
       </Modal>
+      <ProofViewer
+        url={proofViewerUrl}
+        title="Report proof"
+        onClose={() => setProofViewerUrl("")}
+      />
     </section>
   );
 }
@@ -651,7 +628,7 @@ function FilterCard({
               Date
               <input
                 type="date"
-                max={new Date().toISOString().slice(0, 10)}
+                max={todayKolkata()}
                 value={config.filters.date}
                 onChange={(e) => setFilter("date", e.target.value)}
               />
@@ -693,7 +670,7 @@ function FilterCard({
               <input
                 type="number"
                 min="2000"
-                max={new Date().getFullYear()}
+                max={Number(todayKolkata().slice(0, 4))}
                 value={config.filters.year}
                 onChange={(e) => setFilter("year", e.target.value)}
               />
@@ -821,7 +798,7 @@ function MultiPicker({ label, options, selected, onToggle }) {
     </div>
   );
 }
-function ReportContent({ result }) {
+function ReportContent({ result, renderCell }) {
   if (!result)
     return (
       <div className="empty-card">
@@ -829,7 +806,8 @@ function ReportContent({ result }) {
         <span>Run the report to populate the content area.</span>
       </div>
     );
-  if (result.mode === "grouped-raw") return <GroupedRawContent result={result} />;
+  if (result.mode === "grouped-raw")
+    return <GroupedRawContent result={result} renderCell={renderCell} />;
   return (
     <div className="report-content">
       <div className="summary-card">
@@ -854,7 +832,7 @@ function ReportContent({ result }) {
             {result.columns.map((column) => (
               <div key={column}>
                 <small>{column.replaceAll("_", " ")}</small>
-                <strong>{formatCell(row[column], column)}</strong>
+                <strong>{renderCell(row, column)}</strong>
               </div>
             ))}
           </article>
@@ -866,7 +844,7 @@ function ReportContent({ result }) {
     </div>
   );
 }
-function GroupedRawContent({ result }) {
+function GroupedRawContent({ result, renderCell }) {
   const grouped = useMemo(() => {
     const map = new Map();
     for (const row of result.rows) {
@@ -909,7 +887,7 @@ function GroupedRawContent({ result }) {
                   .map((column) => (
                     <div key={column}>
                       <small>{column.replaceAll("_", " ")}</small>
-                      <strong>{formatCell(row[column], column)}</strong>
+                      <strong>{renderCell(row, column)}</strong>
                     </div>
                   ))}
               </article>

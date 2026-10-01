@@ -1,18 +1,21 @@
 import { q } from "../db/index.js";
 import { expenseSql } from "../../scripts/sql/expenseSql.js";
 
+const sortSql = {
+  expense_date: "e.expense_date",
+  category: "c.name",
+  item: "COALESCE(i.name,e.other_item,'Total')",
+  total_cost: "e.total_cost",
+  expense_type: "e.expense_type",
+};
+
 export async function listExpenses({ date, page, pageSize, search, sortColumn, sortDirection }) {
   const sort = sortSql[sortColumn] || "e.id";
   const dir = sortDirection === "asc" ? "ASC" : "DESC";
   const like = `%${search || ""}%`;
   const count = await q(expenseSql.countByDate, [date, like]);
   const offset = (page - 1) * pageSize;
-  const rows = await q(expenseSql.listByDate(sortColumn, sortDirection), [
-    date,
-    like,
-    pageSize,
-    offset,
-  ]);
+  const rows = await q(expenseSql.listByDate(sort, dir), [date, like, pageSize, offset]);
   return { rows: rows.rows, total: Number(count.rows[0].count), page, pageSize, date };
 }
 

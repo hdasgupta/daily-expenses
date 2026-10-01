@@ -3,6 +3,7 @@ import { userSql } from "../../scripts/sql/userSql.js";
 import { dashboardSql } from "../../scripts/sql/dashboardSql.js";
 import { sendDashboardEmail } from "./mailService.js";
 import { buildDashboardPdf } from "./dashboardPdfService.js";
+import { nowIso } from "../utils/dates.js";
 
 const limits = { day: 7, week: 4, month: 3, year: 2 };
 const publicNames = { day: "daily", week: "weekly", month: "monthly", year: "yearly" };
@@ -12,10 +13,7 @@ export async function buildDashboard() {
   const breakdowns = {};
   for (const unit of Object.keys(limits)) {
     const def = dashboardSql.trend[unit];
-    const result = await q(dashboardSql.trendQuery(def.expression, def.start), [
-      unit,
-      limits[unit],
-    ]);
+    const result = await q(dashboardSql.trendQuery(def.expression, def.start), [limits[unit]]);
     periods[publicNames[unit]] = result.rows.map((row) => ({
       label: String(row.bucket).slice(0, 10),
       total: Number(row.total || 0),
@@ -31,7 +29,7 @@ export async function buildDashboard() {
           item.join,
           def.start,
         ),
-        [unit, limits[unit]],
+        [limits[unit]],
       );
       breakdowns[`${publicNames[unit]}${by[0].toUpperCase() + by.slice(1)}`] = data.rows.map(
         (row) => ({
@@ -45,7 +43,7 @@ export async function buildDashboard() {
       );
     }
   }
-  return { generatedAt: new Date().toISOString(), periods, breakdowns };
+  return { generatedAt: nowIso(), periods, breakdowns };
 }
 
 export async function sendDashboardToManagers() {

@@ -1180,10 +1180,16 @@ code {
     width: calc(100vw - 16px);
   }
 }
-.chart-selection {
-  margin-top: 14px;
+
+.text-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
 }
-.selected-chart-row {
-  margin-top: 10px;
-  border-color: var(--accent);
+.text-link:hover {
+  opacity: 0.8;
 }

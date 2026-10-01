@@ -12,8 +12,8 @@ function downloadCsv(name, content) {
   URL.revokeObjectURL(url);
 }
 const expenseTemplate = [
-  "date,category,item,other_item,quantity,unit,price,total_cost,expense_type,shares,comment,added_by,added_on,proof_google_docs_id,contract_download_url",
-  '"2026,09,30",Food,Breakfast,,10,piece,1000,1000,cash,"Arun Kumar|600,Bipin Das|~",Morning food,operator@example.com,2026-09-30T10:00:00Z,,',
+  "date,category,item,quantity,unit,price,total_cost,expense_type,shares,comment,added_by,added_on,proof_google_docs_id,contract_download_url",
+  '"2026,09,30",Food,Breakfast,10,piece,1000,1000,cash,"Arun Kumar|600,Bipin Das|~","Morning food",operator@example.com,2026-09-30T10:00:00Z,GOOGLE_DRIVE_IMAGE_DOCUMENT_ID,',
 ].join("\n");
 const categoryItemTemplate = [
   "Food,Medicines,Medical",
@@ -87,13 +87,20 @@ export default function BulkUpload({ type }) {
           <>
             <h3>Expense CSV format</h3>
             <p>
-              Use date as <code>yyyy,mm,dd</code> (the entire date field must be CSV-quoted),
+              Use date as <code>yyyy,mm,dd</code> (quoted when it is one CSV field),
               price/total_cost, and shares such as{" "}
               <code>Survivor Name|600,Other Survivor|25%,Last Survivor|~</code>.
             </p>
             <p>
               Amounts and percentages are converted to database share amounts. Unknown survivor
               names are skipped individually. A <code>~</code> share receives the remaining amount.
+              For <code>item</code>, an existing item for the category is stored in the item column;
+              otherwise the value is automatically stored as <code>other_item</code>. The{" "}
+              <code>other_item</code> CSV column is optional. The <code>comment</code> column is
+              imported into the expense comment. Put a Google Drive image/file ID in{" "}
+              <code>proof_google_docs_id</code>; the importer downloads it, converts an image to PDF
+              when needed, and uploads the PDF to S3. The Drive file must be accessible to the
+              backend.
             </p>
             <button
               type="button"

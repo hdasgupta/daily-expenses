@@ -34,10 +34,20 @@ export async function uploadExpenseProof(expenseId, file) {
   return key;
 }
 export async function uploadRemoteProof(expenseId, url) {
-  const response = await fetch(url, { redirect: "follow" });
+  const response = await fetch(url, {
+    redirect: "follow",
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const contentType = (response.headers.get("content-type") || allowedPdf).split(";")[0].trim();
+  const contentType = (response.headers.get("content-type") || allowedPdf)
+    .split(";")[0]
+    .trim()
+    .toLowerCase();
   const buffer = Buffer.from(await response.arrayBuffer());
+  if (contentType.includes("text/html"))
+    throw new Error(
+      "Google Drive returned an HTML page instead of the file. Make the Drive file accessible to anyone with the link.",
+    );
   const fileLike = { mimetype: contentType, buffer };
   return uploadExpenseProof(expenseId, fileLike);
 }

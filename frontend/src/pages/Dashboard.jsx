@@ -3,6 +3,7 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxi
 import { Gauge, RefreshCw, X } from "lucide-react";
 import { api } from "../lib/api";
 import Modal from "../components/Modal";
+import { formatDateKolkata } from "../utils/dates.js";
 
 function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
@@ -214,7 +215,7 @@ export default function Dashboard() {
                     {row.category} · {row.item}
                   </strong>
                   <span>
-                    {row.expense_date} · {row.expense_type}
+                    {formatDateKolkata(row.expense_date)} · {row.expense_type}
                   </span>
                   {row.survivor ? <span>Survivor: {row.survivor}</span> : null}
                   <span>
