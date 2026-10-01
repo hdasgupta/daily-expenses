@@ -1,0 +1,9 @@
+--- a/backend/src/services/reportService.js
++++ b/backend/src/services/reportService.js
+@@
+-  const parts = chosen
+-    .filter((x) => !forGroup || config.groupBy.includes(x.column))
+-    .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
++  const parts = chosen
++    .filter((x) => expressions[x.column])
++    .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
