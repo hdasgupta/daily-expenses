@@ -1,4 +1,4 @@
-const baseUrl = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/$/, "");
+const baseUrl = (import.meta.env.VITE_API_BASE_URL || "https://daily-expenses-g4ze.onrender.com/api").replace(/\/$/, "");
 export function showToast(type, message) {
   window.dispatchEvent(new CustomEvent("app:toast", { detail: { type, message } }));
 }
