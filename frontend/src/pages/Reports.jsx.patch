@@ -1,8 +1,32 @@
 --- a/frontend/src/pages/Reports.jsx
 +++ b/frontend/src/pages/Reports.jsx
 @@
+ const SORT_OPTIONS = [
+   ["date", "Date"],
+   ["category", "Category"],
+   ["item", "Item"],
+   ["survivor", "Survivor"],
+ ];
++const GROUPED_SORT_OPTIONS = [
++  ["date", "Date"],
++  ["survivor", "Survivor"],
++  ["category", "Category"],
++  ["item", "Item"],
++  ["price", "Price"],
++];
+@@
 -  const sortChoices = config.groupBy.length
 -    ? GROUP_OPTIONS.filter(([value]) => config.groupBy.includes(value))
 -    : SORT_OPTIONS;
-+  // When grouping is active, allow sorting by every supported report/group column.
-+  const sortChoices = config.groupBy.length ? GROUP_OPTIONS : SORT_OPTIONS;
++  // With Group By selected, show the fixed report sort columns plus
++  // every selected Group By column. Remove duplicates while preserving
++  // the fixed sort-column order first.
++  const sortChoices = config.groupBy.length
++    ? [
++        ...GROUPED_SORT_OPTIONS,
++        ...GROUP_OPTIONS.filter(([value]) => config.groupBy.includes(value)),
++      ].filter(
++        ([value], index, options) => options.findIndex(([key]) => key === value) === index,
++      )
++    : SORT_OPTIONS;
+*** End Patch

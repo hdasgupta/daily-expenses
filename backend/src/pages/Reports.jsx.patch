@@ -1,8 +1,0 @@
---- a/frontend/src/pages/Reports.jsx
-+++ b/frontend/src/pages/Reports.jsx
-@@
--  const sortChoices = config.groupBy.length
--    ? GROUP_OPTIONS.filter(([value]) => config.groupBy.includes(value))
--    : SORT_OPTIONS;
-+  // When grouping is active, allow sorting by every supported report/group column.
-+  const sortChoices = config.groupBy.length ? GROUP_OPTIONS : SORT_OPTIONS;

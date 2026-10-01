@@ -1,9 +1,36 @@
 --- a/backend/src/services/reportService.js
 +++ b/backend/src/services/reportService.js
 @@
+-const rawSortable = new Set(["date", "category", "item", "survivor"]);
++const rawSortable = new Set(["date", "category", "item", "survivor"]);
++const groupedSortable = new Set([
++  ...Object.keys(reportSql.groupExpr),
++  "date",
++  "survivor",
++  "category",
++  "item",
++  "price",
++]);
+@@
+-  const allowedSort = uniqueGroupBy.length ? groupable : rawSortable;
++  const allowedSort = uniqueGroupBy.length ? groupedSortable : rawSortable;
+@@
+ function orderSql(config, forGroup) {
+   const expressions = forGroup
+-    ? reportSql.groupExpr
++    ? {
++        ...reportSql.groupExpr,
++        price: "report_amount",
++      }
+     : {
+         date: "expense_date",
+         category: "category",
+         item: "item",
+         survivor: "survivor",
+@@
 -  const parts = chosen
 -    .filter((x) => !forGroup || config.groupBy.includes(x.column))
--    .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
 +  const parts = chosen
 +    .filter((x) => expressions[x.column])
-+    .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
+     .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
+*** End Patch
