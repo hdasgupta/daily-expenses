@@ -39,3 +39,15 @@ export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
     reportDate,
   });
 }
+
+export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
+  await postEmail({
+    type: "daily-7-day-report-pdf",
+    to: email,
+    subject: `Expense 7-day report - ${reportDate}`,
+    text: `Attached is the 7-day expense report containing the daily bar chart, daily summary, daily survivor summary, and expense data dump.`,
+    filename: `expense-7-day-report-${reportDate}.pdf`,
+    contentBase64: pdfBuffer.toString("base64"),
+    reportDate,
+  });
+}
