@@ -23,7 +23,7 @@ function formatCell(value, column) {
 
 function drawCell(doc, value, column, x, y, width, height, textColor, fontSize) {
   const isProof = column === "proof_url" && value;
-  const text = isProof ? "Download Proof" : formatCell(value, column);
+  const text = isProof ? "View Proof" : formatCell(value, column);
 
   doc
     .fillColor(textColor)
