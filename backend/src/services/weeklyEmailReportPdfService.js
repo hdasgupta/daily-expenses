@@ -19,6 +19,81 @@ function weekLabel(start, end) {
   return `${dateLabel(start)} - ${dateLabel(end)}`;
 }
 
+
+function pivotSurvivorRows(rows, periodKey, periods = []) {
+  const survivors = [...new Set(rows.map((row) => row.survivor || "Unknown"))].sort();
+  const grouped = new Map(periods.map((period) => [period, { [periodKey]: period }]));
+  for (const row of rows) {
+    const key = row[periodKey];
+    if (!grouped.has(key)) grouped.set(key, { [periodKey]: key });
+    grouped.get(key)[row.survivor || "Unknown"] = Number(row.total || 0);
+  }
+  return { survivors, rows: [...grouped.values()] };
+}
+
+function drawSurvivorBarChart(doc, rows, periodKey, survivors, labelFormatter) {
+  const width = doc.page.width - doc.page.margins.left - doc.page.margins.right;
+  const chartHeight = 175;
+  const startX = doc.page.margins.left + 20;
+  const baseline = doc.y + chartHeight;
+  const totals = rows.map((row) => survivors.reduce((sum, survivor) => sum + Number(row[survivor] || 0), 0));
+  const max = Math.max(...totals, 1);
+  const groupWidth = Math.max(35, (width - 20) / Math.max(rows.length, 1) - 12);
+  const barWidth = Math.max(12, Math.min(52, groupWidth));
+  const palette = ["#315f9f", "#4f81bd", "#70ad47", "#ed7d31", "#a5a5a5", "#8064a2", "#ffc000", "#5b9bd5"];
+
+  if (!rows.length || !survivors.length) {
+    doc.fontSize(10).text("No survivor data for this period.").moveDown();
+    return;
+  }
+
+  rows.forEach((row, index) => {
+    const x = startX + index * (barWidth + 18);
+    let y = baseline;
+    for (let survivorIndex = 0; survivorIndex < survivors.length; survivorIndex += 1) {
+      const value = Number(row[survivors[survivorIndex]] || 0);
+      const height = (value / max) * (chartHeight - 45);
+      if (height > 0) {
+        y -= height;
+        doc.save();
+        doc.fillColor(palette[survivorIndex % palette.length]);
+        doc.rect(x, y, barWidth, height).fill();
+        doc.restore();
+      }
+    }
+    doc.fillColor("black").fontSize(7).text(labelFormatter(row[periodKey]), x - 10, baseline + 5, {
+      width: barWidth + 20,
+      align: "center",
+    });
+  });
+
+  const legendY = baseline + 28;
+  let legendX = startX;
+  survivors.forEach((survivor, index) => {
+    const labelWidth = Math.min(110, Math.max(45, doc.widthOfString(survivor, { fontSize: 7 }) + 16));
+    if (legendX + labelWidth > doc.page.width - doc.page.margins.right) legendX = startX;
+    doc.save();
+    doc.fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill();
+    doc.restore();
+    doc.fillColor("black").fontSize(7).text(survivor, legendX + 11, legendY - 1, { width: labelWidth - 11 });
+    legendX += labelWidth;
+  });
+  doc.y = legendY + 20;
+}
+
+function drawPivotTable(doc, periodHeader, rows, survivors) {
+  const columns = [periodHeader, ...survivors];
+  const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
+  const firstWidth = 100;
+  const survivorWidth = (usableWidth - firstWidth) / Math.max(survivors.length, 1);
+  const widths = [firstWidth, ...survivors.map(() => survivorWidth)];
+  drawTable(doc, columns, rows.map((row) => {
+    const result = { [periodHeader]: row[periodHeader] };
+    survivors.forEach((survivor) => { result[survivor] = money(row[survivor]); });
+    return result;
+  }), widths);
+}
+
 function drawBarChart(doc, data) {
   const width = doc.page.width - doc.page.margins.left - doc.page.margins.right;
   const chartHeight = 170;
@@ -129,23 +204,32 @@ export function buildWeeklyEmailReportPdf(report) {
     doc.addPage();
     doc.fontSize(14).text("3. Four-week weekly group by survivor");
     doc.moveDown(0.4);
-    drawTable(doc, ["week", "survivor", "total"], report.survivorSummary.map((row) => ({
-      week: weekLabel(row.weekStart, row.weekEnd),
-      survivor: row.survivor,
-      total: money(row.total),
-    })));
+    const weeklyPivot = pivotSurvivorRows(
+      report.survivorSummary.map((row) => ({ ...row, period: row.weekStart })),
+      "period",
+      report.weeklySummary.map((row) => row.weekStart),
+    );
+    const weeklyLabels = new Map(report.survivorSummary.map((row) => [row.weekStart, weekLabel(row.weekStart, row.weekEnd)]));
+    drawSurvivorBarChart(doc, weeklyPivot.rows, "period", weeklyPivot.survivors, (value) => weeklyLabels.get(value) || value);
+    doc.moveDown(0.6);
+    drawPivotTable(
+      doc,
+      "week",
+      weeklyPivot.rows.map((row) => ({ ...row, week: weeklyLabels.get(row.period) || row.period })),
+      weeklyPivot.survivors,
+    );
 
     doc.addPage();
     doc.fontSize(14).text("4. Expense data dump - last 4 completed weeks");
     doc.moveDown(0.4);
-    drawTable(doc, ["date", "category", "item", "share", "comment"], report.dump.map((row) => ({
+    drawTable(doc, ["date", "category", "item", "share", "comment", "proof"], uiShareDumpRows(report.dump).map((row) => ({
       date: dateLabel(row.date),
       category: row.category,
       item: row.item,
-      survivor: row.survivor,
-      price: money(row.price),
+      share: row.share,
       comment: row.comment,
-    })), [60, 100, 115, 100, 65, 145]);
+      proof: row.proofUrl,
+    })), [55, 90, 100, 125, 75, 55]);
 
     doc.end();
   });

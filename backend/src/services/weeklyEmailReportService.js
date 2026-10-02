@@ -3,6 +3,7 @@ import { userSql } from "../../scripts/sql/userSql.js";
 import { sendWeeklyEmailReport } from "./mailService.js";
 import { buildWeeklyEmailReportPdf } from "./weeklyEmailReportPdfService.js";
 import { nowIso } from "../utils/dates.js";
+import { signedObjectUrl } from "./storageService.js";
 
 const WEEKLY_REPORT_SQL = {
   weeklySummary: `WITH weeks AS (
@@ -24,25 +25,35 @@ const WEEKLY_REPORT_SQL = {
     GROUP BY w.week_start, w.week_end
     ORDER BY w.week_start`,
 
-  survivorSummary: `SELECT
-      (e.expense_date - EXTRACT(DOW FROM e.expense_date)::int)::date AS week_start,
-      ((e.expense_date - EXTRACT(DOW FROM e.expense_date)::int)::date + 6) AS week_end,
+  survivorSummary: `WITH weeks AS (
+      SELECT gs::date AS week_start,
+             (gs::date + 6) AS week_end
+      FROM generate_series(
+        (CURRENT_DATE - INTERVAL '28 days')::date,
+        (CURRENT_DATE - INTERVAL '7 days')::date,
+        INTERVAL '7 days'
+      ) AS gs
+    )
+    SELECT w.week_start,
+      w.week_end,
       s.full_name AS survivor,
       COALESCE(SUM(es.amount), 0) AS total
-    FROM public.expenses e
+    FROM weeks w
+    JOIN public.expenses e
+      ON e.expense_date >= w.week_start
+     AND e.expense_date <= w.week_end
     JOIN public.expense_shares es ON es.expense_id = e.id
     JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= CURRENT_DATE - INTERVAL '28 days'
-      AND e.expense_date < CURRENT_DATE
-    GROUP BY week_start, week_end, s.id, s.full_name
-    ORDER BY week_start, s.full_name`,
+    GROUP BY w.week_start, w.week_end, s.id, s.full_name
+    ORDER BY w.week_start, s.full_name`,
 
   dump: `SELECT e.id AS expense_id, e.total_cost, e.expense_date AS date,
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.full_name AS survivor,
       es.amount AS price,
-      e.comment
+      e.comment,
+      e.proof_key
     FROM public.expenses e
     JOIN public.categories c ON c.id = e.category_id
     LEFT JOIN public.items i ON i.id = e.item_id
@@ -74,7 +85,7 @@ export async function buildWeeklyEmailReport() {
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
-    dump: dump.rows.map((row) => ({
+    dump: await Promise.all(dump.rows.map(async (row) => ({
       date: String(row.date).slice(0, 10),
       category: row.category || "—",
       item: row.item || "—",
@@ -83,7 +94,8 @@ export async function buildWeeklyEmailReport() {
       expenseId: row.expense_id,
       totalCost: Number(row.total_cost || 0),
       comment: row.comment || "—",
-    })),
+      proofUrl: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+    }))),
   };
 }
 

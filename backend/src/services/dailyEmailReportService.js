@@ -3,6 +3,7 @@ import { userSql } from "../../scripts/sql/userSql.js";
 import { sendDailyEmailReport } from "./mailService.js";
 import { buildDailyEmailReportPdf } from "./dailyEmailReportPdfService.js";
 import { nowIso } from "../utils/dates.js";
+import { signedObjectUrl } from "./storageService.js";
 
 const DAILY_REPORT_SQL = {
   dailySummary: `SELECT days.date,
@@ -27,7 +28,8 @@ const DAILY_REPORT_SQL = {
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.full_name AS survivor,
       es.amount AS price,
-      e.comment
+      e.comment,
+      e.proof_key
     FROM public.expenses e
     JOIN public.categories c ON c.id = e.category_id
     LEFT JOIN public.items i ON i.id = e.item_id
@@ -57,7 +59,7 @@ export async function buildDailyEmailReport() {
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
-    dump: dump.rows.map((row) => ({
+    dump: await Promise.all(dump.rows.map(async (row) => ({
       date: String(row.date).slice(0, 10),
       category: row.category || "—",
       item: row.item || "—",
@@ -66,7 +68,8 @@ export async function buildDailyEmailReport() {
       expenseId: row.expense_id,
       totalCost: Number(row.total_cost || 0),
       comment: row.comment || "—",
-    })),
+      proofUrl: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+    }))),
   };
 }
 

@@ -79,6 +79,34 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
 }
 
 
+export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
+  const filename = "expense-4-week-report-" + reportDate + ".pdf";
+  await postEmail({
+    to: email,
+    subject: "Expense 4-week report - " + reportDate,
+    htmlBody: "<p>Attached is the 4-week expense report.</p>",
+    attachments: [{
+      filename,
+      mimeType: "application/pdf",
+      content: pdfBuffer.toString("base64"),
+    }],
+  });
+}
+
+export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
+  const filename = "expense-3-month-report-" + reportDate + ".pdf";
+  await postEmail({
+    to: email,
+    subject: "Expense 3-month report - " + reportDate,
+    htmlBody: "<p>Attached is the 3-month expense report containing the monthly bar chart, monthly summary, monthly survivor summary, and expense data dump.</p>",
+    attachments: [{
+      filename,
+      mimeType: "application/pdf",
+      content: pdfBuffer.toString("base64"),
+    }],
+  });
+}
+
 export async function sendReportEmail(email, pdfBuffer) {
   const reportDate = new Intl.DateTimeFormat("en-CA", {
     timeZone: env.appTimezone,

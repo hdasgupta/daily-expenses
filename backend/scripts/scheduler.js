@@ -2,6 +2,7 @@ import cron from "node-cron";
 import { env } from "../src/config/env.js";
 import { sendDashboardToManagers } from "../src/services/dashboardService.js";
 import { sendDailyEmailReportToManagers } from "../src/services/dailyEmailReportService.js";
+import { sendMonthlyEmailReportToManagers } from "../src/services/monthlyEmailReportService.js";
 
 let started = false;
 
@@ -48,5 +49,28 @@ export function startDashboardScheduler() {
   );
   console.log(
     `7-day email report scheduler enabled: ${env.dailyEmailReportCron} (${env.dailyEmailReportTimezone})`,
+  );
+
+  if (!cron.validate(env.monthlyEmailReportCron)) {
+    console.error(`Invalid MONTHLY_EMAIL_REPORT_CRON: ${env.monthlyEmailReportCron}`);
+    return;
+  }
+
+  cron.schedule(
+    env.monthlyEmailReportCron,
+    async () => {
+      try {
+        const result = await sendMonthlyEmailReportToManagers();
+        console.log(
+          `3-month email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
+        );
+      } catch (error) {
+        console.error("3-month email report job failed", error);
+      }
+    },
+    { timezone: env.monthlyEmailReportTimezone },
+  );
+  console.log(
+    `3-month email report scheduler enabled: ${env.monthlyEmailReportCron} (${env.monthlyEmailReportTimezone})`,
   );
 }
