@@ -5,14 +5,7 @@ import { signedObjectUrl } from "./storageService.js";
 
 const groupable = new Set(Object.keys(reportSql.groupExpr));
 const rawSortable = new Set(["date", "category", "item", "survivor"]);
-const groupedSortable = new Set([
-  "date",
-  "survivor",
-  "category",
-  "item",
-  "price",
-  ...groupable,
-]);
+const groupedSortable = new Set(["date", "survivor", "category", "item", "price", ...groupable]);
 
 function cleanConfig(config = {}) {
   const filters = config.filters || {};
@@ -130,12 +123,7 @@ function orderSql(config, forGroup, summarise = false) {
       // In a grouped summary, non-grouped dimensions need an aggregate so
       // PostgreSQL can order the grouped rows without requiring that
       // dimension in GROUP BY.
-      if (
-        forGroup &&
-        summarise &&
-        !config.groupBy.includes(x.column) &&
-        x.column !== "price"
-      ) {
+      if (forGroup && summarise && !config.groupBy.includes(x.column) && x.column !== "price") {
         expression = `MIN(${expression})`;
       }
 
@@ -185,7 +173,7 @@ export async function runReport(input) {
         "proof_url",
       ],
       rows,
-      total: rows.reduce((sum, row) => sum + (row.report_amount || 0), 0),
+      total: rows.reduce((sum, row) => sum + Number(row.share_price || 0), 0),
       chartData: [],
     };
   }
@@ -212,7 +200,10 @@ export async function runReport(input) {
   if (!config.summarise) {
     const rawSelect = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;
     const select = [...groupSelect, rawSelect].join(", ");
-    const result = await q(reportSql.raw(cte, select, where, orderSql(config, true, false)), params);
+    const result = await q(
+      reportSql.raw(cte, select, where, orderSql(config, true, false)),
+      params,
+    );
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
