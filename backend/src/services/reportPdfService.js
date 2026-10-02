@@ -158,7 +158,7 @@ export function buildReportPdf(report, config = {}) {
     const isNormalRaw = report.mode === "raw" && (report.columns || []).includes("share_price");
     const sourceRows = isNormalRaw ? buildUiShareRows(report.rows || []) : report.rows || [];
     const pdfColumns = isNormalRaw
-      ? [...new Set((report.columns || []).map((column) => column === "share_price" ? "share" : column))]
+      ? [...new Set((report.columns || []).filter((column) => column !== "survivor").map((column) => column === "share_price" ? "share" : column))]
       : [...new Set(report.columns || [])];
     drawTable(doc, pdfColumns, sourceRows);
 

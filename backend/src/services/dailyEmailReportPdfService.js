@@ -156,12 +156,11 @@ export function buildDailyEmailReportPdf(report) {
     doc.moveDown(0.4);
     drawTable(
       doc,
-      ["date", "category", "item", "survivor", "share", "comment"],
+      ["date", "category", "item", "share", "comment"],
       uiShareDumpRows(report.dump).map((row) => ({
         date: dateLabel(row.date),
         category: row.category,
         item: row.item,
-        survivor: row.survivor,
         share: row.share,
         comment: row.comment,
       })),

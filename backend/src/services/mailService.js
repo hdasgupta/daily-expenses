@@ -77,22 +77,3 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
     ],
   });
 }
-
-export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = "expense-4-week-report-" + reportDate + ".pdf";
-  const text =
-    "Attached is the 4-week expense report containing the weekly bar chart, weekly summary, weekly survivor summary, and expense data dump.";
-
-  await postEmail({
-    to: email,
-    subject: "Expense 4-week weekly report - " + reportDate,
-    htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  });
-}

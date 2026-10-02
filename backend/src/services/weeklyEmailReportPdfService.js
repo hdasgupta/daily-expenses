@@ -138,7 +138,7 @@ export function buildWeeklyEmailReportPdf(report) {
     doc.addPage();
     doc.fontSize(14).text("4. Expense data dump - last 4 completed weeks");
     doc.moveDown(0.4);
-    drawTable(doc, ["date", "category", "item", "survivor", "price", "comment"], report.dump.map((row) => ({
+    drawTable(doc, ["date", "category", "item", "share", "comment"], report.dump.map((row) => ({
       date: dateLabel(row.date),
       category: row.category,
       item: row.item,

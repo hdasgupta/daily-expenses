@@ -100,6 +100,27 @@ function formatCell(value, column) {
   return String(value);
 }
 
+function buildUiShareRows(rows) {
+  const map = new Map();
+  for (const row of rows || []) {
+    const key = row.expense_id ?? row.id ?? [row.expense_date, row.category, row.item, row.comment].join("\u0001");
+    if (!map.has(key)) map.set(key, { ...row, survivorShares: [] });
+    const target = map.get(key);
+    if (row.survivor && row.survivor !== "—") {
+      target.survivorShares.push({ name: row.survivor, amount: Number(row.share_price || 0) });
+    }
+  }
+  return [...map.values()].map((row) => {
+    const shares = row.survivorShares;
+    const total = Number(row.total_cost || shares.reduce((sum, item) => sum + item.amount, 0));
+    const share = shares.length
+      ? shares.map((item) => `${item.name}: ₹${item.amount.toFixed(2)}${total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""}`).join(", ")
+      : "No survivor share recorded";
+    const { survivorShares, survivor, ...clean } = row;
+    return { ...clean, share };
+  });
+}
+
 export default function Reports() {
   const [config, setConfig] = useState(initialConfig);
   const [result, setResult] = useState(null);
@@ -194,14 +215,21 @@ export default function Reports() {
         ? config.filters[key].filter((item) => item !== String(value))
         : [...config.filters[key], String(value)],
     );
-  const apply = async () =>
-    setResult(
-      await api("/reports/query", {
-        method: "POST",
-        body: JSON.stringify(config),
-        loadingMessage: "Running report query…",
-      }),
-    );
+  const apply = async () => {
+    const data = await api("/reports/query", {
+      method: "POST",
+      body: JSON.stringify(config),
+      loadingMessage: "Running report query…",
+    });
+    const next = data?.mode === "raw" && data?.columns?.includes("share_price")
+      ? {
+          ...data,
+          rows: buildUiShareRows(data.rows),
+          columns: [...new Set(data.columns.filter((column) => column !== "survivor").map((column) => column === "share_price" ? "share" : column))],
+        }
+      : data;
+    setResult(next);
+  };
   const addSort = () => {
     if (!sortColumn || config.sortColumns.some((item) => item.column === sortColumn)) return;
     setConfig((current) => ({
