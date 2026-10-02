@@ -129,11 +129,14 @@ function orderSql(config, forGroup, summarise = false) {
     .map((x) => {
       let expression = expressions[x.column];
 
-      // In a grouped summary, non-grouped dimensions need an aggregate so
-      // PostgreSQL can order the grouped rows without requiring that
-      // dimension in GROUP BY.
-      if (forGroup && summarise && !config.groupBy.includes(x.column) && x.column !== "price") {
-        expression = `MIN(${expression})`;
+      // A grouped summary may only ORDER BY grouped columns or aggregate
+      // expressions.  Sort controls are independent from Group By, so a
+      // sort such as survivor while grouping by category must use an
+      // aggregate value rather than expense_source.survivor directly.
+      if (forGroup && summarise && x.column !== "price") {
+        expression = config.groupBy.includes(x.column)
+          ? expression
+          : `MIN(${expression})`;
       }
 
       return reportSql.order(expression, x.direction.toUpperCase());
