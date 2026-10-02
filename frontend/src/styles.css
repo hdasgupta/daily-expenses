@@ -1334,4 +1334,16 @@ code {
 
 .dashboard-detail-summary .dashboard-summary-card {
   display: block;
+}/* Keep hover tooltips above the chart legend. Recharts renders the legend in the SVG layer,
+   while the tooltip is an absolutely positioned HTML layer. */
+.dashboard-detail-chart {
+  position: relative;
 }
+.dashboard-detail-chart .recharts-wrapper {
+  position: relative;
+}
+.dashboard-detail-chart .recharts-tooltip-wrapper {
+  z-index: 1000 !important;
+}
+
+
