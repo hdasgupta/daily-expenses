@@ -17,7 +17,9 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
         <iframe
           title={title}
           src={url}
-          style={{ width: "100%", height: "70vh", border: 0, borderRadius: 8 }}
+          type="application/pdf"
+          allow="fullscreen"
+          style={{ display: "block", width: "100%", height: "70vh", minHeight: 420, border: 0, borderRadius: 8 }}
         />
       ) : null}
     </Modal>
