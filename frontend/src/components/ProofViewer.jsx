@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Modal from "./Modal";
 import { assetUrl } from "../lib/api";
 
@@ -9,71 +9,59 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
   const [pdfUrl, setPdfUrl] = useState("");
+  const [pageNumbers, setPageNumbers] = useState([]);
+  const [renderVersion, setRenderVersion] = useState(0);
+  const pdfRef = useRef(null);
   const viewerRef = useRef(null);
+  const canvasRefs = useRef(new Map());
+
+  const pages = useMemo(() => pageNumbers, [pageNumbers]);
 
   useEffect(() => {
     if (!url) return undefined;
 
     let cancelled = false;
     let objectUrl = "";
+    let loadedPdf = null;
 
     async function loadPdf() {
       setStatus("loading");
       setError("");
+      setPdfUrl("");
+      setPageNumbers([]);
+      canvasRefs.current.clear();
+
       try {
         const token = localStorage.getItem("token");
-        const clientTimezone = "Asia/Kolkata";
         const response = await fetch(assetUrl(url), {
           headers: {
-            "X-App-Timezone": clientTimezone,
+            "X-App-Timezone": "Asia/Kolkata",
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },
         });
+
         if (!response.ok) {
           const text = await response.text();
           throw new Error(text || `Unable to load proof (${response.status})`);
         }
 
         const bytes = await response.arrayBuffer();
-        objectUrl = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
         if (cancelled) return;
+
+        objectUrl = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
         setPdfUrl(objectUrl);
 
-        // Android Chrome often refuses to render a PDF inside an iframe and instead
-        // shows an "Open" card. Render the PDF with PDF.js so it is displayed inside
-        // this application modal on mobile as well.
         const pdfjs = await import(/* @vite-ignore */ PDFJS_URL);
         pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_URL;
-        const pdf = await pdfjs.getDocument({ data: new Uint8Array(bytes) }).promise;
-        if (cancelled) return;
-
-        const container = viewerRef.current;
-        if (!container) return;
-        container.replaceChildren();
-
-        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-          if (cancelled) return;
-          const page = await pdf.getPage(pageNumber);
-          const baseViewport = page.getViewport({ scale: 1 });
-          const availableWidth = Math.max(280, container.clientWidth - 16);
-          const scale = Math.min(2, availableWidth / baseViewport.width);
-          const viewport = page.getViewport({ scale });
-
-          const canvas = document.createElement("canvas");
-          canvas.width = Math.ceil(viewport.width);
-          canvas.height = Math.ceil(viewport.height);
-          canvas.style.display = "block";
-          canvas.style.width = "100%";
-          canvas.style.height = "auto";
-          canvas.style.margin = "0 auto 12px";
-          canvas.style.background = "white";
-          canvas.style.borderRadius = "6px";
-          container.appendChild(canvas);
-
-          await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
+        loadedPdf = await pdfjs.getDocument({ data: new Uint8Array(bytes) }).promise;
+        if (cancelled) {
+          await loadedPdf.destroy();
+          return;
         }
 
-        if (!cancelled) setStatus("ready");
+        pdfRef.current = loadedPdf;
+        setPageNumbers(Array.from({ length: loadedPdf.numPages }, (_, index) => index + 1));
+        setRenderVersion((value) => value + 1);
       } catch (err) {
         if (!cancelled) {
           setStatus("error");
@@ -83,11 +71,62 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
     }
 
     loadPdf();
+
     return () => {
       cancelled = true;
+      pdfRef.current = null;
+      if (loadedPdf) loadedPdf.destroy().catch(() => {});
       if (objectUrl) URL.revokeObjectURL(objectUrl);
+      canvasRefs.current.clear();
     };
   }, [url]);
+
+  useEffect(() => {
+    if (!pages.length || !pdfRef.current || !viewerRef.current) return undefined;
+
+    let cancelled = false;
+
+    async function renderPages() {
+      try {
+        const pdf = pdfRef.current;
+        const containerWidth = Math.max(280, viewerRef.current.clientWidth - 16);
+
+        for (const pageNumber of pages) {
+          if (cancelled || pdf !== pdfRef.current) return;
+
+          const canvas = canvasRefs.current.get(pageNumber);
+          if (!canvas) continue;
+
+          const page = await pdf.getPage(pageNumber);
+          if (cancelled || pdf !== pdfRef.current) return;
+
+          const baseViewport = page.getViewport({ scale: 1 });
+          const scale = Math.min(2, containerWidth / baseViewport.width);
+          const viewport = page.getViewport({ scale });
+          const context = canvas.getContext("2d", { alpha: false });
+
+          canvas.width = Math.ceil(viewport.width);
+          canvas.height = Math.ceil(viewport.height);
+          canvas.style.width = "100%";
+          canvas.style.height = "auto";
+
+          await page.render({ canvasContext: context, viewport }).promise;
+        }
+
+        if (!cancelled) setStatus("ready");
+      } catch (err) {
+        if (!cancelled) {
+          setStatus("error");
+          setError(err?.message || "Unable to render the PDF.");
+        }
+      }
+    }
+
+    renderPages();
+    return () => {
+      cancelled = true;
+    };
+  }, [pages, renderVersion]);
 
   return (
     <Modal
@@ -123,15 +162,46 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
             Loading PDF…
           </div>
         ) : null}
+
         {status === "error" ? (
-          <div style={{ minHeight: "55vh", display: "grid", placeItems: "center", textAlign: "center", padding: 24 }}>
+          <div
+            style={{
+              minHeight: "55vh",
+              display: "grid",
+              placeItems: "center",
+              textAlign: "center",
+              padding: 24,
+            }}
+          >
             <div>
               <p>Unable to display this PDF inside the report window.</p>
-              <small>{error}</small>
+              <small style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{error}</small>
             </div>
           </div>
         ) : null}
-        <div ref={viewerRef} aria-label="PDF pages" />
+
+        <div ref={viewerRef} aria-label="PDF pages">
+          {status !== "error"
+            ? pages.map((pageNumber) => (
+                <canvas
+                  key={pageNumber}
+                  ref={(node) => {
+                    if (node) canvasRefs.current.set(pageNumber, node);
+                    else canvasRefs.current.delete(pageNumber);
+                  }}
+                  aria-label={`PDF page ${pageNumber}`}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "auto",
+                    margin: "0 auto 12px",
+                    background: "white",
+                    borderRadius: 6,
+                  }}
+                />
+              ))
+            : null}
+        </div>
       </div>
     </Modal>
   );
