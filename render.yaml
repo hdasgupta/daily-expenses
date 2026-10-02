@@ -20,7 +20,7 @@ services:
       - key: MAX_UPLOAD_MB
         value: "10"
       - key: AWS_ENDPOINT_URL_S3
-        value: https://br-shiny-glade-b54jbzv5.storage.c-7.us-east-2.aws.neon.tech
+        sync: false
       - key: AWS_ACCESS_KEY_ID
         sync: false
       - key: AWS_SECRET_ACCESS_KEY
@@ -30,13 +30,11 @@ services:
       - key: AWS_S3_BUCKET
         value: expense-proofs
       - key: EMAIL_API_URL
-        sync: false
+        value: https://script.google.com/macros/s/AKfycbwBFlwZ-xXgjGXg2_jlsek2tm4nkIHuPn9WsOl4HV1onANS3Z7PLGou76Hl-TURuDtE/exec
       - key: EMAIL_API_KEY
-        sync: false
-      - key: EMAIL_API_KEY_HEADER
-        value: Authorization
+        value: MyEmailApi
       - key: ADMIN_EMAIL
-        value: wbffmh@gmail.com
+        sync: false
       - key: ADMIN_PASSWORD
         sync: false
       - key: OTP_TTL_MINUTES
@@ -44,6 +42,10 @@ services:
       - key: DASHBOARD_CRON
         value: "30 20 * * *"
       - key: DASHBOARD_TIMEZONE
+        value: Asia/Kolkata
+      - key: DAILY_EMAIL_REPORT_CRON
+        value: "0 6 * * *"
+      - key: DAILY_EMAIL_REPORT_TIMEZONE
         value: Asia/Kolkata
       - key: ORGANIZATION_NAME
         value: Rehabilitation Center

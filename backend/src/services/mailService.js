@@ -1,56 +1,54 @@
 import { env } from "../config/env.js";
 
+const EMAIL_API_URL = env.emailApiUrl;
+const EMAIL_API_KEY = env.emailApiKey;
+
 async function postEmail(payload) {
-  if (!env.emailApiUrl) {
-    if (env.nodeEnv !== "production") console.log("[EMAIL API PREVIEW]", JSON.stringify(payload));
+  if (!EMAIL_API_URL) {
+    if (env.nodeEnv !== "production") {
+      console.log("[EMAIL API PREVIEW]", JSON.stringify(payload));
+    }
     return;
   }
-  const headers = { "Content-Type": "application/json" };
-  if (env.emailApiKey)
-    headers[env.emailApiHeader] =
-      env.emailApiHeader.toLowerCase() === "authorization"
-        ? `Bearer ${env.emailApiKey}`
-        : env.emailApiKey;
-  const response = await fetch(env.emailApiUrl, {
+
+  const response = await fetch(EMAIL_API_URL, {
     method: "POST",
-    headers,
-    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ...payload,
+      apiKey: EMAIL_API_KEY,
+    }),
   });
-  if (!response.ok) throw new Error(`Email API returned HTTP ${response.status}`);
+
+  const responseText = await response.text();
+
+  if (!response.ok) {
+    throw new Error(
+      "Email API returned HTTP " +
+        response.status +
+        (responseText ? ": " + responseText.slice(0, 500) : ""),
+    );
+  }
 }
+
 export async function sendPasswordOtp(email, otp, ttlMinutes) {
+  const text = "Your password reset OTP is " + otp + ". It expires in " + ttlMinutes + " minutes.";
+
   await postEmail({
-    type: "password-reset-otp",
     to: email,
     subject: "Rehabilitation Center Expense Tracker password reset OTP",
-    text: `Your password reset OTP is ${otp}. It expires in ${ttlMinutes} minutes.`,
-    otp,
-    expiresInMinutes: ttlMinutes,
+    htmlBody: "<p>" + text + "</p>",
   });
 }
+
 export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
-  await postEmail({
-    type: "dashboard-pdf",
-    to: email,
-    subject: `Expense dashboard - ${reportDate}`,
-    text: `Attached is the rehabilitation center expense dashboard for ${reportDate}.`,
-    filename: `expense-dashboard-${reportDate}.pdf`,
-    contentBase64: pdfBuffer.toString("base64"),
-    reportDate,
-  });
-}
-
-export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = `expense-7-day-report-${reportDate}.pdf`;
-  const text =
-    "Attached is the 7-day expense report containing the daily bar chart, daily summary, daily survivor summary, and expense data dump.";
+  const filename = "expense-dashboard-" + reportDate + ".pdf";
+  const text = "Attached is the rehabilitation center expense dashboard for " + reportDate + ".";
 
   await postEmail({
-    type: "daily-7-day-report-pdf",
     to: email,
-    subject: `Expense 7-day report - ${reportDate}`,
-    text,
-    htmlBody: `<p>${text}</p>`,
+    subject: "Expense dashboard - " + reportDate,
+    htmlBody: "<p>" + text + "</p>",
     attachments: [
       {
         filename,
@@ -58,6 +56,24 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
         content: pdfBuffer.toString("base64"),
       },
     ],
-    reportDate,
+  });
+}
+
+export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
+  const filename = "expense-7-day-report-" + reportDate + ".pdf";
+  const text =
+    "Attached is the 7-day expense report containing the daily bar chart, daily summary, daily survivor summary, and expense data dump.";
+
+  await postEmail({
+    to: email,
+    subject: "Expense 7-day report - " + reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
   });
 }

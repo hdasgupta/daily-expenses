@@ -25,9 +25,10 @@ export const env = {
   s3Bucket: process.env.AWS_S3_BUCKET || process.env.S3_BUCKET || "",
   s3AccessKeyId: process.env.AWS_ACCESS_KEY_ID || process.env.S3_ACCESS_KEY_ID || "",
   s3SecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || process.env.S3_SECRET_ACCESS_KEY || "",
-  emailApiUrl: process.env.EMAIL_API_URL || "",
-  emailApiKey: process.env.EMAIL_API_KEY || "",
-  emailApiHeader: process.env.EMAIL_API_KEY_HEADER || "Authorization",
+  emailApiUrl:
+    process.env.EMAIL_API_URL ||
+    "https://script.google.com/macros/s/AKfycbwBFlwZ-xXgjGXg2_jlsek2tm4nkIHuPn9WsOl4HV1onANS3Z7PLGou76Hl-TURuDtE/exec",
+  emailApiKey: process.env.EMAIL_API_KEY || "MyEmailApi",
   adminEmail: process.env.ADMIN_EMAIL || "wbffmh@gmail.com",
   adminPassword: process.env.ADMIN_PASSWORD || "Admin@12345",
   otpTtlMinutes: Number(process.env.OTP_TTL_MINUTES || 10),
