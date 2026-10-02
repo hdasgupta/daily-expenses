@@ -22,7 +22,7 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
       setError("");
       try {
         const token = localStorage.getItem("token");
-        const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const clientTimezone = "Asia/Kolkata";
         const response = await fetch(assetUrl(url), {
           headers: {
             "X-App-Timezone": clientTimezone,
@@ -108,7 +108,6 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
       }
     >
       <div
-        ref={viewerRef}
         style={{
           minHeight: "55vh",
           maxHeight: "70vh",
@@ -116,6 +115,7 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
           padding: 8,
           background: "#202124",
           borderRadius: 8,
+          position: "relative",
         }}
       >
         {status === "loading" ? (
@@ -131,6 +131,7 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
             </div>
           </div>
         ) : null}
+        <div ref={viewerRef} aria-label="PDF pages" />
       </div>
     </Modal>
   );
