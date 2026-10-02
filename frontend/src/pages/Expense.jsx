@@ -1,10 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Check, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
+import { Check, Download, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
-import ProofViewer from "../components/ProofViewer";
 import ConfirmDialog from "../components/ConfirmDialog";
 import { usePagination } from "../hooks/usePagination";
 
@@ -79,7 +78,6 @@ export default function Expense() {
   const [total, setTotal] = useState(0);
   const [proofExpense, setProofExpense] = useState(null);
   const [proofFile, setProofFile] = useState(null);
-  const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [deleteId, setDeleteId] = useState(null);
   const [formError, setFormError] = useState("");
 
@@ -244,9 +242,18 @@ export default function Expense() {
     await loadExpenses();
   };
 
-  const openProof = async (row) => {
-    const result = await api(`/expenses/${row.id}/proof-url`, { loadingMessage: "Opening proof…" });
-    setProofViewerUrl(result.url || "");
+  const downloadProof = async (row) => {
+    const result = await api(`/expenses/${row.id}/proof-url`, { loadingMessage: "Preparing proof download…" });
+    if (!result?.url) throw new Error("Proof URL is unavailable");
+
+    const link = document.createElement("a");
+    link.href = result.url;
+    link.download = `expense-proof-${row.id || "proof"}.pdf`;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   };
 
   return (
@@ -561,10 +568,10 @@ export default function Expense() {
               {row.proof_key ? (
                 <button
                   className="icon-button soft"
-                  title="Open proof"
-                  onClick={() => openProof(row)}
+                  title="Download proof"
+                  onClick={() => downloadProof(row)}
                 >
-                  <Eye size={17} />
+                  <Download size={17} />
                 </button>
               ) : null}
               <button
@@ -627,11 +634,6 @@ export default function Expense() {
         message="This will permanently remove the expense and its survivor shares."
         onCancel={() => setDeleteId(null)}
         onConfirm={remove}
-      />
-      <ProofViewer
-        url={proofViewerUrl}
-        title="Expense proof"
-        onClose={() => setProofViewerUrl("")}
       />
     </section>
   );
