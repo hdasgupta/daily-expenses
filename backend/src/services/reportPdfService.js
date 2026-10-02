@@ -1,6 +1,10 @@
 import PDFDocument from "pdfkit";
 import { env } from "../config/env.js";
 
+function money(value) {
+  return `₹${Number(value || 0).toFixed(2)}`;
+}
+
 function formatDate(value) {
   if (!value) return "—";
   const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
