@@ -116,6 +116,8 @@ export default function DashboardDetail({ navigate }) {
                   <XAxis dataKey="chartLabel" angle={chartModel.multiSeries ? -20 : -35} textAnchor="end" interval={0} height={chartModel.multiSeries ? 65 : 100} tick={{ fontSize: 10 }} />
                   <YAxis />
                   <Tooltip
+                    wrapperClassName="dashboard-detail-tooltip"
+                    contentStyle={{}}
                     formatter={(value, name) => [money(value), name]}
                     labelFormatter={(label) => label}
                   />

@@ -1345,5 +1345,22 @@ code {
 .dashboard-detail-chart .recharts-tooltip-wrapper {
   z-index: 1000 !important;
 }
+.dashboard-detail-tooltip .recharts-default-tooltip {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+.dashboard-detail-tooltip .recharts-tooltip-label,
+.dashboard-detail-tooltip .recharts-tooltip-item,
+.dashboard-detail-tooltip .recharts-tooltip-item-name,
+.dashboard-detail-tooltip .recharts-tooltip-item-value,
+.dashboard-detail-tooltip .recharts-tooltip-item-separator {
+  color: var(--text) !important;
+}
+.dashboard-detail-tooltip .recharts-tooltip-item-list {
+  color: var(--text) !important;
+}
 
 
