@@ -41,13 +41,23 @@ export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
 }
 
 export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
+  const filename = `expense-7-day-report-${reportDate}.pdf`;
+  const text =
+    "Attached is the 7-day expense report containing the daily bar chart, daily summary, daily survivor summary, and expense data dump.";
+
   await postEmail({
     type: "daily-7-day-report-pdf",
     to: email,
     subject: `Expense 7-day report - ${reportDate}`,
-    text: `Attached is the 7-day expense report containing the daily bar chart, daily summary, daily survivor summary, and expense data dump.`,
-    filename: `expense-7-day-report-${reportDate}.pdf`,
-    contentBase64: pdfBuffer.toString("base64"),
+    text,
+    htmlBody: `<p>${text}</p>`,
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
     reportDate,
   });
 }
