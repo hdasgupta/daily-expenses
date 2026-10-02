@@ -43,13 +43,13 @@ export const reportSql = {
         WHEN COUNT(DISTINCT s.id) = 0 THEN 'No survivor share recorded'
         ELSE COALESCE(
           string_agg(
-            DISTINCT s.full_name || ': ₹' || to_char(es.amount, 'FM999999990.00') ||
+            s.full_name || ': ₹' || to_char(es.amount, 'FM999999990.00') ||
             CASE
               WHEN e.total_cost IS NOT NULL AND e.total_cost <> 0
                 THEN ' (' || to_char(ROUND((es.amount / e.total_cost) * 100, 2), 'FM990.00') || '%)'
               ELSE ''
             END,
-            ', ' ORDER BY s.full_name || ': ₹' || to_char(es.amount, 'FM999999990.00')
+            ', ' ORDER BY s.full_name
           ),
           'No survivor share recorded'
         )
