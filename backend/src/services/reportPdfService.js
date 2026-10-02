@@ -139,35 +139,88 @@ function groupRows(rows, groupBy) {
   return [...groups.values()];
 }
 
+function drawGroupHeader(doc, groupBy, group, groupIndex, groupCount) {
+  const x = doc.page.margins.left;
+  const width = doc.page.width - doc.page.margins.left - doc.page.margins.right;
+  const lineHeight = 16;
+  const height = Math.max(40, 24 + groupBy.length * lineHeight);
+
+  ensureSpace(doc, height + 12);
+  const y = doc.y;
+
+  doc.save();
+  doc.fillColor("#e8f1fb").roundedRect(x, y, width, height, 5).fill();
+  doc.restore();
+  doc.strokeColor("#b8c7da").roundedRect(x, y, width, height, 5).stroke();
+
+  doc
+    .fillColor("#315f9f")
+    .font("Helvetica-Bold")
+    .fontSize(8)
+    .text(`GROUP ${groupIndex + 1}${groupCount ? ` / ${groupCount}` : ""}`, x + 8, y + 6);
+
+  groupBy.forEach((column, index) => {
+    const rawValue = group[column];
+    const value = rawValue === null || rawValue === undefined || rawValue === ""
+      ? "—"
+      : formatCell(rawValue, column);
+    const yy = y + 22 + index * lineHeight;
+
+    doc
+      .fillColor("#1f2937")
+      .font("Helvetica-Bold")
+      .fontSize(8)
+      .text(column.replace(/_/g, " "), x + 8, yy, {
+        width: 95,
+      });
+    doc
+      .font("Helvetica")
+      .text(`: ${value}`, x + 103, yy, {
+        width: width - 111,
+        ellipsis: true,
+      });
+  });
+
+  doc.y = y + height + 7;
+}
+
 function drawGroupedRaw(doc, report) {
   const groupBy = Array.isArray(report.groupBy) ? report.groupBy : [];
   const groups = groupRows(report.rows || [], groupBy);
   const dataColumns = (report.columns || []).filter((column) => !groupBy.includes(column));
 
-  doc.fontSize(13).font("Helvetica-Bold").fillColor("#000000").text("Grouped data");
-  doc.moveDown(0.5);
+  if (!groups.length) {
+    doc.fontSize(10).fillColor("#1f2937").text("No records match the selected filters.");
+    return;
+  }
 
   groups.forEach((group, groupIndex) => {
-    if (groupIndex > 0) doc.moveDown(0.8);
-    drawGroupIdentity(doc, groupBy, group.values);
+    // Each unique group selection is rendered as a distinct section, followed
+    // immediately by only that group's rows, matching the grouped UI layout.
+    if (groupIndex > 0) {
+      doc.addPage();
+    }
+
+    drawGroupHeader(doc, groupBy, group.values, groupIndex, groups.length);
     drawTable(doc, dataColumns, group.rows);
   });
-
-  if (!groups.length) {
-    doc.fontSize(10).text("No records match the selected filters.");
-  }
 }
 
 function drawGroupedSummary(doc, report) {
   const groupBy = Array.isArray(report.groupBy) ? report.groupBy : [];
   const groups = report.rows || [];
 
-  doc.fontSize(13).font("Helvetica-Bold").fillColor("#000000").text("Grouped summary");
-  doc.moveDown(0.5);
+  if (!groups.length) {
+    doc.fontSize(10).fillColor("#1f2937").text("No records match the selected filters.");
+    return;
+  }
 
   groups.forEach((group, index) => {
-    if (index > 0) doc.moveDown(0.8);
-    drawGroupIdentity(doc, groupBy, group);
+    if (index > 0) {
+      doc.addPage();
+    }
+
+    drawGroupHeader(doc, groupBy, group, index, groups.length);
     ensureSpace(doc, 32);
     const x = doc.page.margins.left;
     const width = doc.page.width - doc.page.margins.left - doc.page.margins.right;
@@ -188,10 +241,6 @@ function drawGroupedSummary(doc, report) {
       .text(money(group.total), x + width - 110, y + 7, { width: 102, align: "right" });
     doc.y = y + 28;
   });
-
-  if (!groups.length) {
-    doc.fontSize(10).text("No records match the selected filters.");
-  }
 }
 
 export function buildReportPdf(report, config = {}) {
