@@ -27,6 +27,9 @@ function cleanConfig(config = {}) {
   const survivors = Array.isArray(filters.survivors)
     ? [...new Set(filters.survivors.map(String))]
     : [];
+  const categories = Array.isArray(filters.categories)
+    ? [...new Set(filters.categories.map(String))]
+    : [];
 
   return {
     dateFilterType: ["none", "date", "range", "month", "year"].includes(config.dateFilterType)
@@ -40,6 +43,7 @@ function cleanConfig(config = {}) {
       year: filters.year || "",
       hasProof: ["true", "false"].includes(filters.hasProof) ? filters.hasProof : "",
       categoryItems,
+      categories,
       survivors,
     },
     sortColumns,
@@ -90,6 +94,11 @@ function addFilter(where, params, filters, alias) {
       }
     }
     where.push(reportSql.or(clauses));
+  }
+
+  if (filters.categories.length) {
+    params.push(filters.categories);
+    where.push(reportSql.filterCategories(alias, params.length));
   }
 
   if (filters.survivors.length) {
@@ -209,6 +218,8 @@ export async function runReport(input) {
   const groupSelect = config.groupBy.map(
     (column) => `${reportSql.groupExpr[column]} AS "${column}"`,
   );
+  if (config.groupBy.includes("category")) groupSelect.push("MIN(category_id) AS category_id");
+  if (config.groupBy.includes("survivor")) groupSelect.push("MIN(survivor_id) AS survivor_id");
 
   if (!config.summarise) {
     const rawSelect = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;

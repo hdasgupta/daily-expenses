@@ -11,6 +11,8 @@ import Units from "./pages/Units";
 import BulkUpload from "./pages/BulkUpload";
 import Reports from "./pages/Reports";
 import Dashboard from "./pages/Dashboard";
+import DashboardDetail from "./pages/DashboardDetail";
+import DashboardDrilldown from "./pages/DashboardDrilldown";
 import Users from "./pages/Users";
 import { api } from "./lib/api";
 import { isIndiaTimezone } from "./utils/dates.js";
@@ -36,8 +38,16 @@ const routes = {
 };
 
 function normalizePath(pathname) {
-  const result = (pathname || "/").split("?")[0].replace(/\/+/g, "/").replace(/\/$/, "");
+  const cleanPath = String(pathname || "/").split("?")[0];
+  const result = cleanPath.replace(/\/+/g, "/").replace(/\/$/, "");
   return result || "/";
+}
+
+function routeForPath(path) {
+  if (routes[path]) return routes[path];
+  if (path.startsWith("/dashboard/report/")) return { component: DashboardDetail, permission: "dashboard" };
+  if (path.startsWith("/dashboard/drilldown/")) return { component: DashboardDrilldown, permission: "dashboard" };
+  return null;
 }
 
 export default function App() {
@@ -75,7 +85,7 @@ export default function App() {
 
   useEffect(() => {
     if (checking || !user) return;
-    const route = routes[path];
+    const route = routeForPath(path);
     const allowed = route && user.permissions?.includes(route.permission);
     if (allowed) return;
     const fallback = allowedItems[0]?.path;
@@ -86,10 +96,12 @@ export default function App() {
   }, [allowedItems, checking, path, user]);
 
   const navigate = (next) => {
-    const target = normalizePath(next);
-    const route = routes[target];
+    const [rawPath, search = ""] = String(next || "/").split("?");
+    const target = normalizePath(rawPath);
+    const route = routeForPath(target);
     if (!route || !user?.permissions?.includes(route.permission)) return;
-    window.history.pushState({}, "", target);
+    const url = search ? `${target}?${search}` : target;
+    window.history.pushState({}, "", url);
     setPath(target);
   };
 
@@ -135,7 +147,7 @@ export default function App() {
       </>
     );
 
-  const route = routes[path];
+  const route = routeForPath(path);
   const Component = route?.component || routes[allowedItems[0]?.path]?.component;
   if (!Component)
     return (

@@ -75,6 +75,7 @@ export const reportSql = {
   filterTotal: (alias, categoryIndex) =>
     `(${alias}.category_id = $${categoryIndex} AND ${alias}.item_id IS NULL AND ${alias}.other_item IS NULL)`,
   filterSurvivors: (alias, index) => `${alias}.survivor_ids && $${index}::bigint[]`,
+  filterCategories: (alias, index) => `${alias}.category_id = ANY($${index}::bigint[])`,
   order: (expr, dir) => `${expr} ${dir}`,
   defaultRawOrder: "expense_date DESC, id DESC",
   groupExpr: {

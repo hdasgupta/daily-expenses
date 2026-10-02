@@ -89,6 +89,7 @@ export function createRouter(maxUploadBytes) {
   router.delete("/report-selections/:id", auth, permit("report"), reportController.remove);
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
+  router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
 
   router.get("/roles", auth, permit("add-user"), userController.roles);
   router.get("/users", auth, permit("add-user"), userController.list);

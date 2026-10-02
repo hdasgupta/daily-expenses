@@ -107,7 +107,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
           return (
             <button
               key={item.path}
-              className={path === item.path ? "active" : ""}
+              className={path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard")) ? "active" : ""}
               onClick={() => navigate(item.path)}
             >
               <Icon size={18} />
