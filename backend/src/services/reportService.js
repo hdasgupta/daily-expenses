@@ -109,38 +109,54 @@ function addFilter(where, params, filters, alias) {
   return reportSql.where(where);
 }
 
-function orderSql(config, forGroup, summarise = false) {
+function orderSql(config, forGroup, summarise = false, amountExpression = 'SUM(report_amount)') {
   const rawExpressions = {
     date: "expense_date",
     category: "category",
     item: "item",
     survivor: "survivor",
   };
+
+  if (forGroup && summarise) {
+    const groupPositions = new Map(config.groupBy.map((column, index) => [column, index + 1]));
+    const chosen = config.sortColumns.length ? config.sortColumns : [];
+    const parts = chosen
+      .filter((x) =>
+        x.column === "price" ||
+        x.column === "date" ||
+        x.column === "category" ||
+        x.column === "item" ||
+        x.column === "survivor" ||
+        reportSql.groupExpr[x.column],
+      )
+      .map((x) => {
+        let expression;
+        // When a sort field is one of the grouping dimensions, sort by the
+        // selected output column position. This is independent of the
+        // expense_source column name/alias resolution in PostgreSQL.
+        if (groupPositions.has(x.column)) {
+          expression = String(groupPositions.get(x.column));
+        } else if (x.column === "price") {
+          expression = amountExpression;
+        } else {
+          // Sorting by a non-grouped dimension must aggregate it.
+          expression = `MIN(${reportSql.groupExpr[x.column] || rawExpressions[x.column]})`;
+        }
+        return reportSql.order(expression, x.direction.toUpperCase());
+      });
+
+    if (parts.length) return parts.join(", ");
+    // Deterministic and PostgreSQL-safe default order for grouped summaries.
+    return config.groupBy.map((_, index) => String(index + 1)).join(", ");
+  }
+
   const expressions = forGroup
-    ? {
-        ...reportSql.groupExpr,
-        ...rawExpressions,
-        price: summarise ? "SUM(report_amount)" : "report_amount",
-      }
+    ? { ...reportSql.groupExpr, ...rawExpressions }
     : rawExpressions;
   const chosen = config.sortColumns.length ? config.sortColumns : [];
   const parts = chosen
     .filter((x) => expressions[x.column])
-    .map((x) => {
-      let expression = expressions[x.column];
-
-      // PostgreSQL can be strict about ORDER BY expressions in grouped
-      // queries, especially when the selected source column is also exposed
-      // through an alias (for example expense_source.survivor).  Always use
-      // an aggregate for dimension-based sorting in grouped summaries. This
-      // keeps sorting legal whether or not the sort dimension is itself one
-      // of the GROUP BY dimensions.
-      if (forGroup && summarise && x.column !== "price") {
-        expression = `MIN(${expression})`;
-      }
-
-      return reportSql.order(expression, x.direction.toUpperCase());
-    });
+    .map((x) => reportSql.order(expressions[x.column], x.direction.toUpperCase()));
 
   if (parts.length) return parts.join(", ");
   if (!forGroup) return reportSql.defaultRawOrder;
@@ -221,8 +237,7 @@ export async function runReport(input) {
   const groupSelect = config.groupBy.map(
     (column) => `${reportSql.groupExpr[column]} AS "${column}"`,
   );
-  if (config.groupBy.includes("category")) groupSelect.push("MIN(category_id) AS category_id");
-  if (config.groupBy.includes("survivor")) groupSelect.push("MIN(survivor_id) AS survivor_id");
+  const groupBySql = config.groupBy.map((_, index) => String(index + 1)).join(", ");
 
   if (!config.summarise) {
     const rawSelect = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;
@@ -259,17 +274,13 @@ export async function runReport(input) {
   }
 
   const amount = usesSurvivor ? "SUM(report_amount)" : "SUM(total_cost)";
-  // Group by the selected output columns by position. This avoids any
-  // ambiguity between an output alias and expense_source.<column>, and in
-  // particular prevents PostgreSQL errors for Group By = survivor.
-  const groupBySql = config.groupBy.map((_, index) => String(index + 1)).join(", ");
   const result = await q(
     reportSql.grouped(
       cte,
       [...groupSelect, `${amount} AS total`].join(", "),
       where,
       groupBySql,
-      orderSql(config, true, true),
+      orderSql(config, true, true, amount),
     ),
     params,
   );
@@ -283,4 +294,4 @@ export async function runReport(input) {
   };
 }
 
-export { cleanConfig, deleteSelection, listSelections, saveSelection };
+export { cleanConfig, deleteSelection, listSelections, saveSelection, orderSql };
