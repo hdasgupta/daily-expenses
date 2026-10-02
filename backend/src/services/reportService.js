@@ -129,12 +129,12 @@ function orderSql(config, forGroup, summarise = false) {
     .map((x) => {
       let expression = expressions[x.column];
 
-      // In a grouped summary, always aggregate dimension-based sort expressions.
-      // This is valid whether or not the dimension is itself in GROUP BY and
-      // prevents PostgreSQL from treating expense_source.survivor (or another
-      // dimension) as an ungrouped column in ORDER BY. For a grouped dimension,
-      // MIN() is equivalent to ordering by that group's value because every row
-      // in the group has the same value.
+      // PostgreSQL can be strict about ORDER BY expressions in grouped
+      // queries, especially when the selected source column is also exposed
+      // through an alias (for example expense_source.survivor).  Always use
+      // an aggregate for dimension-based sorting in grouped summaries. This
+      // keeps sorting legal whether or not the sort dimension is itself one
+      // of the GROUP BY dimensions.
       if (forGroup && summarise && x.column !== "price") {
         expression = `MIN(${expression})`;
       }
@@ -259,7 +259,10 @@ export async function runReport(input) {
   }
 
   const amount = usesSurvivor ? "SUM(report_amount)" : "SUM(total_cost)";
-  const groupBySql = config.groupBy.map((x) => reportSql.groupExpr[x]).join(", ");
+  // Group by the selected output columns by position. This avoids any
+  // ambiguity between an output alias and expense_source.<column>, and in
+  // particular prevents PostgreSQL errors for Group By = survivor.
+  const groupBySql = config.groupBy.map((_, index) => String(index + 1)).join(", ");
   const result = await q(
     reportSql.grouped(
       cte,
