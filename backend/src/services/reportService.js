@@ -173,7 +173,20 @@ export async function runReport(input) {
         "proof_url",
       ],
       rows,
-      total: rows.reduce((sum, row) => sum + (row.share_price || 0), 0),
+      total: (() => {
+        const seen = new Set();
+        return rows.reduce((sum, row) => {
+          const expenseKey = row.expense_id ?? row.id;
+          const totalCost = Number(row.total_cost);
+          if (expenseKey != null && Number.isFinite(totalCost)) {
+            if (seen.has(expenseKey)) return sum;
+            seen.add(expenseKey);
+            return sum + totalCost;
+          }
+          const sharePrice = Number(row.share_price);
+          return Number.isFinite(sharePrice) ? sum + sharePrice : sum;
+        }, 0);
+      })(),
       chartData: [],
     };
   }
