@@ -77,3 +77,23 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
     ],
   });
 }
+
+export async function sendReportEmail(email, pdfBuffer) {
+  const reportDate = new Intl.DateTimeFormat("en-CA", {
+    timeZone: env.appTimezone,
+  }).format(new Date());
+  const filename = "expense-report-" + reportDate + ".pdf";
+
+  await postEmail({
+    to: email,
+    subject: "Expense report - " + reportDate,
+    htmlBody: "<p>Attached is your expense report.</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
+}
