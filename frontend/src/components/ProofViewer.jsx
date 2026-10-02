@@ -22,8 +22,12 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
       setError("");
       try {
         const token = localStorage.getItem("token");
+        const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const response = await fetch(assetUrl(url), {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          headers: {
+            "X-App-Timezone": clientTimezone,
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
         });
         if (!response.ok) {
           const text = await response.text();
