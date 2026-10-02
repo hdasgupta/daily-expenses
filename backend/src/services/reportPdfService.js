@@ -64,10 +64,9 @@ function drawGroupIdentity(doc, groupBy, group) {
     .text("GROUP", x + 8, y + 5);
 
   groupBy.forEach((column, index) => {
-    const value =
-      group[column] === null || group[column] === undefined || group[column] === ""
-        ? "—"
-        : formatCell(group[column], column);
+    const value = group[column] === null || group[column] === undefined || group[column] === ""
+      ? "—"
+      : formatCell(group[column], column);
     doc
       .fillColor("#1f2937")
       .font("Helvetica-Bold")
@@ -75,10 +74,12 @@ function drawGroupIdentity(doc, groupBy, group) {
       .text(`${column.replace(/_/g, " ")}:`, x + 58, y + 5 + index * lineHeight, {
         width: 90,
       });
-    doc.font("Helvetica").text(value, x + 145, y + 5 + index * lineHeight, {
-      width: width - 153,
-      ellipsis: true,
-    });
+    doc
+      .font("Helvetica")
+      .text(value, x + 145, y + 5 + index * lineHeight, {
+        width: width - 153,
+        ellipsis: true,
+      });
   });
 
   doc.y = y + height + 6;
@@ -160,10 +161,9 @@ function drawGroupHeader(doc, groupBy, group, groupIndex, groupCount) {
 
   groupBy.forEach((column, index) => {
     const rawValue = group[column];
-    const value =
-      rawValue === null || rawValue === undefined || rawValue === ""
-        ? "—"
-        : formatCell(rawValue, column);
+    const value = rawValue === null || rawValue === undefined || rawValue === ""
+      ? "—"
+      : formatCell(rawValue, column);
     const yy = y + 22 + index * lineHeight;
 
     doc
@@ -173,10 +173,12 @@ function drawGroupHeader(doc, groupBy, group, groupIndex, groupCount) {
       .text(column.replace(/_/g, " "), x + 8, yy, {
         width: 95,
       });
-    doc.font("Helvetica").text(`: ${value}`, x + 103, yy, {
-      width: width - 111,
-      ellipsis: true,
-    });
+    doc
+      .font("Helvetica")
+      .text(`: ${value}`, x + 103, yy, {
+        width: width - 111,
+        ellipsis: true,
+      });
   });
 
   doc.y = y + height + 7;
@@ -282,11 +284,7 @@ export function buildReportPdf(report, config = {}) {
     // render each group identity first and then its rows/data underneath it.
     if (Array.isArray(report.groupBy) && report.groupBy.length && report.mode === "grouped-raw") {
       drawGroupedRaw(doc, report);
-    } else if (
-      Array.isArray(report.groupBy) &&
-      report.groupBy.length &&
-      report.mode === "summary"
-    ) {
+    } else if (Array.isArray(report.groupBy) && report.groupBy.length && report.mode === "summary") {
       drawGroupedSummary(doc, report);
     } else {
       const pdfColumns = [...new Set(report.columns || [])];

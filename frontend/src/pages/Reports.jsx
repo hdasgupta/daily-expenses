@@ -17,6 +17,7 @@ import {
 import { api } from "../lib/api";
 import { downloadPdf } from "../lib/download";
 import Modal from "../components/Modal";
+import ProofViewer from "../components/ProofViewer";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
 
 const GROUP_OPTIONS = [
@@ -118,6 +119,7 @@ export default function Reports() {
   const [selectionName, setSelectionName] = useState("");
   const [selections, setSelections] = useState([]);
   const [showChart, setShowChart] = useState(false);
+  const [proofViewerUrl, setProofViewerUrl] = useState("");
 
   useEffect(() => {
     Promise.all([
@@ -288,18 +290,15 @@ export default function Reports() {
     ([value]) => !config.activeFilters.includes(value),
   );
 
+  const openProof = (row) => {
+    if (row.id && row.proof_url) setProofViewerUrl(`/reports/${row.id}/proof`);
+  };
   const renderCell = (row, column) => {
     if (column === "proof_url")
       return row.proof_url ? (
-        <a
-          className="text-link"
-          href={row.proof_url}
-          download={`expense-proof-${row.id || "proof"}.pdf`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Download proof
-        </a>
+        <button type="button" className="text-link" onClick={() => openProof(row)}>
+          View proof
+        </button>
       ) : (
         "—"
       );
@@ -606,6 +605,11 @@ export default function Reports() {
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
       </Modal>
+      <ProofViewer
+        url={proofViewerUrl}
+        title="Report proof"
+        onClose={() => setProofViewerUrl("")}
+      />
     </section>
   );
 }
@@ -848,10 +852,12 @@ function ReportContent({ result, renderCell }) {
           <span>Rows</span>
           <strong>{result.rows.length}</strong>
         </div>
-        <div>
-          <span>Total price</span>
-          <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
-        </div>
+        {result.mode !== "grouped" ? (
+          <div>
+            <span>Total</span>
+            <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
+          </div>
+        ) : null}
       </div>
       <div className="report-grid">
         {result.rows.map((row, index) => (
