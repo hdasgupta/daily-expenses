@@ -37,7 +37,7 @@ const WEEKLY_REPORT_SQL = {
     GROUP BY week_start, week_end, s.id, s.full_name
     ORDER BY week_start, s.full_name`,
 
-  dump: `SELECT e.expense_date AS date,
+  dump: `SELECT e.id AS expense_id, e.total_cost, e.expense_date AS date,
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.full_name AS survivor,
@@ -80,6 +80,8 @@ export async function buildWeeklyEmailReport() {
       item: row.item || "—",
       survivor: row.survivor || "—",
       price: Number(row.price || 0),
+      expenseId: row.expense_id,
+      totalCost: Number(row.total_cost || 0),
       comment: row.comment || "—",
     })),
   };

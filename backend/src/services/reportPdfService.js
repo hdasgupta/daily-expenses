@@ -16,6 +16,52 @@ function formatCell(value, column) {
   return String(value);
 }
 
+
+function buildUiShareRows(rows) {
+  const map = new Map();
+  for (const row of rows) {
+    const key = row.expense_id ?? `${row.expense_date}|${row.category}|${row.item}|${row.comment}|${row.proof_key}`;
+    if (!map.has(key)) {
+      map.set(key, {
+        ...row,
+        survivorShares: [],
+      });
+    }
+    const target = map.get(key);
+    if (row.survivor && row.survivor !== "—") {
+      target.survivorShares.push({ name: row.survivor, amount: Number(row.share_price || 0) });
+    }
+    if (target.total_cost == null && row.total_cost != null) target.total_cost = Number(row.total_cost);
+  }
+
+  return [...map.values()].map((row) => {
+    const shares = row.survivorShares;
+    const total = Number(row.total_cost || shares.reduce((sum, item) => sum + item.amount, 0));
+    const survivor = shares.length ? shares.map((item) => item.name).join(", ") : "—";
+    let share;
+    if (!shares.length) {
+      share = "No survivor share recorded";
+    } else if (shares.length === 1) {
+      const item = shares[0];
+      const pct = total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : "";
+      share = `${item.name}: ₹${item.amount.toFixed(2)}${pct}`;
+    } else {
+      share = shares
+        .map((item) => {
+          const pct = total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : "";
+          return `${item.name}: ₹${item.amount.toFixed(2)}${pct}`;
+        })
+        .join(", ");
+    }
+
+    return {
+      ...row,
+      survivor,
+      share,
+    };
+  });
+}
+
 function drawCell(doc, value, column, x, y, width, height, textColor, fontSize) {
   const isProof = column === "proof_url" && value;
   const text = isProof ? "View Proof" : formatCell(value, column);
@@ -108,9 +154,13 @@ export function buildReportPdf(report, config = {}) {
     doc.fontSize(11).text(`Mode: ${report.mode}`);
     doc.moveDown(0.7);
 
-    // Remove duplicate columns while preserving the first occurrence, but keep proof_url.
-    const pdfColumns = [...new Set(report.columns || [])];
-    drawTable(doc, pdfColumns, report.rows || []);
+    // Match the normal report UI: one expense row with all survivors and a dynamic share detail.
+    const isNormalRaw = report.mode === "raw" && (report.columns || []).includes("share_price");
+    const sourceRows = isNormalRaw ? buildUiShareRows(report.rows || []) : report.rows || [];
+    const pdfColumns = isNormalRaw
+      ? [...new Set((report.columns || []).map((column) => column === "share_price" ? "share" : column))]
+      : [...new Set(report.columns || [])];
+    drawTable(doc, pdfColumns, sourceRows);
 
     doc.moveDown();
     doc.fontSize(11).text(`Total: ₹${Number(report.total || 0).toFixed(2)}`);

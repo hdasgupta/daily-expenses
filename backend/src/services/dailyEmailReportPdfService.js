@@ -48,6 +48,26 @@ function drawBarChart(doc, data) {
   doc.y = baseline + 30;
 }
 
+function uiShareDumpRows(rows) {
+  const map = new Map();
+  for (const row of rows) {
+    const key = row.expenseId ?? `${row.date}|${row.category}|${row.item}|${row.comment}`;
+    if (!map.has(key)) map.set(key, { ...row, shares: [] });
+    const target = map.get(key);
+    if (row.survivor && row.survivor !== "—") {
+      target.shares.push({ name: row.survivor, amount: Number(row.price || 0) });
+    }
+  }
+  return [...map.values()].map((row) => {
+    const total = Number(row.totalCost || row.shares.reduce((sum, item) => sum + item.amount, 0));
+    const survivor = row.shares.length ? row.shares.map((item) => item.name).join(", ") : "—";
+    const share = row.shares.length
+      ? row.shares.map((item) => `${item.name}: ₹${item.amount.toFixed(2)}${total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""}`).join(", ")
+      : "No survivor share recorded";
+    return { ...row, survivor, share };
+  });
+}
+
 function drawTable(doc, columns, rows, widths = null) {
   const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
   const columnWidths = widths || columns.map(() => usableWidth / columns.length);
@@ -136,13 +156,13 @@ export function buildDailyEmailReportPdf(report) {
     doc.moveDown(0.4);
     drawTable(
       doc,
-      ["date", "category", "item", "survivor", "price", "comment"],
-      report.dump.map((row) => ({
+      ["date", "category", "item", "survivor", "share", "comment"],
+      uiShareDumpRows(report.dump).map((row) => ({
         date: dateLabel(row.date),
         category: row.category,
         item: row.item,
         survivor: row.survivor,
-        price: money(row.price),
+        share: row.share,
         comment: row.comment,
       })),
       [60, 100, 115, 100, 65, 145],

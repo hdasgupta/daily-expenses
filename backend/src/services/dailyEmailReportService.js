@@ -22,7 +22,7 @@ const DAILY_REPORT_SQL = {
       AND e.expense_date < CURRENT_DATE
     GROUP BY e.expense_date, s.id, s.full_name
     ORDER BY e.expense_date, s.full_name`,
-  dump: `SELECT e.expense_date AS date,
+  dump: `SELECT e.id AS expense_id, e.total_cost, e.expense_date AS date,
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.full_name AS survivor,
@@ -63,6 +63,8 @@ export async function buildDailyEmailReport() {
       item: row.item || "—",
       survivor: row.survivor || "—",
       price: Number(row.price || 0),
+      expenseId: row.expense_id,
+      totalCost: Number(row.total_cost || 0),
       comment: row.comment || "—",
     })),
   };
