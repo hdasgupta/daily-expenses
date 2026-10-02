@@ -24,6 +24,14 @@
   --success: #188a55;
   --success-soft: #e9f8f0;
   --shadow: 0 12px 35px rgba(25, 70, 101, 0.08);
+  --dashboard-series-1: #1769aa;
+  --dashboard-series-2: #188a55;
+  --dashboard-series-3: #b63f47;
+  --dashboard-series-4: #7b5fc8;
+  --dashboard-series-5: #d17b24;
+  --dashboard-series-6: #2f8f9d;
+  --dashboard-series-7: #8b5e3c;
+  --dashboard-series-8: #5c6bc0;
 }
 
 * {

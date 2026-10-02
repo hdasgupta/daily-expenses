@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, BarChart3, RefreshCw } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { api } from "../lib/api";
 import { getDashboardReports } from "./Dashboard";
 
@@ -51,15 +51,8 @@ export default function DashboardDetail({ navigate }) {
     load();
   }, [reportKey]);
 
-  const chartData = useMemo(
-    () => (data?.rows || []).map((row, index) => ({
-      ...row,
-      chartLabel: rowLabel(row, data.groupBy || []),
-      chartValue: Number(row.total || 0),
-      index,
-    })),
-    [data],
-  );
+  const chartModel = useMemo(() => buildChartModel(data), [data]);
+  const chartData = chartModel.data;
 
   if (!report) {
     return (
@@ -110,20 +103,31 @@ export default function DashboardDetail({ navigate }) {
             <div className="card dashboard-detail-chart">
               <div className="card-title">
                 <strong><BarChart3 size={17} /> Summary bar chart</strong>
-                <span>Each bar represents one summary-table row.</span>
+                <span>{chartModel.description}</span>
               </div>
-              <ResponsiveContainer width="100%" height={360}>
-                <BarChart data={chartData} margin={{ top: 8, right: 18, left: 10, bottom: 90 }}>
+              <ResponsiveContainer width="100%" height={380}>
+                <BarChart data={chartData} margin={{ top: 8, right: 18, left: 10, bottom: chartModel.multiSeries ? 55 : 90 }}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="chartLabel" angle={-35} textAnchor="end" interval={0} height={100} tick={{ fontSize: 10 }} />
+                  <XAxis dataKey="chartLabel" angle={chartModel.multiSeries ? -20 : -35} textAnchor="end" interval={0} height={chartModel.multiSeries ? 65 : 100} tick={{ fontSize: 10 }} />
                   <YAxis />
-                  <Tooltip formatter={(value) => money(value)} labelFormatter={(label) => label} />
-                  <Bar
-                    dataKey="chartValue"
-                    fill="var(--accent)"
-                    cursor="pointer"
-                    onClick={(entry) => entry?.payload && openDrilldown(navigate, report.key, data.groupBy, entry.payload)}
+                  <Tooltip
+                    formatter={(value, name) => [money(value), name]}
+                    labelFormatter={(label) => label}
                   />
+                  {chartModel.multiSeries ? <Legend /> : null}
+                  {chartModel.series.map((series) => (
+                    <Bar
+                      key={series.dataKey}
+                      dataKey={series.dataKey}
+                      name={series.label}
+                      fill={series.fill}
+                      cursor="pointer"
+                      onClick={(entry) => {
+                        const row = entry?.payload?._groupRows?.[series.dataKey];
+                        if (row) openDrilldown(navigate, report.key, data.groupBy, row);
+                      }}
+                    />
+                  ))}
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -171,6 +175,54 @@ export default function DashboardDetail({ navigate }) {
       ) : null}
     </section>
   );
+}
+
+function buildChartModel(data) {
+  const rows = data?.rows || [];
+  const groupBy = data?.groupBy || [];
+
+  if (groupBy.length <= 1) {
+    return {
+      multiSeries: false,
+      description: "Each bar represents one summary-table row.",
+      data: rows.map((row, index) => ({
+        ...row,
+        chartLabel: rowLabel(row, groupBy),
+        chartValue: Number(row.total || 0),
+        index,
+      })),
+      series: [{ dataKey: "chartValue", label: "Sum of expenses", fill: "var(--accent)" }],
+    };
+  }
+
+  // With multiple group-by columns, use the first dimension as the X-axis
+  // and each remaining dimension combination as a separate bar series.
+  // This keeps the time/category buckets comparable and gives the chart a legend.
+  const seriesMap = new Map();
+  const chartRows = new Map();
+  const secondaryColumns = groupBy.slice(1);
+
+  rows.forEach((row) => {
+    const xValue = prettyValue(row[groupBy[0]], groupBy[0]);
+    const seriesLabel = secondaryColumns
+      .map((column) => prettyValue(row[column], column))
+      .join(" · ");
+    const seriesIndex = seriesMap.size;
+    const dataKey = `series_${seriesIndex}`;
+    if (!seriesMap.has(seriesLabel)) seriesMap.set(seriesLabel, { dataKey, label: seriesLabel, fill: `var(--dashboard-series-${(seriesIndex % 8) + 1})` });
+
+    if (!chartRows.has(xValue)) chartRows.set(xValue, { chartLabel: xValue, _groupRows: {} });
+    const target = chartRows.get(xValue);
+    target[dataKey] = Number(row.total || 0);
+    target._groupRows[dataKey] = row;
+  });
+
+  return {
+    multiSeries: true,
+    description: `Grouped by ${groupBy[0]} with ${secondaryColumns.join(" + ")} as the legend. Click any bar to drill down.`,
+    data: Array.from(chartRows.values()),
+    series: Array.from(seriesMap.values()),
+  };
 }
 
 function openDrilldown(navigate, reportKey, groupBy, row) {
