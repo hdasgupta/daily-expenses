@@ -1264,6 +1264,16 @@ code {
   align-items: center;
   gap: 7px;
 }
+.dashboard-detail-chart-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+}
+.dashboard-detail-chart-inner {
+  width: 100%;
+  min-width: 720px;
+}
 .table-scroll {
   width: 100%;
   overflow-x: auto;

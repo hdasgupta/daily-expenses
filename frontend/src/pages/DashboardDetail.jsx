@@ -105,8 +105,13 @@ export default function DashboardDetail({ navigate }) {
                 <strong><BarChart3 size={17} /> Summary bar chart</strong>
                 <span>{chartModel.description}</span>
               </div>
-              <ResponsiveContainer width="100%" height={380}>
-                <BarChart data={chartData} margin={{ top: 8, right: 18, left: 10, bottom: chartModel.multiSeries ? 55 : 90 }}>
+              <div className="dashboard-detail-chart-scroll">
+                <div
+                  className="dashboard-detail-chart-inner"
+                  style={{ minWidth: `${chartModel.minWidth}px` }}
+                >
+                  <ResponsiveContainer width="100%" height={380}>
+                    <BarChart data={chartData} margin={{ top: 8, right: 18, left: 10, bottom: chartModel.multiSeries ? 55 : 90 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="chartLabel" angle={chartModel.multiSeries ? -20 : -35} textAnchor="end" interval={0} height={chartModel.multiSeries ? 65 : 100} tick={{ fontSize: 10 }} />
                   <YAxis />
@@ -115,21 +120,24 @@ export default function DashboardDetail({ navigate }) {
                     labelFormatter={(label) => label}
                   />
                   {chartModel.multiSeries ? <Legend /> : null}
-                  {chartModel.series.map((series) => (
-                    <Bar
-                      key={series.dataKey}
-                      dataKey={series.dataKey}
-                      name={series.label}
-                      fill={series.fill}
-                      cursor="pointer"
+                      {chartModel.series.map((series) => (
+                      <Bar
+                        key={series.dataKey}
+                        dataKey={series.dataKey}
+                        name={series.label}
+                        fill={series.fill}
+                        barSize={40}
+                        cursor="pointer"
                       onClick={(entry) => {
                         const row = entry?.payload?._groupRows?.[series.dataKey];
                         if (row) openDrilldown(navigate, report.key, data.groupBy, row);
                       }}
-                    />
-                  ))}
-                </BarChart>
-              </ResponsiveContainer>
+                      />
+                    ))}
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="empty-card">No expenses found in this date range.</div>
@@ -184,6 +192,7 @@ function buildChartModel(data) {
   if (groupBy.length <= 1) {
     return {
       multiSeries: false,
+      minWidth: Math.max(720, rows.length * 72 + 120),
       description: "Each bar represents one summary-table row.",
       data: rows.map((row, index) => ({
         ...row,
@@ -219,6 +228,7 @@ function buildChartModel(data) {
 
   return {
     multiSeries: true,
+    minWidth: Math.max(720, chartRows.size * Math.max(secondaryColumns.length, 1) * 52 + 140),
     description: `Grouped by ${groupBy[0]} with ${secondaryColumns.join(" + ")} as the legend. Click any bar to drill down.`,
     data: Array.from(chartRows.values()),
     series: Array.from(seriesMap.values()),
