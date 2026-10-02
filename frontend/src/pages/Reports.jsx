@@ -17,7 +17,6 @@ import {
 import { api } from "../lib/api";
 import { downloadPdf } from "../lib/download";
 import Modal from "../components/Modal";
-import ProofViewer from "../components/ProofViewer";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
 
 const GROUP_OPTIONS = [
@@ -119,7 +118,6 @@ export default function Reports() {
   const [selectionName, setSelectionName] = useState("");
   const [selections, setSelections] = useState([]);
   const [showChart, setShowChart] = useState(false);
-  const [proofViewerUrl, setProofViewerUrl] = useState("");
 
   useEffect(() => {
     Promise.all([
@@ -290,15 +288,18 @@ export default function Reports() {
     ([value]) => !config.activeFilters.includes(value),
   );
 
-  const openProof = (row) => {
-    if (row.id && row.proof_url) setProofViewerUrl(`/reports/${row.id}/proof`);
-  };
   const renderCell = (row, column) => {
     if (column === "proof_url")
       return row.proof_url ? (
-        <button type="button" className="text-link" onClick={() => openProof(row)}>
-          View proof
-        </button>
+        <a
+          className="text-link"
+          href={row.proof_url}
+          download={`expense-proof-${row.id || "proof"}.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download proof
+        </a>
       ) : (
         "—"
       );
@@ -605,11 +606,6 @@ export default function Reports() {
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
       </Modal>
-      <ProofViewer
-        url={proofViewerUrl}
-        title="Report proof"
-        onClose={() => setProofViewerUrl("")}
-      />
     </section>
   );
 }

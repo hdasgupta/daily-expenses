@@ -38,6 +38,6 @@ export const env = {
   dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "0 6 * * *",
   dailyEmailReportTimezone: process.env.DAILY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
   appTimezone: process.env.APP_TIMEZONE || "Asia/Kolkata",
-  organizationName: process.env.ORGANIZATION_NAME || "Rehabilitation Center",
+  organizationName: process.env.ORGANIZATION_NAME || "West Bengal Forum for Mental Health",
   organizationLogoUrl: process.env.ORGANIZATION_LOGO_URL || "",
 };

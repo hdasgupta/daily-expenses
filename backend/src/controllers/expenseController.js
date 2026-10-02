@@ -5,7 +5,7 @@ import {
   deleteExpense,
 } from "../services/expenseService.js";
 import { uploadExpenseProof } from "../services/proofService.js";
-import { getObject, signedObjectUrl } from "../services/storageService.js";
+import { signedObjectUrl } from "../services/storageService.js";
 import { todayIso } from "../utils/dates.js";
 
 function paging(req) {
@@ -56,17 +56,4 @@ export async function proofUrl(req, res) {
   const url = await signedObjectUrl(expense.proof_key);
   if (!url) return res.status(503).json({ error: "Storage is not configured" });
   res.json({ url });
-}
-
-export async function proofFile(req, res) {
-  const expense = await findExpense(req.params.id);
-  if (!expense?.proof_key) return res.status(404).json({ error: "Proof not found" });
-
-  const object = await getObject(expense.proof_key);
-  if (!object?.Body) return res.status(503).json({ error: "Storage is not configured" });
-
-  res.setHeader("Content-Type", object.ContentType || "application/pdf");
-  res.setHeader("Content-Disposition", `inline; filename="proof-${req.params.id}.pdf"`);
-  res.setHeader("Cache-Control", "private, max-age=60");
-  object.Body.pipe(res);
 }

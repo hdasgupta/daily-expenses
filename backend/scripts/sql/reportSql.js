@@ -49,8 +49,8 @@ export const reportSql = {
     GROUP BY e.id, c.name, i.name
   )`,
   rawSelectPerSurvivor:
-    "id, expense_date, category, item, survivor, report_amount AS share_price, comment, proof_key",
-  rawSelectPerExpense: "id, expense_date, category, item, survivor, total_cost, comment, proof_key",
+    "expense_date, category, item, survivor, report_amount AS share_price, comment, proof_key",
+  rawSelectPerExpense: "expense_date, category, item, survivor, total_cost, comment, proof_key",
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte} SELECT ${select} FROM expense_source ${where} ORDER BY ${orderSql} LIMIT 5000`,
   where: (clauses) => (clauses.length ? `WHERE ${clauses.join(" AND ")}` : ""),

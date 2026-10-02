@@ -13,11 +13,10 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
             <a
               className="secondary"
               href={url}
-              target="_blank"
-              rel="noopener noreferrer"
+              download
               style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}
             >
-              Open PDF
+              Download proof
             </a>
           ) : null}
           <button className="secondary" type="button" onClick={onClose}>

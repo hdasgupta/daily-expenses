@@ -1,4 +1,5 @@
 import PDFDocument from "pdfkit";
+import { env } from "../config/env.js";
 
 function formatDate(value) {
   if (!value) return "—";
@@ -18,7 +19,7 @@ function formatCell(value, column) {
 
 function drawCell(doc, value, column, x, y, width, height, textColor, fontSize) {
   const isProof = column === "proof_url" && value;
-  const text = isProof ? "View Proof" : formatCell(value, column);
+  const text = isProof ? "Download Proof" : formatCell(value, column);
 
   doc
     .fillColor(textColor)
@@ -88,7 +89,16 @@ export function buildReportPdf(report, config = {}) {
     doc.on("end", () => resolve(Buffer.concat(chunks)));
     doc.on("error", reject);
 
-    doc.fontSize(20).text("Rehabilitation Center Expense Report");
+    doc
+      .fontSize(15)
+      .font("Helvetica-Bold")
+      .fillColor("#1f2937")
+      .text(env.organizationName || "West Bengal Forum for Mental Health", { align: "center" });
+    doc
+      .fontSize(20)
+      .font("Helvetica-Bold")
+      .fillColor("#000000")
+      .text("Rehabilitation Center Expense Report", { align: "center" });
     doc
       .fontSize(9)
       .fillColor("#555")
