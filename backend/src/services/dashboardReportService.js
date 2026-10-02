@@ -23,14 +23,28 @@ const definitions = {
 function dateFromParts(year, month, day) {
   return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
+function normalizeIsoDate(value, label = "date") {
+  const text = String(value ?? "").trim();
+  const match = text.match(/^(\d{4})-(\d{2})-(\d{2})(?:$|[T\s])/);
+  if (!match) throw new Error(`Invalid ${label}: ${text || "empty value"}`);
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) {
+    throw new Error(`Invalid ${label}: ${text}`);
+  }
+  return date;
+}
+
 function addDays(value, amount) {
-  const [year, month, day] = value.split("-").map(Number);
-  const date = new Date(Date.UTC(year, month - 1, day + amount));
+  const date = normalizeIsoDate(value);
+  date.setUTCDate(date.getUTCDate() + Number(amount || 0));
   return date.toISOString().slice(0, 10);
 }
 function shiftMonthStart(value, amount) {
-  const [year, month] = value.split("-").map(Number);
-  const date = new Date(Date.UTC(year, month - 1 + amount, 1));
+  const date = normalizeIsoDate(`${String(value).slice(0, 7)}-01`, "month");
+  date.setUTCMonth(date.getUTCMonth() + Number(amount || 0), 1);
   return date.toISOString().slice(0, 10);
 }
 function shiftYearStart(value, amount) {
@@ -44,8 +58,7 @@ function yearEnd(value) {
   return addDays(shiftYearStart(value, 1), -1);
 }
 function weekStart(value) {
-  const [year, month, day] = value.split("-").map(Number);
-  const date = new Date(Date.UTC(year, month - 1, day));
+  const date = normalizeIsoDate(value);
   const mondayOffset = (date.getUTCDay() + 6) % 7;
   return addDays(value, -mondayOffset);
 }
