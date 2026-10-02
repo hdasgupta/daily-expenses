@@ -8,29 +8,16 @@ export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
       title={title}
       onClose={onClose}
       footer={
-        <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap" }}>
-          {url ? (
-            <a
-              className="secondary"
-              href={url}
-              download
-              style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}
-            >
-              Download proof
-            </a>
-          ) : null}
-          <button className="secondary" type="button" onClick={onClose}>
-            Close
-          </button>
-        </div>
+        <button className="secondary" type="button" onClick={onClose}>
+          Close
+        </button>
       }
     >
       {url ? (
         <iframe
           title={title}
           src={url}
-          style={{ width: "100%", height: "70vh", minHeight: 420, border: 0, borderRadius: 8 }}
-          allow="fullscreen"
+          style={{ width: "100%", height: "70vh", border: 0, borderRadius: 8 }}
         />
       ) : null}
     </Modal>

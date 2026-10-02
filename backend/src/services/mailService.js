@@ -11,24 +11,14 @@ async function postEmail(payload) {
     return;
   }
 
-  let response;
-  try {
-    response = await fetch(EMAIL_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...payload,
-        apiKey: EMAIL_API_KEY,
-      }),
-    });
-  } catch (error) {
-    throw new Error(
-      "Unable to reach the email API at " +
-        EMAIL_API_URL +
-        ". Check EMAIL_API_URL and the backend server network access. " +
-        (error?.message || "Network request failed."),
-    );
-  }
+  const response = await fetch(EMAIL_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ...payload,
+      apiKey: EMAIL_API_KEY,
+    }),
+  });
 
   const responseText = await response.text();
 
@@ -87,16 +77,16 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
     ],
   });
 }
-export async function sendReportEmail(email, pdfBuffer) {
-  const reportDate = new Intl.DateTimeFormat("en-CA", {
-    timeZone: env.appTimezone,
-  }).format(new Date());
-  const filename = "expense-report-" + reportDate + ".pdf";
+
+export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
+  const filename = "expense-4-week-report-" + reportDate + ".pdf";
+  const text =
+    "Attached is the 4-week expense report containing the weekly bar chart, weekly summary, weekly survivor summary, and expense data dump.";
 
   await postEmail({
     to: email,
-    subject: "Expense report - " + reportDate,
-    htmlBody: "<p>Attached is your expense report.</p>",
+    subject: "Expense 4-week weekly report - " + reportDate,
+    htmlBody: "<p>" + text + "</p>",
     attachments: [
       {
         filename,
@@ -106,4 +96,3 @@ export async function sendReportEmail(email, pdfBuffer) {
     ],
   });
 }
-

@@ -5,7 +5,6 @@ import {
   ArrowUp,
   BarChart3,
   Download,
-  Mail,
   Filter,
   FolderOpen,
   Plus,
@@ -268,15 +267,6 @@ export default function Reports() {
     if (!result?.rows?.length) return;
     await downloadPdf("/reports/export-pdf", config);
   };
-  const emailReport = async () => {
-    if (!result?.rows?.length) return;
-    await api("/reports/email-pdf", {
-      method: "POST",
-      body: JSON.stringify(config),
-      loadingMessage: "Generating and emailing report PDF…",
-      toast: { type: "success", message: "Report PDF emailed to your account email." },
-    });
-  };
   // When grouping is enabled, keep the standard report sort columns available
   // and add any selected Group By columns that are not already present.
   const groupSortOptions = [
@@ -291,7 +281,7 @@ export default function Reports() {
   );
 
   const openProof = (row) => {
-    if (row.id && row.proof_url) setProofViewerUrl(`/reports/${row.id}/proof`);
+    if (row.proof_url) setProofViewerUrl(row.proof_url);
   };
   const renderCell = (row, column) => {
     if (column === "proof_url")
@@ -388,15 +378,6 @@ export default function Reports() {
         </label>
         <button className="secondary" type="button" onClick={apply}>
           Run report
-        </button>
-        <button
-          className="secondary"
-          type="button"
-          title="Email the currently displayed report as a PDF"
-          disabled={!result?.rows?.length}
-          onClick={emailReport}
-        >
-          <Mail size={17} /> Email me report PDF
         </button>
         {config.summarise ? (
           <button
