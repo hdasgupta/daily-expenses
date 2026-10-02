@@ -273,10 +273,18 @@ function drawRawDump(doc, rows) {
     doc.fontSize(10).text("No records match the selected filters.");
     return;
   }
-  const preferred = ["expense_date", "category", "item", "survivor", "share_price", "total_cost", "comment", "proof_url"];
-  const columns = preferred.filter((column) => Object.prototype.hasOwnProperty.call(sourceRows[0], column));
-  const extras = Object.keys(sourceRows[0]).filter((column) => !columns.includes(column));
-  drawTable(doc, [...columns, ...extras], sourceRows);
+
+  // The report query is survivor-share based, but the raw dump must represent
+  // the original expense as one row. Recombine all survivor shares here.
+  const unsplitRows = sourceRows.some((row) => Object.prototype.hasOwnProperty.call(row, "share_price"))
+    ? buildUiShareRows(sourceRows)
+    : sourceRows;
+  const preferred = ["expense_date", "category", "item", "share", "total_cost", "comment", "proof_url"];
+  const columns = preferred.filter((column) => Object.prototype.hasOwnProperty.call(unsplitRows[0], column));
+  const extras = Object.keys(unsplitRows[0]).filter((column) =>
+    !columns.includes(column) && !["survivor", "survivorShares", "proof_key", "report_amount", "id", "expense_id"].includes(column),
+  );
+  drawTable(doc, [...columns, ...extras], unsplitRows);
 }
 
 export function buildReportPdf(report, config = {}) {

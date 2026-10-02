@@ -179,7 +179,7 @@ export async function runReport(input) {
       columns: [...config.groupBy, "expense_date", "category", "item", "survivor", "share_price", "comment", "proof_url"],
       groupBy: config.groupBy,
       rows,
-      rawRows: rows,
+      rawRows: await loadRawRows(cte, where, params),
       total: 0,
       chartData: [],
       includeRawDump: true,
