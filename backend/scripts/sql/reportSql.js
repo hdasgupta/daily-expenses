@@ -39,6 +39,11 @@ export const reportSql = {
       COALESCE(i.name, e.other_item, 'Total') AS item,
       string_agg(DISTINCT s.full_name, ', ' ORDER BY s.full_name) AS survivor,
       ARRAY_AGG(DISTINCT s.id) FILTER (WHERE s.id IS NOT NULL)::bigint[] AS survivor_ids,
+      CASE
+        WHEN COUNT(DISTINCT s.id) = 0 THEN 'No survivor share recorded'
+        WHEN COUNT(DISTINCT s.id) = 1 THEN 'Single survivor share'
+        ELSE 'Shared among ' || COUNT(DISTINCT s.id)::text || ' survivors'
+      END AS share_note,
       NULL::bigint AS survivor_id,
       NULL::numeric AS report_amount
     FROM public.expenses e
@@ -50,7 +55,7 @@ export const reportSql = {
   )`,
   rawSelectPerSurvivor:
     "expense_date, category, item, survivor, report_amount AS share_price, comment, proof_key",
-  rawSelectPerExpense: "expense_date, category, item, survivor, total_cost, comment, proof_key",
+  rawSelectPerExpense: "expense_date, category, item, survivor, share_note AS share, total_cost, comment, proof_key",
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte} SELECT ${select} FROM expense_source ${where} ORDER BY ${orderSql} LIMIT 5000`,
   where: (clauses) => (clauses.length ? `WHERE ${clauses.join(" AND ")}` : ""),

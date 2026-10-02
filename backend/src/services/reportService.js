@@ -151,8 +151,11 @@ export async function runReport(input) {
   const where = addFilter([], params, config.filters, "expense_source");
 
   if (!config.groupBy.length && !config.summarise) {
-    const select = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;
-    const result = await q(reportSql.raw(cte, select, where, orderSql(config, false)), params);
+    // Normal reports show one row per expense. Keep all survivors involved in
+    // that expense together instead of splitting the expense into survivor rows.
+    const rawCte = reportSql.sourcePerExpense;
+    const select = reportSql.rawSelectPerExpense;
+    const result = await q(reportSql.raw(rawCte, select, where, orderSql(config, false)), params);
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
@@ -168,12 +171,13 @@ export async function runReport(input) {
         "category",
         "item",
         "survivor",
-        "share_price",
+        "share",
+        "total_cost",
         "comment",
         "proof_url",
       ],
       rows,
-      total: rows.reduce((sum, row) => sum + Number(row.share_price || 0), 0),
+      total: rows.reduce((sum, row) => sum + Number(row.total_cost || 0), 0),
       chartData: [],
     };
   }
