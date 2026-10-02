@@ -7,9 +7,22 @@ function money(value) {
 }
 function dateValue(value) {
   if (!value) return "—";
-  const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
-  if (Number.isNaN(date.getTime())) return String(value);
-  return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(date);
+  const raw = String(value);
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return raw;
+  const [, year, month, day] = match;
+  const numericYear = Number(year);
+  const numericMonth = Number(month);
+  const numericDay = Number(day);
+  if (numericMonth < 1 || numericMonth > 12 || numericDay < 1 || numericDay > 31) return raw;
+  const date = new Date(Date.UTC(numericYear, numericMonth - 1, numericDay, 12));
+  if (Number.isNaN(date.getTime())) return raw;
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
 }
 function readRoute() {
   const parts = window.location.pathname.split("/").filter(Boolean);
