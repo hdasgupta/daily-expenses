@@ -6,7 +6,9 @@ try {
   await initDb();
   await seedApplication();
   const result = await sendDailyEmailReportToManagers();
-  console.log(`7-day email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s).`);
+  console.log(
+    `7-day email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s).`,
+  );
 } catch (error) {
   console.error(error);
   process.exitCode = 1;

@@ -33,10 +33,13 @@ function drawBarChart(doc, data) {
     const x = startX + index * (barWidth + 10);
     const y = baseline - height;
     doc.rect(x, y, barWidth, height).fill();
-    doc.fillColor("black").fontSize(7).text(dateLabel(item.date), x - 4, baseline + 5, {
-      width: barWidth + 8,
-      align: "center",
-    });
+    doc
+      .fillColor("black")
+      .fontSize(7)
+      .text(dateLabel(item.date), x - 4, baseline + 5, {
+        width: barWidth + 8,
+        align: "center",
+      });
     doc.fontSize(7).text(money(item.total), x - 8, y - 12, {
       width: barWidth + 16,
       align: "center",
@@ -65,7 +68,8 @@ function drawTable(doc, columns, rows, widths = null) {
       doc.rect(x, y, width, height).fill();
       doc.restore();
       doc.strokeColor("#b8c7da").rect(x, y, width, height).stroke();
-      doc.fillColor(header ? "#ffffff" : "#1f2937")
+      doc
+        .fillColor(header ? "#ffffff" : "#1f2937")
         .fontSize(header ? 7 : 6)
         .font(header ? "Helvetica-Bold" : "Helvetica")
         .text(String(values[column] ?? "—"), x + 3, y + 5, {
@@ -78,7 +82,10 @@ function drawTable(doc, columns, rows, widths = null) {
     doc.y = y + height;
   };
 
-  row(Object.fromEntries(columns.map((column) => [column, column.replace(/_/g, " ").toUpperCase()])), true);
+  row(
+    Object.fromEntries(columns.map((column) => [column, column.replace(/_/g, " ").toUpperCase()])),
+    true,
+  );
   rows.forEach((item, index) => row(item, false, index));
 }
 
