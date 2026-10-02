@@ -5,7 +5,6 @@ import {
   ArrowUp,
   BarChart3,
   Download,
-  Mail,
   Filter,
   FolderOpen,
   Plus,
@@ -268,15 +267,6 @@ export default function Reports() {
     if (!result?.rows?.length) return;
     await downloadPdf("/reports/export-pdf", config);
   };
-  const emailReport = async () => {
-    if (!result?.rows?.length) return;
-    await api("/reports/email-pdf", {
-      method: "POST",
-      body: JSON.stringify(config),
-      loadingMessage: "Generating and emailing report PDF…",
-      toast: { type: "success", message: "Report PDF emailed to your account email." },
-    });
-  };
   // When grouping is enabled, keep the standard report sort columns available
   // and add any selected Group By columns that are not already present.
   const groupSortOptions = [
@@ -413,14 +403,6 @@ export default function Reports() {
           onClick={exportPdf}
         >
           <Download size={17} /> Export PDF
-        </button>
-        <button
-          className="secondary"
-          type="button"
-          disabled={!result?.rows?.length}
-          onClick={emailReport}
-        >
-          <Mail size={17} /> Email me report PDF
         </button>
       </div>
 
@@ -607,7 +589,6 @@ export default function Reports() {
       <ProofViewer
         url={proofViewerUrl}
         title="Report proof"
-        googleViewer
         onClose={() => setProofViewerUrl("")}
       />
     </section>
