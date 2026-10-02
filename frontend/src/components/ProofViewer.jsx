@@ -1,18 +1,7 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Modal from "./Modal";
 
-export default function ProofViewer({
-  url,
-  title = "Proof PDF",
-  onClose,
-  googleViewer = false,
-}) {
-  const viewerUrl = useMemo(() => {
-    if (!url) return "";
-    if (!googleViewer) return url;
-    return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(url)}`;
-  }, [url, googleViewer]);
-
+export default function ProofViewer({ url, title = "Proof PDF", onClose }) {
   return (
     <Modal
       open={Boolean(url)}
@@ -40,7 +29,7 @@ export default function ProofViewer({
       {url ? (
         <iframe
           title={title}
-          src={viewerUrl}
+          src={url}
           style={{ width: "100%", height: "70vh", minHeight: 420, border: 0, borderRadius: 8 }}
           allow="fullscreen"
         />

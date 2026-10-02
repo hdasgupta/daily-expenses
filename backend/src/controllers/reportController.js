@@ -31,7 +31,6 @@ export async function exportPdf(req, res) {
   res.send(pdf);
 }
 
-
 export async function emailReport(req, res) {
   const report = await runReport(req.body || {});
   if (!report.rows?.length) {
