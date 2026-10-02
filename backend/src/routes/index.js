@@ -81,8 +81,6 @@ export function createRouter(maxUploadBytes) {
     bulkUploadController.categoriesItems,
   );
 
-  router.get("/reports/:id/proof-url", auth, permit("report"), expenseController.proofUrl);
-  router.get("/reports/:id/proof", auth, permit("report"), expenseController.proofFile);
   router.post("/reports/query", auth, permit("report"), reportController.query);
   router.post("/reports/export-pdf", auth, permit("report"), reportController.exportPdf);
   router.post("/reports/email-pdf", auth, permit("report"), reportController.emailReport);

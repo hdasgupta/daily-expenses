@@ -291,7 +291,7 @@ export default function Reports() {
   );
 
   const openProof = (row) => {
-    if (row.id && row.proof_url) setProofViewerUrl(`/reports/${row.id}/proof`);
+    if (row.proof_url) setProofViewerUrl(row.proof_url);
   };
   const renderCell = (row, column) => {
     if (column === "proof_url")
