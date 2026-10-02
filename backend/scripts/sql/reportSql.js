@@ -41,8 +41,18 @@ export const reportSql = {
       ARRAY_AGG(DISTINCT s.id) FILTER (WHERE s.id IS NOT NULL)::bigint[] AS survivor_ids,
       CASE
         WHEN COUNT(DISTINCT s.id) = 0 THEN 'No survivor share recorded'
-        WHEN COUNT(DISTINCT s.id) = 1 THEN 'Single survivor share'
-        ELSE 'Shared among ' || COUNT(DISTINCT s.id)::text || ' survivors'
+        ELSE COALESCE(
+          string_agg(
+            DISTINCT s.full_name || ': ₹' || to_char(es.amount, 'FM999999990.00') ||
+            CASE
+              WHEN e.total_cost IS NOT NULL AND e.total_cost <> 0
+                THEN ' (' || to_char(ROUND((es.amount / e.total_cost) * 100, 2), 'FM990.00') || '%)'
+              ELSE ''
+            END,
+            ', ' ORDER BY s.full_name || ': ₹' || to_char(es.amount, 'FM999999990.00')
+          ),
+          'No survivor share recorded'
+        )
       END AS share_note,
       NULL::bigint AS survivor_id,
       NULL::numeric AS report_amount
