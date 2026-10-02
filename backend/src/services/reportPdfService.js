@@ -103,15 +103,19 @@ function drawTable(doc, columns, rows, widths = null) {
       doc.rect(x, y, width, height).fill();
       doc.restore();
       doc.strokeColor("#b8c7da").rect(x, y, width, height).stroke();
-      doc
-        .fillColor(header ? "#ffffff" : "#1f2937")
-        .fontSize(header ? 7 : 6)
-        .font(header ? "Helvetica-Bold" : "Helvetica")
-        .text(String(values[column] ?? "—"), x + 3, y + 5, {
-          width: width - 6,
-          height: height - 7,
-          ellipsis: true,
-        });
+      if (header) {
+        doc
+          .fillColor("#ffffff")
+          .fontSize(7)
+          .font("Helvetica-Bold")
+          .text(String(values[column] ?? "—"), x + 3, y + 5, {
+            width: width - 6,
+            height: height - 7,
+            ellipsis: true,
+          });
+      } else {
+        drawCell(doc, values[column], column, x, y, width, height, "#1f2937", 6);
+      }
       x += width;
     });
     doc.y = y + height;
