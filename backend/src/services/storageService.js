@@ -32,6 +32,11 @@ export async function uploadObject(key, buffer, contentType) {
   return key;
 }
 
+export async function getObject(key) {
+  if (!client) return null;
+  return client.send(new GetObjectCommand({ Bucket: env.s3Bucket, Key: key }));
+}
+
 export async function signedObjectUrl(key) {
   if (!client) return null;
   return getSignedUrl(client, new GetObjectCommand({ Bucket: env.s3Bucket, Key: key }), {
