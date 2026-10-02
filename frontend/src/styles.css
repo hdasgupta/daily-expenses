@@ -1372,3 +1372,34 @@ code {
   font-weight: 700;
   background: var(--soft);
 }
+
+/* Dashboard chart tooltips must remain readable in both light and dark themes. */
+.dashboard-detail-tooltip .recharts-default-tooltip,
+.dashboard-detail-tooltip .recharts-tooltip-item-list,
+.dashboard-detail-tooltip .recharts-tooltip-item,
+.dashboard-detail-tooltip .recharts-tooltip-label {
+  background: var(--card) !important;
+  color: var(--text) !important;
+}
+.dashboard-detail-tooltip .recharts-default-tooltip {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+.dashboard-detail-tooltip .recharts-tooltip-item,
+.dashboard-detail-tooltip .recharts-tooltip-item-name,
+.dashboard-detail-tooltip .recharts-tooltip-item-value,
+.dashboard-detail-tooltip .recharts-tooltip-item-separator,
+.dashboard-detail-tooltip .recharts-tooltip-label,
+.dashboard-detail-tooltip .recharts-tooltip-item-list {
+  color: var(--text) !important;
+}
+.dashboard-pivot-table th {
+  white-space: nowrap;
+  text-align: center;
+}
+.dashboard-pivot-table td.dashboard-summary-merged-cell {
+  vertical-align: middle;
+  font-weight: 700;
+  background: var(--soft);
+}
