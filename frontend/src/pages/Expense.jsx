@@ -243,7 +243,9 @@ export default function Expense() {
   };
 
   const downloadProof = async (row) => {
-    const result = await api(`/expenses/${row.id}/proof-url`, { loadingMessage: "Preparing proof download…" });
+    const result = await api(`/expenses/${row.id}/proof-url`, {
+      loadingMessage: "Preparing proof download…",
+    });
     if (!result?.url) throw new Error("Proof URL is unavailable");
 
     const link = document.createElement("a");
