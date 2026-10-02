@@ -607,6 +607,7 @@ export default function Reports() {
       <ProofViewer
         url={proofViewerUrl}
         title="Report proof"
+        googleViewer
         onClose={() => setProofViewerUrl("")}
       />
     </section>
