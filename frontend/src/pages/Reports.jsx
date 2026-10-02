@@ -852,12 +852,10 @@ function ReportContent({ result, renderCell }) {
           <span>Rows</span>
           <strong>{result.rows.length}</strong>
         </div>
-        {result.mode !== "grouped" ? (
-          <div>
-            <span>Total</span>
-            <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
-          </div>
-        ) : null}
+        <div>
+          <span>Total price</span>
+          <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
+        </div>
       </div>
       <div className="report-grid">
         {result.rows.map((row, index) => (
