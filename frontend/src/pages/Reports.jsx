@@ -5,6 +5,7 @@ import {
   ArrowUp,
   BarChart3,
   Download,
+  Mail,
   Filter,
   FolderOpen,
   Plus,
@@ -295,6 +296,15 @@ export default function Reports() {
     if (!result?.rows?.length) return;
     await downloadPdf("/reports/export-pdf", config);
   };
+  const emailReport = async () => {
+    if (!result?.rows?.length) return;
+    await api("/reports/email-pdf", {
+      method: "POST",
+      body: JSON.stringify(config),
+      loadingMessage: "Generating and emailing report PDF…",
+      toast: { type: "success", message: "Report PDF emailed to your account email." },
+    });
+  };
   // When grouping is enabled, keep the standard report sort columns available
   // and add any selected Group By columns that are not already present.
   const groupSortOptions = [
@@ -308,15 +318,16 @@ export default function Reports() {
     ([value]) => !config.activeFilters.includes(value),
   );
 
-  const openProof = (row) => {
-    if (row.proof_url) setProofViewerUrl(row.proof_url);
-  };
   const renderCell = (row, column) => {
     if (column === "proof_url")
       return row.proof_url ? (
-        <button type="button" className="text-link" onClick={() => openProof(row)}>
-          View proof
-        </button>
+        <a
+          className="text-link"
+          href={row.proof_url}
+          download={`expense-proof-${row.expense_id || row.id || "proof"}.pdf`}
+        >
+          Download proof
+        </a>
       ) : (
         "—"
       );
@@ -431,6 +442,14 @@ export default function Reports() {
           onClick={exportPdf}
         >
           <Download size={17} /> Export PDF
+        </button>
+        <button
+          className="secondary"
+          type="button"
+          disabled={!result?.rows?.length}
+          onClick={emailReport}
+        >
+          <Mail size={17} /> Email me report PDF
         </button>
       </div>
 

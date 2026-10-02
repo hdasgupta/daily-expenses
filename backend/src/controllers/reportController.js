@@ -5,6 +5,7 @@ import {
   saveSelection,
 } from "../services/reportService.js";
 import { buildReportPdf } from "../services/reportPdfService.js";
+import { sendReportEmail } from "../services/mailService.js";
 
 export async function query(req, res) {
   res.json(await runReport(req.body || {}));
@@ -28,4 +29,15 @@ export async function exportPdf(req, res) {
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", 'attachment; filename="expense-report.pdf"');
   res.send(pdf);
+}
+
+
+export async function emailReport(req, res) {
+  const report = await runReport(req.body || {});
+  if (!report.rows?.length) {
+    return res.status(400).json({ error: "No report data to email." });
+  }
+  const pdf = await buildReportPdf(report, req.body || {});
+  await sendReportEmail(req.user.email, pdf);
+  res.json({ ok: true, email: req.user.email });
 }

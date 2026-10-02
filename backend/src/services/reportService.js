@@ -173,7 +173,7 @@ export async function runReport(input) {
         "proof_url",
       ],
       rows,
-      total: rows.reduce((sum, row) => sum + (row.report_amount || 0), 0),
+      total: rows.reduce((sum, row) => sum + (row.share_price || 0), 0),
       chartData: [],
     };
   }
