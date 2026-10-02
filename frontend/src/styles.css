@@ -1364,3 +1364,11 @@ code {
 }
 
 
+
+/* Multi-group summary tables use row-spanned parent groups so the hierarchy is
+   visible without repeating the same value on every child row. */
+.dashboard-summary-table td.dashboard-summary-merged-cell {
+  vertical-align: middle;
+  font-weight: 700;
+  background: var(--soft);
+}

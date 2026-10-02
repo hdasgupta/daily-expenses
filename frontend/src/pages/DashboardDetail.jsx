@@ -23,6 +23,30 @@ function rowLabel(row, groupBy) {
   return groupBy.map((column) => prettyValue(row[column], column)).join(" · ");
 }
 
+function buildMergedSummaryRows(rows, groupBy) {
+  const columns = groupBy || [];
+  return (rows || []).map((row, rowIndex) => {
+    const cells = columns.map((column, columnIndex) => {
+      // A group cell can only be merged when all preceding group dimensions
+      // are also identical. This creates a readable hierarchy for 2+ group-by reports.
+      const sameAsPrevious = rowIndex > 0 && columns.slice(0, columnIndex + 1).every((key) =>
+        rows[rowIndex - 1]?.[key] === row[key]
+      );
+      if (sameAsPrevious) return { hidden: true, rowSpan: 0 };
+
+      let rowSpan = 1;
+      while (rowIndex + rowSpan < rows.length) {
+        const candidate = rows[rowIndex + rowSpan];
+        const samePrefix = columns.slice(0, columnIndex + 1).every((key) => candidate?.[key] === row[key]);
+        if (!samePrefix) break;
+        rowSpan += 1;
+      }
+      return { hidden: false, rowSpan };
+    });
+    return { row, rowIndex, cells };
+  });
+}
+
 function readReportKey() {
   const parts = window.location.pathname.split("/").filter(Boolean);
   return parts[2] || "daily";
@@ -160,11 +184,21 @@ export default function DashboardDetail({ navigate }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.rows.map((row, index) => (
-                      <tr key={`${index}-${rowLabel(row, data.groupBy || [])}`}>
-                        {(data.groupBy || []).map((column) => (
-                          <td key={column}>{prettyValue(row[column], column)}</td>
-                        ))}
+                    {buildMergedSummaryRows(data.rows, data.groupBy).map(({ row, rowIndex, cells }) => (
+                      <tr key={`${rowIndex}-${rowLabel(row, data.groupBy || [])}`}>
+                        {(data.groupBy || []).map((column, columnIndex) => {
+                          const cell = cells[columnIndex];
+                          if (cell.hidden) return null;
+                          return (
+                            <td
+                              key={column}
+                              rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined}
+                              className={columnIndex < (data.groupBy || []).length - 1 && cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined}
+                            >
+                              {prettyValue(row[column], column)}
+                            </td>
+                          );
+                        })}
                         <td className="number-cell">
                           <button
                             type="button"
