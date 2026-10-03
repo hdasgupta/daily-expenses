@@ -12,6 +12,8 @@ const scheduleLabels = {
   "weekly-email-report": "Weekly 4-week email report",
 };
 
+const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 function formatDate(value) {
   if (!value) return "—";
   return new Intl.DateTimeFormat("en-IN", {
@@ -28,6 +30,72 @@ function formatDuration(ms) {
   const m = Math.floor((seconds % 3600) / 60);
   const sec = seconds % 60;
   return h ? `${h}h ${m}m ${sec}s` : m ? `${m}m ${sec}s` : `${sec}s`;
+}
+
+function formatCronTime(hour, minute) {
+  const date = new Date(2000, 0, 1, Number(hour), Number(minute));
+  return new Intl.DateTimeFormat("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  }).format(date);
+}
+
+function describeCron(cronExpression) {
+  if (!cronExpression) return "—";
+
+  const parts = cronExpression.trim().split(/\s+/);
+  if (parts.length < 5 || parts.length > 6) return cronExpression;
+
+  const offset = parts.length === 6 ? 1 : 0;
+  const minute = parts[offset];
+  const hour = parts[offset + 1];
+  const dayOfMonth = parts[offset + 2];
+  const month = parts[offset + 3];
+  const dayOfWeek = parts[offset + 4];
+
+  if (minute === "*" && hour === "*") {
+    return "Every minute";
+  }
+
+  if (/^\d+$/.test(minute) && /^\d+$/.test(hour)) {
+    const time = formatCronTime(hour, minute);
+
+    if (dayOfMonth === "*" && month === "*" && dayOfWeek === "*") {
+      return `Every day at ${time}`;
+    }
+
+    if (dayOfMonth === "1" && month === "*" && dayOfWeek === "*") {
+      return `On the 1st day of every month at ${time}`;
+    }
+
+    if (dayOfMonth === "*" && month === "*" && /^\d+$/.test(dayOfWeek)) {
+      const weekday = weekdayNames[Number(dayOfWeek)] || dayOfWeek;
+      return `Every ${weekday} at ${time}`;
+    }
+
+    if (dayOfMonth === "*" && month === "*" && /^\d+(,\d+)+$/.test(dayOfWeek)) {
+      const weekdays = dayOfWeek
+        .split(",")
+        .map((value) => weekdayNames[Number(value)] || value)
+        .join(", ");
+      return `Every ${weekdays} at ${time}`;
+    }
+  }
+
+  if (/^\*\/\d+$/.test(minute) && hour === "*") {
+    return `Every ${Number(minute.slice(2))} minutes`;
+  }
+
+  if (/^\*\/\d+$/.test(hour) && minute === "0") {
+    return `Every ${Number(hour.slice(2))} hours`;
+  }
+
+  if (dayOfMonth === "*" && month === "*" && dayOfWeek === "*") {
+    return `Every day according to cron schedule (${cronExpression})`;
+  }
+
+  return cronExpression;
 }
 
 function statusIcon(status) {
@@ -109,7 +177,7 @@ export default function JobStatus() {
               </span>
             </div>
             <div className="job-schedule-details">
-              <span><b>Cron expression:</b> {schedule.cron || "—"}</span>
+              <span><b>Execution timing:</b> {describeCron(schedule.cron)}</span>
               <span><b>Timezone:</b> {schedule.timezone || "—"}</span>
               <span><b>Next scheduled run:</b> {schedule.nextRunAt ? formatDate(schedule.nextRunAt) : "—"}</span>
             </div>
