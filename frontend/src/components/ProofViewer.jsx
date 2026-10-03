@@ -1,31 +1,19 @@
-import React, {
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { Capacitor } from "@capacitor/core";
-import {
-  openRemoteFile,
-} from "../lib/download";
+import { openRemoteFile } from "../lib/download";
 
-export default function ProofViewer({
-  url,
-  title = "Proof",
-  onClose,
-}) {
-  const [opening, setOpening] =
-    useState(false);
-  const [error, setError] =
-    useState("");
+export default function ProofViewer({ url, title = "Proof", onClose }) {
+  const [opening, setOpening] = useState(false);
+  const [error, setError] = useState("");
 
-  const isNative =
-    (() => {
-      try {
-        return Capacitor.isNativePlatform();
-      } catch {
-        return false;
-      }
-    })();
+  const isNative = (() => {
+    try {
+      return Capacitor.isNativePlatform();
+    } catch {
+      return false;
+    }
+  })();
 
   useEffect(() => {
     if (!url || !isNative) return;
@@ -37,20 +25,14 @@ export default function ProofViewer({
       setError("");
 
       try {
-        await openRemoteFile(
-          url,
-          "expense-proof",
-        );
+        await openRemoteFile(url, "expense-proof");
 
         if (!cancelled) {
           onClose?.();
         }
       } catch (openError) {
         if (!cancelled) {
-          setError(
-            openError?.message ||
-              "Unable to open proof.",
-          );
+          setError(openError?.message || "Unable to open proof.");
         }
       } finally {
         if (!cancelled) {
@@ -73,26 +55,14 @@ export default function ProofViewer({
         title={title}
         onClose={onClose}
         footer={
-          <button
-            className="secondary"
-            type="button"
-            onClick={onClose}
-          >
+          <button className="secondary" type="button" onClick={onClose}>
             Close
           </button>
         }
       >
-        {opening ? (
-          <div className="empty-card">
-            Opening proof…
-          </div>
-        ) : null}
+        {opening ? <div className="empty-card">Opening proof…</div> : null}
 
-        {error ? (
-          <div className="notice error-notice">
-            {error}
-          </div>
-        ) : null}
+        {error ? <div className="notice error-notice">{error}</div> : null}
       </Modal>
     );
   }
@@ -103,11 +73,7 @@ export default function ProofViewer({
       title={title}
       onClose={onClose}
       footer={
-        <button
-          className="secondary"
-          type="button"
-          onClick={onClose}
-        >
+        <button className="secondary" type="button" onClick={onClose}>
           Close
         </button>
       }

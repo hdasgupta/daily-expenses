@@ -98,14 +98,11 @@ export const userSql = {
   update:
     "UPDATE public.users SET full_name=$1,email=$2,role_id=$3,is_disabled=$4,updated_at=now() WHERE id=$5",
 
-  updatePassword:
-    "UPDATE public.users SET password_hash=$1,updated_at=now() WHERE id=$2",
+  updatePassword: "UPDATE public.users SET password_hash=$1,updated_at=now() WHERE id=$2",
 
-  delete:
-    "DELETE FROM public.users WHERE id=$1",
+  delete: "DELETE FROM public.users WHERE id=$1",
 
-  roles:
-    "SELECT id,name FROM public.roles ORDER BY name",
+  roles: "SELECT id,name FROM public.roles ORDER BY name",
 
   managers:
     "SELECT email FROM public.users u JOIN public.roles r ON r.id=u.role_id WHERE r.name IN ('manager', 'admin') AND u.is_disabled=false ORDER BY CASE WHEN r.name='manager' THEN 1 WHEN r.name='admin' THEN 2 ELSE 3 END, u.email",

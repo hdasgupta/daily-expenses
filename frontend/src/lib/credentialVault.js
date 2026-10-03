@@ -41,10 +41,9 @@ export function getSavedCredential() {
   }
 
   return new Promise((resolve) => {
-    const callbackName =
-      `__dailyExpensesCredentialCallback_${Date.now()}_${Math.random()
-        .toString(36)
-        .slice(2)}`;
+    const callbackName = `__dailyExpensesCredentialCallback_${Date.now()}_${Math.random()
+      .toString(36)
+      .slice(2)}`;
 
     let completed = false;
 

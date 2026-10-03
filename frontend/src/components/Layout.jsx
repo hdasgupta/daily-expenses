@@ -158,9 +158,7 @@ export function getNavigationItems(permissions) {
 export default function Layout({ user, path, navigate, logout, children }) {
   const [open, setOpen] = useState(false);
 
-  const [dark, setDark] = useState(
-    () => localStorage.getItem("theme") === "dark",
-  );
+  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
@@ -195,11 +193,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
               <span>{dark ? "Light" : "Dark"}</span>
             </button>
 
-            <button
-              className="header-button"
-              onClick={logout}
-              title="Logout"
-            >
+            <button className="header-button" onClick={logout} title="Logout">
               <LogOut size={17} />
               <span>Logout</span>
             </button>
@@ -209,20 +203,14 @@ export default function Layout({ user, path, navigate, logout, children }) {
         <div className="brand-row">
           <div className="brand-mark">
             {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
-              <img
-                src={import.meta.env.VITE_ORGANIZATION_LOGO_URL}
-                alt="Organization"
-              />
+              <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
             ) : (
               <Shield size={28} />
             )}
           </div>
 
           <div>
-            <strong>
-              {import.meta.env.VITE_ORGANIZATION_NAME ||
-                "Rehabilitation Center"}
-            </strong>
+            <strong>{import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}</strong>
 
             <span>Expense Tracker</span>
           </div>
@@ -237,12 +225,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
         {open ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      {open ? (
-        <div
-          className="drawer-backdrop"
-          onClick={() => setOpen(false)}
-        />
-      ) : null}
+      {open ? <div className="drawer-backdrop" onClick={() => setOpen(false)} /> : null}
 
       <aside className={`navigation-drawer ${open ? "open" : ""}`}>
         <div className="drawer-title">Navigation</div>
@@ -254,9 +237,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
             <button
               key={item.path}
               className={
-                path === item.path ||
-                (item.path === "/dashboard" &&
-                  path.startsWith("/dashboard"))
+                path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
                   ? "active"
                   : ""
               }

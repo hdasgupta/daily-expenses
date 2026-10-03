@@ -1,20 +1,12 @@
 import cron from "node-cron";
 import { q } from "../db/index.js";
-import {
-  getDashboardDefinition,
-  runDashboardReport,
-} from "./dashboardReportService.js";
+import { getDashboardDefinition, runDashboardReport } from "./dashboardReportService.js";
 import { buildScheduledReportPdf } from "./scheduledReportPdfService.js";
 import { sendReportEmail } from "./mailService.js";
 import { signedObjectUrl } from "./storageService.js";
 import { nowIso } from "../utils/dates.js";
 
-const FREQUENCIES = new Set([
-  "daily",
-  "weekly",
-  "monthly",
-  "yearly",
-]);
+const FREQUENCIES = new Set(["daily", "weekly", "monthly", "yearly"]);
 
 function error(message, statusCode = 400) {
   const result = new Error(message);
@@ -43,138 +35,73 @@ function validateTime(value) {
 }
 
 function normalizePayload(data = {}, existing = null) {
-  const reportKey = String(
-    data.reportKey ??
-      existing?.report_key ??
-      "",
-  ).trim();
+  const reportKey = String(data.reportKey ?? existing?.report_key ?? "").trim();
 
-  const definition =
-    getDashboardDefinition(reportKey);
+  const definition = getDashboardDefinition(reportKey);
 
   if (!definition) {
     throw error("Choose a valid dashboard report.");
   }
 
   const frequency = String(
-    data.frequency ??
-      existing?.frequency ??
-      reportFrequency(reportKey),
+    data.frequency ?? existing?.frequency ?? reportFrequency(reportKey),
   ).trim();
 
   if (!FREQUENCIES.has(frequency)) {
-    throw error(
-      "Choose daily, weekly, monthly, or yearly delivery.",
-    );
+    throw error("Choose daily, weekly, monthly, or yearly delivery.");
   }
 
-  if (
-    frequency !==
-    reportFrequency(reportKey)
-  ) {
-    throw error(
-      "The delivery frequency must match the dashboard report period.",
-    );
+  if (frequency !== reportFrequency(reportKey)) {
+    throw error("The delivery frequency must match the dashboard report period.");
   }
 
-  const name = String(
-    data.name ??
-      existing?.name ??
-      "",
-  ).trim();
+  const name = String(data.name ?? existing?.name ?? "").trim();
 
   if (!name) {
-    throw error(
-      "Enter a name for this scheduled report.",
-    );
+    throw error("Enter a name for this scheduled report.");
   }
 
   if (name.length > 150) {
-    throw error(
-      "The scheduled report name must be 150 characters or fewer.",
-    );
+    throw error("The scheduled report name must be 150 characters or fewer.");
   }
 
-  const time = validateTime(
-    data.time ??
-      existing?.time_of_day?.slice?.(0, 5) ??
-      "06:00",
-  );
+  const time = validateTime(data.time ?? existing?.time_of_day?.slice?.(0, 5) ?? "06:00");
 
   let dayOfWeek = null;
   let dayOfMonth = null;
   let monthOfYear = null;
 
   if (frequency === "weekly") {
-    dayOfWeek = Number(
-      data.dayOfWeek ??
-        existing?.day_of_week ??
-        0,
-    );
+    dayOfWeek = Number(data.dayOfWeek ?? existing?.day_of_week ?? 0);
 
-    if (
-      !Number.isInteger(dayOfWeek) ||
-      dayOfWeek < 0 ||
-      dayOfWeek > 6
-    ) {
+    if (!Number.isInteger(dayOfWeek) || dayOfWeek < 0 || dayOfWeek > 6) {
       throw error("Choose a valid weekday.");
     }
   }
 
   if (frequency === "monthly") {
-    dayOfMonth = Number(
-      data.dayOfMonth ??
-        existing?.day_of_month ??
-        1,
-    );
+    dayOfMonth = Number(data.dayOfMonth ?? existing?.day_of_month ?? 1);
 
-    if (
-      !Number.isInteger(dayOfMonth) ||
-      dayOfMonth < 1 ||
-      dayOfMonth > 28
-    ) {
-      throw error(
-        "Choose a day between 1 and 28 for monthly delivery.",
-      );
+    if (!Number.isInteger(dayOfMonth) || dayOfMonth < 1 || dayOfMonth > 28) {
+      throw error("Choose a day between 1 and 28 for monthly delivery.");
     }
   }
 
   if (frequency === "yearly") {
-    dayOfMonth = Number(
-      data.dayOfMonth ??
-        existing?.day_of_month ??
-        1,
-    );
+    dayOfMonth = Number(data.dayOfMonth ?? existing?.day_of_month ?? 1);
 
-    monthOfYear = Number(
-      data.monthOfYear ??
-        existing?.month_of_year ??
-        1,
-    );
+    monthOfYear = Number(data.monthOfYear ?? existing?.month_of_year ?? 1);
 
-    if (
-      !Number.isInteger(dayOfMonth) ||
-      dayOfMonth < 1 ||
-      dayOfMonth > 28
-    ) {
-      throw error(
-        "Choose a day between 1 and 28 for yearly delivery.",
-      );
+    if (!Number.isInteger(dayOfMonth) || dayOfMonth < 1 || dayOfMonth > 28) {
+      throw error("Choose a day between 1 and 28 for yearly delivery.");
     }
 
-    if (
-      !Number.isInteger(monthOfYear) ||
-      monthOfYear < 1 ||
-      monthOfYear > 12
-    ) {
-      throw error(
-        "Choose a valid month for yearly delivery.",
-      );
+    if (!Number.isInteger(monthOfYear) || monthOfYear < 1 || monthOfYear > 12) {
+      throw error("Choose a valid month for yearly delivery.");
     }
   }
 
-  const [hour, minute] =
-    time.split(":").map(Number);
+  const [hour, minute] = time.split(":").map(Number);
 
   const cronExpression =
     frequency === "daily"
@@ -186,9 +113,7 @@ function normalizePayload(data = {}, existing = null) {
           : `${minute} ${hour} ${dayOfMonth} ${monthOfYear} *`;
 
   if (!cron.validate(cronExpression)) {
-    throw error(
-      "The selected schedule is not valid.",
-    );
+    throw error("The selected schedule is not valid.");
   }
 
   return {
@@ -206,58 +131,34 @@ function normalizePayload(data = {}, existing = null) {
 function decorateJob(row) {
   let nextRunAt = null;
 
-  if (
-    row.cron_expression &&
-    row.active
-  ) {
+  if (row.cron_expression && row.active) {
     try {
-      const task = cron.schedule(
-        row.cron_expression,
-        () => {},
-        {
-          timezone: "Asia/Kolkata",
-        },
-      );
+      const task = cron.schedule(row.cron_expression, () => {}, {
+        timezone: "Asia/Kolkata",
+      });
 
       const next = task.getNextRun();
 
-      nextRunAt =
-        next instanceof Date &&
-        !Number.isNaN(next.getTime())
-          ? next.toISOString()
-          : null;
+      nextRunAt = next instanceof Date && !Number.isNaN(next.getTime()) ? next.toISOString() : null;
 
       task.stop();
       task.destroy();
     } catch (e) {
-      console.error(
-        `Unable to calculate next run for scheduled report ${row.id}`,
-        e,
-      );
+      console.error(`Unable to calculate next run for scheduled report ${row.id}`, e);
     }
   }
 
-  const definition =
-    getDashboardDefinition(
-      row.report_key,
-    );
+  const definition = getDashboardDefinition(row.report_key);
 
   return {
     ...row,
-    time_of_day: String(
-      row.time_of_day || "",
-    ).slice(0, 5),
-    report_label:
-      definition?.label ||
-      row.report_key,
+    time_of_day: String(row.time_of_day || "").slice(0, 5),
+    report_label: definition?.label || row.report_key,
     next_run_at: nextRunAt,
   };
 }
 
-export async function listScheduledReportJobs({
-  userId,
-  isAdmin = false,
-}) {
+export async function listScheduledReportJobs({ userId, isAdmin = false }) {
   const result = await q(
     `SELECT j.id, j.name, j.owner_user_id, j.report_key, j.frequency,
             j.time_of_day, j.day_of_week, j.day_of_month, j.month_of_year,
@@ -278,9 +179,7 @@ export async function listScheduledReportJobs({
     [Boolean(isAdmin), userId],
   );
 
-  return result.rows.map(
-    decorateJob,
-  );
+  return result.rows.map(decorateJob);
 }
 
 async function getJob(id) {
@@ -295,19 +194,11 @@ async function getJob(id) {
 }
 
 function canManage(job, user) {
-  return (
-    user.role === "admin" ||
-    String(job.owner_user_id) ===
-      String(user.id)
-  );
+  return user.role === "admin" || String(job.owner_user_id) === String(user.id);
 }
 
-export async function createScheduledReportJob(
-  data,
-  user,
-) {
-  const config =
-    normalizePayload(data);
+export async function createScheduledReportJob(data, user) {
+  const config = normalizePayload(data);
 
   const result = await q(
     `INSERT INTO public.scheduled_report_jobs
@@ -329,43 +220,23 @@ export async function createScheduledReportJob(
     ],
   );
 
-  return decorateJob(
-    result.rows[0],
-  );
+  return decorateJob(result.rows[0]);
 }
 
-export async function updateScheduledReportJob(
-  id,
-  data,
-  user,
-) {
-  const existing =
-    await getJob(id);
+export async function updateScheduledReportJob(id, data, user) {
+  const existing = await getJob(id);
 
   if (!existing) {
-    throw error(
-      "Scheduled report not found.",
-      404,
-    );
+    throw error("Scheduled report not found.", 404);
   }
 
   if (!canManage(existing, user)) {
-    throw error(
-      "You can only edit your own scheduled reports.",
-      403,
-    );
+    throw error("You can only edit your own scheduled reports.", 403);
   }
 
-  const config =
-    normalizePayload(
-      data,
-      existing,
-    );
+  const config = normalizePayload(data, existing);
 
-  const active =
-    data.active == null
-      ? Boolean(existing.active)
-      : Boolean(data.active);
+  const active = data.active == null ? Boolean(existing.active) : Boolean(data.active);
 
   const result = await q(
     `UPDATE public.scheduled_report_jobs
@@ -395,30 +266,18 @@ export async function updateScheduledReportJob(
     ],
   );
 
-  return decorateJob(
-    result.rows[0],
-  );
+  return decorateJob(result.rows[0]);
 }
 
-export async function deleteScheduledReportJob(
-  id,
-  user,
-) {
-  const existing =
-    await getJob(id);
+export async function deleteScheduledReportJob(id, user) {
+  const existing = await getJob(id);
 
   if (!existing) {
-    throw error(
-      "Scheduled report not found.",
-      404,
-    );
+    throw error("Scheduled report not found.", 404);
   }
 
   if (!canManage(existing, user)) {
-    throw error(
-      "You can only remove your own scheduled reports.",
-      403,
-    );
+    throw error("You can only remove your own scheduled reports.", 403);
   }
 
   await q(
@@ -428,9 +287,7 @@ export async function deleteScheduledReportJob(
   );
 }
 
-export async function getScheduledReportForExecution(
-  id,
-) {
+export async function getScheduledReportForExecution(id) {
   const result = await q(
     `SELECT j.*, u.email AS owner_email, u.full_name AS owner_name
        FROM public.scheduled_report_jobs j
@@ -443,10 +300,7 @@ export async function getScheduledReportForExecution(
   return result.rows[0] || null;
 }
 
-function rawDumpSql(
-  dateFrom,
-  dateTo,
-) {
+function rawDumpSql(dateFrom, dateTo) {
   return `
     SELECT e.id AS expense_id,
            e.expense_date,
@@ -474,65 +328,28 @@ function rawDumpSql(
      LIMIT 5000`;
 }
 
-export async function buildScheduledReport(
-  reportKey,
-) {
-  const summary =
-    await runDashboardReport(
-      reportKey,
-      "summary",
-    );
+export async function buildScheduledReport(reportKey) {
+  const summary = await runDashboardReport(reportKey, "summary");
 
-  const rawResult =
-    await runDashboardReport(
-      reportKey,
-      "drilldown",
-    );
+  const rawResult = await runDashboardReport(reportKey, "drilldown");
 
-  const match = String(
-    summary.rangeLabel || "",
-  ).match(
+  const match = String(summary.rangeLabel || "").match(
     /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/,
   );
 
-  let dumpRows =
-    rawResult.rows || [];
+  let dumpRows = rawResult.rows || [];
 
   if (match) {
-    const dumpResult = await q(
-      rawDumpSql(
-        match[1],
-        match[2],
-      ),
-      [
-        match[1],
-        match[2],
-      ],
-    );
+    const dumpResult = await q(rawDumpSql(match[1], match[2]), [match[1], match[2]]);
 
-    dumpRows =
-      await Promise.all(
-        dumpResult.rows.map(
-          async (row) => ({
-            ...row,
-            total_cost: Number(
-              row.total_cost || 0,
-            ),
-            share_price:
-              row.share_price == null
-                ? null
-                : Number(
-                    row.share_price,
-                  ),
-            proof_url:
-              row.proof_key
-                ? await signedObjectUrl(
-                    row.proof_key,
-                  )
-                : null,
-          }),
-        ),
-      );
+    dumpRows = await Promise.all(
+      dumpResult.rows.map(async (row) => ({
+        ...row,
+        total_cost: Number(row.total_cost || 0),
+        share_price: row.share_price == null ? null : Number(row.share_price),
+        proof_url: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+      })),
+    );
   }
 
   return {
@@ -542,53 +359,24 @@ export async function buildScheduledReport(
   };
 }
 
-function formatScheduledEmailSubject(
-  job,
-  summary,
-) {
-  const definition =
-    getDashboardDefinition(
-      job.report_key,
-    );
+function formatScheduledEmailSubject(job, summary) {
+  const definition = getDashboardDefinition(job.report_key);
 
-  const reportLabel =
-    definition?.label ||
-    "Expense Report";
+  const reportLabel = definition?.label || "Expense Report";
 
-  const rangeLabel =
-    summary?.rangeLabel ||
-    "Selected reporting period";
+  const rangeLabel = summary?.rangeLabel || "Selected reporting period";
 
-  return (
-    "Scheduled Expense Report PDF Attached — " +
-    reportLabel +
-    " — " +
-    rangeLabel
-  );
+  return "Scheduled Expense Report PDF Attached — " + reportLabel + " — " + rangeLabel;
 }
 
-function formatScheduledEmailBody(
-  job,
-  summary,
-  raw,
-) {
-  const definition =
-    getDashboardDefinition(
-      job.report_key,
-    );
+function formatScheduledEmailBody(job, summary, raw) {
+  const definition = getDashboardDefinition(job.report_key);
 
-  const reportLabel =
-    definition?.label ||
-    "Expense Report";
+  const reportLabel = definition?.label || "Expense Report";
 
-  const rangeLabel =
-    summary?.rangeLabel ||
-    "the selected reporting period";
+  const rangeLabel = summary?.rangeLabel || "the selected reporting period";
 
-  const rowCount =
-    Array.isArray(raw)
-      ? raw.length
-      : 0;
+  const rowCount = Array.isArray(raw) ? raw.length : 0;
 
   return `
     <p>
@@ -604,59 +392,30 @@ function formatScheduledEmailBody(
   `;
 }
 
-export async function sendScheduledReportJob(
-  job,
-) {
-  const {
+export async function sendScheduledReportJob(job) {
+  const { summary, raw, generatedAt } = await buildScheduledReport(job.report_key);
+
+  const pdf = await buildScheduledReportPdf({
     summary,
     raw,
     generatedAt,
-  } =
-    await buildScheduledReport(
-      job.report_key,
-    );
+  });
 
-  const pdf =
-    await buildScheduledReportPdf({
-      summary,
-      raw,
-      generatedAt,
-    });
+  const subject = formatScheduledEmailSubject(job, summary);
 
-  const subject =
-    formatScheduledEmailSubject(
-      job,
-      summary,
-    );
+  const htmlBody = formatScheduledEmailBody(job, summary, raw);
 
-  const htmlBody =
-    formatScheduledEmailBody(
-      job,
-      summary,
-      raw,
-    );
-
-  await sendReportEmail(
-    job.owner_email,
-    pdf,
-    {
-      subject,
-      htmlBody,
-    },
-  );
+  await sendReportEmail(job.owner_email, pdf, {
+    subject,
+    htmlBody,
+  });
 
   return {
     recipients: 1,
     rows: raw.length,
     reportKey: job.report_key,
-    reportTitle:
-      getDashboardDefinition(
-        job.report_key,
-      )?.label ||
-      job.report_key,
+    reportTitle: getDashboardDefinition(job.report_key)?.label || job.report_key,
   };
 }
 
-export {
-  normalizePayload,
-};
+export { normalizePayload };

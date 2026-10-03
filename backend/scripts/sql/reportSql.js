@@ -76,15 +76,9 @@ export const reportSql = {
   rawSelectPerSurvivor:
     "id AS expense_id, expense_date, category, item, survivor, report_amount AS share_price, total_cost, comment, proof_key",
 
-  rawSelectPerExpense:
-    "expense_date, category, item, survivor, total_cost, comment, proof_key",
+  rawSelectPerExpense: "expense_date, category, item, survivor, total_cost, comment, proof_key",
 
-  raw: (
-    cte,
-    select,
-    where,
-    orderSql,
-  ) =>
+  raw: (cte, select, where, orderSql) =>
     `WITH ${cte}
      SELECT ${select}
      FROM expense_source
@@ -92,155 +86,82 @@ export const reportSql = {
      ORDER BY ${orderSql}
      LIMIT 5000`,
 
-  where: (clauses) =>
-    clauses.length
-      ? `WHERE ${clauses.join(" AND ")}`
-      : "",
+  where: (clauses) => (clauses.length ? `WHERE ${clauses.join(" AND ")}` : ""),
 
-  or: (clauses) =>
-    `(${clauses.join(" OR ")})`,
+  or: (clauses) => `(${clauses.join(" OR ")})`,
 
-  totalSummary: (
-    cte,
-    amount,
-    where,
-  ) =>
+  totalSummary: (cte, amount, where) =>
     `WITH ${cte}
      SELECT ${amount} AS total
      FROM expense_source
      ${where}`,
 
-  grouped: (
-    cte,
-    select,
-    where,
-    groupBy,
-    orderSql,
-  ) =>
+  grouped: (cte, select, where, groupBy, orderSql) =>
     `WITH ${cte}
      SELECT ${select}
      FROM expense_source
      ${where}
      GROUP BY ${groupBy}
-     ${
-       orderSql
-         ? `ORDER BY ${orderSql}`
-         : ""
-     }
+     ${orderSql ? `ORDER BY ${orderSql}` : ""}
      LIMIT 5000`,
 
-  filterDate: (
-    alias,
-    index,
-  ) =>
-    `${alias}.expense_date = $${index}`,
+  filterDate: (alias, index) => `${alias}.expense_date = $${index}`,
 
-  filterFrom: (
-    alias,
-    index,
-  ) =>
-    `${alias}.expense_date >= $${index}`,
+  filterFrom: (alias, index) => `${alias}.expense_date >= $${index}`,
 
-  filterTo: (
-    alias,
-    index,
-  ) =>
-    `${alias}.expense_date <= $${index}`,
+  filterTo: (alias, index) => `${alias}.expense_date <= $${index}`,
 
-  filterMonthFrom: (
-    alias,
-    index,
-  ) =>
+  filterMonthFrom: (alias, index) =>
     `${alias}.expense_date >= date_trunc('month', $${index}::date)`,
 
-  filterMonthTo: (
-    alias,
-    index,
-  ) =>
+  filterMonthTo: (alias, index) =>
     `${alias}.expense_date < date_trunc('month', $${index}::date) + interval '1 month'`,
 
-  filterYear: (
-    alias,
-    index,
-  ) =>
-    `extract(year from ${alias}.expense_date) = $${index}`,
+  filterYear: (alias, index) => `extract(year from ${alias}.expense_date) = $${index}`,
 
-  filterProof: (
-    alias,
-    value,
-  ) =>
-    `${alias}.has_proof = ${value}`,
+  filterProof: (alias, value) => `${alias}.has_proof = ${value}`,
 
-  filterCategoryItem: (
-    alias,
-    categoryIndex,
-    itemIndex,
-  ) =>
+  filterCategoryItem: (alias, categoryIndex, itemIndex) =>
     `(
       ${alias}.category_id = $${categoryIndex}
       AND ${alias}.item_id = $${itemIndex}
     )`,
 
-  filterOther: (
-    alias,
-    categoryIndex,
-  ) =>
+  filterOther: (alias, categoryIndex) =>
     `(
       ${alias}.category_id = $${categoryIndex}
       AND ${alias}.item_id IS NULL
       AND ${alias}.other_item IS NOT NULL
     )`,
 
-  filterTotal: (
-    alias,
-    categoryIndex,
-  ) =>
+  filterTotal: (alias, categoryIndex) =>
     `(
       ${alias}.category_id = $${categoryIndex}
       AND ${alias}.item_id IS NULL
       AND ${alias}.other_item IS NULL
     )`,
 
-  filterSurvivors: (
-    alias,
-    index,
-  ) =>
-    `${alias}.survivor_ids && $${index}::bigint[]`,
+  filterSurvivors: (alias, index) => `${alias}.survivor_ids && $${index}::bigint[]`,
 
-  filterCategories: (
-    alias,
-    index,
-  ) =>
-    `${alias}.category_id = ANY($${index}::bigint[])`,
+  filterCategories: (alias, index) => `${alias}.category_id = ANY($${index}::bigint[])`,
 
-  order: (
-    expr,
-    dir,
-  ) =>
-    `${expr} ${dir}`,
+  order: (expr, dir) => `${expr} ${dir}`,
 
-  defaultRawOrder:
-    "expense_date DESC, id DESC",
+  defaultRawOrder: "expense_date DESC, id DESC",
 
   groupExpr: {
     date: "expense_date",
 
-    week:
-      "date_trunc('week', expense_date)::date",
+    week: "date_trunc('week', expense_date)::date",
 
-    month:
-      "date_trunc('month', expense_date)::date",
+    month: "date_trunc('month', expense_date)::date",
 
-    year:
-      "extract(year from expense_date)::int",
+    year: "extract(year from expense_date)::int",
 
-    category:
-      "category",
+    category: "category",
 
-    item:
-      "item",
+    item: "item",
 
-    survivor:
-      "survivor",
+    survivor: "survivor",
   },
 };

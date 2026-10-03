@@ -225,9 +225,7 @@ export default function Login({ onLogin, initialPath }) {
                 disabled={loadingSavedCredential}
               >
                 <ShieldCheck size={17} />
-                {loadingSavedCredential
-                  ? "Getting saved credentials…"
-                  : "Use saved credentials"}
+                {loadingSavedCredential ? "Getting saved credentials…" : "Use saved credentials"}
               </button>
             ) : null}
 
