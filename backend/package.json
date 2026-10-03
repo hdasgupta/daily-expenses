@@ -12,7 +12,8 @@
     "daily-report:send": "node scripts/send-daily-email-report.js",
     "test": "node test/reportSql.test.js && node test/timezone.test.js && node test/reportPdf.test.js && node test/proofService.test.js && node test/bulkUploadExpenseParser.test.js && node test/bulkUploadRow.test.js",
     "monthly-report:send": "node scripts/send-monthly-email-report.js",
-    "weekly-report:send": "node scripts/send-weekly-email-report.js"
+    "weekly-report:send": "node scripts/send-weekly-email-report.js",
+    "yearly-report:send": "node scripts/send-yearly-email-report.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1145.0",

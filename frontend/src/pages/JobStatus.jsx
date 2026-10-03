@@ -9,7 +9,7 @@ const scheduleLabels = {
   "daily-email-report": "Daily 7-day email report",
   "weekly-email-report": "Weekly 4-week email report",
   "monthly-email-report": "Monthly 3-month email report",
-  "yearly-email-report": "Yearly email report",
+  "yearly-email-report": "Yearly 12-month email report",
 };
 
 const scheduleOrder = {
@@ -74,6 +74,10 @@ function describeCron(cronExpression) {
 
     if (dayOfMonth === "1" && month === "*" && dayOfWeek === "*") {
       return `On the 1st day of every month at ${time}`;
+    }
+
+    if (dayOfMonth === "1" && month === "1" && dayOfWeek === "*") {
+      return `Every January 1 at ${time}`;
     }
 
     if (dayOfMonth === "*" && month === "*" && /^\d+$/.test(dayOfWeek)) {

@@ -21,6 +21,12 @@ const scheduleDefinitions = [
     cron: env.monthlyEmailReportCron,
     timezone: env.monthlyEmailReportTimezone,
   },
+  {
+    jobName: "yearly-email-report",
+    label: "Yearly 12-month email report",
+    cron: env.yearlyEmailReportCron,
+    timezone: env.yearlyEmailReportTimezone,
+  },
 ];
 
 export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {

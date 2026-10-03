@@ -4,6 +4,7 @@ import { pool } from "../src/db/index.js";
 import { sendDailyEmailReportToManagers } from "../src/services/dailyEmailReportService.js";
 import { sendMonthlyEmailReportToManagers } from "../src/services/monthlyEmailReportService.js";
 import { sendWeeklyEmailReportToManagers } from "../src/services/weeklyEmailReportService.js";
+import { sendYearlyEmailReportToManagers } from "../src/services/yearlyEmailReportService.js";
 
 let started = false;
 
@@ -85,13 +86,17 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
         ? env.dailyEmailReportTimezone
         : jobName === "monthly-email-report"
           ? env.monthlyEmailReportTimezone
-          : env.weeklyEmailReportTimezone,
+          : jobName === "yearly-email-report"
+            ? env.yearlyEmailReportTimezone
+            : env.weeklyEmailReportTimezone,
     localTime:
       jobName === "daily-email-report"
         ? getLocalDateParts(env.dailyEmailReportTimezone)
         : jobName === "monthly-email-report"
           ? getLocalDateParts(env.monthlyEmailReportTimezone)
-          : getLocalDateParts(env.weeklyEmailReportTimezone),
+          : jobName === "yearly-email-report"
+            ? getLocalDateParts(env.yearlyEmailReportTimezone)
+            : getLocalDateParts(env.weeklyEmailReportTimezone),
   });
 
   try {
@@ -181,6 +186,25 @@ async function runMonthlyEmailReport() {
   }
 }
 
+async function runYearlyEmailReport() {
+  const local = getLocalDateParts(env.yearlyEmailReportTimezone);
+  if (local.month !== "01" || local.day !== "01") {
+    logSchedulerEvent("yearly_email_report_skipped_not_january_first", { local });
+    return;
+  }
+  const scheduledKey = `${local.year}`;
+  const result = await runEmailJobOnce(
+    "yearly-email-report",
+    scheduledKey,
+    sendYearlyEmailReportToManagers,
+  );
+  if (result) {
+    console.log(
+      `12-month email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
+    );
+  }
+}
+
 async function runWeeklyEmailReport() {
   const local = getLocalDateParts(env.weeklyEmailReportTimezone);
   if (local.weekday !== undefined && local.weekday !== "Sunday") {
@@ -232,6 +256,15 @@ async function catchUpMissedEmailReports() {
     }
   }
 
+  const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
+  if (yearlyLocal.month === "01" && yearlyLocal.day === "01" && Number(yearlyLocal.hour) >= 11) {
+    try {
+      await runYearlyEmailReport();
+    } catch (error) {
+      console.error("Missed 12-month email report catch-up failed", error);
+    }
+  }
+
   const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
   if (monthlyLocal.day === "01" && Number(monthlyLocal.hour) >= 6) {
     try {
@@ -254,6 +287,8 @@ export function startEmailSchedulers() {
     monthlyEmailReportTimezone: env.monthlyEmailReportTimezone,
     weeklyEmailReportCron: env.weeklyEmailReportCron,
     weeklyEmailReportTimezone: env.weeklyEmailReportTimezone,
+    yearlyEmailReportCron: env.yearlyEmailReportCron,
+    yearlyEmailReportTimezone: env.yearlyEmailReportTimezone,
   });
 
   if (!cron.validate(env.dailyEmailReportCron)) {
@@ -301,6 +336,30 @@ export function startEmailSchedulers() {
     );
     console.log(
       `4-week email report scheduler enabled: ${env.weeklyEmailReportCron} (${env.weeklyEmailReportTimezone})`,
+    );
+  }
+
+  if (!cron.validate(env.yearlyEmailReportCron)) {
+    console.error(`Invalid YEARLY_EMAIL_REPORT_CRON: ${env.yearlyEmailReportCron}`);
+  } else {
+    cron.schedule(
+      env.yearlyEmailReportCron,
+      async () => {
+        logSchedulerEvent("yearly_email_report_triggered", {
+          cron: env.yearlyEmailReportCron,
+          timezone: env.yearlyEmailReportTimezone,
+          localTime: getLocalDateParts(env.yearlyEmailReportTimezone),
+        });
+        try {
+          await runYearlyEmailReport();
+        } catch (error) {
+          console.error("12-month email report job failed", error);
+        }
+      },
+      { timezone: env.yearlyEmailReportTimezone },
+    );
+    console.log(
+      `12-month email report scheduler enabled: ${env.yearlyEmailReportCron} (${env.yearlyEmailReportTimezone})`,
     );
   }
 

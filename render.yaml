@@ -51,6 +51,10 @@ services:
         value: "0 6 * * 0"
       - key: WEEKLY_EMAIL_REPORT_TIMEZONE
         value: Asia/Kolkata
+      - key: YEARLY_EMAIL_REPORT_CRON
+        value: "10 11 1 1 *"
+      - key: YEARLY_EMAIL_REPORT_TIMEZONE
+        value: Asia/Kolkata
       - key: APP_TIMEZONE
         value: Asia/Kolkata
       - key: ORGANIZATION_NAME
