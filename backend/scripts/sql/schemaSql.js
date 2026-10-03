@@ -115,6 +115,12 @@ CREATE TABLE IF NOT EXISTS public.pagination_settings (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(user_id, module)
 );
+CREATE TABLE IF NOT EXISTS public.scheduler_job_runs (
+  job_name VARCHAR(100) NOT NULL,
+  scheduled_key VARCHAR(50) NOT NULL,
+  completed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (job_name, scheduled_key)
+);
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,
