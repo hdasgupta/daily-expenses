@@ -149,6 +149,25 @@ CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_started_at
   ON public.scheduler_job_executions(started_at DESC);
 CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_job_name
   ON public.scheduler_job_executions(job_name, started_at DESC);
+CREATE TABLE IF NOT EXISTS public.scheduled_report_jobs (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  owner_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  report_key VARCHAR(100) NOT NULL,
+  frequency VARCHAR(10) NOT NULL CHECK(frequency IN ('daily','weekly','monthly','yearly')),
+  time_of_day TIME NOT NULL,
+  day_of_week SMALLINT CHECK(day_of_week IS NULL OR (day_of_week >= 0 AND day_of_week <= 6)),
+  day_of_month SMALLINT CHECK(day_of_month IS NULL OR (day_of_month >= 1 AND day_of_month <= 28)),
+  month_of_year SMALLINT CHECK(month_of_year IS NULL OR (month_of_year >= 1 AND month_of_year <= 12)),
+  cron_expression VARCHAR(100) NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_owner
+  ON public.scheduled_report_jobs(owner_user_id, active);
+CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
+  ON public.scheduled_report_jobs(active, frequency, time_of_day);
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,

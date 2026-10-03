@@ -31,27 +31,21 @@ const scheduleDefinitions = [
 
 export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {
   const safePage = Math.max(1, Number(page) || 1);
-  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize))
-    ? Number(pageSize)
-    : 10;
+  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
   const offset = (safePage - 1) * safePageSize;
   const searchPattern = `%${safeSearch}%`;
 
+  const historySql = `(\n    SELECT e.id::text AS id, e.job_name, e.scheduled_key, e.status, e.started_at,\n           e.completed_at, e.duration_ms, e.error_message, NULL::text AS scheduled_report_name\n      FROM public.scheduler_job_executions e\n    UNION ALL\n    SELECT ('scheduled-' || j.id::text || '-' || r.scheduled_key)::text AS id,\n           r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,\n           r.duration_ms, r.error_message, j.name AS scheduled_report_name\n      FROM public.scheduler_job_runs r\n      JOIN public.scheduled_report_jobs j\n        ON r.job_name = 'scheduled-report:' || j.id::text\n     WHERE r.job_name LIKE 'scheduled-report:%'\n  ) history`;
+  const historyWhere = `$1 = '' OR history.job_name ILIKE $2 OR history.scheduled_report_name ILIKE $2`;
+
   const [countResult, rowsResult] = await Promise.all([
     q(
-      `SELECT COUNT(*)::int AS total
-       FROM public.scheduler_job_executions
-       WHERE $1 = '' OR job_name ILIKE $2`,
+      `SELECT COUNT(*)::int AS total\n         FROM ${historySql}\n        WHERE ${historyWhere}`,
       [safeSearch, searchPattern],
     ),
     q(
-      `SELECT id, job_name, scheduled_key, status, started_at, completed_at,
-              duration_ms, error_message
-       FROM public.scheduler_job_executions
-       WHERE $1 = '' OR job_name ILIKE $2
-       ORDER BY started_at DESC
-       LIMIT $3 OFFSET $4`,
+      `SELECT id, job_name, scheduled_key, status, started_at, completed_at,\n              duration_ms, error_message, scheduled_report_name\n         FROM ${historySql}\n        WHERE ${historyWhere}\n        ORDER BY started_at DESC\n        LIMIT $3 OFFSET $4`,
       [safeSearch, searchPattern, safePageSize, offset],
     ),
   ]);
@@ -63,9 +57,10 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {
       try {
         const task = cron.schedule(item.cron, () => {}, { timezone: item.timezone });
         const nextRun = task.getNextRun();
-        nextRunAt = nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
-          ? nextRun.toISOString()
-          : null;
+        nextRunAt =
+          nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
+            ? nextRun.toISOString()
+            : null;
         task.stop();
         task.destroy();
       } catch (error) {

@@ -6,6 +6,7 @@ import { seedApplication } from "./services/bootstrapService.js";
 import { createRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import { startEmailSchedulers } from "../scripts/scheduler.js";
+import { startScheduledReportScheduler } from "./services/scheduledReportScheduler.js";
 
 loadEnv();
 
@@ -49,6 +50,7 @@ async function start() {
     console.log("Backend startup: application seeded");
 
     startEmailSchedulers();
+    startScheduledReportScheduler();
     app.locals.ready = true;
     console.log("Backend startup: application ready");
   } catch (error) {

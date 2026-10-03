@@ -10,6 +10,7 @@ import * as reportController from "../controllers/reportController.js";
 import * as dashboardController from "../controllers/dashboardController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
+import * as scheduledReportController from "../controllers/scheduledReportController.js";
 import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
 
 export function createRouter(maxUploadBytes) {
@@ -83,6 +84,10 @@ export function createRouter(maxUploadBytes) {
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
 
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
+  router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);
+  router.post("/scheduled-reports", auth, permit("job-status"), scheduledReportController.create);
+  router.put("/scheduled-reports/:id", auth, permit("job-status"), scheduledReportController.update);
+  router.delete("/scheduled-reports/:id", auth, permit("job-status"), scheduledReportController.remove);
 
   router.get("/roles", auth, permit("add-user"), userController.roles);
   router.get("/users", auth, permit("add-user"), userController.list);
