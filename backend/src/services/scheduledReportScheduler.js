@@ -79,17 +79,37 @@ async function claimExecution(client, job, key) {
   return { acquired: true, lockKey, jobName };
 }
 
-async function finishExecution(client, execution, status, startedAt, errorMessage = null) {
+async function finishExecution(
+  client,
+  execution,
+  status,
+  startedAt,
+  errorMessage = null,
+) {
   await client.query(
     `UPDATE public.scheduler_job_runs
         SET status = $1,
-            completed_at = CASE WHEN $1 = 'completed' THEN now() ELSE NULL END,
+            completed_at = CASE
+              WHEN $1::text = 'completed' THEN now()
+              ELSE NULL
+            END,
             duration_ms = $2,
             error_message = $3
-      WHERE job_name = $4 AND scheduled_key = $5`,
-    [status, Date.now() - startedAt, errorMessage, execution.jobName, execution.scheduledKey],
+      WHERE job_name = $4
+        AND scheduled_key = $5`,
+    [
+      status,
+      Date.now() - startedAt,
+      errorMessage,
+      execution.jobName,
+      execution.scheduledKey,
+    ],
   );
-  await client.query("SELECT pg_advisory_unlock(hashtext($1))", [execution.lockKey]);
+
+  await client.query(
+    "SELECT pg_advisory_unlock(hashtext($1))",
+    [execution.lockKey],
+  );
 }
 
 async function runJob(jobId, key) {

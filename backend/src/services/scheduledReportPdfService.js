@@ -240,7 +240,7 @@ function drawPivotTable(doc, pivot) {
   ];
   const drawRow = (values, header = false, index = 0) => {
     const height = header ? 25 : 29;
-    if (doc.y + height > doc.page.height - doc.margins.bottom) doc.addPage();
+    if (doc.y + height > doc.page.height - doc.page.margins.bottom) doc.addPage();
     const y = doc.y;
     let x = doc.page.margins.left;
     columns.forEach((column, columnIndex) => {
