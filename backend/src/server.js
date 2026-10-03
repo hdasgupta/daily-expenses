@@ -27,19 +27,38 @@ app.use("/api", createRouter(env.maxUploadBytes));
 app.use(notFound);
 app.use(errorHandler);
 
+app.locals.ready = false;
+
 async function start() {
-  await initDb();
-  await seedApplication();
-  startEmailSchedulers();
-  app.listen(env.port, "0.0.0.0", () => {
+  const server = app.listen(env.port, "0.0.0.0", () => {
     console.log(`Expense tracker backend listening on port ${env.port}`);
   });
+
+  server.on("error", (error) => {
+    console.error("HTTP server error", error);
+    process.exitCode = 1;
+  });
+
+  try {
+    console.log("Backend startup: initializing database");
+    await initDb();
+    console.log("Backend startup: database initialized");
+
+    console.log("Backend startup: seeding application");
+    await seedApplication();
+    console.log("Backend startup: application seeded");
+
+    startEmailSchedulers();
+    app.locals.ready = true;
+    console.log("Backend startup: application ready");
+  } catch (error) {
+    app.locals.startupError = error?.message || String(error);
+    console.error("Fatal startup error", error);
+    await pool.end();
+    server.close(() => process.exit(1));
+  }
 }
 
-start().catch(async (error) => {
-  console.error("Fatal startup error", error);
-  await pool.end();
-  process.exit(1);
-});
+start();
 
 export default app;
