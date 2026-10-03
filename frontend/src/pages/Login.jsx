@@ -75,9 +75,9 @@ export default function Login({ onLogin, initialPath }) {
   return (
     <div className="login-shell">
       <div className="login-card card">
-        <div className="login-logo">RC</div>
-        <h1>Rehabilitation Center</h1>
-        <p className="muted">Expense Tracker</p>
+        <div className="login-logo">WB</div>
+        <h1>West Bengal Forun for Mental Health</h1>
+        <p className="muted">Daily Expenses</p>
         {mode === "login" ? (
           <form className="form-stack" onSubmit={submitLogin}>
             <label>
