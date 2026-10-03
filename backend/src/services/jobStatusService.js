@@ -31,7 +31,9 @@ const scheduleDefinitions = [
 
 export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {
   const safePage = Math.max(1, Number(page) || 1);
-  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
+  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize))
+    ? Number(pageSize)
+    : 10;
   const safeSearch = String(search || "").trim();
   const offset = (safePage - 1) * safePageSize;
   const searchPattern = `%${safeSearch}%`;
@@ -59,8 +61,12 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {
     let nextRunAt = null;
     if (valid) {
       try {
-        const task = cron.createTask(item.cron, () => {}, { timezone: item.timezone });
-        nextRunAt = task.getNextRun()?.toISOString() || null;
+        const task = cron.schedule(item.cron, () => {}, { timezone: item.timezone });
+        const nextRun = task.getNextRun();
+        nextRunAt = nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
+          ? nextRun.toISOString()
+          : null;
+        task.stop();
         task.destroy();
       } catch (error) {
         console.error(`Unable to calculate next run for ${item.jobName}`, error);
