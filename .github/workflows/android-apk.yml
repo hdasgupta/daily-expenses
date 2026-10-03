@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: daily-expenses-debug-apk
-          path: android/app/build/outputs/apk/debug/*.apk
+          path: frontend/android/app/build/outputs/apk/debug/*.apk
