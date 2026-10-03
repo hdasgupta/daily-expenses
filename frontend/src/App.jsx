@@ -75,15 +75,8 @@ const PERMISSIONS_BY_ROLE = {
     "add-user",
     "job-status",
   ],
-  manager: [
-    "add-expense",
-    "report",
-    "dashboard",
-    "job-status",
-  ],
-  editor: [
-    "add-expense",
-  ],
+  manager: ["add-expense", "report", "dashboard", "job-status"],
+  editor: ["add-expense"],
 };
 
 function normalizePath(pathname) {
@@ -131,17 +124,15 @@ function normalizePermissions(value) {
     /*
      * PostgreSQL array values may contain quoted items.
      */
-    return text
-      .split(",")
-      .flatMap((item) => {
-        const cleaned = item
-          .trim()
-          .replace(/^["']|["']$/g, "")
-          .replace(/^\{|\}$/g, "")
-          .trim();
+    return text.split(",").flatMap((item) => {
+      const cleaned = item
+        .trim()
+        .replace(/^["']|["']$/g, "")
+        .replace(/^\{|\}$/g, "")
+        .trim();
 
-        return cleaned ? [cleaned] : [];
-      });
+      return cleaned ? [cleaned] : [];
+    });
   }
 
   if (value && typeof value === "object") {
@@ -174,17 +165,10 @@ function normalizeUser(rawUser) {
     .trim()
     .toLowerCase();
 
-  let permissions = normalizePermissions(
-    rawUser.permissions,
-  );
+  let permissions = normalizePermissions(rawUser.permissions);
 
-  if (
-    permissions.length === 0 &&
-    PERMISSIONS_BY_ROLE[role]
-  ) {
-    permissions = [
-      ...PERMISSIONS_BY_ROLE[role],
-    ];
+  if (permissions.length === 0 && PERMISSIONS_BY_ROLE[role]) {
+    permissions = [...PERMISSIONS_BY_ROLE[role]];
   }
 
   return {
@@ -217,9 +201,7 @@ function routeForPath(path) {
 }
 
 export default function App() {
-  const [path, setPath] = useState(() =>
-    normalizePath(window.location.pathname),
-  );
+  const [path, setPath] = useState(() => normalizePath(window.location.pathname));
 
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(true);
@@ -238,10 +220,7 @@ export default function App() {
     };
 
     window.addEventListener("popstate", popState);
-    window.addEventListener(
-      "app:auth-expired",
-      expired,
-    );
+    window.addEventListener("app:auth-expired", expired);
 
     const token = localStorage.getItem("token");
 
@@ -256,20 +235,11 @@ export default function App() {
 
           const normalized = normalizeUser(nextUser);
 
-          console.log(
-            "RAW /me RESPONSE:",
-            nextUser,
-          );
+          console.log("RAW /me RESPONSE:", nextUser);
 
-          console.log(
-            "RAW permissions:",
-            nextUser?.permissions,
-          );
+          console.log("RAW permissions:", nextUser?.permissions);
 
-          console.log(
-            "NORMALIZED permissions:",
-            normalized?.permissions,
-          );
+          console.log("NORMALIZED permissions:", normalized?.permissions);
 
           setUser(normalized);
         })
@@ -280,26 +250,14 @@ export default function App() {
     }
 
     return () => {
-      window.removeEventListener(
-        "popstate",
-        popState,
-      );
-      window.removeEventListener(
-        "app:auth-expired",
-        expired,
-      );
+      window.removeEventListener("popstate", popState);
+      window.removeEventListener("app:auth-expired", expired);
     };
   }, []);
 
-  const permissions = useMemo(
-    () => normalizePermissions(user?.permissions),
-    [user],
-  );
+  const permissions = useMemo(() => normalizePermissions(user?.permissions), [user]);
 
-  const allowedItems = useMemo(
-    () => getNavigationItems(permissions),
-    [permissions],
-  );
+  const allowedItems = useMemo(() => getNavigationItems(permissions), [permissions]);
 
   useEffect(() => {
     if (checking || !user) {
@@ -308,9 +266,7 @@ export default function App() {
 
     const route = routeForPath(path);
 
-    const allowed =
-      route &&
-      permissions.includes(route.permission);
+    const allowed = route && permissions.includes(route.permission);
 
     if (allowed) {
       return;
@@ -319,47 +275,28 @@ export default function App() {
     const fallback = allowedItems[0]?.path;
 
     if (fallback) {
-      window.history.replaceState(
-        {},
-        "",
-        fallback,
-      );
+      window.history.replaceState({}, "", fallback);
       setPath(fallback);
     }
-  }, [
-    allowedItems,
-    checking,
-    path,
-    permissions,
-    user,
-  ]);
+  }, [allowedItems, checking, path, permissions, user]);
 
   const handleLogin = async (nextUser) => {
-    let normalizedUser =
-      normalizeUser(nextUser);
+    let normalizedUser = normalizeUser(nextUser);
 
     try {
       const refreshedUser = await api("/me", {
-        loadingMessage:
-          "Loading your account…",
+        loadingMessage: "Loading your account…",
         silent: true,
         silentToast: true,
       });
 
       if (refreshedUser) {
         setRawMe(refreshedUser);
-        normalizedUser =
-          normalizeUser(refreshedUser);
+        normalizedUser = normalizeUser(refreshedUser);
 
-        console.log(
-          "LOGIN /me RESPONSE:",
-          refreshedUser,
-        );
+        console.log("LOGIN /me RESPONSE:", refreshedUser);
 
-        console.log(
-          "LOGIN normalized permissions:",
-          normalizedUser?.permissions,
-        );
+        console.log("LOGIN normalized permissions:", normalizedUser?.permissions);
       }
     } catch {
       // Keep the successful login response.
@@ -367,60 +304,35 @@ export default function App() {
 
     setUser(normalizedUser);
 
-    const nextPermissions =
-      normalizePermissions(
-        normalizedUser?.permissions,
-      );
+    const nextPermissions = normalizePermissions(normalizedUser?.permissions);
 
-    const requestedPath = normalizePath(
-      window.location.pathname,
-    );
+    const requestedPath = normalizePath(window.location.pathname);
 
-    const requestedRoute =
-      routeForPath(requestedPath);
+    const requestedRoute = routeForPath(requestedPath);
 
-    const requestedAllowed =
-      requestedRoute &&
-      nextPermissions.includes(
-        requestedRoute.permission,
-      );
+    const requestedAllowed = requestedRoute && nextPermissions.includes(requestedRoute.permission);
 
-    const fallback =
-      getNavigationItems(nextPermissions)[0]
-        ?.path;
+    const fallback = getNavigationItems(nextPermissions)[0]?.path;
 
-    const destination =
-      requestedAllowed
-        ? requestedPath
-        : fallback;
+    const destination = requestedAllowed ? requestedPath : fallback;
 
     if (destination) {
-      window.history.replaceState(
-        {},
-        "",
-        destination,
-      );
+      window.history.replaceState({}, "", destination);
       setPath(destination);
     }
   };
 
   const navigate = (next) => {
-    const [rawPath, search = ""] =
-      String(next || "/").split("?");
+    const [rawPath, search = ""] = String(next || "/").split("?");
 
     const target = normalizePath(rawPath);
     const route = routeForPath(target);
 
-    if (
-      !route ||
-      !permissions.includes(route.permission)
-    ) {
+    if (!route || !permissions.includes(route.permission)) {
       return;
     }
 
-    const url = search
-      ? `${target}?${search}`
-      : target;
+    const url = search ? `${target}?${search}` : target;
 
     window.history.pushState({}, "", url);
     setPath(target);
@@ -441,9 +353,7 @@ export default function App() {
         <Toast />
 
         <div className="auth-loading">
-          <div className="card">
-            Checking your session…
-          </div>
+          <div className="card">Checking your session…</div>
         </div>
       </>
     );
@@ -455,24 +365,16 @@ export default function App() {
         <Loader />
         <Toast />
 
-        <Login
-          onLogin={handleLogin}
-          initialPath={path}
-        />
+        <Login onLogin={handleLogin} initialPath={path} />
       </>
     );
   }
 
   const route = routeForPath(path);
 
-  const fallbackPath =
-    allowedItems[0]?.path;
+  const fallbackPath = allowedItems[0]?.path;
 
-  const Component =
-    route?.component ||
-    (fallbackPath
-      ? routes[fallbackPath]?.component
-      : null);
+  const Component = route?.component || (fallbackPath ? routes[fallbackPath]?.component : null);
 
   /*
    * Temporary diagnostic screen.
@@ -494,14 +396,9 @@ export default function App() {
               margin: "20px auto",
             }}
           >
-            <h2>
-              Navigation diagnostic
-            </h2>
+            <h2>Navigation diagnostic</h2>
 
-            <p>
-              The application received the
-              following user data:
-            </p>
+            <p>The application received the following user data:</p>
 
             <pre
               style={{
@@ -511,20 +408,13 @@ export default function App() {
                 textAlign: "left",
                 padding: "12px",
                 borderRadius: "8px",
-                background:
-                  "rgba(127,127,127,0.12)",
+                background: "rgba(127,127,127,0.12)",
               }}
             >
-              {JSON.stringify(
-                rawMe,
-                null,
-                2,
-              )}
+              {JSON.stringify(rawMe, null, 2)}
             </pre>
 
-            <h3>
-              Normalized permissions
-            </h3>
+            <h3>Normalized permissions</h3>
 
             <pre
               style={{
@@ -534,20 +424,13 @@ export default function App() {
                 textAlign: "left",
                 padding: "12px",
                 borderRadius: "8px",
-                background:
-                  "rgba(127,127,127,0.12)",
+                background: "rgba(127,127,127,0.12)",
               }}
             >
-              {JSON.stringify(
-                permissions,
-                null,
-                2,
-              )}
+              {JSON.stringify(permissions, null, 2)}
             </pre>
 
-            <h3>
-              Navigation items
-            </h3>
+            <h3>Navigation items</h3>
 
             <pre
               style={{
@@ -557,18 +440,14 @@ export default function App() {
                 textAlign: "left",
                 padding: "12px",
                 borderRadius: "8px",
-                background:
-                  "rgba(127,127,127,0.12)",
+                background: "rgba(127,127,127,0.12)",
               }}
             >
               {JSON.stringify(
-                allowedItems.map(
-                  (item) => ({
-                    path: item.path,
-                    permission:
-                      item.permission,
-                  }),
-                ),
+                allowedItems.map((item) => ({
+                  path: item.path,
+                  permission: item.permission,
+                })),
                 null,
                 2,
               )}
@@ -578,17 +457,11 @@ export default function App() {
               className="primary"
               type="button"
               onClick={() => {
-                localStorage.removeItem(
-                  "token",
-                );
+                localStorage.removeItem("token");
                 setUser(null);
                 setRawMe(null);
                 setPath("/");
-                window.history.replaceState(
-                  {},
-                  "",
-                  "/",
-                );
+                window.history.replaceState({}, "", "/");
               }}
             >
               Return to login
@@ -604,18 +477,9 @@ export default function App() {
       <Loader />
       <Toast />
 
-      <Layout
-        user={user}
-        path={path}
-        navigate={navigate}
-        logout={logout}
-      >
+      <Layout user={user} path={path} navigate={navigate} logout={logout}>
         <RouteErrorBoundary>
-          <Component
-            type={route?.type}
-            navigate={navigate}
-            user={user}
-          />
+          <Component type={route?.type} navigate={navigate} user={user} />
         </RouteErrorBoundary>
       </Layout>
     </>

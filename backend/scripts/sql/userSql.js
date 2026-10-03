@@ -57,10 +57,7 @@ export const userSql = {
        OR r.name ILIKE $1
   `,
 
-  userList: (
-    sort,
-    dir,
-  ) => `
+  userList: (sort, dir) => `
     SELECT
       u.id,
       u.full_name,
@@ -101,8 +98,7 @@ export const userSql = {
   update:
     "UPDATE public.users SET full_name=$1,email=$2,role_id=$3,is_disabled=$4,updated_at=now() WHERE id=$5",
 
-  updatePassword:
-    "UPDATE public.users SET password_hash=$1,updated_at=now() WHERE id=$2",
+  updatePassword: "UPDATE public.users SET password_hash=$1,updated_at=now() WHERE id=$2",
 
   delete: "DELETE FROM public.users WHERE id=$1",
 

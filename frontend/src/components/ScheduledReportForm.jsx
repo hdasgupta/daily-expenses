@@ -2,7 +2,20 @@ import React, { useEffect, useMemo, useState } from "react";
 
 const frequencyLabels = { daily: "Daily", weekly: "Weekly", monthly: "Monthly", yearly: "Yearly" };
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 function frequencyFor(reportKey) {
   return String(reportKey || "").split("-")[0] || "daily";
@@ -22,7 +35,13 @@ function defaultForm(reportKey, job) {
   };
 }
 
-export default function ScheduledReportForm({ report, job = null, recipient = "", onSubmit, busy }) {
+export default function ScheduledReportForm({
+  report,
+  job = null,
+  recipient = "",
+  onSubmit,
+  busy,
+}) {
   const [form, setForm] = useState(() => defaultForm(report?.key || job?.report_key, job));
 
   useEffect(() => {
@@ -72,7 +91,12 @@ export default function ScheduledReportForm({ report, job = null, recipient = ""
         </label>
         <label>
           Send time
-          <input type="time" value={form.time} onChange={(event) => update("time", event.target.value)} required />
+          <input
+            type="time"
+            value={form.time}
+            onChange={(event) => update("time", event.target.value)}
+            required
+          />
           <span className="field-note">India Standard Time (Asia/Kolkata)</span>
         </label>
       </div>
@@ -80,8 +104,15 @@ export default function ScheduledReportForm({ report, job = null, recipient = ""
       {frequency === "weekly" ? (
         <label>
           Weekday
-          <select value={form.dayOfWeek} onChange={(event) => update("dayOfWeek", event.target.value)}>
-            {weekdays.map((day, index) => <option key={day} value={index}>{day}</option>)}
+          <select
+            value={form.dayOfWeek}
+            onChange={(event) => update("dayOfWeek", event.target.value)}
+          >
+            {weekdays.map((day, index) => (
+              <option key={day} value={index}>
+                {day}
+              </option>
+            ))}
           </select>
         </label>
       ) : null}
@@ -89,8 +120,15 @@ export default function ScheduledReportForm({ report, job = null, recipient = ""
       {frequency === "monthly" ? (
         <label>
           Day of month
-          <select value={form.dayOfMonth} onChange={(event) => update("dayOfMonth", event.target.value)}>
-            {Array.from({ length: 28 }, (_, index) => index + 1).map((day) => <option key={day} value={day}>{day}</option>)}
+          <select
+            value={form.dayOfMonth}
+            onChange={(event) => update("dayOfMonth", event.target.value)}
+          >
+            {Array.from({ length: 28 }, (_, index) => index + 1).map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
           </select>
           <span className="field-note">Days 1–28 are used so the job exists in every month.</span>
         </label>
@@ -100,14 +138,28 @@ export default function ScheduledReportForm({ report, job = null, recipient = ""
         <div className="two-col">
           <label>
             Month
-            <select value={form.monthOfYear} onChange={(event) => update("monthOfYear", event.target.value)}>
-              {months.map((month, index) => <option key={month} value={index + 1}>{month}</option>)}
+            <select
+              value={form.monthOfYear}
+              onChange={(event) => update("monthOfYear", event.target.value)}
+            >
+              {months.map((month, index) => (
+                <option key={month} value={index + 1}>
+                  {month}
+                </option>
+              ))}
             </select>
           </label>
           <label>
             Day of month
-            <select value={form.dayOfMonth} onChange={(event) => update("dayOfMonth", event.target.value)}>
-              {Array.from({ length: 28 }, (_, index) => index + 1).map((day) => <option key={day} value={day}>{day}</option>)}
+            <select
+              value={form.dayOfMonth}
+              onChange={(event) => update("dayOfMonth", event.target.value)}
+            >
+              {Array.from({ length: 28 }, (_, index) => index + 1).map((day) => (
+                <option key={day} value={day}>
+                  {day}
+                </option>
+              ))}
             </select>
           </label>
         </div>
@@ -119,13 +171,19 @@ export default function ScheduledReportForm({ report, job = null, recipient = ""
       </div>
 
       <label className="switch-row">
-        <input type="checkbox" checked={Boolean(form.active)} onChange={(event) => update("active", event.target.checked)} />
+        <input
+          type="checkbox"
+          checked={Boolean(form.active)}
+          onChange={(event) => update("active", event.target.checked)}
+        />
         <span className="switch" />
         <span>Schedule is active</span>
       </label>
 
       <div className="form-actions scheduled-report-form-actions">
-        <button type="submit" disabled={busy}>{busy ? "Saving…" : job ? "Save changes" : "Schedule email"}</button>
+        <button type="submit" disabled={busy}>
+          {busy ? "Saving…" : job ? "Save changes" : "Schedule email"}
+        </button>
       </div>
     </form>
   );

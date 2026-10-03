@@ -5,9 +5,7 @@ import PasswordField from "../components/PasswordField";
 
 function normalizePermissions(permissions) {
   if (Array.isArray(permissions)) {
-    return permissions
-      .map((permission) => String(permission || "").trim())
-      .filter(Boolean);
+    return permissions.map((permission) => String(permission || "").trim()).filter(Boolean);
   }
 
   if (typeof permissions === "string") {
@@ -176,8 +174,8 @@ export default function Login({ onLogin, initialPath }) {
 
             {initialPath && initialPath !== "/" ? (
               <div className="notice">
-                You will return to the requested module after successful login,
-                when your role has permission for it.
+                You will return to the requested module after successful login, when your role has
+                permission for it.
               </div>
             ) : null}
 
@@ -262,13 +260,7 @@ export default function Login({ onLogin, initialPath }) {
                     maxLength={6}
                     required
                     value={otp}
-                    onChange={(e) =>
-                      setOtp(
-                        e.target.value
-                          .replace(/\D/g, "")
-                          .slice(0, 6),
-                      )
-                    }
+                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
                   />
                 </label>
 
@@ -325,13 +317,9 @@ export default function Login({ onLogin, initialPath }) {
           </>
         )}
 
-        {message ? (
-          <div className="notice success-notice">{message}</div>
-        ) : null}
+        {message ? <div className="notice success-notice">{message}</div> : null}
 
-        {error ? (
-          <div className="notice error-notice">{error}</div>
-        ) : null}
+        {error ? <div className="notice error-notice">{error}</div> : null}
       </div>
     </div>
   );

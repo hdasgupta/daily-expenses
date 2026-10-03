@@ -1,6 +1,9 @@
 import cron from "node-cron";
 import { q, pool } from "../db/index.js";
-import { getScheduledReportForExecution, sendScheduledReportJob } from "./scheduledReportService.js";
+import {
+  getScheduledReportForExecution,
+  sendScheduledReportJob,
+} from "./scheduledReportService.js";
 
 let started = false;
 
@@ -17,9 +20,7 @@ function localParts() {
   }).formatToParts(new Date());
 
   return Object.fromEntries(
-    parts
-      .filter(({ type }) => type !== "literal")
-      .map(({ type, value }) => [type, value]),
+    parts.filter(({ type }) => type !== "literal").map(({ type, value }) => [type, value]),
   );
 }
 
@@ -41,9 +42,7 @@ function dueFor(job, local) {
       Number(
         local.weekday === undefined
           ? -1
-          : new Date(
-              `${local.year}-${local.month}-${local.day}T00:00:00Z`,
-            ).getUTCDay(),
+          : new Date(`${local.year}-${local.month}-${local.day}T00:00:00Z`).getUTCDay(),
       ) === Number(job.day_of_week)
     );
   }
@@ -86,10 +85,7 @@ async function claimExecution(client, job, key) {
   const jobName = executionJobName(job.id);
   const lockKey = `${jobName}:${key}`;
 
-  const lock = await client.query(
-    "SELECT pg_try_advisory_lock(hashtext($1)) AS locked",
-    [lockKey],
-  );
+  const lock = await client.query("SELECT pg_try_advisory_lock(hashtext($1)) AS locked", [lockKey]);
 
   if (!lock.rows[0]?.locked) {
     return { acquired: false };
@@ -104,10 +100,7 @@ async function claimExecution(client, job, key) {
   );
 
   if (existing.rows[0]?.status === "completed") {
-    await client.query(
-      "SELECT pg_advisory_unlock(hashtext($1))",
-      [lockKey],
-    );
+    await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
 
     return { acquired: false };
   }
@@ -145,13 +138,7 @@ async function claimExecution(client, job, key) {
   };
 }
 
-async function finishExecution(
-  client,
-  execution,
-  status,
-  startedAt,
-  errorMessage = null,
-) {
+async function finishExecution(client, execution, status, startedAt, errorMessage = null) {
   const durationMs = Date.now() - startedAt;
 
   if (status === "completed") {
@@ -163,12 +150,7 @@ async function finishExecution(
               error_message = $2
         WHERE job_name = $3
           AND scheduled_key = $4`,
-      [
-        durationMs,
-        errorMessage,
-        execution.jobName,
-        execution.scheduledKey,
-      ],
+      [durationMs, errorMessage, execution.jobName, execution.scheduledKey],
     );
   } else {
     await client.query(
@@ -179,19 +161,11 @@ async function finishExecution(
               error_message = $2
         WHERE job_name = $3
           AND scheduled_key = $4`,
-      [
-        durationMs,
-        errorMessage,
-        execution.jobName,
-        execution.scheduledKey,
-      ],
+      [durationMs, errorMessage, execution.jobName, execution.scheduledKey],
     );
   }
 
-  await client.query(
-    "SELECT pg_advisory_unlock(hashtext($1))",
-    [execution.lockKey],
-  );
+  await client.query("SELECT pg_advisory_unlock(hashtext($1))", [execution.lockKey]);
 }
 
 async function runJob(jobId, key) {
@@ -228,13 +202,7 @@ async function runJob(jobId, key) {
 
     const result = await sendScheduledReportJob(job);
 
-    await finishExecution(
-      client,
-      execution,
-      "completed",
-      startedAt,
-      null,
-    );
+    await finishExecution(client, execution, "completed", startedAt, null);
 
     execution = null;
 
@@ -258,13 +226,7 @@ async function runJob(jobId, key) {
 
     if (client && execution) {
       try {
-        await finishExecution(
-          client,
-          execution,
-          "failed",
-          startedAt,
-          errorMessage,
-        );
+        await finishExecution(client, execution, "failed", startedAt, errorMessage);
 
         execution = null;
       } catch (finishError) {
@@ -311,14 +273,10 @@ export function startScheduledReportScheduler() {
 
   started = true;
 
-  console.log(
-    "User scheduled-report scheduler enabled (Asia/Kolkata, minute polling)",
-  );
+  console.log("User scheduled-report scheduler enabled (Asia/Kolkata, minute polling)");
 
   if (!cron.validate("* * * * *")) {
-    console.error(
-      "Internal scheduled-report scheduler expression is invalid",
-    );
+    console.error("Internal scheduled-report scheduler expression is invalid");
     return;
   }
 
@@ -328,19 +286,13 @@ export function startScheduledReportScheduler() {
       try {
         await processDueJobs();
       } catch (error) {
-        console.error(
-          "Scheduled-report scheduler poll failed",
-          error,
-        );
+        console.error("Scheduled-report scheduler poll failed", error);
       }
     },
     { timezone: "Asia/Kolkata" },
   );
 
   void processDueJobs().catch((error) => {
-    console.error(
-      "Initial scheduled-report scheduler poll failed",
-      error,
-    );
+    console.error("Initial scheduled-report scheduler poll failed", error);
   });
 }

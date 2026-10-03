@@ -386,7 +386,6 @@ export function startEmailSchedulers() {
     );
   }
 
-
   if (!cron.validate(env.yearlyEmailReportCron)) {
     console.error(`Invalid YEARLY_EMAIL_REPORT_CRON: ${env.yearlyEmailReportCron}`);
   } else {

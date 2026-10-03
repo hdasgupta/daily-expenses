@@ -31,11 +31,9 @@ export default class RouteErrorBoundary extends React.Component {
 
   render() {
     if (this.state.error) {
-      const errorMessage =
-        this.state.error?.message || String(this.state.error);
+      const errorMessage = this.state.error?.message || String(this.state.error);
 
-      const componentStack =
-        this.state.errorInfo?.componentStack || "";
+      const componentStack = this.state.errorInfo?.componentStack || "";
 
       return (
         <div className="card">
@@ -60,19 +58,11 @@ export default class RouteErrorBoundary extends React.Component {
           ) : null}
 
           <div className="form-actions">
-            <button
-              className="primary"
-              type="button"
-              onClick={this.handleReload}
-            >
+            <button className="primary" type="button" onClick={this.handleReload}>
               Reload
             </button>
 
-            <button
-              className="secondary"
-              type="button"
-              onClick={this.handleReturnHome}
-            >
+            <button className="secondary" type="button" onClick={this.handleReturnHome}>
               Return home
             </button>
           </div>

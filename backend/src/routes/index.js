@@ -100,11 +100,29 @@ export function createRouter(maxUploadBytes) {
   router.post("/expenses", auth, permit("add-expense"), expenseController.create);
   router.put("/expenses/:id", auth, permit("add-expense"), expenseController.update);
   router.delete("/expenses/:id", auth, permit("add-expense"), expenseController.remove);
-  router.post("/expenses/:id/proof", auth, permit("add-expense"), upload.single("proof"), expenseController.uploadProof);
+  router.post(
+    "/expenses/:id/proof",
+    auth,
+    permit("add-expense"),
+    upload.single("proof"),
+    expenseController.uploadProof,
+  );
   router.get("/expenses/:id/proof-url", auth, permit("add-expense"), expenseController.proofUrl);
 
-  router.post("/bulk-upload/expenses", auth, permit("bulk-upload-expenses"), upload.single("file"), bulkUploadController.expenses);
-  router.post("/bulk-upload/categories-items", auth, permit("bulk-upload-categories-items"), upload.single("file"), bulkUploadController.categoriesItems);
+  router.post(
+    "/bulk-upload/expenses",
+    auth,
+    permit("bulk-upload-expenses"),
+    upload.single("file"),
+    bulkUploadController.expenses,
+  );
+  router.post(
+    "/bulk-upload/categories-items",
+    auth,
+    permit("bulk-upload-categories-items"),
+    upload.single("file"),
+    bulkUploadController.categoriesItems,
+  );
 
   router.post("/reports/query", auth, permit("report"), reportController.query);
   router.post("/reports/export-pdf", auth, permit("report"), reportController.exportPdf);
@@ -119,8 +137,18 @@ export function createRouter(maxUploadBytes) {
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
   router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);
   router.post("/scheduled-reports", auth, permit("job-status"), scheduledReportController.create);
-  router.put("/scheduled-reports/:id", auth, permit("job-status"), scheduledReportController.update);
-  router.delete("/scheduled-reports/:id", auth, permit("job-status"), scheduledReportController.remove);
+  router.put(
+    "/scheduled-reports/:id",
+    auth,
+    permit("job-status"),
+    scheduledReportController.update,
+  );
+  router.delete(
+    "/scheduled-reports/:id",
+    auth,
+    permit("job-status"),
+    scheduledReportController.remove,
+  );
 
   router.get("/roles", auth, permit("add-user"), userController.roles);
   router.get("/users", auth, permit("add-user"), userController.list);

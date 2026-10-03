@@ -30,19 +30,12 @@ const capacitorOrigins = [
   "https://localhost",
   "capacitor://localhost",
   "ionic://localhost",
-  "https://daily-expenses-wbffmh.vercel.app"
+  "https://daily-expenses-wbffmh.vercel.app",
 ];
 
-const origins = [
-  ...new Set([
-    ...configuredOrigins,
-    ...capacitorOrigins,
-  ]),
-];
+const origins = [...new Set([...configuredOrigins, ...capacitorOrigins])];
 
-const corsOrigin = origins.includes("*")
-  ? true
-  : origins;
+const corsOrigin = origins.includes("*") ? true : origins;
 
 app.disable("x-powered-by");
 
@@ -56,10 +49,7 @@ app.use(
 app.use(express.json({ limit: "10mb" }));
 app.use(requestLogger);
 
-app.use(
-  "/api",
-  createRouter(env.maxUploadBytes),
-);
+app.use("/api", createRouter(env.maxUploadBytes));
 
 app.use(notFound);
 app.use(errorHandler);
@@ -88,8 +78,7 @@ process.on("unhandledRejection", (reason) => {
   console.error(
     JSON.stringify({
       event: "unhandled_rejection",
-      message:
-        reason?.message || String(reason),
+      message: reason?.message || String(reason),
       stack: reason?.stack,
     }),
   );
@@ -112,35 +101,22 @@ async function shutdown(signal) {
     }),
   );
 
-  const closeServer = new Promise(
-    (resolve) => {
-      if (!httpServer) return resolve();
+  const closeServer = new Promise((resolve) => {
+    if (!httpServer) return resolve();
 
-      httpServer.close(() => resolve());
-    },
-  );
+    httpServer.close(() => resolve());
+  });
 
   try {
-    await Promise.race([
-      closeServer,
-      new Promise((resolve) =>
-        setTimeout(resolve, 10000),
-      ),
-    ]);
+    await Promise.race([closeServer, new Promise((resolve) => setTimeout(resolve, 10000))]);
   } catch (error) {
-    console.error(
-      "HTTP server shutdown error",
-      error,
-    );
+    console.error("HTTP server shutdown error", error);
   }
 
   try {
     await pool.end();
   } catch (error) {
-    console.error(
-      "Database pool shutdown error",
-      error,
-    );
+    console.error("Database pool shutdown error", error);
   }
 
   console.log(
@@ -150,44 +126,32 @@ async function shutdown(signal) {
     }),
   );
 
-  if (
-    signal === "SIGTERM" ||
-    signal === "SIGINT"
-  ) {
+  if (signal === "SIGTERM" || signal === "SIGINT") {
     process.exit(0);
   }
 }
 
-process.once("SIGTERM", () =>
-  void shutdown("SIGTERM"),
-);
+process.once("SIGTERM", () => void shutdown("SIGTERM"));
 
-process.once("SIGINT", () =>
-  void shutdown("SIGINT"),
-);
+process.once("SIGINT", () => void shutdown("SIGINT"));
 
 async function start() {
-  httpServer = app.listen(
-    env.port,
-    "0.0.0.0",
-    () => {
-      console.log(
-        JSON.stringify({
-          event: "http_server_listening",
-          port: env.port,
-          pid: process.pid,
-          nodeEnv: env.nodeEnv,
-        }),
-      );
-    },
-  );
+  httpServer = app.listen(env.port, "0.0.0.0", () => {
+    console.log(
+      JSON.stringify({
+        event: "http_server_listening",
+        port: env.port,
+        pid: process.pid,
+        nodeEnv: env.nodeEnv,
+      }),
+    );
+  });
 
   httpServer.on("error", (error) => {
     console.error(
       JSON.stringify({
         event: "http_server_error",
-        message:
-          error?.message || String(error),
+        message: error?.message || String(error),
         stack: error?.stack,
       }),
     );
@@ -196,25 +160,17 @@ async function start() {
   });
 
   try {
-    console.log(
-      "Backend startup: initializing database",
-    );
+    console.log("Backend startup: initializing database");
 
     await initDb();
 
-    console.log(
-      "Backend startup: database initialized",
-    );
+    console.log("Backend startup: database initialized");
 
-    console.log(
-      "Backend startup: seeding application",
-    );
+    console.log("Backend startup: seeding application");
 
     await seedApplication();
 
-    console.log(
-      "Backend startup: application seeded",
-    );
+    console.log("Backend startup: application seeded");
 
     startEmailSchedulers();
     startScheduledReportScheduler();
@@ -231,14 +187,12 @@ async function start() {
     );
   } catch (error) {
     app.locals.starting = false;
-    app.locals.startupError =
-      error?.message || String(error);
+    app.locals.startupError = error?.message || String(error);
 
     console.error(
       JSON.stringify({
         event: "fatal_startup_error",
-        message:
-          error?.message || String(error),
+        message: error?.message || String(error),
         stack: error?.stack,
       }),
     );

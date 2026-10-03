@@ -1,23 +1,110 @@
-.scheduled-report-form { display: flex; flex-direction: column; gap: 11px; }
-.scheduled-report-form .field-note { margin-top: 3px; font-size: 10px; }
-.schedule-summary { align-items: flex-start; }
-.schedule-summary strong, .schedule-summary span { display: block; }
-.schedule-summary span { margin-top: 3px; font-size: 11px; }
-.scheduled-report-recipient { display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 11px; background: var(--soft); }
-.scheduled-report-recipient strong { font-size: 11px; }
-.scheduled-report-recipient span { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
-.scheduled-report-form-actions { justify-content: flex-end; padding-top: 2px; }
-.scheduled-report-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
-.scheduled-job-stack { display: flex; flex-direction: column; gap: 9px; }
-.scheduled-job-card { padding: 14px 16px; }
-.scheduled-job-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
-.scheduled-job-head strong, .scheduled-job-head span { display: block; }
-.scheduled-job-head > div:first-child { min-width: 0; }
-.scheduled-job-head span, .scheduled-job-meta, .scheduled-job-owner { color: var(--muted); font-size: 11px; }
-.scheduled-job-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 7px 12px; margin-top: 9px; }
-.scheduled-job-meta b { color: var(--text); }
-.scheduled-job-status { flex-shrink: 0; border-radius: 999px; padding: 4px 8px; font-size: 10px; font-weight: 700; border: 1px solid var(--line); }
-.scheduled-job-status.active { color: var(--success); background: var(--success-soft); }
-.scheduled-job-status.paused { color: var(--muted); background: var(--soft); }
-.scheduled-job-owner { margin-top: 8px; }
-@media (max-width: 620px) { .scheduled-job-head { flex-direction: column; } .scheduled-report-actions { justify-content: flex-start; } }
+.scheduled-report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.scheduled-report-form .field-note {
+  margin-top: 3px;
+  font-size: 10px;
+}
+.schedule-summary {
+  align-items: flex-start;
+}
+.schedule-summary strong,
+.schedule-summary span {
+  display: block;
+}
+.schedule-summary span {
+  margin-top: 3px;
+  font-size: 11px;
+}
+.scheduled-report-recipient {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 11px;
+  background: var(--soft);
+}
+.scheduled-report-recipient strong {
+  font-size: 11px;
+}
+.scheduled-report-recipient span {
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.scheduled-report-form-actions {
+  justify-content: flex-end;
+  padding-top: 2px;
+}
+.scheduled-report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.scheduled-job-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.scheduled-job-card {
+  padding: 14px 16px;
+}
+.scheduled-job-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+.scheduled-job-head strong,
+.scheduled-job-head span {
+  display: block;
+}
+.scheduled-job-head > div:first-child {
+  min-width: 0;
+}
+.scheduled-job-head span,
+.scheduled-job-meta,
+.scheduled-job-owner {
+  color: var(--muted);
+  font-size: 11px;
+}
+.scheduled-job-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 7px 12px;
+  margin-top: 9px;
+}
+.scheduled-job-meta b {
+  color: var(--text);
+}
+.scheduled-job-status {
+  flex-shrink: 0;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid var(--line);
+}
+.scheduled-job-status.active {
+  color: var(--success);
+  background: var(--success-soft);
+}
+.scheduled-job-status.paused {
+  color: var(--muted);
+  background: var(--soft);
+}
+.scheduled-job-owner {
+  margin-top: 8px;
+}
+@media (max-width: 620px) {
+  .scheduled-job-head {
+    flex-direction: column;
+  }
+  .scheduled-report-actions {
+    justify-content: flex-start;
+  }
+}

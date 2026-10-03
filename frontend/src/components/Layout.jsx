@@ -91,9 +91,7 @@ function normalizePermissions(permissions) {
         return permission
           .replace(/^\{|\}$/g, "")
           .split(",")
-          .map((value) =>
-            value.replace(/^"|"$/g, ""),
-          );
+          .map((value) => value.replace(/^"|"$/g, ""));
       })
       .map((permission) => permission.trim())
       .filter(Boolean);
@@ -106,10 +104,7 @@ function normalizePermissions(permissions) {
      * PostgreSQL text[] representation:
      * {add-expense,add-item,report}
      */
-    if (
-      value.startsWith("{") &&
-      value.endsWith("}")
-    ) {
+    if (value.startsWith("{") && value.endsWith("}")) {
       value = value.slice(1, -1);
     }
 
@@ -117,10 +112,7 @@ function normalizePermissions(permissions) {
      * JSON array representation:
      * ["add-expense","report"]
      */
-    if (
-      value.startsWith("[") &&
-      value.endsWith("]")
-    ) {
+    if (value.startsWith("[") && value.endsWith("]")) {
       try {
         const parsed = JSON.parse(value);
 
@@ -143,14 +135,9 @@ function normalizePermissions(permissions) {
       .filter(Boolean);
   }
 
-  if (
-    permissions &&
-    typeof permissions === "object"
-  ) {
+  if (permissions && typeof permissions === "object") {
     if (Array.isArray(permissions.permissions)) {
-      return normalizePermissions(
-        permissions.permissions,
-      );
+      return normalizePermissions(permissions.permissions);
     }
 
     return Object.entries(permissions)
@@ -163,51 +150,29 @@ function normalizePermissions(permissions) {
 }
 
 export function getNavigationItems(permissions) {
-  const normalized = normalizePermissions(
-    permissions,
-  );
+  const normalized = normalizePermissions(permissions);
 
-  return navItems.filter((item) =>
-    normalized.includes(item.permission),
-  );
+  return navItems.filter((item) => normalized.includes(item.permission));
 }
 
-export default function Layout({
-  user,
-  path,
-  navigate,
-  logout,
-  children,
-}) {
+export default function Layout({ user, path, navigate, logout, children }) {
   const [open, setOpen] = useState(false);
 
-  const [dark, setDark] = useState(
-    () =>
-      localStorage.getItem("theme") === "dark",
-  );
+  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
 
   useEffect(() => {
-    document.documentElement.classList.toggle(
-      "dark",
-      dark,
-    );
+    document.documentElement.classList.toggle("dark", dark);
 
-    localStorage.setItem(
-      "theme",
-      dark ? "dark" : "light",
-    );
+    localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
   useEffect(() => {
     setOpen(false);
   }, [path]);
 
-  const toggleTheme = () =>
-    setDark((value) => !value);
+  const toggleTheme = () => setDark((value) => !value);
 
-  const navigationItems = getNavigationItems(
-    user?.permissions,
-  );
+  const navigationItems = getNavigationItems(user?.permissions);
 
   return (
     <div className="app-shell">
@@ -216,35 +181,19 @@ export default function Layout({
           <div className="user-header">
             <span>{user.fullName}</span>
 
-            <span className="role-pill">
-              {user.role}
-            </span>
+            <span className="role-pill">{user.role}</span>
 
             <button
               className="header-button"
               onClick={toggleTheme}
-              title={
-                dark
-                  ? "Light mode"
-                  : "Dark mode"
-              }
+              title={dark ? "Light mode" : "Dark mode"}
             >
-              {dark ? (
-                <Sun size={17} />
-              ) : (
-                <Moon size={17} />
-              )}
+              {dark ? <Sun size={17} /> : <Moon size={17} />}
 
-              <span>
-                {dark ? "Light" : "Dark"}
-              </span>
+              <span>{dark ? "Light" : "Dark"}</span>
             </button>
 
-            <button
-              className="header-button"
-              onClick={logout}
-              title="Logout"
-            >
+            <button className="header-button" onClick={logout} title="Logout">
               <LogOut size={17} />
               <span>Logout</span>
             </button>
@@ -253,26 +202,15 @@ export default function Layout({
 
         <div className="brand-row">
           <div className="brand-mark">
-            {import.meta.env
-              .VITE_ORGANIZATION_LOGO_URL ? (
-              <img
-                src={
-                  import.meta.env
-                    .VITE_ORGANIZATION_LOGO_URL
-                }
-                alt="Organization"
-              />
+            {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
+              <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
             ) : (
               <Shield size={28} />
             )}
           </div>
 
           <div>
-            <strong>
-              {import.meta.env
-                .VITE_ORGANIZATION_NAME ||
-                "Rehabilitation Center"}
-            </strong>
+            <strong>{import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}</strong>
 
             <span>Expense Tracker</span>
           </div>
@@ -281,37 +219,16 @@ export default function Layout({
 
       <button
         className="drawer-toggle"
-        onClick={() =>
-          setOpen((value) => !value)
-        }
-        title={
-          open
-            ? "Hide navigation"
-            : "Show navigation"
-        }
+        onClick={() => setOpen((value) => !value)}
+        title={open ? "Hide navigation" : "Show navigation"}
       >
-        {open ? (
-          <X size={20} />
-        ) : (
-          <Menu size={20} />
-        )}
+        {open ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      {open ? (
-        <div
-          className="drawer-backdrop"
-          onClick={() => setOpen(false)}
-        />
-      ) : null}
+      {open ? <div className="drawer-backdrop" onClick={() => setOpen(false)} /> : null}
 
-      <aside
-        className={`navigation-drawer ${
-          open ? "open" : ""
-        }`}
-      >
-        <div className="drawer-title">
-          Navigation
-        </div>
+      <aside className={`navigation-drawer ${open ? "open" : ""}`}>
+        <div className="drawer-title">Navigation</div>
 
         {navigationItems.map((item) => {
           const Icon = item.icon;
@@ -320,17 +237,11 @@ export default function Layout({
             <button
               key={item.path}
               className={
-                path === item.path ||
-                (item.path === "/dashboard" &&
-                  path.startsWith(
-                    "/dashboard",
-                  ))
+                path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
                   ? "active"
                   : ""
               }
-              onClick={() =>
-                navigate(item.path)
-              }
+              onClick={() => navigate(item.path)}
             >
               <Icon size={18} />
               {item.label}
@@ -344,9 +255,7 @@ export default function Layout({
         </div>
       </aside>
 
-      <main className="main-content">
-        {children}
-      </main>
+      <main className="main-content">{children}</main>
     </div>
   );
 }

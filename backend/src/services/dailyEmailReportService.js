@@ -75,17 +75,19 @@ export async function buildDailyEmailReport() {
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
-    dump: await Promise.all(dump.rows.map(async (row) => ({
-      date: String(row.date).slice(0, 10),
-      category: row.category || "—",
-      item: row.item || "—",
-      survivor: row.survivor || "—",
-      price: Number(row.price || 0),
-      expenseId: row.expense_id,
-      totalCost: Number(row.total_cost || 0),
-      comment: row.comment || "—",
-      proofUrl: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
-    }))),
+    dump: await Promise.all(
+      dump.rows.map(async (row) => ({
+        date: String(row.date).slice(0, 10),
+        category: row.category || "—",
+        item: row.item || "—",
+        survivor: row.survivor || "—",
+        price: Number(row.price || 0),
+        expenseId: row.expense_id,
+        totalCost: Number(row.total_cost || 0),
+        comment: row.comment || "—",
+        proofUrl: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+      })),
+    ),
   };
 }
 

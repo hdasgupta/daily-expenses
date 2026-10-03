@@ -31,8 +31,11 @@ function normalizePayload(data = {}, existing = null) {
   const definition = getDashboardDefinition(reportKey);
   if (!definition) throw error("Choose a valid dashboard report.");
 
-  const frequency = String(data.frequency ?? existing?.frequency ?? reportFrequency(reportKey)).trim();
-  if (!FREQUENCIES.has(frequency)) throw error("Choose daily, weekly, monthly, or yearly delivery.");
+  const frequency = String(
+    data.frequency ?? existing?.frequency ?? reportFrequency(reportKey),
+  ).trim();
+  if (!FREQUENCIES.has(frequency))
+    throw error("Choose daily, weekly, monthly, or yearly delivery.");
   if (frequency !== reportFrequency(reportKey)) {
     throw error("The delivery frequency must match the dashboard report period.");
   }
@@ -149,7 +152,18 @@ export async function createScheduledReportJob(data, user) {
        day_of_month, month_of_year, cron_expression, active)
      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
      RETURNING *`,
-    [config.name, user.id, config.reportKey, config.frequency, config.time, config.dayOfWeek, config.dayOfMonth, config.monthOfYear, config.cronExpression, data.active !== false],
+    [
+      config.name,
+      user.id,
+      config.reportKey,
+      config.frequency,
+      config.time,
+      config.dayOfWeek,
+      config.dayOfMonth,
+      config.monthOfYear,
+      config.cronExpression,
+      data.active !== false,
+    ],
   );
   return decorateJob(result.rows[0]);
 }
@@ -174,7 +188,18 @@ export async function updateScheduledReportJob(id, data, user) {
             updated_at = now()
       WHERE id = $10
       RETURNING *`,
-    [config.name, config.reportKey, config.frequency, config.time, config.dayOfWeek, config.dayOfMonth, config.monthOfYear, config.cronExpression, active, id],
+    [
+      config.name,
+      config.reportKey,
+      config.frequency,
+      config.time,
+      config.dayOfWeek,
+      config.dayOfMonth,
+      config.monthOfYear,
+      config.cronExpression,
+      active,
+      id,
+    ],
   );
   return decorateJob(result.rows[0]);
 }
@@ -182,7 +207,8 @@ export async function updateScheduledReportJob(id, data, user) {
 export async function deleteScheduledReportJob(id, user) {
   const existing = await getJob(id);
   if (!existing) throw error("Scheduled report not found.", 404);
-  if (!canManage(existing, user)) throw error("You can only remove your own scheduled reports.", 403);
+  if (!canManage(existing, user))
+    throw error("You can only remove your own scheduled reports.", 403);
   await q(`DELETE FROM public.scheduled_report_jobs WHERE id = $1`, [id]);
 }
 
@@ -222,7 +248,9 @@ function rawDumpSql(dateFrom, dateTo) {
 export async function buildScheduledReport(reportKey) {
   const summary = await runDashboardReport(reportKey, "summary");
   const rawResult = await runDashboardReport(reportKey, "drilldown");
-  const match = String(summary.rangeLabel || "").match(/^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/);
+  const match = String(summary.rangeLabel || "").match(
+    /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/,
+  );
   let dumpRows = rawResult.rows || [];
 
   if (match) {

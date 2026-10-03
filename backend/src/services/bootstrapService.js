@@ -46,8 +46,5 @@ export async function seedApplication() {
   // Existing users and their passwords/roles are preserved.
   const hash = await bcrypt.hash(env.adminPassword, 12);
 
-  await q(bootstrapSql.seedAdmin, [
-    env.adminEmail,
-    hash,
-  ]);
+  await q(bootstrapSql.seedAdmin, [env.adminEmail, hash]);
 }

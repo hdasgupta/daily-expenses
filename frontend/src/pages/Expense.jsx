@@ -47,13 +47,9 @@ function resolvedShares(totalCost, shares) {
     .filter((share) => share.shareType === "fixed")
     .reduce((sum, share) => sum + Number(share.amount || 0), 0);
 
-  const average = shares.filter(
-    (share) => share.shareType === "average",
-  );
+  const average = shares.filter((share) => share.shareType === "average");
 
-  const remaining = shares.find(
-    (share) => share.shareType === "remaining",
-  );
+  const remaining = shares.find((share) => share.shareType === "remaining");
 
   let left = Math.round((total - fixed) * 100) / 100;
 
@@ -73,8 +69,7 @@ function resolvedShares(totalCost, shares) {
     const extraCents = cents % average.length;
 
     average.forEach((share, index) => {
-      values[share.survivorId] =
-        (baseCents + (index < extraCents ? 1 : 0)) / 100;
+      values[share.survivorId] = (baseCents + (index < extraCents ? 1 : 0)) / 100;
     });
 
     left = 0;
@@ -93,9 +88,7 @@ function resolvedShares(totalCost, shares) {
 
   const hasDynamic = average.length || Boolean(remaining);
 
-  const valid =
-    Math.abs(left) < 0.01 &&
-    (hasDynamic || Math.abs(fixed - total) < 0.01);
+  const valid = Math.abs(left) < 0.01 && (hasDynamic || Math.abs(fixed - total) < 0.01);
 
   return {
     values,
@@ -132,18 +125,17 @@ export default function Expense() {
   );
 
   const loadMeta = async () => {
-    const [categoryData, unitData, survivorData] =
-      await Promise.all([
-        api("/meta/categories", {
-          loadingMessage: "Loading expense categories…",
-        }),
-        api("/meta/units", {
-          loadingMessage: "Loading expense units…",
-        }),
-        api("/meta/survivors", {
-          loadingMessage: "Loading survivors…",
-        }),
-      ]);
+    const [categoryData, unitData, survivorData] = await Promise.all([
+      api("/meta/categories", {
+        loadingMessage: "Loading expense categories…",
+      }),
+      api("/meta/units", {
+        loadingMessage: "Loading expense units…",
+      }),
+      api("/meta/survivors", {
+        loadingMessage: "Loading survivors…",
+      }),
+    ]);
 
     /*
      * Metadata endpoints normally return arrays. Accept arrays as well as
@@ -161,30 +153,20 @@ export default function Expense() {
       return;
     }
 
-    const data = await api(
-      `/meta/items/${selectedCategory}`,
-      {
-        loadingMessage: "Loading items…",
-      },
-    );
+    const data = await api(`/meta/items/${selectedCategory}`, {
+      loadingMessage: "Loading items…",
+    });
 
     setItems(asArray(data));
   };
 
-  const loadExpenses = async (
-    requestedPage = page,
-    requestedDate = date,
-  ) => {
+  const loadExpenses = async (requestedPage = page, requestedDate = date) => {
     if (!pagination.ready) return;
 
     const result = await api(
-      `/expenses?date=${encodeURIComponent(
-        requestedDate,
-      )}&page=${requestedPage}&pageSize=${
+      `/expenses?date=${encodeURIComponent(requestedDate)}&page=${requestedPage}&pageSize=${
         pagination.pageSize
-      }&search=${encodeURIComponent(
-        pagination.search,
-      )}&sortColumn=${encodeURIComponent(
+      }&search=${encodeURIComponent(pagination.search)}&sortColumn=${encodeURIComponent(
         pagination.sortColumn || "expense_date",
       )}&sortDirection=${pagination.sortDirection}`,
       {
@@ -214,11 +196,7 @@ export default function Expense() {
 
   useEffect(() => {
     setPage(1);
-  }, [
-    date,
-    pagination.pageSize,
-    pagination.search,
-  ]);
+  }, [date, pagination.pageSize, pagination.search]);
 
   useEffect(() => {
     if (!form.categoryId) {
@@ -236,16 +214,9 @@ export default function Expense() {
     }));
 
   const addShare = () => {
-    const used = new Set(
-      form.shares.map((share) =>
-        String(share.survivorId),
-      ),
-    );
+    const used = new Set(form.shares.map((share) => String(share.survivorId)));
 
-    const available = survivors.find(
-      (survivor) =>
-        !used.has(String(survivor.id)),
-    );
+    const available = survivors.find((survivor) => !used.has(String(survivor.id)));
 
     if (!available) return;
 
@@ -262,24 +233,20 @@ export default function Expense() {
   const editShare = (index, key, value) =>
     updateField(
       "shares",
-      form.shares.map(
-        (share, currentIndex) =>
-          currentIndex === index
-            ? {
-                ...share,
-                [key]: value,
-              }
-            : share,
+      form.shares.map((share, currentIndex) =>
+        currentIndex === index
+          ? {
+              ...share,
+              [key]: value,
+            }
+          : share,
       ),
     );
 
   const removeShare = (index) =>
     updateField(
       "shares",
-      form.shares.filter(
-        (_, currentIndex) =>
-          currentIndex !== index,
-      ),
+      form.shares.filter((_, currentIndex) => currentIndex !== index),
     );
 
   const submit = async (event) => {
@@ -294,18 +261,11 @@ export default function Expense() {
     const payload = { ...form };
     delete payload.proofFile;
 
-    const result = await api(
-      editingId
-        ? `/expenses/${editingId}`
-        : "/expenses",
-      {
-        method: editingId ? "PUT" : "POST",
-        body: JSON.stringify(payload),
-        loadingMessage: editingId
-          ? "Updating expense…"
-          : "Adding expense…",
-      },
-    );
+    const result = await api(editingId ? `/expenses/${editingId}` : "/expenses", {
+      method: editingId ? "PUT" : "POST",
+      body: JSON.stringify(payload),
+      loadingMessage: editingId ? "Updating expense…" : "Adding expense…",
+    });
 
     const expenseId = result.id;
 
@@ -313,19 +273,14 @@ export default function Expense() {
       const data = new FormData();
       data.append("proof", form.proofFile);
 
-      await api(
-        `/expenses/${expenseId}/proof`,
-        {
-          method: "POST",
-          body: data,
-          loadingMessage: "Uploading proof…",
-        },
-      );
+      await api(`/expenses/${expenseId}/proof`, {
+        method: "POST",
+        body: data,
+        loadingMessage: "Uploading proof…",
+      });
     }
 
-    const savedDate = String(
-      payload.expenseDate,
-    );
+    const savedDate = String(payload.expenseDate);
 
     setEditingId(null);
     setDate(savedDate);
@@ -342,31 +297,19 @@ export default function Expense() {
     setForm({
       expenseDate: row.expense_date.slice(0, 10),
       categoryId: String(row.category_id),
-      itemId: row.item_id
-        ? String(row.item_id)
-        : row.other_item
-          ? OTHER_ITEM
-          : TOTAL_ITEM,
+      itemId: row.item_id ? String(row.item_id) : row.other_item ? OTHER_ITEM : TOTAL_ITEM,
       otherItem: row.other_item || "",
       quantity: row.quantity ?? "",
-      unitId: row.unit_id
-        ? String(row.unit_id)
-        : "",
+      unitId: row.unit_id ? String(row.unit_id) : "",
       totalCost: row.total_cost,
-      expenseType:
-        row.expense_type || "cash",
+      expenseType: row.expense_type || "cash",
       comment: row.comment || "",
       proofFile: null,
       shares: Array.isArray(row.shares)
         ? row.shares.map((share) => ({
-            survivorId: String(
-              share.survivorId,
-            ),
+            survivorId: String(share.survivorId),
             shareType: share.shareType,
-            amount:
-              share.shareType === "fixed"
-                ? share.amount
-                : "",
+            amount: share.shareType === "fixed" ? share.amount : "",
           }))
         : [],
     });
@@ -395,14 +338,11 @@ export default function Expense() {
     const data = new FormData();
     data.append("proof", proofFile);
 
-    await api(
-      `/expenses/${proofExpense.id}/proof`,
-      {
-        method: "POST",
-        body: data,
-        loadingMessage: "Uploading proof…",
-      },
-    );
+    await api(`/expenses/${proofExpense.id}/proof`, {
+      method: "POST",
+      body: data,
+      loadingMessage: "Uploading proof…",
+    });
 
     setProofFile(null);
     setProofExpense(null);
@@ -411,12 +351,9 @@ export default function Expense() {
   };
 
   const openProof = async (row) => {
-    const result = await api(
-      `/expenses/${row.id}/proof-url`,
-      {
-        loadingMessage: "Opening proof…",
-      },
-    );
+    const result = await api(`/expenses/${row.id}/proof-url`, {
+      loadingMessage: "Opening proof…",
+    });
 
     setProofViewerUrl(result.url || "");
   };
@@ -426,20 +363,12 @@ export default function Expense() {
       <div className="page-heading">
         <div>
           <h1>Add Expenses</h1>
-          <p>
-            Record an expense and allocate its
-            cost across survivors.
-          </p>
+          <p>Record an expense and allocate its cost across survivors.</p>
         </div>
       </div>
 
-      <form
-        className="card form-stack"
-        onSubmit={submit}
-      >
-        <div className="section-label">
-          Expense details
-        </div>
+      <form className="card form-stack" onSubmit={submit}>
+        <div className="section-label">Expense details</div>
 
         <label>
           Date of expense
@@ -449,10 +378,7 @@ export default function Expense() {
             value={form.expenseDate}
             onChange={(e) => {
               setDate(e.target.value);
-              updateField(
-                "expenseDate",
-                e.target.value,
-              );
+              updateField("expenseDate", e.target.value);
             }}
             required
           />
@@ -464,29 +390,15 @@ export default function Expense() {
             value={form.categoryId}
             required
             onChange={(e) => {
-              updateField(
-                "categoryId",
-                e.target.value,
-              );
-              updateField(
-                "itemId",
-                TOTAL_ITEM,
-              );
-              updateField(
-                "otherItem",
-                "",
-              );
+              updateField("categoryId", e.target.value);
+              updateField("itemId", TOTAL_ITEM);
+              updateField("otherItem", "");
             }}
           >
-            <option value="">
-              Select category
-            </option>
+            <option value="">Select category</option>
 
             {categories.map((category) => (
-              <option
-                key={category.id}
-                value={category.id}
-              >
+              <option key={category.id} value={category.id}>
                 {category.name}
               </option>
             ))}
@@ -498,38 +410,23 @@ export default function Expense() {
           <select
             value={form.itemId}
             onChange={(e) => {
-              updateField(
-                "itemId",
-                e.target.value,
-              );
+              updateField("itemId", e.target.value);
 
-              if (
-                e.target.value !== OTHER_ITEM
-              ) {
-                updateField(
-                  "otherItem",
-                  "",
-                );
+              if (e.target.value !== OTHER_ITEM) {
+                updateField("otherItem", "");
               }
             }}
             disabled={!form.categoryId}
           >
-            <option value={TOTAL_ITEM}>
-              Total
-            </option>
+            <option value={TOTAL_ITEM}>Total</option>
 
             {items.map((item) => (
-              <option
-                key={item.id}
-                value={item.id}
-              >
+              <option key={item.id} value={item.id}>
                 {item.name}
               </option>
             ))}
 
-            <option value={OTHER_ITEM}>
-              Other
-            </option>
+            <option value={OTHER_ITEM}>Other</option>
           </select>
         </label>
 
@@ -539,12 +436,7 @@ export default function Expense() {
             <input
               required
               value={form.otherItem}
-              onChange={(e) =>
-                updateField(
-                  "otherItem",
-                  e.target.value,
-                )
-              }
+              onChange={(e) => updateField("otherItem", e.target.value)}
             />
           </label>
         ) : null}
@@ -556,35 +448,17 @@ export default function Expense() {
             min="0"
             step="0.0001"
             value={form.quantity}
-            onChange={(e) =>
-              updateField(
-                "quantity",
-                e.target.value,
-              )
-            }
+            onChange={(e) => updateField("quantity", e.target.value)}
           />
         </label>
 
         <label>
           Unit
-          <select
-            value={form.unitId}
-            onChange={(e) =>
-              updateField(
-                "unitId",
-                e.target.value,
-              )
-            }
-          >
-            <option value="">
-              No unit
-            </option>
+          <select value={form.unitId} onChange={(e) => updateField("unitId", e.target.value)}>
+            <option value="">No unit</option>
 
             {units.map((unit) => (
-              <option
-                key={unit.id}
-                value={unit.id}
-              >
+              <option key={unit.id} value={unit.id}>
                 {unit.name}
               </option>
             ))}
@@ -599,12 +473,7 @@ export default function Expense() {
             min="0"
             step="0.01"
             value={form.totalCost}
-            onChange={(e) =>
-              updateField(
-                "totalCost",
-                e.target.value,
-              )
-            }
+            onChange={(e) => updateField("totalCost", e.target.value)}
           />
         </label>
 
@@ -612,19 +481,10 @@ export default function Expense() {
           Expense type
           <select
             value={form.expenseType}
-            onChange={(e) =>
-              updateField(
-                "expenseType",
-                e.target.value,
-              )
-            }
+            onChange={(e) => updateField("expenseType", e.target.value)}
           >
-            <option value="cash">
-              Cash
-            </option>
-            <option value="online">
-              Online
-            </option>
+            <option value="cash">Cash</option>
+            <option value="online">Online</option>
           </select>
         </label>
 
@@ -633,12 +493,7 @@ export default function Expense() {
           <textarea
             rows="3"
             value={form.comment}
-            onChange={(e) =>
-              updateField(
-                "comment",
-                e.target.value,
-              )
-            }
+            onChange={(e) => updateField("comment", e.target.value)}
           />
         </label>
 
@@ -647,203 +502,105 @@ export default function Expense() {
           <input
             type="file"
             accept="application/pdf,image/png,image/jpeg"
-            onChange={(e) =>
-              updateField(
-                "proofFile",
-                e.target.files?.[0] ||
-                  null,
-              )
-            }
+            onChange={(e) => updateField("proofFile", e.target.files?.[0] || null)}
           />
-
           <small className="field-note">
-            Images are converted to PDF before
-            S3-compatible storage upload.
+            Images are converted to PDF before S3-compatible storage upload.
           </small>
         </label>
 
         <div className="shares-panel">
           <div className="shares-heading">
             <div>
-              <strong>
-                Share of expense — mandatory
-              </strong>
+              <strong>Share of expense — mandatory</strong>
 
-              <span>
-                Fixed, average and remaining
-                shares are resolved against
-                total cost.
-              </span>
+              <span>Fixed, average and remaining shares are resolved against total cost.</span>
             </div>
 
             <button
               className="secondary"
               type="button"
               onClick={addShare}
-              disabled={
-                !survivors.length ||
-                form.shares.length >=
-                  survivors.length
-              }
+              disabled={!survivors.length || form.shares.length >= survivors.length}
             >
               <Plus size={17} /> Add survivor
             </button>
           </div>
 
-          {form.shares.map(
-            (share, index) => (
-              <div
-                className="share-row"
-                key={`${share.survivorId}-${index}`}
-              >
-                <label>
-                  Survivor
-
-                  <select
-                    required
-                    value={
-                      share.survivorId
-                    }
-                    onChange={(e) =>
-                      editShare(
-                        index,
-                        "survivorId",
-                        e.target.value,
-                      )
-                    }
-                  >
-                    {survivors.map(
-                      (survivor) => (
-                        <option
-                          key={
-                            survivor.id
-                          }
-                          value={
-                            survivor.id
-                          }
-                          disabled={form.shares.some(
-                            (
-                              other,
-                              otherIndex,
-                            ) =>
-                              otherIndex !==
-                                index &&
-                              String(
-                                other.survivorId,
-                              ) ===
-                                String(
-                                  survivor.id,
-                                ),
-                          )}
-                        >
-                          {
-                            survivor.full_name
-                          }
-                        </option>
-                      ),
-                    )}
-                  </select>
-                </label>
-
-                <label>
-                  Share type
-
-                  <select
-                    required
-                    value={
-                      share.shareType
-                    }
-                    onChange={(e) =>
-                      editShare(
-                        index,
-                        "shareType",
-                        e.target.value,
-                      )
-                    }
-                  >
-                    <option value="fixed">
-                      Fixed amount
-                    </option>
-                    <option value="average">
-                      Average amount
-                    </option>
-                    <option value="remaining">
-                      Remaining amount
-                    </option>
-                  </select>
-                </label>
-
-                <label>
-                  Share price
-
-                  <input
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    readOnly={
-                      share.shareType !==
-                      "fixed"
-                    }
-                    required={
-                      share.shareType ===
-                      "fixed"
-                    }
-                    value={
-                      share.shareType ===
-                      "fixed"
-                        ? share.amount
-                        : (shareCalculation
-                            .values[
-                            share.survivorId
-                          ] ?? "")
-                    }
-                    onChange={(e) =>
-                      editShare(
-                        index,
-                        "amount",
-                        e.target.value,
-                      )
-                    }
-                  />
-                </label>
-
-                <button
-                  className="icon-button danger-soft"
-                  type="button"
-                  title="Remove survivor share"
-                  onClick={() =>
-                    removeShare(index)
-                  }
+          {form.shares.map((share, index) => (
+            <div className="share-row" key={`${share.survivorId}-${index}`}>
+              <label>
+                Survivor
+                <select
+                  required
+                  value={share.survivorId}
+                  onChange={(e) => editShare(index, "survivorId", e.target.value)}
                 >
-                  <Trash2 size={17} />
-                </button>
-              </div>
-            ),
-          )}
+                  {survivors.map((survivor) => (
+                    <option
+                      key={survivor.id}
+                      value={survivor.id}
+                      disabled={form.shares.some(
+                        (other, otherIndex) =>
+                          otherIndex !== index && String(other.survivorId) === String(survivor.id),
+                      )}
+                    >
+                      {survivor.full_name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label>
+                Share type
+                <select
+                  required
+                  value={share.shareType}
+                  onChange={(e) => editShare(index, "shareType", e.target.value)}
+                >
+                  <option value="fixed">Fixed amount</option>
+                  <option value="average">Average amount</option>
+                  <option value="remaining">Remaining amount</option>
+                </select>
+              </label>
+
+              <label>
+                Share price
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  readOnly={share.shareType !== "fixed"}
+                  required={share.shareType === "fixed"}
+                  value={
+                    share.shareType === "fixed"
+                      ? share.amount
+                      : (shareCalculation.values[share.survivorId] ?? "")
+                  }
+                  onChange={(e) => editShare(index, "amount", e.target.value)}
+                />
+              </label>
+
+              <button
+                className="icon-button danger-soft"
+                type="button"
+                title="Remove survivor share"
+                onClick={() => removeShare(index)}
+              >
+                <Trash2 size={17} />
+              </button>
+            </div>
+          ))}
 
           {!form.shares.length ? (
             <div className="notice">
-              <X size={16} /> Add at least one
-              survivor share.
+              <X size={16} /> Add at least one survivor share.
             </div>
           ) : null}
 
-          {form.shares.length &&
-          form.totalCost ? (
-            <div
-              className={`share-result ${
-                shareCalculation.valid
-                  ? "valid"
-                  : "invalid"
-              }`}
-            >
-              <span>
-                {shareCalculation.valid ? (
-                  <Check size={16} />
-                ) : (
-                  <X size={16} />
-                )}
-              </span>
+          {form.shares.length && form.totalCost ? (
+            <div className={`share-result ${shareCalculation.valid ? "valid" : "invalid"}`}>
+              <span>{shareCalculation.valid ? <Check size={16} /> : <X size={16} />}</span>
 
               {shareCalculation.valid
                 ? "Share allocation matches total cost."
@@ -859,15 +616,10 @@ export default function Expense() {
         ) : null}
 
         <div className="form-actions">
-          <button
-            className="primary"
-            type="submit"
-          >
+          <button className="primary" type="submit">
             <UploadCloud size={18} />
 
-            {editingId
-              ? "Update expense"
-              : "Add expense"}
+            {editingId ? "Update expense" : "Add expense"}
           </button>
 
           <button
@@ -887,10 +639,7 @@ export default function Expense() {
       <div className="subheading">
         <div>
           <h2>Expenses for {date}</h2>
-          <p>
-            All expenses recorded for the
-            selected date.
-          </p>
+          <p>All expenses recorded for the selected date.</p>
         </div>
       </div>
 
@@ -925,56 +674,28 @@ export default function Expense() {
 
       <div className="list-stack">
         {rows.map((row) => (
-          <article
-            className="list-card expense-card"
-            key={row.id}
-          >
+          <article className="list-card expense-card" key={row.id}>
             <div className="list-main">
               <strong>
-                {formatExpenseDate(
-                  row.expense_date,
-                )}{" "}
-                · ₹
-                {Number(
-                  row.total_cost,
-                ).toFixed(2)}{" "}
-                · {row.category} ·{" "}
-                {row.item ||
-                  row.other_item ||
-                  "Total"}
+                {formatExpenseDate(row.expense_date)} · ₹{Number(row.total_cost).toFixed(2)} ·{" "}
+                {row.category} · {row.item || row.other_item || "Total"}
               </strong>
 
-              {row.quantity !== null &&
-              row.quantity !==
-                undefined &&
-              row.quantity !== "" ? (
+              {row.quantity !== null && row.quantity !== undefined && row.quantity !== "" ? (
                 <span>
                   {row.quantity}
-                  {row.unit
-                    ? ` ${row.unit}`
-                    : ""}
+                  {row.unit ? ` ${row.unit}` : ""}
                 </span>
               ) : null}
 
-              <span>
-                {row.comment ||
-                  "No comment"}
-              </span>
+              <span>{row.comment || "No comment"}</span>
 
               <span>
                 Shares:{" "}
-                {(
-                  Array.isArray(
-                    row.shares,
-                  )
-                    ? row.shares
-                    : []
-                )
+                {(Array.isArray(row.shares) ? row.shares : [])
                   .map(
                     (share) =>
-                      `${share.survivorName} ₹${Number(
-                        share.amount,
-                      ).toFixed(
+                      `${share.survivorName} ₹${Number(share.amount).toFixed(
                         2,
                       )} (${share.shareType})`,
                   )
@@ -986,9 +707,7 @@ export default function Expense() {
               <button
                 className="icon-button soft"
                 title="Update expense"
-                onClick={() =>
-                  beginEdit(row)
-                }
+                onClick={() => beginEdit(row)}
               >
                 <Edit3Icon />
               </button>
@@ -1008,9 +727,7 @@ export default function Expense() {
                 <button
                   className="icon-button soft"
                   title="Open proof"
-                  onClick={() =>
-                    openProof(row)
-                  }
+                  onClick={() => openProof(row)}
                 >
                   <Eye size={17} />
                 </button>
@@ -1019,9 +736,7 @@ export default function Expense() {
               <button
                 className="icon-button danger-soft"
                 title="Remove expense"
-                onClick={() =>
-                  setDeleteId(row.id)
-                }
+                onClick={() => setDeleteId(row.id)}
               >
                 <Trash2 size={17} />
               </button>
@@ -1030,10 +745,7 @@ export default function Expense() {
         ))}
 
         {!rows.length ? (
-          <div className="empty-card">
-            No expenses recorded for
-            this date.
-          </div>
+          <div className="empty-card">No expenses recorded for this date.</div>
         ) : null}
       </div>
 
@@ -1068,50 +780,28 @@ export default function Expense() {
 
       <Modal
         open={Boolean(proofExpense)}
-        title={`Upload proof for expense #${
-          proofExpense?.id || ""
-        }`}
-        onClose={() =>
-          setProofExpense(null)
-        }
+        title={`Upload proof for expense #${proofExpense?.id || ""}`}
+        onClose={() => setProofExpense(null)}
         footer={
           <>
-            <button
-              className="secondary"
-              onClick={() =>
-                setProofExpense(null)
-              }
-            >
+            <button className="secondary" onClick={() => setProofExpense(null)}>
               Cancel
             </button>
 
-            <button
-              className="primary"
-              form="proof-form"
-            >
+            <button className="primary" form="proof-form">
               Submit
             </button>
           </>
         }
       >
-        <form
-          id="proof-form"
-          className="form-stack"
-          onSubmit={submitProof}
-        >
+        <form id="proof-form" className="form-stack" onSubmit={submitProof}>
           <label>
             Proof file
-
             <input
               required
               type="file"
               accept="application/pdf,image/png,image/jpeg"
-              onChange={(e) =>
-                setProofFile(
-                  e.target.files?.[0] ||
-                    null,
-                )
-              }
+              onChange={(e) => setProofFile(e.target.files?.[0] || null)}
             />
           </label>
         </form>
@@ -1120,18 +810,14 @@ export default function Expense() {
       <ConfirmDialog
         open={Boolean(deleteId)}
         message="This will permanently remove the expense and its survivor shares."
-        onCancel={() =>
-          setDeleteId(null)
-        }
+        onCancel={() => setDeleteId(null)}
         onConfirm={remove}
       />
 
       <ProofViewer
         url={proofViewerUrl}
         title="Expense proof"
-        onClose={() =>
-          setProofViewerUrl("")
-        }
+        onClose={() => setProofViewerUrl("")}
       />
     </section>
   );

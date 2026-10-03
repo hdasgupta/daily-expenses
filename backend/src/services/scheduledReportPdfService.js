@@ -69,7 +69,9 @@ function pivotSummary(rows, groupBy) {
     }
     return 0;
   });
-  columnValues.sort((a, b) => compare({ [columnColumn]: a.value }, { [columnColumn]: b.value }, columnColumn));
+  columnValues.sort((a, b) =>
+    compare({ [columnColumn]: a.value }, { [columnColumn]: b.value }, columnColumn),
+  );
 
   return { rowColumns, columnColumn, columnValues, rows: pivotRows };
 }
@@ -98,10 +100,13 @@ function drawSimpleBarChart(doc, title, rows, groupBy) {
     doc.fillColor("#315f9f");
     doc.rect(x, y, barWidth, height).fill();
     doc.restore();
-    doc.fillColor("black").fontSize(6.5).text(rowLabel(row, groupBy), x - 8, baseline + 5, {
-      width: barWidth + 16,
-      align: "center",
-    });
+    doc
+      .fillColor("black")
+      .fontSize(6.5)
+      .text(rowLabel(row, groupBy), x - 8, baseline + 5, {
+        width: barWidth + 16,
+        align: "center",
+      });
     doc.fontSize(7).text(money(row.total), x - 8, y - 12, {
       width: barWidth + 16,
       align: "center",
@@ -126,7 +131,16 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
   const startX = doc.page.margins.left + 12;
   const max = Math.max(...pivot.rows.map((row) => row.total), 1);
   const barWidth = Math.max(20, Math.min(58, (usableWidth - 40) / pivot.rows.length - 12));
-  const palette = ["#315f9f", "#70ad47", "#ed7d31", "#8064a2", "#ffc000", "#5b9bd5", "#a5a5a5", "#4f81bd"];
+  const palette = [
+    "#315f9f",
+    "#70ad47",
+    "#ed7d31",
+    "#8064a2",
+    "#ffc000",
+    "#5b9bd5",
+    "#a5a5a5",
+    "#4f81bd",
+  ];
 
   pivot.rows.forEach((row, index) => {
     const x = startX + index * (barWidth + 11);
@@ -142,11 +156,16 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
       doc.rect(x, y, barWidth, height).fill();
       doc.restore();
     }
-    const label = pivot.rowColumns.map((column) => prettyValue(row.values[column], column)).join(" · ");
-    doc.fillColor("black").fontSize(5.8).text(label, x - 5, baseline + 5, {
-      width: barWidth + 10,
-      align: "center",
-    });
+    const label = pivot.rowColumns
+      .map((column) => prettyValue(row.values[column], column))
+      .join(" · ");
+    doc
+      .fillColor("black")
+      .fontSize(5.8)
+      .text(label, x - 5, baseline + 5, {
+        width: barWidth + 10,
+        align: "center",
+      });
   });
 
   let legendX = startX;
@@ -161,9 +180,12 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
     doc.fillColor(palette[index % palette.length]);
     doc.rect(legendX, legendY, 8, 8).fill();
     doc.restore();
-    doc.fillColor("black").fontSize(7).text(text, legendX + 11, legendY - 1, {
-      width: labelWidth - 11,
-    });
+    doc
+      .fillColor("black")
+      .fontSize(7)
+      .text(text, legendX + 11, legendY - 1, {
+        width: labelWidth - 11,
+      });
     legendX += labelWidth;
   });
   doc.y = legendY + 19;
@@ -202,7 +224,10 @@ function drawTable(doc, columns, rows, widths = null) {
     doc.y = y + height;
   };
 
-  drawRow(Object.fromEntries(columns.map((column) => [column, column.replace(/_/g, " ").toUpperCase()])), true);
+  drawRow(
+    Object.fromEntries(columns.map((column) => [column, column.replace(/_/g, " ").toUpperCase()])),
+    true,
+  );
   rows.forEach((row, index) => drawRow(row, false, index));
 }
 
@@ -214,9 +239,7 @@ function drawPivotTable(doc, pivot) {
   const dataColumnCount = valueColumns.length + 1;
   const dataWidth = (usableWidth - firstWidth) / Math.max(dataColumnCount, 1);
   const widths = [
-    ...pivot.rowColumns.map((_, index) =>
-      index === 0 ? firstWidth : Math.min(100, dataWidth),
-    ),
+    ...pivot.rowColumns.map((_, index) => (index === 0 ? firstWidth : Math.min(100, dataWidth))),
     ...Array.from({ length: dataColumnCount }, () => dataWidth),
   ];
 
@@ -297,7 +320,10 @@ function normaliseRawRows(rows) {
     item: row.item,
     share: row.shares.length
       ? row.shares
-          .map((share) => `${share.name}: ${money(share.amount)}${row.totalCost ? ` (${((share.amount / row.totalCost) * 100).toFixed(2)}%)` : ""}`)
+          .map(
+            (share) =>
+              `${share.name}: ${money(share.amount)}${row.totalCost ? ` (${((share.amount / row.totalCost) * 100).toFixed(2)}%)` : ""}`,
+          )
           .join(", ")
       : "No survivor share recorded",
     total: money(row.totalCost),
@@ -338,7 +364,9 @@ export function buildScheduledReportPdf({ summary, raw, generatedAt }) {
         doc,
         [...groupBy, "total"],
         (summary.rows || []).map((row) => ({
-          ...Object.fromEntries(groupBy.map((column) => [column, prettyValue(row[column], column)])),
+          ...Object.fromEntries(
+            groupBy.map((column) => [column, prettyValue(row[column], column)]),
+          ),
           total: money(row.total),
         })),
       );
@@ -346,11 +374,19 @@ export function buildScheduledReportPdf({ summary, raw, generatedAt }) {
 
     doc.addPage();
     doc.fontSize(14).text("3. Raw expense data for the report period");
-    doc.fontSize(9).fillColor("#555").text(
-      "Each expense is kept as one row. Survivor shares are combined into the Share column and proof links are clickable.",
-    );
+    doc
+      .fontSize(9)
+      .fillColor("#555")
+      .text(
+        "Each expense is kept as one row. Survivor shares are combined into the Share column and proof links are clickable.",
+      );
     doc.fillColor("black").moveDown(0.4);
-    drawTable(doc, ["date", "category", "item", "share", "total", "comment", "proof"], normaliseRawRows(raw), [55, 80, 85, 150, 58, 95, 58]);
+    drawTable(
+      doc,
+      ["date", "category", "item", "share", "total", "comment", "proof"],
+      normaliseRawRows(raw),
+      [55, 80, 85, 150, 58, 95, 58],
+    );
     doc.end();
   });
 }

@@ -1,10 +1,17 @@
 import PDFDocument from "pdfkit";
 
-function money(value) { return `₹${Number(value || 0).toFixed(2)}`; }
+function money(value) {
+  return `₹${Number(value || 0).toFixed(2)}`;
+}
 function dateLabel(value) {
   const date = new Date(`${String(value).slice(0, 10)}T00:00:00Z`);
   if (Number.isNaN(date.getTime())) return String(value);
-  return new Intl.DateTimeFormat("en-IN", { timeZone: "UTC", day: "2-digit", month: "short", year: "numeric" }).format(date);
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "UTC",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
 }
 function pivotSurvivorRows(rows, periodKey, periods = []) {
   const survivors = [...new Set(rows.map((row) => row.survivor || "Unknown"))].sort();
@@ -23,14 +30,22 @@ function drawBarChart(doc, data) {
   const baseline = doc.y + chartHeight;
   const max = Math.max(...data.map((item) => Number(item.total) || 0), 1);
   const barWidth = Math.max(28, Math.min(58, (width - 30) / Math.max(data.length, 1) - 10));
-  if (!data.length) { doc.fontSize(10).text("No expense data for this period."); return; }
+  if (!data.length) {
+    doc.fontSize(10).text("No expense data for this period.");
+    return;
+  }
   data.forEach((item, index) => {
     const height = (Number(item.total) / max) * (chartHeight - 35);
     const x = startX + index * (barWidth + 10);
     const y = baseline - height;
     doc.rect(x, y, barWidth, height).fill();
-    doc.fillColor("black").fontSize(6.5).text(dateLabel(item.date), x - 5, baseline + 5, { width: barWidth + 10, align: "center" });
-    doc.fontSize(7).text(money(item.total), x - 8, y - 12, { width: barWidth + 16, align: "center" });
+    doc
+      .fillColor("black")
+      .fontSize(6.5)
+      .text(dateLabel(item.date), x - 5, baseline + 5, { width: barWidth + 10, align: "center" });
+    doc
+      .fontSize(7)
+      .text(money(item.total), x - 8, y - 12, { width: barWidth + 16, align: "center" });
   });
   doc.y = baseline + 28;
 }
@@ -39,26 +54,66 @@ function drawSurvivorBarChart(doc, rows, periodKey, survivors, labelFormatter) {
   const chartHeight = 175;
   const startX = doc.page.margins.left + 12;
   const baseline = doc.y + chartHeight;
-  const max = Math.max(...rows.map((row) => survivors.reduce((sum, survivor) => sum + Number(row[survivor] || 0), 0)), 1);
+  const max = Math.max(
+    ...rows.map((row) => survivors.reduce((sum, survivor) => sum + Number(row[survivor] || 0), 0)),
+    1,
+  );
   const barWidth = Math.max(18, Math.min(42, (width - 20) / Math.max(rows.length, 1) - 8));
-  const palette = ["#315f9f", "#4f81bd", "#70ad47", "#ed7d31", "#a5a5a5", "#8064a2", "#ffc000", "#5b9bd5"];
-  if (!rows.length || !survivors.length) { doc.fontSize(10).text("No survivor data for this period."); return; }
+  const palette = [
+    "#315f9f",
+    "#4f81bd",
+    "#70ad47",
+    "#ed7d31",
+    "#a5a5a5",
+    "#8064a2",
+    "#ffc000",
+    "#5b9bd5",
+  ];
+  if (!rows.length || !survivors.length) {
+    doc.fontSize(10).text("No survivor data for this period.");
+    return;
+  }
   rows.forEach((row, index) => {
     const x = startX + index * (barWidth + 8);
     let y = baseline;
     for (let i = 0; i < survivors.length; i += 1) {
       const height = (Number(row[survivors[i]] || 0) / max) * (chartHeight - 45);
-      if (height > 0) { y -= height; doc.save(); doc.fillColor(palette[i % palette.length]); doc.rect(x, y, barWidth, height).fill(); doc.restore(); }
+      if (height > 0) {
+        y -= height;
+        doc.save();
+        doc.fillColor(palette[i % palette.length]);
+        doc.rect(x, y, barWidth, height).fill();
+        doc.restore();
+      }
     }
-    doc.fillColor("black").fontSize(5.5).text(labelFormatter(row[periodKey]), x - 5, baseline + 5, { width: barWidth + 10, align: "center" });
+    doc
+      .fillColor("black")
+      .fontSize(5.5)
+      .text(labelFormatter(row[periodKey]), x - 5, baseline + 5, {
+        width: barWidth + 10,
+        align: "center",
+      });
   });
   const legendY = baseline + 25;
   let legendX = startX;
   survivors.forEach((survivor, i) => {
-    const labelWidth = Math.min(100, Math.max(45, doc.widthOfString(survivor, { fontSize: 7 }) + 16));
-    if (legendX + labelWidth > doc.page.width - doc.page.margins.right) { legendX = startX; }
-    doc.save(); doc.fillColor(palette[i % palette.length]).rect(legendX, legendY, 8, 8).fill(); doc.restore();
-    doc.fillColor("black").fontSize(7).text(survivor, legendX + 11, legendY - 1, { width: labelWidth - 11 });
+    const labelWidth = Math.min(
+      100,
+      Math.max(45, doc.widthOfString(survivor, { fontSize: 7 }) + 16),
+    );
+    if (legendX + labelWidth > doc.page.width - doc.page.margins.right) {
+      legendX = startX;
+    }
+    doc.save();
+    doc
+      .fillColor(palette[i % palette.length])
+      .rect(legendX, legendY, 8, 8)
+      .fill();
+    doc.restore();
+    doc
+      .fillColor("black")
+      .fontSize(7)
+      .text(survivor, legendX + 11, legendY - 1, { width: labelWidth - 11 });
     legendX += labelWidth;
   });
   doc.y = legendY + 18;
@@ -69,14 +124,27 @@ function drawTable(doc, columns, rows, widths = null) {
   const drawRow = (values, header = false, index = 0) => {
     const height = header ? 25 : 28;
     if (doc.y + height > doc.page.height - doc.page.margins.bottom) doc.addPage();
-    const y = doc.y; let x = doc.page.margins.left;
+    const y = doc.y;
+    let x = doc.page.margins.left;
     columns.forEach((column, i) => {
       const width = columnWidths[i];
-      doc.save(); doc.fillColor(header ? "#315f9f" : index % 2 ? "#ffffff" : "#eef4fb"); doc.rect(x, y, width, height).fill(); doc.restore();
+      doc.save();
+      doc.fillColor(header ? "#315f9f" : index % 2 ? "#ffffff" : "#eef4fb");
+      doc.rect(x, y, width, height).fill();
+      doc.restore();
       doc.strokeColor("#b8c7da").rect(x, y, width, height).stroke();
       const proof = !header && column === "proof" && values[column];
-      doc.fillColor(header ? "#ffffff" : proof ? "#2563eb" : "#1f2937").fontSize(header ? 7 : 6).font(header ? "Helvetica-Bold" : "Helvetica")
-        .text(proof ? "Download Proof" : String(values[column] ?? "—"), x + 3, y + 5, { width: width - 6, height: height - 7, ellipsis: true, link: proof ? String(values[column]) : undefined, underline: Boolean(proof) });
+      doc
+        .fillColor(header ? "#ffffff" : proof ? "#2563eb" : "#1f2937")
+        .fontSize(header ? 7 : 6)
+        .font(header ? "Helvetica-Bold" : "Helvetica")
+        .text(proof ? "Download Proof" : String(values[column] ?? "—"), x + 3, y + 5, {
+          width: width - 6,
+          height: height - 7,
+          ellipsis: true,
+          link: proof ? String(values[column]) : undefined,
+          underline: Boolean(proof),
+        });
       x += width;
     });
     doc.y = y + height;
@@ -88,7 +156,15 @@ function drawPivotTable(doc, rows, survivors) {
   const columns = ["date", ...survivors];
   const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
   const first = 75;
-  drawTable(doc, columns, rows.map((row) => ({ date: dateLabel(row.period), ...Object.fromEntries(survivors.map((s) => [s, money(row[s])])) })), [first, ...survivors.map(() => (usableWidth - first) / Math.max(survivors.length, 1))]);
+  drawTable(
+    doc,
+    columns,
+    rows.map((row) => ({
+      date: dateLabel(row.period),
+      ...Object.fromEntries(survivors.map((s) => [s, money(row[s])])),
+    })),
+    [first, ...survivors.map(() => (usableWidth - first) / Math.max(survivors.length, 1))],
+  );
 }
 function uiShareDumpRows(rows) {
   const map = new Map();
@@ -96,28 +172,74 @@ function uiShareDumpRows(rows) {
     const key = row.expenseId ?? `${row.date}|${row.category}|${row.item}|${row.comment}`;
     if (!map.has(key)) map.set(key, { ...row, shares: [] });
     const target = map.get(key);
-    if (row.survivor && row.survivor !== "—") target.shares.push({ name: row.survivor, amount: Number(row.price || 0) });
+    if (row.survivor && row.survivor !== "—")
+      target.shares.push({ name: row.survivor, amount: Number(row.price || 0) });
   }
   return [...map.values()].map((row) => {
     const total = Number(row.totalCost || row.shares.reduce((sum, item) => sum + item.amount, 0));
-    const share = row.shares.length ? row.shares.map((item) => `${item.name}: ₹${item.amount.toFixed(2)}${total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""}`).join(", ") : "No survivor share recorded";
+    const share = row.shares.length
+      ? row.shares
+          .map(
+            (item) =>
+              `${item.name}: ₹${item.amount.toFixed(2)}${total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""}`,
+          )
+          .join(", ")
+      : "No survivor share recorded";
     return { ...row, share };
   });
 }
 export function buildDailyEmailReportPdf(report) {
   return new Promise((resolve, reject) => {
-    const doc = new PDFDocument({ size: "A4", margin: 36, layout: "landscape" }); const chunks = [];
-    doc.on("data", (chunk) => chunks.push(chunk)); doc.on("end", () => resolve(Buffer.concat(chunks))); doc.on("error", reject);
+    const doc = new PDFDocument({ size: "A4", margin: 36, layout: "landscape" });
+    const chunks = [];
+    doc.on("data", (chunk) => chunks.push(chunk));
+    doc.on("end", () => resolve(Buffer.concat(chunks)));
+    doc.on("error", reject);
     doc.fontSize(20).text("Rehabilitation Center Expense - 7 Day Report");
-    doc.fontSize(9).fillColor("#555").text(`Generated: ${report.generatedAt}`); doc.fillColor("black").moveDown();
-    doc.fontSize(14).text("1. Seven-day daily expense bar chart"); doc.moveDown(0.4); drawBarChart(doc, report.dailySummary);
-    doc.moveDown(); doc.fontSize(14).text("2. Seven-day daily summary"); doc.moveDown(0.4);
-    drawTable(doc, ["date", "total", "expense_count"], report.dailySummary.map((r) => ({ date: dateLabel(r.date), total: money(r.total), expense_count: r.expenseCount })));
-    doc.addPage(); doc.fontSize(14).text("3. Seven-day group by survivor pivot"); doc.moveDown(0.4);
-    const pivot = pivotSurvivorRows(report.survivorSummary.map((r) => ({ ...r, period: r.date })), "period", report.dailySummary.map((r) => r.date));
-    drawSurvivorBarChart(doc, pivot.rows, "period", pivot.survivors, dateLabel); doc.moveDown(0.5); drawPivotTable(doc, pivot.rows, pivot.survivors);
-    doc.addPage(); doc.fontSize(14).text("4. Expense data dump - last 7 completed days"); doc.moveDown(0.4);
-    drawTable(doc, ["date", "category", "item", "share", "comment", "proof"], uiShareDumpRows(report.dump).map((r) => ({ date: dateLabel(r.date), category: r.category, item: r.item, share: r.share, comment: r.comment, proof: r.proofUrl })), [55, 85, 100, 135, 75, 60]);
+    doc.fontSize(9).fillColor("#555").text(`Generated: ${report.generatedAt}`);
+    doc.fillColor("black").moveDown();
+    doc.fontSize(14).text("1. Seven-day daily expense bar chart");
+    doc.moveDown(0.4);
+    drawBarChart(doc, report.dailySummary);
+    doc.moveDown();
+    doc.fontSize(14).text("2. Seven-day daily summary");
+    doc.moveDown(0.4);
+    drawTable(
+      doc,
+      ["date", "total", "expense_count"],
+      report.dailySummary.map((r) => ({
+        date: dateLabel(r.date),
+        total: money(r.total),
+        expense_count: r.expenseCount,
+      })),
+    );
+    doc.addPage();
+    doc.fontSize(14).text("3. Seven-day group by survivor pivot");
+    doc.moveDown(0.4);
+    const pivot = pivotSurvivorRows(
+      report.survivorSummary.map((r) => ({ ...r, period: r.date })),
+      "period",
+      report.dailySummary.map((r) => r.date),
+    );
+    drawSurvivorBarChart(doc, pivot.rows, "period", pivot.survivors, dateLabel);
+    doc.moveDown(0.5);
+    drawPivotTable(doc, pivot.rows, pivot.survivors);
+    doc.addPage();
+    doc.fontSize(14).text("4. Expense data dump - last 7 completed days");
+    doc.moveDown(0.4);
+    drawTable(
+      doc,
+      ["date", "category", "item", "share", "comment", "proof"],
+      uiShareDumpRows(report.dump).map((r) => ({
+        date: dateLabel(r.date),
+        category: r.category,
+        item: r.item,
+        share: r.share,
+        comment: r.comment,
+        proof: r.proofUrl,
+      })),
+      [55, 85, 100, 135, 75, 60],
+    );
     doc.end();
   });
 }
