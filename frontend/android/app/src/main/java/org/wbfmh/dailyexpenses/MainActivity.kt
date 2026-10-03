@@ -1,7 +1,6 @@
 package org.wbfmh.dailyexpenses
 
 import android.os.Bundle
-import android.webkit.WebView
 import com.getcapacitor.BridgeActivity
 
 class MainActivity : BridgeActivity() {
@@ -11,19 +10,21 @@ class MainActivity : BridgeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bridge.webView?.let { webView ->
-            credentialVault = CredentialVault(
-                activity = this,
-                webView = webView,
-            )
+        val webView = bridge.webView ?: return
 
-            webView.settings.javaScriptEnabled = true
+        val vault = CredentialVault(
+            activity = this,
+            webView = webView,
+        )
 
-            webView.addJavascriptInterface(
-                credentialVault,
-                "DailyExpensesCredentialVault",
-            )
-        }
+        credentialVault = vault
+
+        webView.settings.javaScriptEnabled = true
+
+        webView.addJavascriptInterface(
+            vault,
+            "DailyExpensesCredentialVault",
+        )
     }
 
     override fun onDestroy() {
