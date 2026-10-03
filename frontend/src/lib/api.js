@@ -66,7 +66,7 @@ async function fetchWithTransientRetry(url, fetchOptions, path, options) {
 export async function api(path, options = {}) {
   const token = localStorage.getItem("token");
   const isFormData = options.body instanceof FormData;
-  const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const clientTimezone = getIndiaTimezone();
   const headers = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
     "X-App-Timezone": clientTimezone,
@@ -129,4 +129,28 @@ export async function api(path, options = {}) {
 
 export function assetUrl(path) {
   return `${baseUrl}${path}`;
+}
+
+function getIndiaTimezone() {
+  try {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    if (
+      timezone === "Asia/Kolkata" ||
+      timezone === "Asia/Calcutta"
+    ) {
+      return "Asia/Kolkata";
+    }
+
+    const offset = -new Date().getTimezoneOffset();
+
+    // India Standard Time = UTC+05:30
+    if (offset === 330) {
+      return "Asia/Kolkata";
+    }
+
+    return timezone || "Asia/Kolkata";
+  } catch {
+    return "Asia/Kolkata";
+  }
 }
