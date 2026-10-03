@@ -14,14 +14,14 @@ export const reportSql = {
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.id AS survivor_id,
-      s.full_name AS survivor,
-      es.amount AS report_amount,
-      ARRAY[s.id]::bigint[] AS survivor_ids
+      COALESCE(s.full_name, 'Unassigned') AS survivor,
+      COALESCE(es.amount, e.total_cost) AS report_amount,
+      CASE WHEN s.id IS NULL THEN ARRAY[]::bigint[] ELSE ARRAY[s.id]::bigint[] END AS survivor_ids
     FROM public.expenses e
     JOIN public.categories c ON c.id = e.category_id
     LEFT JOIN public.items i ON i.id = e.item_id
-    JOIN public.expense_shares es ON es.expense_id = e.id
-    JOIN public.survivors s ON s.id = es.survivor_id
+    LEFT JOIN public.expense_shares es ON es.expense_id = e.id
+    LEFT JOIN public.survivors s ON s.id = es.survivor_id
   )`,
   sourcePerExpense: `expense_source AS (
     SELECT
@@ -59,26 +59,6 @@ export const reportSql = {
     `WITH ${cte} SELECT ${amount} AS total FROM expense_source ${where}`,
   grouped: (cte, select, where, groupBy, orderSql) =>
     `WITH ${cte} SELECT ${select} FROM expense_source ${where} GROUP BY ${groupBy}${orderSql ? ` ORDER BY ${orderSql}` : ""} LIMIT 5000`,
-  groupedOrder: (groupBy, sortColumns, amountExpression = "SUM(report_amount)") => {
-    const groups = Array.isArray(groupBy) ? groupBy : [];
-    const positions = new Map(groups.map((column, index) => [column, index + 1]));
-    const allowed = new Set(["date", "week", "month", "year", "category", "item", "survivor", "price"]);
-    const chosen = Array.isArray(sortColumns) && sortColumns.length ? sortColumns : [];
-    const parts = chosen
-      .filter((entry) => allowed.has(entry?.column) && (entry?.column === "price" || reportSql.groupExpr[entry.column]))
-      .map((entry) => {
-        let expression;
-        if (positions.has(entry.column)) {
-          expression = String(positions.get(entry.column));
-        } else if (entry.column === "price") {
-          expression = amountExpression;
-        } else {
-          expression = `MIN(${reportSql.groupExpr[entry.column]})`;
-        }
-        return reportSql.order(expression, entry.direction === "desc" ? "DESC" : "ASC");
-      });
-    return parts.length ? parts.join(", ") : groups.map((_, index) => String(index + 1)).join(", ");
-  },
   filterDate: (alias, index) => `${alias}.expense_date = $${index}`,
   filterFrom: (alias, index) => `${alias}.expense_date >= $${index}`,
   filterTo: (alias, index) => `${alias}.expense_date <= $${index}`,
