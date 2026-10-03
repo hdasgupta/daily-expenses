@@ -568,7 +568,7 @@ export default function DashboardDetail({
               <CalendarClock
                 size={17}
               />
-              Cron jobs
+              Jobs
             </button>
           ) : null}
 
