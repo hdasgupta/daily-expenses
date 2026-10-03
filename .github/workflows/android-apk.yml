@@ -184,5 +184,3 @@ jobs:
         with:
           name: daily-expenses-release-apk-${{ env.VERSION_NAME }}
           path: frontend/android/app/build/outputs/apk/release/*.apk
-
-
