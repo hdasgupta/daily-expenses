@@ -90,7 +90,7 @@ async function runMonthlyEmailReport() {
 
 async function catchUpMissedEmailReports() {
   const dailyLocal = getLocalDateParts(env.dailyEmailReportTimezone);
-  if (Number(dailyLocal.hour) > 10 || (Number(dailyLocal.hour) === 10 && Number(dailyLocal.minute) >= 45)) {
+  if (Number(dailyLocal.hour) > 10 || (Number(dailyLocal.hour) === 10 && Number(dailyLocal.minute) >= 10)) {
     try {
       await runDailyEmailReport();
     } catch (error) {
