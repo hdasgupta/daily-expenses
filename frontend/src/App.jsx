@@ -18,10 +18,22 @@ import JobStatus from "./pages/JobStatus";
 import { api } from "./lib/api";
 
 const routes = {
-  "/add-expense": { component: Expense, permission: "add-expense" },
-  "/add-survivor": { component: Survivors, permission: "add-survivor" },
-  "/add-item": { component: CategoriesItems, permission: "add-item" },
-  "/add-unit": { component: Units, permission: "add-unit" },
+  "/add-expense": {
+    component: Expense,
+    permission: "add-expense",
+  },
+  "/add-survivor": {
+    component: Survivors,
+    permission: "add-survivor",
+  },
+  "/add-item": {
+    component: CategoriesItems,
+    permission: "add-item",
+  },
+  "/add-unit": {
+    component: Units,
+    permission: "add-unit",
+  },
   "/bulk-upload-expenses": {
     component: BulkUpload,
     permission: "bulk-upload-expenses",
@@ -32,10 +44,46 @@ const routes = {
     permission: "bulk-upload-categories-items",
     type: "categories-items",
   },
-  "/report": { component: Reports, permission: "report" },
-  "/dashboard": { component: Dashboard, permission: "dashboard" },
-  "/add-user": { component: Users, permission: "add-user" },
-  "/job-status": { component: JobStatus, permission: "job-status" },
+  "/report": {
+    component: Reports,
+    permission: "report",
+  },
+  "/dashboard": {
+    component: Dashboard,
+    permission: "dashboard",
+  },
+  "/add-user": {
+    component: Users,
+    permission: "add-user",
+  },
+  "/job-status": {
+    component: JobStatus,
+    permission: "job-status",
+  },
+};
+
+const PERMISSIONS_BY_ROLE = {
+  admin: [
+    "add-expense",
+    "add-survivor",
+    "add-item",
+    "add-unit",
+    "bulk-upload-expenses",
+    "bulk-upload-categories-items",
+    "report",
+    "dashboard",
+    "add-user",
+    "job-status",
+  ],
+  manager: [
+    "add-expense",
+    "report",
+    "dashboard",
+    "job-status",
+  ],
+  editor: [
+    "add-expense",
+  ],
 };
 
 function normalizePath(pathname) {
@@ -47,13 +95,18 @@ function normalizePath(pathname) {
 function normalizePermissions(permissions) {
   if (Array.isArray(permissions)) {
     return permissions
-      .map((permission) => String(permission || "").trim())
+      .flatMap((permission) =>
+        typeof permission === "string"
+          ? permission.split(",")
+          : [],
+      )
+      .map((permission) => permission.trim())
       .filter(Boolean);
   }
 
   if (typeof permissions === "string") {
     return permissions
-      .split(",")
+      .split(/[,\s]+/)
       .map((permission) => permission.trim())
       .filter(Boolean);
   }
@@ -61,24 +114,53 @@ function normalizePermissions(permissions) {
   return [];
 }
 
-function normalizeUser(nextUser) {
-  if (!nextUser || typeof nextUser !== "object") return null;
+function normalizeUser(rawUser) {
+  if (!rawUser || typeof rawUser !== "object") {
+    return null;
+  }
+
+  const role = String(rawUser.role || "")
+    .trim()
+    .toLowerCase();
+
+  let permissions = normalizePermissions(rawUser.permissions);
+
+  /*
+   * Some Android/WebView builds can receive an unexpected representation of
+   * the PostgreSQL permission array. If permissions are missing but the
+   * authenticated backend has supplied a known role, use the role's defined
+   * permissions locally.
+   *
+   * This does NOT grant permissions to an unknown role.
+   */
+  if (permissions.length === 0 && PERMISSIONS_BY_ROLE[role]) {
+    permissions = [...PERMISSIONS_BY_ROLE[role]];
+  }
 
   return {
-    ...nextUser,
-    permissions: normalizePermissions(nextUser.permissions),
+    ...rawUser,
+    role,
+    permissions,
   };
 }
 
 function routeForPath(path) {
-  if (routes[path]) return routes[path];
+  if (routes[path]) {
+    return routes[path];
+  }
 
   if (path.startsWith("/dashboard/report/")) {
-    return { component: DashboardDetail, permission: "dashboard" };
+    return {
+      component: DashboardDetail,
+      permission: "dashboard",
+    };
   }
 
   if (path.startsWith("/dashboard/drilldown/")) {
-    return { component: DashboardDrilldown, permission: "dashboard" };
+    return {
+      component: DashboardDrilldown,
+      permission: "dashboard",
+    };
   }
 
   return null;
@@ -88,6 +170,7 @@ export default function App() {
   const [path, setPath] = useState(() =>
     normalizePath(window.location.pathname),
   );
+
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(true);
 
@@ -118,7 +201,9 @@ export default function App() {
           setUser(normalizeUser(nextUser));
         })
         .catch(expired)
-        .finally(() => setChecking(false));
+        .finally(() => {
+          setChecking(false);
+        });
     }
 
     return () => {
@@ -127,20 +212,27 @@ export default function App() {
     };
   }, []);
 
-  const allowedItems = useMemo(
-    () => getNavigationItems(user?.permissions || []),
-    [user],
-  );
+  const allowedItems = useMemo(() => {
+    return getNavigationItems(
+      normalizePermissions(user?.permissions),
+    );
+  }, [user]);
 
   useEffect(() => {
-    if (checking || !user) return;
+    if (checking || !user) {
+      return;
+    }
 
-    const route = routeForPath(path);
     const permissions = normalizePermissions(user.permissions);
-    const allowed =
-      route && permissions.includes(route.permission);
+    const route = routeForPath(path);
 
-    if (allowed) return;
+    const allowed =
+      route &&
+      permissions.includes(route.permission);
+
+    if (allowed) {
+      return;
+    }
 
     const fallback = allowedItems[0]?.path;
 
@@ -151,70 +243,90 @@ export default function App() {
   }, [allowedItems, checking, path, user]);
 
   const handleLogin = async (nextUser) => {
-    const normalizedUser = normalizeUser(nextUser);
+    let normalizedUser = normalizeUser(nextUser);
+
+    /*
+     * Always refresh /me after login.
+     *
+     * This removes any difference between the object returned by
+     * /auth/login and the object used by the authenticated application.
+     */
+    try {
+      const refreshedUser = await api("/me", {
+        loadingMessage: "Loading your account…",
+        silent: true,
+        silentToast: true,
+      });
+
+      if (refreshedUser) {
+        normalizedUser = normalizeUser(refreshedUser);
+      }
+    } catch {
+      // Keep the successful login response if /me cannot be refreshed.
+    }
 
     setUser(normalizedUser);
 
-    const permissions = normalizePermissions(normalizedUser?.permissions);
-    const requestedPath = normalizePath(window.location.pathname);
+    const permissions = normalizePermissions(
+      normalizedUser?.permissions,
+    );
+
+    const requestedPath = normalizePath(
+      window.location.pathname,
+    );
+
     const requestedRoute = routeForPath(requestedPath);
 
     const requestedAllowed =
       requestedRoute &&
       permissions.includes(requestedRoute.permission);
 
-    const navigationItems = getNavigationItems(permissions);
-    const fallback = navigationItems[0]?.path;
-    const destination = requestedAllowed ? requestedPath : fallback;
+    const fallback =
+      getNavigationItems(permissions)[0]?.path;
+
+    const destination =
+      requestedAllowed
+        ? requestedPath
+        : fallback;
 
     if (destination) {
       window.history.replaceState({}, "", destination);
       setPath(destination);
-      return;
-    }
+    } else {
+      /*
+       * Do not leave the application on "/" where the component lookup can
+       * produce the misleading "No module" screen.
+       */
+      window.history.replaceState(
+        {},
+        "",
+        "/add-expense",
+      );
 
-    // If the login response did not contain permissions, refresh the account
-    // from the backend before deciding that the account has no assigned module.
-    if (permissions.length === 0) {
-      try {
-        const refreshedUser = normalizeUser(
-          await api("/me", {
-            loadingMessage: "Loading your account…",
-            silent: true,
-            silentToast: true,
-          }),
-        );
-
-        setUser(refreshedUser);
-
-        const refreshedPermissions = normalizePermissions(
-          refreshedUser?.permissions,
-        );
-        const refreshedItems = getNavigationItems(refreshedPermissions);
-        const refreshedFallback = refreshedItems[0]?.path;
-
-        if (refreshedFallback) {
-          window.history.replaceState({}, "", refreshedFallback);
-          setPath(refreshedFallback);
-        }
-      } catch {
-        localStorage.removeItem("token");
-        setUser(null);
-        window.history.replaceState({}, "", "/");
-        setPath("/");
-      }
+      setPath("/add-expense");
     }
   };
 
   const navigate = (next) => {
-    const [rawPath, search = ""] = String(next || "/").split("?");
+    const [rawPath, search = ""] =
+      String(next || "/").split("?");
+
     const target = normalizePath(rawPath);
     const route = routeForPath(target);
-    const permissions = normalizePermissions(user?.permissions);
+    const permissions = normalizePermissions(
+      user?.permissions,
+    );
 
-    if (!route || !permissions.includes(route.permission)) return;
+    if (
+      !route ||
+      !permissions.includes(route.permission)
+    ) {
+      return;
+    }
 
-    const url = search ? `${target}?${search}` : target;
+    const url = search
+      ? `${target}?${search}`
+      : target;
 
     window.history.pushState({}, "", url);
     setPath(target);
@@ -232,8 +344,11 @@ export default function App() {
       <>
         <Loader />
         <Toast />
+
         <div className="auth-loading">
-          <div className="card">Checking your session…</div>
+          <div className="card">
+            Checking your session…
+          </div>
         </div>
       </>
     );
@@ -244,24 +359,81 @@ export default function App() {
       <>
         <Loader />
         <Toast />
-        <Login onLogin={handleLogin} initialPath={path} />
+
+        <Login
+          onLogin={handleLogin}
+          initialPath={path}
+        />
       </>
     );
   }
 
   const route = routeForPath(path);
-  const permissions = normalizePermissions(user.permissions);
-  const navigationItems = getNavigationItems(permissions);
+
+  const permissions = normalizePermissions(
+    user.permissions,
+  );
+
+  const navigationItems =
+    getNavigationItems(permissions);
+
+  const fallbackPath =
+    navigationItems[0]?.path;
+
   const Component =
-    route?.component || routes[navigationItems[0]?.path]?.component;
+    route?.component ||
+    (fallbackPath
+      ? routes[fallbackPath]?.component
+      : null);
 
   if (!Component) {
+    /*
+     * This screen is now diagnostic rather than silently claiming that the
+     * account has no module. It also tells us exactly what Android received.
+     */
     return (
-      <div className="auth-loading">
-        <div className="card">
-          No module is assigned to this account.
+      <>
+        <Loader />
+        <Toast />
+
+        <div className="auth-loading">
+          <div className="card">
+            <h2>No module is assigned to this account.</h2>
+
+            <p>
+              Account: {user.email || "unknown"}
+            </p>
+
+            <p>
+              Role: {user.role || "unknown"}
+            </p>
+
+            <p>
+              Permissions received:{" "}
+              {permissions.length
+                ? permissions.join(", ")
+                : "none"}
+            </p>
+
+            <button
+              className="primary"
+              type="button"
+              onClick={() => {
+                localStorage.removeItem("token");
+                setUser(null);
+                setPath("/");
+                window.history.replaceState(
+                  {},
+                  "",
+                  "/",
+                );
+              }}
+            >
+              Return to login
+            </button>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -269,6 +441,7 @@ export default function App() {
     <>
       <Loader />
       <Toast />
+
       <Layout
         user={user}
         path={path}
