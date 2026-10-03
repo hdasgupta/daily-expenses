@@ -75,19 +75,148 @@ const PERMISSIONS_BY_ROLE = {
     "add-user",
     "job-status",
   ],
-  manager: ["add-expense", "report", "dashboard", "job-status"],
+  manager: [
+    "add-expense",
+    "report",
+    "dashboard",
+    "job-status",
+  ],
   editor: ["add-expense"],
 };
 
+const LAST_AUTHENTICATED_PATH_KEY =
+  "daily-expenses:last-authenticated-path";
+
 function normalizePath(pathname) {
   const cleanPath = String(pathname || "/").split("?")[0];
-  const result = cleanPath.replace(/\/+/g, "/").replace(/\/$/, "");
+  const result = cleanPath
+    .replace(/\/+/g, "/")
+    .replace(/\/$/, "");
+
   return result || "/";
+}
+
+function currentLocation() {
+  const pathname = normalizePath(
+    window.location.pathname,
+  );
+
+  const search = String(
+    window.location.search || "",
+  );
+
+  return `${pathname}${search}`;
+}
+
+function isCapacitorNative() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  const capacitor = window.Capacitor;
+
+  if (capacitor) {
+    try {
+      if (
+        typeof capacitor.isNativePlatform ===
+          "function" &&
+        capacitor.isNativePlatform()
+      ) {
+        return true;
+      }
+
+      if (
+        typeof capacitor.getPlatform ===
+          "function" &&
+        capacitor.getPlatform() !== "web"
+      ) {
+        return true;
+      }
+
+      if (
+        capacitor.isNativePlatform ===
+        true
+      ) {
+        return true;
+      }
+    } catch {
+      // Continue with fallback detection.
+    }
+  }
+
+  const userAgent = String(
+    window.navigator?.userAgent || "",
+  ).toLowerCase();
+
+  if (
+    userAgent.includes("android") &&
+    (userAgent.includes("wv") ||
+      userAgent.includes("capacitor"))
+  ) {
+    return true;
+  }
+
+  const protocol = String(
+    window.location.protocol || "",
+  ).toLowerCase();
+
+  return (
+    protocol === "capacitor:" ||
+    protocol === "ionic:"
+  );
+}
+
+function getStoredAuthenticatedPath() {
+  try {
+    const value = String(
+      localStorage.getItem(
+        LAST_AUTHENTICATED_PATH_KEY,
+      ) || "",
+    ).trim();
+
+    return value || null;
+  } catch {
+    return null;
+  }
+}
+
+function storeAuthenticatedPath(path) {
+  try {
+    const normalizedPath = String(
+      path || "",
+    ).trim();
+
+    if (
+      !normalizedPath ||
+      normalizedPath === "/"
+    ) {
+      return;
+    }
+
+    localStorage.setItem(
+      LAST_AUTHENTICATED_PATH_KEY,
+      normalizedPath,
+    );
+  } catch {
+    // Ignore storage failures.
+  }
+}
+
+function clearStoredAuthenticatedPath() {
+  try {
+    localStorage.removeItem(
+      LAST_AUTHENTICATED_PATH_KEY,
+    );
+  } catch {
+    // Ignore storage failures.
+  }
 }
 
 function normalizePermissions(value) {
   if (Array.isArray(value)) {
-    return value.flatMap((item) => normalizePermissions(item));
+    return value.flatMap((item) =>
+      normalizePermissions(item),
+    );
   }
 
   if (typeof value === "string") {
@@ -101,7 +230,10 @@ function normalizePermissions(value) {
      * PostgreSQL array:
      * {add-expense,add-item,report}
      */
-    if (text.startsWith("{") && text.endsWith("}")) {
+    if (
+      text.startsWith("{") &&
+      text.endsWith("}")
+    ) {
       text = text.slice(1, -1);
     }
 
@@ -109,12 +241,17 @@ function normalizePermissions(value) {
      * JSON array:
      * ["add-expense","report"]
      */
-    if (text.startsWith("[") && text.endsWith("]")) {
+    if (
+      text.startsWith("[") &&
+      text.endsWith("]")
+    ) {
       try {
         const parsed = JSON.parse(text);
 
         if (Array.isArray(parsed)) {
-          return normalizePermissions(parsed);
+          return normalizePermissions(
+            parsed,
+          );
         }
       } catch {
         // Continue with string parsing.
@@ -122,22 +259,38 @@ function normalizePermissions(value) {
     }
 
     /*
-     * PostgreSQL array values may contain quoted items.
+     * PostgreSQL array values may contain
+     * quoted items.
      */
-    return text.split(",").flatMap((item) => {
-      const cleaned = item
-        .trim()
-        .replace(/^["']|["']$/g, "")
-        .replace(/^\{|\}$/g, "")
-        .trim();
+    return text
+      .split(",")
+      .flatMap((item) => {
+        const cleaned = item
+          .trim()
+          .replace(
+            /^["']|["']$/g,
+            "",
+          )
+          .replace(
+            /^\{|\}$/g,
+            "",
+          )
+          .trim();
 
-      return cleaned ? [cleaned] : [];
-    });
+        return cleaned ? [cleaned] : [];
+      });
   }
 
-  if (value && typeof value === "object") {
-    if (Array.isArray(value.permissions)) {
-      return normalizePermissions(value.permissions);
+  if (
+    value &&
+    typeof value === "object"
+  ) {
+    if (
+      Array.isArray(value.permissions)
+    ) {
+      return normalizePermissions(
+        value.permissions,
+      );
     }
 
     /*
@@ -145,8 +298,13 @@ function normalizePermissions(value) {
      * { "add-expense": true, "report": true }
      */
     const enabled = Object.entries(value)
-      .filter(([, enabledValue]) => enabledValue === true)
-      .map(([permission]) => permission);
+      .filter(
+        ([, enabledValue]) =>
+          enabledValue === true,
+      )
+      .map(
+        ([permission]) => permission,
+      );
 
     if (enabled.length) {
       return enabled;
@@ -157,18 +315,31 @@ function normalizePermissions(value) {
 }
 
 function normalizeUser(rawUser) {
-  if (!rawUser || typeof rawUser !== "object") {
+  if (
+    !rawUser ||
+    typeof rawUser !== "object"
+  ) {
     return null;
   }
 
-  const role = String(rawUser.role || "")
+  const role = String(
+    rawUser.role || "",
+  )
     .trim()
     .toLowerCase();
 
-  let permissions = normalizePermissions(rawUser.permissions);
+  let permissions =
+    normalizePermissions(
+      rawUser.permissions,
+    );
 
-  if (permissions.length === 0 && PERMISSIONS_BY_ROLE[role]) {
-    permissions = [...PERMISSIONS_BY_ROLE[role]];
+  if (
+    permissions.length === 0 &&
+    PERMISSIONS_BY_ROLE[role]
+  ) {
+    permissions = [
+      ...PERMISSIONS_BY_ROLE[role],
+    ];
   }
 
   return {
@@ -183,14 +354,22 @@ function routeForPath(path) {
     return routes[path];
   }
 
-  if (path.startsWith("/dashboard/report/")) {
+  if (
+    path.startsWith(
+      "/dashboard/report/",
+    )
+  ) {
     return {
       component: DashboardDetail,
       permission: "dashboard",
     };
   }
 
-  if (path.startsWith("/dashboard/drilldown/")) {
+  if (
+    path.startsWith(
+      "/dashboard/drilldown/",
+    )
+  ) {
     return {
       component: DashboardDrilldown,
       permission: "dashboard",
@@ -200,149 +379,634 @@ function routeForPath(path) {
   return null;
 }
 
-export default function App() {
-  const [path, setPath] = useState(() => normalizePath(window.location.pathname));
+function isAuthenticatedRoute(path) {
+  return Boolean(
+    routeForPath(
+      normalizePath(path),
+    ),
+  );
+}
 
-  const [user, setUser] = useState(null);
-  const [checking, setChecking] = useState(true);
-  const [rawMe, setRawMe] = useState(null);
+export default function App() {
+  const [path, setPath] = useState(
+    () =>
+      normalizePath(
+        window.location.pathname,
+      ),
+  );
+
+  const [user, setUser] =
+    useState(null);
+
+  const [checking, setChecking] =
+    useState(true);
+
+  const [rawMe, setRawMe] =
+    useState(null);
+
+  /*
+   * Restore the last authenticated
+   * application page on Android/native.
+   *
+   * This is especially important when
+   * Android recreates the WebView after
+   * the app has been idle/backgrounded.
+   */
+  useEffect(() => {
+    if (!isCapacitorNative()) {
+      return;
+    }
+
+    const currentPath =
+      normalizePath(
+        window.location.pathname,
+      );
+
+    if (
+      currentPath !== "/" &&
+      isAuthenticatedRoute(
+        currentPath,
+      )
+    ) {
+      storeAuthenticatedPath(
+        currentLocation(),
+      );
+
+      return;
+    }
+
+    const token =
+      localStorage.getItem(
+        "token",
+      );
+
+    if (!token) {
+      return;
+    }
+
+    const savedPath =
+      getStoredAuthenticatedPath();
+
+    if (
+      !savedPath ||
+      savedPath === "/"
+    ) {
+      return;
+    }
+
+    const [savedRawPath] =
+      savedPath.split("?");
+
+    const normalizedSavedPath =
+      normalizePath(
+        savedRawPath,
+      );
+
+    if (
+      !isAuthenticatedRoute(
+        normalizedSavedPath,
+      )
+    ) {
+      return;
+    }
+
+    window.history.replaceState(
+      {},
+      "",
+      savedPath,
+    );
+
+    setPath(
+      normalizedSavedPath,
+    );
+  }, []);
+
+  /*
+   * Keep the current authenticated
+   * location persisted while the app is
+   * being used.
+   */
+  useEffect(() => {
+    if (
+      !user ||
+      !isCapacitorNative()
+    ) {
+      return;
+    }
+
+    if (
+      isAuthenticatedRoute(path)
+    ) {
+      storeAuthenticatedPath(
+        currentLocation(),
+      );
+    }
+  }, [path, user]);
 
   useEffect(() => {
     const popState = () => {
-      setPath(normalizePath(window.location.pathname));
+      const nextPath =
+        normalizePath(
+          window.location.pathname,
+        );
+
+      setPath(nextPath);
+
+      if (
+        isCapacitorNative() &&
+        localStorage.getItem(
+          "token",
+        ) &&
+        isAuthenticatedRoute(
+          nextPath,
+        )
+      ) {
+        storeAuthenticatedPath(
+          currentLocation(),
+        );
+      }
     };
 
     const expired = () => {
-      localStorage.removeItem("token");
+      localStorage.removeItem(
+        "token",
+      );
+
+      clearStoredAuthenticatedPath();
+
       setUser(null);
+      setRawMe(null);
       setPath("/");
-      window.history.replaceState({}, "", "/");
+
+      window.history.replaceState(
+        {},
+        "",
+        "/",
+      );
     };
 
-    window.addEventListener("popstate", popState);
-    window.addEventListener("app:auth-expired", expired);
+    window.addEventListener(
+      "popstate",
+      popState,
+    );
 
-    const token = localStorage.getItem("token");
+    window.addEventListener(
+      "app:auth-expired",
+      expired,
+    );
+
+    const token =
+      localStorage.getItem(
+        "token",
+      );
 
     if (!token) {
       setChecking(false);
     } else {
       api("/me", {
-        loadingMessage: "Checking your session…",
+        loadingMessage:
+          "Checking your session…",
       })
         .then((nextUser) => {
           setRawMe(nextUser);
 
-          const normalized = normalizeUser(nextUser);
+          const normalized =
+            normalizeUser(
+              nextUser,
+            );
 
-          console.log("RAW /me RESPONSE:", nextUser);
+          console.log(
+            "RAW /me RESPONSE:",
+            nextUser,
+          );
 
-          console.log("RAW permissions:", nextUser?.permissions);
+          console.log(
+            "RAW permissions:",
+            nextUser?.permissions,
+          );
 
-          console.log("NORMALIZED permissions:", normalized?.permissions);
+          console.log(
+            "NORMALIZED permissions:",
+            normalized?.permissions,
+          );
 
           setUser(normalized);
+
+          /*
+           * Once authentication has
+           * succeeded, restore the last
+           * authenticated route if the
+           * application was recreated at /.
+           */
+          if (
+            isCapacitorNative() &&
+            normalizePath(
+              window.location.pathname,
+            ) === "/"
+          ) {
+            const savedPath =
+              getStoredAuthenticatedPath();
+
+            if (
+              savedPath &&
+              savedPath !== "/"
+            ) {
+              const [
+                savedRawPath,
+              ] =
+                savedPath.split("?");
+
+              const normalizedSavedPath =
+                normalizePath(
+                  savedRawPath,
+                );
+
+              const savedRoute =
+                routeForPath(
+                  normalizedSavedPath,
+                );
+
+              const savedPermissions =
+                normalizePermissions(
+                  normalized
+                    ?.permissions,
+                );
+
+              if (
+                savedRoute &&
+                savedPermissions.includes(
+                  savedRoute.permission,
+                )
+              ) {
+                window.history.replaceState(
+                  {},
+                  "",
+                  savedPath,
+                );
+
+                setPath(
+                  normalizedSavedPath,
+                );
+              }
+            }
+          }
         })
-        .catch(expired)
+        .catch((error) => {
+          /*
+           * Only an actual authentication
+           * failure should log the user out.
+           *
+           * A temporary network/backend
+           * failure should not destroy the
+           * current page or filled form.
+           */
+          const message = String(
+            error?.message || "",
+          ).toLowerCase();
+
+          const authenticationFailure =
+            message.includes(
+              "invalid or expired token",
+            ) ||
+            message.includes(
+              "authentication required",
+            ) ||
+            message.includes(
+              "account is unavailable",
+            ) ||
+            message.includes(
+              "request failed (401)",
+            );
+
+          if (
+            authenticationFailure
+          ) {
+            expired();
+          } else {
+            /*
+             * Keep the authenticated
+             * application state if the
+             * backend is temporarily
+             * unavailable during resume.
+             */
+            console.warn(
+              "Unable to refresh the session while restoring the app. Keeping the current page.",
+              error,
+            );
+          }
+        })
         .finally(() => {
           setChecking(false);
         });
     }
 
     return () => {
-      window.removeEventListener("popstate", popState);
-      window.removeEventListener("app:auth-expired", expired);
+      window.removeEventListener(
+        "popstate",
+        popState,
+      );
+
+      window.removeEventListener(
+        "app:auth-expired",
+        expired,
+      );
     };
   }, []);
 
-  const permissions = useMemo(() => normalizePermissions(user?.permissions), [user]);
+  /*
+   * Save the authenticated page when
+   * Android sends the WebView into the
+   * background or the document becomes
+   * hidden.
+   */
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
 
-  const allowedItems = useMemo(() => getNavigationItems(permissions), [permissions]);
+    const rememberCurrentPage = () => {
+      if (
+        !isCapacitorNative()
+      ) {
+        return;
+      }
+
+      const token =
+        localStorage.getItem(
+          "token",
+        );
+
+      if (
+        !token ||
+        !isAuthenticatedRoute(
+          window.location.pathname,
+        )
+      ) {
+        return;
+      }
+
+      storeAuthenticatedPath(
+        currentLocation(),
+      );
+    };
+
+    document.addEventListener(
+      "visibilitychange",
+      rememberCurrentPage,
+    );
+
+    window.addEventListener(
+      "pagehide",
+      rememberCurrentPage,
+    );
+
+    return () => {
+      document.removeEventListener(
+        "visibilitychange",
+        rememberCurrentPage,
+      );
+
+      window.removeEventListener(
+        "pagehide",
+        rememberCurrentPage,
+      );
+    };
+  }, [user]);
+
+  const permissions =
+    useMemo(
+      () =>
+        normalizePermissions(
+          user?.permissions,
+        ),
+      [user],
+    );
+
+  const allowedItems =
+    useMemo(
+      () =>
+        getNavigationItems(
+          permissions,
+        ),
+      [permissions],
+    );
 
   useEffect(() => {
-    if (checking || !user) {
+    if (
+      checking ||
+      !user
+    ) {
       return;
     }
 
-    const route = routeForPath(path);
+    const route =
+      routeForPath(path);
 
-    const allowed = route && permissions.includes(route.permission);
+    const allowed =
+      route &&
+      permissions.includes(
+        route.permission,
+      );
 
     if (allowed) {
+      if (
+        isCapacitorNative()
+      ) {
+        storeAuthenticatedPath(
+          currentLocation(),
+        );
+      }
+
       return;
     }
 
-    const fallback = allowedItems[0]?.path;
+    const fallback =
+      allowedItems[0]?.path;
 
     if (fallback) {
-      window.history.replaceState({}, "", fallback);
+      window.history.replaceState(
+        {},
+        "",
+        fallback,
+      );
+
       setPath(fallback);
-    }
-  }, [allowedItems, checking, path, permissions, user]);
 
-  const handleLogin = async (nextUser) => {
-    let normalizedUser = normalizeUser(nextUser);
-
-    try {
-      const refreshedUser = await api("/me", {
-        loadingMessage: "Loading your account…",
-        silent: true,
-        silentToast: true,
-      });
-
-      if (refreshedUser) {
-        setRawMe(refreshedUser);
-        normalizedUser = normalizeUser(refreshedUser);
-
-        console.log("LOGIN /me RESPONSE:", refreshedUser);
-
-        console.log("LOGIN normalized permissions:", normalizedUser?.permissions);
+      if (
+        isCapacitorNative()
+      ) {
+        storeAuthenticatedPath(
+          fallback,
+        );
       }
-    } catch {
-      // Keep the successful login response.
     }
+  }, [
+    allowedItems,
+    checking,
+    path,
+    permissions,
+    user,
+  ]);
 
-    setUser(normalizedUser);
+  const handleLogin =
+    async (nextUser) => {
+      let normalizedUser =
+        normalizeUser(
+          nextUser,
+        );
 
-    const nextPermissions = normalizePermissions(normalizedUser?.permissions);
+      try {
+        const refreshedUser =
+          await api("/me", {
+            loadingMessage:
+              "Loading your account…",
+            silent: true,
+            silentToast: true,
+          });
 
-    const requestedPath = normalizePath(window.location.pathname);
+        if (refreshedUser) {
+          setRawMe(
+            refreshedUser,
+          );
 
-    const requestedRoute = routeForPath(requestedPath);
+          normalizedUser =
+            normalizeUser(
+              refreshedUser,
+            );
 
-    const requestedAllowed = requestedRoute && nextPermissions.includes(requestedRoute.permission);
+          console.log(
+            "LOGIN /me RESPONSE:",
+            refreshedUser,
+          );
 
-    const fallback = getNavigationItems(nextPermissions)[0]?.path;
+          console.log(
+            "LOGIN normalized permissions:",
+            normalizedUser?.permissions,
+          );
+        }
+      } catch {
+        /*
+         * Keep the successful login
+         * response.
+         */
+      }
 
-    const destination = requestedAllowed ? requestedPath : fallback;
+      setUser(normalizedUser);
 
-    if (destination) {
-      window.history.replaceState({}, "", destination);
-      setPath(destination);
-    }
-  };
+      const nextPermissions =
+        normalizePermissions(
+          normalizedUser?.permissions,
+        );
 
-  const navigate = (next) => {
-    const [rawPath, search = ""] = String(next || "/").split("?");
+      const requestedPath =
+        normalizePath(
+          window.location.pathname,
+        );
 
-    const target = normalizePath(rawPath);
-    const route = routeForPath(target);
+      const requestedRoute =
+        routeForPath(
+          requestedPath,
+        );
 
-    if (!route || !permissions.includes(route.permission)) {
+      const requestedAllowed =
+        requestedRoute &&
+        nextPermissions.includes(
+          requestedRoute.permission,
+        );
+
+      const fallback =
+        getNavigationItems(
+          nextPermissions,
+        )[0]?.path;
+
+      const destination =
+        requestedAllowed
+          ? requestedPath
+          : fallback;
+
+      if (destination) {
+        window.history.replaceState(
+          {},
+          "",
+          destination,
+        );
+
+        setPath(destination);
+
+        if (
+          isCapacitorNative()
+        ) {
+          storeAuthenticatedPath(
+            destination,
+          );
+        }
+      }
+    };
+
+  const navigate = (
+    next,
+  ) => {
+    const [
+      rawPath,
+      search = "",
+    ] = String(
+      next || "/",
+    ).split("?");
+
+    const target =
+      normalizePath(
+        rawPath,
+      );
+
+    const route =
+      routeForPath(target);
+
+    if (
+      !route ||
+      !permissions.includes(
+        route.permission,
+      )
+    ) {
       return;
     }
 
-    const url = search ? `${target}?${search}` : target;
+    const url = search
+      ? `${target}?${search}`
+      : target;
 
-    window.history.pushState({}, "", url);
+    window.history.pushState(
+      {},
+      "",
+      url,
+    );
+
     setPath(target);
+
+    if (
+      isCapacitorNative()
+    ) {
+      storeAuthenticatedPath(
+        url,
+      );
+    }
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem(
+      "token",
+    );
+
+    clearStoredAuthenticatedPath();
+
     setUser(null);
     setRawMe(null);
-    window.history.replaceState({}, "", "/");
+
+    window.history.replaceState(
+      {},
+      "",
+      "/",
+    );
+
     setPath("/");
   };
 
@@ -353,7 +1017,9 @@ export default function App() {
         <Toast />
 
         <div className="auth-loading">
-          <div className="card">Checking your session…</div>
+          <div className="card">
+            Checking your session…
+          </div>
         </div>
       </>
     );
@@ -365,22 +1031,33 @@ export default function App() {
         <Loader />
         <Toast />
 
-        <Login onLogin={handleLogin} initialPath={path} />
+        <Login
+          onLogin={handleLogin}
+          initialPath={path}
+        />
       </>
     );
   }
 
-  const route = routeForPath(path);
+  const route =
+    routeForPath(path);
 
-  const fallbackPath = allowedItems[0]?.path;
+  const fallbackPath =
+    allowedItems[0]?.path;
 
-  const Component = route?.component || (fallbackPath ? routes[fallbackPath]?.component : null);
+  const Component =
+    route?.component ||
+    (fallbackPath
+      ? routes[fallbackPath]
+          ?.component
+      : null);
 
   /*
    * Temporary diagnostic screen.
    *
-   * This lets us see exactly what Android received
-   * from /me if the permission list is still empty.
+   * This lets us see exactly what Android
+   * received from /me if the permission
+   * list is still empty.
    */
   if (!Component) {
     return (
@@ -396,58 +1073,84 @@ export default function App() {
               margin: "20px auto",
             }}
           >
-            <h2>Navigation diagnostic</h2>
+            <h2>
+              Navigation diagnostic
+            </h2>
 
-            <p>The application received the following user data:</p>
-
-            <pre
-              style={{
-                whiteSpace: "pre-wrap",
-                overflowWrap: "anywhere",
-                fontSize: "12px",
-                textAlign: "left",
-                padding: "12px",
-                borderRadius: "8px",
-                background: "rgba(127,127,127,0.12)",
-              }}
-            >
-              {JSON.stringify(rawMe, null, 2)}
-            </pre>
-
-            <h3>Normalized permissions</h3>
+            <p>
+              The application received
+              the following user data:
+            </p>
 
             <pre
               style={{
                 whiteSpace: "pre-wrap",
-                overflowWrap: "anywhere",
+                overflowWrap:
+                  "anywhere",
                 fontSize: "12px",
                 textAlign: "left",
                 padding: "12px",
                 borderRadius: "8px",
-                background: "rgba(127,127,127,0.12)",
-              }}
-            >
-              {JSON.stringify(permissions, null, 2)}
-            </pre>
-
-            <h3>Navigation items</h3>
-
-            <pre
-              style={{
-                whiteSpace: "pre-wrap",
-                overflowWrap: "anywhere",
-                fontSize: "12px",
-                textAlign: "left",
-                padding: "12px",
-                borderRadius: "8px",
-                background: "rgba(127,127,127,0.12)",
+                background:
+                  "rgba(127,127,127,0.12)",
               }}
             >
               {JSON.stringify(
-                allowedItems.map((item) => ({
-                  path: item.path,
-                  permission: item.permission,
-                })),
+                rawMe,
+                null,
+                2,
+              )}
+            </pre>
+
+            <h3>
+              Normalized permissions
+            </h3>
+
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                overflowWrap:
+                  "anywhere",
+                fontSize: "12px",
+                textAlign: "left",
+                padding: "12px",
+                borderRadius: "8px",
+                background:
+                  "rgba(127,127,127,0.12)",
+              }}
+            >
+              {JSON.stringify(
+                permissions,
+                null,
+                2,
+              )}
+            </pre>
+
+            <h3>
+              Navigation items
+            </h3>
+
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                overflowWrap:
+                  "anywhere",
+                fontSize: "12px",
+                textAlign: "left",
+                padding: "12px",
+                borderRadius: "8px",
+                background:
+                  "rgba(127,127,127,0.12)",
+              }}
+            >
+              {JSON.stringify(
+                allowedItems.map(
+                  (item) => ({
+                    path: item.path,
+                    permission:
+                      item.permission,
+                  }),
+                ),
                 null,
                 2,
               )}
@@ -457,11 +1160,21 @@ export default function App() {
               className="primary"
               type="button"
               onClick={() => {
-                localStorage.removeItem("token");
+                localStorage.removeItem(
+                  "token",
+                );
+
+                clearStoredAuthenticatedPath();
+
                 setUser(null);
                 setRawMe(null);
                 setPath("/");
-                window.history.replaceState({}, "", "/");
+
+                window.history.replaceState(
+                  {},
+                  "",
+                  "/",
+                );
               }}
             >
               Return to login
@@ -477,9 +1190,18 @@ export default function App() {
       <Loader />
       <Toast />
 
-      <Layout user={user} path={path} navigate={navigate} logout={logout}>
+      <Layout
+        user={user}
+        path={path}
+        navigate={navigate}
+        logout={logout}
+      >
         <RouteErrorBoundary>
-          <Component type={route?.type} navigate={navigate} user={user} />
+          <Component
+            type={route?.type}
+            navigate={navigate}
+            user={user}
+          />
         </RouteErrorBoundary>
       </Layout>
     </>
