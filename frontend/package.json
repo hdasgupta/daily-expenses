@@ -10,14 +10,18 @@
     "format": "prettier --write . --ignore-path ../.prettierignore"
   },
   "dependencies": {
+    "@capacitor/core": "^8.5.2",
     "@vitejs/plugin-react": "^6.1.1",
-    "lucide-react": "^1.49.0",
+    "lucide-react": "^1.51.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "recharts": "^3.10.1",
     "vite": "^8.3.2"
   },
   "devDependencies": {
-    "prettier": "^3.9.9"
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "prettier": "^3.9.9",
+    "typescript": "^7.0.2"
   }
 }
