@@ -29,10 +29,14 @@ function cleanConfig(config = {}) {
   const filters = config.filters || {};
 
   const groupBy = Array.isArray(config.groupBy)
-    ? config.groupBy.filter((x) => groupable.has(x))
+    ? config.groupBy.filter((x) =>
+        groupable.has(x),
+      )
     : [];
 
-  const uniqueGroupBy = [...new Set(groupBy)];
+  const uniqueGroupBy = [
+    ...new Set(groupBy),
+  ];
 
   const allowedSort = uniqueGroupBy.length
     ? groupedSortable
@@ -43,7 +47,9 @@ function cleanConfig(config = {}) {
       ? config.sortColumns
       : []
   )
-    .filter((x) => allowedSort.has(x?.column))
+    .filter((x) =>
+      allowedSort.has(x?.column),
+    )
     .map((x) => ({
       column: x.column,
       direction:
@@ -54,39 +60,39 @@ function cleanConfig(config = {}) {
     .filter(
       (x, i, a) =>
         a.findIndex(
-          (y) => y.column === x.column,
+          (y) =>
+            y.column === x.column,
         ) === i,
     );
 
-  const categoryItems = Array.isArray(
-    filters.categoryItems,
-  )
-    ? [
-        ...new Set(
-          filters.categoryItems.map(String),
-        ),
-      ]
-    : [];
+  const categoryItems =
+    Array.isArray(filters.categoryItems)
+      ? [
+          ...new Set(
+            filters.categoryItems.map(
+              String,
+            ),
+          ),
+        ]
+      : [];
 
-  const survivors = Array.isArray(
-    filters.survivors,
-  )
-    ? [
-        ...new Set(
-          filters.survivors.map(String),
-        ),
-      ]
-    : [];
+  const survivors =
+    Array.isArray(filters.survivors)
+      ? [
+          ...new Set(
+            filters.survivors.map(String),
+          ),
+        ]
+      : [];
 
-  const categories = Array.isArray(
-    filters.categories,
-  )
-    ? [
-        ...new Set(
-          filters.categories.map(String),
-        ),
-      ]
-    : [];
+  const categories =
+    Array.isArray(filters.categories)
+      ? [
+          ...new Set(
+            filters.categories.map(String),
+          ),
+        ]
+      : [];
 
   return {
     dateFilterType: [
@@ -105,12 +111,14 @@ function cleanConfig(config = {}) {
       dateTo: filters.dateTo || "",
       month: filters.month || "",
       year: filters.year || "",
+
       hasProof: [
         "true",
         "false",
       ].includes(filters.hasProof)
         ? filters.hasProof
         : "",
+
       categoryItems,
       categories,
       survivors,
@@ -118,7 +126,9 @@ function cleanConfig(config = {}) {
 
     sortColumns,
     groupBy: uniqueGroupBy,
-    summarise: Boolean(config.summarise),
+    summarise: Boolean(
+      config.summarise,
+    ),
   };
 }
 
@@ -163,7 +173,9 @@ function addFilter(
       );
     }
   } else if (filters.month) {
-    params.push(`${filters.month}-01`);
+    params.push(
+      `${filters.month}-01`,
+    );
 
     where.push(
       reportSql.filterMonthFrom(
@@ -179,7 +191,9 @@ function addFilter(
       ),
     );
   } else if (filters.year) {
-    params.push(Number(filters.year));
+    params.push(
+      Number(filters.year),
+    );
 
     where.push(
       reportSql.filterYear(
@@ -246,7 +260,9 @@ function addFilter(
   }
 
   if (filters.categories.length) {
-    params.push(filters.categories);
+    params.push(
+      filters.categories,
+    );
 
     where.push(
       reportSql.filterCategories(
@@ -257,7 +273,9 @@ function addFilter(
   }
 
   if (filters.survivors.length) {
-    params.push(filters.survivors);
+    params.push(
+      filters.survivors,
+    );
 
     where.push(
       reportSql.filterSurvivors(
@@ -305,20 +323,6 @@ function orderSql(
       : reportSql.defaultRawOrder;
   }
 
-  /*
-   * Grouped queries must never order directly by
-   * expense_source.survivor or another ungrouped
-   * source column.
-   *
-   * When a selected sort column is one of the actual
-   * grouping dimensions, use its SELECT position.
-   *
-   * Example:
-   *
-   * SELECT survivor AS "survivor", SUM(...) AS total
-   * GROUP BY 1
-   * ORDER BY 1 ASC
-   */
   const groupPositions = new Map(
     config.groupBy.map(
       (column, index) => [
@@ -337,7 +341,9 @@ function orderSql(
 
   for (const sort of chosen) {
     if (
-      groupPositions.has(sort.column)
+      groupPositions.has(
+        sort.column,
+      )
     ) {
       parts.push(
         reportSql.order(
@@ -366,7 +372,9 @@ function orderSql(
       }
 
       const expression =
-        rawExpressions[sort.column] ||
+        rawExpressions[
+          sort.column
+        ] ||
         reportSql.groupExpr[
           sort.column
         ];
@@ -386,13 +394,6 @@ function orderSql(
     return parts.join(", ");
   }
 
-  /*
-   * No explicit sort:
-   * order by the same positional columns
-   * used by GROUP BY.
-   *
-   * This is the critical survivor fix.
-   */
   if (config.groupBy.length) {
     return config.groupBy
       .map(
@@ -416,24 +417,110 @@ function chartData(
           `${column}: ${row[column]}`,
       )
       .join(" • "),
+
     value: Number(
       row.total || 0,
     ),
   }));
 }
 
+function buildGroupedRawSelect(
+  groupBy,
+  usesSurvivor,
+) {
+  const select = [];
+
+  /*
+   * Every group dimension is represented
+   * by the SELECT position used by the
+   * positional GROUP BY.
+   */
+  for (const column of groupBy) {
+    /*
+     * Survivor is special because the
+     * survivor name is not itself the
+     * safest grouping key.
+     *
+     * The source has one row per survivor,
+     * so MIN(survivor) is safe after grouping.
+     */
+    if (column === "survivor") {
+      select.push(
+        "MIN(survivor) AS \"survivor\"",
+      );
+    } else {
+      select.push(
+        `${reportSql.groupExpr[column]} AS "${column}"`,
+      );
+    }
+  }
+
+  if (groupBy.includes("category")) {
+    select.push(
+      "MIN(category_id) AS category_id",
+    );
+  }
+
+  if (groupBy.includes("survivor")) {
+    select.push(
+      "MIN(survivor_id) AS survivor_id",
+    );
+  }
+
+  /*
+   * These are representative values for
+   * the grouped-raw result.
+   *
+   * MIN keeps PostgreSQL happy while
+   * preserving the existing response shape.
+   */
+  if (!groupBy.includes("date")) {
+    select.push(
+      "MIN(expense_date) AS expense_date",
+    );
+  }
+
+  if (!groupBy.includes("category")) {
+    select.push(
+      "MIN(category) AS category",
+    );
+  }
+
+  if (!groupBy.includes("item")) {
+    select.push(
+      "MIN(item) AS item",
+    );
+  }
+
+  if (!groupBy.includes("survivor")) {
+    select.push(
+      "MIN(survivor) AS survivor",
+    );
+  }
+
+  if (usesSurvivor) {
+    select.push(
+      "SUM(report_amount) AS share_price",
+    );
+  } else {
+    select.push(
+      "SUM(total_cost) AS total_cost",
+    );
+  }
+
+  select.push(
+    "MIN(comment) AS comment",
+    "MIN(proof_key) AS proof_key",
+  );
+
+  return select;
+}
+
 export async function runReport(
   input,
 ) {
-  const config =
-    cleanConfig(input);
+  const config = cleanConfig(input);
 
-  /*
-   * Survivor grouping requires one source
-   * row per survivor share.
-   *
-   * Other reports use one row per expense.
-   */
   const usesSurvivor =
     config.groupBy.includes(
       "survivor",
@@ -453,8 +540,11 @@ export async function runReport(
   );
 
   /*
+   * --------------------------------------------------
    * RAW REPORT
+   * --------------------------------------------------
    */
+
   if (
     !config.groupBy.length &&
     !config.summarise
@@ -540,7 +630,8 @@ export async function runReport(
               );
 
             if (
-              expenseKey != null &&
+              expenseKey !=
+                null &&
               Number.isFinite(
                 totalCost,
               )
@@ -582,8 +673,11 @@ export async function runReport(
   }
 
   /*
-   * GRAND TOTAL
+   * --------------------------------------------------
+   * TOTAL SUMMARY
+   * --------------------------------------------------
    */
+
   if (
     !config.groupBy.length &&
     config.summarise
@@ -600,14 +694,16 @@ export async function runReport(
     );
 
     const total = Number(
-      result.rows[0]?.total ||
-        0,
+      result.rows[0]?.total || 0,
     );
 
     return {
       mode: "summary",
+
       columns: ["total"],
+
       rows: [{ total }],
+
       total,
 
       chartData: [
@@ -620,56 +716,63 @@ export async function runReport(
   }
 
   /*
-   * GROUPING DIMENSIONS
+   * --------------------------------------------------
+   * GROUPED REPORT
+   * --------------------------------------------------
    */
-  const groupSelect =
-    config.groupBy.map(
-      (column) =>
-        `${reportSql.groupExpr[column]} AS "${column}"`,
-    );
 
-  if (
-    config.groupBy.includes(
-      "category",
-    )
-  ) {
-    groupSelect.push(
-      "MIN(category_id) AS category_id",
-    );
-  }
-
-  if (
-    config.groupBy.includes(
-      "survivor",
-    )
-  ) {
-    groupSelect.push(
-      "MIN(survivor_id) AS survivor_id",
-    );
+  if (!config.groupBy.length) {
+    return {
+      mode: "raw",
+      columns: [],
+      rows: [],
+      total: 0,
+      chartData: [],
+    };
   }
 
   /*
+   * --------------------------------------------------
    * GROUPED RAW
    *
-   * This path remains a raw-row query and therefore
-   * does not use GROUP BY.
+   * This is the important fix.
+   *
+   * Previously this branch selected:
+   *
+   *   rawSelectPerSurvivor
+   *
+   * which contains raw `survivor`,
+   * `expense_date`, etc.
+   *
+   * PostgreSQL therefore required all of
+   * those columns in GROUP BY.
+   *
+   * We now aggregate the representative
+   * fields with MIN/SUM.
+   * --------------------------------------------------
    */
-  if (!config.summarise) {
-    const rawSelect =
-      usesSurvivor
-        ? reportSql.rawSelectPerSurvivor
-        : reportSql.rawSelectPerExpense;
 
-    const select = [
-      ...groupSelect,
-      rawSelect,
-    ].join(", ");
+  if (!config.summarise) {
+    const groupSelect =
+      buildGroupedRawSelect(
+        config.groupBy,
+        usesSurvivor,
+      );
+
+    const groupByPositions =
+      config.groupBy
+        .map(
+          (_, index) =>
+            String(index + 1),
+        )
+        .join(", ");
 
     const result = await q(
-      reportSql.raw(
+      reportSql.grouped(
         cte,
-        select,
+        groupSelect.join(", "),
         where,
+        groupByPositions,
         orderSql(
           config,
           true,
@@ -693,12 +796,12 @@ export async function runReport(
                     row.total_cost,
                   ),
 
-            report_amount:
-              row.report_amount ==
+            share_price:
+              row.share_price ==
               null
                 ? null
                 : Number(
-                    row.report_amount,
+                    row.share_price,
                   ),
 
             proof_url:
@@ -729,66 +832,67 @@ export async function runReport(
         config.groupBy,
 
       rows,
+
       total: 0,
+
       chartData: [],
     };
   }
 
   /*
+   * --------------------------------------------------
    * GROUPED SUMMARY
+   * --------------------------------------------------
    */
+
   const amount =
     usesSurvivor
       ? "SUM(report_amount)"
       : "SUM(total_cost)";
 
-  /*
-   * CRITICAL:
-   *
-   * Use positional references instead of the column
-   * names themselves.
-   *
-   * For:
-   *
-   *   groupBy = ["survivor"]
-   *
-   * the generated SQL becomes:
-   *
-   *   SELECT
-   *     survivor AS "survivor",
-   *     MIN(survivor_id) AS survivor_id,
-   *     SUM(report_amount) AS total
-   *   FROM expense_source
-   *   GROUP BY 1
-   *   ORDER BY 1 ASC
-   *
-   * Therefore PostgreSQL never has to interpret
-   * "survivor" in GROUP BY/ORDER BY as
-   * expense_source.survivor independently.
-   */
+  const groupSelect =
+    config.groupBy.map(
+      (column) =>
+        `${reportSql.groupExpr[column]} AS "${column}"`,
+    );
+
+  if (
+    config.groupBy.includes(
+      "category",
+    )
+  ) {
+    groupSelect.push(
+      "MIN(category_id) AS category_id",
+    );
+  }
+
+  if (
+    config.groupBy.includes(
+      "survivor",
+    )
+  ) {
+    groupSelect.push(
+      "MIN(survivor_id) AS survivor_id",
+    );
+  }
+
   const groupBySql =
-    config.groupBy.length
-      ? config.groupBy
-          .map(
-            (_, index) =>
-              String(index + 1),
-          )
-          .join(", ")
-      : "";
+    config.groupBy
+      .map(
+        (_, index) =>
+          String(index + 1),
+      )
+      .join(", ");
 
   const result = await q(
     reportSql.grouped(
       cte,
-
       [
         ...groupSelect,
         `${amount} AS total`,
       ].join(", "),
-
       where,
-
       groupBySql,
-
       orderSql(
         config,
         true,
@@ -802,6 +906,7 @@ export async function runReport(
     result.rows.map(
       (row) => ({
         ...row,
+
         total: Number(
           row.total || 0,
         ),
