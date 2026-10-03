@@ -44,7 +44,9 @@ function sleep(ms) {
 async function postEmail(payload) {
   const recipient = payload.to;
   const subject = payload.subject;
-  const attachmentCount = Array.isArray(payload.attachments) ? payload.attachments.length : 0;
+  const attachmentCount = Array.isArray(payload.attachments)
+    ? payload.attachments.length
+    : 0;
 
   if (!EMAIL_API_URL) {
     logEmailEvent("email_api_not_configured", {
@@ -52,13 +54,19 @@ async function postEmail(payload) {
       subject,
       attachmentCount,
     });
+
     if (env.nodeEnv !== "production") {
       console.log("[EMAIL API PREVIEW]", JSON.stringify(payload));
     }
+
     return;
   }
 
-  for (let attempt = 1; attempt <= EMAIL_API_MAX_RETRIES + 1; attempt += 1) {
+  for (
+    let attempt = 1;
+    attempt <= EMAIL_API_MAX_RETRIES + 1;
+    attempt += 1
+  ) {
     const startedAt = Date.now();
 
     logEmailEvent("email_api_request_started", {
@@ -91,6 +99,7 @@ async function postEmail(payload) {
           durationMs: Date.now() - startedAt,
           attempt,
         });
+
         return;
       }
 
@@ -106,20 +115,34 @@ async function postEmail(payload) {
         durationMs: Date.now() - startedAt,
         attempt,
         retryable,
-        retriesRemaining: Math.max(EMAIL_API_MAX_RETRIES - attempt + 1, 0),
+        retriesRemaining: Math.max(
+          EMAIL_API_MAX_RETRIES - attempt + 1,
+          0,
+        ),
       });
 
       if (!retryable || !hasRetriesRemaining) {
         throw new Error(
           "Email API returned HTTP " +
             response.status +
-            (responseText ? ": " + responseText.slice(0, 500) : ""),
+            (responseText
+              ? ": " + responseText.slice(0, 500)
+              : ""),
         );
       }
 
       const fallbackDelay =
-        EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
-      const delayMs = getRetryAfterMs(response, fallbackDelay);
+        EMAIL_API_RETRY_DELAYS_MS[
+          Math.min(
+            attempt - 1,
+            EMAIL_API_RETRY_DELAYS_MS.length - 1,
+          )
+        ];
+
+      const delayMs = getRetryAfterMs(
+        response,
+        fallbackDelay,
+      );
 
       logEmailEvent("email_api_retry_scheduled", {
         recipient,
@@ -132,13 +155,23 @@ async function postEmail(payload) {
 
       await sleep(delayMs);
     } catch (error) {
-      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
+      const hasRetriesRemaining =
+        attempt <= EMAIL_API_MAX_RETRIES;
+
       const retryableException = true;
-      const isHttpError = String(error?.message || "").startsWith("Email API returned HTTP ");
+
+      const isHttpError = String(
+        error?.message || "",
+      ).startsWith("Email API returned HTTP ");
 
       if (!isHttpError && hasRetriesRemaining) {
         const delayMs =
-          EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+          EMAIL_API_RETRY_DELAYS_MS[
+            Math.min(
+              attempt - 1,
+              EMAIL_API_RETRY_DELAYS_MS.length - 1,
+            )
+          ];
 
         logEmailEvent("email_api_request_exception", {
           recipient,
@@ -148,7 +181,8 @@ async function postEmail(payload) {
           errorCode: error?.code,
           attempt,
           retryable: retryableException,
-          retriesRemaining: EMAIL_API_MAX_RETRIES - attempt + 1,
+          retriesRemaining:
+            EMAIL_API_MAX_RETRIES - attempt + 1,
         });
 
         logEmailEvent("email_api_retry_scheduled", {
@@ -182,95 +216,46 @@ async function postEmail(payload) {
   }
 }
 
-export async function sendPasswordOtp(email, otp, ttlMinutes) {
-  const text = "Your password reset OTP is " + otp + ". It expires in " + ttlMinutes + " minutes.";
-
-  await postEmail({
-    to: email,
-    subject: "Rehabilitation Center Expense Tracker password reset OTP",
-    htmlBody: "<p>" + text + "</p>",
-  });
-}
-
-export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
-  const filename = "expense-dashboard-" + reportDate + ".pdf";
-  const text = "Attached is the rehabilitation center expense dashboard for " + reportDate + ".";
-
-  await postEmail({
-    to: email,
-    subject: "Expense dashboard - " + reportDate,
-    htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  });
-}
-
-export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = "expense-7-day-report-" + reportDate + ".pdf";
+export async function sendPasswordOtp(
+  email,
+  otp,
+  ttlMinutes,
+) {
   const text =
-    "Attached is the 7-day expense report containing the daily bar chart, daily summary, survivor pivot bar chart and pivot data, and the raw expense dump with share details and clickable proof links.";
+    "Your password reset OTP is " +
+    otp +
+    ". It expires in " +
+    ttlMinutes +
+    " minutes.";
 
   await postEmail({
     to: email,
-    subject: "Expense 7-day report - " + reportDate,
+    subject:
+      "Rehabilitation Center Expense Tracker — Password Reset OTP",
     htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
   });
 }
 
-export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = "expense-4-week-report-" + reportDate + ".pdf";
-  await postEmail({
-    to: email,
-    subject: "Expense 4-week report - " + reportDate,
-    htmlBody:
-      "<p>Attached is the 4-week expense report containing the weekly bar chart, weekly summary, survivor pivot bar chart and pivot data, and the raw expense dump with share details and clickable proof links.</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  });
-}
+export async function sendDashboardEmail(
+  email,
+  pdfBuffer,
+  reportDate,
+) {
+  const filename =
+    "expense-dashboard-" +
+    reportDate +
+    ".pdf";
 
-export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = "expense-2-year-report-" + reportDate + ".pdf";
-  await postEmail({
-    to: email,
-    subject: "Expense 2-year report - " + reportDate,
-    htmlBody:
-      "<p>Attached is the 2-year expense report containing yearly bar chart, yearly summary, survivor pivot chart and pivot data, and the raw expense dump with share details and clickable proof links.</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  });
-}
-
-export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = "expense-3-month-report-" + reportDate + ".pdf";
   const text =
-    "Attached is the 3-month expense report containing the monthly bar chart, monthly summary, survivor pivot bar chart and pivot data, and the raw expense dump with share details and clickable proof links.";
+    "Attached is the rehabilitation center expense dashboard for " +
+    reportDate +
+    ". The PDF contains the dashboard expense overview, summary information, and visual report data.";
 
   await postEmail({
     to: email,
-    subject: "Expense 3-month report - " + reportDate,
+    subject:
+      "Expense Dashboard PDF Attached — Expense Overview & Summary — " +
+      reportDate,
     htmlBody: "<p>" + text + "</p>",
     attachments: [
       {
@@ -282,15 +267,152 @@ export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
   });
 }
 
-export async function sendReportEmail(email, pdfBuffer) {
-  const reportDate = new Intl.DateTimeFormat("en-CA", {
-    timeZone: env.appTimezone,
-  }).format(new Date());
-  const filename = "expense-report-" + reportDate + ".pdf";
+export async function sendDailyEmailReport(
+  email,
+  pdfBuffer,
+  reportDate,
+) {
+  const filename =
+    "expense-7-day-report-" +
+    reportDate +
+    ".pdf";
+
+  const text =
+    "Attached is the 7-day expense report containing the daily expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
+
   await postEmail({
     to: email,
-    subject: "Expense report - " + reportDate,
-    htmlBody: "<p>Attached is your expense report.</p>",
+    subject:
+      "Expense Report PDF Attached — Daily Expenses & Survivor Details — Last 7 Days — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
+}
+
+export async function sendWeeklyEmailReport(
+  email,
+  pdfBuffer,
+  reportDate,
+) {
+  const filename =
+    "expense-4-week-report-" +
+    reportDate +
+    ".pdf";
+
+  const text =
+    "Attached is the 4-week expense report containing the weekly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
+
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Weekly Expenses & Survivor Details — Last 4 Weeks — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
+}
+
+export async function sendYearlyEmailReport(
+  email,
+  pdfBuffer,
+  reportDate,
+) {
+  const filename =
+    "expense-2-year-report-" +
+    reportDate +
+    ".pdf";
+
+  const text =
+    "Attached is the 2-year expense report containing the yearly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
+
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Yearly Expenses & Survivor Details — Last 2 Years — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
+}
+
+export async function sendMonthlyEmailReport(
+  email,
+  pdfBuffer,
+  reportDate,
+) {
+  const filename =
+    "expense-3-month-report-" +
+    reportDate +
+    ".pdf";
+
+  const text =
+    "Attached is the 3-month expense report containing the monthly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
+
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Monthly Expenses & Survivor Details — Last 3 Months — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
+}
+
+export async function sendReportEmail(
+  email,
+  pdfBuffer,
+  options = {},
+) {
+  const reportDate = new Intl.DateTimeFormat(
+    "en-CA",
+    {
+      timeZone: env.appTimezone,
+    },
+  ).format(new Date());
+
+  const filename =
+    "expense-report-" +
+    reportDate +
+    ".pdf";
+
+  const subject =
+    options.subject ||
+    "Expense Report PDF Attached — Expense Summary & Details — " +
+      reportDate;
+
+  const htmlBody =
+    options.htmlBody ||
+    "<p>Attached is your expense report PDF containing the scheduled expense summary and detailed expense information.</p>";
+
+  await postEmail({
+    to: email,
+    subject,
+    htmlBody,
     attachments: [
       {
         filename,
