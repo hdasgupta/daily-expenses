@@ -35,7 +35,7 @@ export const env = {
   exposeOtpInDev: String(process.env.OTP_EXPOSE_IN_DEV || "false").toLowerCase() === "true",
   dashboardCron: process.env.DASHBOARD_CRON || "30 20 * * *",
   dashboardTimezone: process.env.DASHBOARD_TIMEZONE || "Asia/Kolkata",
-  dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "30 10 * * *",
+  dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "45 10 * * *",
   dailyEmailReportTimezone: process.env.DAILY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
   appTimezone: process.env.APP_TIMEZONE || "Asia/Kolkata",
   organizationName: process.env.ORGANIZATION_NAME || "Rehabilitation Center",
