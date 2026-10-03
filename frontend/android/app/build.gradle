@@ -11,6 +11,7 @@ android {
 
     defaultConfig {
         applicationId "org.wbfmh.dailyexpenses"
+
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
@@ -22,6 +23,19 @@ android {
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
+    }
+
+    /*
+     * Keep Java and Kotlin bytecode targets identical.
+     * GitHub Actions uses JDK 21, so both compile to JVM 21.
+     */
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = "21"
     }
 
     signingConfigs {
