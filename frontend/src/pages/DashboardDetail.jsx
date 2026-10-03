@@ -40,6 +40,20 @@ function buildMergedCells(rows, columns) {
   });
 }
 
+function stableValueKey(value) {
+  if (value == null || value === "") return "__null__";
+  return String(value);
+}
+
+function compareGroupValues(a, b, column) {
+  const left = a?.[column];
+  const right = b?.[column];
+  if (left == null && right == null) return 0;
+  if (left == null) return 1;
+  if (right == null) return -1;
+  return String(left).localeCompare(String(right), undefined, { numeric: true });
+}
+
 function buildPivotSummary(rows, groupBy) {
   const groups = groupBy || [];
   if (groups.length <= 1) return null;
@@ -54,12 +68,13 @@ function buildPivotSummary(rows, groupBy) {
 
   (rows || []).forEach((row) => {
     const columnValue = row[columnColumn];
-    const columnKey = String(columnValue ?? "__null__");
+    const columnKey = stableValueKey(columnValue);
     if (!columnKeys.has(columnKey)) {
       columnKeys.set(columnKey, columnValues.length);
       columnValues.push({ key: columnKey, value: columnValue });
     }
-    const rowKey = rowColumns.map((column) => String(row[column] ?? "__null__")).join("\u001f");
+
+    const rowKey = rowColumns.map((column) => stableValueKey(row[column])).join("\u001f");
     if (!rowMap.has(rowKey)) {
       rowMap.set(rowKey, {
         values: rowColumns.reduce((acc, column) => ({ ...acc, [column]: row[column] }), {}),
@@ -67,16 +82,32 @@ function buildPivotSummary(rows, groupBy) {
         total: 0,
       });
     }
+
     const target = rowMap.get(rowKey);
-    target.cells[columnKey] = { total: Number(row.total || 0), row };
-    target.total += Number(row.total || 0);
+    const existing = target.cells[columnKey];
+    const amount = Number(row.total || 0);
+    target.cells[columnKey] = existing
+      ? { total: existing.total + amount, row: existing.row }
+      : { total: amount, row };
+    target.total += amount;
   });
+
+  // The merge algorithm requires identical parent values to be adjacent.
+  const pivotRows = Array.from(rowMap.values()).sort((a, b) => {
+    for (const column of rowColumns) {
+      const result = compareGroupValues(a.values, b.values, column);
+      if (result) return result;
+    }
+    return 0;
+  });
+
+  columnValues.sort((a, b) => compareGroupValues({ [columnColumn]: a.value }, { [columnColumn]: b.value }, columnColumn));
 
   return {
     rowColumns,
     columnColumn,
     columnValues,
-    rows: Array.from(rowMap.values()),
+    rows: pivotRows,
   };
 }
 
@@ -308,11 +339,21 @@ function buildChartModel(data) {
   const groupBy = data?.groupBy || [];
 
   if (groupBy.length <= 1) {
+    const grouped = new Map();
+    rows.forEach((row) => {
+      const key = stableValueKey(row[groupBy[0]]);
+      const existing = grouped.get(key);
+      const amount = Number(row.total || 0);
+      grouped.set(key, existing
+        ? { ...existing, total: Number(existing.total || 0) + amount }
+        : row);
+    });
+    const chartRows = Array.from(grouped.values());
     return {
       multiSeries: false,
-      minWidth: Math.max(720, rows.length * 72 + 120),
+      minWidth: Math.max(720, chartRows.length * 72 + 120),
       description: "Each bar represents one summary-table row.",
-      data: rows.map((row, index) => ({
+      data: chartRows.map((row, index) => ({
         ...row,
         chartLabel: rowLabel(row, groupBy),
         chartValue: Number(row.total || 0),
@@ -330,18 +371,24 @@ function buildChartModel(data) {
   const secondaryColumns = groupBy.slice(1);
 
   rows.forEach((row) => {
+    const xKey = stableValueKey(row[groupBy[0]]);
     const xValue = prettyValue(row[groupBy[0]], groupBy[0]);
     const seriesLabel = secondaryColumns
       .map((column) => prettyValue(row[column], column))
       .join(" · ");
-    const seriesIndex = seriesMap.size;
-    const dataKey = `series_${seriesIndex}`;
-    if (!seriesMap.has(seriesLabel)) seriesMap.set(seriesLabel, { dataKey, label: seriesLabel, fill: `var(--dashboard-series-${(seriesIndex % 8) + 1})` });
+    let series = seriesMap.get(seriesLabel);
+    if (!series) {
+      const seriesIndex = seriesMap.size;
+      series = { dataKey: `series_${seriesIndex}`, label: seriesLabel, fill: `var(--dashboard-series-${(seriesIndex % 8) + 1})` };
+      seriesMap.set(seriesLabel, series);
+    }
 
-    if (!chartRows.has(xValue)) chartRows.set(xValue, { chartLabel: xValue, _groupRows: {} });
-    const target = chartRows.get(xValue);
-    target[dataKey] = Number(row.total || 0);
-    target._groupRows[dataKey] = row;
+    if (!chartRows.has(xKey)) chartRows.set(xKey, { chartLabel: xValue, _groupRows: {} });
+    const target = chartRows.get(xKey);
+    target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
+    // openDrilldown uses the group-by values, so retaining one representative
+    // row is enough to drill into an aggregated chart cell.
+    if (!target._groupRows[series.dataKey]) target._groupRows[series.dataKey] = row;
   });
 
   return {
