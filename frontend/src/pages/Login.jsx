@@ -17,14 +17,27 @@ export default function Login({ onLogin, initialPath }) {
     event.preventDefault();
     setMessage("");
     setError("");
+
     try {
       const result = await api("/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         loadingMessage: "Signing you in…",
       });
+
       localStorage.setItem("token", result.token);
-      onLogin(result.user);
+
+      // The deployed backend returns result.user. Keep a /me fallback so a
+      // compatible backend response can still complete the Capacitor transition.
+      const loggedInUser =
+        result?.user ||
+        (await api("/me", {
+          loadingMessage: "Loading your account…",
+          silent: true,
+          silentToast: true,
+        }));
+
+      await onLogin(loggedInUser);
     } catch (err) {
       setError(err.message);
     }
@@ -34,12 +47,14 @@ export default function Login({ onLogin, initialPath }) {
     event.preventDefault();
     setMessage("");
     setError("");
+
     try {
       const result = await api("/auth/request-reset", {
         method: "POST",
         body: JSON.stringify({ email }),
         loadingMessage: "Sending reset OTP…",
       });
+
       setResetRequested(true);
       setMessage(
         result.otpPreview
@@ -55,12 +70,14 @@ export default function Login({ onLogin, initialPath }) {
     event.preventDefault();
     setMessage("");
     setError("");
+
     try {
       await api("/auth/reset-password", {
         method: "POST",
         body: JSON.stringify({ email, otp, password, confirmPassword }),
         loadingMessage: "Resetting password…",
       });
+
       setMode("login");
       setResetRequested(false);
       setPassword("");
@@ -78,6 +95,7 @@ export default function Login({ onLogin, initialPath }) {
         <div className="login-logo">WB</div>
         <h1>West Bengal Forun for Mental Health</h1>
         <p className="muted">Daily Expenses</p>
+
         {mode === "login" ? (
           <form className="form-stack" onSubmit={submitLogin}>
             <label>
@@ -91,18 +109,21 @@ export default function Login({ onLogin, initialPath }) {
                 autoComplete="username"
               />
             </label>
+
             <PasswordField
               label="Password"
               value={password}
               onChange={setPassword}
               confirm={false}
             />
+
             {initialPath && initialPath !== "/" ? (
               <div className="notice">
-                You will return to the requested module after successful login, when your role has
-                permission for it.
+                You will return to the requested module after successful login,
+                when your role has permission for it.
               </div>
             ) : null}
+
             <div className="form-actions">
               <button className="primary full-width" type="submit">
                 <LogIn size={18} /> Login
@@ -118,6 +139,7 @@ export default function Login({ onLogin, initialPath }) {
                 <RotateCcw size={15} /> Reset
               </button>
             </div>
+
             <button
               className="link-button"
               type="button"
@@ -144,6 +166,7 @@ export default function Login({ onLogin, initialPath }) {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
+
                 <div className="form-actions">
                   <button className="primary full-width" type="submit">
                     <KeyRound size={18} /> Send OTP
@@ -172,6 +195,7 @@ export default function Login({ onLogin, initialPath }) {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
+
                 <label>
                   OTP
                   <input
@@ -182,6 +206,7 @@ export default function Login({ onLogin, initialPath }) {
                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
                   />
                 </label>
+
                 <PasswordField
                   label="New password"
                   value={password}
@@ -190,6 +215,7 @@ export default function Login({ onLogin, initialPath }) {
                   confirmValue={confirmPassword}
                   onConfirmChange={setConfirmPassword}
                 />
+
                 <div className="form-actions">
                   <button className="primary full-width" type="submit">
                     Reset password
@@ -208,6 +234,7 @@ export default function Login({ onLogin, initialPath }) {
                     <RotateCcw size={15} /> Reset
                   </button>
                 </div>
+
                 <button
                   className="secondary"
                   type="button"
@@ -217,6 +244,7 @@ export default function Login({ onLogin, initialPath }) {
                 </button>
               </form>
             )}
+
             <button
               className="link-button"
               type="button"
@@ -230,6 +258,7 @@ export default function Login({ onLogin, initialPath }) {
             </button>
           </>
         )}
+
         {message ? <div className="notice success-notice">{message}</div> : null}
         {error ? <div className="notice error-notice">{error}</div> : null}
       </div>

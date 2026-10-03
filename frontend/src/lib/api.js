@@ -1,4 +1,21 @@
-const baseUrl = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/$/, "");
+const RENDER_API_BASE_URL = "https://daily-expenses-g4ze.onrender.com/api";
+
+function isCapacitorNative() {
+  if (typeof window === "undefined") return false;
+
+  const capacitor = window.Capacitor;
+  if (capacitor && typeof capacitor.isNativePlatform === "function") {
+    return capacitor.isNativePlatform();
+  }
+
+  const protocol = window.location.protocol;
+  return protocol === "capacitor:" || protocol === "ionic:";
+}
+
+const configuredBaseUrl = String(import.meta.env.VITE_API_BASE_URL || "").trim();
+const baseUrl = (
+  configuredBaseUrl || (isCapacitorNative() ? RENDER_API_BASE_URL : "/api")
+).replace(/\/$/, "");
 
 const TRANSIENT_STATUS_CODES = new Set([502, 503, 504]);
 const DEFAULT_RETRY_DELAYS_MS = [1000, 2000, 4000];
@@ -32,7 +49,6 @@ async function fetchWithTransientRetry(url, fetchOptions, path, options) {
     try {
       const response = await fetch(url, fetchOptions);
       lastResponse = response;
-
       if (!TRANSIENT_STATUS_CODES.has(response.status) || attempt >= retries) {
         return response;
       }
@@ -57,6 +73,7 @@ export async function api(path, options = {}) {
     ...(options.headers || {}),
   };
   if (token) headers.Authorization = `Bearer ${token}`;
+
   window.dispatchEvent(
     new CustomEvent("app:api:start", {
       detail: { message: options.loadingMessage || "Please wait…" },
@@ -71,6 +88,7 @@ export async function api(path, options = {}) {
       path,
       { retryTransient, transientRetries },
     );
+
     const text = await response.text();
     let data = null;
     try {
@@ -84,15 +102,16 @@ export async function api(path, options = {}) {
       throw new Error(data?.error || `Request failed (${response.status})`);
     }
 
-    if (options.toast)
+    if (options.toast) {
       showToast(options.toast.type || "information", options.toast.message || "Done.");
-    else if (
+    } else if (
       ["POST", "PUT", "PATCH", "DELETE"].includes(
         String(options.method || "GET").toUpperCase(),
       ) &&
       !options.silentToast
-    )
+    ) {
       showToast("success", "Operation completed successfully.");
+    }
 
     return data;
   } catch (error) {
@@ -100,6 +119,7 @@ export async function api(path, options = {}) {
       error instanceof TypeError && error.message.includes("fetch")
         ? `Unable to reach the backend API at ${baseUrl}. Verify the backend and API proxy configuration.`
         : error.message;
+
     if (!options.silent) showToast("error", message);
     throw new Error(message);
   } finally {
