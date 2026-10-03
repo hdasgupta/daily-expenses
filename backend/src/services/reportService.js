@@ -210,13 +210,6 @@ function orderSql(config, forGroup, summarise = false) {
     .map((x) => {
       let expression = expressions[x.column];
 
-      /*
-       * A grouped summary can only ORDER BY grouped expressions
-       * or aggregate expressions.
-       *
-       * Therefore, if the user sorts by a dimension that is not
-       * actually in GROUP BY, aggregate it with MIN().
-       */
       if (
         forGroup &&
         summarise &&
@@ -260,10 +253,6 @@ function chartData(rows, groupBy) {
 export async function runReport(input) {
   const config = cleanConfig(input);
 
-  /*
-   * Expense reports use one row per expense.
-   * Survivor reports use one row per survivor share.
-   */
   const usesSurvivor =
     config.groupBy.includes("survivor");
 
@@ -279,9 +268,6 @@ export async function runReport(input) {
     "expense_source",
   );
 
-  /*
-   * RAW REPORT
-   */
   if (!config.groupBy.length && !config.summarise) {
     const select = usesSurvivor
       ? reportSql.rawSelectPerSurvivor
@@ -367,9 +353,6 @@ export async function runReport(input) {
     };
   }
 
-  /*
-   * GRAND TOTAL
-   */
   if (!config.groupBy.length && config.summarise) {
     const result = await q(
       reportSql.totalSummary(
@@ -400,16 +383,6 @@ export async function runReport(input) {
     };
   }
 
-  /*
-   * GROUPED REPORT
-   *
-   * IMPORTANT:
-   * Every grouping expression gets an explicit alias.
-   * The summary query then GROUPS BY those aliases.
-   *
-   * This is especially important for survivor because the
-   * expression is expense_source.survivor.
-   */
   const groupSelect = config.groupBy.map(
     (column) =>
       `${reportSql.groupExpr[column]} AS "${column}"`,
@@ -427,13 +400,6 @@ export async function runReport(input) {
     );
   }
 
-  /*
-   * GROUPED RAW
-   *
-   * This is intentionally NOT aggregated. It returns the
-   * matching raw expense rows while retaining the selected
-   * grouping columns in the response.
-   */
   if (!config.summarise) {
     const rawSelect = usesSurvivor
       ? reportSql.rawSelectPerSurvivor
@@ -496,23 +462,30 @@ export async function runReport(input) {
     };
   }
 
-  /*
-   * GROUPED SUMMARY
-   *
-   * The GROUP BY uses the exact same expressions that appear
-   * in groupSelect. This prevents PostgreSQL from treating
-   * expense_source.survivor as an ungrouped selected column.
-   */
   const amount = usesSurvivor
     ? "SUM(report_amount)"
     : "SUM(total_cost)";
 
-  const groupBySql = config.groupBy
-    .map(
-      (column) =>
-        reportSql.groupExpr[column],
-    )
-    .join(", ");
+  /*
+   * Use positional GROUP BY references.
+   *
+   * Example:
+   *
+   * SELECT
+   *   survivor AS "survivor",
+   *   MIN(survivor_id) AS survivor_id,
+   *   SUM(report_amount) AS total
+   * FROM expense_source
+   * GROUP BY 1
+   *
+   * This avoids PostgreSQL ambiguity around the CTE column
+   * expense_source.survivor versus the output alias survivor.
+   */
+  const groupBySql = config.groupBy.length
+    ? config.groupBy
+        .map((_, index) => String(index + 1))
+        .join(", ")
+    : "";
 
   const result = await q(
     reportSql.grouped(
