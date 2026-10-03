@@ -213,7 +213,7 @@ export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
 export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-7-day-report-" + reportDate + ".pdf";
   const text =
-    "Attached is the 7-day expense report containing the daily bar chart, daily summary, daily survivor summary, and expense data dump.";
+    "Attached is the 7-day expense report containing the daily bar chart, daily summary, survivor pivot bar chart and pivot data, and the raw expense dump with share details and clickable proof links.";
 
   await postEmail({
     to: email,
@@ -234,7 +234,7 @@ export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
   await postEmail({
     to: email,
     subject: "Expense 4-week report - " + reportDate,
-    htmlBody: "<p>Attached is the 4-week expense report.</p>",
+    htmlBody: "<p>Attached is the 4-week expense report containing the weekly bar chart, weekly summary, survivor pivot bar chart and pivot data, and the raw expense dump with share details and clickable proof links.</p>",
     attachments: [{
       filename,
       mimeType: "application/pdf",
@@ -244,11 +244,11 @@ export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
 }
 
 export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
-  const filename = "expense-12-month-report-" + reportDate + ".pdf";
+  const filename = "expense-2-year-report-" + reportDate + ".pdf";
   await postEmail({
     to: email,
-    subject: "Expense 12-month report - " + reportDate,
-    htmlBody: "<p>Attached is the 12-month expense report.</p>",
+    subject: "Expense 2-year report - " + reportDate,
+    htmlBody: "<p>Attached is the 2-year expense report containing yearly bar chart, yearly summary, survivor pivot chart and pivot data, and the raw expense dump with share details and clickable proof links.</p>",
     attachments: [{
       filename,
       mimeType: "application/pdf",
@@ -259,7 +259,7 @@ export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
 
 export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-3-month-report-" + reportDate + ".pdf";
-  const text = "Attached is the 3-month expense report containing the monthly bar chart, monthly summary, monthly survivor summary, and expense data dump.";
+  const text = "Attached is the 3-month expense report containing the monthly bar chart, monthly summary, survivor pivot bar chart and pivot data, and the raw expense dump with share details and clickable proof links.";
 
   await postEmail({
     to: email,

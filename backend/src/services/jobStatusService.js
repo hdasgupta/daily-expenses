@@ -23,7 +23,7 @@ const scheduleDefinitions = [
   },
   {
     jobName: "yearly-email-report",
-    label: "Yearly 12-month email report",
+    label: "Yearly 2-year email report",
     cron: env.yearlyEmailReportCron,
     timezone: env.yearlyEmailReportTimezone,
   },

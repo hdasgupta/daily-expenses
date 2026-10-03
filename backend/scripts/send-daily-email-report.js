@@ -10,7 +10,7 @@ try {
     `7-day email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s).`,
   );
 } catch (error) {
-  console.error(error);
+  console.error("7-day email report failed", error);
   process.exitCode = 1;
 } finally {
   await pool.end();

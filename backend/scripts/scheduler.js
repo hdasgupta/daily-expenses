@@ -200,7 +200,7 @@ async function runYearlyEmailReport() {
   );
   if (result) {
     console.log(
-      `12-month email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
+      `2-year email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
     );
   }
 }
@@ -233,8 +233,8 @@ async function catchUpMissedEmailReports() {
   });
 
   if (
-    Number(dailyLocal.hour) > 11 ||
-    (Number(dailyLocal.hour) === 11 && Number(dailyLocal.minute) >= 10)
+    Number(dailyLocal.hour) > 6 ||
+    (Number(dailyLocal.hour) === 6 && Number(dailyLocal.minute) >= 0)
   ) {
     try {
       await runDailyEmailReport();
@@ -257,11 +257,11 @@ async function catchUpMissedEmailReports() {
   }
 
   const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
-  if (yearlyLocal.month === "01" && yearlyLocal.day === "01" && Number(yearlyLocal.hour) >= 11) {
+  if (yearlyLocal.month === "01" && yearlyLocal.day === "01" && Number(yearlyLocal.hour) >= 6) {
     try {
       await runYearlyEmailReport();
     } catch (error) {
-      console.error("Missed 12-month email report catch-up failed", error);
+      console.error("Missed 2-year email report catch-up failed", error);
     }
   }
 
@@ -339,30 +339,6 @@ export function startEmailSchedulers() {
     );
   }
 
-  if (!cron.validate(env.yearlyEmailReportCron)) {
-    console.error(`Invalid YEARLY_EMAIL_REPORT_CRON: ${env.yearlyEmailReportCron}`);
-  } else {
-    cron.schedule(
-      env.yearlyEmailReportCron,
-      async () => {
-        logSchedulerEvent("yearly_email_report_triggered", {
-          cron: env.yearlyEmailReportCron,
-          timezone: env.yearlyEmailReportTimezone,
-          localTime: getLocalDateParts(env.yearlyEmailReportTimezone),
-        });
-        try {
-          await runYearlyEmailReport();
-        } catch (error) {
-          console.error("12-month email report job failed", error);
-        }
-      },
-      { timezone: env.yearlyEmailReportTimezone },
-    );
-    console.log(
-      `12-month email report scheduler enabled: ${env.yearlyEmailReportCron} (${env.yearlyEmailReportTimezone})`,
-    );
-  }
-
   if (!cron.validate(env.monthlyEmailReportCron)) {
     console.error(`Invalid MONTHLY_EMAIL_REPORT_CRON: ${env.monthlyEmailReportCron}`);
   } else {
@@ -384,6 +360,31 @@ export function startEmailSchedulers() {
     );
     console.log(
       `3-month email report scheduler enabled: ${env.monthlyEmailReportCron} (${env.monthlyEmailReportTimezone})`,
+    );
+  }
+
+
+  if (!cron.validate(env.yearlyEmailReportCron)) {
+    console.error(`Invalid YEARLY_EMAIL_REPORT_CRON: ${env.yearlyEmailReportCron}`);
+  } else {
+    cron.schedule(
+      env.yearlyEmailReportCron,
+      async () => {
+        logSchedulerEvent("yearly_email_report_triggered", {
+          cron: env.yearlyEmailReportCron,
+          timezone: env.yearlyEmailReportTimezone,
+          localTime: getLocalDateParts(env.yearlyEmailReportTimezone),
+        });
+        try {
+          await runYearlyEmailReport();
+        } catch (error) {
+          console.error("2-year email report job failed", error);
+        }
+      },
+      { timezone: env.yearlyEmailReportTimezone },
+    );
+    console.log(
+      `2-year email report scheduler enabled: ${env.yearlyEmailReportCron} (${env.yearlyEmailReportTimezone})`,
     );
   }
 

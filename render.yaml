@@ -40,11 +40,11 @@ services:
       - key: OTP_TTL_MINUTES
         value: "10"
       - key: DAILY_EMAIL_REPORT_CRON
-        value: "10 11 * * *"
+        value: "0 6 * * *"
       - key: DAILY_EMAIL_REPORT_TIMEZONE
         value: Asia/Kolkata
       - key: MONTHLY_EMAIL_REPORT_CRON
-        value: "10 11 1 * *"
+        value: "0 6 1 * *"
       - key: MONTHLY_EMAIL_REPORT_TIMEZONE
         value: Asia/Kolkata
       - key: WEEKLY_EMAIL_REPORT_CRON
@@ -52,7 +52,7 @@ services:
       - key: WEEKLY_EMAIL_REPORT_TIMEZONE
         value: Asia/Kolkata
       - key: YEARLY_EMAIL_REPORT_CRON
-        value: "10 11 1 1 *"
+        value: "0 6 1 1 *"
       - key: YEARLY_EMAIL_REPORT_TIMEZONE
         value: Asia/Kolkata
       - key: APP_TIMEZONE
