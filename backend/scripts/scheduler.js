@@ -108,6 +108,29 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
       return false;
     }
 
+    // A scheduled period is idempotent: once every manager email for this
+    // execution has completed successfully, later cron ticks/catch-up runs
+    // must never send the same report again. Failed executions remain retryable.
+    const completedResult = await client.query(
+      `SELECT id, completed_at
+       FROM public.scheduler_job_executions
+       WHERE job_name = $1
+         AND scheduled_key = $2
+         AND status = 'completed'
+       ORDER BY completed_at DESC NULLS LAST
+       LIMIT 1`,
+      [jobName, scheduledKey],
+    );
+    if (completedResult.rows.length > 0) {
+      logSchedulerEvent("scheduler_job_skipped_already_completed", {
+        jobName,
+        scheduledKey,
+        executionId: completedResult.rows[0].id,
+        completedAt: completedResult.rows[0].completed_at,
+      });
+      return false;
+    }
+
     try {
       const executionId = await markJobStarted(client, jobName, scheduledKey);
       const startedAt = Date.now();
