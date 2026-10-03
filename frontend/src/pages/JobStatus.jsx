@@ -109,7 +109,7 @@ export default function JobStatus() {
               </span>
             </div>
             <div className="job-schedule-details">
-              <span><b>Cron:</b> {schedule.cron || "—"}</span>
+              <span><b>Cron expression:</b> {schedule.cron || "—"}</span>
               <span><b>Timezone:</b> {schedule.timezone || "—"}</span>
               <span><b>Next scheduled run:</b> {schedule.nextRunAt ? formatDate(schedule.nextRunAt) : "—"}</span>
             </div>
