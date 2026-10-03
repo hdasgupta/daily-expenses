@@ -103,14 +103,8 @@ function addFilter(where, params, filters, alias) {
     }
   } else if (filters.month) {
     params.push(`${filters.month}-01`);
-
-    where.push(
-      reportSql.filterMonthFrom(alias, params.length),
-    );
-
-    where.push(
-      reportSql.filterMonthTo(alias, params.length),
-    );
+    where.push(reportSql.filterMonthFrom(alias, params.length));
+    where.push(reportSql.filterMonthTo(alias, params.length));
   } else if (filters.year) {
     params.push(Number(filters.year));
     where.push(reportSql.filterYear(alias, params.length));
@@ -129,9 +123,7 @@ function addFilter(where, params, filters, alias) {
     const clauses = [];
 
     for (const key of filters.categoryItems) {
-      const [categoryId, kind, itemId] = String(key).split(
-        ":",
-      );
+      const [categoryId, kind, itemId] = String(key).split(":");
 
       params.push(categoryId);
       const categoryIndex = params.length;
@@ -219,13 +211,11 @@ function orderSql(config, forGroup, summarise = false) {
       let expression = expressions[x.column];
 
       /*
-       * In a grouped summary, only selected groupBy dimensions
-       * are legal as plain ORDER BY expressions. Any other
-       * dimension must be aggregated.
+       * A grouped summary can only ORDER BY grouped expressions
+       * or aggregate expressions.
        *
-       * This prevents PostgreSQL errors such as:
-       *   column "expense_source.survivor" must appear in the
-       *   GROUP BY clause or be used in an aggregate function
+       * Therefore, if the user sorts by a dimension that is not
+       * actually in GROUP BY, aggregate it with MIN().
        */
       if (
         forGroup &&
@@ -263,7 +253,6 @@ function chartData(rows, groupBy) {
           `${column}: ${row[column]}`,
       )
       .join(" • "),
-
     value: Number(row.total || 0),
   }));
 }
@@ -272,11 +261,8 @@ export async function runReport(input) {
   const config = cleanConfig(input);
 
   /*
-   * Expense-based reports use one row per expense so totals
-   * include every expense exactly once.
-   *
-   * Survivor reports intentionally use share rows because
-   * their totals are survivor-specific.
+   * Expense reports use one row per expense.
+   * Survivor reports use one row per survivor share.
    */
   const usesSurvivor =
     config.groupBy.includes("survivor");
@@ -294,7 +280,7 @@ export async function runReport(input) {
   );
 
   /*
-   * Raw report without grouping.
+   * RAW REPORT
    */
   if (!config.groupBy.length && !config.summarise) {
     const select = usesSurvivor
@@ -314,17 +300,14 @@ export async function runReport(input) {
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
-
         total_cost:
           row.total_cost == null
             ? null
             : Number(row.total_cost),
-
         report_amount:
           row.report_amount == null
             ? null
             : Number(row.report_amount),
-
         proof_url: row.proof_key
           ? await signedObjectUrl(row.proof_key)
           : null,
@@ -366,6 +349,7 @@ export async function runReport(input) {
             }
 
             seen.add(expenseKey);
+
             return sum + totalCost;
           }
 
@@ -384,7 +368,7 @@ export async function runReport(input) {
   }
 
   /*
-   * Total summary without grouping.
+   * GRAND TOTAL
    */
   if (!config.groupBy.length && config.summarise) {
     const result = await q(
@@ -404,13 +388,9 @@ export async function runReport(input) {
 
     return {
       mode: "summary",
-
       columns: ["total"],
-
       rows: [{ total }],
-
       total,
-
       chartData: [
         {
           label: "Total",
@@ -421,10 +401,14 @@ export async function runReport(input) {
   }
 
   /*
-   * Build the selected grouping columns.
+   * GROUPED REPORT
    *
-   * Every expression placed here is also passed to GROUP BY
-   * for grouped summaries.
+   * IMPORTANT:
+   * Every grouping expression gets an explicit alias.
+   * The summary query then GROUPS BY those aliases.
+   *
+   * This is especially important for survivor because the
+   * expression is expense_source.survivor.
    */
   const groupSelect = config.groupBy.map(
     (column) =>
@@ -444,13 +428,11 @@ export async function runReport(input) {
   }
 
   /*
-   * Grouped raw report.
+   * GROUPED RAW
    *
-   * This intentionally does not use SQL GROUP BY. The
-   * groupBy values are returned together with the matching
-   * raw rows. Applying GROUP BY here would make PostgreSQL
-   * reject raw columns such as survivor, category, item,
-   * comment, etc.
+   * This is intentionally NOT aggregated. It returns the
+   * matching raw expense rows while retaining the selected
+   * grouping columns in the response.
    */
   if (!config.summarise) {
     const rawSelect = usesSurvivor
@@ -479,17 +461,14 @@ export async function runReport(input) {
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
-
         total_cost:
           row.total_cost == null
             ? null
             : Number(row.total_cost),
-
         report_amount:
           row.report_amount == null
             ? null
             : Number(row.report_amount),
-
         proof_url: row.proof_key
           ? await signedObjectUrl(row.proof_key)
           : null,
@@ -511,21 +490,18 @@ export async function runReport(input) {
       ],
 
       groupBy: config.groupBy,
-
       rows,
-
       total: 0,
-
       chartData: [],
     };
   }
 
   /*
-   * Grouped summary.
+   * GROUPED SUMMARY
    *
-   * The important part of this query is that GROUP BY contains
-   * exactly the same expressions used for the selected
-   * groupBy dimensions.
+   * The GROUP BY uses the exact same expressions that appear
+   * in groupSelect. This prevents PostgreSQL from treating
+   * expense_source.survivor as an ungrouped selected column.
    */
   const amount = usesSurvivor
     ? "SUM(report_amount)"
@@ -574,8 +550,7 @@ export async function runReport(input) {
     rows,
 
     total: rows.reduce(
-      (sum, row) =>
-        sum + row.total,
+      (sum, row) => sum + row.total,
       0,
     ),
 

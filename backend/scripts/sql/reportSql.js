@@ -18,7 +18,7 @@ export const reportSql = {
       COALESCE(es.amount, e.total_cost) AS report_amount,
       CASE
         WHEN s.id IS NULL
-          THEN ARRAY[]::bigint[]
+        THEN ARRAY[]::bigint[]
         ELSE ARRAY[s.id]::bigint[]
       END AS survivor_ids
     FROM public.expenses e
@@ -51,9 +51,11 @@ export const reportSql = {
         ', '
         ORDER BY s.full_name
       ) AS survivor,
-      ARRAY_AGG(DISTINCT s.id)
-        FILTER (WHERE s.id IS NOT NULL)::bigint[]
-        AS survivor_ids,
+      ARRAY_AGG(
+        DISTINCT s.id
+      ) FILTER (
+        WHERE s.id IS NOT NULL
+      )::bigint[] AS survivor_ids,
       NULL::bigint AS survivor_id,
       NULL::numeric AS report_amount
     FROM public.expenses e
@@ -83,7 +85,12 @@ export const reportSql = {
     where,
     orderSql,
   ) =>
-    `WITH ${cte} SELECT ${select} FROM expense_source ${where} ORDER BY ${orderSql} LIMIT 5000`,
+    `WITH ${cte}
+     SELECT ${select}
+     FROM expense_source
+     ${where}
+     ORDER BY ${orderSql}
+     LIMIT 5000`,
 
   where: (clauses) =>
     clauses.length
@@ -98,7 +105,10 @@ export const reportSql = {
     amount,
     where,
   ) =>
-    `WITH ${cte} SELECT ${amount} AS total FROM expense_source ${where}`,
+    `WITH ${cte}
+     SELECT ${amount} AS total
+     FROM expense_source
+     ${where}`,
 
   grouped: (
     cte,
@@ -107,11 +117,17 @@ export const reportSql = {
     groupBy,
     orderSql,
   ) =>
-    `WITH ${cte} SELECT ${select} FROM expense_source ${where} GROUP BY ${groupBy}${
-      orderSql
-        ? ` ORDER BY ${orderSql}`
-        : ""
-    } LIMIT 5000`,
+    `WITH ${cte}
+     SELECT ${select}
+     FROM expense_source
+     ${where}
+     GROUP BY ${groupBy}
+     ${
+       orderSql
+         ? `ORDER BY ${orderSql}`
+         : ""
+     }
+     LIMIT 5000`,
 
   filterDate: (
     alias,
@@ -160,19 +176,30 @@ export const reportSql = {
     categoryIndex,
     itemIndex,
   ) =>
-    `(${alias}.category_id = $${categoryIndex} AND ${alias}.item_id = $${itemIndex})`,
+    `(
+      ${alias}.category_id = $${categoryIndex}
+      AND ${alias}.item_id = $${itemIndex}
+    )`,
 
   filterOther: (
     alias,
     categoryIndex,
   ) =>
-    `(${alias}.category_id = $${categoryIndex} AND ${alias}.item_id IS NULL AND ${alias}.other_item IS NOT NULL)`,
+    `(
+      ${alias}.category_id = $${categoryIndex}
+      AND ${alias}.item_id IS NULL
+      AND ${alias}.other_item IS NOT NULL
+    )`,
 
   filterTotal: (
     alias,
     categoryIndex,
   ) =>
-    `(${alias}.category_id = $${categoryIndex} AND ${alias}.item_id IS NULL AND ${alias}.other_item IS NULL)`,
+    `(
+      ${alias}.category_id = $${categoryIndex}
+      AND ${alias}.item_id IS NULL
+      AND ${alias}.other_item IS NULL
+    )`,
 
   filterSurvivors: (
     alias,
@@ -207,10 +234,13 @@ export const reportSql = {
     year:
       "extract(year from expense_date)::int",
 
-    category: "category",
+    category:
+      "category",
 
-    item: "item",
+    item:
+      "item",
 
-    survivor: "survivor",
+    survivor:
+      "survivor",
   },
 };
