@@ -4,6 +4,7 @@ import { pool } from "../src/db/index.js";
 import { sendDashboardToManagers } from "../src/services/dashboardService.js";
 import { sendDailyEmailReportToManagers } from "../src/services/dailyEmailReportService.js";
 import { sendMonthlyEmailReportToManagers } from "../src/services/monthlyEmailReportService.js";
+import { sendWeeklyEmailReportToManagers } from "../src/services/weeklyEmailReportService.js";
 
 let started = false;
 
@@ -15,6 +16,7 @@ function getLocalDateParts(timezone) {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
+    weekday: "long",
     hour12: false,
   }).formatToParts(new Date());
   return Object.fromEntries(
@@ -82,11 +84,15 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
     timezone:
       jobName === "daily-email-report"
         ? env.dailyEmailReportTimezone
-        : env.monthlyEmailReportTimezone,
+        : jobName === "monthly-email-report"
+          ? env.monthlyEmailReportTimezone
+          : env.weeklyEmailReportTimezone,
     localTime:
       jobName === "daily-email-report"
         ? getLocalDateParts(env.dailyEmailReportTimezone)
-        : getLocalDateParts(env.monthlyEmailReportTimezone),
+        : jobName === "monthly-email-report"
+          ? getLocalDateParts(env.monthlyEmailReportTimezone)
+          : getLocalDateParts(env.weeklyEmailReportTimezone),
   });
 
   try {
@@ -232,6 +238,25 @@ async function runMonthlyEmailReport() {
   }
 }
 
+async function runWeeklyEmailReport() {
+  const local = getLocalDateParts(env.weeklyEmailReportTimezone);
+  if (local.weekday !== undefined && local.weekday !== "Sunday") {
+    logSchedulerEvent("weekly_email_report_skipped_not_sunday", { local });
+    return;
+  }
+  const scheduledKey = localDateKey(env.weeklyEmailReportTimezone);
+  const result = await runEmailJobOnce(
+    "weekly-email-report",
+    scheduledKey,
+    sendWeeklyEmailReportToManagers,
+  );
+  if (result) {
+    console.log(
+      `4-week email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
+    );
+  }
+}
+
 async function catchUpMissedEmailReports() {
   const dailyLocal = getLocalDateParts(env.dailyEmailReportTimezone);
   logSchedulerEvent("scheduler_catchup_check", {
@@ -248,6 +273,15 @@ async function catchUpMissedEmailReports() {
       await runDailyEmailReport();
     } catch (error) {
       console.error("Missed 7-day email report catch-up failed", error);
+    }
+  }
+
+  const weeklyLocal = getLocalDateParts(env.weeklyEmailReportTimezone);
+  if (weeklyLocal.weekday === "Sunday" && (Number(weeklyLocal.hour) > 6 || (Number(weeklyLocal.hour) === 6 && Number(weeklyLocal.minute) >= 0))) {
+    try {
+      await runWeeklyEmailReport();
+    } catch (error) {
+      console.error("Missed 4-week email report catch-up failed", error);
     }
   }
 
@@ -273,6 +307,8 @@ export function startDashboardScheduler() {
     dailyEmailReportTimezone: env.dailyEmailReportTimezone,
     monthlyEmailReportCron: env.monthlyEmailReportCron,
     monthlyEmailReportTimezone: env.monthlyEmailReportTimezone,
+    weeklyEmailReportCron: env.weeklyEmailReportCron,
+    weeklyEmailReportTimezone: env.weeklyEmailReportTimezone,
   });
 
   if (!cron.validate(env.dashboardCron)) {
@@ -318,6 +354,31 @@ export function startDashboardScheduler() {
     );
     console.log(
       `7-day email report scheduler enabled: ${env.dailyEmailReportCron} (${env.dailyEmailReportTimezone})`,
+    );
+  }
+
+
+  if (!cron.validate(env.weeklyEmailReportCron)) {
+    console.error(`Invalid WEEKLY_EMAIL_REPORT_CRON: ${env.weeklyEmailReportCron}`);
+  } else {
+    cron.schedule(
+      env.weeklyEmailReportCron,
+      async () => {
+        logSchedulerEvent("weekly_email_report_triggered", {
+          cron: env.weeklyEmailReportCron,
+          timezone: env.weeklyEmailReportTimezone,
+          localTime: getLocalDateParts(env.weeklyEmailReportTimezone),
+        });
+        try {
+          await runWeeklyEmailReport();
+        } catch (error) {
+          console.error("4-week email report job failed", error);
+        }
+      },
+      { timezone: env.weeklyEmailReportTimezone },
+    );
+    console.log(
+      `4-week email report scheduler enabled: ${env.weeklyEmailReportCron} (${env.weeklyEmailReportTimezone})`,
     );
   }
 

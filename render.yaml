@@ -44,8 +44,18 @@ services:
       - key: DASHBOARD_TIMEZONE
         value: Asia/Kolkata
       - key: DAILY_EMAIL_REPORT_CRON
-        value: "0 6 * * *"
+        value: "10 11 * * *"
       - key: DAILY_EMAIL_REPORT_TIMEZONE
+        value: Asia/Kolkata
+      - key: MONTHLY_EMAIL_REPORT_CRON
+        value: "10 11 1 * *"
+      - key: MONTHLY_EMAIL_REPORT_TIMEZONE
+        value: Asia/Kolkata
+      - key: WEEKLY_EMAIL_REPORT_CRON
+        value: "0 6 * * 0"
+      - key: WEEKLY_EMAIL_REPORT_TIMEZONE
+        value: Asia/Kolkata
+      - key: APP_TIMEZONE
         value: Asia/Kolkata
       - key: ORGANIZATION_NAME
         value: Rehabilitation Center

@@ -21,6 +21,12 @@ const scheduleDefinitions = [
     cron: env.monthlyEmailReportCron,
     timezone: env.monthlyEmailReportTimezone,
   },
+  {
+    jobName: "weekly-email-report",
+    label: "Weekly 4-week email report",
+    cron: env.weeklyEmailReportCron,
+    timezone: env.weeklyEmailReportTimezone,
+  },
 ];
 
 export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {
