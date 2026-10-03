@@ -3,6 +3,9 @@ import { env } from "../config/env.js";
 const EMAIL_API_URL = env.emailApiUrl;
 const EMAIL_API_KEY = env.emailApiKey;
 
+const EMAIL_API_MAX_RETRIES = 3;
+const EMAIL_API_RETRY_DELAYS_MS = [2000, 5000, 10000];
+
 function logEmailEvent(event, details = {}) {
   console.log(
     JSON.stringify({
@@ -11,6 +14,31 @@ function logEmailEvent(event, details = {}) {
       ...details,
     }),
   );
+}
+
+function isRetryableStatus(status) {
+  return status === 408 || status === 429 || status >= 500;
+}
+
+function getRetryAfterMs(response, fallbackMs) {
+  const retryAfter = response.headers.get("retry-after");
+  if (!retryAfter) return fallbackMs;
+
+  const seconds = Number(retryAfter);
+  if (Number.isFinite(seconds) && seconds >= 0) {
+    return Math.min(seconds * 1000, 60000);
+  }
+
+  const retryDate = Date.parse(retryAfter);
+  if (!Number.isNaN(retryDate)) {
+    return Math.min(Math.max(retryDate - Date.now(), 0), 60000);
+  }
+
+  return fallbackMs;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function postEmail(payload) {
@@ -30,28 +58,45 @@ async function postEmail(payload) {
     return;
   }
 
-  const startedAt = Date.now();
+  for (let attempt = 1; attempt <= EMAIL_API_MAX_RETRIES + 1; attempt += 1) {
+    const startedAt = Date.now();
 
-  logEmailEvent("email_api_request_started", {
-    recipient,
-    subject,
-    attachmentCount,
-    url: EMAIL_API_URL,
-  });
-
-  try {
-    const response = await fetch(EMAIL_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...payload,
-        apiKey: EMAIL_API_KEY,
-      }),
+    logEmailEvent("email_api_request_started", {
+      recipient,
+      subject,
+      attachmentCount,
+      url: EMAIL_API_URL,
+      attempt,
+      maxAttempts: EMAIL_API_MAX_RETRIES + 1,
     });
 
-    const responseText = await response.text();
+    try {
+      const response = await fetch(EMAIL_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...payload,
+          apiKey: EMAIL_API_KEY,
+        }),
+      });
 
-    if (!response.ok) {
+      const responseText = await response.text();
+
+      if (response.ok) {
+        logEmailEvent("email_api_request_succeeded", {
+          recipient,
+          subject,
+          status: response.status,
+          responseBody: responseText.slice(0, 500),
+          durationMs: Date.now() - startedAt,
+          attempt,
+        });
+        return;
+      }
+
+      const retryable = isRetryableStatus(response.status);
+      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
+
       logEmailEvent("email_api_request_failed", {
         recipient,
         subject,
@@ -59,33 +104,81 @@ async function postEmail(payload) {
         statusText: response.statusText,
         responseBody: responseText.slice(0, 1000),
         durationMs: Date.now() - startedAt,
+        attempt,
+        retryable,
+        retriesRemaining: Math.max(EMAIL_API_MAX_RETRIES - attempt + 1, 0),
       });
 
-      throw new Error(
-        "Email API returned HTTP " +
-          response.status +
-          (responseText ? ": " + responseText.slice(0, 500) : ""),
-      );
-    }
+      if (!retryable || !hasRetriesRemaining) {
+        throw new Error(
+          "Email API returned HTTP " +
+            response.status +
+            (responseText ? ": " + responseText.slice(0, 500) : ""),
+        );
+      }
 
-    logEmailEvent("email_api_request_succeeded", {
-      recipient,
-      subject,
-      status: response.status,
-      responseBody: responseText.slice(0, 500),
-      durationMs: Date.now() - startedAt,
-    });
-  } catch (error) {
-    if (!String(error?.message || "").startsWith("Email API returned HTTP ")) {
-      logEmailEvent("email_api_request_exception", {
+      const fallbackDelay =
+        EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+      const delayMs = getRetryAfterMs(response, fallbackDelay);
+
+      logEmailEvent("email_api_retry_scheduled", {
         recipient,
         subject,
-        durationMs: Date.now() - startedAt,
-        error: error?.message || String(error),
-        stack: error?.stack,
+        failedAttempt: attempt,
+        nextAttempt: attempt + 1,
+        delayMs,
+        status: response.status,
       });
+
+      await sleep(delayMs);
+    } catch (error) {
+      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
+      const retryableException = true;
+      const isHttpError = String(error?.message || "").startsWith("Email API returned HTTP ");
+
+      if (!isHttpError && hasRetriesRemaining) {
+        const delayMs =
+          EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+
+        logEmailEvent("email_api_request_exception", {
+          recipient,
+          subject,
+          durationMs: Date.now() - startedAt,
+          error: error?.message || String(error),
+          errorCode: error?.code,
+          attempt,
+          retryable: retryableException,
+          retriesRemaining: EMAIL_API_MAX_RETRIES - attempt + 1,
+        });
+
+        logEmailEvent("email_api_retry_scheduled", {
+          recipient,
+          subject,
+          failedAttempt: attempt,
+          nextAttempt: attempt + 1,
+          delayMs,
+          reason: "network_or_request_exception",
+        });
+
+        await sleep(delayMs);
+        continue;
+      }
+
+      if (!isHttpError) {
+        logEmailEvent("email_api_request_exception", {
+          recipient,
+          subject,
+          durationMs: Date.now() - startedAt,
+          error: error?.message || String(error),
+          errorCode: error?.code,
+          attempt,
+          retryable: false,
+          retriesRemaining: 0,
+        });
+      }
+
+      throw error;
     }
-    throw error;
   }
 }
 
