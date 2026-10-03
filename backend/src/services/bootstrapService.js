@@ -15,6 +15,7 @@ const permissions = [
   "add-user",
   "job-status",
 ];
+
 const rolePermissions = {
   admin: permissions,
   editor: ["add-expense"],
@@ -22,11 +23,31 @@ const rolePermissions = {
 };
 
 export async function seedApplication() {
-  for (const permission of permissions) await q(bootstrapSql.insertPermission, [permission]);
-  for (const role of Object.keys(rolePermissions)) await q(bootstrapSql.insertRole, [role]);
-  for (const [role, codes] of Object.entries(rolePermissions)) {
-    for (const code of codes) await q(bootstrapSql.linkRolePermission, [role, code]);
+  // Always ensure the complete permission catalogue exists.
+  for (const permission of permissions) {
+    await q(bootstrapSql.insertPermission, [permission]);
   }
+
+  // Always ensure all supported roles exist.
+  for (const role of Object.keys(rolePermissions)) {
+    await q(bootstrapSql.insertRole, [role]);
+  }
+
+  // Always repair/complete role-permission mappings.
+  // This is intentionally run on every startup so databases created before
+  // the permission system was introduced are brought up to date.
+  for (const [role, codes] of Object.entries(rolePermissions)) {
+    for (const code of codes) {
+      await q(bootstrapSql.linkRolePermission, [role, code]);
+    }
+  }
+
+  // Create the administrator only when the account does not already exist.
+  // Existing users and their passwords/roles are preserved.
   const hash = await bcrypt.hash(env.adminPassword, 12);
-  await q(bootstrapSql.seedAdmin, [env.adminEmail, hash]);
+
+  await q(bootstrapSql.seedAdmin, [
+    env.adminEmail,
+    hash,
+  ]);
 }
