@@ -288,100 +288,143 @@ function addFilter(
   return reportSql.where(where);
 }
 
-function orderSql(
-  config,
-  forGroup,
-  summarise = false,
-) {
-  const rawExpressions = {
+/*
+ * Ordering for a true detail/raw report.
+ *
+ * IMPORTANT:
+ * groupBy does NOT mean SQL GROUP BY when
+ * summarise === false.
+ *
+ * It only controls the ordering of the
+ * individual detail rows.
+ */
+function detailOrderSql(config) {
+  const expressions = {
     date: "expense_date",
     category: "category",
     item: "item",
     survivor: "survivor",
   };
 
-  if (!forGroup) {
-    const chosen =
-      config.sortColumns.length
-        ? config.sortColumns
-        : [];
+  const parts = [];
 
-    const parts = chosen
-      .filter(
-        (x) =>
-          rawExpressions[x.column],
-      )
-      .map((x) =>
-        reportSql.order(
-          rawExpressions[x.column],
-          x.direction.toUpperCase(),
-        ),
-      );
+  /*
+   * Explicit sorting selected by the user
+   * takes priority.
+   */
+  for (const sort of config.sortColumns) {
+    const expression =
+      expressions[sort.column];
 
-    return parts.length
-      ? parts.join(", ")
-      : reportSql.defaultRawOrder;
+    if (!expression) continue;
+
+    parts.push(
+      reportSql.order(
+        expression,
+        sort.direction.toUpperCase(),
+      ),
+    );
   }
 
-  const chosen =
-    config.sortColumns.length
-      ? config.sortColumns
-      : [];
+  /*
+   * When Group By is selected but Summarise
+   * is OFF, groupBy means:
+   *
+   *   "keep every detail row, but arrange
+   *    the rows by these dimensions."
+   *
+   * Add the group dimensions to the
+   * ordering if the user did not already
+   * explicitly sort by them.
+   */
+  for (const column of config.groupBy) {
+    const expression =
+      expressions[column];
+
+    if (!expression) continue;
+
+    const alreadySorted =
+      config.sortColumns.some(
+        (sort) =>
+          sort.column === column,
+      );
+
+    if (alreadySorted) continue;
+
+    parts.push(
+      reportSql.order(
+        expression,
+        "ASC",
+      ),
+    );
+  }
+
+  /*
+   * Finally keep newest expenses first
+   * inside each detail group.
+   */
+  parts.push(
+    "expense_date DESC",
+    "id DESC",
+  );
+
+  return parts.join(", ");
+}
+
+/*
+ * Ordering for grouped summary reports.
+ *
+ * Here groupBy REALLY is SQL GROUP BY.
+ */
+function summaryOrderSql(
+  config,
+  usesSurvivor,
+) {
+  const expressions = {
+    date: "expense_date",
+    category: "category",
+    item: "item",
+    survivor: "survivor",
+    price: usesSurvivor
+      ? "SUM(report_amount)"
+      : "SUM(total_cost)",
+  };
 
   const parts = [];
 
-  for (const sort of chosen) {
+  for (const sort of config.sortColumns) {
     if (
-      config.groupBy.includes(
-        sort.column,
-      )
+      !expressions[sort.column]
     ) {
-      /*
-       * Use the selected output alias.
-       *
-       * This is especially important for
-       * survivor because the displayed
-       * survivor is MIN(survivor).
-       */
-      parts.push(
-        reportSql.order(
-          `"${sort.column}"`,
-          sort.direction.toUpperCase(),
-        ),
-      );
-
       continue;
     }
 
-    if (summarise) {
-      if (sort.column === "price") {
-        parts.push(
-          reportSql.order(
-            "SUM(report_amount)",
-            sort.direction.toUpperCase(),
-          ),
-        );
+    let expression =
+      expressions[sort.column];
 
-        continue;
-      }
-
-      const expression =
-        rawExpressions[
-          sort.column
-        ] ||
-        reportSql.groupExpr[
-          sort.column
-        ];
-
-      if (expression) {
-        parts.push(
-          reportSql.order(
-            `MIN(${expression})`,
-            sort.direction.toUpperCase(),
-          ),
-        );
-      }
+    /*
+     * A grouped dimension can be ordered
+     * directly because it is present in
+     * GROUP BY.
+     *
+     * Non-grouped dimensions need an
+     * aggregate in a summary query.
+     */
+    if (
+      sort.column !== "price" &&
+      !config.groupBy.includes(
+        sort.column,
+      )
+    ) {
+      expression = `MIN(${expression})`;
     }
+
+    parts.push(
+      reportSql.order(
+        expression,
+        sort.direction.toUpperCase(),
+      ),
+    );
   }
 
   if (parts.length) {
@@ -389,28 +432,22 @@ function orderSql(
   }
 
   /*
-   * Default grouped ordering.
-   *
-   * Survivor is ordered by its displayed
-   * aggregate value rather than using
-   * GROUP BY position.
+   * Default summary ordering follows
+   * the selected grouping dimensions.
    */
-  if (
-    config.groupBy.includes(
-      "survivor",
-    )
-  ) {
-    return `"survivor" ASC`;
-  }
-
   return config.groupBy
-    .map(
-      (column) =>
-        reportSql.order(
-          `"${column}"`,
-          "ASC",
-        ),
-    )
+    .map((column) => {
+      const expression =
+        expressions[column];
+
+      return expression
+        ? reportSql.order(
+            expression,
+            "ASC",
+          )
+        : null;
+    })
+    .filter(Boolean)
     .join(", ");
 }
 
@@ -432,125 +469,6 @@ function chartData(
   }));
 }
 
-/*
- * Build the SELECT portion for a grouped
- * non-summary report.
- *
- * Survivor is deliberately represented as:
- *
- *   MIN(survivor) AS survivor
- *
- * while the actual GROUP BY uses:
- *
- *   survivor_id
- *
- * This prevents PostgreSQL from trying to
- * GROUP BY an aggregate expression.
- */
-function buildGroupedRawSelect(
-  groupBy,
-  usesSurvivor,
-) {
-  const select = [];
-
-  for (const column of groupBy) {
-    if (column === "survivor") {
-      select.push(
-        'MIN(survivor) AS "survivor"',
-      );
-    } else {
-      select.push(
-        `${reportSql.groupExpr[column]} AS "${column}"`,
-      );
-    }
-  }
-
-  if (
-    groupBy.includes(
-      "category",
-    )
-  ) {
-    select.push(
-      "MIN(category_id) AS category_id",
-    );
-  }
-
-  if (
-    groupBy.includes(
-      "survivor",
-    )
-  ) {
-    select.push(
-      "MIN(survivor_id) AS survivor_id",
-    );
-  }
-
-  if (!groupBy.includes("date")) {
-    select.push(
-      "MIN(expense_date) AS expense_date",
-    );
-  }
-
-  if (!groupBy.includes("category")) {
-    select.push(
-      "MIN(category) AS category",
-    );
-  }
-
-  if (!groupBy.includes("item")) {
-    select.push(
-      "MIN(item) AS item",
-    );
-  }
-
-  if (!groupBy.includes("survivor")) {
-    select.push(
-      "MIN(survivor) AS survivor",
-    );
-  }
-
-  if (usesSurvivor) {
-    select.push(
-      "SUM(report_amount) AS share_price",
-    );
-  } else {
-    select.push(
-      "SUM(total_cost) AS total_cost",
-    );
-  }
-
-  select.push(
-    "MIN(comment) AS comment",
-    "MIN(proof_key) AS proof_key",
-  );
-
-  return select;
-}
-
-/*
- * Build the real SQL GROUP BY expressions.
- *
- * IMPORTANT:
- * We do NOT use SELECT positions here
- * because survivor's SELECT expression
- * is MIN(survivor), which is an aggregate.
- */
-function buildGroupBySql(
-  groupBy,
-) {
-  return groupBy
-    .map((column) => {
-      if (column === "survivor") {
-        return "survivor_id";
-      }
-
-      return reportSql.groupExpr[
-        column
-      ];
-    })
-    .join(", ");
-}
-
 export async function runReport(
   input,
 ) {
@@ -561,6 +479,13 @@ export async function runReport(
       "survivor",
     );
 
+  /*
+   * Survivor grouping requires one row
+   * per survivor share.
+   *
+   * Without survivor grouping we use one
+   * row per expense.
+   */
   const cte = usesSurvivor
     ? reportSql.sourcePerSurvivor
     : reportSql.sourcePerExpense;
@@ -576,7 +501,10 @@ export async function runReport(
 
   /*
    * --------------------------------------------------
-   * RAW REPORT
+   * RAW DETAIL REPORT
+   *
+   * No Group By
+   * No Summarise
    * --------------------------------------------------
    */
 
@@ -594,10 +522,7 @@ export async function runReport(
         cte,
         select,
         where,
-        orderSql(
-          config,
-          false,
-        ),
+        detailOrderSql(config),
       ),
       params,
     );
@@ -710,6 +635,9 @@ export async function runReport(
   /*
    * --------------------------------------------------
    * TOTAL SUMMARY
+   *
+   * No Group By
+   * Summarise ON
    * --------------------------------------------------
    */
 
@@ -752,33 +680,30 @@ export async function runReport(
 
   /*
    * --------------------------------------------------
-   * GROUPED RAW
+   * GROUP BY + SUMMARISE OFF
+   *
+   * THIS IS A DETAIL REPORT.
+   *
+   * There is deliberately NO SQL GROUP BY.
+   *
+   * Every underlying row is returned.
+   *
+   * groupBy only controls the ordering.
    * --------------------------------------------------
    */
 
   if (!config.summarise) {
-    const groupSelect =
-      buildGroupedRawSelect(
-        config.groupBy,
-        usesSurvivor,
-      );
-
-    const groupBySql =
-      buildGroupBySql(
-        config.groupBy,
-      );
+    const select =
+      usesSurvivor
+        ? reportSql.rawSelectPerSurvivor
+        : reportSql.rawSelectPerExpense;
 
     const result = await q(
-      reportSql.grouped(
+      reportSql.raw(
         cte,
-        groupSelect.join(", "),
+        select,
         where,
-        groupBySql,
-        orderSql(
-          config,
-          true,
-          false,
-        ),
+        detailOrderSql(config),
       ),
       params,
     );
@@ -797,12 +722,12 @@ export async function runReport(
                     row.total_cost,
                   ),
 
-            share_price:
-              row.share_price ==
+            report_amount:
+              row.report_amount ==
               null
                 ? null
                 : Number(
-                    row.share_price,
+                    row.report_amount,
                   ),
 
             proof_url:
@@ -834,6 +759,11 @@ export async function runReport(
 
       rows,
 
+      /*
+       * Keep existing grouped-detail
+       * behaviour: this is not a summary
+       * total.
+       */
       total: 0,
 
       chartData: [],
@@ -842,26 +772,16 @@ export async function runReport(
 
   /*
    * --------------------------------------------------
-   * GROUPED SUMMARY
+   * GROUP BY + SUMMARISE ON
+   *
+   * This remains a genuine aggregate query.
    * --------------------------------------------------
    */
 
-  const amount =
-    usesSurvivor
-      ? "SUM(report_amount)"
-      : "SUM(total_cost)";
-
   const groupSelect =
     config.groupBy.map(
-      (column) => {
-        if (
-          column === "survivor"
-        ) {
-          return 'MIN(survivor) AS "survivor"';
-        }
-
-        return `${reportSql.groupExpr[column]} AS "${column}"`;
-      },
+      (column) =>
+        `${reportSql.groupExpr[column]} AS "${column}"`,
     );
 
   if (
@@ -884,10 +804,26 @@ export async function runReport(
     );
   }
 
+  const amount =
+    usesSurvivor
+      ? "SUM(report_amount)"
+      : "SUM(total_cost)";
+
+  /*
+   * Summary queries really do need GROUP BY.
+   *
+   * Use the actual group expressions,
+   * never SELECT positions.
+   */
   const groupBySql =
-    buildGroupBySql(
-      config.groupBy,
-    );
+    config.groupBy
+      .map(
+        (column) =>
+          reportSql.groupExpr[
+            column
+          ],
+      )
+      .join(", ");
 
   const result = await q(
     reportSql.grouped(
@@ -898,10 +834,9 @@ export async function runReport(
       ].join(", "),
       where,
       groupBySql,
-      orderSql(
+      summaryOrderSql(
         config,
-        true,
-        true,
+        usesSurvivor,
       ),
     ),
     params,
