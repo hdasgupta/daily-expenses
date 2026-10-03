@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { ArrowLeft, KeyRound, LogIn, RotateCcw } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ArrowLeft, KeyRound, LogIn, RotateCcw, ShieldCheck } from "lucide-react";
 import { api } from "../lib/api";
 import PasswordField from "../components/PasswordField";
+import {
+  getSavedCredential,
+  isCredentialVaultAvailable,
+  saveCredential,
+} from "../lib/credentialVault";
 
 function normalizePermissions(permissions) {
   if (Array.isArray(permissions)) {
@@ -36,6 +41,37 @@ export default function Login({ onLogin, initialPath }) {
   const [resetRequested, setResetRequested] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [credentialVaultAvailable, setCredentialVaultAvailable] = useState(false);
+  const [loadingSavedCredential, setLoadingSavedCredential] = useState(false);
+
+  useEffect(() => {
+    setCredentialVaultAvailable(isCredentialVaultAvailable());
+  }, []);
+
+  const useSavedCredential = async () => {
+    setMessage("");
+    setError("");
+    setLoadingSavedCredential(true);
+
+    try {
+      const credential = await getSavedCredential();
+
+      if (!credential) {
+        setMessage(
+          "No saved login credential was selected. You can enter your credentials manually.",
+        );
+        return;
+      }
+
+      setEmail(credential.username);
+      setPassword(credential.password);
+      setMessage("Saved credentials filled. Tap Login to continue.");
+    } catch {
+      setError("Unable to retrieve the saved login credential.");
+    } finally {
+      setLoadingSavedCredential(false);
+    }
+  };
 
   const submitLogin = async (event) => {
     event.preventDefault();
@@ -50,6 +86,11 @@ export default function Login({ onLogin, initialPath }) {
       });
 
       localStorage.setItem("token", result.token);
+
+      // Save the successfully authenticated username/password in the
+      // Android Credential Manager. This is Android-only and does not
+      // affect the existing web login flow.
+      saveCredential(email.trim(), password);
 
       // Use the user returned by login when available. If the backend response
       // does not include it, load the authenticated account from /me.
@@ -133,6 +174,10 @@ export default function Login({ onLogin, initialPath }) {
         loadingMessage: "Resetting password…",
       });
 
+      // Keep the Android password manager synchronized with the new
+      // password. The Credential Manager decides how the update is handled.
+      saveCredential(email.trim(), password);
+
       setMode("login");
       setResetRequested(false);
       setPassword("");
@@ -171,6 +216,20 @@ export default function Login({ onLogin, initialPath }) {
               onChange={setPassword}
               confirm={false}
             />
+
+            {credentialVaultAvailable ? (
+              <button
+                className="secondary full-width"
+                type="button"
+                onClick={useSavedCredential}
+                disabled={loadingSavedCredential}
+              >
+                <ShieldCheck size={17} />
+                {loadingSavedCredential
+                  ? "Getting saved credentials…"
+                  : "Use saved credentials"}
+              </button>
+            ) : null}
 
             {initialPath && initialPath !== "/" ? (
               <div className="notice">
