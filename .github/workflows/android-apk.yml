@@ -17,6 +17,10 @@ jobs:
     name: Build debug APK
     runs-on: ubuntu-latest
 
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -27,15 +31,27 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: frontend/package-lock.json
+
+      - name: Verify Android SDK
+        shell: bash
+        run: |
+          test -d "$ANDROID_HOME"
+          test -d "$ANDROID_HOME/platforms/android-36" || {
+            echo "Android SDK platform 36 is not installed on this GitHub runner."
+            exit 1
+          }
+          test -x "$ANDROID_HOME/platform-tools/adb" || {
+            echo "Android SDK platform-tools are not installed on this GitHub runner."
+            exit 1
+          }
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          "$ANDROID_HOME/platform-tools/adb" version
 
       - name: Install frontend dependencies
         working-directory: frontend
