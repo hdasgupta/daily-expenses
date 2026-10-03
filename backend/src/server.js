@@ -12,22 +12,55 @@ import { startScheduledReportScheduler } from "./services/scheduledReportSchedul
 loadEnv();
 
 const app = express();
-const origins = env.corsOrigin
+
+const configuredOrigins = env.corsOrigin
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
-const corsOrigin = origins.includes("*") ? true : origins;
+
+/*
+ * Capacitor Android serves the application from a localhost
+ * origin rather than the Vite development port.
+ *
+ * Keep the explicitly configured web origins and add the
+ * standard Capacitor localhost origins.
+ */
+const capacitorOrigins = [
+  "http://localhost",
+  "https://localhost",
+  "capacitor://localhost",
+  "ionic://localhost",
+  "https://daily-expenses-wbffmh.vercel.app"
+];
+
+const origins = [
+  ...new Set([
+    ...configuredOrigins,
+    ...capacitorOrigins,
+  ]),
+];
+
+const corsOrigin = origins.includes("*")
+  ? true
+  : origins;
 
 app.disable("x-powered-by");
+
 app.use(
   cors({
-    origin: corsOrigin || true,
+    origin: corsOrigin,
     credentials: false,
   }),
 );
+
 app.use(express.json({ limit: "10mb" }));
 app.use(requestLogger);
-app.use("/api", createRouter(env.maxUploadBytes));
+
+app.use(
+  "/api",
+  createRouter(env.maxUploadBytes),
+);
+
 app.use(notFound);
 app.use(errorHandler);
 
@@ -46,6 +79,7 @@ process.on("uncaughtException", (error) => {
       stack: error?.stack,
     }),
   );
+
   process.exitCode = 1;
   void shutdown("uncaughtException");
 });
@@ -54,86 +88,140 @@ process.on("unhandledRejection", (reason) => {
   console.error(
     JSON.stringify({
       event: "unhandled_rejection",
-      message: reason?.message || String(reason),
+      message:
+        reason?.message || String(reason),
       stack: reason?.stack,
     }),
   );
+
   process.exitCode = 1;
   void shutdown("unhandledRejection");
 });
 
 async function shutdown(signal) {
   if (shuttingDown) return;
+
   shuttingDown = true;
   app.locals.ready = false;
   app.locals.starting = false;
 
-  console.log(JSON.stringify({ event: "shutdown_started", signal }));
+  console.log(
+    JSON.stringify({
+      event: "shutdown_started",
+      signal,
+    }),
+  );
 
-  const closeServer = new Promise((resolve) => {
-    if (!httpServer) return resolve();
-    httpServer.close(() => resolve());
-  });
+  const closeServer = new Promise(
+    (resolve) => {
+      if (!httpServer) return resolve();
+
+      httpServer.close(() => resolve());
+    },
+  );
 
   try {
     await Promise.race([
       closeServer,
-      new Promise((resolve) => setTimeout(resolve, 10000)),
+      new Promise((resolve) =>
+        setTimeout(resolve, 10000),
+      ),
     ]);
   } catch (error) {
-    console.error("HTTP server shutdown error", error);
+    console.error(
+      "HTTP server shutdown error",
+      error,
+    );
   }
 
   try {
     await pool.end();
   } catch (error) {
-    console.error("Database pool shutdown error", error);
+    console.error(
+      "Database pool shutdown error",
+      error,
+    );
   }
 
-  console.log(JSON.stringify({ event: "shutdown_completed", signal }));
-  if (signal === "SIGTERM" || signal === "SIGINT") process.exit(0);
+  console.log(
+    JSON.stringify({
+      event: "shutdown_completed",
+      signal,
+    }),
+  );
+
+  if (
+    signal === "SIGTERM" ||
+    signal === "SIGINT"
+  ) {
+    process.exit(0);
+  }
 }
 
-process.once("SIGTERM", () => void shutdown("SIGTERM"));
-process.once("SIGINT", () => void shutdown("SIGINT"));
+process.once("SIGTERM", () =>
+  void shutdown("SIGTERM"),
+);
+
+process.once("SIGINT", () =>
+  void shutdown("SIGINT"),
+);
 
 async function start() {
-  httpServer = app.listen(env.port, "0.0.0.0", () => {
-    console.log(
-      JSON.stringify({
-        event: "http_server_listening",
-        port: env.port,
-        pid: process.pid,
-        nodeEnv: env.nodeEnv,
-      }),
-    );
-  });
+  httpServer = app.listen(
+    env.port,
+    "0.0.0.0",
+    () => {
+      console.log(
+        JSON.stringify({
+          event: "http_server_listening",
+          port: env.port,
+          pid: process.pid,
+          nodeEnv: env.nodeEnv,
+        }),
+      );
+    },
+  );
 
   httpServer.on("error", (error) => {
     console.error(
       JSON.stringify({
         event: "http_server_error",
-        message: error?.message || String(error),
+        message:
+          error?.message || String(error),
         stack: error?.stack,
       }),
     );
+
     void shutdown("httpServerError");
   });
 
   try {
-    console.log("Backend startup: initializing database");
-    await initDb();
-    console.log("Backend startup: database initialized");
+    console.log(
+      "Backend startup: initializing database",
+    );
 
-    console.log("Backend startup: seeding application");
+    await initDb();
+
+    console.log(
+      "Backend startup: database initialized",
+    );
+
+    console.log(
+      "Backend startup: seeding application",
+    );
+
     await seedApplication();
-    console.log("Backend startup: application seeded");
+
+    console.log(
+      "Backend startup: application seeded",
+    );
 
     startEmailSchedulers();
     startScheduledReportScheduler();
 
     app.locals.starting = false;
     app.locals.ready = true;
+
     console.log(
       JSON.stringify({
         event: "application_ready",
@@ -143,14 +231,18 @@ async function start() {
     );
   } catch (error) {
     app.locals.starting = false;
-    app.locals.startupError = error?.message || String(error);
+    app.locals.startupError =
+      error?.message || String(error);
+
     console.error(
       JSON.stringify({
         event: "fatal_startup_error",
-        message: error?.message || String(error),
+        message:
+          error?.message || String(error),
         stack: error?.stack,
       }),
     );
+
     await shutdown("startupFailure");
     process.exit(1);
   }
