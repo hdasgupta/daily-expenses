@@ -6,10 +6,17 @@ import { usePagination } from "../hooks/usePagination";
 import "./jobStatus.css";
 
 const scheduleLabels = {
-  dashboard: "Dashboard email",
   "daily-email-report": "Daily 7-day email report",
-  "monthly-email-report": "Monthly 3-month email report",
   "weekly-email-report": "Weekly 4-week email report",
+  "monthly-email-report": "Monthly 3-month email report",
+  "yearly-email-report": "Yearly email report",
+};
+
+const scheduleOrder = {
+  "daily-email-report": 1,
+  "weekly-email-report": 2,
+  "monthly-email-report": 3,
+  "yearly-email-report": 4,
 };
 
 const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -124,7 +131,10 @@ export default function JobStatus() {
       `/job-status?page=${page}&pageSize=${pagination.pageSize}&search=${encodeURIComponent(pagination.search)}`,
       { loadingMessage: silent ? undefined : "Loading job status…", silent },
     );
-    setSchedules(data.schedules || []);
+    const orderedSchedules = [...(data.schedules || [])].sort(
+      (a, b) => (scheduleOrder[a.jobName] || 99) - (scheduleOrder[b.jobName] || 99),
+    );
+    setSchedules(orderedSchedules);
     setRows(data.rows || []);
     setTotal(data.total || 0);
   };

@@ -33,8 +33,6 @@ export const env = {
   adminPassword: process.env.ADMIN_PASSWORD || "Admin@12345",
   otpTtlMinutes: Number(process.env.OTP_TTL_MINUTES || 10),
   exposeOtpInDev: String(process.env.OTP_EXPOSE_IN_DEV || "false").toLowerCase() === "true",
-  dashboardCron: process.env.DASHBOARD_CRON || "30 20 * * *",
-  dashboardTimezone: process.env.DASHBOARD_TIMEZONE || "Asia/Kolkata",
   dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "10 11 * * *",
   dailyEmailReportTimezone: process.env.DAILY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
   monthlyEmailReportCron: process.env.MONTHLY_EMAIL_REPORT_CRON || "10 11 1 * *",

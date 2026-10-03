@@ -1,7 +1,6 @@
 import cron from "node-cron";
 import { env } from "../src/config/env.js";
 import { pool } from "../src/db/index.js";
-import { sendDashboardToManagers } from "../src/services/dashboardService.js";
 import { sendDailyEmailReportToManagers } from "../src/services/dailyEmailReportService.js";
 import { sendMonthlyEmailReportToManagers } from "../src/services/monthlyEmailReportService.js";
 import { sendWeeklyEmailReportToManagers } from "../src/services/weeklyEmailReportService.js";
@@ -149,60 +148,6 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
   }
 }
 
-async function runDashboardJob() {
-  const scheduledKey = new Date().toISOString();
-  const client = await pool.connect();
-  const lockKey = `dashboard:${scheduledKey.slice(0, 16)}`;
-
-  try {
-    const lockResult = await client.query("SELECT pg_try_advisory_lock(hashtext($1)) AS locked", [
-      lockKey,
-    ]);
-    if (!lockResult.rows[0].locked) {
-      logSchedulerEvent("scheduler_job_skipped_locked", {
-        jobName: "dashboard",
-        scheduledKey,
-      });
-      return;
-    }
-
-    try {
-      const executionId = await markJobStarted(client, "dashboard", scheduledKey);
-      const startedAt = Date.now();
-
-      try {
-        const result = await sendDashboardToManagers();
-        const durationMs = Date.now() - startedAt;
-        await markJobCompleted(client, executionId, durationMs);
-        console.log(`Dashboard job sent to ${result.recipients} manager(s)`);
-        logSchedulerEvent("scheduler_job_completed", {
-          jobName: "dashboard",
-          scheduledKey,
-          executionId,
-          durationMs,
-          result,
-        });
-      } catch (error) {
-        const durationMs = Date.now() - startedAt;
-        await markJobFailed(client, executionId, durationMs, error);
-        logSchedulerEvent("scheduler_job_failed", {
-          jobName: "dashboard",
-          scheduledKey,
-          executionId,
-          durationMs,
-          error: error?.message || String(error),
-          stack: error?.stack,
-        });
-        throw error;
-      }
-    } finally {
-      await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
-    }
-  } finally {
-    client.release();
-  }
-}
-
 async function runDailyEmailReport() {
   const scheduledKey = localDateKey(env.dailyEmailReportTimezone);
   const result = await runEmailJobOnce(
@@ -297,14 +242,12 @@ async function catchUpMissedEmailReports() {
   }
 }
 
-export function startDashboardScheduler() {
+export function startEmailSchedulers() {
   if (started) return;
   started = true;
 
   logSchedulerEvent("scheduler_starting", {
     serverTime: new Date().toISOString(),
-    dashboardCron: env.dashboardCron,
-    dashboardTimezone: env.dashboardTimezone,
     dailyEmailReportCron: env.dailyEmailReportCron,
     dailyEmailReportTimezone: env.dailyEmailReportTimezone,
     monthlyEmailReportCron: env.monthlyEmailReportCron,
@@ -312,28 +255,6 @@ export function startDashboardScheduler() {
     weeklyEmailReportCron: env.weeklyEmailReportCron,
     weeklyEmailReportTimezone: env.weeklyEmailReportTimezone,
   });
-
-  if (!cron.validate(env.dashboardCron)) {
-    console.error(`Invalid DASHBOARD_CRON: ${env.dashboardCron}`);
-  } else {
-    cron.schedule(
-      env.dashboardCron,
-      async () => {
-        logSchedulerEvent("dashboard_job_triggered", {
-          cron: env.dashboardCron,
-          timezone: env.dashboardTimezone,
-          localTime: getLocalDateParts(env.dashboardTimezone),
-        });
-        try {
-          await runDashboardJob();
-        } catch (error) {
-          console.error("Dashboard job failed", error);
-        }
-      },
-      { timezone: env.dashboardTimezone },
-    );
-    console.log(`Dashboard scheduler enabled: ${env.dashboardCron} (${env.dashboardTimezone})`);
-  }
 
   if (!cron.validate(env.dailyEmailReportCron)) {
     console.error(`Invalid DAILY_EMAIL_REPORT_CRON: ${env.dailyEmailReportCron}`);

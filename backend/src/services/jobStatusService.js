@@ -4,28 +4,22 @@ import { env } from "../config/env.js";
 
 const scheduleDefinitions = [
   {
-    jobName: "dashboard",
-    label: "Dashboard email",
-    cron: env.dashboardCron,
-    timezone: env.dashboardTimezone,
-  },
-  {
     jobName: "daily-email-report",
     label: "Daily 7-day email report",
     cron: env.dailyEmailReportCron,
     timezone: env.dailyEmailReportTimezone,
   },
   {
-    jobName: "monthly-email-report",
-    label: "Monthly 3-month email report",
-    cron: env.monthlyEmailReportCron,
-    timezone: env.monthlyEmailReportTimezone,
-  },
-  {
     jobName: "weekly-email-report",
     label: "Weekly 4-week email report",
     cron: env.weeklyEmailReportCron,
     timezone: env.weeklyEmailReportTimezone,
+  },
+  {
+    jobName: "monthly-email-report",
+    label: "Monthly 3-month email report",
+    cron: env.monthlyEmailReportCron,
+    timezone: env.monthlyEmailReportTimezone,
   },
 ];
 

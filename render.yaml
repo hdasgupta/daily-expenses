@@ -39,10 +39,6 @@ services:
         sync: false
       - key: OTP_TTL_MINUTES
         value: "10"
-      - key: DASHBOARD_CRON
-        value: "30 20 * * *"
-      - key: DASHBOARD_TIMEZONE
-        value: Asia/Kolkata
       - key: DAILY_EMAIL_REPORT_CRON
         value: "10 11 * * *"
       - key: DAILY_EMAIL_REPORT_TIMEZONE

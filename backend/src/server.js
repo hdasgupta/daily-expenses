@@ -5,7 +5,7 @@ import { initDb, pool } from "./db/index.js";
 import { seedApplication } from "./services/bootstrapService.js";
 import { createRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
-import { startDashboardScheduler } from "../scripts/scheduler.js";
+import { startEmailSchedulers } from "../scripts/scheduler.js";
 
 loadEnv();
 
@@ -30,7 +30,7 @@ app.use(errorHandler);
 async function start() {
   await initDb();
   await seedApplication();
-  startDashboardScheduler();
+  startEmailSchedulers();
   app.listen(env.port, "0.0.0.0", () => {
     console.log(`Expense tracker backend listening on port ${env.port}`);
   });
