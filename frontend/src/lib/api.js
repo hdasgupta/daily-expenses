@@ -11,12 +11,29 @@ function isCapacitorNative() {
   /*
    * Standard Capacitor detection.
    */
-  if (
-    capacitor &&
-    typeof capacitor.isNativePlatform === "function"
-  ) {
+  if (capacitor) {
     try {
-      if (capacitor.isNativePlatform()) {
+      if (
+        typeof capacitor.isNativePlatform === "function" &&
+        capacitor.isNativePlatform()
+      ) {
+        return true;
+      }
+
+      if (
+        typeof capacitor.getPlatform === "function" &&
+        capacitor.getPlatform() !== "web"
+      ) {
+        return true;
+      }
+
+      /*
+       * Older Capacitor builds expose isNativePlatform
+       * as a boolean rather than a function.
+       */
+      if (
+        capacitor.isNativePlatform === true
+      ) {
         return true;
       }
     } catch {
@@ -25,32 +42,38 @@ function isCapacitorNative() {
   }
 
   /*
-   * Some Capacitor Android builds expose Capacitor
-   * differently, so also detect the native protocols.
+   * Capacitor Android WebView fallback.
+   *
+   * The Android application is packaged with Capacitor,
+   * so an Android WebView should use the Render backend
+   * rather than the Vite/SPA /api path.
    */
-  const protocol = String(
-    window.location.protocol || "",
-  ).toLowerCase();
+  const userAgent =
+    String(
+      window.navigator?.userAgent || "",
+    ).toLowerCase();
 
   if (
-    protocol === "capacitor:" ||
-    protocol === "ionic:"
+    userAgent.includes("android") &&
+    (
+      userAgent.includes("wv") ||
+      userAgent.includes("capacitor")
+    )
   ) {
     return true;
   }
 
   /*
-   * Capacitor Android WebView commonly serves the
-   * application from localhost.
+   * Native Capacitor protocols.
    */
-  const hostname = String(
-    window.location.hostname || "",
-  ).toLowerCase();
+  const protocol =
+    String(
+      window.location.protocol || "",
+    ).toLowerCase();
 
   if (
-    hostname === "localhost" ||
-    hostname === "127.0.0.1" ||
-    hostname === "0.0.0.0"
+    protocol === "capacitor:" ||
+    protocol === "ionic:"
   ) {
     return true;
   }
@@ -64,9 +87,11 @@ const configuredBaseUrl = String(
 
 const baseUrl = (
   configuredBaseUrl ||
-  (isCapacitorNative()
-    ? RENDER_API_BASE_URL
-    : "/api")
+  (
+    isCapacitorNative()
+      ? RENDER_API_BASE_URL
+      : "/api"
+  )
 ).replace(/\/$/, "");
 
 const TRANSIENT_STATUS_CODES = new Set([
@@ -127,15 +152,16 @@ async function fetchWithTransientRetry(
   path,
   options,
 ) {
-  const retries = isRetryableRequest(
-    path,
-    options,
-  )
-    ? Number(
-        options.transientRetries ??
-          DEFAULT_RETRY_DELAYS_MS.length,
-      )
-    : 0;
+  const retries =
+    isRetryableRequest(
+      path,
+      options,
+    )
+      ? Number(
+          options.transientRetries ??
+            DEFAULT_RETRY_DELAYS_MS.length,
+        )
+      : 0;
 
   let lastResponse = null;
 
@@ -145,10 +171,11 @@ async function fetchWithTransientRetry(
     attempt += 1
   ) {
     try {
-      const response = await fetch(
-        url,
-        fetchOptions,
-      );
+      const response =
+        await fetch(
+          url,
+          fetchOptions,
+        );
 
       lastResponse = response;
 
@@ -221,13 +248,16 @@ export async function api(
   }
 
   window.dispatchEvent(
-    new CustomEvent("app:api:start", {
-      detail: {
-        message:
-          options.loadingMessage ||
-          "Please wait…",
+    new CustomEvent(
+      "app:api:start",
+      {
+        detail: {
+          message:
+            options.loadingMessage ||
+            "Please wait…",
+        },
       },
-    }),
+    ),
   );
 
   try {
@@ -267,15 +297,15 @@ export async function api(
     }
 
     /*
-     * If the API request accidentally receives the
-     * Vite/SPA index.html, report a useful error
-     * instead of treating the HTML as valid data.
+     * Never silently accept the frontend's index.html
+     * as an API response.
      */
     if (
       typeof text === "string" &&
-      text.trimStart().startsWith(
-        "<!doctype html",
-      )
+      text
+        .trimStart()
+        .toLowerCase()
+        .startsWith("<!doctype html")
     ) {
       throw new Error(
         `The API request ${path} was routed to the frontend instead of the backend. API base URL: ${baseUrl}`,
@@ -305,7 +335,12 @@ export async function api(
           "Done.",
       );
     } else if (
-      ["POST", "PUT", "PATCH", "DELETE"].includes(
+      [
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+      ].includes(
         String(
           options.method || "GET",
         ).toUpperCase(),
