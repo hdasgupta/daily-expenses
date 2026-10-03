@@ -95,19 +95,67 @@ function normalizePath(pathname) {
 function normalizePermissions(permissions) {
   if (Array.isArray(permissions)) {
     return permissions
-      .flatMap((permission) =>
-        typeof permission === "string"
-          ? permission.split(",")
-          : [],
-      )
+      .flatMap((permission) => {
+        if (typeof permission !== "string") return [];
+
+        return permission
+          .replace(/^\{|\}$/g, "")
+          .split(",")
+          .map((value) => value.replace(/^"|"$/g, ""));
+      })
       .map((permission) => permission.trim())
       .filter(Boolean);
   }
 
   if (typeof permissions === "string") {
-    return permissions
+    let value = permissions.trim();
+
+    /*
+     * PostgreSQL text[] values can arrive as:
+     * {add-expense,add-item,report}
+     */
+    if (value.startsWith("{") && value.endsWith("}")) {
+      value = value.slice(1, -1);
+    }
+
+    /*
+     * JSON arrays can also arrive as strings:
+     * ["add-expense","report"]
+     */
+    if (value.startsWith("[") && value.endsWith("]")) {
+      try {
+        const parsed = JSON.parse(value);
+        if (Array.isArray(parsed)) {
+          return normalizePermissions(parsed);
+        }
+      } catch {
+        // Fall through to normal string parsing.
+      }
+    }
+
+    return value
       .split(/[,\s]+/)
-      .map((permission) => permission.trim())
+      .map((permission) =>
+        permission
+          .trim()
+          .replace(/^\{|\}$/g, "")
+          .replace(/^"|"$/g, ""),
+      )
+      .filter(Boolean);
+  }
+
+  /*
+   * Defensive support for permission objects such as:
+   * { "add-expense": true, "report": true }
+   */
+  if (permissions && typeof permissions === "object") {
+    if (Array.isArray(permissions.permissions)) {
+      return normalizePermissions(permissions.permissions);
+    }
+
+    return Object.entries(permissions)
+      .filter(([, enabled]) => enabled === true)
+      .map(([permission]) => permission.trim())
       .filter(Boolean);
   }
 
@@ -126,12 +174,8 @@ function normalizeUser(rawUser) {
   let permissions = normalizePermissions(rawUser.permissions);
 
   /*
-   * Some Android/WebView builds can receive an unexpected representation of
-   * the PostgreSQL permission array. If permissions are missing but the
-   * authenticated backend has supplied a known role, use the role's defined
-   * permissions locally.
-   *
-   * This does NOT grant permissions to an unknown role.
+   * If the backend did not provide usable permissions but supplied
+   * a known role, use the application's role definition.
    */
   if (permissions.length === 0 && PERMISSIONS_BY_ROLE[role]) {
     permissions = [...PERMISSIONS_BY_ROLE[role]];
@@ -227,8 +271,7 @@ export default function App() {
     const route = routeForPath(path);
 
     const allowed =
-      route &&
-      permissions.includes(route.permission);
+      route && permissions.includes(route.permission);
 
     if (allowed) {
       return;
@@ -246,10 +289,8 @@ export default function App() {
     let normalizedUser = normalizeUser(nextUser);
 
     /*
-     * Always refresh /me after login.
-     *
-     * This removes any difference between the object returned by
-     * /auth/login and the object used by the authenticated application.
+     * Refresh /me after login so the application always uses
+     * the authenticated user representation from the backend.
      */
     try {
       const refreshedUser = await api("/me", {
@@ -284,25 +325,19 @@ export default function App() {
     const fallback =
       getNavigationItems(permissions)[0]?.path;
 
-    const destination =
-      requestedAllowed
-        ? requestedPath
-        : fallback;
+    const destination = requestedAllowed
+      ? requestedPath
+      : fallback;
 
     if (destination) {
       window.history.replaceState({}, "", destination);
       setPath(destination);
     } else {
-      /*
-       * Do not leave the application on "/" where the component lookup can
-       * produce the misleading "No module" screen.
-       */
       window.history.replaceState(
         {},
         "",
         "/add-expense",
       );
-
       setPath("/add-expense");
     }
   };
@@ -313,6 +348,7 @@ export default function App() {
 
     const target = normalizePath(rawPath);
     const route = routeForPath(target);
+
     const permissions = normalizePermissions(
       user?.permissions,
     );
@@ -387,10 +423,6 @@ export default function App() {
       : null);
 
   if (!Component) {
-    /*
-     * This screen is now diagnostic rather than silently claiming that the
-     * account has no module. It also tells us exactly what Android received.
-     */
     return (
       <>
         <Loader />
@@ -398,14 +430,18 @@ export default function App() {
 
         <div className="auth-loading">
           <div className="card">
-            <h2>No module is assigned to this account.</h2>
+            <h2>
+              No module is assigned to this account.
+            </h2>
 
             <p>
-              Account: {user.email || "unknown"}
+              Account:{" "}
+              {user.email || "unknown"}
             </p>
 
             <p>
-              Role: {user.role || "unknown"}
+              Role:{" "}
+              {user.role || "unknown"}
             </p>
 
             <p>
