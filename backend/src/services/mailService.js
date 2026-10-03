@@ -41,6 +41,222 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function buildPasswordOtpHtml(otp, ttlMinutes) {
+  const organizationName = escapeHtml(
+    env.organizationName || "Rehabilitation Center",
+  );
+
+  const safeOtp = escapeHtml(otp);
+  const safeTtl = escapeHtml(ttlMinutes);
+
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Reset OTP</title>
+</head>
+<body
+  style="
+    margin:0;
+    padding:0;
+    background:#f4f7fb;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#1f2937;
+  "
+>
+  <table
+    role="presentation"
+    width="100%"
+    cellpadding="0"
+    cellspacing="0"
+    border="0"
+    style="background:#f4f7fb;padding:32px 12px;"
+  >
+    <tr>
+      <td align="center">
+        <table
+          role="presentation"
+          width="100%"
+          cellpadding="0"
+          cellspacing="0"
+          border="0"
+          style="
+            max-width:560px;
+            background:#ffffff;
+            border-radius:14px;
+            overflow:hidden;
+            border:1px solid #e5e7eb;
+            box-shadow:0 4px 18px rgba(15,23,42,0.08);
+          "
+        >
+          <tr>
+            <td
+              style="
+                background:#1f4b99;
+                padding:28px 32px;
+                text-align:center;
+              "
+            >
+              <div
+                style="
+                  display:inline-block;
+                  padding:8px 14px;
+                  border:1px solid rgba(255,255,255,0.35);
+                  border-radius:8px;
+                  color:#ffffff;
+                  font-size:13px;
+                  font-weight:bold;
+                  letter-spacing:0.5px;
+                "
+              >
+                ${organizationName}
+              </div>
+
+              <h1
+                style="
+                  margin:18px 0 0;
+                  color:#ffffff;
+                  font-size:24px;
+                  line-height:1.3;
+                "
+              >
+                Password Reset
+              </h1>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:32px;">
+              <p
+                style="
+                  margin:0 0 16px;
+                  font-size:16px;
+                  line-height:1.6;
+                "
+              >
+                We received a request to reset the password for your
+                <strong>${organizationName}</strong> account.
+              </p>
+
+              <p
+                style="
+                  margin:0 0 24px;
+                  font-size:15px;
+                  line-height:1.6;
+                  color:#4b5563;
+                "
+              >
+                Use the one-time password below to continue with the
+                password reset.
+              </p>
+
+              <div
+                style="
+                  margin:0 auto 24px;
+                  padding:20px;
+                  background:#f3f6fc;
+                  border:1px solid #dbe4f3;
+                  border-radius:12px;
+                  text-align:center;
+                "
+              >
+                <div
+                  style="
+                    margin-bottom:8px;
+                    color:#6b7280;
+                    font-size:12px;
+                    font-weight:bold;
+                    letter-spacing:1px;
+                    text-transform:uppercase;
+                  "
+                >
+                  Your OTP
+                </div>
+
+                <div
+                  style="
+                    color:#1f4b99;
+                    font-size:32px;
+                    font-weight:bold;
+                    letter-spacing:8px;
+                    line-height:1.2;
+                  "
+                >
+                  ${safeOtp}
+                </div>
+              </div>
+
+              <div
+                style="
+                  padding:14px 16px;
+                  background:#fff8e8;
+                  border-left:4px solid #e0a11a;
+                  border-radius:6px;
+                  color:#6b4f00;
+                  font-size:14px;
+                  line-height:1.5;
+                "
+              >
+                This OTP will expire in
+                <strong>${safeTtl} minutes</strong>.
+              </div>
+
+              <p
+                style="
+                  margin:24px 0 0;
+                  color:#6b7280;
+                  font-size:13px;
+                  line-height:1.6;
+                "
+              >
+                If you did not request a password reset, you can safely
+                ignore this email. Do not share this OTP with anyone.
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td
+              style="
+                padding:20px 32px;
+                background:#f8fafc;
+                border-top:1px solid #e5e7eb;
+                text-align:center;
+              "
+            >
+              <p
+                style="
+                  margin:0;
+                  color:#9ca3af;
+                  font-size:12px;
+                  line-height:1.5;
+                "
+              >
+                This is an automated email from ${organizationName}.
+                Please do not reply to this message.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+}
+
 async function postEmail(payload) {
   const recipient = payload.to;
   const subject = payload.subject;
@@ -221,18 +437,26 @@ export async function sendPasswordOtp(
   otp,
   ttlMinutes,
 ) {
+  const organizationName =
+    env.organizationName || "Rehabilitation Center";
+
   const text =
-    "Your password reset OTP is " +
+    `Your ${organizationName} password reset OTP is ` +
     otp +
-    ". It expires in " +
+    `. It expires in ` +
     ttlMinutes +
-    " minutes.";
+    ` minutes.`;
 
   await postEmail({
     to: email,
     subject:
-      "Rehabilitation Center Expense Tracker — Password Reset OTP",
-    htmlBody: "<p>" + text + "</p>",
+      organizationName +
+      " — Password Reset OTP",
+    htmlBody: buildPasswordOtpHtml(
+      otp,
+      ttlMinutes,
+    ),
+    textBody: text,
   });
 }
 
