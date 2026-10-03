@@ -130,6 +130,7 @@ ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS status VARCHAR(20
 ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS started_at TIMESTAMPTZ;
 ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS duration_ms INTEGER;
 ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS error_message TEXT;
+ALTER TABLE public.scheduler_job_runs ALTER COLUMN completed_at DROP NOT NULL;
 UPDATE public.scheduler_job_runs
 SET status = COALESCE(status, 'completed'),
     started_at = COALESCE(started_at, completed_at, now())

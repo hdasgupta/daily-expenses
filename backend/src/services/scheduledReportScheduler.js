@@ -71,8 +71,8 @@ async function claimExecution(client, job, key) {
     );
   } else {
     await client.query(
-      `INSERT INTO public.scheduler_job_runs(job_name, scheduled_key, status, started_at)
-       VALUES ($1,$2,'running',now())`,
+      `INSERT INTO public.scheduler_job_runs(job_name, scheduled_key, status, started_at, completed_at)
+       VALUES ($1,$2,'running',now(),NULL)`,
       [jobName, key],
     );
   }
@@ -93,31 +93,45 @@ async function finishExecution(client, execution, status, startedAt, errorMessag
 }
 
 async function runJob(jobId, key) {
-  const client = await pool.connect();
-  const job = await getScheduledReportForExecution(jobId);
-  if (!job) {
-    client.release();
-    return;
-  }
+  let client = null;
+  let execution = null;
+  let startedAt = Date.now();
 
-  const claim = await claimExecution(client, job, key);
-  if (!claim.acquired) {
-    client.release();
-    return;
-  }
-
-  const execution = { ...claim, scheduledKey: key };
-  const startedAt = Date.now();
-  console.log(JSON.stringify({ event: "scheduled_report_started", jobId, scheduledKey: key, reportKey: job.report_key }));
   try {
+    client = await pool.connect();
+    const job = await getScheduledReportForExecution(jobId);
+    if (!job) return;
+
+    const claim = await claimExecution(client, job, key);
+    if (!claim.acquired) return;
+
+    execution = { ...claim, scheduledKey: key };
+    startedAt = Date.now();
+    console.log(JSON.stringify({ event: "scheduled_report_started", jobId, scheduledKey: key, reportKey: job.report_key }));
+
     const result = await sendScheduledReportJob(job);
     await finishExecution(client, execution, "completed", startedAt, null);
+    execution = null;
     console.log(JSON.stringify({ event: "scheduled_report_completed", jobId, scheduledKey: key, result }));
   } catch (error) {
-    await finishExecution(client, execution, "failed", startedAt, error?.message || String(error));
-    console.error("Scheduled report failed", { jobId, scheduledKey: key, error: error?.message || String(error) });
+    const errorMessage = error?.message || String(error);
+    console.error("Scheduled report failed", { jobId, scheduledKey: key, error: errorMessage, stack: error?.stack });
+
+    if (client && execution) {
+      try {
+        await finishExecution(client, execution, "failed", startedAt, errorMessage);
+        execution = null;
+      } catch (finishError) {
+        console.error("Failed to record scheduled report failure", {
+          jobId,
+          scheduledKey: key,
+          error: finishError?.message || String(finishError),
+          stack: finishError?.stack,
+        });
+      }
+    }
   } finally {
-    client.release();
+    if (client) client.release();
   }
 }
 
@@ -126,7 +140,13 @@ async function processDueJobs() {
   const result = await q(`SELECT * FROM public.scheduled_report_jobs WHERE active = TRUE ORDER BY id`);
   for (const job of result.rows) {
     if (!dueFor(job, local)) continue;
-    void runJob(job.id, scheduledKey(job, local));
+    void runJob(job.id, scheduledKey(job, local)).catch((error) => {
+      console.error("Scheduled report worker failed unexpectedly", {
+        jobId: job.id,
+        error: error?.message || String(error),
+        stack: error?.stack,
+      });
+    });
   }
 }
 
@@ -145,5 +165,7 @@ export function startScheduledReportScheduler() {
       console.error("Scheduled-report scheduler poll failed", error);
     }
   }, { timezone: "Asia/Kolkata" });
-  void processDueJobs();
+  void processDueJobs().catch((error) => {
+    console.error("Initial scheduled-report scheduler poll failed", error);
+  });
 }
