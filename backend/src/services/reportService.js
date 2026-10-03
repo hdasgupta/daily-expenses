@@ -7,7 +7,9 @@ import {
 import { reportSql } from "../../scripts/sql/reportSql.js";
 import { signedObjectUrl } from "./storageService.js";
 
-const groupable = new Set(Object.keys(reportSql.groupExpr));
+const groupable = new Set(
+  Object.keys(reportSql.groupExpr),
+);
 
 const rawSortable = new Set([
   "date",
@@ -111,14 +113,12 @@ function cleanConfig(config = {}) {
       dateTo: filters.dateTo || "",
       month: filters.month || "",
       year: filters.year || "",
-
       hasProof: [
         "true",
         "false",
       ].includes(filters.hasProof)
         ? filters.hasProof
         : "",
-
       categoryItems,
       categories,
       survivors,
@@ -323,15 +323,6 @@ function orderSql(
       : reportSql.defaultRawOrder;
   }
 
-  const groupPositions = new Map(
-    config.groupBy.map(
-      (column, index) => [
-        column,
-        index + 1,
-      ],
-    ),
-  );
-
   const chosen =
     config.sortColumns.length
       ? config.sortColumns
@@ -341,17 +332,20 @@ function orderSql(
 
   for (const sort of chosen) {
     if (
-      groupPositions.has(
+      config.groupBy.includes(
         sort.column,
       )
     ) {
+      /*
+       * Use the selected output alias.
+       *
+       * This is especially important for
+       * survivor because the displayed
+       * survivor is MIN(survivor).
+       */
       parts.push(
         reportSql.order(
-          String(
-            groupPositions.get(
-              sort.column,
-            ),
-          ),
+          `"${sort.column}"`,
           sort.direction.toUpperCase(),
         ),
       );
@@ -394,16 +388,30 @@ function orderSql(
     return parts.join(", ");
   }
 
-  if (config.groupBy.length) {
-    return config.groupBy
-      .map(
-        (_, index) =>
-          `${index + 1} ASC`,
-      )
-      .join(", ");
+  /*
+   * Default grouped ordering.
+   *
+   * Survivor is ordered by its displayed
+   * aggregate value rather than using
+   * GROUP BY position.
+   */
+  if (
+    config.groupBy.includes(
+      "survivor",
+    )
+  ) {
+    return `"survivor" ASC`;
   }
 
-  return "";
+  return config.groupBy
+    .map(
+      (column) =>
+        reportSql.order(
+          `"${column}"`,
+          "ASC",
+        ),
+    )
+    .join(", ");
 }
 
 function chartData(
@@ -424,29 +432,31 @@ function chartData(
   }));
 }
 
+/*
+ * Build the SELECT portion for a grouped
+ * non-summary report.
+ *
+ * Survivor is deliberately represented as:
+ *
+ *   MIN(survivor) AS survivor
+ *
+ * while the actual GROUP BY uses:
+ *
+ *   survivor_id
+ *
+ * This prevents PostgreSQL from trying to
+ * GROUP BY an aggregate expression.
+ */
 function buildGroupedRawSelect(
   groupBy,
   usesSurvivor,
 ) {
   const select = [];
 
-  /*
-   * Every group dimension is represented
-   * by the SELECT position used by the
-   * positional GROUP BY.
-   */
   for (const column of groupBy) {
-    /*
-     * Survivor is special because the
-     * survivor name is not itself the
-     * safest grouping key.
-     *
-     * The source has one row per survivor,
-     * so MIN(survivor) is safe after grouping.
-     */
     if (column === "survivor") {
       select.push(
-        "MIN(survivor) AS \"survivor\"",
+        'MIN(survivor) AS "survivor"',
       );
     } else {
       select.push(
@@ -455,25 +465,26 @@ function buildGroupedRawSelect(
     }
   }
 
-  if (groupBy.includes("category")) {
+  if (
+    groupBy.includes(
+      "category",
+    )
+  ) {
     select.push(
       "MIN(category_id) AS category_id",
     );
   }
 
-  if (groupBy.includes("survivor")) {
+  if (
+    groupBy.includes(
+      "survivor",
+    )
+  ) {
     select.push(
       "MIN(survivor_id) AS survivor_id",
     );
   }
 
-  /*
-   * These are representative values for
-   * the grouped-raw result.
-   *
-   * MIN keeps PostgreSQL happy while
-   * preserving the existing response shape.
-   */
   if (!groupBy.includes("date")) {
     select.push(
       "MIN(expense_date) AS expense_date",
@@ -514,6 +525,30 @@ function buildGroupedRawSelect(
   );
 
   return select;
+}
+
+/*
+ * Build the real SQL GROUP BY expressions.
+ *
+ * IMPORTANT:
+ * We do NOT use SELECT positions here
+ * because survivor's SELECT expression
+ * is MIN(survivor), which is an aggregate.
+ */
+function buildGroupBySql(
+  groupBy,
+) {
+  return groupBy
+    .map((column) => {
+      if (column === "survivor") {
+        return "survivor_id";
+      }
+
+      return reportSql.groupExpr[
+        column
+      ];
+    })
+    .join(", ");
 }
 
 export async function runReport(
@@ -717,38 +752,7 @@ export async function runReport(
 
   /*
    * --------------------------------------------------
-   * GROUPED REPORT
-   * --------------------------------------------------
-   */
-
-  if (!config.groupBy.length) {
-    return {
-      mode: "raw",
-      columns: [],
-      rows: [],
-      total: 0,
-      chartData: [],
-    };
-  }
-
-  /*
-   * --------------------------------------------------
    * GROUPED RAW
-   *
-   * This is the important fix.
-   *
-   * Previously this branch selected:
-   *
-   *   rawSelectPerSurvivor
-   *
-   * which contains raw `survivor`,
-   * `expense_date`, etc.
-   *
-   * PostgreSQL therefore required all of
-   * those columns in GROUP BY.
-   *
-   * We now aggregate the representative
-   * fields with MIN/SUM.
    * --------------------------------------------------
    */
 
@@ -759,20 +763,17 @@ export async function runReport(
         usesSurvivor,
       );
 
-    const groupByPositions =
-      config.groupBy
-        .map(
-          (_, index) =>
-            String(index + 1),
-        )
-        .join(", ");
+    const groupBySql =
+      buildGroupBySql(
+        config.groupBy,
+      );
 
     const result = await q(
       reportSql.grouped(
         cte,
         groupSelect.join(", "),
         where,
-        groupByPositions,
+        groupBySql,
         orderSql(
           config,
           true,
@@ -852,8 +853,15 @@ export async function runReport(
 
   const groupSelect =
     config.groupBy.map(
-      (column) =>
-        `${reportSql.groupExpr[column]} AS "${column}"`,
+      (column) => {
+        if (
+          column === "survivor"
+        ) {
+          return 'MIN(survivor) AS "survivor"';
+        }
+
+        return `${reportSql.groupExpr[column]} AS "${column}"`;
+      },
     );
 
   if (
@@ -877,12 +885,9 @@ export async function runReport(
   }
 
   const groupBySql =
-    config.groupBy
-      .map(
-        (_, index) =>
-          String(index + 1),
-      )
-      .join(", ");
+    buildGroupBySql(
+      config.groupBy,
+    );
 
   const result = await q(
     reportSql.grouped(
