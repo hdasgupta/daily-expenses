@@ -110,8 +110,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
             <button
               key={item.path}
               className={
-                path === item.path ||
-                (item.path === "/dashboard" && path.startsWith("/dashboard"))
+                path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
                   ? "active"
                   : ""
               }

@@ -235,27 +235,32 @@ export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
     to: email,
     subject: "Expense 4-week report - " + reportDate,
     htmlBody: "<p>Attached is the 4-week expense report.</p>",
-    attachments: [{
-      filename,
-      mimeType: "application/pdf",
-      content: pdfBuffer.toString("base64"),
-    }],
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
   });
 }
 
 export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-3-month-report-" + reportDate + ".pdf";
-  const text = "Attached is the 3-month expense report containing the monthly bar chart, monthly summary, monthly survivor summary, and expense data dump.";
+  const text =
+    "Attached is the 3-month expense report containing the monthly bar chart, monthly summary, monthly survivor summary, and expense data dump.";
 
   await postEmail({
     to: email,
     subject: "Expense 3-month report - " + reportDate,
     htmlBody: "<p>" + text + "</p>",
-    attachments: [{
-      filename,
-      mimeType: "application/pdf",
-      content: pdfBuffer.toString("base64"),
-    }],
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
   });
 }
 

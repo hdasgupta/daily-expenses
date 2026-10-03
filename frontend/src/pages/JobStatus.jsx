@@ -104,21 +104,22 @@ export default function JobStatus() {
               </span>
             </div>
             <div className="job-schedule-details">
-              <span><b>Cron:</b> {schedule.cron || "—"}</span>
-              <span><b>Timezone:</b> {schedule.timezone || "—"}</span>
-              <span><b>Next scheduled run:</b> {schedule.nextRunAt ? formatDate(schedule.nextRunAt) : "—"}</span>
+              <span>
+                <b>Cron:</b> {schedule.cron || "—"}
+              </span>
+              <span>
+                <b>Timezone:</b> {schedule.timezone || "—"}
+              </span>
+              <span>
+                <b>Next scheduled run:</b>{" "}
+                {schedule.nextRunAt ? formatDate(schedule.nextRunAt) : "—"}
+              </span>
             </div>
           </article>
         ))}
       </div>
 
-      <Pagination
-        page={page}
-        setPage={setPage}
-        total={total}
-        {...pagination}
-        sortOptions={[]}
-      />
+      <Pagination page={page} setPage={setPage} total={total} {...pagination} sortOptions={[]} />
 
       <div className="card">
         <div className="card-title">
@@ -153,14 +154,22 @@ export default function JobStatus() {
                   <td>{formatDate(row.started_at)}</td>
                   <td>{formatDate(row.completed_at)}</td>
                   <td>{row.status === "running" ? formatDate(row.started_at) : "—"}</td>
-                  <td>{row.status === "running" ? formatDuration(now - new Date(row.started_at).getTime()) : row.duration_ms == null ? "—" : `${row.duration_ms} ms`}</td>
+                  <td>
+                    {row.status === "running"
+                      ? formatDuration(now - new Date(row.started_at).getTime())
+                      : row.duration_ms == null
+                        ? "—"
+                        : `${row.duration_ms} ms`}
+                  </td>
                   <td className="job-error-cell">{row.error_message || "—"}</td>
                 </tr>
               ))}
               {!rows.length ? (
                 <tr>
                   <td colSpan="8">
-                    <div className="empty-card">No scheduler executions have been recorded yet.</div>
+                    <div className="empty-card">
+                      No scheduler executions have been recorded yet.
+                    </div>
                   </td>
                 </tr>
               ) : null}
@@ -169,13 +178,7 @@ export default function JobStatus() {
         </div>
       </div>
 
-      <Pagination
-        page={page}
-        setPage={setPage}
-        total={total}
-        {...pagination}
-        sortOptions={[]}
-      />
+      <Pagination page={page} setPage={setPage} total={total} {...pagination} sortOptions={[]} />
     </section>
   );
 }

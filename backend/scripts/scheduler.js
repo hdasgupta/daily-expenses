@@ -96,10 +96,9 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
   });
 
   try {
-    const lockResult = await client.query(
-      "SELECT pg_try_advisory_lock(hashtext($1)) AS locked",
-      [lockKey],
-    );
+    const lockResult = await client.query("SELECT pg_try_advisory_lock(hashtext($1)) AS locked", [
+      lockKey,
+    ]);
     if (!lockResult.rows[0].locked) {
       logSchedulerEvent("scheduler_job_skipped_locked", { jobName, scheduledKey });
       return false;
@@ -156,10 +155,9 @@ async function runDashboardJob() {
   const lockKey = `dashboard:${scheduledKey.slice(0, 16)}`;
 
   try {
-    const lockResult = await client.query(
-      "SELECT pg_try_advisory_lock(hashtext($1)) AS locked",
-      [lockKey],
-    );
+    const lockResult = await client.query("SELECT pg_try_advisory_lock(hashtext($1)) AS locked", [
+      lockKey,
+    ]);
     if (!lockResult.rows[0].locked) {
       logSchedulerEvent("scheduler_job_skipped_locked", {
         jobName: "dashboard",
@@ -277,7 +275,11 @@ async function catchUpMissedEmailReports() {
   }
 
   const weeklyLocal = getLocalDateParts(env.weeklyEmailReportTimezone);
-  if (weeklyLocal.weekday === "Sunday" && (Number(weeklyLocal.hour) > 6 || (Number(weeklyLocal.hour) === 6 && Number(weeklyLocal.minute) >= 0))) {
+  if (
+    weeklyLocal.weekday === "Sunday" &&
+    (Number(weeklyLocal.hour) > 6 ||
+      (Number(weeklyLocal.hour) === 6 && Number(weeklyLocal.minute) >= 0))
+  ) {
     try {
       await runWeeklyEmailReport();
     } catch (error) {
@@ -356,7 +358,6 @@ export function startDashboardScheduler() {
       `7-day email report scheduler enabled: ${env.dailyEmailReportCron} (${env.dailyEmailReportTimezone})`,
     );
   }
-
 
   if (!cron.validate(env.weeklyEmailReportCron)) {
     console.error(`Invalid WEEKLY_EMAIL_REPORT_CRON: ${env.weeklyEmailReportCron}`);

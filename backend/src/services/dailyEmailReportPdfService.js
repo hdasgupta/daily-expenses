@@ -48,7 +48,6 @@ function drawBarChart(doc, data) {
   doc.y = baseline + 30;
 }
 
-
 function pivotSurvivorRows(rows, periodKey, periods = []) {
   const survivors = [...new Set(rows.map((row) => row.survivor || "Unknown"))].sort();
   const grouped = new Map(periods.map((period) => [period, { [periodKey]: period }]));
@@ -65,11 +64,22 @@ function drawSurvivorBarChart(doc, rows, periodKey, survivors, labelFormatter) {
   const chartHeight = 175;
   const startX = doc.page.margins.left + 20;
   const baseline = doc.y + chartHeight;
-  const totals = rows.map((row) => survivors.reduce((sum, survivor) => sum + Number(row[survivor] || 0), 0));
+  const totals = rows.map((row) =>
+    survivors.reduce((sum, survivor) => sum + Number(row[survivor] || 0), 0),
+  );
   const max = Math.max(...totals, 1);
   const groupWidth = Math.max(35, (width - 20) / Math.max(rows.length, 1) - 12);
   const barWidth = Math.max(12, Math.min(52, groupWidth));
-  const palette = ["#315f9f", "#4f81bd", "#70ad47", "#ed7d31", "#a5a5a5", "#8064a2", "#ffc000", "#5b9bd5"];
+  const palette = [
+    "#315f9f",
+    "#4f81bd",
+    "#70ad47",
+    "#ed7d31",
+    "#a5a5a5",
+    "#8064a2",
+    "#ffc000",
+    "#5b9bd5",
+  ];
 
   if (!rows.length || !survivors.length) {
     doc.fontSize(10).text("No survivor data for this period.").moveDown();
@@ -90,23 +100,35 @@ function drawSurvivorBarChart(doc, rows, periodKey, survivors, labelFormatter) {
         doc.restore();
       }
     }
-    doc.fillColor("black").fontSize(7).text(labelFormatter(row[periodKey]), x - 10, baseline + 5, {
-      width: barWidth + 20,
-      align: "center",
-    });
+    doc
+      .fillColor("black")
+      .fontSize(7)
+      .text(labelFormatter(row[periodKey]), x - 10, baseline + 5, {
+        width: barWidth + 20,
+        align: "center",
+      });
   });
 
   const legendY = baseline + 28;
   let legendX = startX;
   survivors.forEach((survivor, index) => {
-    const labelWidth = Math.min(110, Math.max(45, doc.widthOfString(survivor, { fontSize: 7 }) + 16));
+    const labelWidth = Math.min(
+      110,
+      Math.max(45, doc.widthOfString(survivor, { fontSize: 7 }) + 16),
+    );
     if (legendX + labelWidth > doc.page.width - doc.page.margins.right) {
       legendX = startX;
     }
     doc.save();
-    doc.fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill();
+    doc
+      .fillColor(palette[index % palette.length])
+      .rect(legendX, legendY, 8, 8)
+      .fill();
     doc.restore();
-    doc.fillColor("black").fontSize(7).text(survivor, legendX + 11, legendY - 1, { width: labelWidth - 11 });
+    doc
+      .fillColor("black")
+      .fontSize(7)
+      .text(survivor, legendX + 11, legendY - 1, { width: labelWidth - 11 });
     legendX += labelWidth;
   });
   doc.y = legendY + 20;
@@ -118,11 +140,18 @@ function drawPivotTable(doc, periodHeader, rows, survivors) {
   const firstWidth = 78;
   const survivorWidth = (usableWidth - firstWidth) / Math.max(survivors.length, 1);
   const widths = [firstWidth, ...survivors.map(() => survivorWidth)];
-  drawTable(doc, columns, rows.map((row) => {
-    const result = { [periodHeader]: row[periodHeader] };
-    survivors.forEach((survivor) => { result[survivor] = money(row[survivor]); });
-    return result;
-  }), widths);
+  drawTable(
+    doc,
+    columns,
+    rows.map((row) => {
+      const result = { [periodHeader]: row[periodHeader] };
+      survivors.forEach((survivor) => {
+        result[survivor] = money(row[survivor]);
+      });
+      return result;
+    }),
+    widths,
+  );
 }
 
 function uiShareDumpRows(rows) {
@@ -139,7 +168,12 @@ function uiShareDumpRows(rows) {
     const total = Number(row.totalCost || row.shares.reduce((sum, item) => sum + item.amount, 0));
     const survivor = row.shares.length ? row.shares.map((item) => item.name).join(", ") : "—";
     const share = row.shares.length
-      ? row.shares.map((item) => `${item.name}: ₹${item.amount.toFixed(2)}${total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""}`).join(", ")
+      ? row.shares
+          .map(
+            (item) =>
+              `${item.name}: ₹${item.amount.toFixed(2)}${total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""}`,
+          )
+          .join(", ")
       : "No survivor share recorded";
     return { ...row, survivor, share };
   });

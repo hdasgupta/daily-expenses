@@ -1334,7 +1334,7 @@ code {
 
 .dashboard-detail-summary .dashboard-summary-card {
   display: block;
-}/* Keep hover tooltips above the chart legend. Recharts renders the legend in the SVG layer,
+} /* Keep hover tooltips above the chart legend. Recharts renders the legend in the SVG layer,
    while the tooltip is an absolutely positioned HTML layer. */
 .dashboard-detail-chart {
   position: relative;
@@ -1362,8 +1362,6 @@ code {
 .dashboard-detail-tooltip .recharts-tooltip-item-list {
   color: var(--text) !important;
 }
-
-
 
 /* Multi-group summary tables use row-spanned parent groups so the hierarchy is
    visible without repeating the same value on every child row. */

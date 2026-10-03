@@ -31,9 +31,7 @@ const scheduleDefinitions = [
 
 export async function getJobStatus({ page = 1, pageSize = 10, search = "" }) {
   const safePage = Math.max(1, Number(page) || 1);
-  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize))
-    ? Number(pageSize)
-    : 10;
+  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
   const offset = (safePage - 1) * safePageSize;
   const searchPattern = `%${safeSearch}%`;

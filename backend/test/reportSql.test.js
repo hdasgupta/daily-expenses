@@ -31,8 +31,6 @@ assert.match(raw, /FROM expense_source\s+ORDER BY expense_date DESC, id DESC LIM
 
 console.log("reportSql tests passed");
 
-
-
 test("groupedOrder makes survivor grouping and sorting positional", () => {
   const order = reportSql.groupedOrder(
     ["survivor"],

@@ -1,6 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, BarChart3, RefreshCw } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { api } from "../lib/api";
 import { getDashboardReports } from "./Dashboard";
 
@@ -14,7 +23,11 @@ function prettyValue(value, column) {
   if (["date", "week", "month"].includes(column)) {
     const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
     if (Number.isNaN(date.getTime())) return String(value);
-    return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(date);
+    return new Intl.DateTimeFormat("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }).format(date);
   }
   return String(value);
 }
@@ -26,7 +39,9 @@ function rowLabel(row, groupBy) {
 function buildMergedCells(rows, columns) {
   return (rows || []).map((row, rowIndex) => {
     const cells = columns.map((column, columnIndex) => {
-      const samePrefix = rowIndex > 0 && columns.slice(0, columnIndex + 1).every((key) => rows[rowIndex - 1]?.[key] === row[key]);
+      const samePrefix =
+        rowIndex > 0 &&
+        columns.slice(0, columnIndex + 1).every((key) => rows[rowIndex - 1]?.[key] === row[key]);
       if (samePrefix) return { hidden: true, rowSpan: 0 };
       let rowSpan = 1;
       while (rowIndex + rowSpan < rows.length) {
@@ -101,7 +116,9 @@ function buildPivotSummary(rows, groupBy) {
     return 0;
   });
 
-  columnValues.sort((a, b) => compareGroupValues({ [columnColumn]: a.value }, { [columnColumn]: b.value }, columnColumn));
+  columnValues.sort((a, b) =>
+    compareGroupValues({ [columnColumn]: a.value }, { [columnColumn]: b.value }, columnColumn),
+  );
 
   return {
     rowColumns,
@@ -157,7 +174,11 @@ export default function DashboardDetail({ navigate }) {
     <section>
       <div className="page-heading">
         <div>
-          <button className="secondary dashboard-back-button" type="button" onClick={() => navigate("/dashboard")}>
+          <button
+            className="secondary dashboard-back-button"
+            type="button"
+            onClick={() => navigate("/dashboard")}
+          >
             <ArrowLeft size={17} /> Back to Dashboard
           </button>
           <h1>{report.label}</h1>
@@ -190,7 +211,9 @@ export default function DashboardDetail({ navigate }) {
           {chartData.length ? (
             <div className="card dashboard-detail-chart">
               <div className="card-title">
-                <strong><BarChart3 size={17} /> Summary bar chart</strong>
+                <strong>
+                  <BarChart3 size={17} /> Summary bar chart
+                </strong>
                 <span>{chartModel.description}</span>
               </div>
               <div className="dashboard-detail-chart-scroll">
@@ -199,31 +222,46 @@ export default function DashboardDetail({ navigate }) {
                   style={{ minWidth: `${chartModel.minWidth}px` }}
                 >
                   <ResponsiveContainer width="100%" height={380}>
-                    <BarChart data={chartData} margin={{ top: 8, right: 18, left: 10, bottom: chartModel.multiSeries ? 55 : 90 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="chartLabel" angle={chartModel.multiSeries ? -20 : -35} textAnchor="end" interval={0} height={chartModel.multiSeries ? 65 : 100} tick={{ fontSize: 10 }} />
-                  <YAxis />
-                  <Tooltip
-                    wrapperClassName="dashboard-detail-tooltip"
-                    contentStyle={{}}
-                    formatter={(value, name) => [money(value), name]}
-                    labelFormatter={(label) => label}
-                  />
-                  {chartModel.multiSeries ? <Legend /> : null}
-                      {chartModel.series.map((series) => (
-                      <Bar
-                        key={series.dataKey}
-                        dataKey={series.dataKey}
-                        name={series.label}
-                        fill={series.fill}
-                        barSize={100}
-                        cursor="pointer"
-                      onClick={(entry) => {
-                        const row = entry?.payload?._groupRows?.[series.dataKey];
-                        if (row) openDrilldown(navigate, report.key, data.groupBy, row);
+                    <BarChart
+                      data={chartData}
+                      margin={{
+                        top: 8,
+                        right: 18,
+                        left: 10,
+                        bottom: chartModel.multiSeries ? 55 : 90,
                       }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="chartLabel"
+                        angle={chartModel.multiSeries ? -20 : -35}
+                        textAnchor="end"
+                        interval={0}
+                        height={chartModel.multiSeries ? 65 : 100}
+                        tick={{ fontSize: 10 }}
                       />
-                    ))}
+                      <YAxis />
+                      <Tooltip
+                        wrapperClassName="dashboard-detail-tooltip"
+                        contentStyle={{}}
+                        formatter={(value, name) => [money(value), name]}
+                        labelFormatter={(label) => label}
+                      />
+                      {chartModel.multiSeries ? <Legend /> : null}
+                      {chartModel.series.map((series) => (
+                        <Bar
+                          key={series.dataKey}
+                          dataKey={series.dataKey}
+                          name={series.label}
+                          fill={series.fill}
+                          barSize={100}
+                          cursor="pointer"
+                          onClick={(entry) => {
+                            const row = entry?.payload?._groupRows?.[series.dataKey];
+                            if (row) openDrilldown(navigate, report.key, data.groupBy, row);
+                          }}
+                        />
+                      ))}
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -241,38 +279,50 @@ export default function DashboardDetail({ navigate }) {
             {data.rows?.length ? (
               <div className="table-scroll">
                 {data.groupBy?.length > 1 ? (
-                  <PivotSummaryTable
-                    data={data}
-                    report={report}
-                    navigate={navigate}
-                  />
+                  <PivotSummaryTable data={data} report={report} navigate={navigate} />
                 ) : (
                   <table className="data-table dashboard-summary-table">
                     <thead>
                       <tr>
-                        {(data.groupBy || []).map((column) => <th key={column}>{column}</th>)}
+                        {(data.groupBy || []).map((column) => (
+                          <th key={column}>{column}</th>
+                        ))}
                         <th className="number-cell">Sum of expenses</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {buildMergedCells(data.rows, data.groupBy || []).map(({ row, rowIndex, cells }) => (
-                        <tr key={`${rowIndex}-${rowLabel(row, data.groupBy || [])}`}>
-                          {(data.groupBy || []).map((column, columnIndex) => {
-                            const cell = cells[columnIndex];
-                            if (cell.hidden) return null;
-                            return (
-                              <td key={column} rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined} className={cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined}>
-                                {prettyValue(row[column], column)}
-                              </td>
-                            );
-                          })}
-                          <td className="number-cell">
-                            <button type="button" className="table-link-button" onClick={() => openDrilldown(navigate, report.key, data.groupBy, row)}>
-                              {money(row.total)}
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                      {buildMergedCells(data.rows, data.groupBy || []).map(
+                        ({ row, rowIndex, cells }) => (
+                          <tr key={`${rowIndex}-${rowLabel(row, data.groupBy || [])}`}>
+                            {(data.groupBy || []).map((column, columnIndex) => {
+                              const cell = cells[columnIndex];
+                              if (cell.hidden) return null;
+                              return (
+                                <td
+                                  key={column}
+                                  rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined}
+                                  className={
+                                    cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined
+                                  }
+                                >
+                                  {prettyValue(row[column], column)}
+                                </td>
+                              );
+                            })}
+                            <td className="number-cell">
+                              <button
+                                type="button"
+                                className="table-link-button"
+                                onClick={() =>
+                                  openDrilldown(navigate, report.key, data.groupBy, row)
+                                }
+                              >
+                                {money(row.total)}
+                              </button>
+                            </td>
+                          </tr>
+                        ),
+                      )}
                     </tbody>
                   </table>
                 )}
@@ -288,14 +338,23 @@ export default function DashboardDetail({ navigate }) {
 function PivotSummaryTable({ data, report, navigate }) {
   const pivot = buildPivotSummary(data.rows, data.groupBy);
   if (!pivot) return null;
-  const merged = buildMergedCells(pivot.rows.map((item) => item.values), pivot.rowColumns);
+  const merged = buildMergedCells(
+    pivot.rows.map((item) => item.values),
+    pivot.rowColumns,
+  );
 
   return (
     <table className="data-table dashboard-summary-table dashboard-pivot-table">
       <thead>
         <tr>
-          {pivot.rowColumns.map((column) => <th key={column}>{column}</th>)}
-          {pivot.columnValues.map(({ key, value }) => <th key={key} className="number-cell">{prettyValue(value, pivot.columnColumn)}</th>)}
+          {pivot.rowColumns.map((column) => (
+            <th key={column}>{column}</th>
+          ))}
+          {pivot.columnValues.map(({ key, value }) => (
+            <th key={key} className="number-cell">
+              {prettyValue(value, pivot.columnColumn)}
+            </th>
+          ))}
           <th className="number-cell">Total</th>
         </tr>
       </thead>
@@ -308,7 +367,11 @@ function PivotSummaryTable({ data, report, navigate }) {
                 const cell = cells[columnIndex];
                 if (cell.hidden) return null;
                 return (
-                  <td key={column} rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined} className={cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined}>
+                  <td
+                    key={column}
+                    rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined}
+                    className={cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined}
+                  >
                     {prettyValue(pivotRow.values[column], column)}
                   </td>
                 );
@@ -318,14 +381,22 @@ function PivotSummaryTable({ data, report, navigate }) {
                 return (
                   <td key={key} className="number-cell">
                     {entry ? (
-                      <button type="button" className="table-link-button" onClick={() => openDrilldown(navigate, report.key, data.groupBy, entry.row)}>
+                      <button
+                        type="button"
+                        className="table-link-button"
+                        onClick={() => openDrilldown(navigate, report.key, data.groupBy, entry.row)}
+                      >
                         {money(entry.total)}
                       </button>
-                    ) : "—"}
+                    ) : (
+                      "—"
+                    )}
                   </td>
                 );
               })}
-              <td className="number-cell"><strong>{money(pivotRow.total)}</strong></td>
+              <td className="number-cell">
+                <strong>{money(pivotRow.total)}</strong>
+              </td>
             </tr>
           );
         })}
@@ -344,9 +415,10 @@ function buildChartModel(data) {
       const key = stableValueKey(row[groupBy[0]]);
       const existing = grouped.get(key);
       const amount = Number(row.total || 0);
-      grouped.set(key, existing
-        ? { ...existing, total: Number(existing.total || 0) + amount }
-        : row);
+      grouped.set(
+        key,
+        existing ? { ...existing, total: Number(existing.total || 0) + amount } : row,
+      );
     });
     const chartRows = Array.from(grouped.values());
     return {
@@ -379,7 +451,11 @@ function buildChartModel(data) {
     let series = seriesMap.get(seriesLabel);
     if (!series) {
       const seriesIndex = seriesMap.size;
-      series = { dataKey: `series_${seriesIndex}`, label: seriesLabel, fill: `var(--dashboard-series-${(seriesIndex % 8) + 1})` };
+      series = {
+        dataKey: `series_${seriesIndex}`,
+        label: seriesLabel,
+        fill: `var(--dashboard-series-${(seriesIndex % 8) + 1})`,
+      };
       seriesMap.set(seriesLabel, series);
     }
 

@@ -26,7 +26,10 @@ function dateValue(value) {
 }
 function readRoute() {
   const parts = window.location.pathname.split("/").filter(Boolean);
-  return { reportKey: parts[2], selection: new URLSearchParams(window.location.search).get("selection") };
+  return {
+    reportKey: parts[2],
+    selection: new URLSearchParams(window.location.search).get("selection"),
+  };
 }
 
 export default function DashboardDrilldown({ navigate }) {
@@ -36,7 +39,11 @@ export default function DashboardDrilldown({ navigate }) {
 
   useEffect(() => {
     let selection = {};
-    try { selection = encoded ? JSON.parse(encoded) : {}; } catch { selection = {}; }
+    try {
+      selection = encoded ? JSON.parse(encoded) : {};
+    } catch {
+      selection = {};
+    }
     api("/dashboard/query", {
       method: "POST",
       body: JSON.stringify({ reportKey, mode: "drilldown", selection }),
@@ -51,7 +58,11 @@ export default function DashboardDrilldown({ navigate }) {
     <section>
       <div className="page-heading">
         <div>
-          <button className="secondary dashboard-back-button" type="button" onClick={() => navigate(`/dashboard/report/${reportKey}`)}>
+          <button
+            className="secondary dashboard-back-button"
+            type="button"
+            onClick={() => navigate(`/dashboard/report/${reportKey}`)}
+          >
             <ArrowLeft size={17} /> Back to Dashboard Detail
           </button>
           <h1>Dashboard Drilldown</h1>
@@ -64,16 +75,24 @@ export default function DashboardDrilldown({ navigate }) {
         <div className="card dashboard-drilldown-card">
           <div className="card-title">
             <strong>{data.title}</strong>
-            <span>{data.rows?.length || 0} raw row(s) · total expense {money(data.total)}</span>
+            <span>
+              {data.rows?.length || 0} raw row(s) · total expense {money(data.total)}
+            </span>
           </div>
           {data.rows?.length ? (
             <div className="table-scroll">
               <table className="data-table">
                 <thead>
                   <tr>
-                    <th>Date</th><th>Category</th><th>Item</th><th>Survivor</th>
-                    <th>Expense type</th><th className="number-cell">Expense</th>
-                    <th className="number-cell">Share</th><th>Comment</th><th>Proof</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Item</th>
+                    <th>Survivor</th>
+                    <th>Expense type</th>
+                    <th className="number-cell">Expense</th>
+                    <th className="number-cell">Share</th>
+                    <th>Comment</th>
+                    <th>Proof</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,15 +104,27 @@ export default function DashboardDrilldown({ navigate }) {
                       <td>{row.survivor || "—"}</td>
                       <td>{row.expense_type || "—"}</td>
                       <td className="number-cell">{money(row.total_cost)}</td>
-                      <td className="number-cell">{row.share_price == null ? "—" : money(row.share_price)}</td>
+                      <td className="number-cell">
+                        {row.share_price == null ? "—" : money(row.share_price)}
+                      </td>
                       <td>{row.comment || "—"}</td>
-                      <td>{row.proof_url ? <a href={row.proof_url} target="_blank" rel="noreferrer"><ExternalLink size={15} /></a> : "—"}</td>
+                      <td>
+                        {row.proof_url ? (
+                          <a href={row.proof_url} target="_blank" rel="noreferrer">
+                            <ExternalLink size={15} />
+                          </a>
+                        ) : (
+                          "—"
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          ) : <div className="empty-card">No matching expense data.</div>}
+          ) : (
+            <div className="empty-card">No matching expense data.</div>
+          )}
         </div>
       ) : null}
     </section>

@@ -6,18 +6,78 @@ const definitions = {
   weekly: { label: "Weekly Report", unit: "week", groupBy: ["week"], count: 4 },
   monthly: { label: "Monthly Report", unit: "month", groupBy: ["month"], count: 3 },
   yearly: { label: "Yearly Report", unit: "year", groupBy: ["year"], count: 2 },
-  "daily-category": { label: "Daily report by Category", unit: "day", groupBy: ["date", "category"], count: 7 },
-  "weekly-category": { label: "Weekly report by Category", unit: "week", groupBy: ["week", "category"], count: 4 },
-  "monthly-category": { label: "Monthly report by Category", unit: "month", groupBy: ["month", "category"], count: 3 },
-  "yearly-category": { label: "Yearly report by Category", unit: "year", groupBy: ["year", "category"], count: 2 },
-  "daily-survivor": { label: "Daily report by Survivor", unit: "day", groupBy: ["date", "survivor"], count: 7 },
-  "weekly-survivor": { label: "Weekly report by Survivor", unit: "week", groupBy: ["week", "survivor"], count: 4 },
-  "monthly-survivor": { label: "Monthly report by Survivor", unit: "month", groupBy: ["month", "survivor"], count: 3 },
-  "yearly-survivor": { label: "Yearly report by Survivor", unit: "year", groupBy: ["year", "survivor"], count: 2 },
-  "daily-survivor-category": { label: "Daily report Survivor vs Category", unit: "day", groupBy: ["date", "survivor", "category"], count: 7 },
-  "weekly-survivor-category": { label: "Weekly report Survivor vs Category", unit: "week", groupBy: ["week", "survivor", "category"], count: 4 },
-  "monthly-survivor-category": { label: "Monthly report Survivor vs Category", unit: "month", groupBy: ["month", "survivor", "category"], count: 3 },
-  "yearly-survivor-category": { label: "Yearly report Survivor vs Category", unit: "year", groupBy: ["year", "survivor", "category"], count: 2 },
+  "daily-category": {
+    label: "Daily report by Category",
+    unit: "day",
+    groupBy: ["date", "category"],
+    count: 7,
+  },
+  "weekly-category": {
+    label: "Weekly report by Category",
+    unit: "week",
+    groupBy: ["week", "category"],
+    count: 4,
+  },
+  "monthly-category": {
+    label: "Monthly report by Category",
+    unit: "month",
+    groupBy: ["month", "category"],
+    count: 3,
+  },
+  "yearly-category": {
+    label: "Yearly report by Category",
+    unit: "year",
+    groupBy: ["year", "category"],
+    count: 2,
+  },
+  "daily-survivor": {
+    label: "Daily report by Survivor",
+    unit: "day",
+    groupBy: ["date", "survivor"],
+    count: 7,
+  },
+  "weekly-survivor": {
+    label: "Weekly report by Survivor",
+    unit: "week",
+    groupBy: ["week", "survivor"],
+    count: 4,
+  },
+  "monthly-survivor": {
+    label: "Monthly report by Survivor",
+    unit: "month",
+    groupBy: ["month", "survivor"],
+    count: 3,
+  },
+  "yearly-survivor": {
+    label: "Yearly report by Survivor",
+    unit: "year",
+    groupBy: ["year", "survivor"],
+    count: 2,
+  },
+  "daily-survivor-category": {
+    label: "Daily report Survivor vs Category",
+    unit: "day",
+    groupBy: ["date", "survivor", "category"],
+    count: 7,
+  },
+  "weekly-survivor-category": {
+    label: "Weekly report Survivor vs Category",
+    unit: "week",
+    groupBy: ["week", "survivor", "category"],
+    count: 4,
+  },
+  "monthly-survivor-category": {
+    label: "Monthly report Survivor vs Category",
+    unit: "month",
+    groupBy: ["month", "survivor", "category"],
+    count: 3,
+  },
+  "yearly-survivor-category": {
+    label: "Yearly report Survivor vs Category",
+    unit: "year",
+    groupBy: ["year", "survivor", "category"],
+    count: 2,
+  },
 };
 
 function dateFromParts(year, month, day) {
@@ -31,7 +91,11 @@ function normalizeIsoDate(value, label = "date") {
   const month = Number(match[2]);
   const day = Number(match[3]);
   const date = new Date(Date.UTC(year, month - 1, day));
-  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) {
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
     throw new Error(`Invalid ${label}: ${text}`);
   }
   return date;
@@ -64,7 +128,8 @@ function weekStart(value) {
 }
 
 function rangeFor(unit, count, today = todayIso()) {
-  if (unit === "day") return { dateFrom: addDays(today, -(count - 1)), dateTo: today, label: `${count} days` };
+  if (unit === "day")
+    return { dateFrom: addDays(today, -(count - 1)), dateTo: today, label: `${count} days` };
   if (unit === "week") {
     const start = shiftDays(weekStart(today), -(count - 1) * 7);
     const end = addDays(weekStart(today), 6);
@@ -76,9 +141,15 @@ function rangeFor(unit, count, today = todayIso()) {
     return { dateFrom: start, dateTo: end, label: `${count} months` };
   }
   const current = `${today.slice(0, 4)}-01-01`;
-  return { dateFrom: shiftYearStart(current, -(count - 1)), dateTo: yearEnd(current), label: `${count} years` };
+  return {
+    dateFrom: shiftYearStart(current, -(count - 1)),
+    dateTo: yearEnd(current),
+    label: `${count} years`,
+  };
 }
-function shiftDays(value, amount) { return addDays(value, amount); }
+function shiftDays(value, amount) {
+  return addDays(value, amount);
+}
 
 function baseFilters(range) {
   return {
@@ -95,9 +166,15 @@ function baseFilters(range) {
 }
 
 function addSelectionFilters(filters, selection, groupBy) {
-  const next = { ...filters, categories: [...filters.categories], survivors: [...filters.survivors] };
-  if (groupBy.includes("date") && selection.date) next.date = String(selection.date), next.dateFrom = "", next.dateTo = "";
-  if (groupBy.includes("week") && selection.week) next.dateFrom = String(selection.week), next.dateTo = addDays(String(selection.week), 6);
+  const next = {
+    ...filters,
+    categories: [...filters.categories],
+    survivors: [...filters.survivors],
+  };
+  if (groupBy.includes("date") && selection.date)
+    ((next.date = String(selection.date)), (next.dateFrom = ""), (next.dateTo = ""));
+  if (groupBy.includes("week") && selection.week)
+    ((next.dateFrom = String(selection.week)), (next.dateTo = addDays(String(selection.week), 6)));
   if (groupBy.includes("month") && selection.month) {
     next.month = String(selection.month).slice(0, 7);
     next.dateFrom = "";
@@ -108,8 +185,10 @@ function addSelectionFilters(filters, selection, groupBy) {
     next.dateFrom = "";
     next.dateTo = "";
   }
-  if (groupBy.includes("category") && selection.category_id != null) next.categories = [String(selection.category_id)];
-  if (groupBy.includes("survivor") && selection.survivor_id != null) next.survivors = [String(selection.survivor_id)];
+  if (groupBy.includes("category") && selection.category_id != null)
+    next.categories = [String(selection.category_id)];
+  if (groupBy.includes("survivor") && selection.survivor_id != null)
+    next.survivors = [String(selection.survivor_id)];
   return next;
 }
 
@@ -118,7 +197,9 @@ function drilldownTitle(definition, selection) {
     .map((column) => selection[column])
     .filter((value) => value != null && value !== "")
     .map(String);
-  return parts.length ? `${definition.label} · ${parts.join(" · ")}` : `${definition.label} · Drilldown`;
+  return parts.length
+    ? `${definition.label} · ${parts.join(" · ")}`
+    : `${definition.label} · Drilldown`;
 }
 
 export function getDashboardDefinition(reportKey) {

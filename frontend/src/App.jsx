@@ -47,8 +47,10 @@ function normalizePath(pathname) {
 
 function routeForPath(path) {
   if (routes[path]) return routes[path];
-  if (path.startsWith("/dashboard/report/")) return { component: DashboardDetail, permission: "dashboard" };
-  if (path.startsWith("/dashboard/drilldown/")) return { component: DashboardDrilldown, permission: "dashboard" };
+  if (path.startsWith("/dashboard/report/"))
+    return { component: DashboardDetail, permission: "dashboard" };
+  if (path.startsWith("/dashboard/drilldown/"))
+    return { component: DashboardDrilldown, permission: "dashboard" };
   return null;
 }
 
