@@ -16,6 +16,9 @@ import {
 } from "lucide-react";
 import { api } from "../lib/api";
 import { downloadPdf } from "../lib/download";
+import {
+  openRemoteFile,
+} from "../lib/download";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
@@ -334,20 +337,46 @@ export default function Reports() {
   );
 
   const renderCell = (row, column) => {
-    if (column === "proof_url")
-      return row.proof_url ? (
-        <a
-          className="text-link"
-          href={row.proof_url}
-          download={`expense-proof-${row.expense_id || row.id || "proof"}.pdf`}
-        >
-          Download proof
-        </a>
-      ) : (
-        "—"
-      );
-    return formatCell(row[column], column);
-  };
+  if (column === "proof_url") {
+    return row.proof_url ? (
+      <button
+        className="text-link"
+        type="button"
+        onClick={async () => {
+          try {
+            await openRemoteFile(
+              row.proof_url,
+              `expense-proof-${row.expense_id || row.id || "proof"}.pdf`,
+            );
+          } catch (error) {
+            window.dispatchEvent(
+              new CustomEvent(
+                "app:toast",
+                {
+                  detail: {
+                    type: "error",
+                    message:
+                      error?.message ||
+                      "Unable to open proof.",
+                  },
+                },
+              ),
+            );
+          }
+        }}
+      >
+        Open proof
+      </button>
+    ) : (
+      "—"
+    );
+  }
+
+  return formatCell(
+    row[column],
+    column,
+  );
+};
   return (
     <section>
       <div className="page-heading">
