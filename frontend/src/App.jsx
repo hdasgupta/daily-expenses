@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import DashboardDetail from "./pages/DashboardDetail";
 import DashboardDrilldown from "./pages/DashboardDrilldown";
 import Users from "./pages/Users";
+import JobStatus from "./pages/JobStatus";
 import { api } from "./lib/api";
 import { isIndiaTimezone } from "./utils/dates.js";
 
@@ -35,6 +36,7 @@ const routes = {
   "/report": { component: Reports, permission: "report" },
   "/dashboard": { component: Dashboard, permission: "dashboard" },
   "/add-user": { component: Users, permission: "add-user" },
+  "/job-status": { component: JobStatus, permission: "job-status" },
 };
 
 function normalizePath(pathname) {

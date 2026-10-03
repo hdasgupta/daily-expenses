@@ -13,11 +13,12 @@ const permissions = [
   "report",
   "dashboard",
   "add-user",
+  "job-status",
 ];
 const rolePermissions = {
   admin: permissions,
   editor: ["add-expense"],
-  manager: ["add-expense", "report", "dashboard"],
+  manager: ["add-expense", "report", "dashboard", "job-status"],
 };
 
 export async function seedApplication() {

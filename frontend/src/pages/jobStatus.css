@@ -1,0 +1,71 @@
+.job-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.job-schedule-card {
+  min-width: 0;
+}
+.job-schedule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.job-schedule-details {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.job-config-badge,
+.job-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.job-config-badge.configured,
+.job-status-badge.completed {
+  color: var(--success);
+  background: var(--success-soft);
+}
+.job-config-badge.not-configured,
+.job-status-badge.failed {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+.job-status-badge.running {
+  color: var(--primary);
+  background: var(--soft);
+}
+.job-status-table {
+  min-width: 1150px;
+}
+.job-error-cell {
+  max-width: 360px;
+  color: var(--danger);
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+.job-status-spin {
+  animation: job-status-spin 0.9s linear infinite;
+}
+@keyframes job-status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 860px) {
+  .job-schedule-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -37,6 +37,8 @@ export const env = {
   dashboardTimezone: process.env.DASHBOARD_TIMEZONE || "Asia/Kolkata",
   dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "10 11 * * *",
   dailyEmailReportTimezone: process.env.DAILY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
+  monthlyEmailReportCron: process.env.MONTHLY_EMAIL_REPORT_CRON || "10 11 1 * *",
+  monthlyEmailReportTimezone: process.env.MONTHLY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
   appTimezone: process.env.APP_TIMEZONE || "Asia/Kolkata",
   organizationName: process.env.ORGANIZATION_NAME || "Rehabilitation Center",
   organizationLogoUrl: process.env.ORGANIZATION_LOGO_URL || "",

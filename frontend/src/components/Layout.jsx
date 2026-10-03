@@ -8,6 +8,7 @@ import {
   LogOut,
   Menu,
   Moon,
+  RefreshCw,
   Shield,
   Sun,
   Tags,
@@ -35,6 +36,7 @@ const navItems = [
   },
   { path: "/report", label: "Reports", icon: FileBarChart, permission: "report" },
   { path: "/dashboard", label: "Dashboard", icon: Gauge, permission: "dashboard" },
+  { path: "/job-status", label: "Cron job status", icon: RefreshCw, permission: "job-status" },
   { path: "/add-user", label: "Add users", icon: UserRound, permission: "add-user" },
 ];
 
@@ -107,7 +109,12 @@ export default function Layout({ user, path, navigate, logout, children }) {
           return (
             <button
               key={item.path}
-              className={path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard")) ? "active" : ""}
+              className={
+                path === item.path ||
+                (item.path === "/dashboard" && path.startsWith("/dashboard"))
+                  ? "active"
+                  : ""
+              }
               onClick={() => navigate(item.path)}
             >
               <Icon size={18} />

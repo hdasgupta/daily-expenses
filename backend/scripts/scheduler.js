@@ -37,6 +37,41 @@ function logSchedulerEvent(event, details = {}) {
   );
 }
 
+async function markJobStarted(client, jobName, scheduledKey) {
+  const result = await client.query(
+    `INSERT INTO public.scheduler_job_executions
+      (job_name, scheduled_key, status, started_at)
+     VALUES ($1, $2, 'running', now())
+     RETURNING id`,
+    [jobName, scheduledKey],
+  );
+  return result.rows[0]?.id;
+}
+
+async function markJobCompleted(client, executionId, durationMs) {
+  await client.query(
+    `UPDATE public.scheduler_job_executions
+     SET status = 'completed',
+         completed_at = now(),
+         duration_ms = $2,
+         error_message = NULL
+     WHERE id = $1`,
+    [executionId, durationMs],
+  );
+}
+
+async function markJobFailed(client, executionId, durationMs, error) {
+  await client.query(
+    `UPDATE public.scheduler_job_executions
+     SET status = 'failed',
+         completed_at = now(),
+         duration_ms = $2,
+         error_message = $3
+     WHERE id = $1`,
+    [executionId, durationMs, error?.message || String(error)],
+  );
+}
+
 async function runEmailJobOnce(jobName, scheduledKey, send) {
   const client = await pool.connect();
   const lockKey = `${jobName}:${scheduledKey}`;
@@ -65,39 +100,92 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
     }
 
     try {
-      const existing = await client.query(
-        "SELECT 1 FROM public.scheduler_job_runs WHERE job_name = $1 AND scheduled_key = $2",
-        [jobName, scheduledKey],
-      );
-      if (existing.rowCount) {
-        logSchedulerEvent("scheduler_job_skipped_already_completed", {
-          jobName,
-          scheduledKey,
-        });
-        return false;
-      }
-
+      const executionId = await markJobStarted(client, jobName, scheduledKey);
       const startedAt = Date.now();
+
+      logSchedulerEvent("scheduler_execution_started", {
+        jobName,
+        scheduledKey,
+        executionId,
+      });
+
       try {
         const result = await send();
-        await client.query(
-          `INSERT INTO public.scheduler_job_runs (job_name, scheduled_key, completed_at)
-           VALUES ($1, $2, now())
-           ON CONFLICT (job_name, scheduled_key) DO NOTHING`,
-          [jobName, scheduledKey],
-        );
+        const durationMs = Date.now() - startedAt;
+        await markJobCompleted(client, executionId, durationMs);
+
         logSchedulerEvent("scheduler_job_completed", {
           jobName,
           scheduledKey,
-          durationMs: Date.now() - startedAt,
+          executionId,
+          durationMs,
           result,
         });
         return result;
       } catch (error) {
+        const durationMs = Date.now() - startedAt;
+        await markJobFailed(client, executionId, durationMs, error);
+
         logSchedulerEvent("scheduler_job_failed", {
           jobName,
           scheduledKey,
-          durationMs: Date.now() - startedAt,
+          executionId,
+          durationMs,
+          error: error?.message || String(error),
+          stack: error?.stack,
+        });
+        throw error;
+      }
+    } finally {
+      await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
+    }
+  } finally {
+    client.release();
+  }
+}
+
+async function runDashboardJob() {
+  const scheduledKey = new Date().toISOString();
+  const client = await pool.connect();
+  const lockKey = `dashboard:${scheduledKey.slice(0, 16)}`;
+
+  try {
+    const lockResult = await client.query(
+      "SELECT pg_try_advisory_lock(hashtext($1)) AS locked",
+      [lockKey],
+    );
+    if (!lockResult.rows[0].locked) {
+      logSchedulerEvent("scheduler_job_skipped_locked", {
+        jobName: "dashboard",
+        scheduledKey,
+      });
+      return;
+    }
+
+    try {
+      const executionId = await markJobStarted(client, "dashboard", scheduledKey);
+      const startedAt = Date.now();
+
+      try {
+        const result = await sendDashboardToManagers();
+        const durationMs = Date.now() - startedAt;
+        await markJobCompleted(client, executionId, durationMs);
+        console.log(`Dashboard job sent to ${result.recipients} manager(s)`);
+        logSchedulerEvent("scheduler_job_completed", {
+          jobName: "dashboard",
+          scheduledKey,
+          executionId,
+          durationMs,
+          result,
+        });
+      } catch (error) {
+        const durationMs = Date.now() - startedAt;
+        await markJobFailed(client, executionId, durationMs, error);
+        logSchedulerEvent("scheduler_job_failed", {
+          jobName: "dashboard",
+          scheduledKey,
+          executionId,
+          durationMs,
           error: error?.message || String(error),
           stack: error?.stack,
         });
@@ -199,8 +287,7 @@ export function startDashboardScheduler() {
           localTime: getLocalDateParts(env.dashboardTimezone),
         });
         try {
-          const result = await sendDashboardToManagers();
-          console.log(`Dashboard job sent to ${result.recipients} manager(s)`);
+          await runDashboardJob();
         } catch (error) {
           console.error("Dashboard job failed", error);
         }

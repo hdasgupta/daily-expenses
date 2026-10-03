@@ -9,6 +9,7 @@ import * as userController from "../controllers/userController.js";
 import * as reportController from "../controllers/reportController.js";
 import * as dashboardController from "../controllers/dashboardController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
+import * as jobStatusController from "../controllers/jobStatusController.js";
 import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
 
 export function createRouter(maxUploadBytes) {
@@ -90,6 +91,8 @@ export function createRouter(maxUploadBytes) {
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
+
+  router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
 
   router.get("/roles", auth, permit("add-user"), userController.roles);
   router.get("/users", auth, permit("add-user"), userController.list);

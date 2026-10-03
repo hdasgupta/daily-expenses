@@ -117,10 +117,38 @@ CREATE TABLE IF NOT EXISTS public.pagination_settings (
 );
 CREATE TABLE IF NOT EXISTS public.scheduler_job_runs (
   job_name VARCHAR(100) NOT NULL,
-  scheduled_key VARCHAR(50) NOT NULL,
-  completed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  scheduled_key VARCHAR(100) NOT NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'completed'
+    CHECK(status IN ('running','completed','failed')),
+  started_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  completed_at TIMESTAMPTZ,
+  duration_ms INTEGER,
+  error_message TEXT,
   PRIMARY KEY (job_name, scheduled_key)
 );
+ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS status VARCHAR(20);
+ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS started_at TIMESTAMPTZ;
+ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS duration_ms INTEGER;
+ALTER TABLE public.scheduler_job_runs ADD COLUMN IF NOT EXISTS error_message TEXT;
+UPDATE public.scheduler_job_runs
+SET status = COALESCE(status, 'completed'),
+    started_at = COALESCE(started_at, completed_at, now())
+WHERE status IS NULL OR started_at IS NULL;
+CREATE TABLE IF NOT EXISTS public.scheduler_job_executions (
+  id BIGSERIAL PRIMARY KEY,
+  job_name VARCHAR(100) NOT NULL,
+  scheduled_key VARCHAR(100),
+  status VARCHAR(20) NOT NULL DEFAULT 'running'
+    CHECK(status IN ('running','completed','failed','skipped')),
+  started_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  completed_at TIMESTAMPTZ,
+  duration_ms INTEGER,
+  error_message TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_started_at
+  ON public.scheduler_job_executions(started_at DESC);
+CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_job_name
+  ON public.scheduler_job_executions(job_name, started_at DESC);
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,
@@ -136,5 +164,9 @@ ALTER TABLE public.expenses ADD COLUMN IF NOT EXISTS source_added_on TIMESTAMPTZ
 CREATE INDEX IF NOT EXISTS idx_expenses_date ON public.expenses(expense_date);
 CREATE INDEX IF NOT EXISTS idx_expense_shares_expense ON public.expense_shares(expense_id);
 CREATE INDEX IF NOT EXISTS idx_expense_shares_survivor ON public.expense_shares(survivor_id);
+CREATE INDEX IF NOT EXISTS idx_scheduler_job_runs_started_at
+  ON public.scheduler_job_runs(started_at DESC);
+CREATE INDEX IF NOT EXISTS idx_scheduler_job_runs_job_name
+  ON public.scheduler_job_runs(job_name, started_at DESC);
 CREATE UNIQUE INDEX IF NOT EXISTS one_remaining_share_per_expense ON public.expense_shares(expense_id) WHERE share_type = 'remaining';
 `;
