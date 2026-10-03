@@ -92,71 +92,74 @@ function normalizePath(pathname) {
   return result || "/";
 }
 
-function normalizePermissions(permissions) {
-  if (Array.isArray(permissions)) {
-    return permissions
-      .flatMap((permission) => {
-        if (typeof permission !== "string") return [];
-
-        return permission
-          .replace(/^\{|\}$/g, "")
-          .split(",")
-          .map((value) => value.replace(/^"|"$/g, ""));
-      })
-      .map((permission) => permission.trim())
-      .filter(Boolean);
+function normalizePermissions(value) {
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => normalizePermissions(item));
   }
 
-  if (typeof permissions === "string") {
-    let value = permissions.trim();
+  if (typeof value === "string") {
+    let text = value.trim();
 
-    /*
-     * PostgreSQL text[] values can arrive as:
-     * {add-expense,add-item,report}
-     */
-    if (value.startsWith("{") && value.endsWith("}")) {
-      value = value.slice(1, -1);
+    if (!text) {
+      return [];
     }
 
     /*
-     * JSON arrays can also arrive as strings:
+     * PostgreSQL array:
+     * {add-expense,add-item,report}
+     */
+    if (text.startsWith("{") && text.endsWith("}")) {
+      text = text.slice(1, -1);
+    }
+
+    /*
+     * JSON array:
      * ["add-expense","report"]
      */
-    if (value.startsWith("[") && value.endsWith("]")) {
+    if (text.startsWith("[") && text.endsWith("]")) {
       try {
-        const parsed = JSON.parse(value);
+        const parsed = JSON.parse(text);
+
         if (Array.isArray(parsed)) {
           return normalizePermissions(parsed);
         }
       } catch {
-        // Fall through to normal string parsing.
+        // Continue with string parsing.
       }
     }
 
-    return value
-      .split(/[,\s]+/)
-      .map((permission) =>
-        permission
+    /*
+     * PostgreSQL array values may contain quoted items.
+     */
+    return text
+      .split(",")
+      .flatMap((item) => {
+        const cleaned = item
           .trim()
+          .replace(/^["']|["']$/g, "")
           .replace(/^\{|\}$/g, "")
-          .replace(/^"|"$/g, ""),
-      )
-      .filter(Boolean);
+          .trim();
+
+        return cleaned ? [cleaned] : [];
+      });
   }
 
-  /*
-   * Defensive support for permission objects such as:
-   * { "add-expense": true, "report": true }
-   */
-  if (permissions && typeof permissions === "object") {
-    if (Array.isArray(permissions.permissions)) {
-      return normalizePermissions(permissions.permissions);
+  if (value && typeof value === "object") {
+    if (Array.isArray(value.permissions)) {
+      return normalizePermissions(value.permissions);
     }
 
-    return Object.entries(permissions)
-      .filter(([, enabled]) => enabled === true)
-      .map(([permission]) => permission.trim())
-      .filter(Boolean);
+    /*
+     * Support objects such as:
+     * { "add-expense": true, "report": true }
+     */
+    const enabled = Object.entries(value)
+      .filter(([, enabledValue]) => enabledValue === true)
+      .map(([permission]) => permission);
+
+    if (enabled.length) {
+      return enabled;
+    }
   }
 
   return [];
@@ -171,14 +174,17 @@ function normalizeUser(rawUser) {
     .trim()
     .toLowerCase();
 
-  let permissions = normalizePermissions(rawUser.permissions);
+  let permissions = normalizePermissions(
+    rawUser.permissions,
+  );
 
-  /*
-   * If the backend did not provide usable permissions but supplied
-   * a known role, use the application's role definition.
-   */
-  if (permissions.length === 0 && PERMISSIONS_BY_ROLE[role]) {
-    permissions = [...PERMISSIONS_BY_ROLE[role]];
+  if (
+    permissions.length === 0 &&
+    PERMISSIONS_BY_ROLE[role]
+  ) {
+    permissions = [
+      ...PERMISSIONS_BY_ROLE[role],
+    ];
   }
 
   return {
@@ -217,6 +223,7 @@ export default function App() {
 
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(true);
+  const [rawMe, setRawMe] = useState(null);
 
   useEffect(() => {
     const popState = () => {
@@ -231,7 +238,10 @@ export default function App() {
     };
 
     window.addEventListener("popstate", popState);
-    window.addEventListener("app:auth-expired", expired);
+    window.addEventListener(
+      "app:auth-expired",
+      expired,
+    );
 
     const token = localStorage.getItem("token");
 
@@ -242,7 +252,26 @@ export default function App() {
         loadingMessage: "Checking your session…",
       })
         .then((nextUser) => {
-          setUser(normalizeUser(nextUser));
+          setRawMe(nextUser);
+
+          const normalized = normalizeUser(nextUser);
+
+          console.log(
+            "RAW /me RESPONSE:",
+            nextUser,
+          );
+
+          console.log(
+            "RAW permissions:",
+            nextUser?.permissions,
+          );
+
+          console.log(
+            "NORMALIZED permissions:",
+            normalized?.permissions,
+          );
+
+          setUser(normalized);
         })
         .catch(expired)
         .finally(() => {
@@ -251,27 +280,37 @@ export default function App() {
     }
 
     return () => {
-      window.removeEventListener("popstate", popState);
-      window.removeEventListener("app:auth-expired", expired);
+      window.removeEventListener(
+        "popstate",
+        popState,
+      );
+      window.removeEventListener(
+        "app:auth-expired",
+        expired,
+      );
     };
   }, []);
 
-  const allowedItems = useMemo(() => {
-    return getNavigationItems(
-      normalizePermissions(user?.permissions),
-    );
-  }, [user]);
+  const permissions = useMemo(
+    () => normalizePermissions(user?.permissions),
+    [user],
+  );
+
+  const allowedItems = useMemo(
+    () => getNavigationItems(permissions),
+    [permissions],
+  );
 
   useEffect(() => {
     if (checking || !user) {
       return;
     }
 
-    const permissions = normalizePermissions(user.permissions);
     const route = routeForPath(path);
 
     const allowed =
-      route && permissions.includes(route.permission);
+      route &&
+      permissions.includes(route.permission);
 
     if (allowed) {
       return;
@@ -280,65 +319,88 @@ export default function App() {
     const fallback = allowedItems[0]?.path;
 
     if (fallback) {
-      window.history.replaceState({}, "", fallback);
+      window.history.replaceState(
+        {},
+        "",
+        fallback,
+      );
       setPath(fallback);
     }
-  }, [allowedItems, checking, path, user]);
+  }, [
+    allowedItems,
+    checking,
+    path,
+    permissions,
+    user,
+  ]);
 
   const handleLogin = async (nextUser) => {
-    let normalizedUser = normalizeUser(nextUser);
+    let normalizedUser =
+      normalizeUser(nextUser);
 
-    /*
-     * Refresh /me after login so the application always uses
-     * the authenticated user representation from the backend.
-     */
     try {
       const refreshedUser = await api("/me", {
-        loadingMessage: "Loading your account…",
+        loadingMessage:
+          "Loading your account…",
         silent: true,
         silentToast: true,
       });
 
       if (refreshedUser) {
-        normalizedUser = normalizeUser(refreshedUser);
+        setRawMe(refreshedUser);
+        normalizedUser =
+          normalizeUser(refreshedUser);
+
+        console.log(
+          "LOGIN /me RESPONSE:",
+          refreshedUser,
+        );
+
+        console.log(
+          "LOGIN normalized permissions:",
+          normalizedUser?.permissions,
+        );
       }
     } catch {
-      // Keep the successful login response if /me cannot be refreshed.
+      // Keep the successful login response.
     }
 
     setUser(normalizedUser);
 
-    const permissions = normalizePermissions(
-      normalizedUser?.permissions,
-    );
+    const nextPermissions =
+      normalizePermissions(
+        normalizedUser?.permissions,
+      );
 
     const requestedPath = normalizePath(
       window.location.pathname,
     );
 
-    const requestedRoute = routeForPath(requestedPath);
+    const requestedRoute =
+      routeForPath(requestedPath);
 
     const requestedAllowed =
       requestedRoute &&
-      permissions.includes(requestedRoute.permission);
+      nextPermissions.includes(
+        requestedRoute.permission,
+      );
 
     const fallback =
-      getNavigationItems(permissions)[0]?.path;
+      getNavigationItems(nextPermissions)[0]
+        ?.path;
 
-    const destination = requestedAllowed
-      ? requestedPath
-      : fallback;
+    const destination =
+      requestedAllowed
+        ? requestedPath
+        : fallback;
 
     if (destination) {
-      window.history.replaceState({}, "", destination);
-      setPath(destination);
-    } else {
       window.history.replaceState(
         {},
         "",
-        "/add-expense",
+        destination,
       );
-      setPath("/add-expense");
+      setPath(destination);
     }
   };
 
@@ -348,10 +410,6 @@ export default function App() {
 
     const target = normalizePath(rawPath);
     const route = routeForPath(target);
-
-    const permissions = normalizePermissions(
-      user?.permissions,
-    );
 
     if (
       !route ||
@@ -371,6 +429,7 @@ export default function App() {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    setRawMe(null);
     window.history.replaceState({}, "", "/");
     setPath("/");
   };
@@ -406,15 +465,8 @@ export default function App() {
 
   const route = routeForPath(path);
 
-  const permissions = normalizePermissions(
-    user.permissions,
-  );
-
-  const navigationItems =
-    getNavigationItems(permissions);
-
   const fallbackPath =
-    navigationItems[0]?.path;
+    allowedItems[0]?.path;
 
   const Component =
     route?.component ||
@@ -422,6 +474,12 @@ export default function App() {
       ? routes[fallbackPath]?.component
       : null);
 
+  /*
+   * Temporary diagnostic screen.
+   *
+   * This lets us see exactly what Android received
+   * from /me if the permission list is still empty.
+   */
   if (!Component) {
     return (
       <>
@@ -429,34 +487,102 @@ export default function App() {
         <Toast />
 
         <div className="auth-loading">
-          <div className="card">
+          <div
+            className="card"
+            style={{
+              maxWidth: "900px",
+              margin: "20px auto",
+            }}
+          >
             <h2>
-              No module is assigned to this account.
+              Navigation diagnostic
             </h2>
 
             <p>
-              Account:{" "}
-              {user.email || "unknown"}
+              The application received the
+              following user data:
             </p>
 
-            <p>
-              Role:{" "}
-              {user.role || "unknown"}
-            </p>
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                overflowWrap: "anywhere",
+                fontSize: "12px",
+                textAlign: "left",
+                padding: "12px",
+                borderRadius: "8px",
+                background:
+                  "rgba(127,127,127,0.12)",
+              }}
+            >
+              {JSON.stringify(
+                rawMe,
+                null,
+                2,
+              )}
+            </pre>
 
-            <p>
-              Permissions received:{" "}
-              {permissions.length
-                ? permissions.join(", ")
-                : "none"}
-            </p>
+            <h3>
+              Normalized permissions
+            </h3>
+
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                overflowWrap: "anywhere",
+                fontSize: "12px",
+                textAlign: "left",
+                padding: "12px",
+                borderRadius: "8px",
+                background:
+                  "rgba(127,127,127,0.12)",
+              }}
+            >
+              {JSON.stringify(
+                permissions,
+                null,
+                2,
+              )}
+            </pre>
+
+            <h3>
+              Navigation items
+            </h3>
+
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                overflowWrap: "anywhere",
+                fontSize: "12px",
+                textAlign: "left",
+                padding: "12px",
+                borderRadius: "8px",
+                background:
+                  "rgba(127,127,127,0.12)",
+              }}
+            >
+              {JSON.stringify(
+                allowedItems.map(
+                  (item) => ({
+                    path: item.path,
+                    permission:
+                      item.permission,
+                  }),
+                ),
+                null,
+                2,
+              )}
+            </pre>
 
             <button
               className="primary"
               type="button"
               onClick={() => {
-                localStorage.removeItem("token");
+                localStorage.removeItem(
+                  "token",
+                );
                 setUser(null);
+                setRawMe(null);
                 setPath("/");
                 window.history.replaceState(
                   {},
