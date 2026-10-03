@@ -12,6 +12,7 @@ import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
 import * as scheduledReportController from "../controllers/scheduledReportController.js";
 import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
+import { checkDbConnection } from "../db/index.js";
 
 export function createRouter(maxUploadBytes) {
   const router = Router();
@@ -20,15 +21,47 @@ export function createRouter(maxUploadBytes) {
     limits: { fileSize: maxUploadBytes },
   });
 
-  router.get("/health", (req, res) => res.json({ ok: true, status: "alive" }));
-  router.get("/health/ready", (req, res) => {
-    if (req.app.locals.ready) return res.json({ ok: true, status: "ready" });
-    res.status(503).json({
-      ok: false,
-      status: "starting",
-      error: req.app.locals.startupError || "Backend is still starting",
+  router.get("/health", (req, res) =>
+    res.json({
+      ok: true,
+      status: "alive",
+      uptimeSeconds: Math.round(process.uptime()),
+      pid: process.pid,
+    }),
+  );
+
+  router.get("/health/ready", async (req, res) => {
+    const startedAt = Date.now();
+
+    if (!req.app.locals.ready) {
+      return res.status(503).json({
+        ok: false,
+        status: req.app.locals.starting ? "starting" : "unavailable",
+        error: req.app.locals.startupError || "Backend is still starting",
+        uptimeSeconds: Math.round(process.uptime()),
+      });
+    }
+
+    const db = await checkDbConnection();
+    if (!db.ok) {
+      return res.status(503).json({
+        ok: false,
+        status: "database-unavailable",
+        error: "Database is temporarily unavailable",
+        dbDurationMs: db.durationMs,
+        durationMs: Date.now() - startedAt,
+      });
+    }
+
+    return res.json({
+      ok: true,
+      status: "ready",
+      uptimeSeconds: Math.round(process.uptime()),
+      dbDurationMs: db.durationMs,
+      durationMs: Date.now() - startedAt,
     });
   });
+
   router.use(indiaTimezoneOnly);
 
   router.post("/auth/login", authController.loginController);

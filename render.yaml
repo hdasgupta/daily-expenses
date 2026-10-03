@@ -19,6 +19,12 @@ services:
         value: "*"
       - key: MAX_UPLOAD_MB
         value: "10"
+      - key: DB_POOL_MAX
+        value: "5"
+      - key: DB_CONNECTION_TIMEOUT_MS
+        value: "10000"
+      - key: DB_STATEMENT_TIMEOUT_MS
+        value: "30000"
       - key: AWS_ENDPOINT_URL_S3
         sync: false
       - key: AWS_ACCESS_KEY_ID
