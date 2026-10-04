@@ -9,7 +9,12 @@ import { signedObjectUrl } from "./storageService.js";
 
 const groupable = new Set(Object.keys(reportSql.groupExpr));
 
-const rawSortable = new Set(["date", "category", "item", "survivor"]);
+const rawSortable = new Set([
+  "date",
+  "category",
+  "item",
+  "survivor",
+]);
 
 const groupedSortable = new Set([
   "date",
@@ -29,11 +34,14 @@ function cleanConfig(config = {}) {
 
   const uniqueGroupBy = [...new Set(groupBy)];
 
-  const allowedSort = uniqueGroupBy.length ? groupedSortable : rawSortable;
+  const allowedSort = uniqueGroupBy.length
+    ? groupedSortable
+    : rawSortable;
 
-  const sortColumns = (Array.isArray(config.sortColumns)
-    ? config.sortColumns
-    : []
+  const sortColumns = (
+    Array.isArray(config.sortColumns)
+      ? config.sortColumns
+      : []
   )
     .filter((x) => allowedSort.has(x?.column))
     .map((x) => ({
@@ -274,7 +282,10 @@ function detailOrderSql(config) {
    * Finally keep newest expenses first
    * inside each detail group.
    */
-  parts.push("expense_date DESC", "id DESC");
+  parts.push(
+    "expense_date DESC",
+    "id DESC",
+  );
 
   return parts.join(", ");
 }
@@ -361,44 +372,118 @@ function chartData(rows, groupBy) {
 }
 
 /*
+ * Convert a value into a usable number.
+ */
+function numericValue(value) {
+  if (
+    value === null ||
+    value === undefined ||
+    value === ""
+  ) {
+    return null;
+  }
+
+  const number = Number(value);
+
+  return Number.isFinite(number)
+    ? number
+    : null;
+}
+
+/*
  * Calculate the total for detail reports.
  *
- * When survivor grouping is used, one expense
- * can have multiple survivor-share rows.
- * Count the expense total only once.
+ * There are two possible detail sources:
+ *
+ * 1. Per-expense rows
+ *    - one row represents one expense
+ *    - total_cost is the expense total
+ *
+ * 2. Per-survivor rows
+ *    - one expense can appear multiple times
+ *    - expense_id identifies the original expense
+ *    - report_amount is the survivor share
+ *
+ * We deliberately prefer total_cost when it exists,
+ * and report_amount/share_price as fallbacks.
  */
-function calculateDetailTotal(rows) {
-  const seenExpenses = new Set();
+function calculateDetailTotal(rows, usesSurvivor = false) {
+  if (!Array.isArray(rows) || !rows.length) {
+    return 0;
+  }
 
-  return rows.reduce((sum, row) => {
-    const expenseKey =
-      row.expense_id ?? row.id;
+  /*
+   * Survivor reports:
+   *
+   * Sum report_amount because every survivor
+   * row represents an actual report amount.
+   *
+   * This avoids depending on total_cost being
+   * present in the survivor source.
+   */
+  if (usesSurvivor) {
+    let total = 0;
 
-    const totalCost = Number(row.total_cost);
+    for (const row of rows) {
+      const reportAmount = numericValue(
+        row.report_amount,
+      );
 
-    if (
-      expenseKey != null &&
-      Number.isFinite(totalCost)
-    ) {
-      if (seenExpenses.has(expenseKey)) {
-        return sum;
+      if (reportAmount !== null) {
+        total += reportAmount;
+        continue;
       }
 
-      seenExpenses.add(expenseKey);
+      const sharePrice = numericValue(
+        row.share_price,
+      );
 
-      return sum + totalCost;
+      if (sharePrice !== null) {
+        total += sharePrice;
+      }
     }
 
-    /*
-     * Fall back to the share amount when
-     * there is no usable expense total.
-     */
-    const sharePrice = Number(row.share_price);
+    return total;
+  }
 
-    return Number.isFinite(sharePrice)
-      ? sum + sharePrice
-      : sum;
-  }, 0);
+  /*
+   * Normal expense reports:
+   *
+   * Every row from sourcePerExpense represents
+   * one expense, so total_cost can be summed
+   * directly.
+   */
+  let total = 0;
+
+  for (const row of rows) {
+    const totalCost = numericValue(
+      row.total_cost,
+    );
+
+    if (totalCost !== null) {
+      total += totalCost;
+      continue;
+    }
+
+    const reportAmount = numericValue(
+      row.report_amount,
+    );
+
+    if (reportAmount !== null) {
+      total += reportAmount;
+      continue;
+    }
+
+    const sharePrice = numericValue(
+      row.share_price,
+    );
+
+    if (sharePrice !== null) {
+      total += sharePrice;
+    }
+  }
+
+  return total;
 }
 
 export async function runReport(input) {
@@ -435,7 +520,6 @@ export async function runReport(input) {
    * No Summarise
    * --------------------------------------------------
    */
-
   if (
     !config.groupBy.length &&
     !config.summarise
@@ -468,10 +552,20 @@ export async function runReport(input) {
             ? null
             : Number(row.report_amount),
 
+        share_price:
+          row.share_price == null
+            ? null
+            : Number(row.share_price),
+
         proof_url: row.proof_key
           ? await signedObjectUrl(row.proof_key)
           : null,
       })),
+    );
+
+    const total = calculateDetailTotal(
+      rows,
+      usesSurvivor,
     );
 
     return {
@@ -488,8 +582,7 @@ export async function runReport(input) {
       ],
 
       rows,
-
-      total: calculateDetailTotal(rows),
+      total,
 
       chartData: [],
     };
@@ -503,7 +596,6 @@ export async function runReport(input) {
    * Summarise ON
    * --------------------------------------------------
    */
-
   if (
     !config.groupBy.length &&
     config.summarise
@@ -525,11 +617,8 @@ export async function runReport(input) {
 
     return {
       mode: "summary",
-
       columns: ["total"],
-
       rows: [{ total }],
-
       total,
 
       chartData: [
@@ -554,7 +643,6 @@ export async function runReport(input) {
    * groupBy only controls the ordering.
    * --------------------------------------------------
    */
-
   if (!config.summarise) {
     const select = usesSurvivor
       ? reportSql.rawSelectPerSurvivor
@@ -584,10 +672,20 @@ export async function runReport(input) {
             ? null
             : Number(row.report_amount),
 
+        share_price:
+          row.share_price == null
+            ? null
+            : Number(row.share_price),
+
         proof_url: row.proof_key
           ? await signedObjectUrl(row.proof_key)
           : null,
       })),
+    );
+
+    const total = calculateDetailTotal(
+      rows,
+      usesSurvivor,
     );
 
     return {
@@ -605,15 +703,8 @@ export async function runReport(input) {
       ],
 
       groupBy: config.groupBy,
-
       rows,
-
-      /*
-       * Calculate the actual detail total.
-       * Survivor-share rows belonging to the
-       * same expense are not double-counted.
-       */
-      total: calculateDetailTotal(rows),
+      total,
 
       chartData: [],
     };
@@ -626,7 +717,6 @@ export async function runReport(input) {
    * This remains a genuine aggregate query.
    * --------------------------------------------------
    */
-
   const groupSelect = config.groupBy.map(
     (column) =>
       `${reportSql.groupExpr[column]} AS "${column}"`,
@@ -656,8 +746,7 @@ export async function runReport(input) {
    */
   const groupBySql = config.groupBy
     .map(
-      (column) =>
-        reportSql.groupExpr[column],
+      (column) => reportSql.groupExpr[column],
     )
     .join(", ");
 
@@ -683,6 +772,11 @@ export async function runReport(input) {
     total: Number(row.total || 0),
   }));
 
+  const total = rows.reduce(
+    (sum, row) => sum + row.total,
+    0,
+  );
+
   return {
     mode: "summary",
 
@@ -692,11 +786,7 @@ export async function runReport(input) {
     ],
 
     rows,
-
-    total: rows.reduce(
-      (sum, row) => sum + row.total,
-      0,
-    ),
+    total,
 
     chartData: chartData(
       rows,
