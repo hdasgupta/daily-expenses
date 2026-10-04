@@ -216,9 +216,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
           </div>
 
           <div>
-            <strong>
-              {import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}
-            </strong>
+            <strong>{import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}</strong>
 
             <span>Daily Expenses</span>
           </div>
@@ -245,8 +243,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
             <button
               key={item.path}
               className={
-                path === item.path ||
-                (item.path === "/dashboard" && path.startsWith("/dashboard"))
+                path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
                   ? "active"
                   : ""
               }

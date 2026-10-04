@@ -562,29 +562,29 @@ export default function Expense() {
                     gap: "0.5rem",
                   }}
                 >
-                 {[
-                   ["fixed", "Fixed amount"],
-                   ["average", "Average amount"],
-                   ["remaining", "Remaining amount"],
-                 ].map(([value, label]) => {
-                   const selected = share.shareType === value;
+                  {[
+                    ["fixed", "Fixed amount"],
+                    ["average", "Average amount"],
+                    ["remaining", "Remaining amount"],
+                  ].map(([value, label]) => {
+                    const selected = share.shareType === value;
 
-                   return (
-                     <button
-                       key={value}
-                       type="button"
-                       aria-pressed={selected}
-                       className={selected ? "primary" : "secondary"}
-                       onClick={() => editShare(index, "shareType", value)}
-                       style={{
-                         minHeight: "42px",
-                         justifyContent: "center",
-                       }}
-                     >
-                     {label}
-                     </button>
-                   );
-                })}
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        aria-pressed={selected}
+                        className={selected ? "primary" : "secondary"}
+                        onClick={() => editShare(index, "shareType", value)}
+                        style={{
+                          minHeight: "42px",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
                 </div>
               </label>
 
@@ -592,16 +592,11 @@ export default function Expense() {
                 Share price
                 <input
                   type="number"
-                  step="0.01"
                   min="0"
-                  readOnly={share.shareType !== "fixed"}
-                  required={share.shareType === "fixed"}
-                  value={
-                    share.shareType === "fixed"
-                      ? share.amount
-                      : (shareCalculation.values[share.survivorId] ?? "")
-                  }
+                  step="0.01"
+                  value={share.amount}
                   onChange={(e) => editShare(index, "amount", e.target.value)}
+                  readOnly={share.shareType === "average" || share.shareType === "remaining"}
                 />
               </label>
 
