@@ -9,7 +9,6 @@ import {
   Menu,
   Moon,
   RefreshCw,
-  Shield,
   Sun,
   Tags,
   UserRound,
@@ -200,17 +199,26 @@ export default function Layout({ user, path, navigate, logout, children }) {
           </div>
         </div>
 
-        <div className="brand-row">
+        <div
+          className="brand-row"
+          style={{
+            position: "relative",
+            zIndex: 2,
+            paddingLeft: "56px",
+          }}
+        >
           <div className="brand-mark">
             {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
               <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
             ) : (
-              <img src="logo.png" width="32" height="32"/>
+              <img src="logo.png" width="32" height="32" alt="Organization" />
             )}
           </div>
 
           <div>
-            <strong>{import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}</strong>
+            <strong>
+              {import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}
+            </strong>
 
             <span>Expense Tracker</span>
           </div>
@@ -237,7 +245,8 @@ export default function Layout({ user, path, navigate, logout, children }) {
             <button
               key={item.path}
               className={
-                path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
+                path === item.path ||
+                (item.path === "/dashboard" && path.startsWith("/dashboard"))
                   ? "active"
                   : ""
               }

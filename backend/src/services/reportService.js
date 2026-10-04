@@ -1,5 +1,9 @@
 import { q } from "../db/index.js";
-import { deleteSelection, listSelections, saveSelection } from "../models/reportModel.js";
+import {
+  deleteSelection,
+  listSelections,
+  saveSelection,
+} from "../models/reportModel.js";
 import { reportSql } from "../../scripts/sql/reportSql.js";
 import { signedObjectUrl } from "./storageService.js";
 
@@ -7,7 +11,14 @@ const groupable = new Set(Object.keys(reportSql.groupExpr));
 
 const rawSortable = new Set(["date", "category", "item", "survivor"]);
 
-const groupedSortable = new Set(["date", "survivor", "category", "item", "price", ...groupable]);
+const groupedSortable = new Set([
+  "date",
+  "survivor",
+  "category",
+  "item",
+  "price",
+  ...groupable,
+]);
 
 function cleanConfig(config = {}) {
   const filters = config.filters || {};
@@ -20,13 +31,19 @@ function cleanConfig(config = {}) {
 
   const allowedSort = uniqueGroupBy.length ? groupedSortable : rawSortable;
 
-  const sortColumns = (Array.isArray(config.sortColumns) ? config.sortColumns : [])
+  const sortColumns = (Array.isArray(config.sortColumns)
+    ? config.sortColumns
+    : []
+  )
     .filter((x) => allowedSort.has(x?.column))
     .map((x) => ({
       column: x.column,
       direction: x.direction === "desc" ? "desc" : "asc",
     }))
-    .filter((x, i, a) => a.findIndex((y) => y.column === x.column) === i);
+    .filter(
+      (x, i, a) =>
+        a.findIndex((y) => y.column === x.column) === i,
+    );
 
   const categoryItems = Array.isArray(filters.categoryItems)
     ? [...new Set(filters.categoryItems.map(String))]
@@ -41,7 +58,13 @@ function cleanConfig(config = {}) {
     : [];
 
   return {
-    dateFilterType: ["none", "date", "range", "month", "year"].includes(config.dateFilterType)
+    dateFilterType: [
+      "none",
+      "date",
+      "range",
+      "month",
+      "year",
+    ].includes(config.dateFilterType)
       ? config.dateFilterType
       : "none",
 
@@ -51,7 +74,9 @@ function cleanConfig(config = {}) {
       dateTo: filters.dateTo || "",
       month: filters.month || "",
       year: filters.year || "",
-      hasProof: ["true", "false"].includes(filters.hasProof) ? filters.hasProof : "",
+      hasProof: ["true", "false"].includes(filters.hasProof)
+        ? filters.hasProof
+        : "",
       categoryItems,
       categories,
       survivors,
@@ -67,40 +92,58 @@ function addFilter(where, params, filters, alias) {
   if (filters.date) {
     params.push(filters.date);
 
-    where.push(reportSql.filterDate(alias, params.length));
+    where.push(
+      reportSql.filterDate(alias, params.length),
+    );
   } else if (filters.dateFrom || filters.dateTo) {
     if (filters.dateFrom) {
       params.push(filters.dateFrom);
 
-      where.push(reportSql.filterFrom(alias, params.length));
+      where.push(
+        reportSql.filterFrom(alias, params.length),
+      );
     }
 
     if (filters.dateTo) {
       params.push(filters.dateTo);
 
-      where.push(reportSql.filterTo(alias, params.length));
+      where.push(
+        reportSql.filterTo(alias, params.length),
+      );
     }
   } else if (filters.month) {
     params.push(`${filters.month}-01`);
 
-    where.push(reportSql.filterMonthFrom(alias, params.length));
+    where.push(
+      reportSql.filterMonthFrom(alias, params.length),
+    );
 
-    where.push(reportSql.filterMonthTo(alias, params.length));
+    where.push(
+      reportSql.filterMonthTo(alias, params.length),
+    );
   } else if (filters.year) {
     params.push(Number(filters.year));
 
-    where.push(reportSql.filterYear(alias, params.length));
+    where.push(
+      reportSql.filterYear(alias, params.length),
+    );
   }
 
   if (filters.hasProof) {
-    where.push(reportSql.filterProof(alias, filters.hasProof === "true"));
+    where.push(
+      reportSql.filterProof(
+        alias,
+        filters.hasProof === "true",
+      ),
+    );
   }
 
   if (filters.categoryItems.length) {
     const clauses = [];
 
     for (const key of filters.categoryItems) {
-      const [categoryId, kind, itemId] = String(key).split(":");
+      const [categoryId, kind, itemId] =
+        String(key).split(":");
 
       params.push(categoryId);
 
@@ -109,11 +152,27 @@ function addFilter(where, params, filters, alias) {
       if (kind === "item") {
         params.push(itemId);
 
-        clauses.push(reportSql.filterCategoryItem(alias, categoryIndex, params.length));
+        clauses.push(
+          reportSql.filterCategoryItem(
+            alias,
+            categoryIndex,
+            params.length,
+          ),
+        );
       } else if (kind === "other") {
-        clauses.push(reportSql.filterOther(alias, categoryIndex));
+        clauses.push(
+          reportSql.filterOther(
+            alias,
+            categoryIndex,
+          ),
+        );
       } else {
-        clauses.push(reportSql.filterTotal(alias, categoryIndex));
+        clauses.push(
+          reportSql.filterTotal(
+            alias,
+            categoryIndex,
+          ),
+        );
       }
     }
 
@@ -123,13 +182,23 @@ function addFilter(where, params, filters, alias) {
   if (filters.categories.length) {
     params.push(filters.categories);
 
-    where.push(reportSql.filterCategories(alias, params.length));
+    where.push(
+      reportSql.filterCategories(
+        alias,
+        params.length,
+      ),
+    );
   }
 
   if (filters.survivors.length) {
     params.push(filters.survivors);
 
-    where.push(reportSql.filterSurvivors(alias, params.length));
+    where.push(
+      reportSql.filterSurvivors(
+        alias,
+        params.length,
+      ),
+    );
   }
 
   return reportSql.where(where);
@@ -162,32 +231,43 @@ function detailOrderSql(config) {
   for (const sort of config.sortColumns) {
     const expression = expressions[sort.column];
 
-    if (!expression) continue;
+    if (!expression) {
+      continue;
+    }
 
-    parts.push(reportSql.order(expression, sort.direction.toUpperCase()));
+    parts.push(
+      reportSql.order(
+        expression,
+        sort.direction.toUpperCase(),
+      ),
+    );
   }
 
   /*
    * When Group By is selected but Summarise
    * is OFF, groupBy means:
    *
-   *   "keep every detail row, but arrange
-   *    the rows by these dimensions."
-   *
-   * Add the group dimensions to the
-   * ordering if the user did not already
-   * explicitly sort by them.
+   * "keep every detail row, but arrange
+   * the rows by these dimensions."
    */
   for (const column of config.groupBy) {
     const expression = expressions[column];
 
-    if (!expression) continue;
+    if (!expression) {
+      continue;
+    }
 
-    const alreadySorted = config.sortColumns.some((sort) => sort.column === column);
+    const alreadySorted = config.sortColumns.some(
+      (sort) => sort.column === column,
+    );
 
-    if (alreadySorted) continue;
+    if (alreadySorted) {
+      continue;
+    }
 
-    parts.push(reportSql.order(expression, "ASC"));
+    parts.push(
+      reportSql.order(expression, "ASC"),
+    );
   }
 
   /*
@@ -210,7 +290,9 @@ function summaryOrderSql(config, usesSurvivor) {
     category: "category",
     item: "item",
     survivor: "survivor",
-    price: usesSurvivor ? "SUM(report_amount)" : "SUM(total_cost)",
+    price: usesSurvivor
+      ? "SUM(report_amount)"
+      : "SUM(total_cost)",
   };
 
   const parts = [];
@@ -230,11 +312,19 @@ function summaryOrderSql(config, usesSurvivor) {
      * Non-grouped dimensions need an
      * aggregate in a summary query.
      */
-    if (sort.column !== "price" && !config.groupBy.includes(sort.column)) {
+    if (
+      sort.column !== "price" &&
+      !config.groupBy.includes(sort.column)
+    ) {
       expression = `MIN(${expression})`;
     }
 
-    parts.push(reportSql.order(expression, sort.direction.toUpperCase()));
+    parts.push(
+      reportSql.order(
+        expression,
+        sort.direction.toUpperCase(),
+      ),
+    );
   }
 
   if (parts.length) {
@@ -249,7 +339,9 @@ function summaryOrderSql(config, usesSurvivor) {
     .map((column) => {
       const expression = expressions[column];
 
-      return expression ? reportSql.order(expression, "ASC") : null;
+      return expression
+        ? reportSql.order(expression, "ASC")
+        : null;
     })
     .filter(Boolean)
     .join(", ");
@@ -257,16 +349,63 @@ function summaryOrderSql(config, usesSurvivor) {
 
 function chartData(rows, groupBy) {
   return rows.map((row) => ({
-    label: groupBy.map((column) => `${column}: ${row[column]}`).join(" • "),
+    label: groupBy
+      .map(
+        (column) =>
+          `${column}: ${row[column]}`,
+      )
+      .join(" • "),
 
     value: Number(row.total || 0),
   }));
 }
 
+/*
+ * Calculate the total for detail reports.
+ *
+ * When survivor grouping is used, one expense
+ * can have multiple survivor-share rows.
+ * Count the expense total only once.
+ */
+function calculateDetailTotal(rows) {
+  const seenExpenses = new Set();
+
+  return rows.reduce((sum, row) => {
+    const expenseKey =
+      row.expense_id ?? row.id;
+
+    const totalCost = Number(row.total_cost);
+
+    if (
+      expenseKey != null &&
+      Number.isFinite(totalCost)
+    ) {
+      if (seenExpenses.has(expenseKey)) {
+        return sum;
+      }
+
+      seenExpenses.add(expenseKey);
+
+      return sum + totalCost;
+    }
+
+    /*
+     * Fall back to the share amount when
+     * there is no usable expense total.
+     */
+    const sharePrice = Number(row.share_price);
+
+    return Number.isFinite(sharePrice)
+      ? sum + sharePrice
+      : sum;
+  }, 0);
+}
+
 export async function runReport(input) {
   const config = cleanConfig(input);
 
-  const usesSurvivor = config.groupBy.includes("survivor");
+  const usesSurvivor =
+    config.groupBy.includes("survivor");
 
   /*
    * Survivor grouping requires one row
@@ -275,11 +414,18 @@ export async function runReport(input) {
    * Without survivor grouping we use one
    * row per expense.
    */
-  const cte = usesSurvivor ? reportSql.sourcePerSurvivor : reportSql.sourcePerExpense;
+  const cte = usesSurvivor
+    ? reportSql.sourcePerSurvivor
+    : reportSql.sourcePerExpense;
 
   const params = [];
 
-  const where = addFilter([], params, config.filters, "expense_source");
+  const where = addFilter(
+    [],
+    params,
+    config.filters,
+    "expense_source",
+  );
 
   /*
    * --------------------------------------------------
@@ -290,20 +436,41 @@ export async function runReport(input) {
    * --------------------------------------------------
    */
 
-  if (!config.groupBy.length && !config.summarise) {
-    const select = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;
+  if (
+    !config.groupBy.length &&
+    !config.summarise
+  ) {
+    const select = usesSurvivor
+      ? reportSql.rawSelectPerSurvivor
+      : reportSql.rawSelectPerExpense;
 
-    const result = await q(reportSql.raw(cte, select, where, detailOrderSql(config)), params);
+    const result = await q(
+      reportSql.raw(
+        cte,
+        select,
+        where,
+        detailOrderSql(config),
+      ),
+      params,
+    );
 
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
 
-        total_cost: row.total_cost == null ? null : Number(row.total_cost),
+        total_cost:
+          row.total_cost == null
+            ? null
+            : Number(row.total_cost),
 
-        report_amount: row.report_amount == null ? null : Number(row.report_amount),
+        report_amount:
+          row.report_amount == null
+            ? null
+            : Number(row.report_amount),
 
-        proof_url: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+        proof_url: row.proof_key
+          ? await signedObjectUrl(row.proof_key)
+          : null,
       })),
     );
 
@@ -322,29 +489,7 @@ export async function runReport(input) {
 
       rows,
 
-      total: (() => {
-        const seen = new Set();
-
-        return rows.reduce((sum, row) => {
-          const expenseKey = row.expense_id ?? row.id;
-
-          const totalCost = Number(row.total_cost);
-
-          if (expenseKey != null && Number.isFinite(totalCost)) {
-            if (seen.has(expenseKey)) {
-              return sum;
-            }
-
-            seen.add(expenseKey);
-
-            return sum + totalCost;
-          }
-
-          const sharePrice = Number(row.share_price);
-
-          return Number.isFinite(sharePrice) ? sum + sharePrice : sum;
-        }, 0);
-      })(),
+      total: calculateDetailTotal(rows),
 
       chartData: [],
     };
@@ -359,13 +504,24 @@ export async function runReport(input) {
    * --------------------------------------------------
    */
 
-  if (!config.groupBy.length && config.summarise) {
+  if (
+    !config.groupBy.length &&
+    config.summarise
+  ) {
     const result = await q(
-      reportSql.totalSummary(cte, usesSurvivor ? "SUM(report_amount)" : "SUM(total_cost)", where),
+      reportSql.totalSummary(
+        cte,
+        usesSurvivor
+          ? "SUM(report_amount)"
+          : "SUM(total_cost)",
+        where,
+      ),
       params,
     );
 
-    const total = Number(result.rows[0]?.total || 0);
+    const total = Number(
+      result.rows[0]?.total || 0,
+    );
 
     return {
       mode: "summary",
@@ -400,19 +556,37 @@ export async function runReport(input) {
    */
 
   if (!config.summarise) {
-    const select = usesSurvivor ? reportSql.rawSelectPerSurvivor : reportSql.rawSelectPerExpense;
+    const select = usesSurvivor
+      ? reportSql.rawSelectPerSurvivor
+      : reportSql.rawSelectPerExpense;
 
-    const result = await q(reportSql.raw(cte, select, where, detailOrderSql(config)), params);
+    const result = await q(
+      reportSql.raw(
+        cte,
+        select,
+        where,
+        detailOrderSql(config),
+      ),
+      params,
+    );
 
     const rows = await Promise.all(
       result.rows.map(async (row) => ({
         ...row,
 
-        total_cost: row.total_cost == null ? null : Number(row.total_cost),
+        total_cost:
+          row.total_cost == null
+            ? null
+            : Number(row.total_cost),
 
-        report_amount: row.report_amount == null ? null : Number(row.report_amount),
+        report_amount:
+          row.report_amount == null
+            ? null
+            : Number(row.report_amount),
 
-        proof_url: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+        proof_url: row.proof_key
+          ? await signedObjectUrl(row.proof_key)
+          : null,
       })),
     );
 
@@ -435,11 +609,11 @@ export async function runReport(input) {
       rows,
 
       /*
-       * Keep existing grouped-detail
-       * behaviour: this is not a summary
-       * total.
+       * Calculate the actual detail total.
+       * Survivor-share rows belonging to the
+       * same expense are not double-counted.
        */
-      total: 0,
+      total: calculateDetailTotal(rows),
 
       chartData: [],
     };
@@ -454,18 +628,25 @@ export async function runReport(input) {
    */
 
   const groupSelect = config.groupBy.map(
-    (column) => `${reportSql.groupExpr[column]} AS "${column}"`,
+    (column) =>
+      `${reportSql.groupExpr[column]} AS "${column}"`,
   );
 
   if (config.groupBy.includes("category")) {
-    groupSelect.push("MIN(category_id) AS category_id");
+    groupSelect.push(
+      "MIN(category_id) AS category_id",
+    );
   }
 
   if (config.groupBy.includes("survivor")) {
-    groupSelect.push("MIN(survivor_id) AS survivor_id");
+    groupSelect.push(
+      "MIN(survivor_id) AS survivor_id",
+    );
   }
 
-  const amount = usesSurvivor ? "SUM(report_amount)" : "SUM(total_cost)";
+  const amount = usesSurvivor
+    ? "SUM(report_amount)"
+    : "SUM(total_cost)";
 
   /*
    * Summary queries really do need GROUP BY.
@@ -473,36 +654,60 @@ export async function runReport(input) {
    * Use the actual group expressions,
    * never SELECT positions.
    */
-  const groupBySql = config.groupBy.map((column) => reportSql.groupExpr[column]).join(", ");
+  const groupBySql = config.groupBy
+    .map(
+      (column) =>
+        reportSql.groupExpr[column],
+    )
+    .join(", ");
 
   const result = await q(
     reportSql.grouped(
       cte,
-      [...groupSelect, `${amount} AS total`].join(", "),
+      [
+        ...groupSelect,
+        `${amount} AS total`,
+      ].join(", "),
       where,
       groupBySql,
-      summaryOrderSql(config, usesSurvivor),
+      summaryOrderSql(
+        config,
+        usesSurvivor,
+      ),
     ),
     params,
   );
 
   const rows = result.rows.map((row) => ({
     ...row,
-
     total: Number(row.total || 0),
   }));
 
   return {
     mode: "summary",
 
-    columns: [...config.groupBy, "total"],
+    columns: [
+      ...config.groupBy,
+      "total",
+    ],
 
     rows,
 
-    total: rows.reduce((sum, row) => sum + row.total, 0),
+    total: rows.reduce(
+      (sum, row) => sum + row.total,
+      0,
+    ),
 
-    chartData: chartData(rows, config.groupBy),
+    chartData: chartData(
+      rows,
+      config.groupBy,
+    ),
   };
 }
 
-export { cleanConfig, deleteSelection, listSelections, saveSelection };
+export {
+  cleanConfig,
+  deleteSelection,
+  listSelections,
+  saveSelection,
+};
