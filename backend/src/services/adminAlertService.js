@@ -46,8 +46,7 @@ export async function sendAdminFailureAlert(details = {}) {
 
   const customSchedulerSection = details.schedulerName
     ? `<p><strong>Scheduler name:</strong> ${escapeHtml(details.schedulerName)}</p>
-       <p><strong>Created by:</strong> ${escapeHtml(details.schedulerOwnerName || "Unknown")}$
-         {details.schedulerOwnerEmail ? ` (${escapeHtml(details.schedulerOwnerEmail)})` : ""}</p>
+       <p><strong>Created by:</strong> ${escapeHtml(details.schedulerOwnerName || "Unknown")}${details.schedulerOwnerEmail ? ` (${escapeHtml(details.schedulerOwnerEmail)})` : ""}</p>
        <p><strong>Schedule:</strong> ${escapeHtml(details.schedulerSchedule || "Unknown")}</p>`
     : "";
 
