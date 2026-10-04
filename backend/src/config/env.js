@@ -29,8 +29,8 @@ export const env = {
     process.env.EMAIL_API_URL ||
     "https://script.google.com/macros/s/AKfycbwBFlwZ-xXgjGXg2_jlsek2tm4nkIHuPn9WsOl4HV1onANS3Z7PLGou76Hl-TURuDtE/exec",
   emailApiKey: process.env.EMAIL_API_KEY || "MyEmailApi",
-  adminEmail: process.env.ADMIN_EMAIL || "wbffmh@gmail.com",
-  adminPassword: process.env.ADMIN_PASSWORD || "Admin@12345",
+  adminEmail: process.env.ADMIN_EMAIL || "himaghna.dasgupta@gmail.com",
+  adminPassword: process.env.ADMIN_PASSWORD || "Executable@123",
   otpTtlMinutes: Number(process.env.OTP_TTL_MINUTES || 10),
   exposeOtpInDev: String(process.env.OTP_EXPOSE_IN_DEV || "false").toLowerCase() === "true",
   dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "0 6 * * *",
