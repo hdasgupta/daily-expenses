@@ -75,7 +75,15 @@ const PERMISSIONS_BY_ROLE = {
     "add-user",
     "job-status",
   ],
-  manager: ["add-expense", "report", "dashboard", "job-status"],
+  manager: [
+    "add-expense",
+    "add-survivor",
+    "add-item",
+    "add-unit",
+    "report",
+    "dashboard",
+    "job-status",
+  ],
   editor: ["add-expense"],
 };
 
