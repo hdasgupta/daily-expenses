@@ -16,14 +16,59 @@ function dateLabel(value) {
 function weekLabel(start, end) {
   return `${dateLabel(start)} - ${dateLabel(end)}`;
 }
-function pivot(rows, periods) {
-  const survivors = [...new Set(rows.map((r) => r.survivor || "Unknown"))].sort();
-  const map = new Map(periods.map((p) => [p, { period: p }]));
-  for (const r of rows) {
-    if (!map.has(r.weekStart)) map.set(r.weekStart, { period: r.weekStart });
-    map.get(r.weekStart)[r.survivor || "Unknown"] = Number(r.total || 0);
+
+function weekEndFromStart(value) {
+  const start = new Date(`${String(value ?? "").slice(0, 10)}T00:00:00Z`);
+
+  if (Number.isNaN(start.getTime())) {
+    return null;
   }
-  return { survivors, rows: [...map.values()] };
+
+  return new Date(start.getTime() + 6 * 86400000)
+    .toISOString()
+    .slice(0, 10);
+}
+
+function safeWeekLabel(start, end = null) {
+  const startText = String(start ?? "").slice(0, 10);
+  const endText = end ?? weekEndFromStart(start);
+
+  if (!startText || !endText) {
+    return "Unknown week";
+  }
+
+  return weekLabel(startText, endText);
+}
+function pivot(rows, periods) {
+  const validPeriods = periods.filter(
+    (p) => weekEndFromStart(p) !== null,
+  );
+
+  const survivors = [
+    ...new Set(
+      rows
+        .filter((r) => weekEndFromStart(r.weekStart) !== null)
+        .map((r) => r.survivor || "Unknown"),
+    ),
+  ].sort();
+
+  const map = new Map(validPeriods.map((p) => [p, { period: p }]));
+
+  for (const r of rows) {
+    if (weekEndFromStart(r.weekStart) === null) continue;
+
+    if (!map.has(r.weekStart)) {
+      map.set(r.weekStart, { period: r.weekStart });
+    }
+
+    map.get(r.weekStart)[r.survivor || "Unknown"] =
+      Number(r.total || 0);
+  }
+
+  return {
+    survivors,
+    rows: [...map.values()],
+  };
 }
 function drawBarChart(doc, data) {
   const w = doc.page.width - doc.page.margins.left - doc.page.margins.right,
@@ -82,12 +127,7 @@ function drawSurvivorChart(doc, rows, survivors) {
       .fillColor("black")
       .fontSize(5.5)
       .text(
-        weekLabel(
-          r.period,
-          new Date(new Date(`${r.period}T00:00:00Z`).getTime() + 6 * 86400000)
-            .toISOString()
-            .slice(0, 10),
-        ),
+        safeWeekLabel(r.period),
         x - 5,
         base + 5,
         { width: bw + 10, align: "center" },
@@ -206,12 +246,7 @@ export function buildWeeklyEmailReportPdf(report) {
       doc,
       ["week", ...p.survivors],
       p.rows.map((r) => ({
-        week: weekLabel(
-          r.period,
-          new Date(new Date(`${r.period}T00:00:00Z`).getTime() + 6 * 86400000)
-            .toISOString()
-            .slice(0, 10),
-        ),
+        safeWeekLabel(r.period),
         ...Object.fromEntries(p.survivors.map((s) => [s, money(r[s])])),
       })),
     );
