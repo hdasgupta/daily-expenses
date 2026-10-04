@@ -347,7 +347,10 @@ function summarizeFilter(config = {}) {
   if (filters.hasProof === "false") parts.push("Has proof = No");
 
   if (filters.categoryItems?.length) {
-    parts.push(`Category/item filters = ${filters.categoryItems.join(", ")}`);
+    const labels = Array.isArray(filters.categoryItemLabels)
+      ? filters.categoryItemLabels
+      : filters.categoryItems;
+    parts.push(`Category/item filters = ${labels.join(", ")}`);
   }
   if (filters.categories?.length) parts.push(`Categories = ${filters.categories.join(", ")}`);
   if (filters.survivors?.length) parts.push(`Survivors = ${filters.survivors.join(", ")}`);
@@ -931,6 +934,24 @@ function drawChartAxes(doc, x, baseline, width, height) {
     .stroke();
 }
 
+function drawBarValueLabel(doc, value, x, barTop, width, minY) {
+  const label = money(value);
+  const labelWidth = Math.max(width + 12, 34);
+  const labelX = x - (labelWidth - width) / 2;
+  const labelY = Math.max(barTop - 8, minY);
+
+  doc
+    .fillColor("#1f2937")
+    .font("Helvetica")
+    .fontSize(5.2)
+    .text(label, labelX, labelY, {
+      width: labelWidth,
+      height: 8,
+      align: "center",
+      ellipsis: true,
+    });
+}
+
 function drawGroupedChartPage(doc, matrix, rows, leaves, title) {
   const usableWidth = usableWidthFor(doc);
   const x = doc.page.margins.left;
@@ -965,6 +986,8 @@ function drawGroupedChartPage(doc, matrix, rows, leaves, title) {
 
       doc.save().fillColor("#315f9f").rect(bx, by, barWidth, barHeight).fill().restore();
 
+      drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
+
       doc
         .fillColor("#1f2937")
         .font("Helvetica")
@@ -997,6 +1020,8 @@ function drawGroupedChartPage(doc, matrix, rows, leaves, title) {
       ];
 
       doc.save().fillColor(palette[seriesIndex % palette.length]).rect(bx, by, barWidth, barHeight).fill().restore();
+
+      drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
     });
 
     doc

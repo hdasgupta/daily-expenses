@@ -4,6 +4,7 @@ import {
   runReport,
   saveSelection,
 } from "../services/reportService.js";
+import { q } from "../db/index.js";
 import { buildReportPdf } from "../services/reportPdfService.js";
 import { sendReportEmail } from "../services/mailService.js";
 
@@ -21,6 +22,71 @@ export async function save(req, res) {
 export async function remove(req, res) {
   await deleteSelection(req.user.id, req.params.id);
   res.json({ ok: true });
+}
+
+async function resolveCategoryItemFilterLabels(config) {
+  const filters = config?.filters || {};
+  const keys = Array.isArray(filters.categoryItems)
+    ? [...new Set(filters.categoryItems.map(String))]
+    : [];
+
+  if (!keys.length) {
+    return [];
+  }
+
+  const categoryIds = [
+    ...new Set(
+      keys
+        .map((key) => String(key).split(":")[0])
+        .filter((value) => /^\\d+$/.test(value)),
+    ),
+  ];
+
+  if (!categoryIds.length) {
+    return keys;
+  }
+
+  const result = await q(
+    `
+      SELECT
+        c.id AS category_id,
+        c.name AS category,
+        i.id AS item_id,
+        i.name AS item
+      FROM public.categories c
+      LEFT JOIN public.items i
+        ON i.category_id = c.id
+      WHERE c.id = ANY($1::bigint[])
+    `,
+    [categoryIds],
+  );
+
+  const categories = new Map();
+  const items = new Map();
+
+  for (const row of result.rows || []) {
+    const categoryId = String(row.category_id);
+    categories.set(categoryId, row.category);
+
+    if (row.item_id != null) {
+      items.set(String(row.item_id), {
+        categoryId,
+        name: row.item,
+      });
+    }
+  }
+
+  return keys.map((key) => {
+    const [categoryId, kind, itemId] = String(key).split(":");
+    const categoryName = categories.get(String(categoryId)) || `Category ${categoryId}`;
+
+    if (kind === "item") {
+      const item = items.get(String(itemId));
+      return `${categoryName} - ${item?.name || `Item ${itemId}`}`;
+    }
+
+    return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
+  });
 }
 
 /*
@@ -45,18 +111,27 @@ async function buildPdfReport(config) {
   };
 
   const rawReport = await runReport(rawConfig);
+  const categoryItemLabels = await resolveCategoryItemFilterLabels(config);
+  const pdfConfig = {
+    ...config,
+    filters: {
+      ...(config.filters || {}),
+      categoryItemLabels,
+    },
+  };
 
   return {
     ...report,
     rawRows: rawReport.rows || [],
     rawColumns: rawReport.columns || [],
+    pdfConfig,
   };
 }
 
 export async function exportPdf(req, res) {
   const config = req.body || {};
   const report = await buildPdfReport(config);
-  const pdf = await buildReportPdf(report, config);
+  const pdf = await buildReportPdf(report, report.pdfConfig || config);
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", 'attachment; filename="expense-report.pdf"');
   res.send(pdf);
@@ -70,7 +145,7 @@ export async function emailReport(req, res) {
     return res.status(400).json({ error: "No report data to email." });
   }
 
-  const pdf = await buildReportPdf(report, config);
+  const pdf = await buildReportPdf(report, report.pdfConfig || config);
   await sendReportEmail(req.user.email, pdf);
   res.json({ ok: true, email: req.user.email });
 }
