@@ -192,7 +192,7 @@ export default function Login({ onLogin, initialPath }) {
   return (
     <div className="login-shell">
       <div className="login-card card">
-        <div className="login-logo"><img src="/logo.png" width="32" height="32" /></div>
+        <div className="login-logo"><img src="/logo.png" width="64" height="64" /></div>
         <h1>West Bengal Forun for Mental Health</h1>
         <p className="muted">Daily Expenses</p>
 
