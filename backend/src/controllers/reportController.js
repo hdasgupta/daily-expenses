@@ -23,20 +23,54 @@ export async function remove(req, res) {
   res.json({ ok: true });
 }
 
+/*
+ * PDF/export data is deliberately richer than the on-screen summary.
+ * Always fetch the underlying survivor-share detail rows so the PDF can
+ * include the requested raw dump, share explanation and proof links even
+ * when the visible report is an aggregate summary.
+ */
+async function buildPdfReport(config) {
+  const report = await runReport(config);
+
+  const rawConfig = {
+    ...config,
+    summarise: false,
+    groupBy: ["survivor"],
+    sortColumns: (Array.isArray(config.sortColumns) ? config.sortColumns : [])
+      .filter((item) => ["date", "category", "item", "survivor"].includes(item?.column))
+      .map((item) => ({
+        column: item.column,
+        direction: item.direction === "desc" ? "desc" : "asc",
+      })),
+  };
+
+  const rawReport = await runReport(rawConfig);
+
+  return {
+    ...report,
+    rawRows: rawReport.rows || [],
+    rawColumns: rawReport.columns || [],
+  };
+}
+
 export async function exportPdf(req, res) {
-  const report = await runReport(req.body || {});
-  const pdf = await buildReportPdf(report, req.body || {});
+  const config = req.body || {};
+  const report = await buildPdfReport(config);
+  const pdf = await buildReportPdf(report, config);
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", 'attachment; filename="expense-report.pdf"');
   res.send(pdf);
 }
 
 export async function emailReport(req, res) {
-  const report = await runReport(req.body || {});
-  if (!report.rows?.length) {
+  const config = req.body || {};
+  const report = await buildPdfReport(config);
+
+  if (!report.rows?.length && !report.rawRows?.length) {
     return res.status(400).json({ error: "No report data to email." });
   }
-  const pdf = await buildReportPdf(report, req.body || {});
+
+  const pdf = await buildReportPdf(report, config);
   await sendReportEmail(req.user.email, pdf);
   res.json({ ok: true, email: req.user.email });
 }
