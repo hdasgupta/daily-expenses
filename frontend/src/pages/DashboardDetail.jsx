@@ -55,7 +55,9 @@ function buildMergedCells(rows, columns) {
     const cells = columns.map((column, columnIndex) => {
       const samePrefix =
         rowIndex > 0 &&
-        columns.slice(0, columnIndex + 1).every((key) => rows[rowIndex - 1]?.[key] === row[key]);
+        columns
+          .slice(0, columnIndex + 1)
+          .every((key) => rows[rowIndex - 1]?.[key] === row[key]);
 
       if (samePrefix) {
         return {
@@ -69,7 +71,11 @@ function buildMergedCells(rows, columns) {
       while (rowIndex + rowSpan < rows.length) {
         const candidate = rows[rowIndex + rowSpan];
 
-        if (!columns.slice(0, columnIndex + 1).every((key) => candidate?.[key] === row[key])) {
+        if (
+          !columns
+            .slice(0, columnIndex + 1)
+            .every((key) => candidate?.[key] === row[key])
+        ) {
           break;
         }
 
@@ -143,7 +149,9 @@ function buildPivotSummary(rows, groupBy) {
       });
     }
 
-    const rowKey = rowColumns.map((column) => stableValueKey(row[column])).join("\u001f");
+    const rowKey = rowColumns
+      .map((column) => stableValueKey(row[column]))
+      .join("\u001f");
 
     if (!rowMap.has(rowKey)) {
       rowMap.set(rowKey, {
@@ -233,7 +241,9 @@ function readReportKey() {
 export default function DashboardDetail({ navigate, user }) {
   const reportKey = readReportKey();
 
-  const report = getDashboardReports().find((item) => item.key === reportKey);
+  const report = getDashboardReports().find(
+    (item) => item.key === reportKey,
+  );
 
   const [data, setData] = useState(null);
 
@@ -294,7 +304,11 @@ export default function DashboardDetail({ navigate, user }) {
   if (!report) {
     return (
       <section>
-        <button className="secondary" type="button" onClick={() => navigate("/dashboard")}>
+        <button
+          className="secondary"
+          type="button"
+          onClick={() => navigate("/dashboard")}
+        >
           <ArrowLeft size={17} />
           Back to Dashboard
         </button>
@@ -319,7 +333,10 @@ export default function DashboardDetail({ navigate, user }) {
 
           <h1>{report.label}</h1>
 
-          <p>{report.help}. Click a bar or summary row to open the raw expense data.</p>
+          <p>
+            {report.help}. Click a bar or summary row to open the raw expense
+            data.
+          </p>
         </div>
 
         <div className="toolbar-actions">
@@ -331,13 +348,22 @@ export default function DashboardDetail({ navigate, user }) {
           ) : null}
 
           {canSchedule ? (
-            <button className="secondary" type="button" onClick={() => navigate("/job-status")}>
+            <button
+              className="secondary"
+              type="button"
+              onClick={() => navigate("/job-status")}
+            >
               <CalendarClock size={17} />
               Jobs
             </button>
           ) : null}
 
-          <button className="secondary" type="button" onClick={load} disabled={loading}>
+          <button
+            className="secondary"
+            type="button"
+            onClick={load}
+            disabled={loading}
+          >
             <RefreshCw size={17} />
             Refresh
           </button>
@@ -429,10 +455,16 @@ export default function DashboardDetail({ navigate, user }) {
                           barSize={100}
                           cursor="pointer"
                           onClick={(entry) => {
-                            const row = entry?.payload?._groupRows?.[series.dataKey];
+                            const row =
+                              entry?.payload?._groupRows?.[series.dataKey];
 
                             if (row) {
-                              openDrilldown(navigate, report.key, data.groupBy, row);
+                              openDrilldown(
+                                navigate,
+                                report.key,
+                                data.groupBy,
+                                row,
+                              );
                             }
                           }}
                         />
@@ -443,20 +475,28 @@ export default function DashboardDetail({ navigate, user }) {
               </div>
             </div>
           ) : (
-            <div className="empty-card">No expenses found in this date range.</div>
+            <div className="empty-card">
+              No expenses found in this date range.
+            </div>
           )}
 
           <div className="card dashboard-summary-table-card">
             <div className="card-title">
               <strong>Summarise report</strong>
 
-              <span>Grouped by {data.groupBy?.join(", ")} · sum of expenses</span>
+              <span>
+                Grouped by {data.groupBy?.join(", ")} · sum of expenses
+              </span>
             </div>
 
             {data.rows?.length ? (
               <div className="table-scroll">
                 {data.groupBy?.length > 1 ? (
-                  <PivotSummaryTable data={data} report={report} navigate={navigate} />
+                  <PivotSummaryTable
+                    data={data}
+                    report={report}
+                    navigate={navigate}
+                  />
                 ) : (
                   <table className="data-table dashboard-summary-table">
                     <thead>
@@ -470,10 +510,18 @@ export default function DashboardDetail({ navigate, user }) {
                     </thead>
 
                     <tbody>
-                      {buildMergedCells(data.rows, data.groupBy || []).map(
-                        ({ row, rowIndex, cells }) => (
-                          <tr key={`${rowIndex}-${rowLabel(row, data.groupBy || [])}`}>
-                            {(data.groupBy || []).map((column, columnIndex) => {
+                      {buildMergedCells(
+                        data.rows,
+                        data.groupBy || [],
+                      ).map(({ row, rowIndex, cells }) => (
+                        <tr
+                          key={`${rowIndex}-${rowLabel(
+                            row,
+                            data.groupBy || [],
+                          )}`}
+                        >
+                          {(data.groupBy || []).map(
+                            (column, columnIndex) => {
                               const cell = cells[columnIndex];
 
                               if (cell.hidden) {
@@ -483,30 +531,41 @@ export default function DashboardDetail({ navigate, user }) {
                               return (
                                 <td
                                   key={column}
-                                  rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined}
+                                  rowSpan={
+                                    cell.rowSpan > 1
+                                      ? cell.rowSpan
+                                      : undefined
+                                  }
                                   className={
-                                    cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined
+                                    cell.rowSpan > 1
+                                      ? "dashboard-summary-merged-cell"
+                                      : undefined
                                   }
                                 >
                                   {prettyValue(row[column], column)}
                                 </td>
                               );
-                            })}
+                            },
+                          )}
 
-                            <td className="number-cell">
-                              <button
-                                type="button"
-                                className="table-link-button"
-                                onClick={() =>
-                                  openDrilldown(navigate, report.key, data.groupBy, row)
-                                }
-                              >
-                                {money(row.total)}
-                              </button>
-                            </td>
-                          </tr>
-                        ),
-                      )}
+                          <td className="number-cell">
+                            <button
+                              type="button"
+                              className="table-link-button"
+                              onClick={() =>
+                                openDrilldown(
+                                  navigate,
+                                  report.key,
+                                  data.groupBy,
+                                  row,
+                                )
+                              }
+                            >
+                              {money(row.total)}
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 )}
@@ -565,7 +624,11 @@ function PivotSummaryTable({ data, report, navigate }) {
           const cells = merged[rowIndex].cells;
 
           return (
-            <tr key={`${rowIndex}-${pivot.rowColumns.map((c) => pivotRow.values[c]).join("-")}`}>
+            <tr
+              key={`${rowIndex}-${pivot.rowColumns
+                .map((c) => pivotRow.values[c])
+                .join("-")}`}
+            >
               {pivot.rowColumns.map((column, columnIndex) => {
                 const cell = cells[columnIndex];
 
@@ -576,8 +639,14 @@ function PivotSummaryTable({ data, report, navigate }) {
                 return (
                   <td
                     key={column}
-                    rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined}
-                    className={cell.rowSpan > 1 ? "dashboard-summary-merged-cell" : undefined}
+                    rowSpan={
+                      cell.rowSpan > 1 ? cell.rowSpan : undefined
+                    }
+                    className={
+                      cell.rowSpan > 1
+                        ? "dashboard-summary-merged-cell"
+                        : undefined
+                    }
                   >
                     {prettyValue(pivotRow.values[column], column)}
                   </td>
@@ -593,7 +662,14 @@ function PivotSummaryTable({ data, report, navigate }) {
                       <button
                         type="button"
                         className="table-link-button"
-                        onClick={() => openDrilldown(navigate, report.key, data.groupBy, entry.row)}
+                        onClick={() =>
+                          openDrilldown(
+                            navigate,
+                            report.key,
+                            data.groupBy,
+                            entry.row,
+                          )
+                        }
                       >
                         {money(entry.total)}
                       </button>
@@ -620,6 +696,13 @@ function buildChartModel(data) {
 
   const groupBy = data?.groupBy || [];
 
+  /*
+   * Existing single-group behaviour.
+   *
+   * One Group By field:
+   *   Group 1 -> X-axis
+   *   Total   -> bar value
+   */
   if (groupBy.length <= 1) {
     const grouped = new Map();
 
@@ -671,14 +754,65 @@ function buildChartModel(data) {
 
   const chartRows = new Map();
 
-  const secondaryColumns = groupBy.slice(1);
+  /*
+   * Three Group By fields are rendered as a
+   * pivot-style grouped bar chart:
+   *
+   *   Group 1 + Group 2 -> X-axis categories
+   *   Group 3           -> bar series / legend
+   *
+   * Example:
+   *
+   *   Year + Category -> X-axis
+   *   Payment Method  -> grouped bars
+   *
+   * This keeps all three dimensions visible
+   * instead of combining Group 2 + Group 3 into
+   * one legend label.
+   *
+   * For two Group By fields, the existing behaviour
+   * is retained:
+   *
+   *   Group 1 -> X-axis
+   *   Group 2 -> bar series / legend
+   */
+  const isThreeGroupPivot = groupBy.length === 3;
+
+  const xColumns = isThreeGroupPivot
+    ? groupBy.slice(0, 2)
+    : [groupBy[0]];
+
+  const seriesColumns = isThreeGroupPivot
+    ? [groupBy[2]]
+    : groupBy.slice(1);
 
   rows.forEach((row) => {
-    const xKey = stableValueKey(row[groupBy[0]]);
+    /*
+     * For three groups:
+     *
+     *   X key = Group 1 + Group 2
+     *
+     * This means each combination receives its
+     * own grouped-bar category on the X-axis.
+     */
+    const xKey = xColumns
+      .map((column) => stableValueKey(row[column]))
+      .join("\u001f");
 
-    const xValue = prettyValue(row[groupBy[0]], groupBy[0]);
+    const xValue = xColumns
+      .map((column) => prettyValue(row[column], column))
+      .join(" · ");
 
-    const seriesLabel = secondaryColumns
+    /*
+     * For three groups:
+     *
+     *   Series = Group 3
+     *
+     * For two groups this remains:
+     *
+     *   Series = Group 2
+     */
+    const seriesLabel = seriesColumns
       .map((column) => prettyValue(row[column], column))
       .join(" · ");
 
@@ -705,8 +839,14 @@ function buildChartModel(data) {
 
     const target = chartRows.get(xKey);
 
-    target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
+    target[series.dataKey] =
+      Number(target[series.dataKey] || 0) +
+      Number(row.total || 0);
 
+    /*
+     * Keep the original summary row so clicking
+     * a bar still opens the correct drill-down.
+     */
     if (!target._groupRows[series.dataKey]) {
       target._groupRows[series.dataKey] = row;
     }
@@ -715,11 +855,19 @@ function buildChartModel(data) {
   return {
     multiSeries: true,
 
-    minWidth: Math.max(720, chartRows.size * Math.max(secondaryColumns.length, 1) * 52 + 140),
+    minWidth: Math.max(
+      720,
+      chartRows.size *
+        Math.max(seriesMap.size, 1) *
+        (isThreeGroupPivot ? 58 : 52) +
+        140,
+    ),
 
-    description: `Grouped by ${groupBy[0]} with ${secondaryColumns.join(
-      " + ",
-    )} as the legend. Click any bar to drill down.`,
+    description: isThreeGroupPivot
+      ? `Pivot chart: ${groupBy[0]} × ${groupBy[1]}, grouped by ${groupBy[2]}. Click any bar to drill down.`
+      : `Grouped by ${groupBy[0]} with ${seriesColumns.join(
+          " + ",
+        )} as the legend. Click any bar to drill down.`,
 
     data: Array.from(chartRows.values()),
 
