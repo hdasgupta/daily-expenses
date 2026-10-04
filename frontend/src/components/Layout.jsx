@@ -205,7 +205,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
             {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
               <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
             ) : (
-              <Shield size={28} />
+              <img src="logo.png" width="32" height="32"/>
             )}
           </div>
 
