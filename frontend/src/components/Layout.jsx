@@ -220,7 +220,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
               {import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}
             </strong>
 
-            <span>Expense Tracker</span>
+            <span>Daily Expenses</span>
           </div>
         </div>
       </header>

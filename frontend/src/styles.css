@@ -158,7 +158,7 @@ button:disabled {
   display: grid;
   place-items: center;
   color: #fff;
-  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+  /*background: linear-gradient(135deg, var(--primary), var(--primary-deep));*/
   overflow: hidden;
 }
 .brand-mark img {
