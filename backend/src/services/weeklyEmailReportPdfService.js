@@ -246,7 +246,7 @@ export function buildWeeklyEmailReportPdf(report) {
       doc,
       ["week", ...p.survivors],
       p.rows.map((r) => ({
-        safeWeekLabel(r.period),
+        week: safeWeekLabel(r.period),
         ...Object.fromEntries(p.survivors.map((s) => [s, money(r[s])])),
       })),
     );
