@@ -553,15 +553,39 @@ export default function Expense() {
 
               <label>
                 Share type
-                <select
-                  required
-                  value={share.shareType}
-                  onChange={(e) => editShare(index, "shareType", e.target.value)}
+                <div
+                  role="group"
+                  aria-label="Share type"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                    gap: "0.5rem",
+                  }}
                 >
-                  <option value="fixed">Fixed amount</option>
-                  <option value="average">Average amount</option>
-                  <option value="remaining">Remaining amount</option>
-                </select>
+                 {[
+                   ["fixed", "Fixed amount"],
+                   ["average", "Average amount"],
+                   ["remaining", "Remaining amount"],
+                 ].map(([value, label]) => {
+                   const selected = share.shareType === value;
+
+                   return (
+                     <button
+                       key={value}
+                       type="button"
+                       aria-pressed={selected}
+                       className={selected ? "primary" : "secondary"}
+                       onClick={() => editShare(index, "shareType", value)}
+                       style={{
+                         minHeight: "42px",
+                         justifyContent: "center",
+                       }}
+                     >
+                     {label}
+                     </button>
+                   );
+                })}
+                </div>
               </label>
 
               <label>
