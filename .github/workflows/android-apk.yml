@@ -50,7 +50,6 @@ jobs:
         run: chmod +x frontend/android/gradlew
 
       - name: Calculate Android version
-        id: version
         run: |
           VERSION_CODE="${{ github.run_number }}"
           VERSION_NAME="1.${VERSION_CODE}"
@@ -68,6 +67,8 @@ jobs:
           echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode \
             > frontend/android/app/release.keystore
 
+          test -f frontend/android/app/release.keystore
+
       - name: Build Release APK
         working-directory: frontend/android
         env:
@@ -83,24 +84,56 @@ jobs:
             -Pandroid.injected.signing.key.alias="$ANDROID_KEY_ALIAS" \
             -Pandroid.injected.signing.key.password="$ANDROID_KEY_PASSWORD"
 
-      - name: Rename APK
+      - name: Locate and rename APK
         run: |
-          mv \
-            frontend/android/app/build/outputs/apk/release/app-release.apk \
-            "frontend/android/app/build/outputs/apk/release/daily-expenses-${VERSION_NAME}.apk"
+          APK_SOURCE="frontend/android/app/build/outputs/apk/release/app-release.apk"
+          APK="frontend/android/app/build/outputs/apk/release/daily-expenses-${VERSION_NAME}.apk"
+
+          echo "Checking for APK..."
+
+          if [ ! -f "$APK_SOURCE" ]; then
+            echo "ERROR: APK was not found at:"
+            echo "$APK_SOURCE"
+            echo ""
+            echo "APK files found:"
+            find frontend/android/app/build/outputs -type f -name "*.apk" -print
+            exit 1
+          fi
+
+          mv "$APK_SOURCE" "$APK"
+
+          echo "APK created successfully:"
+          ls -lh "$APK"
+
+          echo "APK_PATH=$APK" >> "$GITHUB_ENV"
+
+      - name: Verify APK
+        run: |
+          if [ ! -f "$APK_PATH" ]; then
+            echo "ERROR: APK does not exist:"
+            echo "$APK_PATH"
+            exit 1
+          fi
+
+          echo "Verified APK:"
+          ls -lh "$APK_PATH"
+
+      - name: Create GitHub Release and upload APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Creating release v${VERSION_NAME}"
+          echo "Uploading APK: ${APK_PATH}"
+
+          gh release create "v${VERSION_NAME}" \
+            "${APK_PATH}" \
+            --repo "${{ github.repository }}" \
+            --title "Daily Expenses v${VERSION_NAME}" \
+            --generate-notes
+
+          echo "Release created successfully."
 
       - name: Remove release keystore
         if: always()
         run: |
           rm -f frontend/android/app/release.keystore
-
-      - name: Create GitHub Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          APK="frontend/android/app/build/outputs/apk/release/daily-expenses-${VERSION_NAME}.apk"
-
-          gh release create "v${VERSION_NAME}" \
-            "$APK" \
-            --title "Daily Expenses v${VERSION_NAME}" \
-            --generate-notes
