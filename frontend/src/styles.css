@@ -1402,9 +1402,10 @@ code {
   background: var(--soft);
 }
 
-/* Three-level dashboard pivot charts mirror the summary table hierarchy:
-   survivor labels are shown above each child group while the merged
-   period labels are centered beneath the survivor groups. */
+/* Daily/weekly/monthly/yearly survivor × category pivot charts use the same
+   hierarchy as the reference daily dashboard: survivor labels are on top,
+   and the merged period label is centered underneath the complete survivor
+   span. Only a vertical separator is drawn between adjacent period groups. */
 .dashboard-pivot-chart-period-label,
 .dashboard-pivot-chart-survivor-label {
   fill: var(--text);
@@ -1415,12 +1416,6 @@ code {
   font-weight: 700;
 }
 
-.dashboard-pivot-chart-period-divider {
-  stroke: var(--border);
-  stroke-width: 1;
-}
-
-/* Strong vertical separator between adjacent merged period/date groups. */
 .dashboard-pivot-chart-period-boundary {
   stroke: var(--text);
   stroke-width: 1.5;

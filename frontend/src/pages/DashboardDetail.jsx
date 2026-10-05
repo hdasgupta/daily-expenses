@@ -126,43 +126,15 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
           {index > 0 ? (
             <line
               x1={periodStartX - x}
-              y1={0}
+              y1={-8}
               x2={periodStartX - x}
-              y2={38}
+              y2={48}
               className="dashboard-pivot-chart-period-boundary"
             />
           ) : null}
-          <line
-            x1={periodStartX - x}
-            y1={7}
-            x2={periodEndX - x}
-            y2={7}
-            className="dashboard-pivot-chart-period-divider"
-          />
-          <line
-            x1={periodStartX - x}
-            y1={7}
-            x2={periodStartX - x}
-            y2={35}
-            className="dashboard-pivot-chart-period-divider"
-          />
-          <line
-            x1={periodEndX - x}
-            y1={7}
-            x2={periodEndX - x}
-            y2={35}
-            className="dashboard-pivot-chart-period-divider"
-          />
-          <line
-            x1={periodStartX - x}
-            y1={35}
-            x2={periodEndX - x}
-            y2={35}
-            className="dashboard-pivot-chart-period-divider"
-          />
           <text
             x={periodCenterX - x}
-            y={22}
+            y={42}
             textAnchor="middle"
             className="dashboard-pivot-chart-period-label"
           >
@@ -841,7 +813,9 @@ function buildChartModel(data) {
   // period below, centered across the complete merged period span.
   const isPeriodSurvivorCategoryPivot =
     isThreeGroupPivot &&
-    ["date", "week", "month", "year"].includes(groupBy[0]);
+    ["date", "week", "month", "year"].includes(groupBy[0]) &&
+    groupBy[1] === "survivor" &&
+    groupBy[2] === "category";
 
   const xColumns = isThreeGroupPivot ? groupBy.slice(0, 2) : [groupBy[0]];
 
