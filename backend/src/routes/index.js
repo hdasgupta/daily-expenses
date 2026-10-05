@@ -127,27 +127,10 @@ export function createRouter(maxUploadBytes) {
   router.post("/reports/query", auth, permit("report"), reportController.query);
   router.post("/reports/export-pdf", auth, permit("report"), reportController.exportPdf);
   router.post("/reports/email-pdf", auth, permit("report"), reportController.emailReport);
+  router.post("/reports/schedule-email", auth, permit("report"), reportController.scheduleEmail);
   router.get("/report-selections", auth, permit("report"), reportController.selections);
   router.post("/report-selections", auth, permit("report"), reportController.save);
   router.delete("/report-selections/:id", auth, permit("report"), reportController.remove);
-  router.get(
-    "/report-selections/:id/shareable-users",
-    auth,
-    permit("report"),
-    reportController.shareableUsers,
-  );
-  router.put(
-    "/report-selections/:id/share",
-    auth,
-    permit("report"),
-    reportController.share,
-  );
-  router.delete(
-    "/report-selections/:id/share/me",
-    auth,
-    permit("report"),
-    reportController.unshare,
-  );
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);

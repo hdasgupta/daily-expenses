@@ -64,6 +64,14 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     ),
   ]);
 
+  const oneTimeResult = await q(
+    `SELECT id, name, scheduled_for, status, last_attempt_at, last_error, created_at
+       FROM public.one_time_report_email_jobs
+      WHERE owner_user_id = $1
+      ORDER BY scheduled_for ASC, id ASC`,
+    [userId],
+  );
+
   const schedules = scheduleDefinitions.map((item) => {
     const valid = Boolean(item.cron && cron.validate(item.cron));
     let nextRunAt = null;
@@ -86,6 +94,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
 
   return {
     schedules,
+    oneTimeScheduledJobs: oneTimeResult.rows,
     rows: rowsResult.rows,
     total: countResult.rows[0]?.total || 0,
     page: safePage,

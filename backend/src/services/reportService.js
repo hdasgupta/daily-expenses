@@ -1,12 +1,5 @@
 import { q } from "../db/index.js";
-import {
-  deleteSelection,
-  getShareableUsers,
-  listSelections,
-  saveSelection,
-  shareSelection,
-  unshareSelection,
-} from "../models/reportModel.js";
+import { deleteSelection, listSelections, saveSelection } from "../models/reportModel.js";
 import { reportSql } from "../../scripts/sql/reportSql.js";
 import { signedObjectUrl } from "./storageService.js";
 
@@ -584,12 +577,89 @@ export async function runReport(input) {
   };
 }
 
-export {
-  cleanConfig,
-  deleteSelection,
-  getShareableUsers,
-  listSelections,
-  saveSelection,
-  shareSelection,
-  unshareSelection,
-};
+async function resolveCategoryItemFilterLabelsForPdf(config) {
+  const filters = config?.filters || {};
+  const keys = Array.isArray(filters.categoryItems)
+    ? [...new Set(filters.categoryItems.map(String))]
+    : [];
+
+  if (!keys.length) return [];
+
+  const categoryIds = [
+    ...new Set(
+      keys
+        .map((key) => String(key).split(":")[0])
+        .filter((value) => /^\d+$/.test(value)),
+    ),
+  ];
+
+  if (!categoryIds.length) return keys;
+
+  const result = await q(
+    `
+      SELECT c.id AS category_id,
+             c.name AS category,
+             i.id AS item_id,
+             i.name AS item
+        FROM public.categories c
+        LEFT JOIN public.items i ON i.category_id = c.id
+       WHERE c.id = ANY($1::bigint[])
+    `,
+    [categoryIds],
+  );
+
+  const categories = new Map();
+  const items = new Map();
+
+  for (const row of result.rows || []) {
+    const categoryId = String(row.category_id);
+    categories.set(categoryId, row.category);
+    if (row.item_id != null) {
+      items.set(String(row.item_id), { categoryId, name: row.item });
+    }
+  }
+
+  return keys.map((key) => {
+    const [categoryId, kind, itemId] = String(key).split(":");
+    const categoryName = categories.get(String(categoryId)) || `Category ${categoryId}`;
+    if (kind === "item") {
+      const item = items.get(String(itemId));
+      return `${categoryName} - ${item?.name || `Item ${itemId}`}`;
+    }
+    return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
+  });
+}
+
+export async function buildReportPdfData(config = {}) {
+  const report = await runReport(config);
+
+  const rawConfig = {
+    ...config,
+    summarise: false,
+    groupBy: ["survivor"],
+    sortColumns: (Array.isArray(config.sortColumns) ? config.sortColumns : [])
+      .filter((item) => ["date", "category", "item", "survivor"].includes(item?.column))
+      .map((item) => ({
+        column: item.column,
+        direction: item.direction === "desc" ? "desc" : "asc",
+      })),
+  };
+
+  const rawReport = await runReport(rawConfig);
+  const categoryItemLabels = await resolveCategoryItemFilterLabelsForPdf(config);
+
+  return {
+    ...report,
+    rawRows: rawReport.rows || [],
+    rawColumns: rawReport.columns || [],
+    pdfConfig: {
+      ...config,
+      filters: {
+        ...(config.filters || {}),
+        categoryItemLabels,
+      },
+    },
+  };
+}
+
+export { cleanConfig, deleteSelection, listSelections, saveSelection };

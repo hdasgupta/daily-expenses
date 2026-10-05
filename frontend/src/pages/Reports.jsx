@@ -6,15 +6,13 @@ import {
   BarChart3,
   Download,
   Mail,
+  CalendarClock,
   Filter,
   FolderOpen,
-  Info,
   Plus,
   RotateCcw,
   Save,
-  Share2,
   Trash2,
-  UserRoundX,
   X,
 } from "lucide-react";
 import { api } from "../lib/api";
@@ -251,17 +249,14 @@ export default function Reports() {
 
   const [selections, setSelections] = useState([]);
 
-  const [shareModal, setShareModal] = useState(false);
-
-  const [shareSelection, setShareSelection] = useState(null);
-
-  const [shareUsers, setShareUsers] = useState([]);
-
-  const [shareUserIds, setShareUserIds] = useState([]);
-
   const [showChart, setShowChart] = useState(false);
 
   const [proofViewerUrl, setProofViewerUrl] = useState("");
+  const [scheduleEmailModal, setScheduleEmailModal] = useState(false);
+  const [scheduleDate, setScheduleDate] = useState("");
+  const [scheduleTime, setScheduleTime] = useState("");
+  const [scheduleName, setScheduleName] = useState("");
+  const [scheduleBusy, setScheduleBusy] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -538,62 +533,14 @@ export default function Reports() {
     setSaveModal(false);
   };
 
-  const refreshSelections = async () => {
-    const next = await api("/report-selections", {
-      loadingMessage: "Loading saved report selections…",
-    });
-
-    setSelections(next);
-    return next;
-  };
-
   const loadSelections = async () => {
-    await refreshSelections();
+    setSelections(
+      await api("/report-selections", {
+        loadingMessage: "Loading saved report selections…",
+      }),
+    );
+
     setLoadModal(true);
-  };
-
-  const openShareModal = async (selection) => {
-    const users = await api(`/report-selections/${selection.id}/shareable-users`, {
-      loadingMessage: "Loading users for sharing…",
-    });
-
-    setShareSelection(selection);
-    setShareUsers(users);
-    setShareUserIds(users.filter((user) => user.shared).map((user) => String(user.id)));
-    setShareModal(true);
-  };
-
-  const saveSharing = async () => {
-    if (!shareSelection) {
-      return;
-    }
-
-    await api(`/report-selections/${shareSelection.id}/share`, {
-      method: "PUT",
-      body: JSON.stringify({ userIds: shareUserIds }),
-      loadingMessage: "Updating report selection sharing…",
-      toast: {
-        type: "success",
-        message: "Report selection sharing updated.",
-      },
-    });
-
-    setShareModal(false);
-    setShareSelection(null);
-    await refreshSelections();
-  };
-
-  const unshareSelection = async (selection) => {
-    await api(`/report-selections/${selection.id}/share/me`, {
-      method: "DELETE",
-      loadingMessage: "Removing shared report selection…",
-      toast: {
-        type: "success",
-        message: "Shared report selection removed.",
-      },
-    });
-
-    await refreshSelections();
   };
 
   const reset = () => {
@@ -608,6 +555,54 @@ export default function Reports() {
     }
 
     await downloadPdf("/reports/export-pdf", config);
+  };
+
+  const openScheduleEmail = () => {
+    if (!result?.rows?.length) return;
+
+    const now = new Date(Date.now() + 10 * 60 * 1000);
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).formatToParts(now);
+    const values = Object.fromEntries(
+      parts.filter(({ type }) => type !== "literal").map(({ type, value }) => [type, value]),
+    );
+
+    setScheduleDate(`${values.year}-${values.month}-${values.day}`);
+    setScheduleTime(`${values.hour}:${values.minute}`);
+    setScheduleName("Report PDF email");
+    setScheduleEmailModal(true);
+  };
+
+  const scheduleEmail = async (event) => {
+    event.preventDefault();
+    if (!result?.rows?.length || !scheduleDate || !scheduleTime) return;
+
+    setScheduleBusy(true);
+    try {
+      await api("/reports/schedule-email", {
+        method: "POST",
+        body: JSON.stringify({
+          name: scheduleName,
+          scheduledFor: `${scheduleDate}T${scheduleTime}`,
+          config,
+        }),
+        loadingMessage: "Scheduling report PDF email…",
+        toast: {
+          type: "success",
+          message: "Report PDF email scheduled.",
+        },
+      });
+      setScheduleEmailModal(false);
+    } finally {
+      setScheduleBusy(false);
+    }
   };
 
   const emailReport = async () => {
@@ -824,6 +819,16 @@ export default function Reports() {
           <Mail size={17} />
           Email me report PDF
         </button>
+
+        <button
+          className="secondary"
+          type="button"
+          disabled={!result?.rows?.length}
+          onClick={openScheduleEmail}
+        >
+          <CalendarClock size={17} />
+          Schedule email
+        </button>
       </div>
 
       {showChart && result?.chartData?.length ? (
@@ -995,133 +1000,41 @@ export default function Reports() {
         <div className="selection-list">
           {selections.map((selection) => (
             <div className="selection-row" key={selection.id}>
-              <div className="selection-name-wrap">
-                <button
-                  type="button"
-                  className="selection-name-button"
-                  onClick={() => {
-                    setConfig(normalizeLoaded(selection.config));
+              <button
+                type="button"
+                onClick={() => {
+                  setConfig(normalizeLoaded(selection.config));
 
-                    setShowChart(false);
-                    setLoadModal(false);
-                  }}
-                >
-                  {selection.name}
-                </button>
+                  setShowChart(false);
+                  setLoadModal(false);
+                }}
+              >
+                {selection.name}
+              </button>
 
-                <button
-                  type="button"
-                  className="icon-button soft selection-info-button"
-                  data-tooltip={`Owner: ${selection.owner_name}`}
-                  aria-label={`Owner: ${selection.owner_name}`}
-                >
-                  <Info size={15} />
-                </button>
-              </div>
+              <button
+                type="button"
+                className="icon-button danger-soft"
+                title="Delete selection"
+                onClick={async () => {
+                  await api(`/report-selections/${selection.id}`, {
+                    method: "DELETE",
+                    loadingMessage: "Deleting saved selection…",
+                  });
 
-              <div className="selection-row-actions">
-                {selection.is_owner ? (
-                  <button
-                    type="button"
-                    className="icon-button soft"
-                    title="Share selection"
-                    aria-label={`Share ${selection.name}`}
-                    onClick={() => openShareModal(selection)}
-                  >
-                    <Share2 size={16} />
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="icon-button soft"
-                    title="Unshare selection"
-                    aria-label={`Unshare ${selection.name}`}
-                    onClick={() => unshareSelection(selection)}
-                  >
-                    <UserRoundX size={16} />
-                  </button>
-                )}
-
-                {selection.is_owner ? (
-                  <button
-                    type="button"
-                    className="icon-button danger-soft"
-                    title="Delete selection"
-                    aria-label={`Delete ${selection.name}`}
-                    onClick={async () => {
-                      await api(`/report-selections/${selection.id}`, {
-                        method: "DELETE",
-                        loadingMessage: "Deleting saved selection…",
-                      });
-
-                      await refreshSelections();
-                    }}
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                ) : null}
-              </div>
+                  setSelections(
+                    await api("/report-selections", {
+                      loadingMessage: "Refreshing saved selections…",
+                    }),
+                  );
+                }}
+              >
+                <Trash2 size={16} />
+              </button>
             </div>
           ))}
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
-        </div>
-      </Modal>
-
-      <Modal
-        open={shareModal}
-        title={shareSelection ? `Share “${shareSelection.name}”` : "Share report selection"}
-        onClose={() => setShareModal(false)}
-        footer={
-          <>
-            <button className="secondary" type="button" onClick={() => setShareModal(false)}>
-              Cancel
-            </button>
-
-            <button className="primary" type="button" onClick={saveSharing}>
-              <Share2 size={17} />
-              Save sharing
-            </button>
-          </>
-        }
-      >
-        <div className="form-stack">
-          <div>
-            <strong>Share with users</strong>
-            <div className="field-note">Select one or more active users. Unselect a user to stop sharing.</div>
-          </div>
-
-          <div className="share-user-list">
-            {shareUsers.map((user) => {
-              const userId = String(user.id);
-              const checked = shareUserIds.includes(userId);
-
-              return (
-                <label className="share-user-row" key={user.id}>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() =>
-                      setShareUserIds((current) =>
-                        checked
-                          ? current.filter((id) => id !== userId)
-                          : [...current, userId],
-                      )
-                    }
-                  />
-                  <span>
-                    <strong>{user.full_name}</strong>
-                    <small>
-                      {user.email}
-                      {user.is_disabled ? " · Disabled" : ""}
-                    </small>
-                  </span>
-                </label>
-              );
-            })}
-
-            {!shareUsers.length ? <div className="empty-card">No other active users available.</div> : null}
-          </div>
         </div>
       </Modal>
 
@@ -1130,6 +1043,67 @@ export default function Reports() {
         title="Report proof"
         onClose={() => setProofViewerUrl("")}
       />
+
+      <Modal
+        open={scheduleEmailModal}
+        title="Schedule report PDF email"
+        onClose={() => scheduleBusy || setScheduleEmailModal(false)}
+        footer={
+          <>
+            <button
+              className="secondary"
+              type="button"
+              onClick={() => setScheduleEmailModal(false)}
+              disabled={scheduleBusy}
+            >
+              Cancel
+            </button>
+            <button className="primary" type="submit" form="schedule-report-email-form" disabled={scheduleBusy}>
+              {scheduleBusy ? "Scheduling…" : "Schedule email"}
+            </button>
+          </>
+        }
+      >
+        <form id="schedule-report-email-form" onSubmit={scheduleEmail}>
+          <div className="notice">
+            The current report filters, grouping, sorting and summary settings will be saved as a snapshot and emailed once at the selected time.
+          </div>
+
+          <label>
+            Schedule name
+            <input
+              value={scheduleName}
+              maxLength={150}
+              onChange={(event) => setScheduleName(event.target.value)}
+              placeholder="Report PDF email"
+            />
+          </label>
+
+          <div className="two-col">
+            <label>
+              Date
+              <input
+                type="date"
+                value={scheduleDate}
+                onChange={(event) => setScheduleDate(event.target.value)}
+                required
+              />
+            </label>
+
+            <label>
+              Time
+              <input
+                type="time"
+                value={scheduleTime}
+                onChange={(event) => setScheduleTime(event.target.value)}
+                required
+              />
+            </label>
+          </div>
+
+          <span className="field-note">India Standard Time (Asia/Kolkata). The email will be sent to your account email.</span>
+        </form>
+      </Modal>
     </section>
   );
 }

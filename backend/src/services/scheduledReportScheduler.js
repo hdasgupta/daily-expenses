@@ -4,6 +4,7 @@ import {
   getScheduledReportForExecution,
   sendScheduledReportJob,
 } from "./scheduledReportService.js";
+import { processDueOneTimeReportEmailJobs } from "./oneTimeReportEmailService.js";
 
 let started = false;
 
@@ -266,6 +267,8 @@ async function processDueJobs() {
       });
     });
   }
+
+  await processDueOneTimeReportEmailJobs();
 }
 
 export function startScheduledReportScheduler() {

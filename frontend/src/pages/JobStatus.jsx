@@ -198,6 +198,7 @@ export default function JobStatus({ user }) {
   const [rows, setRows] = useState([]);
   const [total, setTotal] = useState(0);
   const [scheduledJobs, setScheduledJobs] = useState([]);
+  const [oneTimeJobs, setOneTimeJobs] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const [now, setNow] = useState(Date.now());
   const [editingJob, setEditingJob] = useState(null);
@@ -238,6 +239,7 @@ export default function JobStatus({ user }) {
 
     setRows(statusData.rows || []);
     setTotal(statusData.total || 0);
+    setOneTimeJobs(statusData.oneTimeScheduledJobs || []);
 
     setScheduledJobs(
       [...(customJobs || [])].sort(
@@ -407,6 +409,40 @@ export default function JobStatus({ user }) {
             No user-scheduled report emails yet. Open a Dashboard report and choose “Schedule
             email”.
           </div>
+        )}
+      </div>
+
+      <div className="card" style={{ marginBottom: 14 }}>
+        <div className="card-title">
+          <strong>One-time report PDF emails</strong>
+          <span>Scheduled from the Report page. Each item disappears after the email is successfully triggered.</span>
+        </div>
+
+        {oneTimeJobs.length ? (
+          <div className="scheduled-job-stack">
+            {oneTimeJobs.map((job) => (
+              <article className="scheduled-job-card" key={job.id}>
+                <div className="scheduled-job-head">
+                  <div>
+                    <strong>{job.name}</strong>
+                    <span>Report PDF email</span>
+                  </div>
+                  <span className={`scheduled-job-status ${job.status === "failed" ? "paused" : "active"}`}>
+                    {job.status === "failed" ? "Retrying" : "Scheduled"}
+                  </span>
+                </div>
+
+                <div className="scheduled-job-meta">
+                  <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
+                  <span><b>Timezone:</b> Asia/Kolkata</span>
+                  {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
+                  {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="empty-card">No one-time report emails are currently scheduled.</div>
         )}
       </div>
 

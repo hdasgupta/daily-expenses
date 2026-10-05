@@ -104,19 +104,6 @@ CREATE TABLE IF NOT EXISTS public.report_selections (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(user_id, name)
 );
-CREATE TABLE IF NOT EXISTS public.report_selection_shares (
-  id BIGSERIAL PRIMARY KEY,
-  selection_id BIGINT NOT NULL REFERENCES public.report_selections(id) ON DELETE CASCADE,
-  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  shared_by_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  UNIQUE(selection_id, user_id),
-  CHECK(user_id <> shared_by_user_id)
-);
-CREATE INDEX IF NOT EXISTS idx_report_selection_shares_user
-  ON public.report_selection_shares(user_id);
-CREATE INDEX IF NOT EXISTS idx_report_selection_shares_selection
-  ON public.report_selection_shares(selection_id);
 CREATE TABLE IF NOT EXISTS public.pagination_settings (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
@@ -182,6 +169,23 @@ CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_owner
   ON public.scheduled_report_jobs(owner_user_id, active);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
   ON public.scheduled_report_jobs(active, frequency, time_of_day);
+CREATE TABLE IF NOT EXISTS public.one_time_report_email_jobs (
+  id BIGSERIAL PRIMARY KEY,
+  owner_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  name VARCHAR(150) NOT NULL,
+  config JSONB NOT NULL,
+  scheduled_for TIMESTAMPTZ NOT NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'pending'
+    CHECK(status IN ('pending','failed')),
+  last_attempt_at TIMESTAMPTZ,
+  last_error TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_due
+  ON public.one_time_report_email_jobs(scheduled_for, status);
+CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_owner
+  ON public.one_time_report_email_jobs(owner_user_id, scheduled_for);
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,
