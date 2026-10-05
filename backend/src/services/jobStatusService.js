@@ -72,6 +72,50 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     [userId],
   );
 
+  const oneTimeJobs = oneTimeResult.rows;
+  const categoryIds = [
+    ...new Set(
+      oneTimeJobs.flatMap((job) => {
+        const keys = job.config?.filters?.categoryItems;
+        return Array.isArray(keys)
+          ? keys
+              .map((key) => String(key).split(":")[0])
+              .filter((id) => /^\d+$/.test(id))
+          : [];
+      }),
+    ),
+  ];
+
+  let categoryNames = new Map();
+  if (categoryIds.length) {
+    const categoryResult = await q(
+      `SELECT id, name
+         FROM public.categories
+        WHERE id = ANY($1::bigint[])`,
+      [categoryIds],
+    );
+    categoryNames = new Map(
+      categoryResult.rows.map((row) => [String(row.id), row.name]),
+    );
+  }
+
+  const enrichedOneTimeJobs = oneTimeJobs.map((job) => {
+    const config = job.config && typeof job.config === "object" ? { ...job.config } : {};
+    const filters = config.filters && typeof config.filters === "object" ? { ...config.filters } : {};
+    const keys = Array.isArray(filters.categoryItems) ? filters.categoryItems : [];
+
+    if (keys.length) {
+      filters.categoryItemLabels = keys.map((key) => {
+        const [categoryId, kind] = String(key).split(":");
+        const categoryName = categoryNames.get(String(categoryId)) || `Category ${categoryId}`;
+        if (kind === "item") return `${categoryName} - Item`;
+        return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
+      });
+    }
+
+    return { ...job, config: { ...config, filters } };
+  });
+
   const schedules = scheduleDefinitions.map((item) => {
     const valid = Boolean(item.cron && cron.validate(item.cron));
     let nextRunAt = null;
@@ -94,7 +138,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
 
   return {
     schedules,
-    oneTimeScheduledJobs: oneTimeResult.rows,
+    oneTimeScheduledJobs: enrichedOneTimeJobs,
     rows: rowsResult.rows,
     total: countResult.rows[0]?.total || 0,
     page: safePage,

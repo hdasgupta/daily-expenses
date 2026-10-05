@@ -178,7 +178,7 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
       : filters.categoryItems;
     const categoriesOnly = [...new Set(
       labels
-        .map((value) => String(value).split(" /")[0].trim())
+        .map((value) => String(value).split(/\s+-\s+/)[0].trim())
         .filter(Boolean),
     )];
     filterParts.push(
