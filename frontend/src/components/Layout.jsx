@@ -172,13 +172,21 @@ export default function Layout({ user, path, navigate, logout, children }) {
   const toggleTheme = () => setDark((value) => !value);
 
   const navigationItems = getNavigationItems(user?.permissions);
+  const fullName = String(
+    user?.fullName ||
+      user?.full_name ||
+      user?.name ||
+      [user?.firstName, user?.lastName].filter(Boolean).join(" ") ||
+      [user?.first_name, user?.last_name].filter(Boolean).join(" ") ||
+      "User",
+  ).trim();
 
   return (
     <div className="app-shell">
       <header className="site-header">
         <div className="top-header">
           <div className="user-header">
-            <span className="user-full-name">{user?.fullName || user?.full_name || ""}</span>
+            <span className="user-full-name">{fullName}</span>
 
             <span className="role-pill">{user?.role || ""}</span>
 

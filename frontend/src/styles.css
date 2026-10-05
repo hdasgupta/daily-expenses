@@ -1045,8 +1045,22 @@ code {
   .top-header {
     padding: 0 10px;
   }
-  .user-header > span:first-child {
-    display: none;
+  .user-header {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 7px;
+    flex-wrap: nowrap;
+  }
+  .user-full-name {
+    display: inline-flex !important;
+    max-width: min(42vw, 220px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .role-pill {
+    display: inline-flex;
+    flex: 0 0 auto;
   }
   .brand-row {
     padding-left: 18px;
