@@ -208,11 +208,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
           }}
         >
           <div className="brand-mark">
-            {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
-              <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
-            ) : (
-              <img src="logo.png" width="32" height="32" alt="Organization" />
-            )}
+              <img src="/logo.png" width="32" height="32" alt="Organization" />
           </div>
 
           <div>
