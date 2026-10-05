@@ -5,6 +5,7 @@ import { sendDailyEmailReportToManagers } from "../src/services/dailyEmailReport
 import { sendMonthlyEmailReportToManagers } from "../src/services/monthlyEmailReportService.js";
 import { sendWeeklyEmailReportToManagers } from "../src/services/weeklyEmailReportService.js";
 import { sendYearlyEmailReportToManagers } from "../src/services/yearlyEmailReportService.js";
+import { notifyAdminFailure } from "../src/services/adminAlertService.js";
 
 let started = false;
 
@@ -177,6 +178,15 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
     } finally {
       await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
     }
+  } catch (error) {
+    await notifyAdminFailure({
+      category: "default-scheduler-email",
+      schedulerType: jobName,
+      failureTime: new Date().toISOString(),
+      failureMessage: error?.message || String(error),
+      stack: error?.stack,
+    });
+    throw error;
   } finally {
     client.release();
   }

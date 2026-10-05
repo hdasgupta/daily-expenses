@@ -1,3 +1,4 @@
+import { reportClientError } from "./clientErrorReporter";
 const RENDER_API_BASE_URL = "https://daily-expenses-g4ze.onrender.com/api";
 
 function isCapacitorNative() {
@@ -216,10 +217,34 @@ export async function api(path, options = {}) {
 
     return data;
   } catch (error) {
+    const isFetchFailure = error instanceof TypeError && error.message.includes("fetch");
     const message =
-      error instanceof TypeError && error.message.includes("fetch")
+      isFetchFailure
         ? `Unable to reach the backend API at ${baseUrl}. Verify the backend and API proxy configuration.`
         : error.message;
+
+    let loginEmail = null;
+    if (path === "/auth/login" && typeof options.body === "string") {
+      try {
+        loginEmail = JSON.parse(options.body)?.email || null;
+      } catch {
+        // Ignore malformed request bodies.
+      }
+    }
+
+    // Backend HTTP failures are reported by the backend error handler.
+    // Report only failures that can occur entirely on the client side, such
+    // as a network outage or an API request accidentally receiving the SPA.
+    if (isFetchFailure || String(message || "").includes("routed to the frontend")) {
+      void reportClientError({
+        category: "frontend-api-runtime",
+        error,
+        message,
+        path,
+        method: String(options.method || "GET").toUpperCase(),
+        userEmail: loginEmail,
+      });
+    }
 
     if (!options.silent) {
       showToast("error", message);

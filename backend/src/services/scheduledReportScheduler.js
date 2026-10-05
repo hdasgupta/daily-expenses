@@ -174,11 +174,12 @@ async function runJob(jobId, key) {
   let client = null;
   let execution = null;
   let startedAt = Date.now();
+  let job = null;
 
   try {
     client = await pool.connect();
 
-    const job = await getScheduledReportForExecution(jobId);
+    job = await getScheduledReportForExecution(jobId);
 
     if (!job) return;
 
@@ -223,6 +224,20 @@ async function runJob(jobId, key) {
       jobId,
       scheduledKey: key,
       error: errorMessage,
+      stack: error?.stack,
+    });
+
+    const failedJob = typeof job === "object" && job ? job : null;
+    void notifyAdminFailure({
+      category: "custom-scheduler-email",
+      schedulerName: failedJob?.name || `Scheduled report #${jobId}`,
+      schedulerOwnerName: failedJob?.owner_name || null,
+      schedulerOwnerEmail: failedJob?.owner_email || null,
+      schedulerSchedule: failedJob
+        ? `${failedJob.frequency || "unknown"} at ${String(failedJob.time_of_day || "").slice(0, 5) || "unknown"}`
+        : `Scheduled report #${jobId}`,
+      failureTime: new Date().toISOString(),
+      failureMessage: errorMessage,
       stack: error?.stack,
     });
 

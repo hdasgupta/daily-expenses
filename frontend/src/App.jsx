@@ -378,6 +378,7 @@ export default function App() {
 
     const expired = () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("daily-expenses:error-user");
 
       clearStoredAuthenticatedPath();
 
@@ -412,6 +413,18 @@ export default function App() {
           console.log("NORMALIZED permissions:", normalized?.permissions);
 
           setUser(normalized);
+
+          try {
+            localStorage.setItem(
+              "daily-expenses:error-user",
+              JSON.stringify({
+                fullName: normalized?.fullName || normalized?.full_name || null,
+                email: normalized?.email || null,
+              }),
+            );
+          } catch {
+            // Ignore storage failures; error reporting can still work without user context.
+          }
 
           /*
            * Once authentication has
@@ -580,6 +593,18 @@ export default function App() {
     }
 
     setUser(normalizedUser);
+
+    try {
+      localStorage.setItem(
+        "daily-expenses:error-user",
+        JSON.stringify({
+          fullName: normalizedUser?.fullName || normalizedUser?.full_name || null,
+          email: normalizedUser?.email || null,
+        }),
+      );
+    } catch {
+      // Ignore storage failures; error reporting can still work without user context.
+    }
 
     const nextPermissions = normalizePermissions(normalizedUser?.permissions);
 

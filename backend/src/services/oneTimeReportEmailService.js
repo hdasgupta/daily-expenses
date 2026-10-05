@@ -2,6 +2,7 @@ import { q, pool } from "../db/index.js";
 import { cleanConfig, buildReportPdfData } from "./reportService.js";
 import { buildReportPdf } from "./reportPdfService.js";
 import { sendReportEmail } from "./mailService.js";
+import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
 
@@ -136,7 +137,7 @@ async function claimJob(client, id) {
   if (!lock.rows[0]?.locked) return null;
 
   const result = await client.query(
-    `SELECT j.*, u.email AS owner_email
+    `SELECT j.*, u.email AS owner_email, u.full_name AS owner_name
        FROM public.one_time_report_email_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
       WHERE j.id = $1
@@ -247,6 +248,17 @@ async function executeOneTimeReportEmailJob(id) {
       console.error("One-time report email failed", {
         jobId: id,
         error: error?.message || String(error),
+        stack: error?.stack,
+      });
+
+      void notifyAdminFailure({
+        category: "custom-scheduler-email",
+        schedulerName: job.name || `Scheduled report #${id}`,
+        schedulerOwnerName: job.owner_name || null,
+        schedulerOwnerEmail: job.owner_email || null,
+        schedulerSchedule: `one-time at ${job.scheduled_for || "unknown"}`,
+        failureTime: new Date().toISOString(),
+        failureMessage: error?.message || String(error),
         stack: error?.stack,
       });
     } finally {
