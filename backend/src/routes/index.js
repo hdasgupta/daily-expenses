@@ -128,6 +128,12 @@ export function createRouter(maxUploadBytes) {
   router.post("/reports/export-pdf", auth, permit("report"), reportController.exportPdf);
   router.post("/reports/email-pdf", auth, permit("report"), reportController.emailReport);
   router.post("/reports/schedule-email", auth, permit("report"), reportController.scheduleEmail);
+  router.delete(
+    "/reports/schedule-email/:id",
+    auth,
+    permit("job-status"),
+    reportController.removeScheduledEmail,
+  );
   router.get("/report-selections", auth, permit("report"), reportController.selections);
   router.post("/report-selections", auth, permit("report"), reportController.save);
   router.delete("/report-selections/:id", auth, permit("report"), reportController.remove);

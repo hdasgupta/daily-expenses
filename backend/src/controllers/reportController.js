@@ -7,7 +7,10 @@ import {
 } from "../services/reportService.js";
 import { buildReportPdf } from "../services/reportPdfService.js";
 import { sendReportEmail } from "../services/mailService.js";
-import { scheduleOneTimeReportEmail } from "../services/oneTimeReportEmailService.js";
+import {
+  removeOneTimeReportEmailJob,
+  scheduleOneTimeReportEmail,
+} from "../services/oneTimeReportEmailService.js";
 
 export async function query(req, res) {
   res.json(await runReport(req.body || {}));
@@ -47,6 +50,16 @@ export async function scheduleEmail(req, res) {
   });
 
   res.status(201).json(job);
+}
+
+export async function removeScheduledEmail(req, res) {
+  await removeOneTimeReportEmailJob({
+    id: req.params.id,
+    userId: req.user.id,
+    isAdmin: req.user.role === "admin",
+  });
+
+  res.json({ ok: true });
 }
 
 export async function emailReport(req, res) {

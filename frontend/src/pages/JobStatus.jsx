@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CheckCircle2, Edit3, LoaderCircle, RefreshCw, Trash2, XCircle } from "lucide-react";
+import { CheckCircle2, Edit3, Info, LoaderCircle, RefreshCw, Trash2, XCircle } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -205,6 +205,8 @@ export default function JobStatus({ user }) {
   const [editBusy, setEditBusy] = useState(false);
   const [deletingJob, setDeletingJob] = useState(null);
   const [deleteBusy, setDeleteBusy] = useState(false);
+  const [deletingOneTimeJob, setDeletingOneTimeJob] = useState(null);
+  const [oneTimeDeleteBusy, setOneTimeDeleteBusy] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 1000);
@@ -312,6 +314,38 @@ export default function JobStatus({ user }) {
     }
   };
 
+  const removeOneTimeJob = async () => {
+    setOneTimeDeleteBusy(true);
+
+    try {
+      await api(`/reports/schedule-email/${deletingOneTimeJob.id}`, {
+        method: "DELETE",
+        loadingMessage: "Removing one-time report email…",
+      });
+
+      setDeletingOneTimeJob(null);
+      await load({ silent: true });
+    } finally {
+      setOneTimeDeleteBusy(false);
+    }
+  };
+
+  const PdfContentsInfo = () => (
+    <span className="job-pdf-info">
+      <button
+        className="job-info-icon"
+        type="button"
+        aria-label="About PDF contents"
+      >
+        <Info size={14} />
+      </button>
+      <span className="job-info-tooltip" role="tooltip">
+        The PDF contains the report chart, summary/pivot table, and filtered raw expense data.
+        Interactive page controls and other dashboard-only elements are not included.
+      </span>
+    </span>
+  );
+
   const reportForJob = (job) =>
     getDashboardReports().find((report) => report.key === job.report_key) || {
       key: job.report_key,
@@ -373,8 +407,8 @@ export default function JobStatus({ user }) {
                     <b>Next run:</b> {job.next_run_at ? formatDate(job.next_run_at) : "—"}
                   </span>
 
-                  <span>
-                    <b>PDF contents:</b> Bar/pivot chart · summary/pivot table · raw data
+                  <span className="job-pdf-content">
+                    <b>PDF contents:</b> Chart · summary/pivot table · raw data <PdfContentsInfo />
                   </span>
 
                   <span>
@@ -435,8 +469,16 @@ export default function JobStatus({ user }) {
                 <div className="scheduled-job-meta">
                   <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
                   <span><b>Timezone:</b> Asia/Kolkata</span>
+                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo /></span>
                   {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
                   {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
+                </div>
+
+                <div className="scheduled-report-actions" style={{ marginTop: 10 }}>
+                  <button className="danger" type="button" onClick={() => setDeletingOneTimeJob(job)}>
+                    <Trash2 size={15} />
+                    Remove
+                  </button>
                 </div>
               </article>
             ))}
@@ -568,6 +610,19 @@ export default function JobStatus({ user }) {
           />
         ) : null}
       </Modal>
+
+      <ConfirmDialog
+        open={Boolean(deletingOneTimeJob)}
+        title="Remove one-time report email"
+        message={
+          deletingOneTimeJob
+            ? `Remove “${deletingOneTimeJob.name}”? The one-time email will no longer be sent.`
+            : ""
+        }
+        onCancel={() => oneTimeDeleteBusy || setDeletingOneTimeJob(null)}
+        onConfirm={removeOneTimeJob}
+        busy={oneTimeDeleteBusy}
+      />
 
       <ConfirmDialog
         open={Boolean(deletingJob)}

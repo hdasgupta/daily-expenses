@@ -69,3 +69,61 @@
     grid-template-columns: 1fr;
   }
 }
+
+.job-pdf-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.job-pdf-info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.job-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  background: transparent;
+  cursor: help;
+}
+.job-info-icon:hover,
+.job-info-icon:focus-visible {
+  color: var(--primary);
+  background: var(--soft);
+  outline: none;
+}
+.job-info-tooltip {
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  width: min(320px, 80vw);
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 4px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+.job-pdf-info:hover .job-info-tooltip,
+.job-info-icon:focus-visible + .job-info-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
