@@ -178,9 +178,9 @@ export default function Layout({ user, path, navigate, logout, children }) {
       <header className="site-header">
         <div className="top-header">
           <div className="user-header">
-            <span>{user.fullName}</span>
+            <span className="user-full-name">{user?.fullName || user?.full_name || ""}</span>
 
-            <span className="role-pill">{user.role}</span>
+            <span className="role-pill">{user?.role || ""}</span>
 
             <button
               className="header-button"
@@ -208,7 +208,11 @@ export default function Layout({ user, path, navigate, logout, children }) {
           }}
         >
           <div className="brand-mark">
-              <img src="/logo.png" width="32" height="32" alt="Organization" />
+            {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
+              <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
+            ) : (
+              <img src="logo.png" width="32" height="32" alt="Organization" />
+            )}
           </div>
 
           <div>

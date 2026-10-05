@@ -104,17 +104,6 @@ CREATE TABLE IF NOT EXISTS public.report_selections (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(user_id, name)
 );
-CREATE TABLE IF NOT EXISTS public.report_selection_shares (
-  id BIGSERIAL PRIMARY KEY,
-  selection_id BIGINT NOT NULL REFERENCES public.report_selections(id) ON DELETE CASCADE,
-  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  shared_by_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  UNIQUE(selection_id, user_id),
-  CHECK(user_id <> shared_by_user_id)
-);
-CREATE INDEX IF NOT EXISTS idx_report_selection_shares_user ON public.report_selection_shares(user_id);
-CREATE INDEX IF NOT EXISTS idx_report_selection_shares_selection ON public.report_selection_shares(selection_id);
 CREATE TABLE IF NOT EXISTS public.pagination_settings (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
@@ -161,6 +150,26 @@ CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_started_at
   ON public.scheduler_job_executions(started_at DESC);
 CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_job_name
   ON public.scheduler_job_executions(job_name, started_at DESC);
+-- Keep one persisted execution record per common job and reporting period.
+-- Older failed retries may have produced duplicate rows, so retain the latest row before adding the constraint.
+DELETE FROM public.scheduler_job_executions e
+WHERE e.scheduled_key IS NOT NULL
+  AND e.id IN (
+    SELECT id
+    FROM (
+      SELECT id,
+             ROW_NUMBER() OVER (
+               PARTITION BY job_name, scheduled_key
+               ORDER BY CASE WHEN status = 'completed' THEN 0 ELSE 1 END, id DESC
+             ) AS row_number
+      FROM public.scheduler_job_executions
+      WHERE scheduled_key IS NOT NULL
+    ) ranked
+    WHERE row_number > 1
+  );
+CREATE UNIQUE INDEX IF NOT EXISTS uq_scheduler_job_executions_period
+  ON public.scheduler_job_executions(job_name, scheduled_key)
+  WHERE scheduled_key IS NOT NULL;
 CREATE TABLE IF NOT EXISTS public.scheduled_report_jobs (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
@@ -180,23 +189,6 @@ CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_owner
   ON public.scheduled_report_jobs(owner_user_id, active);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
   ON public.scheduled_report_jobs(active, frequency, time_of_day);
-CREATE TABLE IF NOT EXISTS public.one_time_report_email_jobs (
-  id BIGSERIAL PRIMARY KEY,
-  owner_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  name VARCHAR(150) NOT NULL,
-  config JSONB NOT NULL,
-  scheduled_for TIMESTAMPTZ NOT NULL,
-  status VARCHAR(20) NOT NULL DEFAULT 'pending'
-    CHECK(status IN ('pending','failed')),
-  last_attempt_at TIMESTAMPTZ,
-  last_error TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_due
-  ON public.one_time_report_email_jobs(scheduled_for, status);
-CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_owner
-  ON public.one_time_report_email_jobs(owner_user_id, scheduled_for);
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,

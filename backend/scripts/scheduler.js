@@ -42,8 +42,14 @@ function logSchedulerEvent(event, details = {}) {
 async function markJobStarted(client, jobName, scheduledKey) {
   const result = await client.query(
     `INSERT INTO public.scheduler_job_executions
-      (job_name, scheduled_key, status, started_at)
-     VALUES ($1, $2, 'running', now())
+      (job_name, scheduled_key, status, started_at, completed_at, duration_ms, error_message)
+     VALUES ($1, $2, 'running', now(), NULL, NULL, NULL)
+     ON CONFLICT (job_name, scheduled_key) DO UPDATE
+       SET status = 'running',
+           started_at = now(),
+           completed_at = NULL,
+           duration_ms = NULL,
+           error_message = NULL
      RETURNING id`,
     [jobName, scheduledKey],
   );

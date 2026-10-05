@@ -4,7 +4,6 @@ import {
   getScheduledReportForExecution,
   sendScheduledReportJob,
 } from "./scheduledReportService.js";
-import { processDueOneTimeReportEmailJobs } from "./oneTimeReportEmailService.js";
 
 let started = false;
 
@@ -68,6 +67,8 @@ function scheduledKey(job, local) {
   }
 
   if (job.frequency === "weekly") {
+    // Weekly jobs are keyed by their scheduled weekday/date. Since weekly
+    // jobs only become due on their configured weekday, this is one key per week.
     return `${local.year}-${local.month}-${local.day}`;
   }
 
@@ -267,8 +268,6 @@ async function processDueJobs() {
       });
     });
   }
-
-  await processDueOneTimeReportEmailJobs();
 }
 
 export function startScheduledReportScheduler() {

@@ -112,6 +112,10 @@ button:disabled {
   font-size: 13px;
   color: var(--muted);
 }
+.user-full-name {
+  font-weight: 600;
+}
+
 .role-pill {
   border: 1px solid var(--line);
   background: var(--soft);
