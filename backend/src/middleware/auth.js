@@ -43,3 +43,10 @@ export function permit(permission) {
     res.status(403).json({ error: "Permission denied" });
   };
 }
+
+export function nonAdmin(req, res, next) {
+  if (String(req.user?.role || "").toLowerCase() === "admin") {
+    return res.status(403).json({ error: "Profile page is not available for admin users" });
+  }
+  next();
+}

@@ -1537,3 +1537,27 @@ code {
 .report-chart-legend-group > span {
   opacity: 0.95;
 }
+
+
+.profile-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.otp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.whatsapp-admin-verification {
+  margin-top: 16px;
+}
+
+@media (max-width: 620px) {
+  .otp-row {
+    grid-template-columns: 1fr;
+  }
+}

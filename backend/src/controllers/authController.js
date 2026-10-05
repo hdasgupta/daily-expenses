@@ -30,5 +30,8 @@ export function meController(req, res) {
     email: req.user.email,
     role: req.user.role,
     permissions: req.user.permissions,
+    whatsappNumber: req.user.whatsapp_number,
+    whatsappVerifiedAt: req.user.whatsapp_verified_at,
+    whatsappPendingNumber: req.user.whatsapp_pending_number,
   });
 }

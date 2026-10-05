@@ -77,6 +77,12 @@ const navItems = [
     icon: UserRound,
     permission: "add-user",
   },
+  {
+    path: "/profile",
+    label: "My profile",
+    icon: UserRound,
+    permission: "profile",
+  },
 ];
 
 function normalizePermissions(permissions) {

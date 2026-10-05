@@ -5,6 +5,7 @@ import {
   listUsers,
   updateUser,
 } from "../services/userService.js";
+import { requestWhatsAppOtp, verifyWhatsAppOtp } from "../services/whatsappService.js";
 
 function paging(req) {
   return {
@@ -37,4 +38,18 @@ export async function remove(req, res) {
 }
 export async function roles(req, res) {
   res.json(await getRoles());
+}
+
+export async function requestWhatsAppVerification(req, res) {
+  res.json(await requestWhatsAppOtp(req.params.id, req.body?.whatsappNumber));
+}
+
+export async function verifyWhatsAppVerification(req, res) {
+  res.json(
+    await verifyWhatsAppOtp(
+      req.params.id,
+      req.body?.whatsappNumber,
+      req.body?.otp,
+    ),
+  );
 }

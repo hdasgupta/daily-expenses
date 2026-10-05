@@ -31,6 +31,25 @@ CREATE TABLE IF NOT EXISTS public.users (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE public.users ADD COLUMN IF NOT EXISTS whatsapp_number VARCHAR(20);
+ALTER TABLE public.users ADD COLUMN IF NOT EXISTS whatsapp_verified_at TIMESTAMPTZ;
+ALTER TABLE public.users ADD COLUMN IF NOT EXISTS whatsapp_pending_number VARCHAR(20);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_users_whatsapp_number
+  ON public.users(whatsapp_number)
+  WHERE whatsapp_number IS NOT NULL;
+CREATE TABLE IF NOT EXISTS public.whatsapp_otps (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  phone_number VARCHAR(20) NOT NULL,
+  otp_hash TEXT NOT NULL,
+  purpose VARCHAR(50) NOT NULL DEFAULT 'whatsapp-verification',
+  attempts INTEGER NOT NULL DEFAULT 0,
+  expires_at TIMESTAMPTZ NOT NULL,
+  used BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_whatsapp_otps_user_created
+  ON public.whatsapp_otps(user_id, created_at DESC);
 CREATE TABLE IF NOT EXISTS public.survivors (
   id BIGSERIAL PRIMARY KEY,
   full_name VARCHAR(200) NOT NULL,

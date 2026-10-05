@@ -27,7 +27,8 @@
     "multer": "^2.4.0",
     "node-cron": "^4.6.0",
     "pdfkit": "^0.20.2",
-    "pg": "^8.23.1"
+    "pg": "^8.23.1",
+    "@waapiapp/sdk": "^0.1.5"
   },
   "devDependencies": {
     "prettier": "^3.9.9"

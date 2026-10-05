@@ -67,3 +67,13 @@ services:
         value: Rehabilitation Center
       - key: ORGANIZATION_LOGO_URL
         value: ""
+      - key: WAAPI_TOKEN
+        sync: false
+      - key: WAAPI_INSTANCE_ID
+        value: "105506"
+      - key: WHATSAPP_OTP_TTL_MINUTES
+        value: "5"
+      - key: WHATSAPP_OTP_RESEND_COOLDOWN_SECONDS
+        value: "60"
+      - key: WHATSAPP_OTP_MAX_ATTEMPTS
+        value: "5"

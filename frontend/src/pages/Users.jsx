@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Edit3, Plus, RotateCcw, Trash2 } from "lucide-react";
+import { Edit3, Plus, RotateCcw, ShieldCheck, Trash2 } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
 import PasswordField from "../components/PasswordField";
@@ -14,6 +14,7 @@ const emptyForm = {
   password: "",
   confirmPassword: "",
   isDisabled: false,
+  whatsappNumber: "",
 };
 
 export default function Users() {
@@ -25,6 +26,8 @@ export default function Users() {
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
+  const [whatsappOtp, setWhatsappOtp] = useState("");
+  const [whatsappVerificationUserId, setWhatsappVerificationUserId] = useState(null);
 
   const load = async () => {
     if (!pagination.ready) return;
@@ -58,13 +61,24 @@ export default function Users() {
       delete body.password;
       delete body.confirmPassword;
     }
-    await api(editingId ? `/users/${editingId}` : "/users", {
+    const result = await api(editingId ? `/users/${editingId}` : "/users", {
       method: editingId ? "PUT" : "POST",
       body: JSON.stringify(body),
       loadingMessage: editingId ? "Updating user…" : "Adding user…",
     });
+
     setForm(emptyForm);
     setEditingId(null);
+
+    if (result?.whatsappOtpSent) {
+      setWhatsappVerificationUserId(result.id);
+      setWhatsappOtp("");
+      setForm((current) => ({
+        ...current,
+        whatsappNumber: result.whatsapp_pending_number || result.whatsapp_number || body.whatsappNumber || "",
+      }));
+    }
+
     await load();
   };
   const remove = async () => {
@@ -114,6 +128,15 @@ export default function Users() {
             ))}
           </select>
         </label>
+        <label>
+          WhatsApp number (optional)
+          <input
+            inputMode="tel"
+            placeholder="+91 9876543210"
+            value={form.whatsappNumber}
+            onChange={(e) => setForm({ ...form, whatsappNumber: e.target.value })}
+          />
+        </label>
         <PasswordField
           value={form.password}
           onChange={(value) => setForm({ ...form, password: value })}
@@ -143,12 +166,71 @@ export default function Users() {
             onClick={() => {
               setEditingId(null);
               setForm(emptyForm);
+              setWhatsappVerificationUserId(null);
+              setWhatsappOtp("");
             }}
           >
             <RotateCcw size={17} /> Reset
           </button>
         </div>
       </form>
+      {whatsappVerificationUserId ? (
+        <div className="card form-stack whatsapp-admin-verification">
+          <div className="section-label">
+            <ShieldCheck size={17} /> Verify WhatsApp number
+          </div>
+          <p className="muted">
+            An OTP was sent to the WhatsApp number entered for this user.
+          </p>
+          <label>
+            OTP
+            <input
+              inputMode="numeric"
+              maxLength={6}
+              value={whatsappOtp}
+              onChange={(e) => setWhatsappOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
+              placeholder="6-digit OTP"
+            />
+          </label>
+          <div className="form-actions">
+            <button
+              className="primary"
+              type="button"
+              disabled={whatsappOtp.length !== 6}
+              onClick={async () => {
+                await api(`/users/${whatsappVerificationUserId}/whatsapp/verify`, {
+                  method: "POST",
+                  body: JSON.stringify({
+                    whatsappNumber: form.whatsappNumber,
+                    otp: whatsappOtp,
+                  }),
+                  loadingMessage: "Verifying WhatsApp number…",
+                });
+                setWhatsappVerificationUserId(null);
+                setWhatsappOtp("");
+                await load();
+              }}
+            >
+              <ShieldCheck size={17} /> Verify WhatsApp
+            </button>
+            <button
+              className="secondary"
+              type="button"
+              onClick={async () => {
+                await api(`/users/${whatsappVerificationUserId}/whatsapp/request-otp`, {
+                  method: "POST",
+                  body: JSON.stringify({ whatsappNumber: form.whatsappNumber }),
+                  loadingMessage: "Sending WhatsApp OTP…",
+                });
+                setWhatsappOtp("");
+              }}
+            >
+              Resend OTP
+            </button>
+          </div>
+        </div>
+      ) : null}
+
       <Pagination
         page={page}
         setPage={setPage}
@@ -168,6 +250,8 @@ export default function Users() {
               <strong>{row.full_name}</strong>
               <span>
                 {row.email} · {row.role} {row.is_disabled ? "· Disabled" : ""}
+                {row.whatsapp_number ? ` · WhatsApp +${row.whatsapp_number}` : " · WhatsApp not set"}
+                {row.whatsapp_verified_at ? " · Verified" : row.whatsapp_pending_number ? " · Verification pending" : ""}
               </span>
             </div>
             <div className="row-actions">
@@ -183,7 +267,10 @@ export default function Users() {
                     password: "",
                     confirmPassword: "",
                     isDisabled: row.is_disabled,
+                    whatsappNumber: row.whatsapp_number ? `+${row.whatsapp_number}` : "",
                   });
+                  setWhatsappVerificationUserId(null);
+                  setWhatsappOtp("");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >

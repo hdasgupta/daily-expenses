@@ -44,4 +44,11 @@ export const env = {
   appTimezone: process.env.APP_TIMEZONE || "Asia/Kolkata",
   organizationName: process.env.ORGANIZATION_NAME || "Rehabilitation Center",
   organizationLogoUrl: process.env.ORGANIZATION_LOGO_URL || "",
+  waapiToken: process.env.WAAPI_TOKEN || "",
+  waapiInstanceId: Number(process.env.WAAPI_INSTANCE_ID || 105506),
+  whatsappOtpTtlMinutes: Number(process.env.WHATSAPP_OTP_TTL_MINUTES || 5),
+  whatsappOtpResendCooldownSeconds: Number(
+    process.env.WHATSAPP_OTP_RESEND_COOLDOWN_SECONDS || 60,
+  ),
+  whatsappOtpMaxAttempts: Number(process.env.WHATSAPP_OTP_MAX_ATTEMPTS || 5),
 };

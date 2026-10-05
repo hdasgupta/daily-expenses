@@ -11,7 +11,8 @@ import * as dashboardController from "../controllers/dashboardController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
 import * as scheduledReportController from "../controllers/scheduledReportController.js";
-import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
+import * as profileController from "../controllers/profileController.js";
+import { auth, permit, indiaTimezoneOnly, nonAdmin } from "../middleware/auth.js";
 import { checkDbConnection } from "../db/index.js";
 
 export function createRouter(maxUploadBytes) {
@@ -68,6 +69,12 @@ export function createRouter(maxUploadBytes) {
   router.post("/auth/request-reset", authController.requestResetController);
   router.post("/auth/reset-password", authController.resetPasswordController);
   router.get("/me", auth, authController.meController);
+
+  router.get("/profile", auth, nonAdmin, profileController.getProfile);
+  router.put("/profile", auth, nonAdmin, profileController.update);
+  router.post("/profile/change-password", auth, nonAdmin, profileController.changePassword);
+  router.post("/profile/whatsapp/request-otp", auth, nonAdmin, profileController.requestWhatsAppOtp);
+  router.post("/profile/whatsapp/verify", auth, nonAdmin, profileController.verifyWhatsAppOtp);
 
   router.get("/pagination/:module", auth, paginationController.get);
   router.put("/pagination/:module", auth, paginationController.save);
@@ -165,6 +172,18 @@ export function createRouter(maxUploadBytes) {
   router.post("/users", auth, permit("add-user"), userController.create);
   router.put("/users/:id", auth, permit("add-user"), userController.update);
   router.delete("/users/:id", auth, permit("add-user"), userController.remove);
+  router.post(
+    "/users/:id/whatsapp/request-otp",
+    auth,
+    permit("add-user"),
+    userController.requestWhatsAppVerification,
+  );
+  router.post(
+    "/users/:id/whatsapp/verify",
+    auth,
+    permit("add-user"),
+    userController.verifyWhatsAppVerification,
+  );
 
   return router;
 }

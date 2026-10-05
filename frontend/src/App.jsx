@@ -15,6 +15,7 @@ import DashboardDetail from "./pages/DashboardDetail";
 import DashboardDrilldown from "./pages/DashboardDrilldown";
 import Users from "./pages/Users";
 import JobStatus from "./pages/JobStatus";
+import Profile from "./pages/Profile";
 import { api } from "./lib/api";
 
 const routes = {
@@ -59,6 +60,10 @@ const routes = {
   "/job-status": {
     component: JobStatus,
     permission: "job-status",
+  },
+  "/profile": {
+    component: Profile,
+    permission: "profile",
   },
 };
 
@@ -260,6 +265,10 @@ function normalizeUser(rawUser) {
 
   if (permissions.length === 0 && PERMISSIONS_BY_ROLE[role]) {
     permissions = [...PERMISSIONS_BY_ROLE[role]];
+  }
+
+  if (role !== "admin" && !permissions.includes("profile")) {
+    permissions.push("profile");
   }
 
   return {
