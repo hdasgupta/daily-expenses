@@ -65,7 +65,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   ]);
 
   const oneTimeResult = await q(
-    `SELECT id, name, scheduled_for, status, last_attempt_at, last_error, created_at
+    `SELECT id, name, config, scheduled_for, status, last_attempt_at, last_error, created_at
        FROM public.one_time_report_email_jobs
       WHERE owner_user_id = $1
       ORDER BY scheduled_for ASC, id ASC`,

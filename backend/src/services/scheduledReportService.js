@@ -154,6 +154,7 @@ function decorateJob(row) {
     ...row,
     time_of_day: String(row.time_of_day || "").slice(0, 5),
     report_label: definition?.label || row.report_key,
+    report_help: definition?.help || "Dashboard report",
     next_run_at: nextRunAt,
   };
 }

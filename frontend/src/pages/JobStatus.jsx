@@ -148,6 +148,84 @@ function describeCron(cronExpression) {
   return cronExpression;
 }
 
+const reportFieldLabels = {
+  date: "date",
+  week: "week",
+  month: "month",
+  year: "year",
+  survivor: "survivor",
+  category: "category",
+  item: "item",
+  price: "amount",
+};
+
+function describeReportConfig(config = {}) {
+  const filters = config.filters || {};
+  const filterParts = [];
+
+  if (filters.date) filterParts.push(`date = ${filters.date}`);
+  if (filters.dateFrom || filters.dateTo) {
+    filterParts.push(`date range = ${filters.dateFrom || "any"} to ${filters.dateTo || "any"}`);
+  }
+  if (filters.month) filterParts.push(`month = ${filters.month}`);
+  if (filters.year) filterParts.push(`year = ${filters.year}`);
+  if (filters.hasProof === "true") filterParts.push("has proof = yes");
+  if (filters.hasProof === "false") filterParts.push("has proof = no");
+
+  if (filters.categoryItems?.length) {
+    const labels = Array.isArray(filters.categoryItemLabels)
+      ? filters.categoryItemLabels
+      : filters.categoryItems;
+    filterParts.push(`category/item = ${labels.join(", ")}`);
+  }
+  if (filters.categories?.length) filterParts.push(`categories = ${filters.categories.join(", ")}`);
+  if (filters.survivors?.length) filterParts.push(`survivors = ${filters.survivors.join(", ")}`);
+
+  const groupBy = Array.isArray(config.groupBy) ? config.groupBy : [];
+  const groupText = groupBy.length
+    ? groupBy.map((value) => reportFieldLabels[value] || value).join(", ")
+    : "none";
+
+  const sortColumns = Array.isArray(config.sortColumns) ? config.sortColumns : [];
+  const sortText = sortColumns.length
+    ? sortColumns
+        .map(
+          (item) =>
+            `${reportFieldLabels[item.column] || item.column} ${item.direction === "desc" ? "descending" : "ascending"}`,
+        )
+        .join(", ")
+    : groupBy.length
+      ? "grouping order, then newest expense date first"
+      : "default expense order";
+
+  return {
+    filters: filterParts.length ? filterParts.join("; ") : "none — all matching expense records",
+    groupBy: groupText,
+    sorting: sortText,
+    summarise: config.summarise
+      ? "yes — values are aggregated per group"
+      : "no — individual expense records are retained",
+  };
+}
+
+function PdfContentsInfo({ config, dashboardSource = "" }) {
+  const details = config ? describeReportConfig(config) : null;
+  const description = details
+    ? `PDF contents: report chart, summary/pivot table, and filtered raw expense data. Filters: ${details.filters}. Group by: ${details.groupBy}. Sorting: ${details.sorting}. Summarised: ${details.summarise}. Interactive dashboard controls are not included.`
+    : `PDF contains the dashboard report chart, summary/pivot table, and underlying expense data. Dashboard source: ${dashboardSource || "predefined dashboard report"}. Interactive dashboard controls are not included.`;
+
+  return (
+    <span className="job-pdf-info">
+      <button className="job-info-icon" type="button" aria-label="About PDF contents">
+        <Info size={14} />
+      </button>
+      <span className="job-info-tooltip" role="tooltip">
+        {description}
+      </span>
+    </span>
+  );
+}
+
 function statusIcon(status) {
   if (status === "completed") {
     return <CheckCircle2 size={15} />;
@@ -330,22 +408,6 @@ export default function JobStatus({ user }) {
     }
   };
 
-  const PdfContentsInfo = () => (
-    <span className="job-pdf-info">
-      <button
-        className="job-info-icon"
-        type="button"
-        aria-label="About PDF contents"
-      >
-        <Info size={14} />
-      </button>
-      <span className="job-info-tooltip" role="tooltip">
-        The PDF contains the report chart, summary/pivot table, and filtered raw expense data.
-        Interactive page controls and other dashboard-only elements are not included.
-      </span>
-    </span>
-  );
-
   const reportForJob = (job) =>
     getDashboardReports().find((report) => report.key === job.report_key) || {
       key: job.report_key,
@@ -407,8 +469,12 @@ export default function JobStatus({ user }) {
                     <b>Next run:</b> {job.next_run_at ? formatDate(job.next_run_at) : "—"}
                   </span>
 
+                  <span>
+                    <b>Dashboard source:</b> {job.report_label} — {job.report_help || "Dashboard report"}
+                  </span>
+
                   <span className="job-pdf-content">
-                    <b>PDF contents:</b> Chart · summary/pivot table · raw data <PdfContentsInfo />
+                    <b>PDF contents:</b> Chart · summary/pivot table · raw data <PdfContentsInfo dashboardSource={`${job.report_label} — ${job.report_help || "Dashboard report"}`} />
                   </span>
 
                   <span>
@@ -469,7 +535,7 @@ export default function JobStatus({ user }) {
                 <div className="scheduled-job-meta">
                   <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
                   <span><b>Timezone:</b> Asia/Kolkata</span>
-                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo /></span>
+                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} /></span>
                   {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
                   {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
                 </div>
