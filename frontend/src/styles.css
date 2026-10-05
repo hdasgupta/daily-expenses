@@ -1503,3 +1503,19 @@ code {
   font-size: 12px;
   margin-top: 4px;
 }
+.report-chart-legend-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding-right: 8px;
+}
+.report-chart-legend-group strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+.report-chart-legend-group > span {
+  opacity: 0.95;
+}

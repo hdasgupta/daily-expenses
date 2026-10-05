@@ -486,12 +486,16 @@ export default function DashboardDetail({ navigate, user }) {
                   {chartModel.stackedCategory ? (
                     <div className="dashboard-chart-legend">
                       {chartModel.categories.map((item) => (
-                        <span key={item.label}><i style={{ background: item.fill }} />{item.label}</span>
+                        <div className="report-chart-legend-group" key={item.label}>
+                          <strong><i style={{ background: item.fill }} />{item.label}</strong>
+                          {item.shades.map((shade) => (
+                            <span key={`${item.label}-${shade.label}`}><i style={{ background: shade.fill }} />{shade.label}</span>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   ) : null}
-
-                  <ResponsiveContainer width="100%" height={380}>
+                <ResponsiveContainer width="100%" height={380}>
                     <BarChart
                       data={chartData}
                       margin={{
@@ -758,10 +762,12 @@ function buildChartModel(data) {
     const categoryValues = [...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries()];
     const survivorValues = [...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries()];
     const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
+    const survivorCount = Math.max(survivorValues.length, 1);
+    const shadeFor = (categoryIndex, survivorIndex) => `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
     const series = [];
     categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
       survivorValues.forEach(([survivorKey, survivorValue]) => {
-        series.push({ dataKey: `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`, label: prettyValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: prettyValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: palette[categoryIndex % palette.length], legendType: "none" });
+        series.push({ dataKey: `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`, label: prettyValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: prettyValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: shadeFor(categoryIndex, survivorValues.findIndex(([key]) => key === survivorKey)), legendType: "none" });
       });
     });
     const chartRows = new Map();
@@ -782,7 +788,14 @@ function buildChartModel(data) {
       description: `${xColumn} on the X-axis; categories are the legend and survivors are stacked within each category. Click any segment to drill down.`,
       data: Array.from(chartRows.values()),
       series,
-      categories: categoryValues.map(([, value], index) => ({ label: prettyValue(value, category), fill: palette[index % palette.length] })),
+      categories: categoryValues.map(([, value], index) => ({
+        label: prettyValue(value, category),
+        fill: palette[index % palette.length],
+        shades: survivorValues.map(([, survivorValue], survivorIndex) => ({
+          label: prettyValue(survivorValue, survivor),
+          fill: shadeFor(index, survivorIndex),
+        })),
+      })),
     };
   }
 

@@ -253,11 +253,13 @@ function buildReportChartModel(result) {
     const dataMap = new Map();
     const series = [];
     const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
+    const survivorCount = Math.max(survivorValues.length, 1);
+    const shadeFor = (categoryIndex, survivorIndex) => `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
 
     categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
       survivorValues.forEach(([survivorKey, survivorValue]) => {
         const dataKey = `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
-        series.push({ dataKey, label: reportChartValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: reportChartValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: palette[categoryIndex % palette.length], legendType: "none" });
+        series.push({ dataKey, label: reportChartValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: reportChartValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: shadeFor(categoryIndex, survivorValues.findIndex(([key]) => key === survivorKey)), legendType: "none" });
       });
     });
 
@@ -275,7 +277,14 @@ function buildReportChartModel(result) {
       stackedCategory: true,
       data: [...dataMap.values()],
       series,
-      categories: categoryValues.map(([, value], index) => ({ label: reportChartValue(value, category), fill: palette[index % palette.length] })),
+      categories: categoryValues.map(([, value], index) => ({
+        label: reportChartValue(value, category),
+        fill: palette[index % palette.length],
+        shades: survivorValues.map(([, survivorValue], survivorIndex) => ({
+          label: reportChartValue(survivorValue, survivor),
+          fill: shadeFor(index, survivorIndex),
+        })),
+      })),
       description: `${xColumn} on the X-axis; categories are the legend and survivors are stacked within each category.`,
     };
   }
@@ -968,7 +977,12 @@ export default function Reports() {
             {chartModel.stackedCategory ? (
               <div className="report-chart-legend">
                 {chartModel.categories.map((item) => (
-                  <span key={item.label}><i style={{ background: item.fill }} />{item.label}</span>
+                  <div className="report-chart-legend-group" key={item.label}>
+                    <strong><i style={{ background: item.fill }} />{item.label}</strong>
+                    {item.shades.map((shade) => (
+                      <span key={`${item.label}-${shade.label}`}><i style={{ background: shade.fill }} />{shade.label}</span>
+                    ))}
+                  </div>
                 ))}
               </div>
             ) : null}
