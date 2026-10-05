@@ -557,8 +557,17 @@ export default function Reports() {
     await downloadPdf("/reports/export-pdf", config);
   };
 
+  const reportHasData = Boolean(
+    result?.rows?.length &&
+      !(
+        result.mode === "summary" &&
+        config.groupBy.length === 0 &&
+        Number(result.total || 0) === 0
+      ),
+  );
+
   const openScheduleEmail = () => {
-    if (!result?.rows?.length) return;
+    if (!reportHasData) return;
 
     const now = new Date(Date.now() + 10 * 60 * 1000);
     const parts = new Intl.DateTimeFormat("en-CA", {
@@ -582,7 +591,7 @@ export default function Reports() {
 
   const scheduleEmail = async (event) => {
     event.preventDefault();
-    if (!result?.rows?.length || !scheduleDate || !scheduleTime) return;
+    if (!reportHasData || !scheduleDate || !scheduleTime) return;
 
     setScheduleBusy(true);
     try {
@@ -823,7 +832,7 @@ export default function Reports() {
         <button
           className="secondary"
           type="button"
-          disabled={!result?.rows?.length}
+          disabled={!reportHasData}
           onClick={openScheduleEmail}
         >
           <CalendarClock size={17} />

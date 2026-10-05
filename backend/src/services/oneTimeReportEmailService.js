@@ -40,6 +40,12 @@ async function resolveScheduledFor(value) {
 
 export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user }) {
   const clean = cleanConfig(config || {});
+  const report = await buildReportPdfData(clean);
+
+  if (!report.rows?.length && !report.rawRows?.length) {
+    throw error("Cannot schedule an email for a report with no data.");
+  }
+
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
 
