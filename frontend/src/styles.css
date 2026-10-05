@@ -926,6 +926,38 @@ textarea:focus {
 }
 .selection-info-button {
   flex: 0 0 auto;
+  position: relative;
+}
+
+.selection-info-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 7px);
+  z-index: 1000;
+  width: max-content;
+  max-width: min(280px, 70vw);
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: var(--text);
+  color: var(--card);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  white-space: normal;
+  text-align: left;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(3px);
+  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
+}
+
+.selection-info-button:hover::after,
+.selection-info-button:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 .selection-row-actions {
   display: flex;

@@ -1012,7 +1012,7 @@ export default function Reports() {
                 <button
                   type="button"
                   className="icon-button soft selection-info-button"
-                  title={`Owner: ${selection.owner_name}`}
+                  data-tooltip={`Owner: ${selection.owner_name}`}
                   aria-label={`Owner: ${selection.owner_name}`}
                 >
                   <Info size={15} />
