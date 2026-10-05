@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import {
   ArrowDown,
   ArrowUp,
@@ -217,6 +217,86 @@ function calculateDisplayTotal(rows) {
   }
 
   return total;
+}
+
+function reportChartValue(value, column) {
+  if (value == null || value === "") return "—";
+  if (["date", "week", "month"].includes(column)) {
+    const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
+    if (!Number.isNaN(date.getTime())) {
+      return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(date);
+    }
+  }
+  return String(value);
+}
+
+function buildReportChartModel(result) {
+  const rows = Array.isArray(result?.rows) ? result.rows : [];
+  const groupBy = Array.isArray(result?.groupBy) ? result.groupBy : [];
+  if (groupBy.length <= 1) {
+    return {
+      stackedCategory: false,
+      data: rows.map((row, index) => ({ ...row, chartLabel: groupBy[0] ? reportChartValue(row[groupBy[0]], groupBy[0]) : "Total", chartValue: Number(row.total || 0), index })),
+      series: [{ dataKey: "chartValue", label: "Total", fill: "var(--accent)" }],
+      description: "Each bar represents one summary-table row.",
+    };
+  }
+
+  const period = groupBy.find((column) => ["date", "week", "month", "year"].includes(column));
+  const category = groupBy.includes("category") ? "category" : null;
+  const survivor = groupBy.includes("survivor") ? "survivor" : null;
+  const xColumn = period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
+
+  if (category && survivor) {
+    const categoryValues = [...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries()];
+    const survivorValues = [...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries()];
+    const dataMap = new Map();
+    const series = [];
+    const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
+
+    categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
+      survivorValues.forEach(([survivorKey, survivorValue]) => {
+        const dataKey = `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
+        series.push({ dataKey, label: reportChartValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: reportChartValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: palette[categoryIndex % palette.length], legendType: "none" });
+      });
+    });
+
+    rows.forEach((row) => {
+      const xKey = String(row[xColumn] ?? "—");
+      if (!dataMap.has(xKey)) dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
+      const target = dataMap.get(xKey);
+      const ci = categoryValues.findIndex(([key]) => key === String(row[category] ?? "—"));
+      const dataKey = `cat_${ci}_surv_${String(row[survivor] ?? "—").replace(/[^a-zA-Z0-9_-]/g, "_")}`;
+      target[dataKey] = Number(target[dataKey] || 0) + Number(row.total || 0);
+      target._groupRows[dataKey] = row;
+    });
+
+    return {
+      stackedCategory: true,
+      data: [...dataMap.values()],
+      series,
+      categories: categoryValues.map(([, value], index) => ({ label: reportChartValue(value, category), fill: palette[index % palette.length] })),
+      description: `${xColumn} on the X-axis; categories are the legend and survivors are stacked within each category.`,
+    };
+  }
+
+  const seriesColumn = groupBy.find((column) => column !== xColumn) || groupBy[1];
+  const seriesMap = new Map();
+  const dataMap = new Map();
+  rows.forEach((row) => {
+    const seriesKey = String(row[seriesColumn] ?? "—");
+    if (!seriesMap.has(seriesKey)) {
+      const index = seriesMap.size;
+      seriesMap.set(seriesKey, { dataKey: `series_${index}`, label: reportChartValue(row[seriesColumn], seriesColumn), fill: `var(--dashboard-series-${(index % 8) + 1})` });
+    }
+    const xKey = String(row[xColumn] ?? "—");
+    if (!dataMap.has(xKey)) dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
+    const target = dataMap.get(xKey);
+    const series = seriesMap.get(seriesKey);
+    target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
+    target._groupRows[series.dataKey] = row;
+  });
+  return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
 }
 
 export default function Reports() {
@@ -881,30 +961,33 @@ export default function Reports() {
         </button>
       </div>
 
-      {showChart && result?.chartData?.length ? (
-        <div className="card report-chart">
-          <ResponsiveContainer width="100%" height={360}>
-            <BarChart data={result.chartData}>
-              <CartesianGrid strokeDasharray="3 3" />
-
-              <XAxis
-                dataKey="label"
-                tick={{ fontSize: 11 }}
-                interval={0}
-                angle={-25}
-                textAnchor="end"
-                height={90}
-              />
-
-              <YAxis />
-
-              <Tooltip formatter={(value) => [`₹${Number(value).toFixed(2)}`, "Total"]} />
-
-              <Bar dataKey="value" fill="var(--accent)" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      ) : null}
+      {showChart && result?.rows?.length ? (() => {
+        const chartModel = buildReportChartModel(result);
+        return (
+          <div className="card report-chart">
+            {chartModel.stackedCategory ? (
+              <div className="report-chart-legend">
+                {chartModel.categories.map((item) => (
+                  <span key={item.label}><i style={{ background: item.fill }} />{item.label}</span>
+                ))}
+              </div>
+            ) : null}
+            <ResponsiveContainer width="100%" height={380}>
+              <BarChart data={chartModel.data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="chartLabel" tick={{ fontSize: 11 }} interval={0} angle={chartModel.stackedCategory ? -25 : -25} textAnchor="end" height={90} />
+                <YAxis />
+                <Tooltip formatter={(value, name, item) => [`₹${Number(value).toFixed(2)}`, item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name]} />
+                {!chartModel.stackedCategory && chartModel.series.length > 1 ? <Legend /> : null}
+                {chartModel.series.map((series) => (
+                  <Bar key={series.dataKey} dataKey={series.dataKey} name={series.label} fill={series.fill} stackId={series.stackId} stroke="var(--surface)" strokeWidth={1} />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="report-chart-description">{chartModel.description}</div>
+          </div>
+        );
+      })() : null}
 
       <ReportContent result={result} renderCell={renderCell} />
 

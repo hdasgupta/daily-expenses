@@ -116,76 +116,84 @@ function drawSimpleBarChart(doc, title, rows, groupBy) {
 }
 
 function drawPivotBarChart(doc, title, rows, groupBy) {
-  const pivot = pivotSummary(rows, groupBy);
+  const groups = Array.isArray(groupBy) ? groupBy : [];
+  const period = groups.find((column) => ["date", "week", "month", "year"].includes(column));
+  const category = groups.includes("category") ? "category" : null;
+  const survivor = groups.includes("survivor") ? "survivor" : null;
+  const xColumn = period || groups.find((column) => column !== category && column !== survivor) || groups[0];
+  const palette = ["#315f9f", "#d97706", "#059669", "#7c3aed", "#dc2626", "#0891b2", "#be185d", "#65a30d"];
   doc.fontSize(13).text(title);
   doc.moveDown(0.35);
-  if (!pivot || !pivot.rows.length || !pivot.columnValues.length) {
-    doc.fontSize(10).text("No pivot summary data for this period.");
-    doc.moveDown();
-    return;
-  }
+  if (!rows.length) { doc.fontSize(10).text("No summary data for this period."); doc.moveDown(); return; }
 
   const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
   const chartHeight = 170;
   const baseline = doc.y + chartHeight;
   const startX = doc.page.margins.left + 12;
-  const max = Math.max(...pivot.rows.map((row) => row.total), 1);
-  const barWidth = Math.max(20, Math.min(58, (usableWidth - 40) / pivot.rows.length - 12));
-  const palette = [
-    "#315f9f",
-    "#70ad47",
-    "#ed7d31",
-    "#8064a2",
-    "#ffc000",
-    "#5b9bd5",
-    "#a5a5a5",
-    "#4f81bd",
-  ];
+  const xMap = new Map();
+  const categoryMap = new Map();
+  const survivorMap = new Map();
+  const seriesColumn = groups.find((column) => column !== xColumn) || groups[1];
+  const values = new Map();
 
-  pivot.rows.forEach((row, index) => {
-    const x = startX + index * (barWidth + 11);
-    let y = baseline;
-    for (let columnIndex = 0; columnIndex < pivot.columnValues.length; columnIndex += 1) {
-      const key = pivot.columnValues[columnIndex].key;
-      const amount = Number(row.cells[key] || 0);
-      const height = (amount / max) * (chartHeight - 40);
-      if (!height) continue;
-      y -= height;
-      doc.save();
-      doc.fillColor(palette[columnIndex % palette.length]);
-      doc.rect(x, y, barWidth, height).fill();
-      doc.restore();
+  rows.forEach((row) => {
+    const xKey = String(row[xColumn] ?? "—");
+    if (!xMap.has(xKey)) xMap.set(xKey, { key: xKey, label: prettyValue(row[xColumn], xColumn) });
+    if (category && survivor) {
+      const categoryKey = String(row[category] ?? "—");
+      const survivorKey = String(row[survivor] ?? "—");
+      if (!categoryMap.has(categoryKey)) categoryMap.set(categoryKey, { key: categoryKey, label: prettyValue(row[category], category) });
+      if (!survivorMap.has(survivorKey)) survivorMap.set(survivorKey, { key: survivorKey, label: prettyValue(row[survivor], survivor) });
+      const key = `${xKey}\u0002${categoryKey}\u0002${survivorKey}`;
+      values.set(key, (values.get(key) || 0) + Number(row.total || 0));
+    } else {
+      const seriesKey = String(row[seriesColumn] ?? "—");
+      if (!categoryMap.has(seriesKey)) categoryMap.set(seriesKey, { key: seriesKey, label: prettyValue(row[seriesColumn], seriesColumn) });
+      const key = `${xKey}\u0002${seriesKey}`;
+      values.set(key, (values.get(key) || 0) + Number(row.total || 0));
     }
-    const label = pivot.rowColumns
-      .map((column) => prettyValue(row.values[column], column))
-      .join(" · ");
-    doc
-      .fillColor("black")
-      .fontSize(5.8)
-      .text(label, x - 5, baseline + 5, {
-        width: barWidth + 10,
-        align: "center",
-      });
+  });
+
+  const xItems = [...xMap.values()];
+  const outerItems = [...categoryMap.values()];
+  const innerItems = [...survivorMap.values()];
+  const max = Math.max(...xItems.map((xItem) => category && survivor ? outerItems.reduce((sum, outer) => sum + innerItems.reduce((s, inner) => s + (values.get(`${xItem.key}\u0002${outer.key}\u0002${inner.key}`) || 0), 0), 0) : outerItems.reduce((sum, outer) => sum + (values.get(`${xItem.key}\u0002${outer.key}`) || 0), 0)), 1);
+  const slot = usableWidth / Math.max(xItems.length, 1);
+  const stackWidth = Math.max(8, Math.min(24, (slot - 12) / Math.max(outerItems.length, 1) - 3));
+
+  xItems.forEach((xItem, xIndex) => {
+    const groupWidth = outerItems.length * (stackWidth + 3) - 3;
+    const groupStart = startX + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
+    outerItems.forEach((outer, outerIndex) => {
+      const bx = groupStart + outerIndex * (stackWidth + 3);
+      let y = baseline;
+      let total = 0;
+      if (category && survivor) {
+        innerItems.forEach((inner) => {
+          const value = Number(values.get(`${xItem.key}\u0002${outer.key}\u0002${inner.key}`) || 0);
+          if (!value) return;
+          const height = (value / max) * (chartHeight - 40);
+          y -= height; total += value;
+          doc.save().fillColor(palette[outerIndex % palette.length]).rect(bx, y, stackWidth, height).fill().restore();
+        });
+      } else {
+        total = Number(values.get(`${xItem.key}\u0002${outer.key}`) || 0);
+        const height = (total / max) * (chartHeight - 40);
+        y -= height;
+        doc.save().fillColor(palette[outerIndex % palette.length]).rect(bx, y, stackWidth, height).fill().restore();
+      }
+      if (total) doc.fontSize(5.5).fillColor("black").text(money(total), bx - 8, y - 10, { width: stackWidth + 16, align: "center", ellipsis: true });
+    });
+    doc.fontSize(5.8).fillColor("black").text(xItem.label, startX + xIndex * slot, baseline + 5, { width: slot - 2, align: "center", ellipsis: true });
   });
 
   let legendX = startX;
-  const legendY = baseline + 26;
-  pivot.columnValues.forEach(({ value }, index) => {
-    const text = prettyValue(value, pivot.columnColumn);
-    const labelWidth = Math.min(115, Math.max(48, doc.widthOfString(text, { fontSize: 7 }) + 16));
-    if (legendX + labelWidth > doc.page.width - doc.page.margins.right) {
-      legendX = startX;
-    }
-    doc.save();
-    doc.fillColor(palette[index % palette.length]);
-    doc.rect(legendX, legendY, 8, 8).fill();
-    doc.restore();
-    doc
-      .fillColor("black")
-      .fontSize(7)
-      .text(text, legendX + 11, legendY - 1, {
-        width: labelWidth - 11,
-      });
+  const legendY = baseline + 28;
+  outerItems.forEach((item, index) => {
+    const labelWidth = Math.min(115, Math.max(48, doc.widthOfString(item.label, { fontSize: 7 }) + 16));
+    if (legendX + labelWidth > doc.page.width - doc.page.margins.right) legendX = startX;
+    doc.save().fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill().restore();
+    doc.fillColor("black").fontSize(7).text(item.label, legendX + 11, legendY - 1, { width: labelWidth - 11, ellipsis: true });
     legendX += labelWidth;
   });
   doc.y = legendY + 19;

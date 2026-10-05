@@ -482,6 +482,14 @@ export default function DashboardDetail({ navigate, user }) {
                     minWidth: `${chartModel.minWidth}px`,
                   }}
                 >
+                  {chartModel.stackedCategory ? (
+                    <div className="dashboard-chart-legend">
+                      {chartModel.categories.map((item) => (
+                        <span key={item.label}><i style={{ background: item.fill }} />{item.label}</span>
+                      ))}
+                    </div>
+                  ) : null}
+
                   <ResponsiveContainer width="100%" height={380}>
                     <BarChart
                       data={chartData}
@@ -524,22 +532,23 @@ export default function DashboardDetail({ navigate, user }) {
                         labelFormatter={(label) => label}
                       />
 
-                      {chartModel.multiSeries ? <Legend /> : null}
+                      {!chartModel.stackedCategory && chartModel.multiSeries ? <Legend /> : null}
 
                       {chartModel.series.map((series) => (
                         <Bar
                           key={series.dataKey}
                           dataKey={series.dataKey}
-                          name={series.label}
+                          name={chartModel.stackedCategory ? `${series.category} • ${series.survivor}` : series.label}
                           fill={series.fill}
-                          barSize={100}
+                          stackId={series.stackId}
+                          barSize={chartModel.stackedCategory ? 34 : 100}
                           cursor="pointer"
+                          stroke="var(--surface)"
+                          strokeWidth={1}
+                          legendType={chartModel.stackedCategory ? "none" : undefined}
                           onClick={(entry) => {
                             const row = entry?.payload?._groupRows?.[series.dataKey];
-
-                            if (row) {
-                              openDrilldown(navigate, report.key, data.groupBy, row);
-                            }
+                            if (row) openDrilldown(navigate, report.key, data.groupBy, row);
                           }}
                         />
                       ))}
@@ -723,183 +732,74 @@ function PivotSummaryTable({ data, report, navigate }) {
 
 function buildChartModel(data) {
   const rows = data?.rows || [];
-
   const groupBy = data?.groupBy || [];
 
-  /*
-   * Existing single-group behaviour.
-   *
-   * One Group By field:
-   *   Group 1 -> X-axis
-   *   Total   -> bar value
-   */
   if (groupBy.length <= 1) {
     const grouped = new Map();
-
     rows.forEach((row) => {
       const key = stableValueKey(row[groupBy[0]]);
-
-      const existing = grouped.get(key);
-
       const amount = Number(row.total || 0);
-
-      grouped.set(
-        key,
-        existing
-          ? {
-              ...existing,
-              total: Number(existing.total || 0) + amount,
-            }
-          : row,
-      );
+      const existing = grouped.get(key);
+      grouped.set(key, existing ? { ...existing, total: Number(existing.total || 0) + amount } : row);
     });
-
     const chartRows = Array.from(grouped.values());
+    return { multiSeries: false, stackedCategory: false, minWidth: Math.max(720, chartRows.length * 72 + 120), description: "Each bar represents one summary-table row.", data: chartRows.map((row, index) => ({ ...row, chartLabel: rowLabel(row, groupBy), chartValue: Number(row.total || 0), index })), series: [{ dataKey: "chartValue", label: "Sum of expenses", fill: "var(--accent)" }] };
+  }
 
+  const period = groupBy.find((column) => isDateGroup(column));
+  const category = groupBy.includes("category") ? "category" : null;
+  const survivor = groupBy.includes("survivor") ? "survivor" : null;
+  const xColumn = period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
+
+  if (category && survivor) {
+    const categoryValues = [...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries()];
+    const survivorValues = [...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries()];
+    const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
+    const series = [];
+    categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
+      survivorValues.forEach(([survivorKey, survivorValue]) => {
+        series.push({ dataKey: `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`, label: prettyValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: prettyValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: palette[categoryIndex % palette.length], legendType: "none" });
+      });
+    });
+    const chartRows = new Map();
+    rows.forEach((row) => {
+      const xKey = stableValueKey(row[xColumn]);
+      if (!chartRows.has(xKey)) chartRows.set(xKey, { chartLabel: prettyValue(row[xColumn], xColumn), [xColumn]: row[xColumn], _groupRows: {} });
+      const target = chartRows.get(xKey);
+      const categoryIndex = categoryValues.findIndex(([key]) => key === String(row[category] ?? "—"));
+      const dataKey = `cat_${categoryIndex}_surv_${String(row[survivor] ?? "—").replace(/[^a-zA-Z0-9_-]/g, "_")}`;
+      target[dataKey] = Number(target[dataKey] || 0) + Number(row.total || 0);
+      target._groupRows[dataKey] = row;
+    });
     return {
-      multiSeries: false,
-
-      minWidth: Math.max(720, chartRows.length * 72 + 120),
-
-      description: "Each bar represents one summary-table row.",
-
-      data: chartRows.map((row, index) => ({
-        ...row,
-        chartLabel: rowLabel(row, groupBy),
-        chartValue: Number(row.total || 0),
-        index,
-      })),
-
-      series: [
-        {
-          dataKey: "chartValue",
-          label: "Sum of expenses",
-          fill: "var(--accent)",
-        },
-      ],
+      multiSeries: true,
+      stackedCategory: true,
+      pivotGrouping: false,
+      minWidth: Math.max(720, chartRows.size * Math.max(categoryValues.length, 1) * 74 + 160),
+      description: `${xColumn} on the X-axis; categories are the legend and survivors are stacked within each category. Click any segment to drill down.`,
+      data: Array.from(chartRows.values()),
+      series,
+      categories: categoryValues.map(([, value], index) => ({ label: prettyValue(value, category), fill: palette[index % palette.length] })),
     };
   }
 
+  const seriesColumn = groupBy.find((column) => column !== xColumn) || groupBy[1];
   const seriesMap = new Map();
-
   const chartRows = new Map();
-
-  /*
-   * Three Group By fields are rendered as a
-   * pivot-style grouped bar chart:
-   *
-   *   Group 1 + Group 2 -> X-axis categories
-   *   Group 3           -> bar series / legend
-   *
-   * Example:
-   *
-   *   Year + Category -> X-axis
-   *   Payment Method  -> grouped bars
-   *
-   * This keeps all three dimensions visible
-   * instead of combining Group 2 + Group 3 into
-   * one legend label.
-   *
-   * For two Group By fields, the existing behaviour
-   * is retained:
-   *
-   *   Group 1 -> X-axis
-   *   Group 2 -> bar series / legend
-   */
-  const isThreeGroupPivot = groupBy.length === 3;
-
-  // Daily/weekly/monthly/yearly survivor × category pivots use the same
-  // merged period-label hierarchy as the daily dashboard: survivor on top,
-  // period below, centered across the complete merged period span.
-  const isPeriodSurvivorCategoryPivot =
-    isThreeGroupPivot &&
-    ["date", "week", "month", "year"].includes(groupBy[0]) &&
-    groupBy[1] === "survivor" &&
-    groupBy[2] === "category";
-
-  const xColumns = isThreeGroupPivot ? groupBy.slice(0, 2) : [groupBy[0]];
-
-  const seriesColumns = isThreeGroupPivot ? [groupBy[2]] : groupBy.slice(1);
-
   rows.forEach((row) => {
-    /*
-     * For three groups:
-     *
-     *   X key = Group 1 + Group 2
-     *
-     * This means each combination receives its
-     * own grouped-bar category on the X-axis.
-     */
-    const xKey = xColumns.map((column) => stableValueKey(row[column])).join("\u001f");
-
-    const xValue = xColumns.map((column) => prettyValue(row[column], column)).join(" · ");
-
-    /*
-     * For three groups:
-     *
-     *   Series = Group 3
-     *
-     * For two groups this remains:
-     *
-     *   Series = Group 2
-     */
-    const seriesLabel = seriesColumns.map((column) => prettyValue(row[column], column)).join(" · ");
-
-    let series = seriesMap.get(seriesLabel);
-
-    if (!series) {
-      const seriesIndex = seriesMap.size;
-
-      series = {
-        dataKey: `series_${seriesIndex}`,
-        label: seriesLabel,
-        fill: `var(--dashboard-series-${(seriesIndex % 8) + 1})`,
-      };
-
-      seriesMap.set(seriesLabel, series);
+    const seriesKey = stableValueKey(row[seriesColumn]);
+    if (!seriesMap.has(seriesKey)) {
+      const index = seriesMap.size;
+      seriesMap.set(seriesKey, { dataKey: `series_${index}`, label: prettyValue(row[seriesColumn], seriesColumn), fill: `var(--dashboard-series-${(index % 8) + 1})` });
     }
-
-    if (!chartRows.has(xKey)) {
-      chartRows.set(xKey, {
-        chartLabel: xValue,
-        [xColumns[0]]: row[xColumns[0]],
-        [xColumns[1]]: row[xColumns[1]],
-        _groupRows: {},
-      });
-    }
-
+    const xKey = stableValueKey(row[xColumn]);
+    if (!chartRows.has(xKey)) chartRows.set(xKey, { chartLabel: prettyValue(row[xColumn], xColumn), [xColumn]: row[xColumn], _groupRows: {} });
     const target = chartRows.get(xKey);
-
+    const series = seriesMap.get(seriesKey);
     target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
-
-    /*
-     * Keep the original summary row so clicking
-     * a bar still opens the correct drill-down.
-     */
-    if (!target._groupRows[series.dataKey]) {
-      target._groupRows[series.dataKey] = row;
-    }
+    target._groupRows[series.dataKey] = row;
   });
-
-  return {
-    multiSeries: true,
-    pivotGrouping: isPeriodSurvivorCategoryPivot,
-
-    minWidth: Math.max(
-      720,
-      chartRows.size * Math.max(seriesMap.size, 1) * (isThreeGroupPivot ? 58 : 52) + 140,
-    ),
-
-    description: isThreeGroupPivot
-      ? `Pivot chart: ${groupBy[0]} × ${groupBy[1]}, grouped by ${groupBy[2]}. Click any bar to drill down.`
-      : `Grouped by ${groupBy[0]} with ${seriesColumns.join(
-          " + ",
-        )} as the legend. Click any bar to drill down.`,
-
-    data: Array.from(chartRows.values()),
-
-    series: Array.from(seriesMap.values()),
-  };
+  return { multiSeries: true, stackedCategory: false, pivotGrouping: false, minWidth: Math.max(720, chartRows.size * Math.max(seriesMap.size, 1) * 60 + 140), description: `${xColumn} on the X-axis with ${seriesColumn} as the legend. Click any bar to drill down.`, data: Array.from(chartRows.values()), series: Array.from(seriesMap.values()) };
 }
 
 function openDrilldown(navigate, reportKey, groupBy, row) {

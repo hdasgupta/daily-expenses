@@ -952,162 +952,177 @@ function drawBarValueLabel(doc, value, x, barTop, width, minY) {
     });
 }
 
-function drawGroupedChartPage(doc, matrix, rows, leaves, title) {
+function chartDimensionLabel(value, column) {
+  return formatCell(value, column);
+}
+
+function buildIntelligentChartModel(rows, groupBy) {
+  const groups = Array.isArray(groupBy) ? groupBy : [];
+  const period = groups.find((column) => ["date", "week", "month", "year"].includes(column));
+  const category = groups.includes("category") ? "category" : null;
+  const survivor = groups.includes("survivor") ? "survivor" : null;
+  const xColumn = period || groups.find((column) => column !== category && column !== survivor) || groups[0];
+
+  if (groups.length <= 1) {
+    const items = [];
+    const seen = new Set();
+    for (const row of rows || []) {
+      const key = String(row[xColumn] ?? "—");
+      if (!seen.has(key)) {
+        seen.add(key);
+        items.push({ key, label: chartDimensionLabel(row[xColumn], xColumn), total: 0 });
+      }
+      items[items.length - 1].total += Number(row.total || 0);
+    }
+    return { type: "simple", xColumn, items };
+  }
+
+  if (category && survivor) {
+    const xItems = [];
+    const xSeen = new Set();
+    const categoryItems = [];
+    const categorySeen = new Set();
+    const survivorItems = [];
+    const survivorSeen = new Set();
+    const values = new Map();
+
+    for (const row of rows || []) {
+      const xKey = String(row[xColumn] ?? "—");
+      const categoryKey = String(row[category] ?? "—");
+      const survivorKey = String(row[survivor] ?? "—");
+      if (!xSeen.has(xKey)) { xSeen.add(xKey); xItems.push({ key: xKey, label: chartDimensionLabel(row[xColumn], xColumn) }); }
+      if (!categorySeen.has(categoryKey)) { categorySeen.add(categoryKey); categoryItems.push({ key: categoryKey, label: chartDimensionLabel(row[category], category) }); }
+      if (!survivorSeen.has(survivorKey)) { survivorSeen.add(survivorKey); survivorItems.push({ key: survivorKey, label: chartDimensionLabel(row[survivor], survivor) }); }
+      const key = `${xKey}\u0002${categoryKey}\u0002${survivorKey}`;
+      values.set(key, (values.get(key) || 0) + Number(row.total || 0));
+    }
+
+    return { type: "category-survivor", xColumn, xItems, categoryItems, survivorItems, values };
+  }
+
+  const seriesColumn = groups.find((column) => column !== xColumn) || groups[1];
+  const xItems = [];
+  const xSeen = new Set();
+  const seriesItems = [];
+  const seriesSeen = new Set();
+  const values = new Map();
+  for (const row of rows || []) {
+    const xKey = String(row[xColumn] ?? "—");
+    const seriesKey = String(row[seriesColumn] ?? "—");
+    if (!xSeen.has(xKey)) { xSeen.add(xKey); xItems.push({ key: xKey, label: chartDimensionLabel(row[xColumn], xColumn) }); }
+    if (!seriesSeen.has(seriesKey)) { seriesSeen.add(seriesKey); seriesItems.push({ key: seriesKey, label: chartDimensionLabel(row[seriesColumn], seriesColumn) }); }
+    const key = `${xKey}\u0002${seriesKey}`;
+    values.set(key, (values.get(key) || 0) + Number(row.total || 0));
+  }
+  return { type: "grouped", xColumn, seriesColumn, xItems, seriesItems, values };
+}
+
+function drawGroupedChartPage(doc, model, title) {
   const usableWidth = usableWidthFor(doc);
   const x = doc.page.margins.left;
   const chartHeight = 165;
-
+  const palette = ["#315f9f", "#d97706", "#059669", "#7c3aed", "#dc2626", "#0891b2", "#be185d", "#65a30d"];
   ensureSpace(doc, chartHeight + 125);
   drawSectionTitle(doc, title);
   const baseline = doc.y + chartHeight;
-  const slot = usableWidth / Math.max(rows.length, 1);
-  const seriesGap = 2;
-  const barWidth = Math.max(
-    6,
-    Math.min(18, (slot - 8) / Math.max(leaves.length, 1)),
-  );
-  const max = Math.max(
-    ...rows.flatMap((row) =>
-      leaves.length
-        ? leaves.map((leaf) => Number(matrix.totals.get(`${row.key}\u0002${leaf.key}`) || 0))
-        : [Number(matrix.totals.get(row.key) || 0)],
-    ),
-    1,
-  );
-
   drawChartAxes(doc, x, baseline, usableWidth, chartHeight - 20);
 
-  rows.forEach((row, rowIndex) => {
-    if (!leaves.length) {
-      const value = Number(matrix.totals.get(row.key) || 0);
-      const barHeight = (value / max) * (chartHeight - 35);
-      const bx = x + rowIndex * slot + (slot - barWidth) / 2;
-      const by = baseline - barHeight;
+  if (model.type === "simple") {
+    const max = Math.max(...model.items.map((item) => item.total), 1);
+    const slot = usableWidth / Math.max(model.items.length, 1);
+    const barWidth = Math.max(10, Math.min(36, slot - 12));
+    model.items.forEach((item, index) => {
+      const height = (item.total / max) * (chartHeight - 35);
+      const bx = x + index * slot + (slot - barWidth) / 2;
+      const by = baseline - height;
+      doc.save().fillColor(palette[0]).rect(bx, by, barWidth, height).fill().restore();
+      drawBarValueLabel(doc, item.total, bx, by, barWidth, baseline - chartHeight + 2);
+      doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(item.label, bx - 10, baseline + 4, { width: barWidth + 20, height: 24, align: "center", ellipsis: true });
+    });
+    doc.y = baseline + 24;
+    return;
+  }
 
-      doc.save().fillColor("#315f9f").rect(bx, by, barWidth, barHeight).fill().restore();
-
-      drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
-
-      doc
-        .fillColor("#1f2937")
-        .font("Helvetica")
-        .fontSize(5.2)
-        .text(formatCell(row.values[matrix.rowGroups[0]], matrix.rowGroups[0]), bx - 12, baseline + 4, {
-          width: barWidth + 24,
-          height: 24,
-          align: "center",
-          ellipsis: true,
+  if (model.type === "category-survivor") {
+    const max = Math.max(...model.xItems.map((xItem) => model.categoryItems.reduce((sum, category) => sum + model.survivorItems.reduce((inner, survivor) => inner + (model.values.get(`${xItem.key}\u0002${category.key}\u0002${survivor.key}`) || 0), 0), 0)), 1);
+    const slot = usableWidth / Math.max(model.xItems.length, 1);
+    const categoryGap = 3;
+    const stackWidth = Math.max(8, Math.min(24, (slot - 12) / Math.max(model.categoryItems.length, 1) - categoryGap));
+    model.xItems.forEach((xItem, xIndex) => {
+      const groupWidth = model.categoryItems.length * (stackWidth + categoryGap) - categoryGap;
+      const start = x + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
+      model.categoryItems.forEach((category, categoryIndex) => {
+        let y = baseline;
+        let total = 0;
+        model.survivorItems.forEach((survivor) => {
+          const value = Number(model.values.get(`${xItem.key}\u0002${category.key}\u0002${survivor.key}`) || 0);
+          if (!value) return;
+          const height = (value / max) * (chartHeight - 35);
+          y -= height;
+          total += value;
+          doc.save().fillColor(palette[categoryIndex % palette.length]).rect(start + categoryIndex * (stackWidth + categoryGap), y, stackWidth, height).fill().restore();
         });
-      return;
-    }
-
-    leaves.forEach((leaf, seriesIndex) => {
-      const value = Number(matrix.totals.get(`${row.key}\u0002${leaf.key}`) || 0);
-      const barHeight = (value / max) * (chartHeight - 35);
-      const groupWidth = leaves.length * (barWidth + seriesGap) - seriesGap;
-      const bx = x + rowIndex * slot + Math.max((slot - groupWidth) / 2, 0) + seriesIndex * (barWidth + seriesGap);
-      const by = baseline - barHeight;
-
-      const palette = [
-        "#315f9f",
-        "#d97706",
-        "#059669",
-        "#7c3aed",
-        "#dc2626",
-        "#0891b2",
-        "#be185d",
-        "#65a30d",
-      ];
-
-      doc.save().fillColor(palette[seriesIndex % palette.length]).rect(bx, by, barWidth, barHeight).fill().restore();
-
-      drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
+        if (total) drawBarValueLabel(doc, total, start + categoryIndex * (stackWidth + categoryGap), y, stackWidth, baseline - chartHeight + 2);
+      });
+      doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(xItem.label, x + xIndex * slot, baseline + 4, { width: slot - 2, height: 24, align: "center", ellipsis: true });
     });
 
-    doc
-      .fillColor("#1f2937")
-      .font("Helvetica")
-      .fontSize(5)
-      .text(
-        matrix.rowGroups.map((column) => formatCell(row.values[column], column)).join(" • "),
-        x + rowIndex * slot,
-        baseline + 4,
-        { width: slot - 2, height: 28, align: "center", ellipsis: true },
-      );
+    let legendX = x;
+    let legendY = baseline + 32;
+    model.categoryItems.forEach((category, index) => {
+      const width = Math.min(120, Math.max(48, doc.widthOfString(category.label, { fontSize: 7 }) + 18));
+      if (legendX + width > doc.page.width - doc.page.margins.right) { legendX = x; legendY += 13; }
+      doc.save().fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill().restore();
+      doc.fillColor("black").font("Helvetica").fontSize(7).text(category.label, legendX + 11, legendY - 1, { width: width - 11, ellipsis: true });
+      legendX += width;
+    });
+    doc.y = legendY + 18;
+    return;
+  }
+
+  const max = Math.max(...model.xItems.flatMap((xItem) => model.seriesItems.map((series) => model.values.get(`${xItem.key}\u0002${series.key}`) || 0)), 1);
+  const slot = usableWidth / Math.max(model.xItems.length, 1);
+  const barWidth = Math.max(7, Math.min(20, (slot - 8) / Math.max(model.seriesItems.length, 1)));
+  model.xItems.forEach((xItem, xIndex) => {
+    const groupWidth = model.seriesItems.length * (barWidth + 2) - 2;
+    const start = x + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
+    model.seriesItems.forEach((series, seriesIndex) => {
+      const value = Number(model.values.get(`${xItem.key}\u0002${series.key}`) || 0);
+      const height = (value / max) * (chartHeight - 35);
+      const bx = start + seriesIndex * (barWidth + 2);
+      const by = baseline - height;
+      doc.save().fillColor(palette[seriesIndex % palette.length]).rect(bx, by, barWidth, height).fill().restore();
+      if (value) drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
+    });
+    doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(xItem.label, x + xIndex * slot, baseline + 4, { width: slot - 2, height: 24, align: "center", ellipsis: true });
   });
 
-  const legendY = baseline + 34;
-  const legendWidth = usableWidth / Math.max(leaves.length || 1, 1);
-  const palette = [
-    "#315f9f",
-    "#d97706",
-    "#059669",
-    "#7c3aed",
-    "#dc2626",
-    "#0891b2",
-    "#be185d",
-    "#65a30d",
-  ];
-
-  leaves.forEach((leaf, index) => {
-    const legendX = x + index * legendWidth;
+  let legendX = x;
+  let legendY = baseline + 32;
+  model.seriesItems.forEach((series, index) => {
+    const width = Math.min(120, Math.max(48, doc.widthOfString(series.label, { fontSize: 7 }) + 18));
+    if (legendX + width > doc.page.width - doc.page.margins.right) { legendX = x; legendY += 13; }
     doc.save().fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill().restore();
-    doc
-      .fillColor("#1f2937")
-      .font("Helvetica")
-      .fontSize(5.5)
-      .text(
-        leaf.values[matrix.columnGroups[0]] !== undefined
-          ? matrix.columnGroups.map((column) => formatCell(leaf.values[column], column)).join(" • ")
-          : "Expense",
-        legendX + 11,
-        legendY - 1,
-        { width: legendWidth - 13, ellipsis: true },
-      );
+    doc.fillColor("black").font("Helvetica").fontSize(7).text(series.label, legendX + 11, legendY - 1, { width: width - 11, ellipsis: true });
+    legendX += width;
   });
-
   doc.y = legendY + 18;
 }
 
 function drawGroupedBarChart(doc, report, config) {
-  // Use the selected export grouping so chart and pivot table are built from
-  // the same dimensions even when the summary response omits groupBy.
-  const groupBy = Array.isArray(config.groupBy)
-    ? config.groupBy
-    : Array.isArray(report.groupBy)
-      ? report.groupBy
-      : [];
+  const groupBy = Array.isArray(config.groupBy) ? config.groupBy : Array.isArray(report.groupBy) ? report.groupBy : [];
   const rows = Array.isArray(report.rows) ? report.rows : [];
-
   if (!groupBy.length || !rows.length) return;
-
-  const matrix = getPivotMatrix(sortRows(rows, config, true), groupBy, config);
-  const rowChunks = [];
-
-  for (let start = 0; start < matrix.rowItems.length; start += CHART_ROWS_PER_PAGE) {
-    rowChunks.push(matrix.rowItems.slice(start, start + CHART_ROWS_PER_PAGE));
+  const model = buildIntelligentChartModel(sortRows(rows, config, true), groupBy);
+  const chunkSize = 18;
+  const xItems = Array.isArray(model.xItems) ? model.xItems : model.items || [];
+  if (xItems.length <= chunkSize) {
+    drawGroupedChartPage(doc, model, "Intelligent grouped bar chart");
+    return;
   }
-
-  const leafChunks = matrix.columnGroups.length
-    ? Array.from({ length: Math.ceil(matrix.leafItems.length / CHART_SERIES_PER_PAGE) }, (_, index) =>
-        matrix.leafItems.slice(index * CHART_SERIES_PER_PAGE, index * CHART_SERIES_PER_PAGE + CHART_SERIES_PER_PAGE),
-      )
-    : [[]];
-
-  let first = true;
-
-  for (const rowChunk of rowChunks) {
-    for (const leafChunk of leafChunks) {
-      if (!first) doc.addPage();
-      first = false;
-      drawGroupedChartPage(
-        doc,
-        matrix,
-        rowChunk,
-        leafChunk,
-        "Pivot grouped bar chart",
-      );
-    }
+  for (let start = 0; start < xItems.length; start += chunkSize) {
+    if (start) doc.addPage();
+    drawGroupedChartPage(doc, { ...model, xItems: xItems.slice(start, start + chunkSize), items: xItems.slice(start, start + chunkSize) }, "Intelligent grouped bar chart");
   }
 }
 

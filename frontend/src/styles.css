@@ -1474,3 +1474,32 @@ code {
   cursor: default;
   opacity: 0.75;
 }
+
+
+.report-chart-legend,
+.dashboard-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.report-chart-legend span,
+.dashboard-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-chart-legend i,
+.dashboard-chart-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.report-chart-description {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
