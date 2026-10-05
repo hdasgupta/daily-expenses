@@ -8,10 +8,13 @@ import {
   Mail,
   Filter,
   FolderOpen,
+  Info,
   Plus,
   RotateCcw,
   Save,
+  Share2,
   Trash2,
+  UserRoundX,
   X,
 } from "lucide-react";
 import { api } from "../lib/api";
@@ -247,6 +250,16 @@ export default function Reports() {
   const [selectionName, setSelectionName] = useState("");
 
   const [selections, setSelections] = useState([]);
+
+  const [shareModal, setShareModal] = useState(false);
+
+  const [shareSelection, setShareSelection] = useState(null);
+
+  const [shareUsers, setShareUsers] = useState([]);
+
+  const [shareUserIds, setShareUserIds] = useState([]);
+
+  const [infoSelectionId, setInfoSelectionId] = useState(null);
 
   const [showChart, setShowChart] = useState(false);
 
@@ -527,14 +540,62 @@ export default function Reports() {
     setSaveModal(false);
   };
 
-  const loadSelections = async () => {
-    setSelections(
-      await api("/report-selections", {
-        loadingMessage: "Loading saved report selections…",
-      }),
-    );
+  const refreshSelections = async () => {
+    const next = await api("/report-selections", {
+      loadingMessage: "Loading saved report selections…",
+    });
 
+    setSelections(next);
+    return next;
+  };
+
+  const loadSelections = async () => {
+    await refreshSelections();
     setLoadModal(true);
+  };
+
+  const openShareModal = async (selection) => {
+    const users = await api(`/report-selections/${selection.id}/shareable-users`, {
+      loadingMessage: "Loading users for sharing…",
+    });
+
+    setShareSelection(selection);
+    setShareUsers(users);
+    setShareUserIds(users.filter((user) => user.shared).map((user) => String(user.id)));
+    setShareModal(true);
+  };
+
+  const saveSharing = async () => {
+    if (!shareSelection) {
+      return;
+    }
+
+    await api(`/report-selections/${shareSelection.id}/share`, {
+      method: "PUT",
+      body: JSON.stringify({ userIds: shareUserIds }),
+      loadingMessage: "Updating report selection sharing…",
+      toast: {
+        type: "success",
+        message: "Report selection sharing updated.",
+      },
+    });
+
+    setShareModal(false);
+    setShareSelection(null);
+    await refreshSelections();
+  };
+
+  const unshareSelection = async (selection) => {
+    await api(`/report-selections/${selection.id}/share/me`, {
+      method: "DELETE",
+      loadingMessage: "Removing shared report selection…",
+      toast: {
+        type: "success",
+        message: "Shared report selection removed.",
+      },
+    });
+
+    await refreshSelections();
   };
 
   const reset = () => {
@@ -936,41 +997,142 @@ export default function Reports() {
         <div className="selection-list">
           {selections.map((selection) => (
             <div className="selection-row" key={selection.id}>
-              <button
-                type="button"
-                onClick={() => {
-                  setConfig(normalizeLoaded(selection.config));
+              <div className="selection-name-wrap">
+                <button
+                  type="button"
+                  className="selection-name-button"
+                  onClick={() => {
+                    setConfig(normalizeLoaded(selection.config));
 
-                  setShowChart(false);
-                  setLoadModal(false);
-                }}
-              >
-                {selection.name}
-              </button>
+                    setShowChart(false);
+                    setLoadModal(false);
+                  }}
+                >
+                  {selection.name}
+                </button>
 
-              <button
-                type="button"
-                className="icon-button danger-soft"
-                title="Delete selection"
-                onClick={async () => {
-                  await api(`/report-selections/${selection.id}`, {
-                    method: "DELETE",
-                    loadingMessage: "Deleting saved selection…",
-                  });
+                <button
+                  type="button"
+                  className="icon-button soft selection-info-button"
+                  title="Show owner"
+                  aria-label={`Show owner of ${selection.name}`}
+                  onClick={() =>
+                    setInfoSelectionId((current) =>
+                      current === selection.id ? null : selection.id,
+                    )
+                  }
+                >
+                  <Info size={15} />
+                </button>
+              </div>
 
-                  setSelections(
-                    await api("/report-selections", {
-                      loadingMessage: "Refreshing saved selections…",
-                    }),
-                  );
-                }}
-              >
-                <Trash2 size={16} />
-              </button>
+              <div className="selection-row-actions">
+                {infoSelectionId === selection.id ? (
+                  <span className="selection-owner">Owner: {selection.owner_name}</span>
+                ) : null}
+
+                {selection.is_owner ? (
+                  <button
+                    type="button"
+                    className="icon-button soft"
+                    title="Share selection"
+                    aria-label={`Share ${selection.name}`}
+                    onClick={() => openShareModal(selection)}
+                  >
+                    <Share2 size={16} />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="icon-button soft"
+                    title="Unshare selection"
+                    aria-label={`Unshare ${selection.name}`}
+                    onClick={() => unshareSelection(selection)}
+                  >
+                    <UserRoundX size={16} />
+                  </button>
+                )}
+
+                {selection.is_owner ? (
+                  <button
+                    type="button"
+                    className="icon-button danger-soft"
+                    title="Delete selection"
+                    aria-label={`Delete ${selection.name}`}
+                    onClick={async () => {
+                      await api(`/report-selections/${selection.id}`, {
+                        method: "DELETE",
+                        loadingMessage: "Deleting saved selection…",
+                      });
+
+                      await refreshSelections();
+                    }}
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                ) : null}
+              </div>
             </div>
           ))}
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
+        </div>
+      </Modal>
+
+      <Modal
+        open={shareModal}
+        title={shareSelection ? `Share “${shareSelection.name}”` : "Share report selection"}
+        onClose={() => setShareModal(false)}
+        footer={
+          <>
+            <button className="secondary" type="button" onClick={() => setShareModal(false)}>
+              Cancel
+            </button>
+
+            <button className="primary" type="button" onClick={saveSharing}>
+              <Share2 size={17} />
+              Save sharing
+            </button>
+          </>
+        }
+      >
+        <div className="form-stack">
+          <div>
+            <strong>Share with users</strong>
+            <div className="field-note">Select one or more active users. Unselect a user to stop sharing.</div>
+          </div>
+
+          <div className="share-user-list">
+            {shareUsers.map((user) => {
+              const userId = String(user.id);
+              const checked = shareUserIds.includes(userId);
+
+              return (
+                <label className="share-user-row" key={user.id}>
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() =>
+                      setShareUserIds((current) =>
+                        checked
+                          ? current.filter((id) => id !== userId)
+                          : [...current, userId],
+                      )
+                    }
+                  />
+                  <span>
+                    <strong>{user.full_name}</strong>
+                    <small>
+                      {user.email}
+                      {user.is_disabled ? " · Disabled" : ""}
+                    </small>
+                  </span>
+                </label>
+              );
+            })}
+
+            {!shareUsers.length ? <div className="empty-card">No other active users available.</div> : null}
+          </div>
         </div>
       </Modal>
 

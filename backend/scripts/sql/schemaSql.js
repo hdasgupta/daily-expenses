@@ -104,6 +104,19 @@ CREATE TABLE IF NOT EXISTS public.report_selections (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(user_id, name)
 );
+CREATE TABLE IF NOT EXISTS public.report_selection_shares (
+  id BIGSERIAL PRIMARY KEY,
+  selection_id BIGINT NOT NULL REFERENCES public.report_selections(id) ON DELETE CASCADE,
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  shared_by_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(selection_id, user_id),
+  CHECK(user_id <> shared_by_user_id)
+);
+CREATE INDEX IF NOT EXISTS idx_report_selection_shares_user
+  ON public.report_selection_shares(user_id);
+CREATE INDEX IF NOT EXISTS idx_report_selection_shares_selection
+  ON public.report_selection_shares(selection_id);
 CREATE TABLE IF NOT EXISTS public.pagination_settings (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,

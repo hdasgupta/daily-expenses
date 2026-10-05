@@ -1,8 +1,11 @@
 import {
   deleteSelection,
+  getShareableUsers,
   listSelections,
   runReport,
   saveSelection,
+  shareSelection,
+  unshareSelection,
 } from "../services/reportService.js";
 import { q } from "../db/index.js";
 import { buildReportPdf } from "../services/reportPdfService.js";
@@ -22,6 +25,21 @@ export async function save(req, res) {
 export async function remove(req, res) {
   await deleteSelection(req.user.id, req.params.id);
   res.json({ ok: true });
+}
+
+export async function shareableUsers(req, res) {
+  res.json(await getShareableUsers(req.user.id, req.params.id));
+}
+
+export async function share(req, res) {
+  const userIds = Array.isArray(req.body?.userIds) ? req.body.userIds : [];
+  await shareSelection(req.user.id, req.params.id, userIds);
+  res.json({ ok: true });
+}
+
+export async function unshare(req, res) {
+  const removed = await unshareSelection(req.user.id, req.params.id);
+  res.json({ ok: true, removed });
 }
 
 async function resolveCategoryItemFilterLabels(config) {
