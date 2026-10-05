@@ -36,7 +36,20 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   const offset = (safePage - 1) * safePageSize;
   const searchPattern = `%${safeSearch}%`;
 
-  const historySql = `(\n    SELECT ('scheduled-' || j.id::text || '-' || r.scheduled_key)::text AS id,\n           r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,\n           r.duration_ms, r.error_message, j.name AS scheduled_report_name\n      FROM public.scheduler_job_runs r\n      JOIN public.scheduled_report_jobs j\n        ON r.job_name = 'scheduled-report:' || j.id::text\n     WHERE r.job_name LIKE 'scheduled-report:%'\n       AND j.owner_user_id = $1\n  ) history`;
+  const historySql = `(\n    SELECT e.id::text AS id,
+           e.job_name, e.scheduled_key, e.status, e.started_at, e.completed_at,
+           e.duration_ms, e.error_message, NULL::text AS scheduled_report_name
+      FROM public.scheduler_job_executions e
+    UNION ALL
+    SELECT ('scheduled-' || j.id::text || '-' || r.scheduled_key)::text AS id,
+           r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,
+           r.duration_ms, r.error_message, j.name AS scheduled_report_name
+      FROM public.scheduler_job_runs r
+      JOIN public.scheduled_report_jobs j
+        ON r.job_name = 'scheduled-report:' || j.id::text
+     WHERE r.job_name LIKE 'scheduled-report:%'
+       AND j.owner_user_id = $1
+  ) history`;
   const historyWhere = `$2 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
 
   const [countResult, rowsResult] = await Promise.all([
