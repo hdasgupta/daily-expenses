@@ -1403,8 +1403,8 @@ code {
 }
 
 /* Three-level dashboard pivot charts mirror the summary table hierarchy:
-   period labels are visually grouped while survivor labels remain on each
-   child group. */
+   survivor labels are shown above each child group while the merged
+   period labels are centered beneath the survivor groups. */
 .dashboard-pivot-chart-period-label,
 .dashboard-pivot-chart-survivor-label {
   fill: var(--text);

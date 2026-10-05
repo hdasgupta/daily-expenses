@@ -84,25 +84,25 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
 
   return (
     <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        textAnchor="middle"
+        className="dashboard-pivot-chart-survivor-label"
+      >
+        {prettyValue(current[survivorColumn], survivorColumn)}
+      </text>
+
       {showPeriod ? (
         <text
           x={periodCenterX - x}
-          y={0}
+          y={22}
           textAnchor="middle"
           className="dashboard-pivot-chart-period-label"
         >
           {prettyValue(current[periodColumn], periodColumn)}
         </text>
       ) : null}
-
-      <text
-        x={0}
-        y={22}
-        textAnchor="middle"
-        className="dashboard-pivot-chart-survivor-label"
-      >
-        {prettyValue(current[survivorColumn], survivorColumn)}
-      </text>
     </g>
   );
 }
