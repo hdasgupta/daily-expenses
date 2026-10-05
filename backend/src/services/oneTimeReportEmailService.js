@@ -153,6 +153,25 @@ async function claimJob(client, id) {
   return { job: result.rows[0], lockKey };
 }
 
+export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false }) {
+  const jobId = Number(id);
+  if (!Number.isInteger(jobId) || jobId <= 0) {
+    throw error("Invalid scheduled email job.", 400);
+  }
+
+  const result = await q(
+    `DELETE FROM public.one_time_report_email_jobs
+      WHERE id = $1
+        AND ($2::boolean = TRUE OR owner_user_id = $3)
+      RETURNING id`,
+    [jobId, Boolean(isAdmin), userId],
+  );
+
+  if (!result.rows.length) {
+    throw error("Scheduled report email not found or you do not have permission to remove it.", 404);
+  }
+}
+
 export async function processDueOneTimeReportEmailJobs() {
   const due = await q(
     `SELECT id
