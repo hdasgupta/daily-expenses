@@ -34,7 +34,9 @@ export const reportModelSql = {
           AND rss.user_id = u.id
       ) AS shared
     FROM public.users u
+    JOIN public.roles r ON r.id = u.role_id
     WHERE u.id <> $2
+      AND r.name = 'manager'
       AND (
         u.is_disabled = false
         OR EXISTS (

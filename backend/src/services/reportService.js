@@ -1,5 +1,12 @@
 import { q } from "../db/index.js";
-import { deleteSelection, listSelections, saveSelection } from "../models/reportModel.js";
+import {
+  deleteSelection,
+  getShareableUsers,
+  listSelections,
+  saveSelection,
+  shareSelection,
+  unshareSelection,
+} from "../models/reportModel.js";
 import { reportSql } from "../../scripts/sql/reportSql.js";
 import { signedObjectUrl } from "./storageService.js";
 
@@ -662,4 +669,12 @@ export async function buildReportPdfData(config = {}) {
   };
 }
 
-export { cleanConfig, deleteSelection, listSelections, saveSelection };
+export {
+  cleanConfig,
+  deleteSelection,
+  getShareableUsers,
+  listSelections,
+  saveSelection,
+  shareSelection,
+  unshareSelection,
+};

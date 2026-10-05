@@ -1426,3 +1426,51 @@ code {
 .dashboard-pivot-chart-survivor-label {
   font-weight: 600;
 }
+.selection-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.selection-row > button:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.selection-shared-mark {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary);
+}
+.selection-share-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-height: 320px;
+  overflow: auto;
+}
+.selection-share-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--soft);
+  cursor: pointer;
+}
+.selection-share-row > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.selection-share-row small {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.selection-share-row.is-shared {
+  cursor: default;
+  opacity: 0.75;
+}

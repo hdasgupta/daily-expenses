@@ -1,9 +1,12 @@
 import {
   buildReportPdfData,
   deleteSelection,
+  getShareableUsers,
   listSelections,
   runReport,
   saveSelection,
+  shareSelection,
+  unshareSelection,
 } from "../services/reportService.js";
 import { buildReportPdf } from "../services/reportPdfService.js";
 import { sendReportEmail } from "../services/mailService.js";
@@ -25,6 +28,20 @@ export async function save(req, res) {
 }
 export async function remove(req, res) {
   await deleteSelection(req.user.id, req.params.id);
+  res.json({ ok: true });
+}
+
+export async function shareableUsers(req, res) {
+  res.json(await getShareableUsers(req.user.id, req.params.id));
+}
+
+export async function share(req, res) {
+  await shareSelection(req.user.id, req.params.id, req.body?.userIds || []);
+  res.json({ ok: true });
+}
+
+export async function unshareMe(req, res) {
+  await unshareSelection(req.user.id, req.params.id);
   res.json({ ok: true });
 }
 

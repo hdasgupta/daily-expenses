@@ -12,6 +12,9 @@ import {
   Plus,
   RotateCcw,
   Save,
+  Share2,
+  CheckCircle2,
+  UserRoundX,
   Trash2,
   X,
 } from "lucide-react";
@@ -543,6 +546,51 @@ export default function Reports() {
     setLoadModal(true);
   };
 
+  const refreshSelections = async () => {
+    setSelections(
+      await api("/report-selections", {
+        loadingMessage: "Refreshing saved selections…",
+      }),
+    );
+  };
+
+  const openShareSelection = async (selection) => {
+    const managers = await api(`/report-selections/${selection.id}/shareable-users`, {
+      loadingMessage: "Loading managers…",
+    });
+    setShareSelectionTarget(selection);
+    setShareableManagers(managers);
+    setSelectedManagerIds(
+      managers.filter((manager) => manager.shared).map((manager) => String(manager.id)),
+    );
+    setShareModal(true);
+  };
+
+  const shareCurrentSelection = async (event) => {
+    event.preventDefault();
+    if (!shareSelectionTarget) return;
+
+    await api(`/report-selections/${shareSelectionTarget.id}/share`, {
+      method: "PUT",
+      body: JSON.stringify({ userIds: selectedManagerIds }),
+      loadingMessage: "Sharing selection…",
+      toast: { type: "success", message: "Selection shared." },
+    });
+
+    setShareModal(false);
+    setShareSelectionTarget(null);
+    await refreshSelections();
+  };
+
+  const unshareSelectionForMe = async (selection) => {
+    await api(`/report-selections/${selection.id}/share/me`, {
+      method: "DELETE",
+      loadingMessage: "Removing shared selection…",
+      toast: { type: "success", message: "Shared selection removed." },
+    });
+    await refreshSelections();
+  };
+
   const reset = () => {
     setConfig(initialConfig);
     setResult(null);
@@ -1006,33 +1054,98 @@ export default function Reports() {
                   setLoadModal(false);
                 }}
               >
-                {selection.name}
+                <span>{selection.name}</span>
+                {!selection.is_owner ? (
+                  <span className="selection-shared-mark" title={`Shared by ${selection.owner_name || "another manager"}`}>
+                    <CheckCircle2 size={15} />
+                  </span>
+                ) : null}
               </button>
 
-              <button
-                type="button"
-                className="icon-button danger-soft"
-                title="Delete selection"
-                onClick={async () => {
-                  await api(`/report-selections/${selection.id}`, {
-                    method: "DELETE",
-                    loadingMessage: "Deleting saved selection…",
-                  });
+              <div className="selection-actions">
+                {selection.is_owner ? (
+                  <button
+                    type="button"
+                    className="icon-button"
+                    title="Share selection with managers"
+                    onClick={() => openShareSelection(selection)}
+                  >
+                    <Share2 size={16} />
+                  </button>
+                ) : null}
 
-                  setSelections(
-                    await api("/report-selections", {
-                      loadingMessage: "Refreshing saved selections…",
-                    }),
-                  );
-                }}
-              >
-                <Trash2 size={16} />
-              </button>
+                {selection.is_owner ? (
+                  <button
+                    type="button"
+                    className="icon-button danger-soft"
+                    title="Delete selection"
+                    onClick={async () => {
+                      await api(`/report-selections/${selection.id}`, {
+                        method: "DELETE",
+                        loadingMessage: "Deleting saved selection…",
+                      });
+                      await refreshSelections();
+                    }}
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="icon-button danger-soft"
+                    title="Remove shared selection"
+                    onClick={() => unshareSelectionForMe(selection)}
+                  >
+                    <UserRoundX size={16} />
+                  </button>
+                )}
+              </div>
             </div>
           ))}
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
+      </Modal>
+
+      <Modal
+        open={shareModal}
+        title={`Share selection${shareSelectionTarget ? ` — ${shareSelectionTarget.name}` : ""}`}
+        onClose={() => {
+          setShareModal(false);
+          setShareSelectionTarget(null);
+        }}
+      >
+        <form className="form-stack" onSubmit={shareCurrentSelection}>
+          <div className="selection-share-list">
+            {shareableManagers.map((manager) => (
+              <label className={`selection-share-row${manager.shared ? " is-shared" : ""}`} key={manager.id}>
+                <input
+                  type="checkbox"
+                  checked={selectedManagerIds.includes(String(manager.id))}
+                  disabled={manager.shared}
+                  onChange={(event) => {
+                    const id = String(manager.id);
+                    setSelectedManagerIds((current) =>
+                      event.target.checked
+                        ? [...new Set([...current, id])]
+                        : current.filter((value) => value !== id),
+                    );
+                  }}
+                />
+                <span>
+                  <b>{manager.full_name}</b>
+                  {manager.email ? <small>{manager.email}</small> : null}
+                </span>
+                {manager.shared ? <CheckCircle2 size={15} title="Already shared" /> : null}
+              </label>
+            ))}
+            {!shareableManagers.length ? <div className="empty-card">No other managers available to share with.</div> : null}
+          </div>
+          <div className="modal-actions">
+            <button type="button" className="button secondary" onClick={() => setShareModal(false)}>Cancel</button>
+            <button type="submit" className="button primary">Share</button>
+          </div>
+        </form>
       </Modal>
 
       <ProofViewer
