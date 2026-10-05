@@ -178,7 +178,7 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
       : filters.categoryItems;
     const categoriesOnly = [...new Set(
       labels
-        .map((value) => String(value).split(/\s+-\s+/)[0].trim())
+        .map((value) => String(value).split(" /")[0].trim())
         .filter(Boolean),
     )];
     filterParts.push(
@@ -443,7 +443,7 @@ export default function JobStatus({ user }) {
 
       <div className="card" style={{ marginBottom: 14 }}>
         <div className="card-title">
-          <strong>Scheduled report emails</strong>
+          <strong>Scheduled dashboard emails</strong>
 
           <span>
             Created from Dashboard detail pages. Each job sends one PDF to its owner at the selected
