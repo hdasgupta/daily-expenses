@@ -50,6 +50,63 @@ function rowLabel(row, groupBy) {
   return groupBy.map((column) => prettyValue(row[column], column)).join(" · ");
 }
 
+function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
+  const index = payload?.index ?? 0;
+  const current = chartData?.[index];
+  const periodColumn = groupBy?.[0];
+  const survivorColumn = groupBy?.[1];
+
+  if (!current || !periodColumn || !survivorColumn) {
+    return null;
+  }
+
+  const periodKey = stableValueKey(current[periodColumn]);
+  const previous = chartData[index - 1];
+  const showPeriod =
+    !previous || stableValueKey(previous[periodColumn]) !== periodKey;
+
+  let periodCenterX = x;
+
+  if (showPeriod && viewBox?.width && chartData.length) {
+    const firstIndex = index;
+    let lastIndex = index;
+
+    while (
+      lastIndex + 1 < chartData.length &&
+      stableValueKey(chartData[lastIndex + 1]?.[periodColumn]) === periodKey
+    ) {
+      lastIndex += 1;
+    }
+
+    const tickStep = viewBox.width / chartData.length;
+    periodCenterX = viewBox.x + ((firstIndex + lastIndex + 1) / 2) * tickStep;
+  }
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      {showPeriod ? (
+        <text
+          x={periodCenterX - x}
+          y={0}
+          textAnchor="middle"
+          className="dashboard-pivot-chart-period-label"
+        >
+          {prettyValue(current[periodColumn], periodColumn)}
+        </text>
+      ) : null}
+
+      <text
+        x={0}
+        y={22}
+        textAnchor="middle"
+        className="dashboard-pivot-chart-survivor-label"
+      >
+        {prettyValue(current[survivorColumn], survivorColumn)}
+      </text>
+    </g>
+  );
+}
+
 function buildMergedCells(rows, columns) {
   return (rows || []).map((row, rowIndex) => {
     const cells = columns.map((column, columnIndex) => {
@@ -400,13 +457,23 @@ export default function DashboardDetail({ navigate, user }) {
 
                       <XAxis
                         dataKey="chartLabel"
-                        angle={chartModel.multiSeries ? -20 : -35}
-                        textAnchor="end"
+                        angle={chartModel.multiSeries ? 0 : -35}
+                        textAnchor={chartModel.multiSeries ? "middle" : "end"}
                         interval={0}
-                        height={chartModel.multiSeries ? 65 : 100}
-                        tick={{
-                          fontSize: 10,
-                        }}
+                        height={chartModel.multiSeries ? 72 : 100}
+                        tick={
+                          chartModel.pivotGrouping
+                            ? (props) => (
+                                <PivotChartTick
+                                  {...props}
+                                  chartData={chartData}
+                                  groupBy={data.groupBy}
+                                />
+                              )
+                            : {
+                                fontSize: 10,
+                              }
+                        }
                       />
 
                       <YAxis />
@@ -747,6 +814,8 @@ function buildChartModel(data) {
     if (!chartRows.has(xKey)) {
       chartRows.set(xKey, {
         chartLabel: xValue,
+        [xColumns[0]]: row[xColumns[0]],
+        [xColumns[1]]: row[xColumns[1]],
         _groupRows: {},
       });
     }
@@ -766,6 +835,7 @@ function buildChartModel(data) {
 
   return {
     multiSeries: true,
+    pivotGrouping: isThreeGroupPivot,
 
     minWidth: Math.max(
       720,

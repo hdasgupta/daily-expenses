@@ -908,100 +908,12 @@ textarea:focus {
   border-radius: 9px;
   background: var(--soft);
 }
-.selection-name-wrap {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  flex: 1;
-  gap: 4px;
-}
-.selection-name-button {
-  min-width: 0;
+.selection-row > button:first-child {
   flex: 1;
   border: 0;
   background: transparent;
   color: var(--text);
   text-align: left;
-  overflow-wrap: anywhere;
-}
-.selection-info-button {
-  flex: 0 0 auto;
-  position: relative;
-}
-
-.selection-info-button::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  right: 0;
-  bottom: calc(100% + 7px);
-  z-index: 1000;
-  width: max-content;
-  max-width: min(280px, 70vw);
-  padding: 6px 9px;
-  border-radius: 6px;
-  background: var(--text);
-  color: var(--card);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.35;
-  white-space: normal;
-  text-align: left;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(3px);
-  transition: opacity 120ms ease, transform 120ms ease, visibility 120ms ease;
-}
-
-.selection-info-button:hover::after,
-.selection-info-button:focus-visible::after {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.selection-row-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-.selection-owner {
-  color: var(--muted);
-  font-size: 11px;
-  margin-right: 2px;
-}
-.share-user-list {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  max-height: 320px;
-  overflow-y: auto;
-}
-.share-user-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: var(--soft);
-  cursor: pointer;
-}
-.share-user-row input {
-  flex: 0 0 auto;
-}
-.share-user-row span {
-  min-width: 0;
-}
-.share-user-row strong,
-.share-user-row small {
-  display: block;
-  overflow-wrap: anywhere;
-}
-.share-user-row small {
-  margin-top: 2px;
-  color: var(--muted);
 }
 
 .dashboard-summary-grid {
@@ -1488,4 +1400,21 @@ code {
   vertical-align: middle;
   font-weight: 700;
   background: var(--soft);
+}
+
+/* Three-level dashboard pivot charts mirror the summary table hierarchy:
+   period labels are visually grouped while survivor labels remain on each
+   child group. */
+.dashboard-pivot-chart-period-label,
+.dashboard-pivot-chart-survivor-label {
+  fill: var(--text);
+  font-size: 10px;
+}
+
+.dashboard-pivot-chart-period-label {
+  font-weight: 700;
+}
+
+.dashboard-pivot-chart-survivor-label {
+  font-weight: 600;
 }
