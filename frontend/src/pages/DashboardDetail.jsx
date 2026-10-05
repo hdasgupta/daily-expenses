@@ -70,7 +70,7 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
   let periodEndX = x;
   let periodGroupSize = 1;
 
-  if (showPeriod && viewBox?.width && chartData.length) {
+  if (showPeriod && chartData.length) {
     const firstIndex = index;
     let lastIndex = index;
 
@@ -81,14 +81,33 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
       lastIndex += 1;
     }
 
-    // Anchor the merged label to the actual first tick. This keeps the
-    // period text centered on the complete merged span even when the
-    // chart has left/right margins or the axis has a non-zero origin.
-    const tickStep = viewBox.width / chartData.length;
+    /*
+     * Recharts exposes the half-band offset on the tick payload. Using it
+     * is important here: the SVG viewBox is not guaranteed to be present on
+     * a custom tick, and using viewBox.width caused the merged period label
+     * to fall back to the first survivor position on deployed builds.
+     *
+     * A category tick is centered inside its band, so two payload offsets
+     * equal one complete category step. This lets the merged period span
+     * use the same coordinates as the actual survivor ticks.
+     */
+    const payloadOffset = Number(payload?.offset);
+    const viewBoxStep =
+      viewBox?.width && chartData.length ? Number(viewBox.width) / chartData.length : 0;
+    const tickStep =
+      Number.isFinite(payloadOffset) && payloadOffset > 0
+        ? payloadOffset * 2
+        : viewBoxStep > 0
+          ? viewBoxStep
+          : 0;
+
     periodGroupSize = lastIndex - firstIndex + 1;
-    periodStartX = x - tickStep / 2;
-    periodEndX = x + (periodGroupSize - 0.5) * tickStep;
-    periodCenterX = (periodStartX + periodEndX) / 2;
+
+    if (tickStep > 0) {
+      periodStartX = x - tickStep / 2;
+      periodEndX = x + (periodGroupSize - 0.5) * tickStep;
+      periodCenterX = (periodStartX + periodEndX) / 2;
+    }
   }
 
   return (
@@ -106,21 +125,28 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
         <>
           <line
             x1={periodStartX - x}
-            y1={31}
+            y1={7}
             x2={periodEndX - x}
-            y2={31}
+            y2={7}
             className="dashboard-pivot-chart-period-divider"
           />
           <line
             x1={periodStartX - x}
-            y1={25}
+            y1={7}
             x2={periodStartX - x}
             y2={35}
             className="dashboard-pivot-chart-period-divider"
           />
           <line
             x1={periodEndX - x}
-            y1={25}
+            y1={7}
+            x2={periodEndX - x}
+            y2={35}
+            className="dashboard-pivot-chart-period-divider"
+          />
+          <line
+            x1={periodStartX - x}
+            y1={35}
             x2={periodEndX - x}
             y2={35}
             className="dashboard-pivot-chart-period-divider"
