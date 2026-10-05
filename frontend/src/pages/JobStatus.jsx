@@ -176,7 +176,12 @@ function describeReportConfig(config = {}) {
     const labels = Array.isArray(filters.categoryItemLabels)
       ? filters.categoryItemLabels
       : filters.categoryItems;
-    filterParts.push(`category/item = ${labels.join(", ")}`);
+    const categories = [...new Set(
+      labels
+        .map((label) => String(label).split(" - ")[0].split(" / ")[0].trim())
+        .filter(Boolean),
+    )];
+    filterParts.push(`categories = ${categories.join(", ")}`);
   }
   if (filters.categories?.length) filterParts.push(`categories = ${filters.categories.join(", ")}`);
   if (filters.survivors?.length) filterParts.push(`survivors = ${filters.survivors.join(", ")}`);
