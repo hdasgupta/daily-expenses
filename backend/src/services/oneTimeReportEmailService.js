@@ -18,6 +18,56 @@ function normalizeName(value) {
   return name;
 }
 
+function kolkataTodayIso() {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: TIMEZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+function hasFutureDateInReportConfig(config = {}) {
+  const filters = config.filters || {};
+  const today = kolkataTodayIso();
+
+  if (filters.date && String(filters.date) > today) {
+    return true;
+  }
+
+  if (filters.dateFrom && String(filters.dateFrom) > today) {
+    return true;
+  }
+
+  if (filters.dateTo && String(filters.dateTo) > today) {
+    return true;
+  }
+
+  if (filters.month) {
+    const month = String(filters.month);
+    const currentMonth = today.slice(0, 7);
+    if (/^\d{4}-\d{2}$/.test(month) && month > currentMonth) {
+      return true;
+    }
+    if (/^\d{4}-\d{2}$/.test(month) && month === currentMonth) {
+      return true;
+    }
+  }
+
+  if (filters.year) {
+    const year = String(filters.year);
+    const currentYear = today.slice(0, 4);
+    if (/^\d{4}$/.test(year) && year > currentYear) {
+      return true;
+    }
+    if (/^\d{4}$/.test(year) && year === currentYear) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 async function resolveScheduledFor(value) {
   const text = String(value || "").trim();
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(text)) {
@@ -40,14 +90,19 @@ async function resolveScheduledFor(value) {
 
 export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user }) {
   const clean = cleanConfig(config || {});
-  const report = await buildReportPdfData(clean);
-
-  if (!report.rows?.length && !report.rawRows?.length) {
-    throw error("Cannot schedule an email for a report with no data.");
-  }
-
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
+
+  // A report with no current data can still be scheduled when its configured
+  // date scope includes future dates. This allows data that is entered later
+  // to be included when the one-time email runs.
+  const report = await buildReportPdfData(clean);
+  const hasCurrentData = Boolean(report.rows?.length || report.rawRows?.length);
+  if (!hasCurrentData && !hasFutureDateInReportConfig(clean)) {
+    throw error(
+      "Cannot schedule an email for a report with no data unless the report includes a future date.",
+    );
+  }
 
   const result = await q(
     `INSERT INTO public.one_time_report_email_jobs
