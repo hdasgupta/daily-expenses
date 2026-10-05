@@ -104,7 +104,9 @@
   z-index: 20;
   left: 50%;
   bottom: calc(100% + 8px);
-  width: min(320px, 80vw);
+  width: min(320px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  box-sizing: border-box;
   padding: 9px 11px;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -119,6 +121,7 @@
   visibility: hidden;
   transform: translate(-50%, 4px);
   pointer-events: none;
+  overflow: hidden;
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
 }
 .job-pdf-info:hover .job-info-tooltip,
@@ -126,4 +129,8 @@
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);
+}
+
+.job-pdf-info {
+  isolation: isolate;
 }

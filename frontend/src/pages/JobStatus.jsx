@@ -159,7 +159,7 @@ const reportFieldLabels = {
   price: "amount",
 };
 
-function describeReportConfig(config = {}) {
+function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
   const filters = config.filters || {};
   const filterParts = [];
 
@@ -176,12 +176,14 @@ function describeReportConfig(config = {}) {
     const labels = Array.isArray(filters.categoryItemLabels)
       ? filters.categoryItemLabels
       : filters.categoryItems;
-    const categories = [...new Set(
+    const categoriesOnly = [...new Set(
       labels
-        .map((label) => String(label).split(" - ")[0].split(" / ")[0].trim())
+        .map((value) => String(value).split(" /")[0].trim())
         .filter(Boolean),
     )];
-    filterParts.push(`categories = ${categories.join(", ")}`);
+    filterParts.push(
+      `${categoryOnly ? "categories" : "category/item"} = ${(categoryOnly ? categoriesOnly : labels).join(", ")}`,
+    );
   }
   if (filters.categories?.length) filterParts.push(`categories = ${filters.categories.join(", ")}`);
   if (filters.survivors?.length) filterParts.push(`survivors = ${filters.survivors.join(", ")}`);
@@ -213,8 +215,8 @@ function describeReportConfig(config = {}) {
   };
 }
 
-function PdfContentsInfo({ config, dashboardSource = "" }) {
-  const details = config ? describeReportConfig(config) : null;
+function PdfContentsInfo({ config, dashboardSource = "", categoryOnly = false }) {
+  const details = config ? describeReportConfig(config, { categoryOnly }) : null;
   const description = details
     ? `PDF contents: report chart, summary/pivot table, and filtered raw expense data. Filters: ${details.filters}. Group by: ${details.groupBy}. Sorting: ${details.sorting}. Summarised: ${details.summarise}. Interactive dashboard controls are not included.`
     : `PDF contains the dashboard report chart, summary/pivot table, and underlying expense data. Dashboard source: ${dashboardSource || "predefined dashboard report"}. Interactive dashboard controls are not included.`;
@@ -540,7 +542,7 @@ export default function JobStatus({ user }) {
                 <div className="scheduled-job-meta">
                   <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
                   <span><b>Timezone:</b> Asia/Kolkata</span>
-                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} /></span>
+                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} categoryOnly /></span>
                   {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
                   {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
                 </div>
