@@ -544,13 +544,15 @@ export default function DashboardDetail({ navigate, user }) {
                           barSize={chartModel.stackedCategory ? 34 : 100}
                           cursor="pointer"
                           stroke="var(--surface)"
-                          strokeWidth={1}
+                          strokeWidth={2.5}
                           legendType={chartModel.stackedCategory ? "none" : undefined}
                           onClick={(entry) => {
                             const row = entry?.payload?._groupRows?.[series.dataKey];
                             if (row) openDrilldown(navigate, report.key, data.groupBy, row);
                           }}
-                        />
+                        >
+                          <LabelList dataKey={series.dataKey} position="inside" fill="#ffffff" fontSize={9} formatter={(value) => Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""} />
+                        </Bar>
                       ))}
                     </BarChart>
                   </ResponsiveContainer>

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import {
   ArrowDown,
   ArrowUp,
@@ -980,7 +980,7 @@ export default function Reports() {
                 <Tooltip formatter={(value, name, item) => [`₹${Number(value).toFixed(2)}`, item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name]} />
                 {!chartModel.stackedCategory && chartModel.series.length > 1 ? <Legend /> : null}
                 {chartModel.series.map((series) => (
-                  <Bar key={series.dataKey} dataKey={series.dataKey} name={series.label} fill={series.fill} stackId={series.stackId} stroke="var(--surface)" strokeWidth={1} />
+                  <Bar key={series.dataKey} dataKey={series.dataKey} name={series.label} fill={series.fill} stackId={series.stackId} stroke="var(--surface)" strokeWidth={2.5}><LabelList dataKey={series.dataKey} position="inside" fill="#ffffff" fontSize={9} formatter={(value) => Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""} /></Bar>
                 ))}
               </BarChart>
             </ResponsiveContainer>

@@ -956,6 +956,21 @@ function chartDimensionLabel(value, column) {
   return formatCell(value, column);
 }
 
+function drawBarSegmentLabel(doc, value, x, y, width, height) {
+  if (!value || height < 9 || width < 10) return;
+  const label = money(value);
+  doc
+    .fillColor("#ffffff")
+    .font("Helvetica-Bold")
+    .fontSize(Math.max(4.5, Math.min(6.5, Math.min(width / 5, height / 2.2))))
+    .text(label, x + 1, y + Math.max(1, (height - 7) / 2), {
+      width: Math.max(width - 2, 1),
+      height: Math.max(height - 2, 7),
+      align: "center",
+      ellipsis: true,
+    });
+}
+
 function buildIntelligentChartModel(rows, groupBy) {
   const groups = Array.isArray(groupBy) ? groupBy : [];
   const period = groups.find((column) => ["date", "week", "month", "year"].includes(column));
@@ -1035,7 +1050,13 @@ function drawGroupedChartPage(doc, model, title) {
       const height = (item.total / max) * (chartHeight - 35);
       const bx = x + index * slot + (slot - barWidth) / 2;
       const by = baseline - height;
-      doc.save().fillColor(palette[0]).rect(bx, by, barWidth, height).fill().restore();
+      doc.save()
+        .fillColor(palette[0])
+        .strokeColor("#ffffff")
+        .lineWidth(1.25)
+        .rect(bx, by, barWidth, height)
+        .fillAndStroke()
+        .restore();
       drawBarValueLabel(doc, item.total, bx, by, barWidth, baseline - chartHeight + 2);
       doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(item.label, bx - 10, baseline + 4, { width: barWidth + 20, height: 24, align: "center", ellipsis: true });
     });
@@ -1060,7 +1081,15 @@ function drawGroupedChartPage(doc, model, title) {
           const height = (value / max) * (chartHeight - 35);
           y -= height;
           total += value;
-          doc.save().fillColor(palette[categoryIndex % palette.length]).rect(start + categoryIndex * (stackWidth + categoryGap), y, stackWidth, height).fill().restore();
+          const segmentX = start + categoryIndex * (stackWidth + categoryGap);
+          doc.save()
+            .fillColor(palette[categoryIndex % palette.length])
+            .strokeColor("#ffffff")
+            .lineWidth(1.25)
+            .rect(segmentX, y, stackWidth, height)
+            .fillAndStroke()
+            .restore();
+          drawBarSegmentLabel(doc, value, segmentX, y, stackWidth, height);
         });
         if (total) drawBarValueLabel(doc, total, start + categoryIndex * (stackWidth + categoryGap), y, stackWidth, baseline - chartHeight + 2);
       });
@@ -1091,7 +1120,13 @@ function drawGroupedChartPage(doc, model, title) {
       const height = (value / max) * (chartHeight - 35);
       const bx = start + seriesIndex * (barWidth + 2);
       const by = baseline - height;
-      doc.save().fillColor(palette[seriesIndex % palette.length]).rect(bx, by, barWidth, height).fill().restore();
+      doc.save()
+        .fillColor(palette[seriesIndex % palette.length])
+        .strokeColor("#ffffff")
+        .lineWidth(1.25)
+        .rect(bx, by, barWidth, height)
+        .fillAndStroke()
+        .restore();
       if (value) drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
     });
     doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(xItem.label, x + xIndex * slot, baseline + 4, { width: slot - 2, height: 24, align: "center", ellipsis: true });
