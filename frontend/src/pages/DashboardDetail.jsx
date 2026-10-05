@@ -836,6 +836,13 @@ function buildChartModel(data) {
    */
   const isThreeGroupPivot = groupBy.length === 3;
 
+  // Daily/weekly/monthly/yearly survivor × category pivots use the same
+  // merged period-label hierarchy as the daily dashboard: survivor on top,
+  // period below, centered across the complete merged period span.
+  const isPeriodSurvivorCategoryPivot =
+    isThreeGroupPivot &&
+    ["date", "week", "month", "year"].includes(groupBy[0]);
+
   const xColumns = isThreeGroupPivot ? groupBy.slice(0, 2) : [groupBy[0]];
 
   const seriesColumns = isThreeGroupPivot ? [groupBy[2]] : groupBy.slice(1);
@@ -902,7 +909,7 @@ function buildChartModel(data) {
 
   return {
     multiSeries: true,
-    pivotGrouping: isThreeGroupPivot,
+    pivotGrouping: isPeriodSurvivorCategoryPivot,
 
     minWidth: Math.max(
       720,
