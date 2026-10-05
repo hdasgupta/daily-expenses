@@ -252,6 +252,11 @@ export default function Reports() {
 
   const [selections, setSelections] = useState([]);
 
+  const [shareModal, setShareModal] = useState(false);
+  const [shareSelectionTarget, setShareSelectionTarget] = useState(null);
+  const [shareableManagers, setShareableManagers] = useState([]);
+  const [selectedManagerIds, setSelectedManagerIds] = useState([]);
+
   const [showChart, setShowChart] = useState(false);
 
   const [proofViewerUrl, setProofViewerUrl] = useState("");
