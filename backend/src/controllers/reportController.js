@@ -56,7 +56,7 @@ async function resolveCategoryItemFilterLabels(config) {
     ...new Set(
       keys
         .map((key) => String(key).split(":")[0])
-        .filter((value) => /^\\d+$/.test(value)),
+        .filter((value) => /^\d+$/.test(value)),
     ),
   ];
 
