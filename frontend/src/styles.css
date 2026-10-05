@@ -1420,6 +1420,14 @@ code {
   stroke-width: 1;
 }
 
+/* Strong vertical separator between adjacent merged period/date groups. */
+.dashboard-pivot-chart-period-boundary {
+  stroke: var(--text);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+  opacity: 0.8;
+}
+
 .dashboard-pivot-chart-survivor-label {
   font-weight: 600;
 }

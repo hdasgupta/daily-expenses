@@ -123,6 +123,15 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
 
       {showPeriod ? (
         <>
+          {index > 0 ? (
+            <line
+              x1={periodStartX - x}
+              y1={0}
+              x2={periodStartX - x}
+              y2={38}
+              className="dashboard-pivot-chart-period-boundary"
+            />
+          ) : null}
           <line
             x1={periodStartX - x}
             y1={7}
