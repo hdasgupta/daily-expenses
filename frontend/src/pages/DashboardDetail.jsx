@@ -66,6 +66,9 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
     !previous || stableValueKey(previous[periodColumn]) !== periodKey;
 
   let periodCenterX = x;
+  let periodStartX = x;
+  let periodEndX = x;
+  let periodGroupSize = 1;
 
   if (showPeriod && viewBox?.width && chartData.length) {
     const firstIndex = index;
@@ -78,8 +81,14 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
       lastIndex += 1;
     }
 
+    // Anchor the merged label to the actual first tick. This keeps the
+    // period text centered on the complete merged span even when the
+    // chart has left/right margins or the axis has a non-zero origin.
     const tickStep = viewBox.width / chartData.length;
-    periodCenterX = viewBox.x + ((firstIndex + lastIndex + 1) / 2) * tickStep;
+    periodGroupSize = lastIndex - firstIndex + 1;
+    periodStartX = x - tickStep / 2;
+    periodEndX = x + (periodGroupSize - 0.5) * tickStep;
+    periodCenterX = (periodStartX + periodEndX) / 2;
   }
 
   return (
@@ -94,14 +103,37 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
       </text>
 
       {showPeriod ? (
-        <text
-          x={periodCenterX - x}
-          y={22}
-          textAnchor="middle"
-          className="dashboard-pivot-chart-period-label"
-        >
-          {prettyValue(current[periodColumn], periodColumn)}
-        </text>
+        <>
+          <line
+            x1={periodStartX - x}
+            y1={31}
+            x2={periodEndX - x}
+            y2={31}
+            className="dashboard-pivot-chart-period-divider"
+          />
+          <line
+            x1={periodStartX - x}
+            y1={25}
+            x2={periodStartX - x}
+            y2={35}
+            className="dashboard-pivot-chart-period-divider"
+          />
+          <line
+            x1={periodEndX - x}
+            y1={25}
+            x2={periodEndX - x}
+            y2={35}
+            className="dashboard-pivot-chart-period-divider"
+          />
+          <text
+            x={periodCenterX - x}
+            y={22}
+            textAnchor="middle"
+            className="dashboard-pivot-chart-period-label"
+          >
+            {prettyValue(current[periodColumn], periodColumn)}
+          </text>
+        </>
       ) : null}
     </g>
   );

@@ -1415,6 +1415,11 @@ code {
   font-weight: 700;
 }
 
+.dashboard-pivot-chart-period-divider {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
 .dashboard-pivot-chart-survivor-label {
   font-weight: 600;
 }
