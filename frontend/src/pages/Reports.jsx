@@ -259,8 +259,6 @@ export default function Reports() {
 
   const [shareUserIds, setShareUserIds] = useState([]);
 
-  const [infoSelectionId, setInfoSelectionId] = useState(null);
-
   const [showChart, setShowChart] = useState(false);
 
   const [proofViewerUrl, setProofViewerUrl] = useState("");
@@ -1014,23 +1012,14 @@ export default function Reports() {
                 <button
                   type="button"
                   className="icon-button soft selection-info-button"
-                  title="Show owner"
-                  aria-label={`Show owner of ${selection.name}`}
-                  onClick={() =>
-                    setInfoSelectionId((current) =>
-                      current === selection.id ? null : selection.id,
-                    )
-                  }
+                  title={`Owner: ${selection.owner_name}`}
+                  aria-label={`Owner: ${selection.owner_name}`}
                 >
                   <Info size={15} />
                 </button>
               </div>
 
               <div className="selection-row-actions">
-                {infoSelectionId === selection.id ? (
-                  <span className="selection-owner">Owner: {selection.owner_name}</span>
-                ) : null}
-
                 {selection.is_owner ? (
                   <button
                     type="button"
