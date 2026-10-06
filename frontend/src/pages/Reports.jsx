@@ -116,6 +116,8 @@ function normalizeLoaded(config = {}) {
     sortColumns: Array.isArray(config.sortColumns) ? config.sortColumns : [],
 
     groupBy: Array.isArray(config.groupBy) ? config.groupBy : [],
+
+    summarise: Boolean(config.groupBy?.length) && Boolean(config.summarise),
   };
 }
 
@@ -563,6 +565,7 @@ export default function Reports() {
         ...current,
 
         groupBy: nextGroup,
+        summarise: nextGroup.length ? current.summarise : false,
 
         sortColumns: current.sortColumns.filter((sort) => sort.column !== column),
       };
@@ -855,6 +858,7 @@ export default function Reports() {
           <input
             type="checkbox"
             checked={config.summarise}
+            disabled={!config.groupBy.length}
             onChange={(e) => {
               setConfig((current) => ({
                 ...current,
@@ -871,7 +875,9 @@ export default function Reports() {
 
           {config.groupBy.length ? (
             <small className="field-note">Grouping does not automatically enable summarise.</small>
-          ) : null}
+          ) : (
+            <small className="field-note">Select at least one Group by field to enable summarise.</small>
+          )}
         </label>
 
         <button className="secondary" type="button" onClick={apply}>
