@@ -1471,14 +1471,29 @@ function FilterCard({
         <MultiPicker
           label="Category"
           options={categoryOptions}
-          selected={config.filters.categories || []}
+          selected={
+            Array.isArray(config.filters.categories)
+              ? config.filters.categories
+              : []
+          }
           onToggle={(value) =>
-            setFilter(
-              "categories",
-              (config.filters.categories || []).includes(String(value))
-                ? config.filters.categories.filter((item) => item !== String(value))
-                : [...(config.filters.categories || []), String(value)],
-            )
+            setConfig((current) => {
+              const selected = Array.isArray(current.filters.categories)
+                ? current.filters.categories
+                : [];
+
+              const categoryId = String(value);
+
+              return {
+                ...current,
+                filters: {
+                  ...current.filters,
+                  categories: selected.includes(categoryId)
+                    ? selected.filter((item) => item !== categoryId)
+                    : [...selected, categoryId],
+                },
+              };
+            })
           }
         />
       ) : null}
