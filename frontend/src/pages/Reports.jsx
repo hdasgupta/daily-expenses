@@ -102,6 +102,11 @@ function normalizeLoaded(config = {}) {
     filters: {
       ...initialConfig.filters,
       ...(config.filters || {}),
+      // Saved selections may have been created by older app versions.
+      // Always normalize multi-select values before the UI reads .length/includes.
+      categoryItems: Array.isArray(config.filters?.categoryItems) ? config.filters.categoryItems : [],
+      categories: Array.isArray(config.filters?.categories) ? config.filters.categories : [],
+      survivors: Array.isArray(config.filters?.survivors) ? config.filters.survivors : [],
     },
 
     sortColumns: Array.isArray(config.sortColumns) ? config.sortColumns : [],
@@ -1482,13 +1487,13 @@ function FilterCard({
         <MultiPicker
           label="Category / item (legacy saved filter)"
           options={categoryItemOptions}
-          selected={config.filters.categoryItems}
+          selected={Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []}
           onToggle={(value) =>
             setFilter(
               "categoryItems",
-              config.filters.categoryItems.includes(String(value))
+              (Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []).includes(String(value))
                 ? config.filters.categoryItems.filter((item) => item !== String(value))
-                : [...config.filters.categoryItems, String(value)],
+                : [...(Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []), String(value)],
             )
           }
         />
@@ -1578,18 +1583,21 @@ function GroupArea({ groupBy, onAdd, onRemove }) {
   );
 }
 
-function MultiPicker({ label, options, selected, onToggle }) {
+function MultiPicker({ label, options = [], selected = [], onToggle }) {
+  const safeOptions = Array.isArray(options) ? options : [];
+  const safeSelected = Array.isArray(selected) ? selected : [];
+
   return (
     <div className="multi-picker">
       <strong>{label}</strong>
 
       <div className="multi-options">
-        {options.length ? (
-          options.map((option) => (
+        {safeOptions.length ? (
+          safeOptions.map((option) => (
             <label key={String(option.value)} className="check-option">
               <input
                 type="checkbox"
-                checked={selected.includes(String(option.value))}
+                checked={safeSelected.includes(String(option.value))}
                 onChange={() => onToggle(option.value)}
               />
 
