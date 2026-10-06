@@ -1,7 +1,7 @@
 import { q, pool } from "../db/index.js";
 import { cleanConfig, buildReportPdfData } from "./reportService.js";
 import { buildReportPdf } from "./reportPdfService.js";
-import { sendReportEmail, sendNotificationEmail } from "./mailService.js";
+import { sendReportEmail } from "./mailService.js";
 import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
@@ -89,7 +89,7 @@ async function resolveScheduledFor(value) {
   return scheduledFor;
 }
 
-export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user, targetUserIds = null }) {
+export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user }) {
   const clean = cleanConfig(config || {});
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
@@ -105,40 +105,26 @@ export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, u
     );
   }
 
-  const targets = user.role === "admin" && Array.isArray(targetUserIds) && targetUserIds.length ? targetUserIds : [user.id];
-  const ids = [...new Set(targets.map(Number).filter(Number.isInteger))];
-  if (user.role !== "admin" && ids.some((id) => id !== Number(user.id))) throw error("Only an administrator can schedule for other users.");
-  const recipients = await q(
-    `SELECT u.id,u.full_name,u.email FROM public.users u JOIN public.roles r ON r.id=u.role_id WHERE u.id=ANY($1::bigint[]) AND LOWER(r.name)='manager' AND u.is_disabled=FALSE`,
-    [ids],
+  const result = await q(
+    `INSERT INTO public.one_time_report_email_jobs
+      (owner_user_id, name, config, scheduled_for, status)
+     VALUES ($1, $2, $3::jsonb, $4, 'pending')
+     RETURNING id, name, scheduled_for, status, created_at`,
+    [user.id, scheduleName, JSON.stringify(clean), when],
   );
-  if (recipients.rows.length !== ids.length) throw error("One or more selected managers are invalid.");
-  const jobs=[];
-  for (const recipient of recipients.rows) {
-    const result = await q(
-      `INSERT INTO public.one_time_report_email_jobs
-        (owner_user_id, created_by_user_id, name, config, scheduled_for, status)
-       VALUES ($1,$2,$3,$4::jsonb,$5,'pending')
-       RETURNING id, name, scheduled_for, status, created_at`,
-      [recipient.id, user.id, scheduleName, JSON.stringify(clean), when],
-    );
-    jobs.push({...result.rows[0],report_email:recipient.email,owner_user_id:recipient.id,owner_name:recipient.full_name,owner_email:recipient.email,created_by_user_id:user.id,timezone:TIMEZONE});
-  }
-  if (user.role === "admin") {
-    for (const job of jobs) {
-      try { await sendNotificationEmail(job.owner_email,{subject:`Report email scheduled for you — ${job.name}`,htmlBody:`<p>An administrator scheduled a report email for you.</p><p><strong>Report:</strong> Expense Report<br/><strong>Schedule:</strong> ${job.name}<br/><strong>Execution time:</strong> ${new Date(job.scheduled_for).toLocaleString("en-IN",{timeZone:TIMEZONE})}<br/><strong>Scheduled by:</strong> ${user.full_name || user.email}</p>`}); } catch (e) { console.error("Unable to notify manager about one-time report",{jobId:job.id,error:e?.message||String(e),stack:e?.stack}); }
-    }
-  }
-  return jobs.length === 1 ? jobs[0] : { jobs };
+
+  return {
+    ...result.rows[0],
+    report_email: user.email,
+    timezone: TIMEZONE,
+  };
 }
 
 export async function listOneTimeReportEmailJobs(userId) {
   const result = await q(
-    `SELECT j.id, j.name, j.scheduled_for, j.status, j.last_attempt_at, j.last_error, j.created_at, j.updated_at, j.owner_user_id, j.created_by_user_id, u.full_name AS owner_name, u.email AS owner_email, c.full_name AS creator_name, c.email AS creator_email
-       FROM public.one_time_report_email_jobs j
-       JOIN public.users u ON u.id = j.owner_user_id
-       LEFT JOIN public.users c ON c.id = j.created_by_user_id
-      WHERE j.owner_user_id = NULLIF($1::text, '')::bigint
+    `SELECT id, name, scheduled_for, status, last_attempt_at, last_error, created_at, updated_at
+       FROM public.one_time_report_email_jobs
+      WHERE owner_user_id = $1
       ORDER BY scheduled_for ASC, id ASC`,
     [userId],
   );

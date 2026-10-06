@@ -8,7 +8,6 @@ class MainActivity : BridgeActivity() {
     private var credentialVault: CredentialVault? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        registerPlugin(FileCachePlugin::class.java)
         super.onCreate(savedInstanceState)
 
         val webView = bridge.webView ?: return

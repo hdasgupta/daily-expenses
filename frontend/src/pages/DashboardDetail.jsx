@@ -14,7 +14,6 @@ import {
 import { api } from "../lib/api";
 import Modal from "../components/Modal";
 import ScheduledReportForm from "../components/ScheduledReportForm";
-import ScheduleRecipients from "../components/ScheduleRecipients";
 import { getDashboardReports } from "./Dashboard";
 import "./scheduledReports.css";
 
@@ -340,7 +339,6 @@ export default function DashboardDetail({ navigate, user }) {
   const [scheduleOpen, setScheduleOpen] = useState(false);
 
   const [scheduleBusy, setScheduleBusy] = useState(false);
-  const [scheduleRecipients, setScheduleRecipients] = useState([]);
 
   const canSchedule = user?.permissions?.includes("job-status");
 
@@ -373,17 +371,13 @@ export default function DashboardDetail({ navigate, user }) {
   const chartData = chartModel.data;
 
   const createSchedule = async (payload) => {
-    if (user?.role === "admin" && !scheduleRecipients.length) {
-      window.alert("Select at least one manager.");
-      return;
-    }
     setScheduleBusy(true);
 
     try {
       await api("/scheduled-reports", {
         method: "POST",
 
-        body: JSON.stringify({ ...payload, targetUserIds: user?.role === "admin" ? scheduleRecipients : undefined }),
+        body: JSON.stringify(payload),
 
         loadingMessage: "Creating email schedule…",
       });
@@ -427,7 +421,7 @@ export default function DashboardDetail({ navigate, user }) {
 
         <div className="toolbar-actions">
           {canSchedule ? (
-            <button type="button" onClick={() => { setScheduleRecipients([]); setScheduleOpen(true); }}>
+            <button type="button" onClick={() => setScheduleOpen(true)}>
               <CalendarClock size={17} />
               Schedule email
             </button>
@@ -649,9 +643,6 @@ export default function DashboardDetail({ navigate, user }) {
         title={`Schedule ${report.label} email`}
         onClose={() => scheduleBusy || setScheduleOpen(false)}
       >
-        {user?.role === "admin" ? (
-          <ScheduleRecipients value={scheduleRecipients} onChange={setScheduleRecipients} isAdmin />
-        ) : null}
         <ScheduledReportForm
           report={report}
           recipient={user?.email}

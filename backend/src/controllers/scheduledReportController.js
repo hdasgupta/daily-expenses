@@ -5,12 +5,6 @@ import {
   updateScheduledReportJob,
 } from "../services/scheduledReportService.js";
 
-export async function recipients(req, res) {
-  if (req.user.role !== "admin") return res.status(403).json({ error: "Administrator access required." });
-  const { listScheduleRecipients } = await import("../services/scheduledReportService.js");
-  res.json(await listScheduleRecipients());
-}
-
 export async function list(req, res) {
   res.json(
     await listScheduledReportJobs({

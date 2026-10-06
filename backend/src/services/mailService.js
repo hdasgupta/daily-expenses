@@ -557,8 +557,3 @@ export async function sendReportEmail(email, pdfBuffer, options = {}) {
     ],
   });
 }
-
-
-export async function sendNotificationEmail(email, { subject, htmlBody }) {
-  await postEmail({ to: email, subject, htmlBody });
-}

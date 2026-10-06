@@ -1,7 +1,6 @@
 import { Capacitor } from "@capacitor/core";
-import { registerPlugin } from "@capacitor/core";
-
-const FileCache = registerPlugin("FileCache");
+import { Directory, Filesystem } from "@capacitor/filesystem";
+import { Share } from "@capacitor/share";
 
 const RENDER_API_BASE_URL = "https://daily-expenses-g4ze.onrender.com/api";
 
@@ -99,26 +98,26 @@ function buildFileName(fileName, mimeType, url) {
   return `${safeName}.${extension}`;
 }
 
-function getNativeMimeType(blob, fileName) {
-  const type = String(blob?.type || "").toLowerCase().split(";")[0].trim();
-  const extension = String(fileName || "").toLowerCase().split(".").pop();
-
-  if (extension === "pdf") return "application/pdf";
-  if (extension === "png") return "image/png";
-  if (extension === "jpg" || extension === "jpeg") return "image/jpeg";
-  if (extension === "webp") return "image/webp";
-
-  return type || "application/octet-stream";
-}
-
 async function openNativeFile(blob, fileName) {
   const base64 = await blobToBase64(blob);
-  const mimeType = getNativeMimeType(blob, fileName);
 
-  await FileCache.cacheAndOpen({
-    fileName,
+  await Filesystem.writeFile({
+    path: fileName,
     data: base64,
-    mimeType,
+    directory: Directory.Cache,
+    recursive: true,
+  });
+
+  const { uri } = await Filesystem.getUri({
+    path: fileName,
+    directory: Directory.Cache,
+  });
+
+  await Share.share({
+    title: fileName,
+    text: fileName,
+    files: [uri],
+    dialogTitle: "Open file",
   });
 }
 

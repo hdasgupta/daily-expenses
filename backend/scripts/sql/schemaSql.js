@@ -174,7 +174,6 @@ CREATE TABLE IF NOT EXISTS public.scheduled_report_jobs (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
   owner_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
   report_key VARCHAR(100) NOT NULL,
   frequency VARCHAR(10) NOT NULL CHECK(frequency IN ('daily','weekly','monthly','yearly')),
   time_of_day TIME NOT NULL,
@@ -186,39 +185,10 @@ CREATE TABLE IF NOT EXISTS public.scheduled_report_jobs (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-ALTER TABLE public.scheduled_report_jobs
-  ADD COLUMN IF NOT EXISTS created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL;
-UPDATE public.scheduled_report_jobs
-   SET created_by_user_id = owner_user_id
- WHERE created_by_user_id IS NULL;
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_owner
   ON public.scheduled_report_jobs(owner_user_id, active);
-CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_creator
-  ON public.scheduled_report_jobs(created_by_user_id, active);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
   ON public.scheduled_report_jobs(active, frequency, time_of_day);
-CREATE TABLE IF NOT EXISTS public.one_time_report_email_jobs (
-  id BIGSERIAL PRIMARY KEY,
-  owner_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-  created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
-  name VARCHAR(150) NOT NULL,
-  config JSONB NOT NULL,
-  scheduled_for TIMESTAMPTZ NOT NULL,
-  status VARCHAR(20) NOT NULL DEFAULT 'pending',
-  last_attempt_at TIMESTAMPTZ,
-  last_error TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-ALTER TABLE public.one_time_report_email_jobs
-  ADD COLUMN IF NOT EXISTS created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL;
-UPDATE public.one_time_report_email_jobs
-   SET created_by_user_id = owner_user_id
- WHERE created_by_user_id IS NULL;
-CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_owner
-  ON public.one_time_report_email_jobs(owner_user_id, scheduled_for);
-CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_creator
-  ON public.one_time_report_email_jobs(created_by_user_id, scheduled_for);
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,

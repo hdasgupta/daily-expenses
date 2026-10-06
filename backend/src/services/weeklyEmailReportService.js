@@ -97,25 +97,9 @@ export async function sendWeeklyEmailReportToManagers() {
   const pdf = await buildWeeklyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate = report.generatedAt.slice(0, 10);
-  const failures = [];
-
-  // Attempt every active admin/manager even if one recipient fails.
   for (const row of result.rows) {
-    try {
-      await sendWeeklyEmailReport(row.email, pdf, reportDate);
-    } catch (error) {
-      failures.push({ email: row.email, error });
-    }
+    await sendWeeklyEmailReport(row.email, pdf, reportDate);
   }
-
-  if (failures.length) {
-    const details = failures.map((item) => `${item.email}: ${item.error?.message || String(item.error)}`).join('; ');
-    const aggregate = new Error(`Common weekly report email failed for ${failures.length} of ${result.rows.length} recipients: ${details}`);
-    aggregate.name = 'CommonReportRecipientDeliveryError';
-    aggregate.failures = failures;
-    throw aggregate;
-  }
-
   return { recipients: result.rows.length, rows: report.dump.length };
 }
 

@@ -29,15 +29,14 @@ const scheduleDefinitions = [
   },
 ];
 
-export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
+export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId }) {
   const safePage = Math.max(1, Number(page) || 1);
   const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
   const offset = (safePage - 1) * safePageSize;
   const searchPattern = `%${safeSearch}%`;
 
-  const historySql = `(
-    SELECT e.id::text AS id,
+  const historySql = `(\n    SELECT e.id::text AS id,
            e.job_name, e.scheduled_key, e.status, e.started_at, e.completed_at,
            e.duration_ms, e.error_message, NULL::text AS scheduled_report_name
       FROM public.scheduler_job_executions e
@@ -49,42 +48,42 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
       JOIN public.scheduled_report_jobs j
         ON r.job_name = 'scheduled-report:' || j.id::text
      WHERE r.job_name LIKE 'scheduled-report:%'
-       AND ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
+       AND j.owner_user_id = $1
   ) history`;
-  const historyWhere = `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
+  const historyWhere = `$2 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
 
   const [countResult, rowsResult] = await Promise.all([
     q(`SELECT COUNT(*)::int AS total\n         FROM ${historySql}\n        WHERE ${historyWhere}`, [
-      Boolean(isAdmin),
       userId,
       safeSearch,
+      searchPattern,
     ]),
     q(
       `SELECT id, job_name, scheduled_key, status, started_at, completed_at,\n              duration_ms, error_message, scheduled_report_name\n         FROM ${historySql}\n        WHERE ${historyWhere}\n        ORDER BY started_at DESC\n        LIMIT $4 OFFSET $5`,
-      [Boolean(isAdmin), userId, safeSearch, safePageSize, offset],
+      [userId, safeSearch, searchPattern, safePageSize, offset],
     ),
   ]);
 
   const oneTimeResult = await q(
-    `SELECT j.id, j.name, j.config, j.scheduled_for, j.status, j.last_attempt_at, j.last_error, j.created_at, j.owner_user_id, j.created_by_user_id, u.full_name AS owner_name, u.email AS owner_email, c.full_name AS creator_name, c.email AS creator_email
-       FROM public.one_time_report_email_jobs j
-       JOIN public.users u ON u.id = j.owner_user_id
-       LEFT JOIN public.users c ON c.id = j.created_by_user_id
-      WHERE ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
-      ORDER BY j.scheduled_for ASC, j.id ASC`,
-    [Boolean(isAdmin), userId],
+    `SELECT id, name, config, scheduled_for, status, last_attempt_at, last_error, created_at
+       FROM public.one_time_report_email_jobs
+      WHERE owner_user_id = $1
+      ORDER BY scheduled_for ASC, id ASC`,
+    [userId],
   );
 
   const oneTimeJobs = oneTimeResult.rows;
+  // Resolve IDs from both categoryItems keys and plain categories filters.
   const categoryIds = [
     ...new Set(
       oneTimeJobs.flatMap((job) => {
-        const keys = job.config?.filters?.categoryItems;
-        return Array.isArray(keys)
-          ? keys
-              .map((key) => String(key).split(":")[0])
-              .filter((id) => /^\d+$/.test(id))
-          : [];
+        const filters = job.config?.filters || {};
+        const itemKeys = Array.isArray(filters.categoryItems) ? filters.categoryItems : [];
+        const categoryKeys = Array.isArray(filters.categories) ? filters.categories : [];
+        return [
+          ...itemKeys.map((key) => String(key).split(":")[0]),
+          ...categoryKeys.map((key) => String(key)),
+        ].filter((id) => /^\\d+$/.test(id));
       }),
     ),
   ];
@@ -113,6 +112,13 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
         const categoryName = categoryNames.get(String(categoryId)) || `Category ${categoryId}`;
         if (kind === "item") return `${categoryName} - Item`;
         return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
+      });
+    }
+
+    if (Array.isArray(filters.categories) && filters.categories.length) {
+      filters.categoryLabels = filters.categories.map((value) => {
+        const id = String(value);
+        return categoryNames.get(id) || `Category ${id}`;
       });
     }
 

@@ -24,7 +24,6 @@ import { openRemoteFile } from "../lib/download";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
-import ScheduleRecipients from "../components/ScheduleRecipients";
 
 const GROUP_OPTIONS = [
   ["date", "Date"],
@@ -54,7 +53,7 @@ const GROUP_SORT_BASE_OPTIONS = [
 const FILTER_OPTIONS = [
   ["date", "Date / range / month / year"],
   ["hasProof", "Has proof"],
-  ["categories", "Categories"],
+  ["categoryItems", "Category / item"],
   ["survivors", "Survivors"],
 ];
 
@@ -69,7 +68,7 @@ const initialConfig = {
     month: "",
     year: "",
     hasProof: "",
-    categories: [],
+    categoryItems: [],
     survivors: [],
   },
 
@@ -83,22 +82,12 @@ function optionLabel(options, value) {
 }
 
 function normalizeLoaded(config = {}) {
-  const legacyCategoryItems = Array.isArray(config.filters?.categoryItems)
-    ? config.filters.categoryItems
-    : [];
-  const loadedCategories = Array.isArray(config.filters?.categories)
-    ? config.filters.categories
-    : [];
-  const migratedCategories = loadedCategories.length
-    ? loadedCategories
-    : [...new Set(legacyCategoryItems.map((value) => String(value).split(":")[0]).filter(Boolean))];
-
   const active = Array.isArray(config.activeFilters)
-    ? config.activeFilters.map((value) => (value === "categoryItems" ? "categories" : value))
+    ? config.activeFilters
     : [
         ...(config.dateFilterType && config.dateFilterType !== "none" ? ["date"] : []),
         ...(config.filters?.hasProof ? ["hasProof"] : []),
-        ...(migratedCategories.length ? ["categories"] : []),
+        ...(config.filters?.categoryItems?.length ? ["categoryItems"] : []),
         ...(config.filters?.survivors?.length ? ["survivors"] : []),
       ];
 
@@ -111,14 +100,11 @@ function normalizeLoaded(config = {}) {
     filters: {
       ...initialConfig.filters,
       ...(config.filters || {}),
-      categories: migratedCategories,
     },
 
     sortColumns: Array.isArray(config.sortColumns) ? config.sortColumns : [],
 
     groupBy: Array.isArray(config.groupBy) ? config.groupBy : [],
-
-    summarise: Boolean(config.groupBy?.length) && Boolean(config.summarise),
   };
 }
 
@@ -322,12 +308,14 @@ function buildReportChartModel(result) {
   return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
 }
 
-export default function Reports({ user }) {
+export default function Reports() {
   const [config, setConfig] = useState(initialConfig);
 
   const [result, setResult] = useState(null);
 
   const [categories, setCategories] = useState([]);
+
+  const [items, setItems] = useState([]);
 
   const [survivors, setSurvivors] = useState([]);
 
@@ -366,7 +354,6 @@ export default function Reports({ user }) {
   const [scheduleTime, setScheduleTime] = useState("");
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleBusy, setScheduleBusy] = useState(false);
-  const [scheduleRecipients, setScheduleRecipients] = useState([]);
 
   useEffect(() => {
     Promise.all([
@@ -384,6 +371,54 @@ export default function Reports({ user }) {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (!categories.length) {
+      return;
+    }
+
+    Promise.all(
+      categories.map((category) =>
+        api(`/meta/items/${category.id}`, {
+          loadingMessage: "Loading report items…",
+        }),
+      ),
+    )
+      .then((lists) =>
+        setItems(
+          lists.flatMap((list, index) =>
+            list.map((item) => ({
+              ...item,
+              categoryName: categories[index].name,
+            })),
+          ),
+        ),
+      )
+      .catch(() => {});
+  }, [categories]);
+
+  const categoryItemOptions = useMemo(
+    () =>
+      categories.flatMap((category) => [
+        {
+          value: `${category.id}:total`,
+          label: `${category.name} / Total`,
+        },
+
+        {
+          value: `${category.id}:other`,
+          label: `${category.name} / Other`,
+        },
+
+        ...items
+          .filter((item) => String(item.category_id) === String(category.id))
+          .map((item) => ({
+            value: `${category.id}:item:${item.id}`,
+            label: `${category.name} / ${item.name}`,
+          })),
+      ]),
+    [categories, items],
+  );
 
   const addFilter = () => {
     if (!filterType || config.activeFilters.includes(filterType)) {
@@ -427,10 +462,10 @@ export default function Reports({ user }) {
         };
       }
 
-      if (type === "categories" || type === "categoryItems") {
+      if (type === "categoryItems") {
         next.filters = {
           ...next.filters,
-          categories: [],
+          categoryItems: [],
         };
       }
 
@@ -567,7 +602,6 @@ export default function Reports({ user }) {
         ...current,
 
         groupBy: nextGroup,
-        summarise: nextGroup.length ? current.summarise : false,
 
         sortColumns: current.sortColumns.filter((sort) => sort.column !== column),
       };
@@ -683,17 +717,12 @@ export default function Reports({ user }) {
     setScheduleDate(`${values.year}-${values.month}-${values.day}`);
     setScheduleTime(`${values.hour}:${values.minute}`);
     setScheduleName("Report PDF email");
-    setScheduleRecipients([]);
     setScheduleEmailModal(true);
   };
 
   const scheduleEmail = async (event) => {
     event.preventDefault();
     if (!scheduleDate || !scheduleTime) return;
-    if (user?.role === "admin" && !scheduleRecipients.length) {
-      window.alert("Select at least one manager.");
-      return;
-    }
 
     setScheduleBusy(true);
     try {
@@ -703,7 +732,6 @@ export default function Reports({ user }) {
           name: scheduleName,
           scheduledFor: `${scheduleDate}T${scheduleTime}`,
           config,
-          targetUserIds: user?.role === "admin" ? scheduleRecipients : undefined,
         }),
         loadingMessage: "Scheduling report PDF email…",
         toast: {
@@ -812,7 +840,7 @@ export default function Reports({ user }) {
             config={config}
             setConfig={setConfig}
             setFilter={setFilter}
-            categories={categories}
+            categoryItemOptions={categoryItemOptions}
             survivors={survivors}
             onRemove={() => removeFilter(type)}
           />
@@ -866,7 +894,6 @@ export default function Reports({ user }) {
           <input
             type="checkbox"
             checked={config.summarise}
-            disabled={!config.groupBy.length}
             onChange={(e) => {
               setConfig((current) => ({
                 ...current,
@@ -883,9 +910,7 @@ export default function Reports({ user }) {
 
           {config.groupBy.length ? (
             <small className="field-note">Grouping does not automatically enable summarise.</small>
-          ) : (
-            <small className="field-note">Select at least one Group by field to enable summarise.</small>
-          )}
+          ) : null}
         </label>
 
         <button className="secondary" type="button" onClick={apply}>
@@ -1252,10 +1277,6 @@ export default function Reports({ user }) {
         }
       >
         <form id="schedule-report-email-form" onSubmit={scheduleEmail}>
-          {user?.role === "admin" ? (
-            <ScheduleRecipients value={scheduleRecipients} onChange={setScheduleRecipients} isAdmin />
-          ) : null}
-
           <div className="notice">
             The current report filters, grouping, sorting and summary settings will be saved as a snapshot and emailed once at the selected time.
           </div>
@@ -1304,7 +1325,7 @@ function FilterCard({
   config,
   setConfig,
   setFilter,
-  categories,
+  categoryItemOptions,
   survivors,
   onRemove,
 }) {
@@ -1426,20 +1447,17 @@ function FilterCard({
         </label>
       ) : null}
 
-      {type === "categories" ? (
+      {type === "categoryItems" ? (
         <MultiPicker
-          label="Categories"
-          options={categories.map((category) => ({
-            value: category.id,
-            label: category.name,
-          }))}
-          selected={config.filters.categories}
+          label="Category / item"
+          options={categoryItemOptions}
+          selected={config.filters.categoryItems}
           onToggle={(value) =>
             setFilter(
-              "categories",
-              config.filters.categories.includes(String(value))
-                ? config.filters.categories.filter((item) => item !== String(value))
-                : [...config.filters.categories, String(value)],
+              "categoryItems",
+              config.filters.categoryItems.includes(String(value))
+                ? config.filters.categoryItems.filter((item) => item !== String(value))
+                : [...config.filters.categoryItems, String(value)],
             )
           }
         />

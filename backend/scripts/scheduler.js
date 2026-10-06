@@ -41,40 +41,16 @@ function logSchedulerEvent(event, details = {}) {
 }
 
 async function markJobStarted(client, jobName, scheduledKey) {
-  // The scheduler takes a PostgreSQL advisory lock for this job/period before
-  // reaching this function. Do not depend on a UNIQUE/EXCLUSION constraint
-  // being present in an older production database: deployments can contain
-  // scheduler_job_executions rows created before the idempotency index was
-  // introduced. Update the existing period row when present, otherwise insert.
-  const existing = await client.query(
-    `SELECT id
-     FROM public.scheduler_job_executions
-     WHERE job_name = $1
-       AND scheduled_key = $2
-     ORDER BY id DESC
-     LIMIT 1`,
-    [jobName, scheduledKey],
-  );
-
-  if (existing.rows.length > 0) {
-    const result = await client.query(
-      `UPDATE public.scheduler_job_executions
+  const result = await client.query(
+    `INSERT INTO public.scheduler_job_executions
+      (job_name, scheduled_key, status, started_at, completed_at, duration_ms, error_message)
+     VALUES ($1, $2, 'running', now(), NULL, NULL, NULL)
+     ON CONFLICT (job_name, scheduled_key) DO UPDATE
        SET status = 'running',
            started_at = now(),
            completed_at = NULL,
            duration_ms = NULL,
            error_message = NULL
-       WHERE id = $1
-       RETURNING id`,
-      [existing.rows[0].id],
-    );
-    return result.rows[0]?.id;
-  }
-
-  const result = await client.query(
-    `INSERT INTO public.scheduler_job_executions
-      (job_name, scheduled_key, status, started_at, completed_at, duration_ms, error_message)
-     VALUES ($1, $2, 'running', now(), NULL, NULL, NULL)
      RETURNING id`,
     [jobName, scheduledKey],
   );

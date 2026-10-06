@@ -10,11 +10,7 @@ export async function saveSelection(userId, name, config) {
   return result.rows[0];
 }
 export async function deleteSelection(userId, id) {
-  await withTransaction(async (client) => {
-    // Remove every share instance before deleting the owner's selection.
-    await client.query(reportModelSql.deleteSharesForSelection, [id]);
-    await client.query(reportModelSql.delete, [id, userId]);
-  });
+  await q(reportModelSql.delete, [id, userId]);
 }
 
 export async function getShareableUsers(userId, selectionId) {
