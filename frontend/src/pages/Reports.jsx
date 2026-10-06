@@ -53,7 +53,7 @@ const GROUP_SORT_BASE_OPTIONS = [
 const FILTER_OPTIONS = [
   ["date", "Date / range / month / year"],
   ["hasProof", "Has proof"],
-  ["categoryItems", "Category / item"],
+  ["categories", "Categories"],
   ["survivors", "Survivors"],
 ];
 
@@ -68,7 +68,7 @@ const initialConfig = {
     month: "",
     year: "",
     hasProof: "",
-    categoryItems: [],
+    categories: [],
     survivors: [],
   },
 
@@ -82,12 +82,22 @@ function optionLabel(options, value) {
 }
 
 function normalizeLoaded(config = {}) {
+  const legacyCategoryItems = Array.isArray(config.filters?.categoryItems)
+    ? config.filters.categoryItems
+    : [];
+  const loadedCategories = Array.isArray(config.filters?.categories)
+    ? config.filters.categories
+    : [];
+  const migratedCategories = loadedCategories.length
+    ? loadedCategories
+    : [...new Set(legacyCategoryItems.map((value) => String(value).split(":")[0]).filter(Boolean))];
+
   const active = Array.isArray(config.activeFilters)
-    ? config.activeFilters
+    ? config.activeFilters.map((value) => (value === "categoryItems" ? "categories" : value))
     : [
         ...(config.dateFilterType && config.dateFilterType !== "none" ? ["date"] : []),
         ...(config.filters?.hasProof ? ["hasProof"] : []),
-        ...(config.filters?.categoryItems?.length ? ["categoryItems"] : []),
+        ...(migratedCategories.length ? ["categories"] : []),
         ...(config.filters?.survivors?.length ? ["survivors"] : []),
       ];
 
@@ -100,6 +110,7 @@ function normalizeLoaded(config = {}) {
     filters: {
       ...initialConfig.filters,
       ...(config.filters || {}),
+      categories: migratedCategories,
     },
 
     sortColumns: Array.isArray(config.sortColumns) ? config.sortColumns : [],
@@ -315,8 +326,6 @@ export default function Reports() {
 
   const [categories, setCategories] = useState([]);
 
-  const [items, setItems] = useState([]);
-
   const [survivors, setSurvivors] = useState([]);
 
   const [filterModal, setFilterModal] = useState(false);
@@ -372,54 +381,6 @@ export default function Reports() {
       .catch(() => {});
   }, []);
 
-  useEffect(() => {
-    if (!categories.length) {
-      return;
-    }
-
-    Promise.all(
-      categories.map((category) =>
-        api(`/meta/items/${category.id}`, {
-          loadingMessage: "Loading report items…",
-        }),
-      ),
-    )
-      .then((lists) =>
-        setItems(
-          lists.flatMap((list, index) =>
-            list.map((item) => ({
-              ...item,
-              categoryName: categories[index].name,
-            })),
-          ),
-        ),
-      )
-      .catch(() => {});
-  }, [categories]);
-
-  const categoryItemOptions = useMemo(
-    () =>
-      categories.flatMap((category) => [
-        {
-          value: `${category.id}:total`,
-          label: `${category.name} / Total`,
-        },
-
-        {
-          value: `${category.id}:other`,
-          label: `${category.name} / Other`,
-        },
-
-        ...items
-          .filter((item) => String(item.category_id) === String(category.id))
-          .map((item) => ({
-            value: `${category.id}:item:${item.id}`,
-            label: `${category.name} / ${item.name}`,
-          })),
-      ]),
-    [categories, items],
-  );
-
   const addFilter = () => {
     if (!filterType || config.activeFilters.includes(filterType)) {
       return;
@@ -462,10 +423,10 @@ export default function Reports() {
         };
       }
 
-      if (type === "categoryItems") {
+      if (type === "categories" || type === "categoryItems") {
         next.filters = {
           ...next.filters,
-          categoryItems: [],
+          categories: [],
         };
       }
 
@@ -840,7 +801,7 @@ export default function Reports() {
             config={config}
             setConfig={setConfig}
             setFilter={setFilter}
-            categoryItemOptions={categoryItemOptions}
+            categories={categories}
             survivors={survivors}
             onRemove={() => removeFilter(type)}
           />
@@ -1325,7 +1286,7 @@ function FilterCard({
   config,
   setConfig,
   setFilter,
-  categoryItemOptions,
+  categories,
   survivors,
   onRemove,
 }) {
@@ -1447,17 +1408,20 @@ function FilterCard({
         </label>
       ) : null}
 
-      {type === "categoryItems" ? (
+      {type === "categories" ? (
         <MultiPicker
-          label="Category / item"
-          options={categoryItemOptions}
-          selected={config.filters.categoryItems}
+          label="Categories"
+          options={categories.map((category) => ({
+            value: category.id,
+            label: category.name,
+          }))}
+          selected={config.filters.categories}
           onToggle={(value) =>
             setFilter(
-              "categoryItems",
-              config.filters.categoryItems.includes(String(value))
-                ? config.filters.categoryItems.filter((item) => item !== String(value))
-                : [...config.filters.categoryItems, String(value)],
+              "categories",
+              config.filters.categories.includes(String(value))
+                ? config.filters.categories.filter((item) => item !== String(value))
+                : [...config.filters.categories, String(value)],
             )
           }
         />

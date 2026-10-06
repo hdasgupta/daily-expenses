@@ -346,13 +346,12 @@ function summarizeFilter(config = {}) {
   if (filters.hasProof === "true") parts.push("Has proof = Yes");
   if (filters.hasProof === "false") parts.push("Has proof = No");
 
-  if (filters.categoryItems?.length) {
-    const labels = Array.isArray(filters.categoryItemLabels)
-      ? filters.categoryItemLabels
-      : filters.categoryItems;
-    parts.push(`Category/item filters = ${labels.join(", ")}`);
+  if (filters.categories?.length) {
+    const labels = Array.isArray(filters.categoryLabels)
+      ? filters.categoryLabels
+      : filters.categories;
+    parts.push(`Categories = ${labels.join(", ")}`);
   }
-  if (filters.categories?.length) parts.push(`Categories = ${filters.categories.join(", ")}`);
   if (filters.survivors?.length) parts.push(`Survivors = ${filters.survivors.join(", ")}`);
 
   return parts.length ? parts.join(" | ") : "No filters selected; all expense records are included.";

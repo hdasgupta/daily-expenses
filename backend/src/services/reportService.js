@@ -35,16 +35,16 @@ function cleanConfig(config = {}) {
     }))
     .filter((x, i, a) => a.findIndex((y) => y.column === x.column) === i);
 
-  const categoryItems = Array.isArray(filters.categoryItems)
-    ? [...new Set(filters.categoryItems.map(String))]
+  const legacyCategoryItems = Array.isArray(filters.categoryItems)
+    ? filters.categoryItems
     : [];
+
+  const categories = Array.isArray(filters.categories) && filters.categories.length
+    ? [...new Set(filters.categories.map(String))]
+    : [...new Set(legacyCategoryItems.map((value) => String(value).split(":")[0]).filter(Boolean))];
 
   const survivors = Array.isArray(filters.survivors)
     ? [...new Set(filters.survivors.map(String))]
-    : [];
-
-  const categories = Array.isArray(filters.categories)
-    ? [...new Set(filters.categories.map(String))]
     : [];
 
   return {
@@ -59,7 +59,6 @@ function cleanConfig(config = {}) {
       month: filters.month || "",
       year: filters.year || "",
       hasProof: ["true", "false"].includes(filters.hasProof) ? filters.hasProof : "",
-      categoryItems,
       categories,
       survivors,
     },
@@ -101,30 +100,6 @@ function addFilter(where, params, filters, alias) {
 
   if (filters.hasProof) {
     where.push(reportSql.filterProof(alias, filters.hasProof === "true"));
-  }
-
-  if (filters.categoryItems.length) {
-    const clauses = [];
-
-    for (const key of filters.categoryItems) {
-      const [categoryId, kind, itemId] = String(key).split(":");
-
-      params.push(categoryId);
-
-      const categoryIndex = params.length;
-
-      if (kind === "item") {
-        params.push(itemId);
-
-        clauses.push(reportSql.filterCategoryItem(alias, categoryIndex, params.length));
-      } else if (kind === "other") {
-        clauses.push(reportSql.filterOther(alias, categoryIndex));
-      } else {
-        clauses.push(reportSql.filterTotal(alias, categoryIndex));
-      }
-    }
-
-    where.push(reportSql.or(clauses));
   }
 
   if (filters.categories.length) {
@@ -584,57 +559,29 @@ export async function runReport(input) {
   };
 }
 
-async function resolveCategoryItemFilterLabelsForPdf(config) {
+async function resolveCategoryFilterLabelsForPdf(config) {
   const filters = config?.filters || {};
-  const keys = Array.isArray(filters.categoryItems)
-    ? [...new Set(filters.categoryItems.map(String))]
+  const categories = Array.isArray(filters.categories)
+    ? [...new Set(filters.categories.map(String))]
     : [];
 
-  if (!keys.length) return [];
+  if (!categories.length) return [];
 
-  const categoryIds = [
-    ...new Set(
-      keys
-        .map((key) => String(key).split(":")[0])
-        .filter((value) => /^\d+$/.test(value)),
-    ),
-  ];
-
-  if (!categoryIds.length) return keys;
+  const validIds = categories.filter((value) => /^\d+$/.test(value));
+  if (!validIds.length) return categories;
 
   const result = await q(
     `
-      SELECT c.id AS category_id,
-             c.name AS category,
-             i.id AS item_id,
-             i.name AS item
-        FROM public.categories c
-        LEFT JOIN public.items i ON i.category_id = c.id
-       WHERE c.id = ANY($1::bigint[])
+      SELECT id, name
+        FROM public.categories
+       WHERE id = ANY($1::bigint[])
     `,
-    [categoryIds],
+    [validIds],
   );
 
-  const categories = new Map();
-  const items = new Map();
+  const names = new Map((result.rows || []).map((row) => [String(row.id), row.name]));
 
-  for (const row of result.rows || []) {
-    const categoryId = String(row.category_id);
-    categories.set(categoryId, row.category);
-    if (row.item_id != null) {
-      items.set(String(row.item_id), { categoryId, name: row.item });
-    }
-  }
-
-  return keys.map((key) => {
-    const [categoryId, kind, itemId] = String(key).split(":");
-    const categoryName = categories.get(String(categoryId)) || `Category ${categoryId}`;
-    if (kind === "item") {
-      const item = items.get(String(itemId));
-      return `${categoryName} - ${item?.name || `Item ${itemId}`}`;
-    }
-    return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
-  });
+  return categories.map((id) => names.get(String(id)) || `Category ${id}`);
 }
 
 export async function buildReportPdfData(config = {}) {
@@ -653,7 +600,7 @@ export async function buildReportPdfData(config = {}) {
   };
 
   const rawReport = await runReport(rawConfig);
-  const categoryItemLabels = await resolveCategoryItemFilterLabelsForPdf(config);
+  const categoryLabels = await resolveCategoryFilterLabelsForPdf(config);
 
   return {
     ...report,
@@ -663,7 +610,7 @@ export async function buildReportPdfData(config = {}) {
       ...config,
       filters: {
         ...(config.filters || {}),
-        categoryItemLabels,
+        categoryLabels,
       },
     },
   };
