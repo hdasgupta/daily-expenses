@@ -1,5 +1,6 @@
 package org.wbfmh.dailyexpenses
 
+import android.content.ClipData
 import android.content.Intent
 import android.util.Base64
 import androidx.core.content.FileProvider
@@ -45,15 +46,21 @@ class FileCachePlugin : Plugin() {
                 setDataAndType(uri, mimeType)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                clipData = ClipData.newRawUri(fileName, uri)
             }
 
-            val resolver = context.packageManager
-            if (intent.resolveActivity(resolver) == null) {
+            val chooser = Intent.createChooser(intent, "Open with").apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                clipData = ClipData.newRawUri(fileName, uri)
+            }
+
+            try {
+                context.startActivity(chooser)
+            } catch (error: android.content.ActivityNotFoundException) {
                 call.reject("No installed application can open this file.")
                 return
             }
-
-            context.startActivity(intent)
 
             call.resolve(JSObject().apply {
                 put("uri", uri.toString())

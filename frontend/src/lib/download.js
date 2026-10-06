@@ -99,13 +99,26 @@ function buildFileName(fileName, mimeType, url) {
   return `${safeName}.${extension}`;
 }
 
+function getNativeMimeType(blob, fileName) {
+  const type = String(blob?.type || "").toLowerCase().split(";")[0].trim();
+  const extension = String(fileName || "").toLowerCase().split(".").pop();
+
+  if (extension === "pdf") return "application/pdf";
+  if (extension === "png") return "image/png";
+  if (extension === "jpg" || extension === "jpeg") return "image/jpeg";
+  if (extension === "webp") return "image/webp";
+
+  return type || "application/octet-stream";
+}
+
 async function openNativeFile(blob, fileName) {
   const base64 = await blobToBase64(blob);
+  const mimeType = getNativeMimeType(blob, fileName);
 
   await FileCache.cacheAndOpen({
     fileName,
     data: base64,
-    mimeType: blob.type || "application/pdf",
+    mimeType,
   });
 }
 
