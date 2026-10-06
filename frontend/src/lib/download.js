@@ -1,6 +1,7 @@
 import { Capacitor } from "@capacitor/core";
-import { Directory, Filesystem } from "@capacitor/filesystem";
-import { Share } from "@capacitor/share";
+import { registerPlugin } from "@capacitor/core";
+
+const FileCache = registerPlugin("FileCache");
 
 const RENDER_API_BASE_URL = "https://daily-expenses-g4ze.onrender.com/api";
 
@@ -101,23 +102,10 @@ function buildFileName(fileName, mimeType, url) {
 async function openNativeFile(blob, fileName) {
   const base64 = await blobToBase64(blob);
 
-  await Filesystem.writeFile({
-    path: fileName,
+  await FileCache.cacheAndOpen({
+    fileName,
     data: base64,
-    directory: Directory.Cache,
-    recursive: true,
-  });
-
-  const { uri } = await Filesystem.getUri({
-    path: fileName,
-    directory: Directory.Cache,
-  });
-
-  await Share.share({
-    title: fileName,
-    text: fileName,
-    files: [uri],
-    dialogTitle: "Open file",
+    mimeType: blob.type || "application/pdf",
   });
 }
 
