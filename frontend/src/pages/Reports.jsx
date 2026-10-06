@@ -53,7 +53,7 @@ const GROUP_SORT_BASE_OPTIONS = [
 const FILTER_OPTIONS = [
   ["date", "Date / range / month / year"],
   ["hasProof", "Has proof"],
-  ["categoryItems", "Category / item"],
+  ["categoryItems", "Category"],
   ["survivors", "Survivors"],
 ];
 
