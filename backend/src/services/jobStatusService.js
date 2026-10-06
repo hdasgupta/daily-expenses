@@ -73,33 +73,15 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   );
 
   const oneTimeJobs = oneTimeResult.rows;
-  // Resolve IDs from both categoryItems keys and plain categories filters.
-  const categoryIds = [
-    ...new Set(
-      oneTimeJobs.flatMap((job) => {
-        const filters = job.config?.filters || {};
-        const itemKeys = Array.isArray(filters.categoryItems) ? filters.categoryItems : [];
-        const categoryKeys = Array.isArray(filters.categories) ? filters.categories : [];
-        return [
-          ...itemKeys.map((key) => String(key).split(":")[0]),
-          ...categoryKeys.map((key) => String(key)),
-        ].filter((id) => /^\\d+$/.test(id));
-      }),
-    ),
-  ];
-
-  let categoryNames = new Map();
-  if (categoryIds.length) {
-    const categoryResult = await q(
-      `SELECT id, name
-         FROM public.categories
-        WHERE id = ANY($1::bigint[])`,
-      [categoryIds],
-    );
-    categoryNames = new Map(
-      categoryResult.rows.map((row) => [String(row.id), row.name]),
-    );
-  }
+  // Load the canonical category ID/name map once. Avoid a filtered lookup here:
+  // saved manager configs can contain legacy IDs or mixed numeric/string formats.
+  // The info tooltip must use actual names from the category master table.
+  const categoryResult = await q(
+    `SELECT id, name FROM public.categories`,
+  );
+  const categoryNames = new Map(
+    (categoryResult.rows || []).map((row) => [String(row.id), row.name]),
+  );
 
   const enrichedOneTimeJobs = oneTimeJobs.map((job) => {
     const config = job.config && typeof job.config === "object" ? { ...job.config } : {};
@@ -109,16 +91,9 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     if (keys.length) {
       filters.categoryItemLabels = keys.map((key) => {
         const [categoryId, kind] = String(key).split(":");
-        const categoryName = categoryNames.get(String(categoryId)) || `Category ${categoryId}`;
+        const categoryName = categoryNames.get(String(categoryId)) || `Unknown category (${categoryId})`;
         if (kind === "item") return `${categoryName} - Item`;
         return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
-      });
-    }
-
-    if (Array.isArray(filters.categories) && filters.categories.length) {
-      filters.categoryLabels = filters.categories.map((value) => {
-        const id = String(value);
-        return categoryNames.get(id) || `Category ${id}`;
       });
     }
 
