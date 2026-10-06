@@ -49,7 +49,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
       JOIN public.scheduled_report_jobs j
         ON r.job_name = 'scheduled-report:' || j.id::text
      WHERE r.job_name LIKE 'scheduled-report:%'
-       AND ($1::boolean = TRUE OR j.owner_user_id = $2)
+       AND ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
   ) history`;
   const historyWhere = `$2 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
 
@@ -71,7 +71,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
        FROM public.one_time_report_email_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
        LEFT JOIN public.users c ON c.id = j.created_by_user_id
-      WHERE ($1::boolean = TRUE OR j.owner_user_id = $2)
+      WHERE ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
       ORDER BY j.scheduled_for ASC, j.id ASC`,
     [Boolean(isAdmin), userId],
   );

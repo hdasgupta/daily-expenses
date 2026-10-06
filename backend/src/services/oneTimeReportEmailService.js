@@ -138,7 +138,7 @@ export async function listOneTimeReportEmailJobs(userId) {
        FROM public.one_time_report_email_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
        LEFT JOIN public.users c ON c.id = j.created_by_user_id
-      WHERE j.owner_user_id = $1
+      WHERE j.owner_user_id = NULLIF($1::text, '')::bigint
       ORDER BY scheduled_for ASC, id ASC`,
     [userId],
   );
