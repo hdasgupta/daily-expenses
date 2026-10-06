@@ -105,5 +105,5 @@ export const userSql = {
   roles: "SELECT id,name FROM public.roles ORDER BY name",
 
   managers:
-    "SELECT email FROM public.users u JOIN public.roles r ON r.id=u.role_id WHERE r.name IN ('manager', 'admin') AND u.is_disabled=false ORDER BY CASE WHEN r.name='manager' THEN 1 WHEN r.name='admin' THEN 2 ELSE 3 END, u.email",
+    "SELECT DISTINCT LOWER(BTRIM(u.email)) AS email FROM public.users u JOIN public.roles r ON r.id=u.role_id WHERE LOWER(BTRIM(r.name)) IN ('manager', 'admin') AND u.is_disabled=false AND NULLIF(BTRIM(u.email), '') IS NOT NULL ORDER BY email",
 };
