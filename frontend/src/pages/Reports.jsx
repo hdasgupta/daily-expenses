@@ -53,7 +53,7 @@ const GROUP_SORT_BASE_OPTIONS = [
 const FILTER_OPTIONS = [
   ["date", "Date / range / month / year"],
   ["hasProof", "Has proof"],
-  ["categoryItems", "Category"],
+  ["categories", "Category"],
   ["survivors", "Survivors"],
 ];
 
@@ -69,6 +69,7 @@ const initialConfig = {
     year: "",
     hasProof: "",
     categoryItems: [],
+    categories: [],
     survivors: [],
   },
 
@@ -87,6 +88,7 @@ function normalizeLoaded(config = {}) {
     : [
         ...(config.dateFilterType && config.dateFilterType !== "none" ? ["date"] : []),
         ...(config.filters?.hasProof ? ["hasProof"] : []),
+        ...(config.filters?.categories?.length ? ["categories"] : []),
         ...(config.filters?.categoryItems?.length ? ["categoryItems"] : []),
         ...(config.filters?.survivors?.length ? ["survivors"] : []),
       ];
@@ -397,6 +399,11 @@ export default function Reports() {
       .catch(() => {});
   }, [categories]);
 
+  const categoryOptions = useMemo(
+    () => categories.map((category) => ({ value: String(category.id), label: category.name })),
+    [categories],
+  );
+
   const categoryItemOptions = useMemo(
     () =>
       categories.flatMap((category) => [
@@ -466,6 +473,13 @@ export default function Reports() {
         next.filters = {
           ...next.filters,
           categoryItems: [],
+        };
+      }
+
+      if (type === "categories") {
+        next.filters = {
+          ...next.filters,
+          categories: [],
         };
       }
 
@@ -1326,6 +1340,7 @@ function FilterCard({
   setConfig,
   setFilter,
   categoryItemOptions,
+  categoryOptions,
   survivors,
   onRemove,
 }) {
@@ -1447,9 +1462,25 @@ function FilterCard({
         </label>
       ) : null}
 
+      {type === "categories" ? (
+        <MultiPicker
+          label="Category"
+          options={categoryOptions}
+          selected={config.filters.categories || []}
+          onToggle={(value) =>
+            setFilter(
+              "categories",
+              (config.filters.categories || []).includes(String(value))
+                ? config.filters.categories.filter((item) => item !== String(value))
+                : [...(config.filters.categories || []), String(value)],
+            )
+          }
+        />
+      ) : null}
+
       {type === "categoryItems" ? (
         <MultiPicker
-          label="Category / item"
+          label="Category / item (legacy saved filter)"
           options={categoryItemOptions}
           selected={config.filters.categoryItems}
           onToggle={(value) =>
