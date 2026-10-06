@@ -182,7 +182,7 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
         .filter(Boolean),
     )];
     filterParts.push(
-      `${categoryOnly ? "categories" : "category/item"} = ${(categoryOnly ? categoriesOnly : labels).join(", ")}`,
+      `${categoryOnly ? "categories" : "category"} = ${(categoryOnly ? categoriesOnly : labels).join(", ")}`,
     );
   }
   if (filters.categories?.length) filterParts.push(`categories = ${filters.categories.join(", ")}`);
