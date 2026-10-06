@@ -145,6 +145,7 @@ export function createRouter(maxUploadBytes) {
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
 
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
+  router.get("/scheduled-reports/recipients", auth, permit("job-status"), scheduledReportController.recipients);
   router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);
   router.post("/scheduled-reports", auth, permit("job-status"), scheduledReportController.create);
   router.put(

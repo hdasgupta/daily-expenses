@@ -491,8 +491,11 @@ export default function JobStatus({ user }) {
 
                 {user?.role === "admin" ? (
                   <div className="scheduled-job-owner">
-                    <b>Owner:</b> {job.owner_name} · {job.owner_email}
+                    <b>Scheduled for:</b> {job.owner_name} · {job.owner_email}<br />
+                    <b>Created by:</b> {job.creator_name || job.owner_name} · {job.creator_email || job.owner_email}
                   </div>
+                ) : job.creator_user_id && String(job.creator_user_id) !== String(user?.id) ? (
+                  <div className="scheduled-job-owner"><b>Created by:</b> {job.creator_name || "Administrator"}</div>
                 ) : null}
 
                 {canManage(job) ? (
@@ -545,6 +548,8 @@ export default function JobStatus({ user }) {
                   <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} categoryOnly /></span>
                   {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
                   {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
+                  {user?.role === "admin" ? <span><b>Scheduled for:</b> {job.owner_name} · {job.owner_email}</span> : null}
+                  {user?.role === "admin" ? <span><b>Created by:</b> {job.creator_name || job.owner_name} · {job.creator_email || job.owner_email}</span> : null}
                 </div>
 
                 <div className="scheduled-report-actions" style={{ marginTop: 10 }}>

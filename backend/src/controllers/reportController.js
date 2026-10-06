@@ -64,6 +64,7 @@ export async function scheduleEmail(req, res) {
     scheduledFor: req.body?.scheduledFor,
     name: req.body?.name,
     user: req.user,
+    targetUserIds: req.body?.targetUserIds,
   });
 
   res.status(201).json(job);

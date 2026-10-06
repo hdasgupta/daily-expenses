@@ -24,6 +24,7 @@ import { openRemoteFile } from "../lib/download";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
+import ScheduleRecipients from "../components/ScheduleRecipients";
 
 const GROUP_OPTIONS = [
   ["date", "Date"],
@@ -321,7 +322,7 @@ function buildReportChartModel(result) {
   return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
 }
 
-export default function Reports() {
+export default function Reports({ user }) {
   const [config, setConfig] = useState(initialConfig);
 
   const [result, setResult] = useState(null);
@@ -365,6 +366,7 @@ export default function Reports() {
   const [scheduleTime, setScheduleTime] = useState("");
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleBusy, setScheduleBusy] = useState(false);
+  const [scheduleRecipients, setScheduleRecipients] = useState([]);
 
   useEffect(() => {
     Promise.all([
@@ -681,12 +683,17 @@ export default function Reports() {
     setScheduleDate(`${values.year}-${values.month}-${values.day}`);
     setScheduleTime(`${values.hour}:${values.minute}`);
     setScheduleName("Report PDF email");
+    setScheduleRecipients([]);
     setScheduleEmailModal(true);
   };
 
   const scheduleEmail = async (event) => {
     event.preventDefault();
     if (!scheduleDate || !scheduleTime) return;
+    if (user?.role === "admin" && !scheduleRecipients.length) {
+      window.alert("Select at least one manager.");
+      return;
+    }
 
     setScheduleBusy(true);
     try {
@@ -696,6 +703,7 @@ export default function Reports() {
           name: scheduleName,
           scheduledFor: `${scheduleDate}T${scheduleTime}`,
           config,
+          targetUserIds: user?.role === "admin" ? scheduleRecipients : undefined,
         }),
         loadingMessage: "Scheduling report PDF email…",
         toast: {
@@ -1244,6 +1252,10 @@ export default function Reports() {
         }
       >
         <form id="schedule-report-email-form" onSubmit={scheduleEmail}>
+          {user?.role === "admin" ? (
+            <ScheduleRecipients value={scheduleRecipients} onChange={setScheduleRecipients} isAdmin />
+          ) : null}
+
           <div className="notice">
             The current report filters, grouping, sorting and summary settings will be saved as a snapshot and emailed once at the selected time.
           </div>

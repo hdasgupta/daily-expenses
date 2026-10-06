@@ -1537,3 +1537,5 @@ code {
 .report-chart-legend-group > span {
   opacity: 0.95;
 }
+
+.schedule-recipient-picker{display:grid;gap:8px;margin:12px 0;padding:12px;border:1px solid var(--border-color,#d9dee8);border-radius:10px}.schedule-recipient-list{display:grid;gap:6px;max-height:180px;overflow:auto}.schedule-recipient-option{display:flex;gap:8px;align-items:center;font-weight:400}.schedule-recipient-option input{width:auto}
