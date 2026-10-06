@@ -51,18 +51,17 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
      WHERE r.job_name LIKE 'scheduled-report:%'
        AND ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
   ) history`;
-  const historyWhere = `$2 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
+  const historyWhere = `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
 
   const [countResult, rowsResult] = await Promise.all([
     q(`SELECT COUNT(*)::int AS total\n         FROM ${historySql}\n        WHERE ${historyWhere}`, [
       Boolean(isAdmin),
       userId,
       safeSearch,
-      searchPattern,
     ]),
     q(
       `SELECT id, job_name, scheduled_key, status, started_at, completed_at,\n              duration_ms, error_message, scheduled_report_name\n         FROM ${historySql}\n        WHERE ${historyWhere}\n        ORDER BY started_at DESC\n        LIMIT $4 OFFSET $5`,
-      [Boolean(isAdmin), userId, safeSearch, searchPattern, safePageSize, offset],
+      [Boolean(isAdmin), userId, safeSearch, safePageSize, offset],
     ),
   ]);
 
