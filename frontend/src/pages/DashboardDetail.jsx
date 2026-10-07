@@ -648,6 +648,7 @@ export default function DashboardDetail({ navigate, user }) {
           recipient={user?.email}
           onSubmit={createSchedule}
           busy={scheduleBusy}
+          isAdmin={user?.role === "admin"}
         />
       </Modal>
     </section>

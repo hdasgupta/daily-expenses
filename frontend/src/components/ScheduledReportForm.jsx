@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import ScheduleRecipients from "./ScheduleRecipients";
 
 const frequencyLabels = { daily: "Daily", weekly: "Weekly", monthly: "Monthly", yearly: "Yearly" };
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -41,11 +42,14 @@ export default function ScheduledReportForm({
   recipient = "",
   onSubmit,
   busy,
+  isAdmin = false,
 }) {
   const [form, setForm] = useState(() => defaultForm(report?.key || job?.report_key, job));
+  const [selectedManagerIds, setSelectedManagerIds] = useState([]);
 
   useEffect(() => {
     setForm(defaultForm(report?.key || job?.report_key, job));
+    setSelectedManagerIds([]);
   }, [report?.key, job?.id]);
 
   const frequency = form.frequency;
@@ -60,6 +64,9 @@ export default function ScheduledReportForm({
       dayOfWeek: Number(form.dayOfWeek),
       dayOfMonth: Number(form.dayOfMonth),
       monthOfYear: Number(form.monthOfYear),
+      ...(isAdmin && !job && selectedManagerIds.length
+        ? { managerIds: selectedManagerIds }
+        : {}),
     });
   };
 
@@ -165,10 +172,19 @@ export default function ScheduledReportForm({
         </div>
       ) : null}
 
-      <div className="scheduled-report-recipient">
-        <strong>Send to</strong>
-        <span>{recipient || job?.owner_email || "your account email"}</span>
-      </div>
+      {isAdmin && !job ? (
+        <ScheduleRecipients
+          isAdmin={isAdmin}
+          value={selectedManagerIds}
+          onChange={setSelectedManagerIds}
+          multiple
+        />
+      ) : (
+        <div className="scheduled-report-recipient">
+          <strong>Send to</strong>
+          <span>{recipient || job?.owner_email || "your account email"}</span>
+        </div>
+      )}
 
       <label className="switch-row">
         <input

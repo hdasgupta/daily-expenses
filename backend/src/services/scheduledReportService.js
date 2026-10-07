@@ -159,6 +159,19 @@ function decorateJob(row) {
   };
 }
 
+export async function listScheduledReportRecipients() {
+  const result = await q(
+    `SELECT u.id, u.full_name, u.email
+       FROM public.users u
+       JOIN public.roles r ON r.id = u.role_id
+      WHERE r.name = 'manager'
+        AND u.is_disabled = false
+      ORDER BY u.full_name ASC, u.email ASC`,
+  );
+
+  return result.rows;
+}
+
 export async function listScheduledReportJobs({ userId, isAdmin = false }) {
   const result = await q(
     `SELECT j.id, j.name, j.owner_user_id, j.report_key, j.frequency,
@@ -200,16 +213,52 @@ function canManage(job, user) {
 
 export async function createScheduledReportJob(data, user) {
   const config = normalizePayload(data);
+  const requestedIds = [...new Set(
+    (Array.isArray(data.managerIds) ? data.managerIds : [])
+      .map((id) => String(id).trim())
+      .filter(Boolean),
+  )];
+
+  let recipientIds = [String(user.id)];
+
+  if (requestedIds.length) {
+    if (user.role !== "admin") {
+      throw error("Only administrators can schedule report jobs for managers.", 403);
+    }
+
+    if (requestedIds.some((id) => !/^\d+$/.test(id))) {
+      throw error("One or more selected managers are invalid.");
+    }
+
+    const valid = await q(
+      `SELECT u.id
+         FROM public.users u
+         JOIN public.roles r ON r.id = u.role_id
+        WHERE u.id = ANY($1::bigint[])
+          AND r.name = 'manager'
+          AND u.is_disabled = false`,
+      [requestedIds],
+    );
+
+    const validIds = new Set(valid.rows.map((row) => String(row.id)));
+    if (validIds.size !== requestedIds.length) {
+      throw error("One or more selected accounts are not active managers.");
+    }
+
+    recipientIds = requestedIds;
+  }
 
   const result = await q(
     `INSERT INTO public.scheduled_report_jobs
       (name, owner_user_id, report_key, frequency, time_of_day, day_of_week,
        day_of_month, month_of_year, cron_expression, active)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+     SELECT $1, recipient.id, $3, $4, $5, $6, $7, $8, $9, $10
+       FROM public.users recipient
+      WHERE recipient.id = ANY($2::bigint[])
      RETURNING *`,
     [
       config.name,
-      user.id,
+      recipientIds,
       config.reportKey,
       config.frequency,
       config.time,
@@ -221,7 +270,16 @@ export async function createScheduledReportJob(data, user) {
     ],
   );
 
-  return decorateJob(result.rows[0]);
+  const jobs = result.rows.map(decorateJob);
+
+  if (requestedIds.length > 1) {
+    return {
+      jobs,
+      count: jobs.length,
+    };
+  }
+
+  return jobs[0];
 }
 
 export async function updateScheduledReportJob(id, data, user) {

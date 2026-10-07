@@ -146,6 +146,7 @@ export function createRouter(maxUploadBytes) {
 
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
   router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);
+  router.get("/scheduled-reports/recipients", auth, permit("job-status"), scheduledReportController.recipients);
   router.post("/scheduled-reports", auth, permit("job-status"), scheduledReportController.create);
   router.put(
     "/scheduled-reports/:id",

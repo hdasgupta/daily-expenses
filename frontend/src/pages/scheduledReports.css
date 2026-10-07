@@ -108,3 +108,36 @@
     justify-content: flex-start;
   }
 }
+
+.schedule-recipient-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 11px;
+  background: var(--soft);
+}
+.schedule-recipient-picker > strong {
+  font-size: 11px;
+}
+.schedule-recipient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+  margin-top: 2px;
+}
+.schedule-recipient-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 5px 2px;
+  font-size: 12px;
+  color: var(--text);
+}
+.schedule-recipient-option input {
+  margin-top: 2px;
+  flex-shrink: 0;
+}

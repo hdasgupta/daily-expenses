@@ -2,6 +2,7 @@ import {
   createScheduledReportJob,
   deleteScheduledReportJob,
   listScheduledReportJobs,
+  listScheduledReportRecipients,
   updateScheduledReportJob,
 } from "../services/scheduledReportService.js";
 
@@ -12,6 +13,14 @@ export async function list(req, res) {
       isAdmin: req.user.role === "admin",
     }),
   );
+}
+
+export async function recipients(req, res) {
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ error: "Only administrators can list manager recipients." });
+  }
+
+  res.json(await listScheduledReportRecipients());
 }
 
 export async function create(req, res) {
