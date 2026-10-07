@@ -162,7 +162,7 @@ function buildUiShareRows(rows) {
     const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
     if (name && !target._shareNames.has(name)) {
       target._shareNames.add(name);
-      const amount = numeric(row.share_price, row.report_amount, row.amount);
+      const amount = numeric(row.share_price, row.report_amount, row.amount, row.total_cost);
       target.survivorShares.push({ name, amount });
     }
   }
@@ -174,7 +174,7 @@ function buildUiShareRows(rows) {
       (sum, item) => sum + (item.amount == null ? 0 : item.amount),
       0,
     );
-    const total = expenseTotal != null && expenseTotal > 0 ? expenseTotal : knownShareTotal;
+    const total = expenseTotal != null ? expenseTotal : knownShareTotal;
 
     const share = shares.length
       ? shares

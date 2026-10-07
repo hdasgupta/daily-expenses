@@ -15,7 +15,7 @@ export const reportSql = {
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.id AS survivor_id,
       COALESCE(s.full_name, 'Unassigned') AS survivor,
-      COALESCE(es.amount, e.total_cost) AS report_amount,
+      COALESCE(NULLIF(es.amount, 0), e.total_cost) AS report_amount,
       CASE
         WHEN s.id IS NULL
         THEN ARRAY[]::bigint[]
