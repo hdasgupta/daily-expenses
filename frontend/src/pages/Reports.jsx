@@ -171,11 +171,26 @@ function buildUiShareRows(rows) {
     }
 
     const target = map.get(key);
-    const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
-    if (name && !target._shareNames.has(name)) {
-      target._shareNames.add(name);
-      const amount = numeric(row.share_price, row.report_amount, row.amount);
-      target.survivorShares.push({ name, amount });
+    const shareRecords = Array.isArray(row.survivor_shares)
+      ? row.survivor_shares
+      : typeof row.survivor_shares === "string"
+        ? (() => { try { const parsed = JSON.parse(row.survivor_shares); return Array.isArray(parsed) ? parsed : []; } catch { return []; } })()
+        : [];
+
+    if (shareRecords.length) {
+      for (const record of shareRecords) {
+        const name = record?.name ? String(record.name) : "";
+        if (!name || target._shareNames.has(name)) continue;
+        target._shareNames.add(name);
+        target.survivorShares.push({ name, amount: numeric(record.amount) });
+      }
+    } else {
+      const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
+      if (name && !target._shareNames.has(name)) {
+        target._shareNames.add(name);
+        const amount = numeric(row.share_price, row.report_amount, row.amount);
+        target.survivorShares.push({ name, amount });
+      }
     }
   }
 
@@ -403,8 +418,6 @@ export default function Reports({ user }) {
   const [selectionName, setSelectionName] = useState("");
 
   const [selections, setSelections] = useState([]);
-  const [selectionPage, setSelectionPage] = useState(1);
-  const selectionPageSize = 10;
 
   const [shareModal, setShareModal] = useState(false);
   const [shareSelectionTarget, setShareSelectionTarget] = useState(null);
@@ -710,21 +723,21 @@ export default function Reports({ user }) {
   };
 
   const loadSelections = async () => {
-    const result = await api("/report-selections", {
-      loadingMessage: "Loading saved report selections…",
-    });
-    setSelections(Array.isArray(result) ? result : []);
-    setSelectionPage(1);
+    setSelections(
+      await api("/report-selections", {
+        loadingMessage: "Loading saved report selections…",
+      }),
+    );
+
     setLoadModal(true);
   };
 
   const refreshSelections = async () => {
-    const result = await api("/report-selections", {
-      loadingMessage: "Refreshing saved selections…",
-    });
-    const nextSelections = Array.isArray(result) ? result : [];
-    setSelections(nextSelections);
-    setSelectionPage((current) => Math.min(current, Math.max(1, Math.ceil(nextSelections.length / selectionPageSize))));
+    setSelections(
+      await api("/report-selections", {
+        loadingMessage: "Refreshing saved selections…",
+      }),
+    );
   };
 
   const openShareSelection = async (selection) => {
@@ -1276,7 +1289,7 @@ export default function Reports({ user }) {
 
       <Modal open={loadModal} title="Load report selection" onClose={() => setLoadModal(false)}>
         <div className="selection-list">
-          {selections.slice((selectionPage - 1) * selectionPageSize, selectionPage * selectionPageSize).map((selection) => (
+          {selections.map((selection) => (
             <div className="selection-row" key={selection.id}>
               <button
                 type="button"
@@ -1341,18 +1354,6 @@ export default function Reports({ user }) {
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
-        {selections.length > selectionPageSize ? (
-          <div className="report-pagination" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
-            <span className="muted-inline">
-              Showing {(selectionPage - 1) * selectionPageSize + 1}–{Math.min(selectionPage * selectionPageSize, selections.length)} of {selections.length} selections
-            </span>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <button className="secondary" type="button" disabled={selectionPage <= 1} onClick={() => setSelectionPage((current) => Math.max(1, current - 1))}>Previous</button>
-              <span>Page {selectionPage} of {Math.max(1, Math.ceil(selections.length / selectionPageSize))}</span>
-              <button className="secondary" type="button" disabled={selectionPage >= Math.ceil(selections.length / selectionPageSize)} onClick={() => setSelectionPage((current) => Math.min(Math.ceil(selections.length / selectionPageSize), current + 1))}>Next</button>
-            </div>
-          </div>
-        ) : null}
       </Modal>
 
       <Modal
