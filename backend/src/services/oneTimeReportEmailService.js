@@ -89,14 +89,19 @@ async function resolveScheduledFor(value) {
   return scheduledFor;
 }
 
-export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user }) {
+export async function scheduleOneTimeReportEmail({
+  config,
+  scheduledFor,
+  name,
+  user,
+  managerIds = [],
+}) {
   const clean = cleanConfig(config || {});
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
 
   // A report with no current data can still be scheduled when its configured
-  // date scope includes future dates. This allows data that is entered later
-  // to be included when the one-time email runs.
+  // date scope includes future dates. This allows data entered later to be included.
   const report = await buildReportPdfData(clean);
   const hasCurrentData = Boolean(report.rows?.length || report.rawRows?.length);
   if (!hasCurrentData && !hasFutureDateInReportConfig(clean)) {
@@ -105,17 +110,55 @@ export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, u
     );
   }
 
+  const requestedIds = [...new Set((Array.isArray(managerIds) ? managerIds : [])
+    .map((id) => String(id).trim())
+    .filter(Boolean))];
+
+  // Only administrators may schedule on behalf of managers.
+  let recipients = [{ id: user.id, email: user.email }];
+  if (requestedIds.length) {
+    if (user.role !== "admin") {
+      throw error("Only administrators can schedule report emails for managers.", 403);
+    }
+    if (requestedIds.some((id) => !/^\\d+$/.test(id))) {
+      throw error("One or more selected managers are invalid.");
+    }
+    const valid = await q(
+      `SELECT u.id, u.email
+         FROM public.users u
+         JOIN public.roles r ON r.id = u.role_id
+        WHERE u.id = ANY($1::bigint[])
+          AND r.name = 'manager'
+          AND u.is_disabled = false`,
+      [requestedIds],
+    );
+    const validById = new Map(valid.rows.map((row) => [String(row.id), row]));
+    if (validById.size !== requestedIds.length) {
+      throw error("One or more selected accounts are not active managers.");
+    }
+    recipients = requestedIds.map((id) => validById.get(id));
+  }
+
+  // Insert all recipient jobs in one statement so a multi-manager schedule is
+  // all-or-nothing. Existing job ownership makes each manager see their own job.
   const result = await q(
     `INSERT INTO public.one_time_report_email_jobs
       (owner_user_id, name, config, scheduled_for, status)
-     VALUES ($1, $2, $3::jsonb, $4, 'pending')
-     RETURNING id, name, scheduled_for, status, created_at`,
-    [user.id, scheduleName, JSON.stringify(clean), when],
+     SELECT recipient.id, $2, $3::jsonb, $4, 'pending'
+       FROM unnest($1::bigint[]) AS selected(id)
+       JOIN public.users recipient ON recipient.id = selected.id
+     RETURNING id, owner_user_id, name, scheduled_for, status, created_at`,
+    [recipients.map((recipient) => recipient.id), scheduleName, JSON.stringify(clean), when],
   );
 
+  const emailById = new Map(recipients.map((recipient) => [String(recipient.id), recipient.email]));
   return {
-    ...result.rows[0],
-    report_email: user.email,
+    jobs: result.rows.map((row) => ({
+      ...row,
+      report_email: emailById.get(String(row.owner_user_id)),
+      timezone: TIMEZONE,
+    })),
+    count: result.rows.length,
     timezone: TIMEZONE,
   };
 }

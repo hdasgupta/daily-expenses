@@ -322,7 +322,7 @@ function buildReportChartModel(result) {
   return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
 }
 
-export default function Reports() {
+export default function Reports({ user }) {
   const [config, setConfig] = useState(initialConfig);
 
   const [result, setResult] = useState(null);
@@ -368,6 +368,9 @@ export default function Reports() {
   const [scheduleTime, setScheduleTime] = useState("");
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleBusy, setScheduleBusy] = useState(false);
+  const [scheduleManagers, setScheduleManagers] = useState([]);
+  const [selectedScheduleManagerIds, setSelectedScheduleManagerIds] = useState([]);
+  const [scheduleManagersLoading, setScheduleManagersLoading] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -730,6 +733,29 @@ export default function Reports() {
     // cannot make the Schedule email button appear unresponsive.
     setScheduleEmailModal(true);
     setScheduleName("Report PDF email");
+    setSelectedScheduleManagerIds([]);
+
+    if (user?.role === "admin") {
+      setScheduleManagersLoading(true);
+      api("/users?page=1&pageSize=50&sortColumn=full_name&sortDirection=asc")
+        .then(async (firstPage) => {
+          const pages = Math.ceil((Number(firstPage?.total) || 0) / 50);
+          const rest = await Promise.all(
+            Array.from({ length: Math.max(0, pages - 1) }, (_, index) =>
+              api(`/users?page=${index + 2}&pageSize=50&sortColumn=full_name&sortDirection=asc`),
+            ),
+          );
+          const rows = [
+            ...(Array.isArray(firstPage?.rows) ? firstPage.rows : []),
+            ...rest.flatMap((page) => Array.isArray(page?.rows) ? page.rows : []),
+          ];
+          setScheduleManagers(rows.filter((manager) =>
+            manager.role === "manager" && !manager.is_disabled,
+          ));
+        })
+        .catch(() => setScheduleManagers([]))
+        .finally(() => setScheduleManagersLoading(false));
+    }
 
     try {
       const now = new Date(Date.now() + 10 * 60 * 1000);
@@ -769,11 +795,16 @@ export default function Reports() {
           name: scheduleName,
           scheduledFor: `${scheduleDate}T${scheduleTime}`,
           config,
+          ...(user?.role === "admin" && selectedScheduleManagerIds.length
+            ? { managerIds: selectedScheduleManagerIds }
+            : {}),
         }),
         loadingMessage: "Scheduling report PDF email…",
         toast: {
           type: "success",
-          message: "Report PDF email scheduled.",
+          message: user?.role === "admin" && selectedScheduleManagerIds.length
+            ? `Report PDF email scheduled for ${selectedScheduleManagerIds.length} manager(s).`
+            : "Report PDF email scheduled.",
         },
       });
       setScheduleEmailModal(false);
@@ -1329,6 +1360,40 @@ export default function Reports() {
             />
           </label>
 
+          {user?.role === "admin" ? (
+            <div className="multi-picker">
+              <strong>Send to managers (optional)</strong>
+              <span className="field-note">
+                Select one or more active managers. If none are selected, the email is scheduled for your account.
+              </span>
+              <div className="multi-options">
+                {scheduleManagersLoading ? (
+                  <span className="muted-inline">Loading managers…</span>
+                ) : scheduleManagers.length ? (
+                  scheduleManagers.map((manager) => {
+                    const managerId = String(manager.id);
+                    return (
+                      <label key={managerId} className="check-option">
+                        <input
+                          type="checkbox"
+                          checked={selectedScheduleManagerIds.includes(managerId)}
+                          onChange={() => setSelectedScheduleManagerIds((current) =>
+                            current.includes(managerId)
+                              ? current.filter((id) => id !== managerId)
+                              : [...current, managerId],
+                          )}
+                        />
+                        <span>{manager.full_name} ({manager.email})</span>
+                      </label>
+                    );
+                  })
+                ) : (
+                  <span className="muted-inline">No active managers available.</span>
+                )}
+              </div>
+            </div>
+          ) : null}
+
           <div className="two-col">
             <label>
               Date
@@ -1351,7 +1416,11 @@ export default function Reports() {
             </label>
           </div>
 
-          <span className="field-note">India Standard Time (Asia/Kolkata). The email will be sent to your account email.</span>
+          <span className="field-note">
+            India Standard Time (Asia/Kolkata). {user?.role === "admin" && selectedScheduleManagerIds.length
+              ? `The email will be sent to ${selectedScheduleManagerIds.length} selected manager(s).`
+              : "The email will be sent to your account email."}
+          </span>
         </form>
       </Modal>
     </section>
