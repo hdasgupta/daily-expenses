@@ -274,7 +274,27 @@ async function executeOneTimeReportEmailJob(id) {
         htmlBody: `<p>Your scheduled expense report PDF <strong>${job.name}</strong> is attached.</p>`,
       });
 
-      await client.query(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
+      // Mark the job completed before removing it. This guarantees that a
+      // successful email can never become retryable if the cleanup DELETE
+      // itself encounters a transient database error. The Job Status query
+      // excludes completed one-time jobs, so they disappear immediately even
+      // if physical cleanup has to be retried later.
+      await client.query(
+        `UPDATE public.one_time_report_email_jobs
+            SET status = 'completed', updated_at = now(), last_error = NULL
+          WHERE id = $1`,
+        [id],
+      );
+
+      try {
+        await client.query(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
+      } catch (cleanupError) {
+        console.error("One-time report email completed but job cleanup failed", {
+          jobId: id,
+          error: cleanupError?.message || String(cleanupError),
+          stack: cleanupError?.stack,
+        });
+      }
 
       console.log(
         JSON.stringify({

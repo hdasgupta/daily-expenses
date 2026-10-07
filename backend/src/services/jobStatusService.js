@@ -96,7 +96,8 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
        FROM public.one_time_report_email_jobs j
        LEFT JOIN public.users u ON u.id = j.owner_user_id
        LEFT JOIN public.users c ON c.id = j.created_by_user_id
-      WHERE ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
+      WHERE j.status <> 'completed'
+        AND ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
       ORDER BY j.scheduled_for ASC, j.id ASC`,
     [Boolean(isAdmin), userId],
   );
