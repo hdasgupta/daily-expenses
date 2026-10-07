@@ -9,7 +9,11 @@ export function indiaTimezoneOnly(req, res, next) {
 }
 
 export function signUser(user) {
-  return jwt.sign({ id: user.id }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
+  return jwt.sign(
+    { id: user.id },
+    env.jwtSecret,
+    { expiresIn: env.jwtExpiresIn }
+  );
 }
 
 export async function auth(req, res, next) {
@@ -22,7 +26,10 @@ export async function auth(req, res, next) {
       });
     }
 
-    const decoded = jwt.verify(header.slice(7), env.jwtSecret);
+    const decoded = jwt.verify(
+      header.slice(7),
+      env.jwtSecret
+    );
 
     const user = await findUserWithPermissions(decoded.id);
 

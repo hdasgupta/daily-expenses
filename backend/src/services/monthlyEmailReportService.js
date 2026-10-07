@@ -107,7 +107,7 @@ export async function sendMonthlyEmailReportToManagers() {
   const result = await q(userSql.managers);
   const reportDate = report.generatedAt.slice(0, 10);
   for (const row of result.rows) {
-    await sendMonthlyEmailReport(row.email, pdf, reportDate, { commonScheduledReport: true });
+    await sendMonthlyEmailReport(row.email, pdf, reportDate);
   }
   return { recipients: result.rows.length, rows: report.dump.length };
 }

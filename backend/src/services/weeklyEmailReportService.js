@@ -98,7 +98,7 @@ export async function sendWeeklyEmailReportToManagers() {
   const result = await q(userSql.managers);
   const reportDate = report.generatedAt.slice(0, 10);
   for (const row of result.rows) {
-    await sendWeeklyEmailReport(row.email, pdf, reportDate, { commonScheduledReport: true });
+    await sendWeeklyEmailReport(row.email, pdf, reportDate);
   }
   return { recipients: result.rows.length, rows: report.dump.length };
 }

@@ -75,7 +75,10 @@ async function resolveScheduledFor(value) {
     throw error("Choose a valid future date and time.");
   }
 
-  const result = await q(`SELECT $1::timestamp AT TIME ZONE $2 AS scheduled_for`, [text, TIMEZONE]);
+  const result = await q(
+    `SELECT $1::timestamp AT TIME ZONE $2 AS scheduled_for`,
+    [text, TIMEZONE],
+  );
   const scheduledFor = result.rows[0]?.scheduled_for;
   const timestamp = scheduledFor ? new Date(scheduledFor).getTime() : NaN;
 
@@ -86,40 +89,35 @@ async function resolveScheduledFor(value) {
   return scheduledFor;
 }
 
-export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user, ownerUserId, ownerUserIds }) {
-  const requestedIds = Array.isArray(ownerUserIds) && ownerUserIds.length
-    ? [...new Set(ownerUserIds.map((id) => String(id)).filter(Boolean))]
-    : ownerUserId != null ? [String(ownerUserId)] : [String(user.id)];
-  let recipients = [user];
-  if (requestedIds.some((id) => id !== String(user.id))) {
-    if (user.role !== "admin") throw error("Only admins can schedule reports for another manager.", 403);
-    const target = await q(
-      `SELECT u.id, u.email, u.full_name FROM public.users u JOIN public.roles r ON r.id = u.role_id WHERE u.id = ANY($1::int[]) AND lower(r.name) = 'manager'`,
-      [requestedIds.map(Number)],
-    );
-    const byId = new Map(target.rows.map((row) => [String(row.id), row]));
-    if (requestedIds.some((id) => !byId.has(id))) throw error("Choose valid manager accounts.", 400);
-    recipients = requestedIds.map((id) => byId.get(id));
-  }
+export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user }) {
   const clean = cleanConfig(config || {});
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
+
+  // A report with no current data can still be scheduled when its configured
+  // date scope includes future dates. This allows data that is entered later
+  // to be included when the one-time email runs.
   const report = await buildReportPdfData(clean);
   const hasCurrentData = Boolean(report.rows?.length || report.rawRows?.length);
   if (!hasCurrentData && !hasFutureDateInReportConfig(clean)) {
-    throw error("Cannot schedule an email for a report with no data unless the report includes a future date.");
-  }
-  const jobs = [];
-  for (const recipient of recipients) {
-    const result = await q(
-      `INSERT INTO public.one_time_report_email_jobs (owner_user_id, name, config, scheduled_for, status)
-       VALUES ($1, $2, $3::jsonb, $4, 'pending')
-       RETURNING id, name, scheduled_for, status, created_at`,
-      [recipient.id, scheduleName, JSON.stringify(clean), when],
+    throw error(
+      "Cannot schedule an email for a report with no data unless the report includes a future date.",
     );
-    jobs.push({ ...result.rows[0], report_email: recipient.email, timezone: TIMEZONE });
   }
-  return jobs.length === 1 ? jobs[0] : jobs;
+
+  const result = await q(
+    `INSERT INTO public.one_time_report_email_jobs
+      (owner_user_id, name, config, scheduled_for, status)
+     VALUES ($1, $2, $3::jsonb, $4, 'pending')
+     RETURNING id, name, scheduled_for, status, created_at`,
+    [user.id, scheduleName, JSON.stringify(clean), when],
+  );
+
+  return {
+    ...result.rows[0],
+    report_email: user.email,
+    timezone: TIMEZONE,
+  };
 }
 
 export async function listOneTimeReportEmailJobs(userId) {
@@ -171,10 +169,7 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
   );
 
   if (!result.rows.length) {
-    throw error(
-      "Scheduled report email not found or you do not have permission to remove it.",
-      404,
-    );
+    throw error("Scheduled report email not found or you do not have permission to remove it.", 404);
   }
 }
 

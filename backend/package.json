@@ -16,12 +16,12 @@
     "yearly-report:send": "node scripts/send-yearly-email-report.js"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1147.0",
-    "@aws-sdk/s3-request-presigner": "^3.1147.0",
+    "@aws-sdk/client-s3": "^3.1146.0",
+    "@aws-sdk/s3-request-presigner": "^3.1146.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "csv-parse": "^7.0.3",
-    "dotenv": "^18.0.6",
+    "dotenv": "^18.0.5",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.4.0",

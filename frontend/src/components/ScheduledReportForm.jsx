@@ -32,8 +32,6 @@ function defaultForm(reportKey, job) {
     dayOfMonth: job?.day_of_month ?? 1,
     monthOfYear: job?.month_of_year ?? 1,
     active: job?.active ?? true,
-    ownerUserId: job?.owner_user_id ? String(job.owner_user_id) : "",
-    ownerUserIds: job?.owner_user_id ? [String(job.owner_user_id)] : [],
   };
 }
 
@@ -43,8 +41,6 @@ export default function ScheduledReportForm({
   recipient = "",
   onSubmit,
   busy,
-  managers = [],
-  isAdmin = false,
 }) {
   const [form, setForm] = useState(() => defaultForm(report?.key || job?.report_key, job));
 
@@ -59,13 +55,11 @@ export default function ScheduledReportForm({
 
   const submit = (event) => {
     event.preventDefault();
-    if (isAdmin && !job && !form.ownerUserIds.length) return;
     onSubmit({
       ...form,
       dayOfWeek: Number(form.dayOfWeek),
       dayOfMonth: Number(form.dayOfMonth),
       monthOfYear: Number(form.monthOfYear),
-      ...(isAdmin ? (job ? { ownerUserId: Number(form.ownerUserId) } : { ownerUserIds: form.ownerUserIds.map(Number) }) : {}),
     });
   };
 
@@ -171,40 +165,9 @@ export default function ScheduledReportForm({
         </div>
       ) : null}
 
-      {isAdmin ? (
-        <fieldset className="form-fieldset">
-          <legend>Schedule on behalf of manager{job ? "" : "s"}</legend>
-          {job ? (
-            <select value={form.ownerUserId} onChange={(event) => update("ownerUserId", event.target.value)} required>
-              <option value="">Select manager</option>
-              {managers.map((manager) => <option key={manager.id} value={manager.id}>{manager.full_name} ({manager.email})</option>)}
-            </select>
-          ) : (
-            <div className="selection-share-list">
-              {managers.map((manager) => (
-                <label className="selection-share-row" key={manager.id}>
-                  <input type="checkbox" checked={form.ownerUserIds.includes(String(manager.id))}
-                    onChange={(event) => update("ownerUserIds", event.target.checked
-                      ? [...new Set([...form.ownerUserIds, String(manager.id)])]
-                      : form.ownerUserIds.filter((id) => id !== String(manager.id)))} />
-                  <span><b>{manager.full_name}</b>{manager.email ? <small>{manager.email}</small> : null}</span>
-                </label>
-              ))}
-              {!managers.length ? <div className="empty-card">No managers available.</div> : null}
-            </div>
-          )}
-          {!job && !form.ownerUserIds.length ? <span className="field-note">Select at least one manager.</span> : null}
-        </fieldset>
-      ) : null}
-
       <div className="scheduled-report-recipient">
         <strong>Send to</strong>
-        <span>
-          {(isAdmin && managers.find((m) => String(m.id) === String(form.ownerUserId))?.email) ||
-            recipient ||
-            job?.owner_email ||
-            "your account email"}
-        </span>
+        <span>{recipient || job?.owner_email || "your account email"}</span>
       </div>
 
       <label className="switch-row">

@@ -200,12 +200,10 @@ function detailOrderSql(config) {
   }
 
   /*
-   * Preserve insertion order for detail rows. When the user has explicitly
-   * chosen sorting/grouping, keep those dimensions first and use the expense
-   * id as a stable insertion-order tie breaker. With no sort/grouping this
-   * returns expenses in the order they were inserted.
+   * Finally keep newest expenses first
+   * inside each detail group.
    */
-  parts.push("id ASC");
+  parts.push("expense_date DESC", "id DESC");
 
   return parts.join(", ");
 }
@@ -398,7 +396,6 @@ export async function runReport(input) {
         "item",
         "survivor",
         "share_price",
-        "total_cost",
         "comment",
         "proof_url",
       ],
@@ -485,7 +482,6 @@ export async function runReport(input) {
         "item",
         "survivor",
         "share_price",
-        "total_cost",
         "comment",
         "proof_url",
       ],
@@ -566,7 +562,11 @@ async function resolveCategoryItemFilterLabelsForPdf(config) {
   if (!keys.length) return [];
 
   const categoryIds = [
-    ...new Set(keys.map((key) => String(key).split(":")[0]).filter((value) => /^\d+$/.test(value))),
+    ...new Set(
+      keys
+        .map((key) => String(key).split(":")[0])
+        .filter((value) => /^\d+$/.test(value)),
+    ),
   ];
 
   if (!categoryIds.length) return keys;

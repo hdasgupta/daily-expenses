@@ -255,12 +255,7 @@ function buildPasswordOtpHtml(otp, ttlMinutes) {
   `.trim();
 }
 
-async function postEmail(payload, retryOptions = {}) {
-  // Common scheduled reports use a long retry window. Other email types retain
-  // the existing short retry policy.
-  const isCommonScheduledReport = retryOptions.commonScheduledReport === true;
-  const maxRetries = isCommonScheduledReport ? 10 : EMAIL_API_MAX_RETRIES;
-  const retryDelayMs = isCommonScheduledReport ? 30 * 60 * 1000 : null;
+async function postEmail(payload) {
   const recipient = payload.to;
   const subject = payload.subject;
   const attachmentCount = Array.isArray(payload.attachments) ? payload.attachments.length : 0;
@@ -279,7 +274,7 @@ async function postEmail(payload, retryOptions = {}) {
     return;
   }
 
-  for (let attempt = 1; attempt <= maxRetries + 1; attempt += 1) {
+  for (let attempt = 1; attempt <= EMAIL_API_MAX_RETRIES + 1; attempt += 1) {
     const startedAt = Date.now();
 
     logEmailEvent("email_api_request_started", {
@@ -288,7 +283,7 @@ async function postEmail(payload, retryOptions = {}) {
       attachmentCount,
       url: EMAIL_API_URL,
       attempt,
-      maxAttempts: maxRetries + 1,
+      maxAttempts: EMAIL_API_MAX_RETRIES + 1,
     });
 
     try {
@@ -316,8 +311,8 @@ async function postEmail(payload, retryOptions = {}) {
         return;
       }
 
-      const retryable = isCommonScheduledReport || isRetryableStatus(response.status);
-      const hasRetriesRemaining = attempt <= maxRetries;
+      const retryable = isRetryableStatus(response.status);
+      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
 
       logEmailEvent("email_api_request_failed", {
         recipient,
@@ -328,7 +323,7 @@ async function postEmail(payload, retryOptions = {}) {
         durationMs: Date.now() - startedAt,
         attempt,
         retryable,
-        retriesRemaining: Math.max(maxRetries - attempt + 1, 0),
+        retriesRemaining: Math.max(EMAIL_API_MAX_RETRIES - attempt + 1, 0),
       });
 
       if (!retryable || !hasRetriesRemaining) {
@@ -339,13 +334,10 @@ async function postEmail(payload, retryOptions = {}) {
         );
       }
 
-      const fallbackDelay = isCommonScheduledReport
-        ? retryDelayMs
-        : EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+      const fallbackDelay =
+        EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
 
-      const delayMs = isCommonScheduledReport
-        ? retryDelayMs
-        : getRetryAfterMs(response, fallbackDelay);
+      const delayMs = getRetryAfterMs(response, fallbackDelay);
 
       logEmailEvent("email_api_retry_scheduled", {
         recipient,
@@ -358,16 +350,15 @@ async function postEmail(payload, retryOptions = {}) {
 
       await sleep(delayMs);
     } catch (error) {
-      const hasRetriesRemaining = attempt <= maxRetries;
+      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
 
       const retryableException = true;
 
       const isHttpError = String(error?.message || "").startsWith("Email API returned HTTP ");
 
       if (!isHttpError && hasRetriesRemaining) {
-        const delayMs = isCommonScheduledReport
-          ? retryDelayMs
-          : EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+        const delayMs =
+          EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
 
         logEmailEvent("email_api_request_exception", {
           recipient,
@@ -377,7 +368,7 @@ async function postEmail(payload, retryOptions = {}) {
           errorCode: error?.code,
           attempt,
           retryable: retryableException,
-          retriesRemaining: maxRetries - attempt + 1,
+          retriesRemaining: EMAIL_API_MAX_RETRIES - attempt + 1,
         });
 
         logEmailEvent("email_api_retry_scheduled", {
@@ -451,104 +442,92 @@ export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
   });
 }
 
-export async function sendDailyEmailReport(email, pdfBuffer, reportDate, options = {}) {
+export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-7-day-report-" + reportDate + ".pdf";
 
   const text =
     "Attached is the 7-day expense report containing the daily expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail(
-    {
-      to: email,
-      subject:
-        "Expense Report PDF Attached — Daily Expenses & Survivor Details — Last 7 Days — " +
-        reportDate,
-      htmlBody: "<p>" + text + "</p>",
-      attachments: [
-        {
-          filename,
-          mimeType: "application/pdf",
-          content: pdfBuffer.toString("base64"),
-        },
-      ],
-    },
-    options,
-  );
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Daily Expenses & Survivor Details — Last 7 Days — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
 }
 
-export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate, options = {}) {
+export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-4-week-report-" + reportDate + ".pdf";
 
   const text =
     "Attached is the 4-week expense report containing the weekly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail(
-    {
-      to: email,
-      subject:
-        "Expense Report PDF Attached — Weekly Expenses & Survivor Details — Last 4 Weeks — " +
-        reportDate,
-      htmlBody: "<p>" + text + "</p>",
-      attachments: [
-        {
-          filename,
-          mimeType: "application/pdf",
-          content: pdfBuffer.toString("base64"),
-        },
-      ],
-    },
-    options,
-  );
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Weekly Expenses & Survivor Details — Last 4 Weeks — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
 }
 
-export async function sendYearlyEmailReport(email, pdfBuffer, reportDate, options = {}) {
+export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-2-year-report-" + reportDate + ".pdf";
 
   const text =
     "Attached is the 2-year expense report containing the yearly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail(
-    {
-      to: email,
-      subject:
-        "Expense Report PDF Attached — Yearly Expenses & Survivor Details — Last 2 Years — " +
-        reportDate,
-      htmlBody: "<p>" + text + "</p>",
-      attachments: [
-        {
-          filename,
-          mimeType: "application/pdf",
-          content: pdfBuffer.toString("base64"),
-        },
-      ],
-    },
-    options,
-  );
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Yearly Expenses & Survivor Details — Last 2 Years — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
 }
 
-export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate, options = {}) {
+export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
   const filename = "expense-3-month-report-" + reportDate + ".pdf";
 
   const text =
     "Attached is the 3-month expense report containing the monthly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail(
-    {
-      to: email,
-      subject:
-        "Expense Report PDF Attached — Monthly Expenses & Survivor Details — Last 3 Months — " +
-        reportDate,
-      htmlBody: "<p>" + text + "</p>",
-      attachments: [
-        {
-          filename,
-          mimeType: "application/pdf",
-          content: pdfBuffer.toString("base64"),
-        },
-      ],
-    },
-    options,
-  );
+  await postEmail({
+    to: email,
+    subject:
+      "Expense Report PDF Attached — Monthly Expenses & Survivor Details — Last 3 Months — " +
+      reportDate,
+    htmlBody: "<p>" + text + "</p>",
+    attachments: [
+      {
+        filename,
+        mimeType: "application/pdf",
+        content: pdfBuffer.toString("base64"),
+      },
+    ],
+  });
 }
 
 export async function sendReportEmail(email, pdfBuffer, options = {}) {

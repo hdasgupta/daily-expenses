@@ -1,15 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  LabelList,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import {
   ArrowDown,
   ArrowUp,
@@ -114,9 +104,7 @@ function normalizeLoaded(config = {}) {
       ...(config.filters || {}),
       // Saved selections may have been created by older app versions.
       // Always normalize multi-select values before the UI reads .length/includes.
-      categoryItems: Array.isArray(config.filters?.categoryItems)
-        ? config.filters.categoryItems
-        : [],
+      categoryItems: Array.isArray(config.filters?.categoryItems) ? config.filters.categoryItems : [],
       categories: Array.isArray(config.filters?.categories) ? config.filters.categories : [],
       survivors: Array.isArray(config.filters?.survivors) ? config.filters.survivors : [],
     },
@@ -250,11 +238,7 @@ function reportChartValue(value, column) {
   if (["date", "week", "month"].includes(column)) {
     const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
     if (!Number.isNaN(date.getTime())) {
-      return new Intl.DateTimeFormat("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      }).format(date);
+      return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(date);
     }
   }
   return String(value);
@@ -266,12 +250,7 @@ function buildReportChartModel(result) {
   if (groupBy.length <= 1) {
     return {
       stackedCategory: false,
-      data: rows.map((row, index) => ({
-        ...row,
-        chartLabel: groupBy[0] ? reportChartValue(row[groupBy[0]], groupBy[0]) : "Total",
-        chartValue: Number(row.total || 0),
-        index,
-      })),
+      data: rows.map((row, index) => ({ ...row, chartLabel: groupBy[0] ? reportChartValue(row[groupBy[0]], groupBy[0]) : "Total", chartValue: Number(row.total || 0), index })),
       series: [{ dataKey: "chartValue", label: "Total", fill: "var(--accent)" }],
       description: "Each bar represents one summary-table row.",
     };
@@ -280,45 +259,27 @@ function buildReportChartModel(result) {
   const period = groupBy.find((column) => ["date", "week", "month", "year"].includes(column));
   const category = groupBy.includes("category") ? "category" : null;
   const survivor = groupBy.includes("survivor") ? "survivor" : null;
-  const xColumn =
-    period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
+  const xColumn = period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
 
   if (category && survivor) {
-    const categoryValues = [
-      ...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries(),
-    ];
-    const survivorValues = [
-      ...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries(),
-    ];
+    const categoryValues = [...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries()];
+    const survivorValues = [...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries()];
     const dataMap = new Map();
     const series = [];
     const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
     const survivorCount = Math.max(survivorValues.length, 1);
-    const shadeFor = (categoryIndex, survivorIndex) =>
-      `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
+    const shadeFor = (categoryIndex, survivorIndex) => `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
 
     categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
       survivorValues.forEach(([survivorKey, survivorValue]) => {
         const dataKey = `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
-        series.push({
-          dataKey,
-          label: reportChartValue(categoryValue, category),
-          category: String(categoryValue ?? "—"),
-          survivor: reportChartValue(survivorValue, survivor),
-          stackId: `category_${categoryIndex}`,
-          fill: shadeFor(
-            categoryIndex,
-            survivorValues.findIndex(([key]) => key === survivorKey),
-          ),
-          legendType: "none",
-        });
+        series.push({ dataKey, label: reportChartValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: reportChartValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: shadeFor(categoryIndex, survivorValues.findIndex(([key]) => key === survivorKey)), legendType: "none" });
       });
     });
 
     rows.forEach((row) => {
       const xKey = String(row[xColumn] ?? "—");
-      if (!dataMap.has(xKey))
-        dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
+      if (!dataMap.has(xKey)) dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
       const target = dataMap.get(xKey);
       const ci = categoryValues.findIndex(([key]) => key === String(row[category] ?? "—"));
       const dataKey = `cat_${ci}_surv_${String(row[survivor] ?? "—").replace(/[^a-zA-Z0-9_-]/g, "_")}`;
@@ -349,29 +310,19 @@ function buildReportChartModel(result) {
     const seriesKey = String(row[seriesColumn] ?? "—");
     if (!seriesMap.has(seriesKey)) {
       const index = seriesMap.size;
-      seriesMap.set(seriesKey, {
-        dataKey: `series_${index}`,
-        label: reportChartValue(row[seriesColumn], seriesColumn),
-        fill: `var(--dashboard-series-${(index % 8) + 1})`,
-      });
+      seriesMap.set(seriesKey, { dataKey: `series_${index}`, label: reportChartValue(row[seriesColumn], seriesColumn), fill: `var(--dashboard-series-${(index % 8) + 1})` });
     }
     const xKey = String(row[xColumn] ?? "—");
-    if (!dataMap.has(xKey))
-      dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
+    if (!dataMap.has(xKey)) dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
     const target = dataMap.get(xKey);
     const series = seriesMap.get(seriesKey);
     target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
     target._groupRows[series.dataKey] = row;
   });
-  return {
-    stackedCategory: false,
-    data: [...dataMap.values()],
-    series: [...seriesMap.values()],
-    description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.`,
-  };
+  return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
 }
 
-export default function Reports({ user }) {
+export default function Reports() {
   const [config, setConfig] = useState(initialConfig);
 
   const [result, setResult] = useState(null);
@@ -417,8 +368,6 @@ export default function Reports({ user }) {
   const [scheduleTime, setScheduleTime] = useState("");
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleBusy, setScheduleBusy] = useState(false);
-  const [scheduleManagers, setScheduleManagers] = useState([]);
-  const [scheduleOwnerUserIds, setScheduleOwnerUserIds] = useState([]);
 
   useEffect(() => {
     Promise.all([
@@ -777,43 +726,40 @@ export default function Reports({ user }) {
   };
 
   const openScheduleEmail = () => {
-    const now = new Date(Date.now() + 10 * 60 * 1000);
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Asia/Kolkata",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }).formatToParts(now);
-    const values = Object.fromEntries(
-      parts.filter(({ type }) => type !== "literal").map(({ type, value }) => [type, value]),
-    );
-
-    setScheduleDate(`${values.year}-${values.month}-${values.day}`);
-    setScheduleTime(`${values.hour}:${values.minute}`);
-    setScheduleName("Report PDF email");
-    setScheduleOwnerUserId("");
-    if (user?.role === "admin") {
-      api("/users?page=1&pageSize=50", { loadingMessage: "Loading managers…" })
-        .then((response) =>
-          setScheduleManagers(
-            (response.rows || []).filter(
-              (item) => String(item.role || "").toLowerCase() === "manager",
-            ),
-          ),
-        )
-        .catch(() => setScheduleManagers([]));
-    }
-    setScheduleOwnerUserIds([]);
+    // Open the dialog first so a date/time formatting issue on a mobile browser
+    // cannot make the Schedule email button appear unresponsive.
     setScheduleEmailModal(true);
+    setScheduleName("Report PDF email");
+
+    try {
+      const now = new Date(Date.now() + 10 * 60 * 1000);
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23",
+      }).formatToParts(now);
+      const values = Object.fromEntries(
+        parts.filter(({ type }) => type !== "literal").map(({ type, value }) => [type, value]),
+      );
+      setScheduleDate(`${values.year}-${values.month}-${values.day}`);
+      setScheduleTime(`${values.hour}:${values.minute}`);
+    } catch (error) {
+      // Fall back to a valid local date/time; the user can adjust it in the dialog.
+      const fallback = new Date(Date.now() + 10 * 60 * 1000);
+      const pad = (value) => String(value).padStart(2, "0");
+      setScheduleDate(`${fallback.getFullYear()}-${pad(fallback.getMonth() + 1)}-${pad(fallback.getDate())}`);
+      setScheduleTime(`${pad(fallback.getHours())}:${pad(fallback.getMinutes())}`);
+      console.warn("Could not prefill schedule time in Asia/Kolkata; using device local time.", error);
+    }
   };
 
   const scheduleEmail = async (event) => {
     event.preventDefault();
     if (!scheduleDate || !scheduleTime) return;
-    if (user?.role === "admin" && !scheduleOwnerUserIds.length) return;
 
     setScheduleBusy(true);
     try {
@@ -823,7 +769,6 @@ export default function Reports({ user }) {
           name: scheduleName,
           scheduledFor: `${scheduleDate}T${scheduleTime}`,
           config,
-          ...(user?.role === "admin" ? { ownerUserIds: scheduleOwnerUserIds.map(Number) } : {}),
         }),
         loadingMessage: "Scheduling report PDF email…",
         toast: {
@@ -1053,84 +998,48 @@ export default function Reports({ user }) {
           Email me report PDF
         </button>
 
-        <button className="secondary" type="button" onClick={openScheduleEmail}>
+        <button
+          className="secondary"
+          type="button"
+          onClick={openScheduleEmail}
+        >
           <CalendarClock size={17} />
           Schedule email
         </button>
       </div>
 
-      {showChart && result?.rows?.length
-        ? (() => {
-            const chartModel = buildReportChartModel(result);
-            return (
-              <div className="card report-chart">
-                {chartModel.stackedCategory ? (
-                  <div className="report-chart-legend">
-                    {chartModel.categories.map((item) => (
-                      <div className="report-chart-legend-group" key={item.label}>
-                        <strong>
-                          <i style={{ background: item.fill }} />
-                          {item.label}
-                        </strong>
-                        {item.shades.map((shade) => (
-                          <span key={`${item.label}-${shade.label}`}>
-                            <i style={{ background: shade.fill }} />
-                            {shade.label}
-                          </span>
-                        ))}
-                      </div>
+      {showChart && result?.rows?.length ? (() => {
+        const chartModel = buildReportChartModel(result);
+        return (
+          <div className="card report-chart">
+            {chartModel.stackedCategory ? (
+              <div className="report-chart-legend">
+                {chartModel.categories.map((item) => (
+                  <div className="report-chart-legend-group" key={item.label}>
+                    <strong><i style={{ background: item.fill }} />{item.label}</strong>
+                    {item.shades.map((shade) => (
+                      <span key={`${item.label}-${shade.label}`}><i style={{ background: shade.fill }} />{shade.label}</span>
                     ))}
                   </div>
-                ) : null}
-                <ResponsiveContainer width="100%" height={380}>
-                  <BarChart data={chartModel.data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="chartLabel"
-                      tick={{ fontSize: 11 }}
-                      interval={0}
-                      angle={chartModel.stackedCategory ? -25 : -25}
-                      textAnchor="end"
-                      height={90}
-                    />
-                    <YAxis />
-                    <Tooltip
-                      formatter={(value, name, item) => [
-                        `₹${Number(value).toFixed(2)}`,
-                        item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name,
-                      ]}
-                    />
-                    {!chartModel.stackedCategory && chartModel.series.length > 1 ? (
-                      <Legend />
-                    ) : null}
-                    {chartModel.series.map((series) => (
-                      <Bar
-                        key={series.dataKey}
-                        dataKey={series.dataKey}
-                        name={series.label}
-                        fill={series.fill}
-                        stackId={series.stackId}
-                        stroke="var(--surface)"
-                        strokeWidth={2.5}
-                      >
-                        <LabelList
-                          dataKey={series.dataKey}
-                          position="inside"
-                          fill="#ffffff"
-                          fontSize={9}
-                          formatter={(value) =>
-                            Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""
-                          }
-                        />
-                      </Bar>
-                    ))}
-                  </BarChart>
-                </ResponsiveContainer>
-                <div className="report-chart-description">{chartModel.description}</div>
+                ))}
               </div>
-            );
-          })()
-        : null}
+            ) : null}
+            <ResponsiveContainer width="100%" height={380}>
+              <BarChart data={chartModel.data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="chartLabel" tick={{ fontSize: 11 }} interval={0} angle={chartModel.stackedCategory ? -25 : -25} textAnchor="end" height={90} />
+                <YAxis />
+                <Tooltip formatter={(value, name, item) => [`₹${Number(value).toFixed(2)}`, item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name]} />
+                {!chartModel.stackedCategory && chartModel.series.length > 1 ? <Legend /> : null}
+                {chartModel.series.map((series) => (
+                  <Bar key={series.dataKey} dataKey={series.dataKey} name={series.label} fill={series.fill} stackId={series.stackId} stroke="var(--surface)" strokeWidth={2.5}><LabelList dataKey={series.dataKey} position="inside" fill="#ffffff" fontSize={9} formatter={(value) => Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""} /></Bar>
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="report-chart-description">{chartModel.description}</div>
+          </div>
+        );
+      })() : null}
 
       <ReportContent result={result} renderCell={renderCell} />
 
@@ -1287,10 +1196,7 @@ export default function Reports({ user }) {
               >
                 <span>{selection.name}</span>
                 {!selection.is_owner ? (
-                  <span
-                    className="selection-shared-mark"
-                    title={`Shared by ${selection.owner_name || "another manager"}`}
-                  >
+                  <span className="selection-shared-mark" title={`Shared by ${selection.owner_name || "another manager"}`}>
                     <CheckCircle2 size={15} />
                   </span>
                 ) : null}
@@ -1352,10 +1258,7 @@ export default function Reports({ user }) {
         <form className="form-stack" onSubmit={shareCurrentSelection}>
           <div className="selection-share-list">
             {shareableManagers.map((manager) => (
-              <label
-                className={`selection-share-row${manager.shared ? " is-shared" : ""}`}
-                key={manager.id}
-              >
+              <label className={`selection-share-row${manager.shared ? " is-shared" : ""}`} key={manager.id}>
                 <input
                   type="checkbox"
                   checked={selectedManagerIds.includes(String(manager.id))}
@@ -1376,17 +1279,11 @@ export default function Reports({ user }) {
                 {manager.shared ? <CheckCircle2 size={15} title="Already shared" /> : null}
               </label>
             ))}
-            {!shareableManagers.length ? (
-              <div className="empty-card">No other managers available to share with.</div>
-            ) : null}
+            {!shareableManagers.length ? <div className="empty-card">No other managers available to share with.</div> : null}
           </div>
           <div className="modal-actions">
-            <button type="button" className="button secondary" onClick={() => setShareModal(false)}>
-              Cancel
-            </button>
-            <button type="submit" className="button primary">
-              Share
-            </button>
+            <button type="button" className="button secondary" onClick={() => setShareModal(false)}>Cancel</button>
+            <button type="submit" className="button primary">Share</button>
           </div>
         </form>
       </Modal>
@@ -1411,39 +1308,15 @@ export default function Reports({ user }) {
             >
               Cancel
             </button>
-            <button
-              className="primary"
-              type="submit"
-              form="schedule-report-email-form"
-              disabled={scheduleBusy}
-            >
+            <button className="primary" type="submit" form="schedule-report-email-form" disabled={scheduleBusy}>
               {scheduleBusy ? "Scheduling…" : "Schedule email"}
             </button>
           </>
         }
       >
         <form id="schedule-report-email-form" onSubmit={scheduleEmail}>
-          {user?.role === "admin" ? (
-            <label>
-              Schedule on behalf of manager
-              <div className="selection-share-list">
-                {scheduleManagers.map((manager) => (
-                  <label className="selection-share-row" key={manager.id}>
-                    <input type="checkbox" checked={scheduleOwnerUserIds.includes(String(manager.id))}
-                      onChange={(event) => setScheduleOwnerUserIds((current) => event.target.checked
-                        ? [...new Set([...current, String(manager.id)])]
-                        : current.filter((id) => id !== String(manager.id)))} />
-                    <span><b>{manager.full_name}</b>{manager.email ? <small>{manager.email}</small> : null}</span>
-                  </label>
-                ))}
-                {!scheduleManagers.length ? <div className="empty-card">No managers available.</div> : null}
-              </div>
-            </label>
-          ) : null}
-
           <div className="notice">
-            The current report filters, grouping, sorting and summary settings will be saved as a
-            snapshot and emailed once at the selected time.
+            The current report filters, grouping, sorting and summary settings will be saved as a snapshot and emailed once at the selected time.
           </div>
 
           <label>
@@ -1478,12 +1351,7 @@ export default function Reports({ user }) {
             </label>
           </div>
 
-          <span className="field-note">
-            India Standard Time (Asia/Kolkata).{" "}
-            {user?.role === "admin"
-              ? "The email will be sent to the selected manager."
-              : "The email will be sent to your account email."}
-          </span>
+          <span className="field-note">India Standard Time (Asia/Kolkata). The email will be sent to your account email.</span>
         </form>
       </Modal>
     </section>
@@ -1622,7 +1490,11 @@ function FilterCard({
         <MultiPicker
           label="Category"
           options={categoryOptions}
-          selected={Array.isArray(config.filters.categories) ? config.filters.categories : []}
+          selected={
+            Array.isArray(config.filters.categories)
+              ? config.filters.categories
+              : []
+          }
           onToggle={(value) =>
             setConfig((current) => {
               const selected = Array.isArray(current.filters.categories)
@@ -1653,17 +1525,9 @@ function FilterCard({
           onToggle={(value) =>
             setFilter(
               "categoryItems",
-              (Array.isArray(config.filters.categoryItems)
-                ? config.filters.categoryItems
-                : []
-              ).includes(String(value))
+              (Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []).includes(String(value))
                 ? config.filters.categoryItems.filter((item) => item !== String(value))
-                : [
-                    ...(Array.isArray(config.filters.categoryItems)
-                      ? config.filters.categoryItems
-                      : []),
-                    String(value),
-                  ],
+                : [...(Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []), String(value)],
             )
           }
         />

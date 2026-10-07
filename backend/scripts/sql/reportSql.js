@@ -15,7 +15,7 @@ export const reportSql = {
       COALESCE(i.name, e.other_item, 'Total') AS item,
       s.id AS survivor_id,
       COALESCE(s.full_name, 'Unassigned') AS survivor,
-      COALESCE(NULLIF(es.amount, 0), e.total_cost) AS report_amount,
+      COALESCE(es.amount, e.total_cost) AS report_amount,
       CASE
         WHEN s.id IS NULL
         THEN ARRAY[]::bigint[]
@@ -56,15 +56,6 @@ export const reportSql = {
       ) FILTER (
         WHERE s.id IS NOT NULL
       )::bigint[] AS survivor_ids,
-      COALESCE(
-        jsonb_agg(
-          jsonb_build_object(
-            'name', s.full_name,
-            'amount', es.amount
-          ) ORDER BY s.full_name
-        ) FILTER (WHERE s.id IS NOT NULL),
-        '[]'::jsonb
-      ) AS survivor_shares,
       NULL::bigint AS survivor_id,
       NULL::numeric AS report_amount
     FROM public.expenses e
@@ -85,7 +76,7 @@ export const reportSql = {
   rawSelectPerSurvivor:
     "id AS expense_id, expense_date, category, item, survivor, report_amount AS share_price, total_cost, comment, proof_key",
 
-  rawSelectPerExpense: "id AS expense_id, expense_date, category, item, survivor, survivor_shares, total_cost, comment, proof_key",
+  rawSelectPerExpense: "expense_date, category, item, survivor, total_cost, comment, proof_key",
 
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte}

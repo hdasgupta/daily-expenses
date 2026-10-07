@@ -124,10 +124,7 @@
   visibility: hidden;
   transform: translate(-50%, 4px);
   pointer-events: none;
-  transition:
-    opacity 0.15s ease,
-    transform 0.15s ease,
-    visibility 0.15s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
 }
 .job-pdf-info:hover .job-info-tooltip,
 .job-info-icon:focus-visible + .job-info-tooltip {
