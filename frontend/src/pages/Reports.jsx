@@ -171,26 +171,11 @@ function buildUiShareRows(rows) {
     }
 
     const target = map.get(key);
-    const shareRecords = Array.isArray(row.survivor_shares)
-      ? row.survivor_shares
-      : typeof row.survivor_shares === "string"
-        ? (() => { try { const parsed = JSON.parse(row.survivor_shares); return Array.isArray(parsed) ? parsed : []; } catch { return []; } })()
-        : [];
-
-    if (shareRecords.length) {
-      for (const record of shareRecords) {
-        const name = record?.name ? String(record.name) : "";
-        if (!name || target._shareNames.has(name)) continue;
-        target._shareNames.add(name);
-        target.survivorShares.push({ name, amount: numeric(record.amount) });
-      }
-    } else {
-      const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
-      if (name && !target._shareNames.has(name)) {
-        target._shareNames.add(name);
-        const amount = numeric(row.share_price, row.report_amount, row.amount);
-        target.survivorShares.push({ name, amount });
-      }
+    const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
+    if (name && !target._shareNames.has(name)) {
+      target._shareNames.add(name);
+      const amount = numeric(row.share_price, row.report_amount, row.amount);
+      target.survivorShares.push({ name, amount });
     }
   }
 
@@ -433,7 +418,7 @@ export default function Reports({ user }) {
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleBusy, setScheduleBusy] = useState(false);
   const [scheduleManagers, setScheduleManagers] = useState([]);
-  const [scheduleOwnerUserId, setScheduleOwnerUserId] = useState("");
+  const [scheduleOwnerUserIds, setScheduleOwnerUserIds] = useState([]);
 
   useEffect(() => {
     Promise.all([
@@ -821,12 +806,14 @@ export default function Reports({ user }) {
         )
         .catch(() => setScheduleManagers([]));
     }
+    setScheduleOwnerUserIds([]);
     setScheduleEmailModal(true);
   };
 
   const scheduleEmail = async (event) => {
     event.preventDefault();
     if (!scheduleDate || !scheduleTime) return;
+    if (user?.role === "admin" && !scheduleOwnerUserIds.length) return;
 
     setScheduleBusy(true);
     try {
@@ -836,9 +823,7 @@ export default function Reports({ user }) {
           name: scheduleName,
           scheduledFor: `${scheduleDate}T${scheduleTime}`,
           config,
-          ...(user?.role === "admin" && scheduleOwnerUserId
-            ? { ownerUserId: Number(scheduleOwnerUserId) }
-            : {}),
+          ...(user?.role === "admin" ? { ownerUserIds: scheduleOwnerUserIds.map(Number) } : {}),
         }),
         loadingMessage: "Scheduling report PDF email…",
         toast: {
@@ -1441,18 +1426,18 @@ export default function Reports({ user }) {
           {user?.role === "admin" ? (
             <label>
               Schedule on behalf of manager
-              <select
-                value={scheduleOwnerUserId}
-                onChange={(event) => setScheduleOwnerUserId(event.target.value)}
-                required
-              >
-                <option value="">Select manager</option>
+              <div className="selection-share-list">
                 {scheduleManagers.map((manager) => (
-                  <option key={manager.id} value={manager.id}>
-                    {manager.full_name} ({manager.email})
-                  </option>
+                  <label className="selection-share-row" key={manager.id}>
+                    <input type="checkbox" checked={scheduleOwnerUserIds.includes(String(manager.id))}
+                      onChange={(event) => setScheduleOwnerUserIds((current) => event.target.checked
+                        ? [...new Set([...current, String(manager.id)])]
+                        : current.filter((id) => id !== String(manager.id)))} />
+                    <span><b>{manager.full_name}</b>{manager.email ? <small>{manager.email}</small> : null}</span>
+                  </label>
                 ))}
-              </select>
+                {!scheduleManagers.length ? <div className="empty-card">No managers available.</div> : null}
+              </div>
             </label>
           ) : null}
 

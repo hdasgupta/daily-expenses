@@ -200,39 +200,36 @@ function canManage(job, user) {
 
 export async function createScheduledReportJob(data, user) {
   const config = normalizePayload(data);
-  let ownerUserId = user.id;
-  if (data.ownerUserId != null && String(data.ownerUserId) !== String(user.id)) {
-    if (user.role !== "admin")
-      throw error("Only admins can schedule reports for another manager.", 403);
-    const target = await q(
-      `SELECT u.id FROM public.users u JOIN public.roles r ON r.id = u.role_id WHERE u.id = $1 AND lower(r.name) = 'manager' LIMIT 1`,
-      [data.ownerUserId],
+  const requestedIds = Array.isArray(data.ownerUserIds) && data.ownerUserIds.length
+    ? [...new Set(data.ownerUserIds.map((id) => String(id)).filter(Boolean))]
+    : data.ownerUserId != null ? [String(data.ownerUserId)] : [String(user.id)];
+
+  let ownerIds = [String(user.id)];
+  if (requestedIds.some((id) => id !== String(user.id))) {
+    if (user.role !== "admin") throw error("Only admins can schedule reports for other managers.", 403);
+    const targets = await q(
+      `SELECT u.id FROM public.users u JOIN public.roles r ON r.id = u.role_id WHERE u.id = ANY($1::int[]) AND lower(r.name) = 'manager'`,
+      [requestedIds.map(Number)],
     );
-    if (!target.rows.length) throw error("Choose a valid manager account.", 400);
-    ownerUserId = target.rows[0].id;
+    const validIds = new Set(targets.rows.map((row) => String(row.id)));
+    if (requestedIds.some((id) => !validIds.has(id))) throw error("Choose valid manager accounts.", 400);
+    ownerIds = requestedIds;
   }
 
-  const result = await q(
-    `INSERT INTO public.scheduled_report_jobs
-      (name, owner_user_id, report_key, frequency, time_of_day, day_of_week,
-       day_of_month, month_of_year, cron_expression, active)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
-     RETURNING *`,
-    [
-      config.name,
-      ownerUserId,
-      config.reportKey,
-      config.frequency,
-      config.time,
-      config.dayOfWeek,
-      config.dayOfMonth,
-      config.monthOfYear,
-      config.cronExpression,
-      data.active !== false,
-    ],
-  );
-
-  return decorateJob(result.rows[0]);
+  const jobs = [];
+  for (const ownerId of ownerIds) {
+    const result = await q(
+      `INSERT INTO public.scheduled_report_jobs
+        (name, owner_user_id, report_key, frequency, time_of_day, day_of_week,
+         day_of_month, month_of_year, cron_expression, active)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`,
+      [config.name, Number(ownerId), config.reportKey, config.frequency, config.time,
+       config.dayOfWeek, config.dayOfMonth, config.monthOfYear, config.cronExpression,
+       data.active !== false],
+    );
+    jobs.push(decorateJob(result.rows[0]));
+  }
+  return jobs.length === 1 ? jobs[0] : jobs;
 }
 
 export async function updateScheduledReportJob(id, data, user) {
