@@ -138,6 +138,15 @@ function formatCell(value, column) {
 
 function buildUiShareRows(rows) {
   const map = new Map();
+  const numeric = (...values) => {
+    for (const value of values) {
+      if (value !== null && value !== undefined && value !== "") {
+        const parsed = Number(value);
+        if (Number.isFinite(parsed)) return parsed;
+      }
+    }
+    return null;
+  };
 
   for (const row of rows || []) {
     const key =
@@ -146,84 +155,82 @@ function buildUiShareRows(rows) {
       [row.expense_date, row.category, row.item, row.comment].join("\u0001");
 
     if (!map.has(key)) {
-      map.set(key, {
-        ...row,
-        survivorShares: [],
-      });
+      map.set(key, { ...row, survivorShares: [], _shareNames: new Set() });
     }
 
     const target = map.get(key);
-
-    if (row.survivor && row.survivor !== "—") {
-      target.survivorShares.push({
-        name: row.survivor,
-        amount: Number(row.share_price || 0),
-      });
+    const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
+    if (name && !target._shareNames.has(name)) {
+      target._shareNames.add(name);
+      const amount = numeric(row.share_price, row.report_amount, row.amount);
+      target.survivorShares.push({ name, amount });
     }
   }
 
   return [...map.values()].map((row) => {
     const shares = row.survivorShares;
-
-    const total = Number(row.total_cost || shares.reduce((sum, item) => sum + item.amount, 0));
+    const expenseTotal = numeric(row.total_cost, row.expense_total, row.total);
+    const knownShareTotal = shares.reduce(
+      (sum, item) => sum + (item.amount == null ? 0 : item.amount),
+      0,
+    );
+    const total = expenseTotal != null && expenseTotal > 0 ? expenseTotal : knownShareTotal;
 
     const share = shares.length
       ? shares
-          .map(
-            (item) =>
-              `${item.name}: ₹${item.amount.toFixed(2)}${
-                total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""
-              }`,
-          )
+          .map((item) => {
+            const amount = item.amount == null ? 0 : item.amount;
+            const percentage = total > 0 ? ` (${((amount / total) * 100).toFixed(2)}%)` : "";
+            return `${item.name}: ₹${amount.toFixed(2)}${percentage}`;
+          })
           .join(", ")
       : "No survivor share recorded";
 
-    const { survivorShares, survivor, ...clean } = row;
-
-    return {
-      ...clean,
-      share,
-    };
+    const { survivorShares, _shareNames, survivor, ...clean } = row;
+    return { ...clean, share };
   });
 }
 
 /*
- * Calculate a frontend fallback total from
- * the actual rows returned by the API.
- *
- * This is only used when the backend total is
- * missing or zero.
+ * Calculate a display total without counting an expense once per survivor.
+ * Prefer total_cost once per unique expense; only fall back to share amounts
+ * when the expense total is not present in the response.
  */
 function calculateDisplayTotal(rows) {
-  if (!Array.isArray(rows) || !rows.length) {
-    return 0;
-  }
+  if (!Array.isArray(rows) || !rows.length) return 0;
 
-  let total = 0;
+  const expenses = new Map();
+  let fallbackShares = 0;
+  let hasExpenseTotals = false;
 
   for (const row of rows) {
-    const totalCost = Number(row.total_cost);
+    const key =
+      row.expense_id ??
+      row.id ??
+      [row.expense_date, row.category, row.item, row.comment].join("\u0001");
+    const totalValue = row.total_cost ?? row.expense_total ?? row.total;
+    const totalCost =
+      totalValue !== null && totalValue !== undefined && totalValue !== ""
+        ? Number(totalValue)
+        : NaN;
 
     if (Number.isFinite(totalCost)) {
-      total += totalCost;
+      hasExpenseTotals = true;
+      if (!expenses.has(key)) expenses.set(key, totalCost);
       continue;
     }
 
-    const reportAmount = Number(row.report_amount);
-
-    if (Number.isFinite(reportAmount)) {
-      total += reportAmount;
-      continue;
-    }
-
-    const sharePrice = Number(row.share_price);
-
-    if (Number.isFinite(sharePrice)) {
-      total += sharePrice;
-    }
+    const amountValue = row.report_amount ?? row.share_price ?? row.amount;
+    const amount =
+      amountValue !== null && amountValue !== undefined && amountValue !== ""
+        ? Number(amountValue)
+        : NaN;
+    if (Number.isFinite(amount)) fallbackShares += amount;
   }
 
-  return total;
+  return hasExpenseTotals
+    ? [...expenses.values()].reduce((sum, value) => sum + value, 0)
+    : fallbackShares;
 }
 
 function reportChartValue(value, column) {
@@ -1658,13 +1665,11 @@ function ReportContent({ result, renderCell }) {
           <strong>{result.rows.length}</strong>
         </div>
 
-        {result.mode !== "grouped" ? (
-          <div>
-            <span>Total</span>
+        <div>
+          <span>Total expense</span>
 
-            <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
-          </div>
-        ) : null}
+          <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
+        </div>
       </div>
 
       <div className="report-grid">

@@ -303,72 +303,41 @@ function numericValue(value) {
  * and report_amount/share_price as fallbacks.
  */
 function calculateDetailTotal(rows, usesSurvivor = false) {
-  if (!Array.isArray(rows) || !rows.length) {
-    return 0;
-  }
+  if (!Array.isArray(rows) || !rows.length) return 0;
 
-  /*
-   * Survivor reports:
-   *
-   * Sum report_amount because every survivor
-   * row represents an actual report amount.
-   *
-   * This avoids depending on total_cost being
-   * present in the survivor source.
-   */
   if (usesSurvivor) {
-    let total = 0;
+    const uniqueExpenses = new Map();
+    let shareTotal = 0;
+    let hasExpenseTotals = false;
 
     for (const row of rows) {
-      const reportAmount = numericValue(row.report_amount);
-
-      if (reportAmount !== null) {
-        total += reportAmount;
+      const expenseId = row.expense_id ?? row.id;
+      const totalCost = numericValue(row.total_cost);
+      if (totalCost !== null && expenseId != null) {
+        hasExpenseTotals = true;
+        if (!uniqueExpenses.has(String(expenseId))) {
+          uniqueExpenses.set(String(expenseId), totalCost);
+        }
         continue;
       }
 
-      const sharePrice = numericValue(row.share_price);
-
-      if (sharePrice !== null) {
-        total += sharePrice;
-      }
+      const amount = numericValue(row.report_amount ?? row.share_price);
+      if (amount !== null) shareTotal += amount;
     }
 
-    return total;
+    if (hasExpenseTotals) {
+      return [...uniqueExpenses.values()].reduce((sum, amount) => sum + amount, 0);
+    }
+    return shareTotal;
   }
 
-  /*
-   * Normal expense reports:
-   *
-   * Every row from sourcePerExpense represents
-   * one expense, so total_cost can be summed
-   * directly.
-   */
-  let total = 0;
-
-  for (const row of rows) {
-    const totalCost = numericValue(row.total_cost);
-
-    if (totalCost !== null) {
-      total += totalCost;
-      continue;
-    }
-
-    const reportAmount = numericValue(row.report_amount);
-
-    if (reportAmount !== null) {
-      total += reportAmount;
-      continue;
-    }
-
-    const sharePrice = numericValue(row.share_price);
-
-    if (sharePrice !== null) {
-      total += sharePrice;
-    }
-  }
-
-  return total;
+  return rows.reduce((sum, row) => {
+    const amount =
+      numericValue(row.total_cost) ??
+      numericValue(row.report_amount) ??
+      numericValue(row.share_price);
+    return sum + (amount ?? 0);
+  }, 0);
 }
 
 export async function runReport(input) {
