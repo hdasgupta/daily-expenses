@@ -29,7 +29,13 @@ const scheduleDefinitions = [
   },
 ];
 
-export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
+export async function getJobStatus({
+  page = 1,
+  pageSize = 10,
+  search = "",
+  userId,
+  isAdmin = false,
+}) {
   const safePage = Math.max(1, Number(page) || 1);
   const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
@@ -54,13 +60,12 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   const historyWhere = `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
 
   const [countResult, rowsResult] = await Promise.all([
-    q(`SELECT COUNT(*)::int AS total
+    q(
+      `SELECT COUNT(*)::int AS total
          FROM ${historySql}
-        WHERE ${historyWhere}`, [
-      Boolean(isAdmin),
-      userId,
-      safeSearch,
-    ]),
+        WHERE ${historyWhere}`,
+      [Boolean(isAdmin), userId, safeSearch],
+    ),
     q(
       `SELECT id, job_name, scheduled_key, status, started_at, completed_at,
               duration_ms, error_message, scheduled_report_name
@@ -90,22 +95,22 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   // Load the canonical category ID/name map once. Avoid a filtered lookup here:
   // saved manager configs can contain legacy IDs or mixed numeric/string formats.
   // The info tooltip must use actual names from the category master table.
-  const categoryResult = await q(
-    `SELECT id, name FROM public.categories`,
-  );
+  const categoryResult = await q(`SELECT id, name FROM public.categories`);
   const categoryNames = new Map(
     (categoryResult.rows || []).map((row) => [String(row.id), row.name]),
   );
 
   const enrichedOneTimeJobs = oneTimeJobs.map((job) => {
     const config = job.config && typeof job.config === "object" ? { ...job.config } : {};
-    const filters = config.filters && typeof config.filters === "object" ? { ...config.filters } : {};
+    const filters =
+      config.filters && typeof config.filters === "object" ? { ...config.filters } : {};
     const keys = Array.isArray(filters.categoryItems) ? filters.categoryItems : [];
 
     if (keys.length) {
       filters.categoryItemLabels = keys.map((key) => {
         const [categoryId, kind] = String(key).split(":");
-        const categoryName = categoryNames.get(String(categoryId)) || `Unknown category (${categoryId})`;
+        const categoryName =
+          categoryNames.get(String(categoryId)) || `Unknown category (${categoryId})`;
         if (kind === "item") return `${categoryName} - Item`;
         return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
       });

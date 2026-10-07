@@ -176,11 +176,17 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
     const labels = Array.isArray(filters.categoryItemLabels)
       ? filters.categoryItemLabels
       : filters.categoryItems;
-    const categoriesOnly = [...new Set(
-      labels
-        .map((value) => String(value).split(/\s+-\s+/)[0].trim())
-        .filter(Boolean),
-    )];
+    const categoriesOnly = [
+      ...new Set(
+        labels
+          .map((value) =>
+            String(value)
+              .split(/\s+-\s+/)[0]
+              .trim(),
+          )
+          .filter(Boolean),
+      ),
+    ];
     filterParts.push(
       `${categoryOnly ? "categories" : "category"} = ${(categoryOnly ? categoriesOnly : labels).join(", ")}`,
     );
@@ -477,11 +483,15 @@ export default function JobStatus({ user }) {
                   </span>
 
                   <span>
-                    <b>Dashboard source:</b> {job.report_label} — {job.report_help || "Dashboard report"}
+                    <b>Dashboard source:</b> {job.report_label} —{" "}
+                    {job.report_help || "Dashboard report"}
                   </span>
 
                   <span className="job-pdf-content">
-                    <b>PDF contents:</b> Chart · summary/pivot table · raw data <PdfContentsInfo dashboardSource={`${job.report_label} — ${job.report_help || "Dashboard report"}`} />
+                    <b>PDF contents:</b> Chart · summary/pivot table · raw data{" "}
+                    <PdfContentsInfo
+                      dashboardSource={`${job.report_label} — ${job.report_help || "Dashboard report"}`}
+                    />
                   </span>
 
                   <span>
@@ -522,7 +532,10 @@ export default function JobStatus({ user }) {
       <div className="card" style={{ marginBottom: 14 }}>
         <div className="card-title">
           <strong>One-time report PDF emails</strong>
-          <span>Scheduled from the Report page. Each item disappears after the email is successfully triggered.</span>
+          <span>
+            Scheduled from the Report page. Each item disappears after the email is successfully
+            triggered.
+          </span>
         </div>
 
         {oneTimeJobs.length ? (
@@ -534,21 +547,42 @@ export default function JobStatus({ user }) {
                     <strong>{job.name}</strong>
                     <span>Report PDF email</span>
                   </div>
-                  <span className={`scheduled-job-status ${job.status === "failed" ? "paused" : "active"}`}>
+                  <span
+                    className={`scheduled-job-status ${job.status === "failed" ? "paused" : "active"}`}
+                  >
                     {job.status === "failed" ? "Retrying" : "Scheduled"}
                   </span>
                 </div>
 
                 <div className="scheduled-job-meta">
-                  <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
-                  <span><b>Timezone:</b> Asia/Kolkata</span>
-                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} categoryOnly /></span>
-                  {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
-                  {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
+                  <span>
+                    <b>Scheduled for:</b> {formatDate(job.scheduled_for)}
+                  </span>
+                  <span>
+                    <b>Timezone:</b> Asia/Kolkata
+                  </span>
+                  <span className="job-pdf-content">
+                    <b>PDF contents:</b> Report chart · summary/pivot table · raw data{" "}
+                    <PdfContentsInfo config={job.config} categoryOnly />
+                  </span>
+                  {job.last_attempt_at ? (
+                    <span>
+                      <b>Last attempt:</b> {formatDate(job.last_attempt_at)}
+                    </span>
+                  ) : null}
+                  {job.last_error ? (
+                    <span>
+                      <b>Last error:</b> {job.last_error}
+                    </span>
+                  ) : null}
                 </div>
 
                 <div className="scheduled-report-actions" style={{ marginTop: 10 }}>
-                  <button className="danger" type="button" onClick={() => setDeletingOneTimeJob(job)}>
+                  <button
+                    className="danger"
+                    type="button"
+                    onClick={() => setDeletingOneTimeJob(job)}
+                  >
                     <Trash2 size={15} />
                     Remove
                   </button>

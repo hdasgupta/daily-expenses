@@ -75,10 +75,7 @@ async function resolveScheduledFor(value) {
     throw error("Choose a valid future date and time.");
   }
 
-  const result = await q(
-    `SELECT $1::timestamp AT TIME ZONE $2 AS scheduled_for`,
-    [text, TIMEZONE],
-  );
+  const result = await q(`SELECT $1::timestamp AT TIME ZONE $2 AS scheduled_for`, [text, TIMEZONE]);
   const scheduledFor = result.rows[0]?.scheduled_for;
   const timestamp = scheduledFor ? new Date(scheduledFor).getTime() : NaN;
 
@@ -89,10 +86,17 @@ async function resolveScheduledFor(value) {
   return scheduledFor;
 }
 
-export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user, ownerUserId }) {
+export async function scheduleOneTimeReportEmail({
+  config,
+  scheduledFor,
+  name,
+  user,
+  ownerUserId,
+}) {
   let recipient = user;
   if (ownerUserId != null && String(ownerUserId) !== String(user.id)) {
-    if (user.role !== "admin") throw error("Only admins can schedule reports for another manager.", 403);
+    if (user.role !== "admin")
+      throw error("Only admins can schedule reports for another manager.", 403);
     const target = await q(
       `SELECT u.id, u.email, u.full_name FROM public.users u JOIN public.roles r ON r.id = u.role_id WHERE u.id = $1 AND lower(r.name) = 'manager' LIMIT 1`,
       [ownerUserId],
@@ -179,7 +183,10 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
   );
 
   if (!result.rows.length) {
-    throw error("Scheduled report email not found or you do not have permission to remove it.", 404);
+    throw error(
+      "Scheduled report email not found or you do not have permission to remove it.",
+      404,
+    );
   }
 }
 

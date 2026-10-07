@@ -172,16 +172,29 @@ export default function ScheduledReportForm({
       {isAdmin ? (
         <label>
           Schedule on behalf of manager
-          <select value={form.ownerUserId} onChange={(event) => update("ownerUserId", event.target.value)} required>
+          <select
+            value={form.ownerUserId}
+            onChange={(event) => update("ownerUserId", event.target.value)}
+            required
+          >
             <option value="">Select manager</option>
-            {managers.map((manager) => <option key={manager.id} value={manager.id}>{manager.full_name} ({manager.email})</option>)}
+            {managers.map((manager) => (
+              <option key={manager.id} value={manager.id}>
+                {manager.full_name} ({manager.email})
+              </option>
+            ))}
           </select>
         </label>
       ) : null}
 
       <div className="scheduled-report-recipient">
         <strong>Send to</strong>
-        <span>{(isAdmin && managers.find((m) => String(m.id) === String(form.ownerUserId))?.email) || recipient || job?.owner_email || "your account email"}</span>
+        <span>
+          {(isAdmin && managers.find((m) => String(m.id) === String(form.ownerUserId))?.email) ||
+            recipient ||
+            job?.owner_email ||
+            "your account email"}
+        </span>
       </div>
 
       <label className="switch-row">

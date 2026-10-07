@@ -202,7 +202,8 @@ export async function createScheduledReportJob(data, user) {
   const config = normalizePayload(data);
   let ownerUserId = user.id;
   if (data.ownerUserId != null && String(data.ownerUserId) !== String(user.id)) {
-    if (user.role !== "admin") throw error("Only admins can schedule reports for another manager.", 403);
+    if (user.role !== "admin")
+      throw error("Only admins can schedule reports for another manager.", 403);
     const target = await q(
       `SELECT u.id FROM public.users u JOIN public.roles r ON r.id = u.role_id WHERE u.id = $1 AND lower(r.name) = 'manager' LIMIT 1`,
       [data.ownerUserId],

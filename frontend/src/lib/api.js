@@ -218,10 +218,9 @@ export async function api(path, options = {}) {
     return data;
   } catch (error) {
     const isFetchFailure = error instanceof TypeError && error.message.includes("fetch");
-    const message =
-      isFetchFailure
-        ? `Unable to reach the backend API at ${baseUrl}. Verify the backend and API proxy configuration.`
-        : error.message;
+    const message = isFetchFailure
+      ? `Unable to reach the backend API at ${baseUrl}. Verify the backend and API proxy configuration.`
+      : error.message;
 
     let loginEmail = null;
     if (path === "/auth/login" && typeof options.body === "string") {

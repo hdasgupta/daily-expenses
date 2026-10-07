@@ -81,7 +81,9 @@ function rawGroupValues(row, groupBy) {
 
 function valueForSort(row, column, isSummary = false) {
   if (column === "price") {
-    return Number(isSummary ? row.total : row.total_cost ?? row.report_amount ?? row.share_price ?? 0);
+    return Number(
+      isSummary ? row.total : (row.total_cost ?? row.report_amount ?? row.share_price ?? 0),
+    );
   }
 
   if (isSummary) return row[column];
@@ -173,9 +175,7 @@ function buildUiShareRows(rows) {
     const share = shares.length
       ? shares
           .map((item) => {
-            const percentage = total
-              ? ` (${((item.amount / total) * 100).toFixed(2)}%)`
-              : "";
+            const percentage = total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : "";
             return `${item.name}: ${money(item.amount)}${percentage}`;
           })
           .join(", ")
@@ -219,9 +219,7 @@ function getRawDumpColumns(rows) {
     "expense_id",
   ]);
 
-  const columns = preferred.filter((column) =>
-    Object.prototype.hasOwnProperty.call(first, column),
-  );
+  const columns = preferred.filter((column) => Object.prototype.hasOwnProperty.call(first, column));
 
   const extras = Object.keys(first).filter(
     (column) => !columns.includes(column) && !excluded.has(column),
@@ -264,19 +262,10 @@ function drawSectionTitle(doc, title, subtitle = "") {
   // drawing helpers (tables, legends, charts) may change the current X.
   const x = doc.page.margins.left;
 
-  doc
-    .fontSize(13)
-    .font("Helvetica-Bold")
-    .fillColor("#000000")
-    .text(title, x, doc.y);
+  doc.fontSize(13).font("Helvetica-Bold").fillColor("#000000").text(title, x, doc.y);
 
   if (subtitle) {
-    doc
-      .moveDown(0.15)
-      .fontSize(8)
-      .font("Helvetica")
-      .fillColor("#555555")
-      .text(subtitle, x, doc.y);
+    doc.moveDown(0.15).fontSize(8).font("Helvetica").fillColor("#555555").text(subtitle, x, doc.y);
   }
 
   doc.moveDown(0.45);
@@ -320,7 +309,17 @@ function drawTable(doc, columns, rows, widths = null, options = {}) {
             ellipsis: true,
           });
       } else {
-        drawCell(doc, values[column], column, x, y, width, height, "#1f2937", options.fontSize || 6);
+        drawCell(
+          doc,
+          values[column],
+          column,
+          x,
+          y,
+          width,
+          height,
+          "#1f2937",
+          options.fontSize || 6,
+        );
       }
 
       x += width;
@@ -355,7 +354,9 @@ function summarizeFilter(config = {}) {
   if (filters.categories?.length) parts.push(`Categories = ${filters.categories.join(", ")}`);
   if (filters.survivors?.length) parts.push(`Survivors = ${filters.survivors.join(", ")}`);
 
-  return parts.length ? parts.join(" | ") : "No filters selected; all expense records are included.";
+  return parts.length
+    ? parts.join(" | ")
+    : "No filters selected; all expense records are included.";
 }
 
 function drawReportFilters(doc, config) {
@@ -363,20 +364,27 @@ function drawReportFilters(doc, config) {
   const sortColumns = Array.isArray(config.sortColumns) ? config.sortColumns : [];
 
   if (groupBy.length) {
-    doc.fontSize(9).font("Helvetica").text(`Group by: ${groupBy.join(", ")}`);
+    doc
+      .fontSize(9)
+      .font("Helvetica")
+      .text(`Group by: ${groupBy.join(", ")}`);
   }
 
   if (sortColumns.length) {
     doc
       .fontSize(9)
       .font("Helvetica")
-      .text(
-        `Sort: ${sortColumns.map((item) => `${item.column} ${item.direction}`).join(", ")}`,
-      );
+      .text(`Sort: ${sortColumns.map((item) => `${item.column} ${item.direction}`).join(", ")}`);
   }
 
-  doc.fontSize(9).font("Helvetica").text(`Summarise: ${config.summarise ? "Yes" : "No"}`);
-  doc.fontSize(8).fillColor("#555555").text(`Filters: ${summarizeFilter(config)}`);
+  doc
+    .fontSize(9)
+    .font("Helvetica")
+    .text(`Summarise: ${config.summarise ? "Yes" : "No"}`);
+  doc
+    .fontSize(8)
+    .fillColor("#555555")
+    .text(`Filters: ${summarizeFilter(config)}`);
   doc.fillColor("#000000").moveDown(0.7);
 }
 
@@ -569,9 +577,12 @@ function getPivotDimensions(rows, groupBy, config = {}) {
       if (shape.columnCardinality > 64) continue;
 
       const explicitRowSorts = sortColumns.filter((sort) => rowGroups.includes(sort.column)).length;
-      const explicitColumnSorts = sortColumns.filter((sort) => columnGroups.includes(sort.column)).length;
+      const explicitColumnSorts = sortColumns.filter((sort) =>
+        columnGroups.includes(sort.column),
+      ).length;
       const squarePenalty = Math.abs(
-        Math.log2(Math.max(shape.rowCardinality, 1)) - Math.log2(Math.max(shape.columnCardinality, 1)),
+        Math.log2(Math.max(shape.rowCardinality, 1)) -
+          Math.log2(Math.max(shape.columnCardinality, 1)),
       );
 
       const score =
@@ -940,16 +951,12 @@ function drawBarValueLabel(doc, value, x, barTop, width, minY) {
   const labelX = x - (labelWidth - width) / 2;
   const labelY = Math.max(barTop - 8, minY);
 
-  doc
-    .fillColor("#1f2937")
-    .font("Helvetica")
-    .fontSize(5.2)
-    .text(label, labelX, labelY, {
-      width: labelWidth,
-      height: 8,
-      align: "center",
-      ellipsis: true,
-    });
+  doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(label, labelX, labelY, {
+    width: labelWidth,
+    height: 8,
+    align: "center",
+    ellipsis: true,
+  });
 }
 
 function chartDimensionLabel(value, column) {
@@ -976,7 +983,8 @@ function buildIntelligentChartModel(rows, groupBy) {
   const period = groups.find((column) => ["date", "week", "month", "year"].includes(column));
   const category = groups.includes("category") ? "category" : null;
   const survivor = groups.includes("survivor") ? "survivor" : null;
-  const xColumn = period || groups.find((column) => column !== category && column !== survivor) || groups[0];
+  const xColumn =
+    period || groups.find((column) => column !== category && column !== survivor) || groups[0];
 
   if (groups.length <= 1) {
     const items = [];
@@ -1005,9 +1013,24 @@ function buildIntelligentChartModel(rows, groupBy) {
       const xKey = String(row[xColumn] ?? "—");
       const categoryKey = String(row[category] ?? "—");
       const survivorKey = String(row[survivor] ?? "—");
-      if (!xSeen.has(xKey)) { xSeen.add(xKey); xItems.push({ key: xKey, label: chartDimensionLabel(row[xColumn], xColumn) }); }
-      if (!categorySeen.has(categoryKey)) { categorySeen.add(categoryKey); categoryItems.push({ key: categoryKey, label: chartDimensionLabel(row[category], category) }); }
-      if (!survivorSeen.has(survivorKey)) { survivorSeen.add(survivorKey); survivorItems.push({ key: survivorKey, label: chartDimensionLabel(row[survivor], survivor) }); }
+      if (!xSeen.has(xKey)) {
+        xSeen.add(xKey);
+        xItems.push({ key: xKey, label: chartDimensionLabel(row[xColumn], xColumn) });
+      }
+      if (!categorySeen.has(categoryKey)) {
+        categorySeen.add(categoryKey);
+        categoryItems.push({
+          key: categoryKey,
+          label: chartDimensionLabel(row[category], category),
+        });
+      }
+      if (!survivorSeen.has(survivorKey)) {
+        survivorSeen.add(survivorKey);
+        survivorItems.push({
+          key: survivorKey,
+          label: chartDimensionLabel(row[survivor], survivor),
+        });
+      }
       const key = `${xKey}\u0002${categoryKey}\u0002${survivorKey}`;
       values.set(key, (values.get(key) || 0) + Number(row.total || 0));
     }
@@ -1024,8 +1047,17 @@ function buildIntelligentChartModel(rows, groupBy) {
   for (const row of rows || []) {
     const xKey = String(row[xColumn] ?? "—");
     const seriesKey = String(row[seriesColumn] ?? "—");
-    if (!xSeen.has(xKey)) { xSeen.add(xKey); xItems.push({ key: xKey, label: chartDimensionLabel(row[xColumn], xColumn) }); }
-    if (!seriesSeen.has(seriesKey)) { seriesSeen.add(seriesKey); seriesItems.push({ key: seriesKey, label: chartDimensionLabel(row[seriesColumn], seriesColumn) }); }
+    if (!xSeen.has(xKey)) {
+      xSeen.add(xKey);
+      xItems.push({ key: xKey, label: chartDimensionLabel(row[xColumn], xColumn) });
+    }
+    if (!seriesSeen.has(seriesKey)) {
+      seriesSeen.add(seriesKey);
+      seriesItems.push({
+        key: seriesKey,
+        label: chartDimensionLabel(row[seriesColumn], seriesColumn),
+      });
+    }
     const key = `${xKey}\u0002${seriesKey}`;
     values.set(key, (values.get(key) || 0) + Number(row.total || 0));
   }
@@ -1034,7 +1066,14 @@ function buildIntelligentChartModel(rows, groupBy) {
 
 function shadeColor(hex, mixWithWhite) {
   const value = String(hex || "#000000").replace("#", "");
-  const rgb = value.length === 3 ? value.split("").map((c) => parseInt(c + c, 16)) : [parseInt(value.slice(0, 2), 16), parseInt(value.slice(2, 4), 16), parseInt(value.slice(4, 6), 16)];
+  const rgb =
+    value.length === 3
+      ? value.split("").map((c) => parseInt(c + c, 16))
+      : [
+          parseInt(value.slice(0, 2), 16),
+          parseInt(value.slice(2, 4), 16),
+          parseInt(value.slice(4, 6), 16),
+        ];
   const amount = Math.max(0, Math.min(1, Number(mixWithWhite) || 0));
   const mixed = rgb.map((channel) => Math.round(channel + (255 - channel) * amount));
   return `#${mixed.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
@@ -1044,7 +1083,16 @@ function drawGroupedChartPage(doc, model, title) {
   const usableWidth = usableWidthFor(doc);
   const x = doc.page.margins.left;
   const chartHeight = 165;
-  const palette = ["#315f9f", "#d97706", "#059669", "#7c3aed", "#dc2626", "#0891b2", "#be185d", "#65a30d"];
+  const palette = [
+    "#315f9f",
+    "#d97706",
+    "#059669",
+    "#7c3aed",
+    "#dc2626",
+    "#0891b2",
+    "#be185d",
+    "#65a30d",
+  ];
   ensureSpace(doc, chartHeight + 125);
   drawSectionTitle(doc, title);
   const baseline = doc.y + chartHeight;
@@ -1058,7 +1106,8 @@ function drawGroupedChartPage(doc, model, title) {
       const height = (item.total / max) * (chartHeight - 35);
       const bx = x + index * slot + (slot - barWidth) / 2;
       const by = baseline - height;
-      doc.save()
+      doc
+        .save()
         .fillColor(palette[0])
         .strokeColor("#ffffff")
         .lineWidth(1.25)
@@ -1066,17 +1115,44 @@ function drawGroupedChartPage(doc, model, title) {
         .fillAndStroke()
         .restore();
       drawBarValueLabel(doc, item.total, bx, by, barWidth, baseline - chartHeight + 2);
-      doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(item.label, bx - 10, baseline + 4, { width: barWidth + 20, height: 24, align: "center", ellipsis: true });
+      doc
+        .fillColor("#1f2937")
+        .font("Helvetica")
+        .fontSize(5.2)
+        .text(item.label, bx - 10, baseline + 4, {
+          width: barWidth + 20,
+          height: 24,
+          align: "center",
+          ellipsis: true,
+        });
     });
     doc.y = baseline + 24;
     return;
   }
 
   if (model.type === "category-survivor") {
-    const max = Math.max(...model.xItems.map((xItem) => model.categoryItems.reduce((sum, category) => sum + model.survivorItems.reduce((inner, survivor) => inner + (model.values.get(`${xItem.key}\u0002${category.key}\u0002${survivor.key}`) || 0), 0), 0)), 1);
+    const max = Math.max(
+      ...model.xItems.map((xItem) =>
+        model.categoryItems.reduce(
+          (sum, category) =>
+            sum +
+            model.survivorItems.reduce(
+              (inner, survivor) =>
+                inner +
+                (model.values.get(`${xItem.key}\u0002${category.key}\u0002${survivor.key}`) || 0),
+              0,
+            ),
+          0,
+        ),
+      ),
+      1,
+    );
     const slot = usableWidth / Math.max(model.xItems.length, 1);
     const categoryGap = 3;
-    const stackWidth = Math.max(8, Math.min(24, (slot - 12) / Math.max(model.categoryItems.length, 1) - categoryGap));
+    const stackWidth = Math.max(
+      8,
+      Math.min(24, (slot - 12) / Math.max(model.categoryItems.length, 1) - categoryGap),
+    );
     model.xItems.forEach((xItem, xIndex) => {
       const groupWidth = model.categoryItems.length * (stackWidth + categoryGap) - categoryGap;
       const start = x + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
@@ -1084,14 +1160,25 @@ function drawGroupedChartPage(doc, model, title) {
         let y = baseline;
         let total = 0;
         model.survivorItems.forEach((survivor) => {
-          const value = Number(model.values.get(`${xItem.key}\u0002${category.key}\u0002${survivor.key}`) || 0);
+          const value = Number(
+            model.values.get(`${xItem.key}\u0002${category.key}\u0002${survivor.key}`) || 0,
+          );
           if (!value) return;
           const height = (value / max) * (chartHeight - 35);
           y -= height;
           total += value;
           const segmentX = start + categoryIndex * (stackWidth + categoryGap);
-          doc.save()
-            .fillColor(shadeColor(palette[categoryIndex % palette.length], 0.65 - (model.survivorItems.indexOf(survivor) / Math.max(model.survivorItems.length - 1, 1)) * 0.55))
+          doc
+            .save()
+            .fillColor(
+              shadeColor(
+                palette[categoryIndex % palette.length],
+                0.65 -
+                  (model.survivorItems.indexOf(survivor) /
+                    Math.max(model.survivorItems.length - 1, 1)) *
+                    0.55,
+              ),
+            )
             .strokeColor("#ffffff")
             .lineWidth(1.25)
             .rect(segmentX, y, stackWidth, height)
@@ -1099,9 +1186,26 @@ function drawGroupedChartPage(doc, model, title) {
             .restore();
           drawBarSegmentLabel(doc, value, segmentX, y, stackWidth, height);
         });
-        if (total) drawBarValueLabel(doc, total, start + categoryIndex * (stackWidth + categoryGap), y, stackWidth, baseline - chartHeight + 2);
+        if (total)
+          drawBarValueLabel(
+            doc,
+            total,
+            start + categoryIndex * (stackWidth + categoryGap),
+            y,
+            stackWidth,
+            baseline - chartHeight + 2,
+          );
       });
-      doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(xItem.label, x + xIndex * slot, baseline + 4, { width: slot - 2, height: 24, align: "center", ellipsis: true });
+      doc
+        .fillColor("#1f2937")
+        .font("Helvetica")
+        .fontSize(5.2)
+        .text(xItem.label, x + xIndex * slot, baseline + 4, {
+          width: slot - 2,
+          height: 24,
+          align: "center",
+          ellipsis: true,
+        });
     });
 
     let legendX = x;
@@ -1110,10 +1214,20 @@ function drawGroupedChartPage(doc, model, title) {
       model.survivorItems.forEach((survivor, survivorIndex) => {
         const label = `${category.label} • ${survivor.label}`;
         const width = Math.min(150, Math.max(58, doc.widthOfString(label, { fontSize: 7 }) + 18));
-        if (legendX + width > doc.page.width - doc.page.margins.right) { legendX = x; legendY += 13; }
-        const shade = shadeColor(palette[categoryIndex % palette.length], 0.65 - (survivorIndex / Math.max(model.survivorItems.length - 1, 1)) * 0.55);
+        if (legendX + width > doc.page.width - doc.page.margins.right) {
+          legendX = x;
+          legendY += 13;
+        }
+        const shade = shadeColor(
+          palette[categoryIndex % palette.length],
+          0.65 - (survivorIndex / Math.max(model.survivorItems.length - 1, 1)) * 0.55,
+        );
         doc.save().fillColor(shade).rect(legendX, legendY, 8, 8).fill().restore();
-        doc.fillColor("black").font("Helvetica").fontSize(7).text(label, legendX + 11, legendY - 1, { width: width - 11, ellipsis: true });
+        doc
+          .fillColor("black")
+          .font("Helvetica")
+          .fontSize(7)
+          .text(label, legendX + 11, legendY - 1, { width: width - 11, ellipsis: true });
         legendX += width;
       });
     });
@@ -1121,7 +1235,12 @@ function drawGroupedChartPage(doc, model, title) {
     return;
   }
 
-  const max = Math.max(...model.xItems.flatMap((xItem) => model.seriesItems.map((series) => model.values.get(`${xItem.key}\u0002${series.key}`) || 0)), 1);
+  const max = Math.max(
+    ...model.xItems.flatMap((xItem) =>
+      model.seriesItems.map((series) => model.values.get(`${xItem.key}\u0002${series.key}`) || 0),
+    ),
+    1,
+  );
   const slot = usableWidth / Math.max(model.xItems.length, 1);
   const barWidth = Math.max(7, Math.min(20, (slot - 8) / Math.max(model.seriesItems.length, 1)));
   model.xItems.forEach((xItem, xIndex) => {
@@ -1132,7 +1251,8 @@ function drawGroupedChartPage(doc, model, title) {
       const height = (value / max) * (chartHeight - 35);
       const bx = start + seriesIndex * (barWidth + 2);
       const by = baseline - height;
-      doc.save()
+      doc
+        .save()
         .fillColor(palette[seriesIndex % palette.length])
         .strokeColor("#ffffff")
         .lineWidth(1.25)
@@ -1141,23 +1261,51 @@ function drawGroupedChartPage(doc, model, title) {
         .restore();
       if (value) drawBarValueLabel(doc, value, bx, by, barWidth, baseline - chartHeight + 2);
     });
-    doc.fillColor("#1f2937").font("Helvetica").fontSize(5.2).text(xItem.label, x + xIndex * slot, baseline + 4, { width: slot - 2, height: 24, align: "center", ellipsis: true });
+    doc
+      .fillColor("#1f2937")
+      .font("Helvetica")
+      .fontSize(5.2)
+      .text(xItem.label, x + xIndex * slot, baseline + 4, {
+        width: slot - 2,
+        height: 24,
+        align: "center",
+        ellipsis: true,
+      });
   });
 
   let legendX = x;
   let legendY = baseline + 32;
   model.seriesItems.forEach((series, index) => {
-    const width = Math.min(120, Math.max(48, doc.widthOfString(series.label, { fontSize: 7 }) + 18));
-    if (legendX + width > doc.page.width - doc.page.margins.right) { legendX = x; legendY += 13; }
-    doc.save().fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill().restore();
-    doc.fillColor("black").font("Helvetica").fontSize(7).text(series.label, legendX + 11, legendY - 1, { width: width - 11, ellipsis: true });
+    const width = Math.min(
+      120,
+      Math.max(48, doc.widthOfString(series.label, { fontSize: 7 }) + 18),
+    );
+    if (legendX + width > doc.page.width - doc.page.margins.right) {
+      legendX = x;
+      legendY += 13;
+    }
+    doc
+      .save()
+      .fillColor(palette[index % palette.length])
+      .rect(legendX, legendY, 8, 8)
+      .fill()
+      .restore();
+    doc
+      .fillColor("black")
+      .font("Helvetica")
+      .fontSize(7)
+      .text(series.label, legendX + 11, legendY - 1, { width: width - 11, ellipsis: true });
     legendX += width;
   });
   doc.y = legendY + 18;
 }
 
 function drawGroupedBarChart(doc, report, config) {
-  const groupBy = Array.isArray(config.groupBy) ? config.groupBy : Array.isArray(report.groupBy) ? report.groupBy : [];
+  const groupBy = Array.isArray(config.groupBy)
+    ? config.groupBy
+    : Array.isArray(report.groupBy)
+      ? report.groupBy
+      : [];
   const rows = Array.isArray(report.rows) ? report.rows : [];
   if (!groupBy.length || !rows.length) return;
   const model = buildIntelligentChartModel(sortRows(rows, config, true), groupBy);
@@ -1169,7 +1317,15 @@ function drawGroupedBarChart(doc, report, config) {
   }
   for (let start = 0; start < xItems.length; start += chunkSize) {
     if (start) doc.addPage();
-    drawGroupedChartPage(doc, { ...model, xItems: xItems.slice(start, start + chunkSize), items: xItems.slice(start, start + chunkSize) }, "Intelligent grouped bar chart");
+    drawGroupedChartPage(
+      doc,
+      {
+        ...model,
+        xItems: xItems.slice(start, start + chunkSize),
+        items: xItems.slice(start, start + chunkSize),
+      },
+      "Intelligent grouped bar chart",
+    );
   }
 }
 

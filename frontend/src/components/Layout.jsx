@@ -200,12 +200,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
               <span>{dark ? "Light" : "Dark"}</span>
             </button>
 
-            <button
-              className="header-button"
-              onClick={logout}
-              title="Logout"
-              aria-label="Logout"
-            >
+            <button className="header-button" onClick={logout} title="Logout" aria-label="Logout">
               <LogOut size={17} />
             </button>
           </div>

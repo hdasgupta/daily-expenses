@@ -63,8 +63,7 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
 
   const periodKey = stableValueKey(current[periodColumn]);
   const previous = chartData[index - 1];
-  const showPeriod =
-    !previous || stableValueKey(previous[periodColumn]) !== periodKey;
+  const showPeriod = !previous || stableValueKey(previous[periodColumn]) !== periodKey;
 
   let periodCenterX = x;
   let periodStartX = x;
@@ -113,12 +112,7 @@ function PivotChartTick({ x, y, payload, viewBox, chartData, groupBy }) {
 
   return (
     <g transform={`translate(${x},${y})`}>
-      <text
-        x={0}
-        y={0}
-        textAnchor="middle"
-        className="dashboard-pivot-chart-survivor-label"
-      >
+      <text x={0} y={0} textAnchor="middle" className="dashboard-pivot-chart-survivor-label">
         {prettyValue(current[survivorColumn], survivorColumn)}
       </text>
 
@@ -375,7 +369,13 @@ export default function DashboardDetail({ navigate, user }) {
   useEffect(() => {
     if (isAdmin && scheduleOpen) {
       api("/users?page=1&pageSize=50", { loadingMessage: "Loading managers…" })
-        .then((result) => setManagers((result.rows || []).filter((item) => String(item.role || "").toLowerCase() === "manager")))
+        .then((result) =>
+          setManagers(
+            (result.rows || []).filter(
+              (item) => String(item.role || "").toLowerCase() === "manager",
+            ),
+          ),
+        )
         .catch(() => setManagers([]));
     }
   }, [isAdmin, scheduleOpen]);
@@ -497,15 +497,21 @@ export default function DashboardDetail({ navigate, user }) {
                     <div className="dashboard-chart-legend">
                       {chartModel.categories.map((item) => (
                         <div className="report-chart-legend-group" key={item.label}>
-                          <strong><i style={{ background: item.fill }} />{item.label}</strong>
+                          <strong>
+                            <i style={{ background: item.fill }} />
+                            {item.label}
+                          </strong>
                           {item.shades.map((shade) => (
-                            <span key={`${item.label}-${shade.label}`}><i style={{ background: shade.fill }} />{shade.label}</span>
+                            <span key={`${item.label}-${shade.label}`}>
+                              <i style={{ background: shade.fill }} />
+                              {shade.label}
+                            </span>
                           ))}
                         </div>
                       ))}
                     </div>
                   ) : null}
-                <ResponsiveContainer width="100%" height={380}>
+                  <ResponsiveContainer width="100%" height={380}>
                     <BarChart
                       data={chartData}
                       margin={{
@@ -553,7 +559,11 @@ export default function DashboardDetail({ navigate, user }) {
                         <Bar
                           key={series.dataKey}
                           dataKey={series.dataKey}
-                          name={chartModel.stackedCategory ? `${series.category} • ${series.survivor}` : series.label}
+                          name={
+                            chartModel.stackedCategory
+                              ? `${series.category} • ${series.survivor}`
+                              : series.label
+                          }
                           fill={series.fill}
                           stackId={series.stackId}
                           barSize={chartModel.stackedCategory ? 34 : 100}
@@ -566,7 +576,15 @@ export default function DashboardDetail({ navigate, user }) {
                             if (row) openDrilldown(navigate, report.key, data.groupBy, row);
                           }}
                         >
-                          <LabelList dataKey={series.dataKey} position="inside" fill="#ffffff" fontSize={9} formatter={(value) => Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""} />
+                          <LabelList
+                            dataKey={series.dataKey}
+                            position="inside"
+                            fill="#ffffff"
+                            fontSize={9}
+                            formatter={(value) =>
+                              Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""
+                            }
+                          />
                         </Bar>
                       ))}
                     </BarChart>
@@ -759,35 +777,74 @@ function buildChartModel(data) {
       const key = stableValueKey(row[groupBy[0]]);
       const amount = Number(row.total || 0);
       const existing = grouped.get(key);
-      grouped.set(key, existing ? { ...existing, total: Number(existing.total || 0) + amount } : row);
+      grouped.set(
+        key,
+        existing ? { ...existing, total: Number(existing.total || 0) + amount } : row,
+      );
     });
     const chartRows = Array.from(grouped.values());
-    return { multiSeries: false, stackedCategory: false, minWidth: Math.max(720, chartRows.length * 72 + 120), description: "Each bar represents one summary-table row.", data: chartRows.map((row, index) => ({ ...row, chartLabel: rowLabel(row, groupBy), chartValue: Number(row.total || 0), index })), series: [{ dataKey: "chartValue", label: "Sum of expenses", fill: "var(--accent)" }] };
+    return {
+      multiSeries: false,
+      stackedCategory: false,
+      minWidth: Math.max(720, chartRows.length * 72 + 120),
+      description: "Each bar represents one summary-table row.",
+      data: chartRows.map((row, index) => ({
+        ...row,
+        chartLabel: rowLabel(row, groupBy),
+        chartValue: Number(row.total || 0),
+        index,
+      })),
+      series: [{ dataKey: "chartValue", label: "Sum of expenses", fill: "var(--accent)" }],
+    };
   }
 
   const period = groupBy.find((column) => isDateGroup(column));
   const category = groupBy.includes("category") ? "category" : null;
   const survivor = groupBy.includes("survivor") ? "survivor" : null;
-  const xColumn = period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
+  const xColumn =
+    period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
 
   if (category && survivor) {
-    const categoryValues = [...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries()];
-    const survivorValues = [...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries()];
+    const categoryValues = [
+      ...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries(),
+    ];
+    const survivorValues = [
+      ...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries(),
+    ];
     const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
     const survivorCount = Math.max(survivorValues.length, 1);
-    const shadeFor = (categoryIndex, survivorIndex) => `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
+    const shadeFor = (categoryIndex, survivorIndex) =>
+      `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
     const series = [];
     categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
       survivorValues.forEach(([survivorKey, survivorValue]) => {
-        series.push({ dataKey: `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`, label: prettyValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: prettyValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: shadeFor(categoryIndex, survivorValues.findIndex(([key]) => key === survivorKey)), legendType: "none" });
+        series.push({
+          dataKey: `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`,
+          label: prettyValue(categoryValue, category),
+          category: String(categoryValue ?? "—"),
+          survivor: prettyValue(survivorValue, survivor),
+          stackId: `category_${categoryIndex}`,
+          fill: shadeFor(
+            categoryIndex,
+            survivorValues.findIndex(([key]) => key === survivorKey),
+          ),
+          legendType: "none",
+        });
       });
     });
     const chartRows = new Map();
     rows.forEach((row) => {
       const xKey = stableValueKey(row[xColumn]);
-      if (!chartRows.has(xKey)) chartRows.set(xKey, { chartLabel: prettyValue(row[xColumn], xColumn), [xColumn]: row[xColumn], _groupRows: {} });
+      if (!chartRows.has(xKey))
+        chartRows.set(xKey, {
+          chartLabel: prettyValue(row[xColumn], xColumn),
+          [xColumn]: row[xColumn],
+          _groupRows: {},
+        });
       const target = chartRows.get(xKey);
-      const categoryIndex = categoryValues.findIndex(([key]) => key === String(row[category] ?? "—"));
+      const categoryIndex = categoryValues.findIndex(
+        ([key]) => key === String(row[category] ?? "—"),
+      );
       const dataKey = `cat_${categoryIndex}_surv_${String(row[survivor] ?? "—").replace(/[^a-zA-Z0-9_-]/g, "_")}`;
       target[dataKey] = Number(target[dataKey] || 0) + Number(row.total || 0);
       target._groupRows[dataKey] = row;
@@ -818,16 +875,33 @@ function buildChartModel(data) {
     const seriesKey = stableValueKey(row[seriesColumn]);
     if (!seriesMap.has(seriesKey)) {
       const index = seriesMap.size;
-      seriesMap.set(seriesKey, { dataKey: `series_${index}`, label: prettyValue(row[seriesColumn], seriesColumn), fill: `var(--dashboard-series-${(index % 8) + 1})` });
+      seriesMap.set(seriesKey, {
+        dataKey: `series_${index}`,
+        label: prettyValue(row[seriesColumn], seriesColumn),
+        fill: `var(--dashboard-series-${(index % 8) + 1})`,
+      });
     }
     const xKey = stableValueKey(row[xColumn]);
-    if (!chartRows.has(xKey)) chartRows.set(xKey, { chartLabel: prettyValue(row[xColumn], xColumn), [xColumn]: row[xColumn], _groupRows: {} });
+    if (!chartRows.has(xKey))
+      chartRows.set(xKey, {
+        chartLabel: prettyValue(row[xColumn], xColumn),
+        [xColumn]: row[xColumn],
+        _groupRows: {},
+      });
     const target = chartRows.get(xKey);
     const series = seriesMap.get(seriesKey);
     target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
     target._groupRows[series.dataKey] = row;
   });
-  return { multiSeries: true, stackedCategory: false, pivotGrouping: false, minWidth: Math.max(720, chartRows.size * Math.max(seriesMap.size, 1) * 60 + 140), description: `${xColumn} on the X-axis with ${seriesColumn} as the legend. Click any bar to drill down.`, data: Array.from(chartRows.values()), series: Array.from(seriesMap.values()) };
+  return {
+    multiSeries: true,
+    stackedCategory: false,
+    pivotGrouping: false,
+    minWidth: Math.max(720, chartRows.size * Math.max(seriesMap.size, 1) * 60 + 140),
+    description: `${xColumn} on the X-axis with ${seriesColumn} as the legend. Click any bar to drill down.`,
+    data: Array.from(chartRows.values()),
+    series: Array.from(seriesMap.values()),
+  };
 }
 
 function openDrilldown(navigate, reportKey, groupBy, row) {

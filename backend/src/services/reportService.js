@@ -564,11 +564,7 @@ async function resolveCategoryItemFilterLabelsForPdf(config) {
   if (!keys.length) return [];
 
   const categoryIds = [
-    ...new Set(
-      keys
-        .map((key) => String(key).split(":")[0])
-        .filter((value) => /^\d+$/.test(value)),
-    ),
+    ...new Set(keys.map((key) => String(key).split(":")[0]).filter((value) => /^\d+$/.test(value))),
   ];
 
   if (!categoryIds.length) return keys;

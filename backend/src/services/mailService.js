@@ -343,7 +343,9 @@ async function postEmail(payload, retryOptions = {}) {
         ? retryDelayMs
         : EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
 
-      const delayMs = isCommonScheduledReport ? retryDelayMs : getRetryAfterMs(response, fallbackDelay);
+      const delayMs = isCommonScheduledReport
+        ? retryDelayMs
+        : getRetryAfterMs(response, fallbackDelay);
 
       logEmailEvent("email_api_retry_scheduled", {
         recipient,
@@ -455,20 +457,23 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate, options
   const text =
     "Attached is the 7-day expense report containing the daily expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail({
-    to: email,
-    subject:
-      "Expense Report PDF Attached — Daily Expenses & Survivor Details — Last 7 Days — " +
-      reportDate,
-    htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  }, options);
+  await postEmail(
+    {
+      to: email,
+      subject:
+        "Expense Report PDF Attached — Daily Expenses & Survivor Details — Last 7 Days — " +
+        reportDate,
+      htmlBody: "<p>" + text + "</p>",
+      attachments: [
+        {
+          filename,
+          mimeType: "application/pdf",
+          content: pdfBuffer.toString("base64"),
+        },
+      ],
+    },
+    options,
+  );
 }
 
 export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate, options = {}) {
@@ -477,20 +482,23 @@ export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate, option
   const text =
     "Attached is the 4-week expense report containing the weekly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail({
-    to: email,
-    subject:
-      "Expense Report PDF Attached — Weekly Expenses & Survivor Details — Last 4 Weeks — " +
-      reportDate,
-    htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  }, options);
+  await postEmail(
+    {
+      to: email,
+      subject:
+        "Expense Report PDF Attached — Weekly Expenses & Survivor Details — Last 4 Weeks — " +
+        reportDate,
+      htmlBody: "<p>" + text + "</p>",
+      attachments: [
+        {
+          filename,
+          mimeType: "application/pdf",
+          content: pdfBuffer.toString("base64"),
+        },
+      ],
+    },
+    options,
+  );
 }
 
 export async function sendYearlyEmailReport(email, pdfBuffer, reportDate, options = {}) {
@@ -499,20 +507,23 @@ export async function sendYearlyEmailReport(email, pdfBuffer, reportDate, option
   const text =
     "Attached is the 2-year expense report containing the yearly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail({
-    to: email,
-    subject:
-      "Expense Report PDF Attached — Yearly Expenses & Survivor Details — Last 2 Years — " +
-      reportDate,
-    htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  }, options);
+  await postEmail(
+    {
+      to: email,
+      subject:
+        "Expense Report PDF Attached — Yearly Expenses & Survivor Details — Last 2 Years — " +
+        reportDate,
+      htmlBody: "<p>" + text + "</p>",
+      attachments: [
+        {
+          filename,
+          mimeType: "application/pdf",
+          content: pdfBuffer.toString("base64"),
+        },
+      ],
+    },
+    options,
+  );
 }
 
 export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate, options = {}) {
@@ -521,20 +532,23 @@ export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate, optio
   const text =
     "Attached is the 3-month expense report containing the monthly expense chart and summary, survivor pivot chart and data, and the underlying expense details with share information and clickable proof links.";
 
-  await postEmail({
-    to: email,
-    subject:
-      "Expense Report PDF Attached — Monthly Expenses & Survivor Details — Last 3 Months — " +
-      reportDate,
-    htmlBody: "<p>" + text + "</p>",
-    attachments: [
-      {
-        filename,
-        mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  }, options);
+  await postEmail(
+    {
+      to: email,
+      subject:
+        "Expense Report PDF Attached — Monthly Expenses & Survivor Details — Last 3 Months — " +
+        reportDate,
+      htmlBody: "<p>" + text + "</p>",
+      attachments: [
+        {
+          filename,
+          mimeType: "application/pdf",
+          content: pdfBuffer.toString("base64"),
+        },
+      ],
+    },
+    options,
+  );
 }
 
 export async function sendReportEmail(email, pdfBuffer, options = {}) {
