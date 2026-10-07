@@ -137,6 +137,12 @@
   font-size: 12px;
   color: var(--text);
 }
+.schedule-recipient-option span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .schedule-recipient-option input {
   margin-top: 2px;
   flex-shrink: 0;
