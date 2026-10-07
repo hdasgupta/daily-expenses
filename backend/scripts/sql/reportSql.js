@@ -51,6 +51,16 @@ export const reportSql = {
         ', '
         ORDER BY s.full_name
       ) AS survivor,
+      COALESCE(
+        json_agg(
+          json_build_object(
+            'name', s.full_name,
+            'amount', es.amount
+          )
+          ORDER BY s.full_name
+        ) FILTER (WHERE s.id IS NOT NULL),
+        '[]'::json
+      ) AS survivor_shares,
       ARRAY_AGG(
         DISTINCT s.id
       ) FILTER (
@@ -76,7 +86,7 @@ export const reportSql = {
   rawSelectPerSurvivor:
     "id AS expense_id, expense_date, category, item, survivor, report_amount AS share_price, total_cost, comment, proof_key",
 
-  rawSelectPerExpense: "expense_date, category, item, survivor, total_cost, comment, proof_key",
+  rawSelectPerExpense: "expense_date, category, item, survivor, survivor_shares, total_cost, comment, proof_key",
 
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte}

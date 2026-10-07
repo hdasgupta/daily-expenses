@@ -171,11 +171,27 @@ function buildUiShareRows(rows) {
     }
 
     const target = map.get(key);
-    const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
-    if (name && !target._shareNames.has(name)) {
-      target._shareNames.add(name);
-      const amount = numeric(row.share_price, row.report_amount, row.amount);
-      target.survivorShares.push({ name, amount });
+    const sourceShares = Array.isArray(row.survivor_shares)
+      ? row.survivor_shares
+      : null;
+
+    if (sourceShares) {
+      for (const item of sourceShares) {
+        const name = item?.name ? String(item.name) : "";
+        if (!name || target._shareNames.has(name)) continue;
+        target._shareNames.add(name);
+        target.survivorShares.push({
+          name,
+          amount: numeric(item.amount),
+        });
+      }
+    } else {
+      const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
+      if (name && !target._shareNames.has(name)) {
+        target._shareNames.add(name);
+        const amount = numeric(row.share_price, row.report_amount, row.amount);
+        target.survivorShares.push({ name, amount });
+      }
     }
   }
 
@@ -589,7 +605,8 @@ export default function Reports({ user }) {
       Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
 
     const next =
-      data?.mode === "raw" && data?.columns?.includes("share_price")
+      data?.mode === "raw" &&
+      (data?.columns?.includes("share_price") || data?.columns?.includes("survivor_shares"))
         ? {
             ...data,
 
@@ -601,7 +618,9 @@ export default function Reports({ user }) {
               ...new Set(
                 data.columns
                   .filter((column) => column !== "survivor")
-                  .map((column) => (column === "share_price" ? "share" : column)),
+                  .map((column) =>
+                    column === "share_price" || column === "survivor_shares" ? "share" : column,
+                  ),
               ),
             ],
           }
