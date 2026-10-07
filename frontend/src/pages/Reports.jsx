@@ -123,6 +123,7 @@ function formatCell(value, column) {
   if (
     column === "total" ||
     column === "total_cost" ||
+    column === "expense_amount" ||
     column === "report_amount" ||
     column === "share_price"
   ) {
@@ -162,7 +163,7 @@ function buildUiShareRows(rows) {
     const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
     if (name && !target._shareNames.has(name)) {
       target._shareNames.add(name);
-      const amount = numeric(row.share_price, row.report_amount, row.amount);
+      const amount = numeric(row.report_amount, row.share_price, row.amount);
       target.survivorShares.push({ name, amount });
     }
   }
@@ -354,6 +355,8 @@ export default function Reports({ user }) {
   const [selectionName, setSelectionName] = useState("");
 
   const [selections, setSelections] = useState([]);
+  const [selectionPage, setSelectionPage] = useState(1);
+  const selectionsPageSize = 8;
 
   const [shareModal, setShareModal] = useState(false);
   const [shareSelectionTarget, setShareSelectionTarget] = useState(null);
@@ -541,19 +544,21 @@ export default function Reports({ user }) {
       Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
 
     const next =
-      data?.mode === "raw" && data?.columns?.includes("share_price")
+      ["raw", "grouped-raw"].includes(data?.mode) && data?.columns?.includes("share_price")
         ? {
             ...data,
 
             total: resolvedTotal,
 
-            rows: buildUiShareRows(data.rows),
+            rows: buildUiShareRows(data.rows).map((row) => ({ ...row, expense_amount: row.total_cost })),
 
             columns: [
               ...new Set(
                 data.columns
                   .filter((column) => column !== "survivor")
-                  .map((column) => (column === "share_price" ? "share" : column)),
+                  .map((column) =>
+                    column === "share_price" ? "share" : column === "total_cost" ? "expense_amount" : column,
+                  ),
               ),
             ],
           }
@@ -665,6 +670,7 @@ export default function Reports({ user }) {
         loadingMessage: "Loading saved report selections…",
       }),
     );
+    setSelectionPage(1);
 
     setLoadModal(true);
   };
@@ -675,6 +681,7 @@ export default function Reports({ user }) {
         loadingMessage: "Refreshing saved selections…",
       }),
     );
+    setSelectionPage((page) => Math.min(page, Math.max(1, Math.ceil(selections.length / selectionsPageSize))));
   };
 
   const openShareSelection = async (selection) => {
@@ -1214,7 +1221,7 @@ export default function Reports({ user }) {
 
       <Modal open={loadModal} title="Load report selection" onClose={() => setLoadModal(false)}>
         <div className="selection-list">
-          {selections.map((selection) => (
+          {selections.slice((selectionPage - 1) * selectionsPageSize, selectionPage * selectionsPageSize).map((selection) => (
             <div className="selection-row" key={selection.id}>
               <button
                 type="button"
@@ -1276,6 +1283,16 @@ export default function Reports({ user }) {
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
+        {selections.length > selectionsPageSize ? (
+          <div className="selection-pagination">
+            <span>Showing {(selectionPage - 1) * selectionsPageSize + 1}–{Math.min(selectionPage * selectionsPageSize, selections.length)} of {selections.length}</span>
+            <div>
+              <button type="button" className="secondary" disabled={selectionPage <= 1} onClick={() => setSelectionPage((page) => Math.max(1, page - 1))}>Previous</button>
+              <span>Page {selectionPage} of {Math.ceil(selections.length / selectionsPageSize)}</span>
+              <button type="button" className="secondary" disabled={selectionPage >= Math.ceil(selections.length / selectionsPageSize)} onClick={() => setSelectionPage((page) => Math.min(Math.ceil(selections.length / selectionsPageSize), page + 1))}>Next</button>
+            </div>
+          </div>
+        ) : null}
       </Modal>
 
       <Modal

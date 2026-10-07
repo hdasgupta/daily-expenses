@@ -16,7 +16,7 @@ export const reportModelSql = {
       ON rss.selection_id = rs.id
      AND rss.user_id = $1
     WHERE rs.user_id = $1 OR rss.user_id IS NOT NULL
-    ORDER BY rs.name, rs.id
+    ORDER BY rs.created_at ASC, rs.id ASC
   `,
   save: `INSERT INTO public.report_selections(user_id,name,config) VALUES($1,$2,$3)
     ON CONFLICT(user_id,name) DO UPDATE SET config=EXCLUDED.config,updated_at=now() RETURNING id,name,config`,
