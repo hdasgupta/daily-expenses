@@ -860,6 +860,7 @@ export default function Reports() {
             setConfig={setConfig}
             setFilter={setFilter}
             categoryItemOptions={categoryItemOptions}
+            categoryOptions={categoryOptions}
             survivors={survivors}
             onRemove={() => removeFilter(type)}
           />
