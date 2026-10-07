@@ -255,7 +255,12 @@ function buildPasswordOtpHtml(otp, ttlMinutes) {
   `.trim();
 }
 
-async function postEmail(payload) {
+async function postEmail(payload, retryOptions = {}) {
+  // Common scheduled reports use a long retry window. Other email types retain
+  // the existing short retry policy.
+  const isCommonScheduledReport = retryOptions.commonScheduledReport === true;
+  const maxRetries = isCommonScheduledReport ? 10 : EMAIL_API_MAX_RETRIES;
+  const retryDelayMs = isCommonScheduledReport ? 30 * 60 * 1000 : null;
   const recipient = payload.to;
   const subject = payload.subject;
   const attachmentCount = Array.isArray(payload.attachments) ? payload.attachments.length : 0;
@@ -274,7 +279,7 @@ async function postEmail(payload) {
     return;
   }
 
-  for (let attempt = 1; attempt <= EMAIL_API_MAX_RETRIES + 1; attempt += 1) {
+  for (let attempt = 1; attempt <= maxRetries + 1; attempt += 1) {
     const startedAt = Date.now();
 
     logEmailEvent("email_api_request_started", {
@@ -283,7 +288,7 @@ async function postEmail(payload) {
       attachmentCount,
       url: EMAIL_API_URL,
       attempt,
-      maxAttempts: EMAIL_API_MAX_RETRIES + 1,
+      maxAttempts: maxRetries + 1,
     });
 
     try {
@@ -311,8 +316,8 @@ async function postEmail(payload) {
         return;
       }
 
-      const retryable = isRetryableStatus(response.status);
-      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
+      const retryable = isCommonScheduledReport || isRetryableStatus(response.status);
+      const hasRetriesRemaining = attempt <= maxRetries;
 
       logEmailEvent("email_api_request_failed", {
         recipient,
@@ -323,7 +328,7 @@ async function postEmail(payload) {
         durationMs: Date.now() - startedAt,
         attempt,
         retryable,
-        retriesRemaining: Math.max(EMAIL_API_MAX_RETRIES - attempt + 1, 0),
+        retriesRemaining: Math.max(maxRetries - attempt + 1, 0),
       });
 
       if (!retryable || !hasRetriesRemaining) {
@@ -334,10 +339,11 @@ async function postEmail(payload) {
         );
       }
 
-      const fallbackDelay =
-        EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+      const fallbackDelay = isCommonScheduledReport
+        ? retryDelayMs
+        : EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
 
-      const delayMs = getRetryAfterMs(response, fallbackDelay);
+      const delayMs = isCommonScheduledReport ? retryDelayMs : getRetryAfterMs(response, fallbackDelay);
 
       logEmailEvent("email_api_retry_scheduled", {
         recipient,
@@ -350,15 +356,16 @@ async function postEmail(payload) {
 
       await sleep(delayMs);
     } catch (error) {
-      const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
+      const hasRetriesRemaining = attempt <= maxRetries;
 
       const retryableException = true;
 
       const isHttpError = String(error?.message || "").startsWith("Email API returned HTTP ");
 
       if (!isHttpError && hasRetriesRemaining) {
-        const delayMs =
-          EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
+        const delayMs = isCommonScheduledReport
+          ? retryDelayMs
+          : EMAIL_API_RETRY_DELAYS_MS[Math.min(attempt - 1, EMAIL_API_RETRY_DELAYS_MS.length - 1)];
 
         logEmailEvent("email_api_request_exception", {
           recipient,
@@ -368,7 +375,7 @@ async function postEmail(payload) {
           errorCode: error?.code,
           attempt,
           retryable: retryableException,
-          retriesRemaining: EMAIL_API_MAX_RETRIES - attempt + 1,
+          retriesRemaining: maxRetries - attempt + 1,
         });
 
         logEmailEvent("email_api_retry_scheduled", {
@@ -442,7 +449,7 @@ export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
   });
 }
 
-export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
+export async function sendDailyEmailReport(email, pdfBuffer, reportDate, options = {}) {
   const filename = "expense-7-day-report-" + reportDate + ".pdf";
 
   const text =
@@ -461,10 +468,10 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
         content: pdfBuffer.toString("base64"),
       },
     ],
-  });
+  }, options);
 }
 
-export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
+export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate, options = {}) {
   const filename = "expense-4-week-report-" + reportDate + ".pdf";
 
   const text =
@@ -483,10 +490,10 @@ export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
         content: pdfBuffer.toString("base64"),
       },
     ],
-  });
+  }, options);
 }
 
-export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
+export async function sendYearlyEmailReport(email, pdfBuffer, reportDate, options = {}) {
   const filename = "expense-2-year-report-" + reportDate + ".pdf";
 
   const text =
@@ -505,10 +512,10 @@ export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
         content: pdfBuffer.toString("base64"),
       },
     ],
-  });
+  }, options);
 }
 
-export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
+export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate, options = {}) {
   const filename = "expense-3-month-report-" + reportDate + ".pdf";
 
   const text =
@@ -527,7 +534,7 @@ export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
         content: pdfBuffer.toString("base64"),
       },
     ],
-  });
+  }, options);
 }
 
 export async function sendReportEmail(email, pdfBuffer, options = {}) {
