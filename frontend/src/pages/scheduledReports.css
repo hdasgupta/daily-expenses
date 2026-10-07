@@ -124,26 +124,28 @@
 .schedule-recipient-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  max-height: 180px;
-  overflow-y: auto;
+  gap: 3px;
   margin-top: 2px;
+  min-width: 0;
 }
 .schedule-recipient-option {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  padding: 5px 2px;
+  gap: 6px;
+  padding: 2px 0;
+  min-width: 0;
   font-size: 12px;
   color: var(--text);
 }
-.schedule-recipient-option span {
+.schedule-recipient-option input {
+  width: 14px;
+  height: 14px;
+  margin: 1px 0 0;
+  padding: 0;
+  flex: 0 0 14px;
+}
+.schedule-recipient-option > span {
   min-width: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
-}
-
-.schedule-recipient-option input {
-  margin-top: 2px;
-  flex-shrink: 0;
 }
