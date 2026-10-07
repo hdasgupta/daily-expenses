@@ -89,7 +89,17 @@ async function resolveScheduledFor(value) {
   return scheduledFor;
 }
 
-export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user }) {
+export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, user, ownerUserId }) {
+  let recipient = user;
+  if (ownerUserId != null && String(ownerUserId) !== String(user.id)) {
+    if (user.role !== "admin") throw error("Only admins can schedule reports for another manager.", 403);
+    const target = await q(
+      `SELECT u.id, u.email, u.full_name FROM public.users u JOIN public.roles r ON r.id = u.role_id WHERE u.id = $1 AND lower(r.name) = 'manager' LIMIT 1`,
+      [ownerUserId],
+    );
+    if (!target.rows.length) throw error("Choose a valid manager account.", 400);
+    recipient = target.rows[0];
+  }
   const clean = cleanConfig(config || {});
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
@@ -110,12 +120,12 @@ export async function scheduleOneTimeReportEmail({ config, scheduledFor, name, u
       (owner_user_id, name, config, scheduled_for, status)
      VALUES ($1, $2, $3::jsonb, $4, 'pending')
      RETURNING id, name, scheduled_for, status, created_at`,
-    [user.id, scheduleName, JSON.stringify(clean), when],
+    [recipient.id, scheduleName, JSON.stringify(clean), when],
   );
 
   return {
     ...result.rows[0],
-    report_email: user.email,
+    report_email: recipient.email,
     timezone: TIMEZONE,
   };
 }

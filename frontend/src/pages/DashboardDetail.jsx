@@ -339,6 +339,8 @@ export default function DashboardDetail({ navigate, user }) {
   const [scheduleOpen, setScheduleOpen] = useState(false);
 
   const [scheduleBusy, setScheduleBusy] = useState(false);
+  const [managers, setManagers] = useState([]);
+  const isAdmin = user?.role === "admin";
 
   const canSchedule = user?.permissions?.includes("job-status");
 
@@ -369,6 +371,14 @@ export default function DashboardDetail({ navigate, user }) {
   const chartModel = useMemo(() => buildChartModel(data), [data]);
 
   const chartData = chartModel.data;
+
+  useEffect(() => {
+    if (isAdmin && scheduleOpen) {
+      api("/users?page=1&pageSize=50", { loadingMessage: "Loading managers…" })
+        .then((result) => setManagers((result.rows || []).filter((item) => String(item.role || "").toLowerCase() === "manager")))
+        .catch(() => setManagers([]));
+    }
+  }, [isAdmin, scheduleOpen]);
 
   const createSchedule = async (payload) => {
     setScheduleBusy(true);
@@ -646,6 +656,8 @@ export default function DashboardDetail({ navigate, user }) {
         <ScheduledReportForm
           report={report}
           recipient={user?.email}
+          managers={managers}
+          isAdmin={isAdmin}
           onSubmit={createSchedule}
           busy={scheduleBusy}
         />

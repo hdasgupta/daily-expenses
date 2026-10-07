@@ -32,6 +32,7 @@ function defaultForm(reportKey, job) {
     dayOfMonth: job?.day_of_month ?? 1,
     monthOfYear: job?.month_of_year ?? 1,
     active: job?.active ?? true,
+    ownerUserId: job?.owner_user_id ? String(job.owner_user_id) : "",
   };
 }
 
@@ -41,6 +42,8 @@ export default function ScheduledReportForm({
   recipient = "",
   onSubmit,
   busy,
+  managers = [],
+  isAdmin = false,
 }) {
   const [form, setForm] = useState(() => defaultForm(report?.key || job?.report_key, job));
 
@@ -60,6 +63,7 @@ export default function ScheduledReportForm({
       dayOfWeek: Number(form.dayOfWeek),
       dayOfMonth: Number(form.dayOfMonth),
       monthOfYear: Number(form.monthOfYear),
+      ...(isAdmin && form.ownerUserId ? { ownerUserId: Number(form.ownerUserId) } : {}),
     });
   };
 
@@ -165,9 +169,19 @@ export default function ScheduledReportForm({
         </div>
       ) : null}
 
+      {isAdmin ? (
+        <label>
+          Schedule on behalf of manager
+          <select value={form.ownerUserId} onChange={(event) => update("ownerUserId", event.target.value)} required>
+            <option value="">Select manager</option>
+            {managers.map((manager) => <option key={manager.id} value={manager.id}>{manager.full_name} ({manager.email})</option>)}
+          </select>
+        </label>
+      ) : null}
+
       <div className="scheduled-report-recipient">
         <strong>Send to</strong>
-        <span>{recipient || job?.owner_email || "your account email"}</span>
+        <span>{(isAdmin && managers.find((m) => String(m.id) === String(form.ownerUserId))?.email) || recipient || job?.owner_email || "your account email"}</span>
       </div>
 
       <label className="switch-row">

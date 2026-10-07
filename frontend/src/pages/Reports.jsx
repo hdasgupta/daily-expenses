@@ -162,7 +162,7 @@ function buildUiShareRows(rows) {
     const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
     if (name && !target._shareNames.has(name)) {
       target._shareNames.add(name);
-      const amount = numeric(row.share_price, row.report_amount, row.amount, row.total_cost);
+      const amount = numeric(row.share_price, row.report_amount, row.amount);
       target.survivorShares.push({ name, amount });
     }
   }
@@ -174,7 +174,7 @@ function buildUiShareRows(rows) {
       (sum, item) => sum + (item.amount == null ? 0 : item.amount),
       0,
     );
-    const total = expenseTotal != null ? expenseTotal : knownShareTotal;
+    const total = expenseTotal != null && expenseTotal > 0 ? expenseTotal : knownShareTotal;
 
     const share = shares.length
       ? shares
@@ -322,7 +322,7 @@ function buildReportChartModel(result) {
   return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
 }
 
-export default function Reports() {
+export default function Reports({ user }) {
   const [config, setConfig] = useState(initialConfig);
 
   const [result, setResult] = useState(null);
@@ -368,6 +368,8 @@ export default function Reports() {
   const [scheduleTime, setScheduleTime] = useState("");
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleBusy, setScheduleBusy] = useState(false);
+  const [scheduleManagers, setScheduleManagers] = useState([]);
+  const [scheduleOwnerUserId, setScheduleOwnerUserId] = useState("");
 
   useEffect(() => {
     Promise.all([
@@ -743,6 +745,12 @@ export default function Reports() {
     setScheduleDate(`${values.year}-${values.month}-${values.day}`);
     setScheduleTime(`${values.hour}:${values.minute}`);
     setScheduleName("Report PDF email");
+    setScheduleOwnerUserId("");
+    if (user?.role === "admin") {
+      api("/users?page=1&pageSize=50", { loadingMessage: "Loading managers…" })
+        .then((response) => setScheduleManagers((response.rows || []).filter((item) => String(item.role || "").toLowerCase() === "manager")))
+        .catch(() => setScheduleManagers([]));
+    }
     setScheduleEmailModal(true);
   };
 
@@ -758,6 +766,7 @@ export default function Reports() {
           name: scheduleName,
           scheduledFor: `${scheduleDate}T${scheduleTime}`,
           config,
+          ...(user?.role === "admin" && scheduleOwnerUserId ? { ownerUserId: Number(scheduleOwnerUserId) } : {}),
         }),
         loadingMessage: "Scheduling report PDF email…",
         toast: {
@@ -1304,6 +1313,16 @@ export default function Reports() {
         }
       >
         <form id="schedule-report-email-form" onSubmit={scheduleEmail}>
+          {user?.role === "admin" ? (
+            <label>
+              Schedule on behalf of manager
+              <select value={scheduleOwnerUserId} onChange={(event) => setScheduleOwnerUserId(event.target.value)} required>
+                <option value="">Select manager</option>
+                {scheduleManagers.map((manager) => <option key={manager.id} value={manager.id}>{manager.full_name} ({manager.email})</option>)}
+              </select>
+            </label>
+          ) : null}
+
           <div className="notice">
             The current report filters, grouping, sorting and summary settings will be saved as a snapshot and emailed once at the selected time.
           </div>
@@ -1340,7 +1359,7 @@ export default function Reports() {
             </label>
           </div>
 
-          <span className="field-note">India Standard Time (Asia/Kolkata). The email will be sent to your account email.</span>
+          <span className="field-note">India Standard Time (Asia/Kolkata). {user?.role === "admin" ? "The email will be sent to the selected manager." : "The email will be sent to your account email."}</span>
         </form>
       </Modal>
     </section>
