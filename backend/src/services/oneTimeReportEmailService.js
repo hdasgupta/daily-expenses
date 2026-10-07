@@ -120,7 +120,7 @@ export async function scheduleOneTimeReportEmail({
     if (user.role !== "admin") {
       throw error("Only administrators can schedule report emails for managers.", 403);
     }
-    if (requestedIds.some((id) => !/^\\d+$/.test(id))) {
+    if (requestedIds.some((id) => !/^\d+$/.test(id))) {
       throw error("One or more selected managers are invalid.");
     }
     const valid = await q(
