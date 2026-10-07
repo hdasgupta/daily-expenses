@@ -403,6 +403,8 @@ export default function Reports({ user }) {
   const [selectionName, setSelectionName] = useState("");
 
   const [selections, setSelections] = useState([]);
+  const [selectionPage, setSelectionPage] = useState(1);
+  const selectionPageSize = 10;
 
   const [shareModal, setShareModal] = useState(false);
   const [shareSelectionTarget, setShareSelectionTarget] = useState(null);
@@ -708,21 +710,21 @@ export default function Reports({ user }) {
   };
 
   const loadSelections = async () => {
-    setSelections(
-      await api("/report-selections", {
-        loadingMessage: "Loading saved report selections…",
-      }),
-    );
-
+    const result = await api("/report-selections", {
+      loadingMessage: "Loading saved report selections…",
+    });
+    setSelections(Array.isArray(result) ? result : []);
+    setSelectionPage(1);
     setLoadModal(true);
   };
 
   const refreshSelections = async () => {
-    setSelections(
-      await api("/report-selections", {
-        loadingMessage: "Refreshing saved selections…",
-      }),
-    );
+    const result = await api("/report-selections", {
+      loadingMessage: "Refreshing saved selections…",
+    });
+    const nextSelections = Array.isArray(result) ? result : [];
+    setSelections(nextSelections);
+    setSelectionPage((current) => Math.min(current, Math.max(1, Math.ceil(nextSelections.length / selectionPageSize))));
   };
 
   const openShareSelection = async (selection) => {
@@ -1274,7 +1276,7 @@ export default function Reports({ user }) {
 
       <Modal open={loadModal} title="Load report selection" onClose={() => setLoadModal(false)}>
         <div className="selection-list">
-          {selections.map((selection) => (
+          {selections.slice((selectionPage - 1) * selectionPageSize, selectionPage * selectionPageSize).map((selection) => (
             <div className="selection-row" key={selection.id}>
               <button
                 type="button"
@@ -1339,6 +1341,18 @@ export default function Reports({ user }) {
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
+        {selections.length > selectionPageSize ? (
+          <div className="report-pagination" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
+            <span className="muted-inline">
+              Showing {(selectionPage - 1) * selectionPageSize + 1}–{Math.min(selectionPage * selectionPageSize, selections.length)} of {selections.length} selections
+            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <button className="secondary" type="button" disabled={selectionPage <= 1} onClick={() => setSelectionPage((current) => Math.max(1, current - 1))}>Previous</button>
+              <span>Page {selectionPage} of {Math.max(1, Math.ceil(selections.length / selectionPageSize))}</span>
+              <button className="secondary" type="button" disabled={selectionPage >= Math.ceil(selections.length / selectionPageSize)} onClick={() => setSelectionPage((current) => Math.min(Math.ceil(selections.length / selectionPageSize), current + 1))}>Next</button>
+            </div>
+          </div>
+        ) : null}
       </Modal>
 
       <Modal
@@ -1783,19 +1797,11 @@ function MultiPicker({ label, options = [], selected = [], onToggle }) {
 }
 
 function ReportContent({ result, renderCell }) {
-  const [page, setPage] = useState(1);
-  const pageSize = 20;
-  const rows = Array.isArray(result?.rows) ? result.rows : [];
-  const pageCount = Math.max(1, Math.ceil(rows.length / pageSize));
-
-  useEffect(() => {
-    setPage(1);
-  }, [result]);
-
   if (!result) {
     return (
       <div className="empty-card">
         <BarChart3 size={30} />
+
         <span>Run the report to populate the content area.</span>
       </div>
     );
@@ -1805,59 +1811,45 @@ function ReportContent({ result, renderCell }) {
     return <GroupedRawContent result={result} renderCell={renderCell} />;
   }
 
-  const startIndex = (page - 1) * pageSize;
-  const visibleRows = rows.slice(startIndex, startIndex + pageSize);
-
   return (
     <div className="report-content">
       <div className="summary-card">
         <div>
           <span>Result type</span>
+
           <strong>{result.mode}</strong>
         </div>
+
         <div>
           <span>Rows</span>
-          <strong>{rows.length}</strong>
+
+          <strong>{result.rows.length}</strong>
         </div>
+
         <div>
           <span>Total expense</span>
+
           <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
         </div>
       </div>
 
       <div className="report-grid">
-        {visibleRows.map((row, index) => (
-          <article className="report-row" key={`${startIndex + index}-${row.id || row.expense_id || index}`}>
+        {result.rows.map((row, index) => (
+          <article className="report-row" key={`${index}-${row.id || index}`}>
             {result.columns.map((column) => (
               <div key={column}>
                 <small>{column.replaceAll("_", " ")}</small>
+
                 <strong>{renderCell(row, column)}</strong>
               </div>
             ))}
           </article>
         ))}
 
-        {!rows.length ? (
+        {!result.rows.length ? (
           <div className="empty-card">No records match the selected filters.</div>
         ) : null}
       </div>
-
-      {rows.length > pageSize ? (
-        <div className="report-pagination" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
-          <span className="muted-inline">
-            Showing {startIndex + 1}–{Math.min(startIndex + pageSize, rows.length)} of {rows.length}
-          </span>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <button className="secondary" type="button" disabled={page <= 1} onClick={() => setPage((current) => Math.max(1, current - 1))}>
-              Previous
-            </button>
-            <span>Page {page} of {pageCount}</span>
-            <button className="secondary" type="button" disabled={page >= pageCount} onClick={() => setPage((current) => Math.min(pageCount, current + 1))}>
-              Next
-            </button>
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 }
