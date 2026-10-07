@@ -518,6 +518,13 @@ export default function JobStatus({ user }) {
                   </span>
 
                   <span>
+                    <b>Job created by:</b>{" "}
+                    {job.creator_name || job.creator_email
+                      ? `${job.creator_name || "Unknown"} · ${job.creator_email || "—"}`
+                      : "Unknown"}
+                  </span>
+
+                  <span>
                     <b>Dashboard source:</b> {job.report_label} — {job.report_help || "Dashboard report"}
                   </span>
 

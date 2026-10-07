@@ -174,12 +174,14 @@ export async function listScheduledReportRecipients() {
 
 export async function listScheduledReportJobs({ userId, isAdmin = false }) {
   const result = await q(
-    `SELECT j.id, j.name, j.owner_user_id, j.report_key, j.frequency,
+    `SELECT j.id, j.name, j.owner_user_id, j.created_by_user_id, j.report_key, j.frequency,
             j.time_of_day, j.day_of_week, j.day_of_month, j.month_of_year,
             j.cron_expression, j.active, j.created_at, j.updated_at,
-            u.full_name AS owner_name, u.email AS owner_email
+            u.full_name AS owner_name, u.email AS owner_email,
+            c.full_name AS creator_name, c.email AS creator_email
        FROM public.scheduled_report_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
+       LEFT JOIN public.users c ON c.id = j.created_by_user_id
       WHERE ($1 = TRUE OR j.owner_user_id = $2)
       ORDER BY CASE j.frequency
                  WHEN 'daily' THEN 1
@@ -250,15 +252,16 @@ export async function createScheduledReportJob(data, user) {
 
   const result = await q(
     `INSERT INTO public.scheduled_report_jobs
-      (name, owner_user_id, report_key, frequency, time_of_day, day_of_week,
+      (name, owner_user_id, created_by_user_id, report_key, frequency, time_of_day, day_of_week,
        day_of_month, month_of_year, cron_expression, active)
-     SELECT $1, recipient.id, $3, $4, $5, $6, $7, $8, $9, $10
+     SELECT $1, recipient.id, $3, $4, $5, $6, $7, $8, $9, $10, $11
        FROM public.users recipient
       WHERE recipient.id = ANY($2::bigint[])
      RETURNING *`,
     [
       config.name,
       recipientIds,
+      user.id,
       config.reportKey,
       config.frequency,
       config.time,

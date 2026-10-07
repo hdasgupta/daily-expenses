@@ -187,6 +187,10 @@ CREATE TABLE IF NOT EXISTS public.scheduled_report_jobs (
 );
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_owner
   ON public.scheduled_report_jobs(owner_user_id, active);
+ALTER TABLE public.scheduled_report_jobs
+  ADD COLUMN IF NOT EXISTS created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL;
+CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_creator
+  ON public.scheduled_report_jobs(created_by_user_id);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
   ON public.scheduled_report_jobs(active, frequency, time_of_day);
 CREATE TABLE IF NOT EXISTS public.password_otps (
