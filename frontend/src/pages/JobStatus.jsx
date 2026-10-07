@@ -595,7 +595,7 @@ export default function JobStatus({ user }) {
 
                 <div className="scheduled-job-meta">
                   <span>
-                    <b>Job owner:</b>{" "}
+                    <b>Job created by:</b>{" "}
                     {job.creator_name || job.creator_email
                       ? `${job.creator_name || "Unknown"} · ${job.creator_email || "—"}`
                       : "—"}
