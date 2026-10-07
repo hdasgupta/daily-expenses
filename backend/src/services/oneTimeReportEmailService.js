@@ -143,12 +143,18 @@ export async function scheduleOneTimeReportEmail({
   // all-or-nothing. Existing job ownership makes each manager see their own job.
   const result = await q(
     `INSERT INTO public.one_time_report_email_jobs
-      (owner_user_id, name, config, scheduled_for, status)
-     SELECT recipient.id, $2, $3::jsonb, $4, 'pending'
+      (owner_user_id, created_by_user_id, name, config, scheduled_for, status)
+     SELECT recipient.id, $2::bigint, $3, $4::jsonb, $5, 'pending'
        FROM unnest($1::bigint[]) AS selected(id)
        JOIN public.users recipient ON recipient.id = selected.id
-     RETURNING id, owner_user_id, name, scheduled_for, status, created_at`,
-    [recipients.map((recipient) => recipient.id), scheduleName, JSON.stringify(clean), when],
+     RETURNING id, owner_user_id, created_by_user_id, name, scheduled_for, status, created_at`,
+    [
+      recipients.map((recipient) => recipient.id),
+      user.id,
+      scheduleName,
+      JSON.stringify(clean),
+      when,
+    ],
   );
 
   const emailById = new Map(recipients.map((recipient) => [String(recipient.id), recipient.email]));

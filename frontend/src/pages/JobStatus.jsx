@@ -446,7 +446,13 @@ export default function JobStatus({ user }) {
   const filteredOneTimeEmails = oneTimeJobs.filter((job) => {
     const query = oneTimeEmailSearch.trim().toLocaleLowerCase();
     return !query || [
-      job.name, job.status, job.last_error,
+      job.name,
+      job.status,
+      job.last_error,
+      job.owner_name,
+      job.owner_email,
+      job.creator_name,
+      job.creator_email,
     ].some((value) => String(value || "").toLocaleLowerCase().includes(query));
   });
   const oneTimeEmailPageCount = Math.max(1, Math.ceil(filteredOneTimeEmails.length / oneTimeEmailPageSize));
@@ -588,6 +594,18 @@ export default function JobStatus({ user }) {
                 </div>
 
                 <div className="scheduled-job-meta">
+                  <span>
+                    <b>Job owner:</b>{" "}
+                    {job.creator_name || job.creator_email
+                      ? `${job.creator_name || "Unknown"} · ${job.creator_email || "—"}`
+                      : "—"}
+                  </span>
+                  <span>
+                    <b>Job for:</b>{" "}
+                    {job.owner_name || job.owner_email
+                      ? `${job.owner_name || "Unknown"} · ${job.owner_email || "—"}`
+                      : "—"}
+                  </span>
                   <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
                   <span><b>Timezone:</b> Asia/Kolkata</span>
                   <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} categoryOnly /></span>
