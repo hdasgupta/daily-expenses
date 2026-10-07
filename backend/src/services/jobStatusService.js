@@ -36,6 +36,21 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   const offset = (safePage - 1) * safePageSize;
   const searchPattern = `%${safeSearch}%`;
 
+  // Older one-time report jobs were created before created_by_user_id was
+  // populated. The user confirmed those legacy jobs were created by the
+  // administrator, so when an administrator opens Job Status, backfill the
+  // missing creator with the currently logged-in administrator. New jobs
+  // already store created_by_user_id at creation time.
+  if (isAdmin && userId) {
+    await q(
+      `UPDATE public.one_time_report_email_jobs
+          SET created_by_user_id = $1,
+              updated_at = now()
+        WHERE created_by_user_id IS NULL`,
+      [userId],
+    );
+  }
+
   const historySql = `(
     SELECT e.id::text AS id,
            e.job_name, e.scheduled_key, e.status, e.started_at, e.completed_at,
