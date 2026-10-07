@@ -185,7 +185,12 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
       `${categoryOnly ? "categories" : "category"} = ${(categoryOnly ? categoriesOnly : labels).join(", ")}`,
     );
   }
-  if (filters.categories?.length) filterParts.push(`categories = ${filters.categories.join(", ")}`);
+  if (filters.categories?.length) {
+    const categoryLabels = Array.isArray(filters.categoryLabels)
+      ? filters.categoryLabels
+      : filters.categories;
+    filterParts.push(`categories = ${categoryLabels.join(", ")}`);
+  }
   if (filters.survivors?.length) filterParts.push(`survivors = ${filters.survivors.join(", ")}`);
 
   const groupBy = Array.isArray(config.groupBy) ? config.groupBy : [];

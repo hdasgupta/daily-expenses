@@ -126,6 +126,13 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
       });
     }
 
+    const categoryKeys = Array.isArray(filters.categories) ? filters.categories : [];
+    if (categoryKeys.length) {
+      filters.categoryLabels = categoryKeys.map(
+        (categoryId) => categoryNames.get(String(categoryId)) || String(categoryId),
+      );
+    }
+
     return { ...job, config: { ...config, filters } };
   });
 
