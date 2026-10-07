@@ -284,6 +284,12 @@ export default function JobStatus({ user }) {
   const [total, setTotal] = useState(0);
   const [scheduledJobs, setScheduledJobs] = useState([]);
   const [oneTimeJobs, setOneTimeJobs] = useState([]);
+  const [dashboardEmailPage, setDashboardEmailPage] = useState(1);
+  const [dashboardEmailPageSize, setDashboardEmailPageSize] = useState(5);
+  const [dashboardEmailSearch, setDashboardEmailSearch] = useState("");
+  const [oneTimeEmailPage, setOneTimeEmailPage] = useState(1);
+  const [oneTimeEmailPageSize, setOneTimeEmailPageSize] = useState(5);
+  const [oneTimeEmailSearch, setOneTimeEmailSearch] = useState("");
   const [refreshing, setRefreshing] = useState(false);
   const [now, setNow] = useState(Date.now());
   const [editingJob, setEditingJob] = useState(null);
@@ -425,6 +431,30 @@ export default function JobStatus({ user }) {
   const canManage = (job) =>
     user?.role === "admin" || String(job.owner_user_id) === String(user?.id);
 
+  const filteredDashboardEmails = scheduledJobs.filter((job) => {
+    const query = dashboardEmailSearch.trim().toLocaleLowerCase();
+    return !query || [
+      job.name, job.report_label, job.report_help, job.owner_name, job.owner_email,
+    ].some((value) => String(value || "").toLocaleLowerCase().includes(query));
+  });
+  const dashboardEmailPageCount = Math.max(1, Math.ceil(filteredDashboardEmails.length / dashboardEmailPageSize));
+  const visibleDashboardEmails = filteredDashboardEmails.slice(
+    (Math.min(dashboardEmailPage, dashboardEmailPageCount) - 1) * dashboardEmailPageSize,
+    Math.min(dashboardEmailPage, dashboardEmailPageCount) * dashboardEmailPageSize,
+  );
+
+  const filteredOneTimeEmails = oneTimeJobs.filter((job) => {
+    const query = oneTimeEmailSearch.trim().toLocaleLowerCase();
+    return !query || [
+      job.name, job.status, job.last_error,
+    ].some((value) => String(value || "").toLocaleLowerCase().includes(query));
+  });
+  const oneTimeEmailPageCount = Math.max(1, Math.ceil(filteredOneTimeEmails.length / oneTimeEmailPageSize));
+  const visibleOneTimeEmails = filteredOneTimeEmails.slice(
+    (Math.min(oneTimeEmailPage, oneTimeEmailPageCount) - 1) * oneTimeEmailPageSize,
+    Math.min(oneTimeEmailPage, oneTimeEmailPageCount) * oneTimeEmailPageSize,
+  );
+
   return (
     <section>
       <div className="page-heading">
@@ -453,7 +483,7 @@ export default function JobStatus({ user }) {
 
         {scheduledJobs.length ? (
           <div className="scheduled-job-stack">
-            {scheduledJobs.map((job) => (
+            {visibleDashboardEmails.map((job) => (
               <article className="scheduled-job-card" key={job.id}>
                 <div className="scheduled-job-head">
                   <div>
@@ -517,6 +547,24 @@ export default function JobStatus({ user }) {
             email”.
           </div>
         )}
+        {scheduledJobs.length ? (
+          <Pagination
+            page={dashboardEmailPage}
+            total={filteredDashboardEmails.length}
+            pageSize={dashboardEmailPageSize}
+            setPage={setDashboardEmailPage}
+            setPageSize={setDashboardEmailPageSize}
+            search={dashboardEmailSearch}
+            setSearch={(value) => {
+              setDashboardEmailSearch(value);
+              setDashboardEmailPage(1);
+            }}
+            sortColumn={null}
+            sortDirection="asc"
+            setSort={() => {}}
+            sortOptions={[]}
+          />
+        ) : null}
       </div>
 
       <div className="card" style={{ marginBottom: 14 }}>
@@ -527,7 +575,7 @@ export default function JobStatus({ user }) {
 
         {oneTimeJobs.length ? (
           <div className="scheduled-job-stack">
-            {oneTimeJobs.map((job) => (
+            {visibleOneTimeEmails.map((job) => (
               <article className="scheduled-job-card" key={job.id}>
                 <div className="scheduled-job-head">
                   <div>
@@ -559,6 +607,24 @@ export default function JobStatus({ user }) {
         ) : (
           <div className="empty-card">No one-time report emails are currently scheduled.</div>
         )}
+        {oneTimeJobs.length ? (
+          <Pagination
+            page={oneTimeEmailPage}
+            total={filteredOneTimeEmails.length}
+            pageSize={oneTimeEmailPageSize}
+            setPage={setOneTimeEmailPage}
+            setPageSize={setOneTimeEmailPageSize}
+            search={oneTimeEmailSearch}
+            setSearch={(value) => {
+              setOneTimeEmailSearch(value);
+              setOneTimeEmailPage(1);
+            }}
+            sortColumn={null}
+            sortDirection="asc"
+            setSort={() => {}}
+            sortOptions={[]}
+          />
+        ) : null}
       </div>
 
       <div className="job-schedule-grid">
