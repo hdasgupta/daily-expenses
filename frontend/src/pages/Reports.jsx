@@ -21,6 +21,7 @@ import {
 import { api } from "../lib/api";
 import { downloadPdf } from "../lib/download";
 import { openRemoteFile } from "../lib/download";
+import Pagination from "../components/Pagination";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
@@ -370,7 +371,8 @@ export default function Reports({ user }) {
 
   const [selections, setSelections] = useState([]);
   const [selectionPage, setSelectionPage] = useState(1);
-  const selectionsPageSize = 3;
+  const [selectionsPageSize, setSelectionsPageSize] = useState(5);
+  const [selectionSearch, setSelectionSearch] = useState("");
 
   const [shareModal, setShareModal] = useState(false);
   const [shareSelectionTarget, setShareSelectionTarget] = useState(null);
@@ -1238,7 +1240,7 @@ export default function Reports({ user }) {
 
       <Modal open={loadModal} title="Load report selection" onClose={() => setLoadModal(false)}>
         <div className="selection-list">
-          {selections.slice((selectionPage - 1) * selectionsPageSize, selectionPage * selectionsPageSize).map((selection) => (
+          {selections.filter((selection) => String(selection.name || "").toLocaleLowerCase().includes(selectionSearch.trim().toLocaleLowerCase())).slice((selectionPage - 1) * selectionsPageSize, selectionPage * selectionsPageSize).map((selection) => (
             <div className="selection-row" key={selection.id}>
               <button
                 type="button"
@@ -1298,17 +1300,27 @@ export default function Reports({ user }) {
             </div>
           ))}
 
-          {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
+          {!selections.filter((selection) => String(selection.name || "").toLocaleLowerCase().includes(selectionSearch.trim().toLocaleLowerCase())).length ? (
+            <div className="empty-card">{selections.length ? "No saved selections match your search." : "No saved selections."}</div>
+          ) : null}
         </div>
         {selections.length > 0 ? (
-          <div className="selection-pagination">
-            <span>Showing {(selectionPage - 1) * selectionsPageSize + 1}–{Math.min(selectionPage * selectionsPageSize, selections.length)} of {selections.length}</span>
-            <div>
-              <button type="button" className="secondary" disabled={selectionPage <= 1} onClick={() => setSelectionPage((page) => Math.max(1, page - 1))}>Previous</button>
-              <span>Page {selectionPage} of {Math.ceil(selections.length / selectionsPageSize)}</span>
-              <button type="button" className="secondary" disabled={selectionPage >= Math.ceil(selections.length / selectionsPageSize)} onClick={() => setSelectionPage((page) => Math.min(Math.ceil(selections.length / selectionsPageSize), page + 1))}>Next</button>
-            </div>
-          </div>
+          <Pagination
+            page={selectionPage}
+            total={selections.filter((selection) => String(selection.name || "").toLocaleLowerCase().includes(selectionSearch.trim().toLocaleLowerCase())).length}
+            pageSize={selectionsPageSize}
+            setPage={setSelectionPage}
+            setPageSize={setSelectionsPageSize}
+            search={selectionSearch}
+            setSearch={(value) => {
+              setSelectionSearch(value);
+              setSelectionPage(1);
+            }}
+            sortColumn={null}
+            sortDirection="asc"
+            setSort={() => {}}
+            sortOptions={[]}
+          />
         ) : null}
       </Modal>
 
