@@ -171,27 +171,11 @@ function buildUiShareRows(rows) {
     }
 
     const target = map.get(key);
-    const sourceShares = Array.isArray(row.survivor_shares)
-      ? row.survivor_shares
-      : null;
-
-    if (sourceShares) {
-      for (const item of sourceShares) {
-        const name = item?.name ? String(item.name) : "";
-        if (!name || target._shareNames.has(name)) continue;
-        target._shareNames.add(name);
-        target.survivorShares.push({
-          name,
-          amount: numeric(item.amount),
-        });
-      }
-    } else {
-      const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
-      if (name && !target._shareNames.has(name)) {
-        target._shareNames.add(name);
-        const amount = numeric(row.share_price, row.report_amount, row.amount);
-        target.survivorShares.push({ name, amount });
-      }
+    const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
+    if (name && !target._shareNames.has(name)) {
+      target._shareNames.add(name);
+      const amount = numeric(row.share_price, row.report_amount, row.amount);
+      target.survivorShares.push({ name, amount });
     }
   }
 
@@ -605,8 +589,7 @@ export default function Reports({ user }) {
       Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
 
     const next =
-      data?.mode === "raw" &&
-      (data?.columns?.includes("share_price") || data?.columns?.includes("survivor_shares"))
+      data?.mode === "raw" && data?.columns?.includes("share_price")
         ? {
             ...data,
 
@@ -618,9 +601,7 @@ export default function Reports({ user }) {
               ...new Set(
                 data.columns
                   .filter((column) => column !== "survivor")
-                  .map((column) =>
-                    column === "share_price" || column === "survivor_shares" ? "share" : column,
-                  ),
+                  .map((column) => (column === "share_price" ? "share" : column)),
               ),
             ],
           }
@@ -1802,11 +1783,19 @@ function MultiPicker({ label, options = [], selected = [], onToggle }) {
 }
 
 function ReportContent({ result, renderCell }) {
+  const [page, setPage] = useState(1);
+  const pageSize = 20;
+  const rows = Array.isArray(result?.rows) ? result.rows : [];
+  const pageCount = Math.max(1, Math.ceil(rows.length / pageSize));
+
+  useEffect(() => {
+    setPage(1);
+  }, [result]);
+
   if (!result) {
     return (
       <div className="empty-card">
         <BarChart3 size={30} />
-
         <span>Run the report to populate the content area.</span>
       </div>
     );
@@ -1816,45 +1805,59 @@ function ReportContent({ result, renderCell }) {
     return <GroupedRawContent result={result} renderCell={renderCell} />;
   }
 
+  const startIndex = (page - 1) * pageSize;
+  const visibleRows = rows.slice(startIndex, startIndex + pageSize);
+
   return (
     <div className="report-content">
       <div className="summary-card">
         <div>
           <span>Result type</span>
-
           <strong>{result.mode}</strong>
         </div>
-
         <div>
           <span>Rows</span>
-
-          <strong>{result.rows.length}</strong>
+          <strong>{rows.length}</strong>
         </div>
-
         <div>
           <span>Total expense</span>
-
           <strong>₹{Number(result.total || 0).toFixed(2)}</strong>
         </div>
       </div>
 
       <div className="report-grid">
-        {result.rows.map((row, index) => (
-          <article className="report-row" key={`${index}-${row.id || index}`}>
+        {visibleRows.map((row, index) => (
+          <article className="report-row" key={`${startIndex + index}-${row.id || row.expense_id || index}`}>
             {result.columns.map((column) => (
               <div key={column}>
                 <small>{column.replaceAll("_", " ")}</small>
-
                 <strong>{renderCell(row, column)}</strong>
               </div>
             ))}
           </article>
         ))}
 
-        {!result.rows.length ? (
+        {!rows.length ? (
           <div className="empty-card">No records match the selected filters.</div>
         ) : null}
       </div>
+
+      {rows.length > pageSize ? (
+        <div className="report-pagination" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
+          <span className="muted-inline">
+            Showing {startIndex + 1}–{Math.min(startIndex + pageSize, rows.length)} of {rows.length}
+          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <button className="secondary" type="button" disabled={page <= 1} onClick={() => setPage((current) => Math.max(1, current - 1))}>
+              Previous
+            </button>
+            <span>Page {page} of {pageCount}</span>
+            <button className="secondary" type="button" disabled={page >= pageCount} onClick={() => setPage((current) => Math.min(pageCount, current + 1))}>
+              Next
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

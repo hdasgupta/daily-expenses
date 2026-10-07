@@ -200,10 +200,12 @@ function detailOrderSql(config) {
   }
 
   /*
-   * Finally keep newest expenses first
-   * inside each detail group.
+   * Preserve insertion order for detail rows. When the user has explicitly
+   * chosen sorting/grouping, keep those dimensions first and use the expense
+   * id as a stable insertion-order tie breaker. With no sort/grouping this
+   * returns expenses in the order they were inserted.
    */
-  parts.push("expense_date DESC", "id DESC");
+  parts.push("id ASC");
 
   return parts.join(", ");
 }
