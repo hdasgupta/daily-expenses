@@ -222,6 +222,29 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
   }
 }
 
+let schedulerStarted = false;
+let schedulerTimer = null;
+
+export function startOneTimeReportEmailScheduler() {
+  if (schedulerStarted) return;
+
+  schedulerStarted = true;
+  console.log("One-time report email scheduler enabled (15-second polling)");
+
+  const poll = () => {
+    void processDueOneTimeReportEmailJobs().catch((error) => {
+      console.error("One-time report email scheduler poll failed", {
+        error: error?.message || String(error),
+        stack: error?.stack,
+      });
+    });
+  };
+
+  poll();
+  schedulerTimer = setInterval(poll, 15_000);
+  schedulerTimer.unref?.();
+}
+
 export async function processDueOneTimeReportEmailJobs() {
   const due = await q(
     `SELECT id
@@ -274,7 +297,7 @@ async function executeOneTimeReportEmailJob(id) {
         htmlBody: `<p>Your scheduled expense report PDF <strong>${job.name}</strong> is attached.</p>`,
       });
 
-      await client.query(`UPDATE public.one_time_report_email_jobs SET status = 'completed', updated_at = now(), last_error = NULL WHERE id = $1`, [id]);
+      await client.query(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
 
       console.log(
         JSON.stringify({

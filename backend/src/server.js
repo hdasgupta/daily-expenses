@@ -8,6 +8,7 @@ import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/requestLogger.js";
 import { startEmailSchedulers } from "../scripts/scheduler.js";
 import { startScheduledReportScheduler } from "./services/scheduledReportScheduler.js";
+import { startOneTimeReportEmailScheduler } from "./services/oneTimeReportEmailService.js";
 
 loadEnv();
 
@@ -174,6 +175,7 @@ async function start() {
 
     startEmailSchedulers();
     startScheduledReportScheduler();
+    startOneTimeReportEmailScheduler();
 
     app.locals.starting = false;
     app.locals.ready = true;
