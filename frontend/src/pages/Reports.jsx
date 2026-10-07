@@ -558,7 +558,8 @@ export default function Reports({ user }) {
       Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
 
     const next =
-      ["raw", "grouped-raw"].includes(data?.mode) && data?.columns?.includes("share_price")
+      ["raw", "grouped-raw"].includes(data?.mode) &&
+      (data?.columns?.includes("share_price") || data?.columns?.includes("survivor_shares"))
         ? {
             ...data,
 
@@ -569,9 +570,11 @@ export default function Reports({ user }) {
             columns: [
               ...new Set(
                 data.columns
-                  .filter((column) => column !== "survivor")
+                  .filter((column) => column !== "survivor" && column !== "survivor_shares")
                   .map((column) =>
-                    column === "share_price" ? "share" : column === "total_cost" ? "expense_amount" : column,
+                    column === "share_price" || column === "survivor_shares"
+                      ? "share"
+                      : column === "total_cost" ? "expense_amount" : column,
                   ),
               ),
             ],

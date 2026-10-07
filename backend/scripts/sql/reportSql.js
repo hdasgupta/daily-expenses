@@ -82,7 +82,7 @@ export const reportSql = {
   rawSelectPerSurvivor:
     "id AS expense_id, expense_date, category, item, survivor, report_amount AS share_price, total_cost, comment, proof_key",
 
-  rawSelectPerExpense: "expense_date, category, item, survivor, total_cost, comment, proof_key",
+  rawSelectPerExpense: "id AS expense_id, expense_date, category, item, survivor, survivor_shares, total_cost, comment, proof_key",
 
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte}
