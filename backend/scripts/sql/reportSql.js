@@ -51,6 +51,12 @@ export const reportSql = {
         ', '
         ORDER BY s.full_name
       ) AS survivor,
+      COALESCE(
+        jsonb_agg(
+          DISTINCT jsonb_build_object('name', s.full_name, 'amount', es.amount)
+        ) FILTER (WHERE s.id IS NOT NULL),
+        '[]'::jsonb
+      ) AS survivor_shares,
       ARRAY_AGG(
         DISTINCT s.id
       ) FILTER (

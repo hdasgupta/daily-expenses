@@ -160,11 +160,25 @@ function buildUiShareRows(rows) {
     }
 
     const target = map.get(key);
-    const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
-    if (name && !target._shareNames.has(name)) {
-      target._shareNames.add(name);
-      const amount = numeric(row.report_amount, row.share_price, row.amount);
-      target.survivorShares.push({ name, amount });
+    let nestedShares = row.survivor_shares;
+    if (typeof nestedShares === "string") {
+      try { nestedShares = JSON.parse(nestedShares); } catch { nestedShares = []; }
+    }
+    if (Array.isArray(nestedShares) && nestedShares.length) {
+      for (const item of nestedShares) {
+        const name = item?.name ? String(item.name) : "";
+        if (!name || target._shareNames.has(name)) continue;
+        target._shareNames.add(name);
+        const amount = numeric(item.amount, item.share_amount, item.share_price);
+        target.survivorShares.push({ name, amount });
+      }
+    } else {
+      const name = row.survivor && row.survivor !== "—" ? String(row.survivor) : "";
+      if (name && !target._shareNames.has(name)) {
+        target._shareNames.add(name);
+        const amount = numeric(row.report_amount, row.share_price, row.amount);
+        target.survivorShares.push({ name, amount });
+      }
     }
   }
 
@@ -356,7 +370,7 @@ export default function Reports({ user }) {
 
   const [selections, setSelections] = useState([]);
   const [selectionPage, setSelectionPage] = useState(1);
-  const selectionsPageSize = 8;
+  const selectionsPageSize = 3;
 
   const [shareModal, setShareModal] = useState(false);
   const [shareSelectionTarget, setShareSelectionTarget] = useState(null);
@@ -1283,7 +1297,7 @@ export default function Reports({ user }) {
 
           {!selections.length ? <div className="empty-card">No saved selections.</div> : null}
         </div>
-        {selections.length > selectionsPageSize ? (
+        {selections.length > 0 ? (
           <div className="selection-pagination">
             <span>Showing {(selectionPage - 1) * selectionsPageSize + 1}–{Math.min(selectionPage * selectionsPageSize, selections.length)} of {selections.length}</span>
             <div>
