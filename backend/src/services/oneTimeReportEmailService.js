@@ -1,11 +1,10 @@
-import { q, pool } from "../db/index.js";
+import { q } from "../db/index.js";
 import { cleanConfig, buildReportPdfData } from "./reportService.js";
 import { buildReportPdf } from "./reportPdfService.js";
 import { sendReportEmail } from "./mailService.js";
 import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
-
 
 async function ensureOneTimeReportEmailSchedulerSchema() {
   await q(`
@@ -24,15 +23,11 @@ async function ensureOneTimeReportEmailSchedulerSchema() {
     )
   `);
 
-  // Older deployments may have created scheduled_for as a timestamp without
-  // timezone. Treat those existing wall-clock values as Asia/Kolkata before
-  // converting the column permanently to timestamptz.
   await q(`
     DO $$
     BEGIN
       IF EXISTS (
-        SELECT 1
-          FROM information_schema.columns
+        SELECT 1 FROM information_schema.columns
          WHERE table_schema = 'public'
            AND table_name = 'one_time_report_email_jobs'
            AND column_name = 'scheduled_for'
@@ -45,15 +40,11 @@ async function ensureOneTimeReportEmailSchedulerSchema() {
     END $$
   `);
 
-  // Older deployments may still have scheduler history keys limited to 50
-  // characters. One-time execution keys can exceed that limit, so widen both
-  // columns before writing execution history.
   await q(`
     DO $$
     BEGIN
       IF EXISTS (
-        SELECT 1
-          FROM information_schema.columns
+        SELECT 1 FROM information_schema.columns
          WHERE table_schema = 'public'
            AND table_name = 'scheduler_job_runs'
            AND column_name = 'job_name'
@@ -65,8 +56,7 @@ async function ensureOneTimeReportEmailSchedulerSchema() {
       END IF;
 
       IF EXISTS (
-        SELECT 1
-          FROM information_schema.columns
+        SELECT 1 FROM information_schema.columns
          WHERE table_schema = 'public'
            AND table_name = 'scheduler_job_runs'
            AND column_name = 'scheduled_key'
@@ -109,38 +99,20 @@ function hasFutureDateInReportConfig(config = {}) {
   const filters = config.filters || {};
   const today = kolkataTodayIso();
 
-  if (filters.date && String(filters.date) > today) {
-    return true;
-  }
-
-  if (filters.dateFrom && String(filters.dateFrom) > today) {
-    return true;
-  }
-
-  if (filters.dateTo && String(filters.dateTo) > today) {
-    return true;
-  }
+  if (filters.date && String(filters.date) > today) return true;
+  if (filters.dateFrom && String(filters.dateFrom) > today) return true;
+  if (filters.dateTo && String(filters.dateTo) > today) return true;
 
   if (filters.month) {
     const month = String(filters.month);
     const currentMonth = today.slice(0, 7);
-    if (/^\d{4}-\d{2}$/.test(month) && month > currentMonth) {
-      return true;
-    }
-    if (/^\d{4}-\d{2}$/.test(month) && month === currentMonth) {
-      return true;
-    }
+    if (/^\d{4}-\d{2}$/.test(month) && month >= currentMonth) return true;
   }
 
   if (filters.year) {
     const year = String(filters.year);
     const currentYear = today.slice(0, 4);
-    if (/^\d{4}$/.test(year) && year > currentYear) {
-      return true;
-    }
-    if (/^\d{4}$/.test(year) && year === currentYear) {
-      return true;
-    }
+    if (/^\d{4}$/.test(year) && year >= currentYear) return true;
   }
 
   return false;
@@ -152,8 +124,6 @@ async function resolveScheduledFor(value) {
     throw error("Choose a valid future date and time.");
   }
 
-  // Convert the user-entered Asia/Kolkata wall-clock time to an absolute UTC
-  // instant once. Never rely on the PostgreSQL session timezone for this value.
   const result = await q(
     `SELECT ($1::timestamp AT TIME ZONE $2) AS scheduled_for`,
     [text, TIMEZONE],
@@ -179,8 +149,6 @@ export async function scheduleOneTimeReportEmail({
   const when = await resolveScheduledFor(scheduledFor);
   const scheduleName = normalizeName(name);
 
-  // A report with no current data can still be scheduled when its configured
-  // date scope includes future dates. This allows data entered later to be included.
   const report = await buildReportPdfData(clean);
   const hasCurrentData = Boolean(report.rows?.length || report.rawRows?.length);
   if (!hasCurrentData && !hasFutureDateInReportConfig(clean)) {
@@ -193,7 +161,6 @@ export async function scheduleOneTimeReportEmail({
     .map((id) => String(id).trim())
     .filter(Boolean))];
 
-  // Only administrators may schedule on behalf of managers.
   let recipients = [{ id: user.id, email: user.email }];
   if (requestedIds.length) {
     if (user.role !== "admin") {
@@ -218,10 +185,6 @@ export async function scheduleOneTimeReportEmail({
     recipients = requestedIds.map((id) => validById.get(id));
   }
 
-  // Insert all recipient jobs in one statement so a multi-manager schedule is
-  // all-or-nothing. Existing job ownership makes each manager see their own job.
-  // Store an absolute instant. The explicit cast keeps this deterministic even
-  // when the Render/PostgreSQL session timezone is not Asia/Kolkata.
   const result = await q(
     `INSERT INTO public.one_time_report_email_jobs
       (owner_user_id, created_by_user_id, name, config, scheduled_for, status)
@@ -259,30 +222,6 @@ export async function listOneTimeReportEmailJobs(userId) {
     [userId],
   );
   return result.rows;
-}
-
-async function claimJob(client, id) {
-  const lockKey = `one-time-report-email:${id}`;
-  const lock = await client.query("SELECT pg_try_advisory_lock(hashtext($1)) AS locked", [lockKey]);
-  if (!lock.rows[0]?.locked) return null;
-
-  const result = await client.query(
-    `SELECT j.*, u.email AS owner_email, u.full_name AS owner_name
-       FROM public.one_time_report_email_jobs j
-       JOIN public.users u ON u.id = j.owner_user_id
-      WHERE j.id = $1
-        AND j.scheduled_for <= clock_timestamp()
-        AND j.status IN ('pending', 'failed')
-      FOR UPDATE`,
-    [id],
-  );
-
-  if (!result.rows[0]) {
-    await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
-    return null;
-  }
-
-  return { job: result.rows[0], lockKey };
 }
 
 export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false }) {
@@ -335,9 +274,6 @@ export function startOneTimeReportEmailScheduler() {
       }));
       poll();
       schedulerTimer = setInterval(poll, 5_000);
-      // Keep the scheduler timer referenced. The HTTP server normally keeps the
-      // process alive, but unref could allow the worker to disappear in a
-      // non-standard Render/process lifecycle.
     } catch (error) {
       console.error("One-time report email scheduler initialization failed", {
         error: error?.message || String(error),
@@ -367,92 +303,212 @@ export async function processDueOneTimeReportEmailJobs() {
   }
 
   for (const row of due.rows) {
-    void executeOneTimeReportEmailJob(row.id).catch((error) => {
+    void executeOneTimeReportEmailJob(row.id).catch((workerError) => {
       console.error("One-time report email worker failed unexpectedly", {
         jobId: row.id,
-        error: error?.message || String(error),
-        stack: error?.stack,
+        error: workerError?.message || String(workerError),
+        stack: workerError?.stack,
       });
     });
   }
 }
 
-async function executeOneTimeReportEmailJob(id) {
-  const client = await pool.connect();
-  let execution = null;
+async function claimJob(id) {
+  console.log(JSON.stringify({
+    event: "one_time_report_email_execution_started",
+    jobId: id,
+  }));
 
+  const result = await q(
+    `UPDATE public.one_time_report_email_jobs
+        SET status = 'running',
+            last_attempt_at = now(),
+            updated_at = now(),
+            last_error = NULL
+      WHERE id = $1
+        AND scheduled_for <= clock_timestamp()
+        AND status IN ('pending', 'failed')
+      RETURNING *`,
+    [id],
+  );
+
+  if (!result.rows[0]) {
+    console.log(JSON.stringify({
+      event: "one_time_report_email_claim_skipped",
+      jobId: id,
+      reason: "job_not_due_or_already_running",
+    }));
+    return null;
+  }
+
+  const jobResult = await q(
+    `SELECT j.*, u.email AS owner_email, u.full_name AS owner_name
+       FROM public.one_time_report_email_jobs j
+       JOIN public.users u ON u.id = j.owner_user_id
+      WHERE j.id = $1`,
+    [id],
+  );
+
+  const job = jobResult.rows[0];
+  if (!job) {
+    throw new Error(`Claimed one-time report email job ${id} could not be reloaded.`);
+  }
+
+  console.log(JSON.stringify({
+    event: "one_time_report_email_job_claimed",
+    jobId: id,
+    ownerUserId: job.owner_user_id,
+    scheduledFor: job.scheduled_for,
+  }));
+
+  return job;
+}
+
+async function updateExecutionHistory(jobName, scheduledKey, values) {
   try {
-    execution = await claimJob(client, id);
-    if (!execution) return;
-
-    const { job, lockKey } = execution;
-    const executionJobName = `one-time-report:${id}:user:${job.owner_user_id}`;
-    const scheduledKey = String(job.scheduled_for);
-    const startedAt = Date.now();
-
-    await client.query(
-      `UPDATE public.one_time_report_email_jobs
-          SET last_attempt_at = now(), updated_at = now(), last_error = NULL
-        WHERE id = $1`,
-      [id],
-    );
-
-    await client.query(
+    await q(
       `INSERT INTO public.scheduler_job_runs
         (job_name, scheduled_key, status, started_at, completed_at, duration_ms, error_message)
-       VALUES ($1, $2, 'running', now(), NULL, NULL, NULL)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
        ON CONFLICT (job_name, scheduled_key) DO UPDATE
-         SET status = 'running',
-             started_at = now(),
-             completed_at = NULL,
-             duration_ms = NULL,
-             error_message = NULL`,
-      [executionJobName, scheduledKey],
+         SET status = EXCLUDED.status,
+             started_at = EXCLUDED.started_at,
+             completed_at = EXCLUDED.completed_at,
+             duration_ms = EXCLUDED.duration_ms,
+             error_message = EXCLUDED.error_message`,
+      [
+        jobName,
+        scheduledKey,
+        values.status,
+        values.startedAt || null,
+        values.completedAt || null,
+        values.durationMs ?? null,
+        values.errorMessage || null,
+      ],
     );
+  } catch (historyError) {
+    console.error("One-time report email execution history update failed", {
+      jobName,
+      scheduledKey,
+      requestedStatus: values.status,
+      error: historyError?.message || String(historyError),
+      stack: historyError?.stack,
+    });
+    throw historyError;
+  }
+}
 
+async function executeOneTimeReportEmailJob(id) {
+  let job = null;
+  let executionJobName = null;
+  let scheduledKey = null;
+  const startedAt = Date.now();
+
+  try {
+    job = await claimJob(id);
+    if (!job) return;
+
+    executionJobName = `one-time-report:${id}:user:${job.owner_user_id}`;
+    scheduledKey = String(job.scheduled_for);
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_execution_history_started",
+      jobId: id,
+      executionJobName,
+      scheduledKey,
+    }));
+
+    await updateExecutionHistory(executionJobName, scheduledKey, {
+      status: "running",
+      startedAt: new Date().toISOString(),
+      completedAt: null,
+      durationMs: null,
+      errorMessage: null,
+    });
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_report_generation_started",
+      jobId: id,
+    }));
+
+    const report = await buildReportPdfData(job.config || {});
+
+    if (!report.rows?.length && !report.rawRows?.length) {
+      throw error("No report data to email.");
+    }
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_report_generation_completed",
+      jobId: id,
+      rowCount: report.rows?.length || 0,
+      rawRowCount: report.rawRows?.length || 0,
+    }));
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_pdf_generation_started",
+      jobId: id,
+    }));
+
+    const pdf = await buildReportPdf(report, report.pdfConfig || job.config || {});
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_pdf_generation_completed",
+      jobId: id,
+      pdfBytes: Buffer.isBuffer(pdf) ? pdf.length : null,
+    }));
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_send_started",
+      jobId: id,
+      recipient: job.owner_email,
+    }));
+
+    await sendReportEmail(job.owner_email, pdf, {
+      subject: `Scheduled Expense Report PDF — ${job.name}`,
+      htmlBody: `<p>Your scheduled expense report PDF <strong>${job.name}</strong> is attached.</p>`,
+    });
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_send_completed",
+      jobId: id,
+      recipient: job.owner_email,
+    }));
+
+    const durationMs = Date.now() - startedAt;
+    await updateExecutionHistory(executionJobName, scheduledKey, {
+      status: "completed",
+      startedAt: new Date(startedAt).toISOString(),
+      completedAt: new Date().toISOString(),
+      durationMs,
+      errorMessage: null,
+    });
+
+    await q(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
+
+    console.log(JSON.stringify({
+      event: "one_time_report_email_completed",
+      jobId: id,
+      ownerUserId: job.owner_user_id,
+      executionJobName,
+      scheduledKey,
+    }));
+  } catch (workerError) {
+    const durationMs = Date.now() - startedAt;
+    const errorMessage = workerError?.message || String(workerError);
+
+    console.error("One-time report email execution failed", {
+      jobId: id,
+      executionJobName,
+      scheduledKey,
+      error: errorMessage,
+      stack: workerError?.stack,
+    });
+
+    // The job is already atomically claimed as running. Always make it
+    // retryable/visible as failed, even when execution-history persistence
+    // itself fails.
     try {
-      const report = await buildReportPdfData(job.config || {});
-
-      if (!report.rows?.length && !report.rawRows?.length) {
-        throw error("No report data to email.");
-      }
-
-      const pdf = await buildReportPdf(report, report.pdfConfig || job.config || {});
-
-      await sendReportEmail(job.owner_email, pdf, {
-        subject: `Scheduled Expense Report PDF — ${job.name}`,
-        htmlBody: `<p>Your scheduled expense report PDF <strong>${job.name}</strong> is attached.</p>`,
-      });
-
-      const durationMs = Date.now() - startedAt;
-
-      await client.query(
-        `UPDATE public.scheduler_job_runs
-            SET status = 'completed',
-                completed_at = now(),
-                duration_ms = $3,
-                error_message = NULL
-          WHERE job_name = $1
-            AND scheduled_key = $2`,
-        [executionJobName, scheduledKey, durationMs],
-      );
-
-      await client.query(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
-
-      console.log(
-        JSON.stringify({
-          event: "one_time_report_email_completed",
-          jobId: id,
-          ownerUserId: job.owner_user_id,
-          executionJobName,
-          scheduledKey,
-        }),
-      );
-    } catch (error) {
-      const durationMs = Date.now() - startedAt;
-      const errorMessage = error?.message || String(error);
-
-      await client.query(
+      await q(
         `UPDATE public.one_time_report_email_jobs
             SET status = 'failed',
                 last_attempt_at = now(),
@@ -461,24 +517,35 @@ async function executeOneTimeReportEmailJob(id) {
           WHERE id = $1`,
         [id, errorMessage],
       );
-
-      await client.query(
-        `UPDATE public.scheduler_job_runs
-            SET status = 'failed',
-                completed_at = NULL,
-                duration_ms = $3,
-                error_message = $4
-          WHERE job_name = $1
-            AND scheduled_key = $2`,
-        [executionJobName, scheduledKey, durationMs, errorMessage],
-      );
-
-      console.error("One-time report email failed", {
+    } catch (jobUpdateError) {
+      console.error("One-time report email failed-job state update failed", {
         jobId: id,
-        error: errorMessage,
-        stack: error?.stack,
+        error: jobUpdateError?.message || String(jobUpdateError),
+        stack: jobUpdateError?.stack,
       });
+    }
 
+    if (executionJobName && scheduledKey) {
+      try {
+        await updateExecutionHistory(executionJobName, scheduledKey, {
+          status: "failed",
+          startedAt: new Date(startedAt).toISOString(),
+          completedAt: null,
+          durationMs,
+          errorMessage,
+        });
+      } catch {
+        // updateExecutionHistory already logs the detailed persistence error.
+      }
+    }
+
+    console.error("One-time report email failed", {
+      jobId: id,
+      error: errorMessage,
+      stack: workerError?.stack,
+    });
+
+    if (job) {
       void notifyAdminFailure({
         category: "custom-scheduler-email",
         schedulerName: job.name || `Scheduled report #${id}`,
@@ -487,12 +554,14 @@ async function executeOneTimeReportEmailJob(id) {
         schedulerSchedule: `one-time at ${job.scheduled_for || "unknown"}`,
         failureTime: new Date().toISOString(),
         failureMessage: errorMessage,
-        stack: error?.stack,
+        stack: workerError?.stack,
+      }).catch((notificationError) => {
+        console.error("One-time report email admin failure notification failed", {
+          jobId: id,
+          error: notificationError?.message || String(notificationError),
+          stack: notificationError?.stack,
+        });
       });
-    } finally {
-      await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
     }
-  } finally {
-    client.release();
   }
 }
