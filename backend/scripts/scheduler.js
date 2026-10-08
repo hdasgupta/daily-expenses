@@ -30,6 +30,17 @@ function localDateKey(timezone) {
   return `${year}-${month}-${day}`;
 }
 
+function isLastDayOfMonth(local) {
+  const date = new Date(`${local.year}-${local.month}-${local.day}T00:00:00Z`);
+  const tomorrow = new Date(date);
+  tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
+
+  return (
+    tomorrow.getUTCFullYear() !== Number(local.year) ||
+    tomorrow.getUTCMonth() + 1 !== Number(local.month)
+  );
+}
+
 function logSchedulerEvent(event, details = {}) {
   console.log(
     JSON.stringify({
@@ -115,9 +126,6 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
       return false;
     }
 
-    // A scheduled period is idempotent: once every manager email for this
-    // execution has completed successfully, later cron ticks/catch-up runs
-    // must never send the same report again. Failed executions remain retryable.
     const completedResult = await client.query(
       `SELECT id, completed_at
        FROM public.scheduler_job_executions
@@ -208,8 +216,8 @@ async function runDailyEmailReport() {
 
 async function runMonthlyEmailReport() {
   const local = getLocalDateParts(env.monthlyEmailReportTimezone);
-  if (local.day !== "01") {
-    logSchedulerEvent("monthly_email_report_skipped_not_first_day", { local });
+  if (!isLastDayOfMonth(local)) {
+    logSchedulerEvent("monthly_email_report_skipped_not_last_day", { local });
     return;
   }
   const scheduledKey = `${local.year}-${local.month}`;
@@ -227,8 +235,8 @@ async function runMonthlyEmailReport() {
 
 async function runYearlyEmailReport() {
   const local = getLocalDateParts(env.yearlyEmailReportTimezone);
-  if (local.month !== "01" || local.day !== "01") {
-    logSchedulerEvent("yearly_email_report_skipped_not_january_first", { local });
+  if (local.month !== "12" || local.day !== "31") {
+    logSchedulerEvent("yearly_email_report_skipped_not_december_31", { local });
     return;
   }
   const scheduledKey = `${local.year}`;
@@ -246,8 +254,8 @@ async function runYearlyEmailReport() {
 
 async function runWeeklyEmailReport() {
   const local = getLocalDateParts(env.weeklyEmailReportTimezone);
-  if (local.weekday !== undefined && local.weekday !== "Sunday") {
-    logSchedulerEvent("weekly_email_report_skipped_not_sunday", { local });
+  if (local.weekday !== undefined && local.weekday !== "Saturday") {
+    logSchedulerEvent("weekly_email_report_skipped_not_saturday", { local });
     return;
   }
   const scheduledKey = localDateKey(env.weeklyEmailReportTimezone);
@@ -272,8 +280,8 @@ async function catchUpMissedEmailReports() {
   });
 
   if (
-    Number(dailyLocal.hour) > 6 ||
-    (Number(dailyLocal.hour) === 6 && Number(dailyLocal.minute) >= 0)
+    Number(dailyLocal.hour) > 23 ||
+    (Number(dailyLocal.hour) === 23 && Number(dailyLocal.minute) >= 59)
   ) {
     try {
       await runDailyEmailReport();
@@ -284,9 +292,9 @@ async function catchUpMissedEmailReports() {
 
   const weeklyLocal = getLocalDateParts(env.weeklyEmailReportTimezone);
   if (
-    weeklyLocal.weekday === "Sunday" &&
-    (Number(weeklyLocal.hour) > 6 ||
-      (Number(weeklyLocal.hour) === 6 && Number(weeklyLocal.minute) >= 0))
+    weeklyLocal.weekday === "Saturday" &&
+    (Number(weeklyLocal.hour) > 23 ||
+      (Number(weeklyLocal.hour) === 23 && Number(weeklyLocal.minute) >= 59))
   ) {
     try {
       await runWeeklyEmailReport();
@@ -296,7 +304,12 @@ async function catchUpMissedEmailReports() {
   }
 
   const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
-  if (yearlyLocal.month === "01" && yearlyLocal.day === "01" && Number(yearlyLocal.hour) >= 6) {
+  if (
+    yearlyLocal.month === "12" &&
+    yearlyLocal.day === "31" &&
+    (Number(yearlyLocal.hour) > 23 ||
+      (Number(yearlyLocal.hour) === 23 && Number(yearlyLocal.minute) >= 59))
+  ) {
     try {
       await runYearlyEmailReport();
     } catch (error) {
@@ -305,7 +318,11 @@ async function catchUpMissedEmailReports() {
   }
 
   const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
-  if (monthlyLocal.day === "01" && Number(monthlyLocal.hour) >= 6) {
+  if (
+    isLastDayOfMonth(monthlyLocal) &&
+    (Number(monthlyLocal.hour) > 23 ||
+      (Number(monthlyLocal.hour) === 23 && Number(monthlyLocal.minute) >= 59))
+  ) {
     try {
       await runMonthlyEmailReport();
     } catch (error) {

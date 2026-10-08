@@ -33,14 +33,18 @@ export const env = {
   adminPassword: process.env.ADMIN_PASSWORD || "Executable@123",
   otpTtlMinutes: Number(process.env.OTP_TTL_MINUTES || 10),
   exposeOtpInDev: String(process.env.OTP_EXPOSE_IN_DEV || "false").toLowerCase() === "true",
-  dailyEmailReportCron: process.env.DAILY_EMAIL_REPORT_CRON || "0 6 * * *",
+
+  // Common recurring report schedules are fixed here so stale deployment
+  // environment values cannot keep the old 06:00 schedules active.
+  dailyEmailReportCron: "59 23 * * *",
   dailyEmailReportTimezone: process.env.DAILY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
-  monthlyEmailReportCron: process.env.MONTHLY_EMAIL_REPORT_CRON || "0 6 1 * *",
+  monthlyEmailReportCron: "59 23 28-31 * *",
   monthlyEmailReportTimezone: process.env.MONTHLY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
-  weeklyEmailReportCron: process.env.WEEKLY_EMAIL_REPORT_CRON || "0 6 * * 0",
+  weeklyEmailReportCron: "59 23 * * 6",
   weeklyEmailReportTimezone: process.env.WEEKLY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
-  yearlyEmailReportCron: process.env.YEARLY_EMAIL_REPORT_CRON || "0 6 1 1 *",
+  yearlyEmailReportCron: "59 23 31 12 *",
   yearlyEmailReportTimezone: process.env.YEARLY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
+
   appTimezone: process.env.APP_TIMEZONE || "Asia/Kolkata",
   organizationName: process.env.ORGANIZATION_NAME || "Rehabilitation Center",
   organizationLogoUrl: process.env.ORGANIZATION_LOGO_URL || "",
