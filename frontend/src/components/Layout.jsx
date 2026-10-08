@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  ChevronDown,
   ClipboardList,
   Database,
   FileBarChart,
@@ -8,6 +9,7 @@ import {
   LogOut,
   Menu,
   Moon,
+  Plus,
   RefreshCw,
   Sun,
   Tags,
@@ -154,8 +156,20 @@ export function getNavigationItems(permissions) {
   return navItems.filter((item) => normalized.includes(item.permission));
 }
 
-export default function Layout({ user, path, navigate, logout, children }) {
+export default function Layout({
+  user,
+  path,
+  navigate,
+  logout,
+  logoutAll,
+  accounts = [],
+  activeAccountId,
+  switchAccount,
+  addAccount,
+  children,
+}) {
   const [open, setOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
   const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
 
@@ -167,6 +181,7 @@ export default function Layout({ user, path, navigate, logout, children }) {
 
   useEffect(() => {
     setOpen(false);
+    setAccountMenuOpen(false);
   }, [path]);
 
   const toggleTheme = () => setDark((value) => !value);
@@ -186,7 +201,100 @@ export default function Layout({ user, path, navigate, logout, children }) {
       <header className="site-header">
         <div className="top-header">
           <div className="user-header">
-            <span className="user-full-name">{fullName}</span>
+            <div className="account-switcher">
+              <button
+                className="account-switcher-button"
+                type="button"
+                onClick={() => setAccountMenuOpen((value) => !value)}
+                aria-expanded={accountMenuOpen}
+                aria-label="Switch account"
+              >
+                <span className="account-avatar">
+                  {fullName.charAt(0).toUpperCase() || "U"}
+                </span>
+                <span className="account-switcher-text">
+                  <strong>{fullName}</strong>
+                  <small>{user?.email || "Current account"}</small>
+                </span>
+                <ChevronDown size={16} />
+              </button>
+
+              {accountMenuOpen ? (
+                <div className="account-menu" role="menu">
+                  <div className="account-menu-title">Accounts</div>
+
+                  {accounts.map((account) => {
+                    const accountName = String(
+                      account.fullName || account.full_name || account.name || account.email || "User",
+                    ).trim();
+
+                    const isActive = account.id === activeAccountId;
+
+                    return (
+                      <button
+                        key={account.id}
+                        className={`account-menu-item ${isActive ? "active" : ""}`}
+                        type="button"
+                        role="menuitem"
+                        onClick={() => {
+                          setAccountMenuOpen(false);
+                          switchAccount?.(account.id);
+                        }}
+                      >
+                        <span className="account-avatar small">
+                          {accountName.charAt(0).toUpperCase() || "U"}
+                        </span>
+                        <span className="account-menu-details">
+                          <strong>{accountName}</strong>
+                          <small>{account.email}</small>
+                        </span>
+                        {isActive ? <span className="account-check">✓</span> : null}
+                      </button>
+                    );
+                  })}
+
+                  <div className="account-menu-divider" />
+
+                  <button
+                    className="account-menu-action"
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      addAccount?.();
+                    }}
+                  >
+                    <Plus size={16} />
+                    Add another account
+                  </button>
+
+                  <button
+                    className="account-menu-action"
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      logout?.();
+                    }}
+                  >
+                    <LogOut size={16} />
+                    Sign out this account
+                  </button>
+
+                  {accounts.length > 1 ? (
+                    <button
+                      className="account-menu-action danger"
+                      type="button"
+                      onClick={() => {
+                        setAccountMenuOpen(false);
+                        logoutAll?.();
+                      }}
+                    >
+                      <LogOut size={16} />
+                      Sign out all accounts
+                    </button>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
 
             <span className="role-pill">{user?.role || ""}</span>
 

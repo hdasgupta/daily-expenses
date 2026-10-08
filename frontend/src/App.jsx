@@ -16,6 +16,15 @@ import DashboardDrilldown from "./pages/DashboardDrilldown";
 import Users from "./pages/Users";
 import JobStatus from "./pages/JobStatus";
 import { api } from "./lib/api";
+import {
+  clearAccounts,
+  getAccounts,
+  getActiveAccountId,
+  migrateLegacyTokenAccount,
+  removeAccount,
+  setActiveAccountId,
+  upsertAccount,
+} from "./lib/accountStore";
 
 const routes = {
   "/add-expense": {
@@ -300,9 +309,25 @@ export default function App() {
 
   const [user, setUser] = useState(null);
 
+  const [accounts, setAccounts] = useState(() => getAccounts());
+
+  const [addingAccount, setAddingAccount] = useState(false);
+
   const [checking, setChecking] = useState(true);
 
   const [rawMe, setRawMe] = useState(null);
+
+  useEffect(() => {
+    const storedAccounts = getAccounts();
+    const activeAccountId = getActiveAccountId();
+    const activeAccount = storedAccounts.find((account) => account.id === activeAccountId);
+
+    setAccounts(storedAccounts);
+
+    if (activeAccount?.token) {
+      localStorage.setItem("token", activeAccount.token);
+    }
+  }, []);
 
   /*
    * Restore the last authenticated
@@ -376,14 +401,38 @@ export default function App() {
       }
     };
 
-    const expired = () => {
+    const expired = (event) => {
+      const eventToken = String(event?.detail?.token || "").trim();
+      const currentToken = String(localStorage.getItem("token") || "").trim();
+
+      if (eventToken && currentToken && eventToken !== currentToken) {
+        return;
+      }
+
+      const activeAccountId = getActiveAccountId();
+      const remainingAccounts = activeAccountId ? removeAccount(activeAccountId) : getAccounts();
+
       localStorage.removeItem("token");
       localStorage.removeItem("daily-expenses:error-user");
-
       clearStoredAuthenticatedPath();
 
+      if (remainingAccounts.length > 0) {
+        const nextAccount = remainingAccounts[0];
+
+        setActiveAccountId(nextAccount.id);
+        localStorage.setItem("token", nextAccount.token);
+        setAccounts(remainingAccounts);
+        setRawMe(nextAccount);
+        setUser(normalizeUser(nextAccount));
+        setAddingAccount(false);
+
+        return;
+      }
+
+      setAccounts([]);
       setUser(null);
       setRawMe(null);
+      setAddingAccount(false);
       setPath("/");
 
       window.history.replaceState({}, "", "/");
@@ -413,6 +462,15 @@ export default function App() {
           console.log("NORMALIZED permissions:", normalized?.permissions);
 
           setUser(normalized);
+
+          const activeToken = localStorage.getItem("token");
+          if (activeToken && normalized?.email) {
+            upsertAccount(normalized, activeToken);
+            setAccounts(getAccounts());
+          } else if (activeToken && getAccounts().length === 0) {
+            migrateLegacyTokenAccount(normalized, activeToken);
+            setAccounts(getAccounts());
+          }
 
           try {
             localStorage.setItem(
@@ -594,6 +652,13 @@ export default function App() {
 
     setUser(normalizedUser);
 
+    const activeToken = localStorage.getItem("token");
+    if (activeToken) {
+      upsertAccount(normalizedUser, activeToken);
+      setAccounts(getAccounts());
+      setAddingAccount(false);
+    }
+
     try {
       localStorage.setItem(
         "daily-expenses:error-user",
@@ -652,16 +717,74 @@ export default function App() {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    const activeAccountId = getActiveAccountId();
+    const remainingAccounts = activeAccountId ? removeAccount(activeAccountId) : getAccounts();
 
     clearStoredAuthenticatedPath();
+    setAccounts(remainingAccounts);
+    setAddingAccount(false);
 
+    if (remainingAccounts.length > 0) {
+      const nextAccount = remainingAccounts[0];
+      setActiveAccountId(nextAccount.id);
+      localStorage.setItem("token", nextAccount.token);
+      setRawMe(nextAccount);
+      setUser(normalizeUser(nextAccount));
+      return;
+    }
+
+    localStorage.removeItem("token");
     setUser(null);
     setRawMe(null);
-
     window.history.replaceState({}, "", "/");
-
     setPath("/");
+  };
+
+  const logoutAll = () => {
+    clearAccounts();
+    localStorage.removeItem("token");
+    localStorage.removeItem("daily-expenses:error-user");
+    clearStoredAuthenticatedPath();
+    setAccounts([]);
+    setAddingAccount(false);
+    setUser(null);
+    setRawMe(null);
+    window.history.replaceState({}, "", "/");
+    setPath("/");
+  };
+
+  const switchAccount = (accountId) => {
+    const nextAccount = getAccounts().find((account) => account.id === accountId);
+
+    if (!nextAccount) {
+      return;
+    }
+
+    setActiveAccountId(nextAccount.id);
+    localStorage.setItem("token", nextAccount.token);
+    setAccounts(getAccounts());
+    setRawMe(nextAccount);
+    setUser(normalizeUser(nextAccount));
+    setAddingAccount(false);
+
+    const nextPermissions = normalizePermissions(nextAccount.permissions);
+    const currentRoute = routeForPath(path);
+
+    if (!currentRoute || !nextPermissions.includes(currentRoute.permission)) {
+      const fallback = getNavigationItems(nextPermissions)[0]?.path;
+      if (fallback) {
+        window.history.replaceState({}, "", fallback);
+        setPath(fallback);
+      }
+    }
+  };
+
+  const addAccount = () => {
+    setAddingAccount(true);
+  };
+
+  const cancelAddAccount = () => {
+    setAddingAccount(false);
   };
 
   if (checking) {
@@ -677,13 +800,18 @@ export default function App() {
     );
   }
 
-  if (!user) {
+  if (!user || addingAccount) {
     return (
       <>
         <Loader />
         <Toast />
 
-        <Login onLogin={handleLogin} initialPath={path} />
+        <Login
+          onLogin={handleLogin}
+          onCancel={user ? cancelAddAccount : null}
+          initialPath={path}
+          isAddingAccount={Boolean(user && addingAccount)}
+        />
       </>
     );
   }
@@ -800,7 +928,17 @@ export default function App() {
       <Loader />
       <Toast />
 
-      <Layout user={user} path={path} navigate={navigate} logout={logout}>
+      <Layout
+        user={user}
+        path={path}
+        navigate={navigate}
+        logout={logout}
+        logoutAll={logoutAll}
+        accounts={accounts}
+        activeAccountId={getActiveAccountId()}
+        switchAccount={switchAccount}
+        addAccount={addAccount}
+      >
         <RouteErrorBoundary>
           <Component type={route?.type} navigate={navigate} user={user} />
         </RouteErrorBoundary>

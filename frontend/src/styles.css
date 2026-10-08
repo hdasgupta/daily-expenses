@@ -1559,3 +1559,157 @@ code {
 .report-chart-legend-group > span {
   opacity: 0.95;
 }
+
+.account-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.account-switcher-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface, transparent);
+  color: inherit;
+  cursor: pointer;
+}
+
+.account-switcher-button:hover {
+  background: var(--soft);
+}
+
+.account-avatar {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--soft);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.account-avatar.small {
+  width: 30px;
+  height: 30px;
+  flex-basis: 30px;
+  font-size: 13px;
+}
+
+.account-switcher-text,
+.account-menu-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.account-switcher-text strong,
+.account-menu-details strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-switcher-text small,
+.account-menu-details small {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+.account-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 100;
+  width: min(360px, calc(100vw - 24px));
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
+}
+
+.account-menu-title {
+  padding: 7px 10px 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.account-menu-item,
+.account-menu-action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.account-menu-item:hover,
+.account-menu-item.active,
+.account-menu-action:hover {
+  background: var(--soft);
+}
+
+.account-menu-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-check {
+  font-weight: 800;
+}
+
+.account-menu-divider {
+  height: 1px;
+  margin: 7px 4px;
+  background: var(--line);
+}
+
+.account-menu-action.danger {
+  color: var(--danger, #b42318);
+}
+
+.account-login-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 4px 0 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .account-switcher-text {
+    display: none;
+  }
+
+  .account-switcher-button {
+    padding: 4px;
+  }
+
+  .account-menu {
+    position: fixed;
+    top: 64px;
+    right: 12px;
+  }
+}

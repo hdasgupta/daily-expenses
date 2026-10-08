@@ -200,7 +200,11 @@ export async function api(path, options = {}) {
 
     if (!response.ok) {
       if (response.status === 401) {
-        window.dispatchEvent(new CustomEvent("app:auth-expired"));
+        window.dispatchEvent(
+          new CustomEvent("app:auth-expired", {
+            detail: { token },
+          }),
+        );
       }
 
       throw new Error(data?.error || `Request failed (${response.status})`);

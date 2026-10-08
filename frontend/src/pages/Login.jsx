@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowLeft, KeyRound, LogIn, RotateCcw, ShieldCheck } from "lucide-react";
+import { ArrowLeft, KeyRound, LogIn, Plus, RotateCcw, ShieldCheck, X } from "lucide-react";
 import { api } from "../lib/api";
 import PasswordField from "../components/PasswordField";
 import {
@@ -32,7 +32,7 @@ function normalizeUser(user) {
   };
 }
 
-export default function Login({ onLogin, initialPath }) {
+export default function Login({ onLogin, onCancel, initialPath, isAddingAccount = false }) {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -196,6 +196,13 @@ export default function Login({ onLogin, initialPath }) {
         <h1>West Bengal Forun for Mental Health</h1>
         <p className="muted">Daily Expenses</p>
 
+        {isAddingAccount ? (
+          <div className="account-login-heading">
+            <Plus size={17} />
+            <span>Add another account</span>
+          </div>
+        ) : null}
+
         {mode === "login" ? (
           <form className="form-stack" onSubmit={submitLogin}>
             <label>
@@ -252,6 +259,12 @@ export default function Login({ onLogin, initialPath }) {
                 <RotateCcw size={15} /> Reset
               </button>
             </div>
+
+            {isAddingAccount && onCancel ? (
+              <button className="secondary full-width" type="button" onClick={onCancel}>
+                <X size={16} /> Cancel and return to current account
+              </button>
+            ) : null}
 
             <button
               className="link-button"
