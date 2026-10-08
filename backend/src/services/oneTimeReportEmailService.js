@@ -202,6 +202,16 @@ export async function scheduleOneTimeReportEmail({
   );
 
   const emailById = new Map(recipients.map((recipient) => [String(recipient.id), recipient.email]));
+  // Wake the in-process worker immediately after a schedule is created.
+  // This avoids waiting for the next polling tick and also makes newly-created
+  // jobs resilient when the scheduler started just before this request.
+  void processDueOneTimeReportEmailJobs().catch((schedulerError) => {
+    console.error("One-time report email immediate poll failed", {
+      error: schedulerError?.message || String(schedulerError),
+      stack: schedulerError?.stack,
+    });
+  });
+
   return {
     jobs: result.rows.map((row) => ({
       ...row,
@@ -245,20 +255,27 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
 
 let schedulerStarted = false;
 let schedulerTimer = null;
+const SCHEDULER_POLL_MS = 5_000;
 
 export function startOneTimeReportEmailScheduler() {
   if (schedulerStarted) return;
 
   schedulerStarted = true;
-  console.log("One-time report email scheduler enabled (5-second polling, Asia/Kolkata schedules normalized to UTC)");
+  console.log(`One-time report email scheduler enabled (${SCHEDULER_POLL_MS}ms polling, Asia/Kolkata schedules normalized to UTC)`);
 
-  const poll = () => {
-    void processDueOneTimeReportEmailJobs().catch((error) => {
-      console.error("One-time report email scheduler poll failed", {
-        error: error?.message || String(error),
-        stack: error?.stack,
-      });
-    });
+  const scheduleNextPoll = () => {
+    schedulerTimer = setTimeout(async () => {
+      try {
+        await processDueOneTimeReportEmailJobs();
+      } catch (error) {
+        console.error("One-time report email scheduler poll failed", {
+          error: error?.message || String(error),
+          stack: error?.stack,
+        });
+      } finally {
+        if (schedulerStarted) scheduleNextPoll();
+      }
+    }, SCHEDULER_POLL_MS);
   };
 
   void (async () => {
@@ -270,16 +287,19 @@ export function startOneTimeReportEmailScheduler() {
         timezone: TIMEZONE,
         databaseNow: clock.rows[0]?.db_now || null,
         databaseCurrentTimestamp: clock.rows[0]?.current_timestamp || null,
-        pollingMs: 5000,
+        pollingMs: SCHEDULER_POLL_MS,
       }));
-      poll();
-      schedulerTimer = setInterval(poll, 5_000);
+
+      await processDueOneTimeReportEmailJobs();
+      scheduleNextPoll();
     } catch (error) {
       console.error("One-time report email scheduler initialization failed", {
         error: error?.message || String(error),
         stack: error?.stack,
       });
       schedulerStarted = false;
+      if (schedulerTimer) clearTimeout(schedulerTimer);
+      schedulerTimer = null;
     }
   })();
 }
@@ -294,13 +314,23 @@ export async function processDueOneTimeReportEmailJobs() {
       LIMIT 20`,
   );
 
-  if (due.rows.length) {
-    console.log(JSON.stringify({
-      event: "one_time_report_email_due_jobs_found",
-      count: due.rows.length,
-      jobIds: due.rows.map((row) => row.id),
-    }));
-  }
+  const next = await q(
+    `SELECT id, scheduled_for, status
+       FROM public.one_time_report_email_jobs
+      WHERE status IN ('pending', 'failed', 'running')
+      ORDER BY scheduled_for ASC, id ASC
+      LIMIT 1`,
+  );
+
+  console.log(JSON.stringify({
+    event: due.rows.length ? "one_time_report_email_due_jobs_found" : "one_time_report_email_poll",
+    count: due.rows.length,
+    jobIds: due.rows.map((row) => row.id),
+    nextJobId: next.rows[0]?.id || null,
+    nextScheduledFor: next.rows[0]?.scheduled_for || null,
+    nextStatus: next.rows[0]?.status || null,
+    databaseNow: new Date().toISOString(),
+  }));
 
   for (const row of due.rows) {
     void executeOneTimeReportEmailJob(row.id).catch((workerError) => {
