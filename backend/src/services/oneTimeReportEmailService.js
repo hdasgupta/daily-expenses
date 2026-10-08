@@ -6,6 +6,49 @@ import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
 
+
+async function ensureOneTimeReportEmailSchedulerSchema() {
+  await q(`
+    CREATE TABLE IF NOT EXISTS public.one_time_report_email_jobs (
+      id BIGSERIAL PRIMARY KEY,
+      owner_user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+      created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
+      name VARCHAR(150) NOT NULL DEFAULT 'Report PDF email',
+      config JSONB NOT NULL DEFAULT '{}'::jsonb,
+      scheduled_for TIMESTAMPTZ NOT NULL,
+      status VARCHAR(20) NOT NULL DEFAULT 'pending',
+      last_attempt_at TIMESTAMPTZ,
+      last_error TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    )
+  `);
+
+  // Older deployments may have created scheduled_for as a timestamp without
+  // timezone. Treat those existing wall-clock values as Asia/Kolkata before
+  // converting the column permanently to timestamptz.
+  await q(`
+    DO $$
+    BEGIN
+      IF EXISTS (
+        SELECT 1
+          FROM information_schema.columns
+         WHERE table_schema = 'public'
+           AND table_name = 'one_time_report_email_jobs'
+           AND column_name = 'scheduled_for'
+           AND data_type = 'timestamp without time zone'
+      ) THEN
+        ALTER TABLE public.one_time_report_email_jobs
+          ALTER COLUMN scheduled_for TYPE TIMESTAMPTZ
+          USING scheduled_for AT TIME ZONE 'Asia/Kolkata';
+      END IF;
+    END $$
+  `);
+
+  await q(`CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_due
+            ON public.one_time_report_email_jobs(status, scheduled_for, id)`);
+}
+
 function error(message, statusCode = 400) {
   const result = new Error(message);
   result.statusCode = statusCode;
@@ -194,7 +237,8 @@ async function claimJob(client, id) {
        FROM public.one_time_report_email_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
       WHERE j.id = $1
-        AND j.scheduled_for <= CURRENT_TIMESTAMP
+        AND j.scheduled_for <= clock_timestamp()
+        AND j.status IN ('pending', 'failed')
       FOR UPDATE`,
     [id],
   );
@@ -244,20 +288,49 @@ export function startOneTimeReportEmailScheduler() {
     });
   };
 
-  poll();
-  schedulerTimer = setInterval(poll, 5_000);
-  schedulerTimer.unref?.();
+  void (async () => {
+    try {
+      await ensureOneTimeReportEmailSchedulerSchema();
+      const clock = await q(`SELECT now() AS db_now, CURRENT_TIMESTAMP AS current_timestamp`);
+      console.log(JSON.stringify({
+        event: "one_time_report_email_scheduler_started",
+        timezone: TIMEZONE,
+        databaseNow: clock.rows[0]?.db_now || null,
+        databaseCurrentTimestamp: clock.rows[0]?.current_timestamp || null,
+        pollingMs: 5000,
+      }));
+      poll();
+      schedulerTimer = setInterval(poll, 5_000);
+      // Keep the scheduler timer referenced. The HTTP server normally keeps the
+      // process alive, but unref could allow the worker to disappear in a
+      // non-standard Render/process lifecycle.
+    } catch (error) {
+      console.error("One-time report email scheduler initialization failed", {
+        error: error?.message || String(error),
+        stack: error?.stack,
+      });
+      schedulerStarted = false;
+    }
+  })();
 }
 
 export async function processDueOneTimeReportEmailJobs() {
   const due = await q(
     `SELECT id
        FROM public.one_time_report_email_jobs
-      WHERE scheduled_for <= CURRENT_TIMESTAMP
+      WHERE scheduled_for <= clock_timestamp()
         AND status IN ('pending', 'failed')
       ORDER BY scheduled_for ASC, id ASC
       LIMIT 20`,
   );
+
+  if (due.rows.length) {
+    console.log(JSON.stringify({
+      event: "one_time_report_email_due_jobs_found",
+      count: due.rows.length,
+      jobIds: due.rows.map((row) => row.id),
+    }));
+  }
 
   for (const row of due.rows) {
     void executeOneTimeReportEmailJob(row.id).catch((error) => {
