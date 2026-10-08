@@ -6,6 +6,8 @@ export const reportSql = {
       e.category_id,
       e.item_id,
       e.other_item,
+      e.quantity,
+      e.unit_id,
       e.total_cost,
       e.expense_type,
       e.comment,
@@ -13,6 +15,7 @@ export const reportSql = {
       e.proof_key,
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
+      u.name AS unit,
       s.id AS survivor_id,
       COALESCE(s.full_name, 'Unassigned') AS survivor,
       COALESCE(es.amount, e.total_cost) AS report_amount,
@@ -26,6 +29,8 @@ export const reportSql = {
       ON c.id = e.category_id
     LEFT JOIN public.items i
       ON i.id = e.item_id
+    LEFT JOIN public.units u
+      ON u.id = e.unit_id
     LEFT JOIN public.expense_shares es
       ON es.expense_id = e.id
     LEFT JOIN public.survivors s
@@ -39,6 +44,8 @@ export const reportSql = {
       e.category_id,
       e.item_id,
       e.other_item,
+      e.quantity,
+      e.unit_id,
       e.total_cost,
       e.expense_type,
       e.comment,
@@ -46,6 +53,7 @@ export const reportSql = {
       e.proof_key,
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
+      u.name AS unit,
       string_agg(
         DISTINCT s.full_name,
         ', '
@@ -69,6 +77,8 @@ export const reportSql = {
       ON c.id = e.category_id
     LEFT JOIN public.items i
       ON i.id = e.item_id
+    LEFT JOIN public.units u
+      ON u.id = e.unit_id
     LEFT JOIN public.expense_shares es
       ON es.expense_id = e.id
     LEFT JOIN public.survivors s
@@ -76,13 +86,14 @@ export const reportSql = {
     GROUP BY
       e.id,
       c.name,
-      i.name
+      i.name,
+      u.name
   )`,
 
   rawSelectPerSurvivor:
-    "id AS expense_id, expense_date, category, item, survivor, report_amount AS share_price, total_cost, comment, proof_key",
+    "id AS expense_id, expense_date, category, item, quantity, unit, survivor, report_amount AS share_price, total_cost, comment, proof_key",
 
-  rawSelectPerExpense: "id AS expense_id, expense_date, category, item, survivor, survivor_shares, total_cost, comment, proof_key",
+  rawSelectPerExpense: "id AS expense_id, expense_date, category, item, quantity, unit, survivor, survivor_shares, total_cost, comment, proof_key",
 
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte}

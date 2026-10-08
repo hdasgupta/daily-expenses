@@ -204,6 +204,8 @@ function getRawDumpColumns(rows) {
     "expense_date",
     "category",
     "item",
+    "quantity",
+    "unit",
     "survivor",
     "share",
     "total_cost",

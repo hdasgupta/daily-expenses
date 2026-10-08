@@ -135,6 +135,10 @@ function formatCell(value, column) {
     return formatDateKolkata(value);
   }
 
+  if (column === "quantity") {
+    return String(value);
+  }
+
   return String(value);
 }
 
