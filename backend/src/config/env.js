@@ -38,7 +38,7 @@ export const env = {
   // environment values cannot keep the old 06:00 schedules active.
   dailyEmailReportCron: "59 23 * * *",
   dailyEmailReportTimezone: process.env.DAILY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
-  monthlyEmailReportCron: "59 23 28-31 * *",
+  monthlyEmailReportCron: "59 23 * * *",
   monthlyEmailReportTimezone: process.env.MONTHLY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",
   weeklyEmailReportCron: "59 23 * * 6",
   weeklyEmailReportTimezone: process.env.WEEKLY_EMAIL_REPORT_TIMEZONE || "Asia/Kolkata",

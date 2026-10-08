@@ -217,7 +217,10 @@ async function runDailyEmailReport() {
 async function runMonthlyEmailReport() {
   const local = getLocalDateParts(env.monthlyEmailReportTimezone);
   if (!isLastDayOfMonth(local)) {
-    logSchedulerEvent("monthly_email_report_skipped_not_last_day", { local });
+    logSchedulerEvent("monthly_email_report_skipped_not_last_day", {
+      local,
+      cron: env.monthlyEmailReportCron,
+    });
     return;
   }
   const scheduledKey = `${local.year}-${local.month}`;
