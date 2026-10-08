@@ -75,8 +75,10 @@ async function resolveScheduledFor(value) {
     throw error("Choose a valid future date and time.");
   }
 
+  // Convert the user-entered Asia/Kolkata wall-clock time to an absolute UTC
+  // instant once. Never rely on the PostgreSQL session timezone for this value.
   const result = await q(
-    `SELECT $1::timestamp AT TIME ZONE $2 AS scheduled_for`,
+    `SELECT ($1::timestamp AT TIME ZONE $2) AS scheduled_for`,
     [text, TIMEZONE],
   );
   const scheduledFor = result.rows[0]?.scheduled_for;
@@ -86,7 +88,7 @@ async function resolveScheduledFor(value) {
     throw error("Choose a date and time at least 30 seconds in the future.");
   }
 
-  return scheduledFor;
+  return new Date(timestamp).toISOString();
 }
 
 export async function scheduleOneTimeReportEmail({
@@ -141,10 +143,12 @@ export async function scheduleOneTimeReportEmail({
 
   // Insert all recipient jobs in one statement so a multi-manager schedule is
   // all-or-nothing. Existing job ownership makes each manager see their own job.
+  // Store an absolute instant. The explicit cast keeps this deterministic even
+  // when the Render/PostgreSQL session timezone is not Asia/Kolkata.
   const result = await q(
     `INSERT INTO public.one_time_report_email_jobs
       (owner_user_id, created_by_user_id, name, config, scheduled_for, status)
-     SELECT recipient.id, $2::bigint, $3, $4::jsonb, $5, 'pending'
+     SELECT recipient.id, $2::bigint, $3, $4::jsonb, $5::timestamptz, 'pending'
        FROM unnest($1::bigint[]) AS selected(id)
        JOIN public.users recipient ON recipient.id = selected.id
      RETURNING id, owner_user_id, created_by_user_id, name, scheduled_for, status, created_at`,
@@ -190,7 +194,7 @@ async function claimJob(client, id) {
        FROM public.one_time_report_email_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
       WHERE j.id = $1
-        AND j.scheduled_for <= now()
+        AND j.scheduled_for <= CURRENT_TIMESTAMP
       FOR UPDATE`,
     [id],
   );
@@ -229,7 +233,7 @@ export function startOneTimeReportEmailScheduler() {
   if (schedulerStarted) return;
 
   schedulerStarted = true;
-  console.log("One-time report email scheduler enabled (15-second polling)");
+  console.log("One-time report email scheduler enabled (5-second polling, Asia/Kolkata schedules normalized to UTC)");
 
   const poll = () => {
     void processDueOneTimeReportEmailJobs().catch((error) => {
@@ -241,7 +245,7 @@ export function startOneTimeReportEmailScheduler() {
   };
 
   poll();
-  schedulerTimer = setInterval(poll, 15_000);
+  schedulerTimer = setInterval(poll, 5_000);
   schedulerTimer.unref?.();
 }
 
@@ -249,7 +253,7 @@ export async function processDueOneTimeReportEmailJobs() {
   const due = await q(
     `SELECT id
        FROM public.one_time_report_email_jobs
-      WHERE scheduled_for <= now()
+      WHERE scheduled_for <= CURRENT_TIMESTAMP
         AND status IN ('pending', 'failed')
       ORDER BY scheduled_for ASC, id ASC
       LIMIT 20`,
