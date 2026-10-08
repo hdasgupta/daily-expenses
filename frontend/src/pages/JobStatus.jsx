@@ -85,10 +85,20 @@ function formatCronTime(hour, minute) {
   }).format(date);
 }
 
-function describeCron(cronExpression) {
+function describeCron(cronExpression, jobName = "") {
   if (!cronExpression) return "—";
 
-  const parts = cronExpression.trim().split(/\s+/);
+  const normalizedCron = cronExpression.trim();
+
+  if (
+    jobName === "monthly-email-report" &&
+    /^\d+\s+\d+\s+L\s+\*\s+\*$/.test(normalizedCron)
+  ) {
+    const parts = normalizedCron.split(/\s+/);
+    return `Last day of every month at ${formatCronTime(parts[1], parts[0])}`;
+  }
+
+  const parts = normalizedCron.split(/\s+/);
 
   if (parts.length !== 5 && parts.length !== 6) {
     return cronExpression;
@@ -674,7 +684,7 @@ export default function JobStatus({ user }) {
 
             <div className="job-schedule-details">
               <span>
-                <b>Execution timing:</b> {describeCron(schedule.cron)}
+                <b>Execution timing:</b> {describeCron(schedule.cron, schedule.jobName)}
               </span>
 
               <span>
