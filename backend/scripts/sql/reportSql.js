@@ -1,4 +1,12 @@
 export const reportSql = {
+  /*
+   * Report source rows are always split to one row per survivor.
+   *
+   * expense_shares.amount is the resolved share amount produced by the
+   * expense allocation rules (fixed / average / remaining). Keeping the
+   * split at the source-query level prevents the original total_cost from
+   * being repeated for every survivor.
+   */
   sourcePerSurvivor: `expense_source AS (
     SELECT
       e.id,
@@ -16,14 +24,14 @@ export const reportSql = {
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       u.name AS unit,
-      s.id AS survivor_id,
+      es.survivor_id,
       COALESCE(s.full_name, 'Unassigned') AS survivor,
       COALESCE(es.amount, e.total_cost) AS report_amount,
       CASE
-        WHEN s.id IS NULL
-        THEN ARRAY[]::bigint[]
-        ELSE ARRAY[s.id]::bigint[]
-      END AS survivor_ids
+        WHEN es.survivor_id IS NULL THEN ARRAY[]::bigint[]
+        ELSE ARRAY[es.survivor_id]::bigint[]
+      END AS survivor_ids,
+      COALESCE(es.share_type, 'remaining') AS share_type
     FROM public.expenses e
     JOIN public.categories c
       ON c.id = e.category_id
@@ -54,24 +62,14 @@ export const reportSql = {
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       u.name AS unit,
-      string_agg(
-        DISTINCT s.full_name,
-        ', '
-        ORDER BY s.full_name
-      ) AS survivor,
-      COALESCE(
-        jsonb_agg(
-          DISTINCT jsonb_build_object('name', s.full_name, 'amount', es.amount)
-        ) FILTER (WHERE s.id IS NOT NULL),
-        '[]'::jsonb
-      ) AS survivor_shares,
-      ARRAY_AGG(
-        DISTINCT s.id
-      ) FILTER (
-        WHERE s.id IS NOT NULL
-      )::bigint[] AS survivor_ids,
-      NULL::bigint AS survivor_id,
-      NULL::numeric AS report_amount
+      es.survivor_id,
+      COALESCE(s.full_name, 'Unassigned') AS survivor,
+      COALESCE(es.amount, e.total_cost) AS report_amount,
+      CASE
+        WHEN es.survivor_id IS NULL THEN ARRAY[]::bigint[]
+        ELSE ARRAY[es.survivor_id]::bigint[]
+      END AS survivor_ids,
+      COALESCE(es.share_type, 'remaining') AS share_type
     FROM public.expenses e
     JOIN public.categories c
       ON c.id = e.category_id
@@ -83,17 +81,39 @@ export const reportSql = {
       ON es.expense_id = e.id
     LEFT JOIN public.survivors s
       ON s.id = es.survivor_id
-    GROUP BY
-      e.id,
-      c.name,
-      i.name,
-      u.name
   )`,
 
-  rawSelectPerSurvivor:
-    "id AS expense_id, expense_date, category, item, quantity, unit, survivor, report_amount AS share_price, total_cost, comment, proof_key",
+  /*
+   * Keep the report's existing field set, but make the expense amount the
+   * survivor's split amount. The survivor name is carried by the share
+   * field so a split expense becomes multiple visible expense rows without
+   * repeating the original total_cost.
+   */
+  rawSelectPerSurvivor: `
+    id AS expense_id,
+    expense_date,
+    category,
+    item,
+    quantity,
+    unit,
+    CONCAT(survivor, ': ₹', TO_CHAR(report_amount, 'FM9999999990.00')) AS share,
+    report_amount AS expense_amount,
+    comment,
+    proof_key
+  `,
 
-  rawSelectPerExpense: "id AS expense_id, expense_date, category, item, quantity, unit, survivor, survivor_shares, total_cost, comment, proof_key",
+  rawSelectPerExpense: `
+    id AS expense_id,
+    expense_date,
+    category,
+    item,
+    quantity,
+    unit,
+    CONCAT(survivor, ': ₹', TO_CHAR(report_amount, 'FM9999999990.00')) AS share,
+    report_amount AS expense_amount,
+    comment,
+    proof_key
+  `,
 
   raw: (cte, select, where, orderSql) =>
     `WITH ${cte}
@@ -107,9 +127,9 @@ export const reportSql = {
 
   or: (clauses) => `(${clauses.join(" OR ")})`,
 
-  totalSummary: (cte, amount, where) =>
+  totalSummary: (cte, where) =>
     `WITH ${cte}
-     SELECT ${amount} AS total
+     SELECT COALESCE(SUM(report_amount), 0) AS total
      FROM expense_source
      ${where}`,
 
@@ -123,9 +143,7 @@ export const reportSql = {
      LIMIT 5000`,
 
   filterDate: (alias, index) => `${alias}.expense_date = $${index}`,
-
   filterFrom: (alias, index) => `${alias}.expense_date >= $${index}`,
-
   filterTo: (alias, index) => `${alias}.expense_date <= $${index}`,
 
   filterMonthFrom: (alias, index) =>
@@ -135,7 +153,6 @@ export const reportSql = {
     `${alias}.expense_date < date_trunc('month', $${index}::date) + interval '1 month'`,
 
   filterYear: (alias, index) => `extract(year from ${alias}.expense_date) = $${index}`,
-
   filterProof: (alias, value) => `${alias}.has_proof = ${value}`,
 
   filterCategoryItem: (alias, categoryIndex, itemIndex) =>
@@ -159,26 +176,17 @@ export const reportSql = {
     )`,
 
   filterSurvivors: (alias, index) => `${alias}.survivor_ids && $${index}::bigint[]`,
-
   filterCategories: (alias, index) => `${alias}.category_id = ANY($${index}::bigint[])`,
-
   order: (expr, dir) => `${expr} ${dir}`,
-
   defaultRawOrder: "expense_date DESC, id DESC",
 
   groupExpr: {
     date: "expense_date",
-
     week: "date_trunc('week', expense_date)::date",
-
     month: "date_trunc('month', expense_date)::date",
-
     year: "extract(year from expense_date)::int",
-
     category: "category",
-
     item: "item",
-
     survivor: "survivor",
   },
 };
