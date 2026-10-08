@@ -109,3 +109,5 @@ dependencies {
 
     implementation project(':capacitor-cordova-android-plugins')
 }
+
+apply from: 'capacitor.build.gradle'
