@@ -81,7 +81,7 @@ function rawGroupValues(row, groupBy) {
 
 function valueForSort(row, column, isSummary = false) {
   if (column === "price") {
-    return Number(isSummary ? row.total : row.total_cost ?? row.report_amount ?? row.share_price ?? 0);
+    return Number(isSummary ? row.total : row.total_cost ?? row.expense_amount ?? row.report_amount ?? row.share_price ?? 0);
   }
 
   if (isSummary) return row[column];
@@ -191,10 +191,9 @@ function buildUiShareRows(rows) {
 }
 
 function mergeRowsForRawDump(rows) {
-  if (rows.some((row) => Object.prototype.hasOwnProperty.call(row, "share_price"))) {
-    return buildUiShareRows(rows);
-  }
-
+  // Report rows are already split to one row per survivor share. Never merge
+  // them back into one expense row in the PDF, or a survivor would receive
+  // the original expense total instead of the recalculated share amount.
   return [...rows];
 }
 

@@ -142,6 +142,19 @@ export const reportSql = {
      ${orderSql ? `ORDER BY ${orderSql}` : ""}
      LIMIT 5000`,
 
+  groupedDetail: (cte, select, where, groupBy, groupOrderSql, detailOrderSql) =>
+    `WITH ${cte}
+     SELECT ${select},
+            jsonb_agg(
+              to_jsonb(expense_source)
+              ORDER BY ${detailOrderSql}
+            ) AS detail_rows
+     FROM expense_source
+     ${where}
+     GROUP BY ${groupBy}
+     ${groupOrderSql ? `ORDER BY ${groupOrderSql}` : ""}
+     LIMIT 5000`,
+
   filterDate: (alias, index) => `${alias}.expense_date = $${index}`,
   filterFrom: (alias, index) => `${alias}.expense_date >= $${index}`,
   filterTo: (alias, index) => `${alias}.expense_date <= $${index}`,

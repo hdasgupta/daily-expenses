@@ -214,6 +214,42 @@ async function hydrateRows(rows) {
   );
 }
 
+function reportRow(row) {
+  return {
+    expense_id: row.expense_id ?? row.id,
+    expense_date: row.expense_date,
+    category: row.category,
+    item: row.item,
+    quantity: row.quantity,
+    unit: row.unit,
+    survivor: row.survivor,
+    share: `${row.survivor}: ₹${Number(row.report_amount || 0).toFixed(2)}`,
+    expense_amount: row.report_amount == null ? null : Number(row.report_amount),
+    comment: row.comment,
+    proof_key: row.proof_key,
+  };
+}
+
+function groupedDetailOrderSql(config) {
+  const expressions = {
+    date: "expense_date",
+    week: "date_trunc('week', expense_date)::date",
+    month: "date_trunc('month', expense_date)::date",
+    year: "extract(year from expense_date)::int",
+    category: "category",
+    item: "item",
+    survivor: "survivor",
+    price: "report_amount",
+  };
+
+  const parts = config.sortColumns
+    .map((sort) => expressions[sort.column] ? reportSql.order(expressions[sort.column], sort.direction.toUpperCase()) : null)
+    .filter(Boolean);
+
+  parts.push("expense_date DESC", "id DESC");
+  return parts.join(", ");
+}
+
 export async function runReport(input) {
   const config = cleanConfig(input);
 
@@ -275,11 +311,34 @@ export async function runReport(input) {
    * the UI then renders every raw row underneath each group.
    */
   if (!config.summarise) {
+    const groupSelect = config.groupBy.map(
+      (column) => `${reportSql.groupExpr[column]} AS "${column}"`,
+    );
+    const groupBySql = config.groupBy.map((column) => reportSql.groupExpr[column]).join(", ");
+
     const result = await q(
-      reportSql.raw(cte, reportSql.rawSelectPerExpense, where, detailOrderSql(config)),
+      reportSql.groupedDetail(
+        cte,
+        groupSelect.join(", "),
+        where,
+        groupBySql,
+        summaryOrderSql(config),
+        groupedDetailOrderSql(config),
+      ),
       params,
     );
-    const rows = await hydrateRows(result.rows);
+
+    const groups = [];
+    for (const group of result.rows) {
+      const detailRows = Array.isArray(group.detail_rows) ? group.detail_rows : [];
+      const hydrated = await hydrateRows(detailRows.map(reportRow));
+      groups.push({
+        values: Object.fromEntries(config.groupBy.map((column) => [column, group[column]])),
+        rows: hydrated,
+      });
+    }
+
+    const rows = groups.flatMap((group) => group.rows);
 
     return {
       mode: "grouped-raw",
@@ -296,6 +355,7 @@ export async function runReport(input) {
         "proof_url",
       ],
       groupBy: config.groupBy,
+      groups,
       rows,
       total: calculateDetailTotal(rows),
       chartData: [],

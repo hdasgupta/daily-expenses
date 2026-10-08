@@ -563,32 +563,13 @@ export default function Reports({ user }) {
     const resolvedTotal =
       Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
 
-    const next =
-      ["raw", "grouped-raw"].includes(data?.mode) &&
-      (data?.columns?.includes("share_price") || data?.columns?.includes("survivor_shares"))
-        ? {
-            ...data,
-
-            total: resolvedTotal,
-
-            rows: buildUiShareRows(data.rows).map((row) => ({ ...row, expense_amount: row.total_cost })),
-
-            columns: [
-              ...new Set(
-                data.columns
-                  .filter((column) => column !== "survivor" && column !== "survivor_shares")
-                  .map((column) =>
-                    column === "share_price" || column === "survivor_shares"
-                      ? "share"
-                      : column === "total_cost" ? "expense_amount" : column,
-                  ),
-              ),
-            ],
-          }
-        : {
-            ...data,
-            total: resolvedTotal,
-          };
+    // The API already returns one row per resolved survivor share. Never merge
+    // rows back into the original expense, because that would hide the split
+    // amounts and repeat the original total in survivor reports.
+    const next = {
+      ...data,
+      total: resolvedTotal,
+    };
 
     setResult(next);
   };
@@ -1825,6 +1806,8 @@ function ReportContent({ result, renderCell }) {
 
 function GroupedRawContent({ result, renderCell }) {
   const grouped = useMemo(() => {
+    if (Array.isArray(result.groups)) return result.groups;
+
     const map = new Map();
 
     for (const row of result.rows) {
