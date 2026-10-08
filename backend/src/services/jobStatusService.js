@@ -34,7 +34,6 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
   const offset = (safePage - 1) * safePageSize;
-  const searchPattern = `%${safeSearch}%`;
 
   // Older one-time report jobs were created before created_by_user_id was
   // populated. The user confirmed those legacy jobs were created by the
@@ -65,8 +64,21 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
         ON r.job_name = 'scheduled-report:' || j.id::text
      WHERE r.job_name LIKE 'scheduled-report:%'
        AND ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
+    UNION ALL
+    SELECT ('one-time-' || r.job_name || '-' || r.scheduled_key)::text AS id,
+           r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,
+           r.duration_ms, r.error_message,
+           'One-time report PDF email #' ||
+             split_part(split_part(r.job_name, ':', 2), ':', 1) AS scheduled_report_name
+      FROM public.scheduler_job_runs r
+     WHERE r.job_name LIKE 'one-time-report:%:user:%'
+       AND (
+         $1::boolean = TRUE
+         OR r.job_name LIKE 'one-time-report:%:user:' || NULLIF($2::text, '')
+       )
   ) history`;
-  const historyWhere = `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
+  const historyWhere =
+    `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
 
   const [countResult, rowsResult] = await Promise.all([
     q(`SELECT COUNT(*)::int AS total

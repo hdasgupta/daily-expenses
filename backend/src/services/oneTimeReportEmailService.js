@@ -275,12 +275,28 @@ async function executeOneTimeReportEmailJob(id) {
     if (!execution) return;
 
     const { job, lockKey } = execution;
+    const executionJobName = `one-time-report:${id}:user:${job.owner_user_id}`;
+    const scheduledKey = String(job.scheduled_for);
+    const startedAt = Date.now();
 
     await client.query(
       `UPDATE public.one_time_report_email_jobs
           SET last_attempt_at = now(), updated_at = now(), last_error = NULL
         WHERE id = $1`,
       [id],
+    );
+
+    await client.query(
+      `INSERT INTO public.scheduler_job_runs
+        (job_name, scheduled_key, status, started_at, completed_at, duration_ms, error_message)
+       VALUES ($1, $2, 'running', now(), NULL, NULL, NULL)
+       ON CONFLICT (job_name, scheduled_key) DO UPDATE
+         SET status = 'running',
+             started_at = now(),
+             completed_at = NULL,
+             duration_ms = NULL,
+             error_message = NULL`,
+      [executionJobName, scheduledKey],
     );
 
     try {
@@ -297,6 +313,19 @@ async function executeOneTimeReportEmailJob(id) {
         htmlBody: `<p>Your scheduled expense report PDF <strong>${job.name}</strong> is attached.</p>`,
       });
 
+      const durationMs = Date.now() - startedAt;
+
+      await client.query(
+        `UPDATE public.scheduler_job_runs
+            SET status = 'completed',
+                completed_at = now(),
+                duration_ms = $3,
+                error_message = NULL
+          WHERE job_name = $1
+            AND scheduled_key = $2`,
+        [executionJobName, scheduledKey, durationMs],
+      );
+
       await client.query(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
 
       console.log(
@@ -304,9 +333,14 @@ async function executeOneTimeReportEmailJob(id) {
           event: "one_time_report_email_completed",
           jobId: id,
           ownerUserId: job.owner_user_id,
+          executionJobName,
+          scheduledKey,
         }),
       );
     } catch (error) {
+      const durationMs = Date.now() - startedAt;
+      const errorMessage = error?.message || String(error);
+
       await client.query(
         `UPDATE public.one_time_report_email_jobs
             SET status = 'failed',
@@ -314,12 +348,23 @@ async function executeOneTimeReportEmailJob(id) {
                 last_error = $2,
                 updated_at = now()
           WHERE id = $1`,
-        [id, error?.message || String(error)],
+        [id, errorMessage],
+      );
+
+      await client.query(
+        `UPDATE public.scheduler_job_runs
+            SET status = 'failed',
+                completed_at = NULL,
+                duration_ms = $3,
+                error_message = $4
+          WHERE job_name = $1
+            AND scheduled_key = $2`,
+        [executionJobName, scheduledKey, durationMs, errorMessage],
       );
 
       console.error("One-time report email failed", {
         jobId: id,
-        error: error?.message || String(error),
+        error: errorMessage,
         stack: error?.stack,
       });
 
@@ -330,7 +375,7 @@ async function executeOneTimeReportEmailJob(id) {
         schedulerOwnerEmail: job.owner_email || null,
         schedulerSchedule: `one-time at ${job.scheduled_for || "unknown"}`,
         failureTime: new Date().toISOString(),
-        failureMessage: error?.message || String(error),
+        failureMessage: errorMessage,
         stack: error?.stack,
       });
     } finally {
