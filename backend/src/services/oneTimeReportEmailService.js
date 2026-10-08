@@ -69,6 +69,31 @@ async function ensureOneTimeReportEmailSchedulerSchema() {
     END $$
   `);
 
+  // Legacy deployments may have a CHECK constraint that only allows
+  // pending/failed. The worker uses running as the atomic claim state, so
+  // normalize the constraint on every startup before polling jobs.
+  await q(`
+    DO $$
+    BEGIN
+      IF EXISTS (
+        SELECT 1
+          FROM pg_constraint c
+          JOIN pg_class t ON t.oid = c.conrelid
+          JOIN pg_namespace n ON n.oid = t.relnamespace
+         WHERE n.nspname = 'public'
+           AND t.relname = 'one_time_report_email_jobs'
+           AND c.conname = 'one_time_report_email_jobs_status_check'
+      ) THEN
+        ALTER TABLE public.one_time_report_email_jobs
+          DROP CONSTRAINT one_time_report_email_jobs_status_check;
+      END IF;
+
+      ALTER TABLE public.one_time_report_email_jobs
+        ADD CONSTRAINT one_time_report_email_jobs_status_check
+        CHECK (status IN ('pending', 'running', 'failed'));
+    END $$
+  `);
+
   await q(`CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_due
             ON public.one_time_report_email_jobs(status, scheduled_for, id)`);
 }
