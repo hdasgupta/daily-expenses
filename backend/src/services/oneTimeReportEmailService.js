@@ -45,6 +45,40 @@ async function ensureOneTimeReportEmailSchedulerSchema() {
     END $$
   `);
 
+  // Older deployments may still have scheduler history keys limited to 50
+  // characters. One-time execution keys can exceed that limit, so widen both
+  // columns before writing execution history.
+  await q(`
+    DO $$
+    BEGIN
+      IF EXISTS (
+        SELECT 1
+          FROM information_schema.columns
+         WHERE table_schema = 'public'
+           AND table_name = 'scheduler_job_runs'
+           AND column_name = 'job_name'
+           AND character_maximum_length IS NOT NULL
+           AND character_maximum_length < 100
+      ) THEN
+        ALTER TABLE public.scheduler_job_runs
+          ALTER COLUMN job_name TYPE VARCHAR(100);
+      END IF;
+
+      IF EXISTS (
+        SELECT 1
+          FROM information_schema.columns
+         WHERE table_schema = 'public'
+           AND table_name = 'scheduler_job_runs'
+           AND column_name = 'scheduled_key'
+           AND character_maximum_length IS NOT NULL
+           AND character_maximum_length < 100
+      ) THEN
+        ALTER TABLE public.scheduler_job_runs
+          ALTER COLUMN scheduled_key TYPE VARCHAR(100);
+      END IF;
+    END $$
+  `);
+
   await q(`CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_due
             ON public.one_time_report_email_jobs(status, scheduled_for, id)`);
 }
