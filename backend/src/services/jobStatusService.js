@@ -53,15 +53,18 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   const historySql = `(
     SELECT e.id::text AS id,
            e.job_name, e.scheduled_key, e.status, e.started_at, e.completed_at,
-           e.duration_ms, e.error_message, NULL::text AS scheduled_report_name
+           e.duration_ms, e.error_message, NULL::text AS scheduled_report_name,
+           NULL::text AS owner_name, NULL::text AS owner_email
       FROM public.scheduler_job_executions e
     UNION ALL
-    SELECT ('scheduled-' || j.id::text || '-' || r.scheduled_key)::text AS id,
+    SELECT ('scheduled-' || split_part(r.job_name, ':', 2) || '-' || r.scheduled_key)::text AS id,
            r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,
-           r.duration_ms, r.error_message, j.name AS scheduled_report_name
+           r.duration_ms, r.error_message, j.name AS scheduled_report_name,
+           u.full_name AS owner_name, u.email AS owner_email
       FROM public.scheduler_job_runs r
-      JOIN public.scheduled_report_jobs j
+      LEFT JOIN public.scheduled_report_jobs j
         ON r.job_name = 'scheduled-report:' || j.id::text
+      LEFT JOIN public.users u ON u.id = j.owner_user_id
      WHERE r.job_name LIKE 'scheduled-report:%'
        AND ($1::boolean = TRUE OR j.owner_user_id = NULLIF($2::text, '')::bigint)
     UNION ALL
@@ -69,8 +72,11 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
            r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,
            r.duration_ms, r.error_message,
            'One-time report PDF email #' ||
-             split_part(split_part(r.job_name, ':', 2), ':', 1) AS scheduled_report_name
+             split_part(split_part(r.job_name, ':', 2), ':', 1) AS scheduled_report_name,
+           u.full_name AS owner_name, u.email AS owner_email
       FROM public.scheduler_job_runs r
+      LEFT JOIN public.users u
+        ON u.id::text = split_part(r.job_name, ':user:', 2)
      WHERE r.job_name LIKE 'one-time-report:%:user:%'
        AND (
          $1::boolean = TRUE
@@ -78,7 +84,8 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
        )
   ) history`;
   const historyWhere =
-    `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3`;
+    `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3
+      OR ($1::boolean = TRUE AND (history.owner_name ILIKE $3 OR history.owner_email ILIKE $3))`;
 
   const [countResult, rowsResult] = await Promise.all([
     q(`SELECT COUNT(*)::int AS total
@@ -90,7 +97,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     ]),
     q(
       `SELECT id, job_name, scheduled_key, status, started_at, completed_at,
-              duration_ms, error_message, scheduled_report_name
+              duration_ms, error_message, scheduled_report_name, owner_name, owner_email
          FROM ${historySql}
         WHERE ${historyWhere}
         ORDER BY started_at DESC

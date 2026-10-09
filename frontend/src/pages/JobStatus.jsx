@@ -714,6 +714,7 @@ export default function JobStatus({ user }) {
             <thead>
               <tr>
                 <th>Job</th>
+                {user?.role === "admin" ? <th>Owner / manager</th> : null}
                 <th>Status</th>
                 <th>Scheduled key</th>
                 <th>Started</th>
@@ -730,6 +731,16 @@ export default function JobStatus({ user }) {
                   <td>
                     {row.scheduled_report_name || scheduleLabels[row.job_name] || row.job_name}
                   </td>
+
+                  {user?.role === "admin" ? (
+                    <td>
+                      {row.owner_name || row.owner_email
+                        ? `${row.owner_name || "Unknown"} · ${row.owner_email || "—"}`
+                        : row.job_name?.startsWith("scheduled-report:")
+                          ? "Owner unavailable (job removed)"
+                          : "All managers / system"}
+                    </td>
+                  ) : null}
 
                   <td>
                     <span className={`job-status-badge ${row.status}`}>
@@ -760,7 +771,7 @@ export default function JobStatus({ user }) {
 
               {!rows.length ? (
                 <tr>
-                  <td colSpan="8">
+                  <td colSpan={user?.role === "admin" ? 9 : 8}>
                     <div className="empty-card">
                       No scheduler executions have been recorded yet.
                     </div>
