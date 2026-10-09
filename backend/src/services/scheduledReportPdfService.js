@@ -1,4 +1,5 @@
 import PDFDocument from "pdfkit";
+import { runPdfInWorker } from "./pdfWorkerPool.js";
 
 function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
@@ -340,7 +341,7 @@ function normaliseRawRows(rows) {
   }));
 }
 
-export function buildScheduledReportPdf({ summary, raw, generatedAt }) {
+export function buildScheduledReportPdfInProcess({ summary, raw, generatedAt }) {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({ size: "A4", margin: 36, layout: "landscape" });
     const chunks = [];
@@ -397,4 +398,8 @@ export function buildScheduledReportPdf({ summary, raw, generatedAt }) {
     );
     doc.end();
   });
+}
+
+export function buildScheduledReportPdf({ summary, raw, generatedAt }) {
+  return runPdfInWorker("scheduled", { summary, raw, generatedAt });
 }

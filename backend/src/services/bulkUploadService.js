@@ -9,7 +9,7 @@ import { buildBulkProofUrls } from "../utils/googleDrive.js";
 import { normalizeBulkExpenseRow } from "../utils/bulkCsv.js";
 
 export async function importExpenses(buffer, userId) {
-  const rows = parseCsv(buffer);
+  const rows = await parseCsv(buffer);
   if (!rows.length) throw new Error("CSV is empty");
   const header = rows[0].map((v) => String(v).trim().toLowerCase());
   const required = [
@@ -144,7 +144,7 @@ export async function importExpenses(buffer, userId) {
 }
 
 export async function importCategoriesItems(buffer) {
-  const rows = parseCsv(buffer);
+  const rows = await parseCsv(buffer);
   if (!rows.length) throw new Error("CSV is empty");
   let categories = 0,
     items = 0;

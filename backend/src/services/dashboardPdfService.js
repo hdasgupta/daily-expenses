@@ -1,4 +1,5 @@
 import PDFDocument from "pdfkit";
+import { runPdfInWorker } from "./pdfWorkerPool.js";
 
 function formatMoney(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
@@ -32,7 +33,7 @@ function drawBarChart(doc, title, data, width = 520) {
   doc.y = startY + 28;
 }
 
-export function buildDashboardPdf(dashboard) {
+export function buildDashboardPdfInProcess(dashboard) {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({ size: "A4", margin: 36 });
     const chunks = [];
@@ -64,4 +65,8 @@ export function buildDashboardPdf(dashboard) {
     }
     doc.end();
   });
+}
+
+export function buildDashboardPdf(dashboard) {
+  return runPdfInWorker("dashboard", { dashboard });
 }

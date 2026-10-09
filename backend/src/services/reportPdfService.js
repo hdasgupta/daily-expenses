@@ -1,5 +1,6 @@
 import PDFDocument from "pdfkit";
 import { env } from "../config/env.js";
+import { runPdfInWorker } from "./pdfWorkerPool.js";
 
 const PIVOT_LEAVES_PER_PAGE = 8;
 const CHART_ROWS_PER_PAGE = 12;
@@ -1204,7 +1205,7 @@ function drawSummaryTotal(doc, report) {
   });
 }
 
-export function buildReportPdf(report, config = {}) {
+export function buildReportPdfInProcess(report, config = {}) {
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument({
       size: "A4",
@@ -1281,4 +1282,8 @@ export function buildReportPdf(report, config = {}) {
 
     doc.end();
   });
+}
+
+export function buildReportPdf(report, config = {}) {
+  return runPdfInWorker("report", { report, config });
 }

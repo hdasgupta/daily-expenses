@@ -1,4 +1,5 @@
 import PDFDocument from "pdfkit";
+import { runPdfInWorker } from "./pdfWorkerPool.js";
 
 function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
@@ -638,7 +639,7 @@ function uiShareDumpRows(rows) {
   );
 }
 
-export function buildMonthlyEmailReportPdf(
+export function buildMonthlyEmailReportPdfInProcess(
   report,
 ) {
   return new Promise(
@@ -947,4 +948,8 @@ export function buildMonthlyEmailReportPdf(
       doc.end();
     },
   );
+}
+
+export function buildMonthlyEmailReportPdf(report) {
+  return runPdfInWorker("monthly", { report });
 }
