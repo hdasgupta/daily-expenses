@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Check, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
+import { Capacitor } from "@capacitor/core";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
 import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
-import ProofViewer from "../components/ProofViewer";
+import { openRemoteFile } from "../lib/download";
 import ConfirmDialog from "../components/ConfirmDialog";
 import { usePagination } from "../hooks/usePagination";
 
@@ -115,7 +116,6 @@ export default function Expense() {
 
   const [proofExpense, setProofExpense] = useState(null);
   const [proofFile, setProofFile] = useState(null);
-  const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [deleteId, setDeleteId] = useState(null);
   const [formError, setFormError] = useState("");
 
@@ -351,11 +351,49 @@ export default function Expense() {
   };
 
   const openProof = async (row) => {
-    const result = await api(`/expenses/${row.id}/proof-url`, {
-      loadingMessage: "Opening proof…",
-    });
+    let proofWindow = null;
+    let isNative = false;
 
-    setProofViewerUrl(result.url || "");
+    try {
+      isNative = Capacitor.isNativePlatform();
+    } catch {
+      isNative = false;
+    }
+
+    // Open a blank tab synchronously on the web so the browser does not
+    // block the new tab after the asynchronous proof URL request.
+    if (!isNative) {
+      proofWindow = window.open("about:blank", "_blank");
+    }
+
+    try {
+      const result = await api(`/expenses/${row.id}/proof-url`, {
+        loadingMessage: "Opening proof…",
+      });
+
+      if (!result.url) {
+        throw new Error("Proof file URL is not available.");
+      }
+
+      if (isNative) {
+        await openRemoteFile(
+          result.url,
+          `expense-proof-${row.id || "proof"}.pdf`,
+        );
+      } else if (proofWindow) {
+        proofWindow.opener = null;
+        proofWindow.location.replace(result.url);
+      } else {
+        // If popups are blocked, fall back to the shared browser handler.
+        await openRemoteFile(
+          result.url,
+          `expense-proof-${row.id || "proof"}.pdf`,
+        );
+      }
+    } catch (error) {
+      proofWindow?.close();
+      throw error;
+    }
   };
 
   return (
@@ -833,11 +871,6 @@ export default function Expense() {
         onConfirm={remove}
       />
 
-      <ProofViewer
-        url={proofViewerUrl}
-        title="Expense proof"
-        onClose={() => setProofViewerUrl("")}
-      />
     </section>
   );
 }
