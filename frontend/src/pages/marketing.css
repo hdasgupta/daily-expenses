@@ -1,165 +1,78 @@
-.marketing-page {
-  width: 100%;
-  min-width: 0;
-}
+.marketing-page { width: 100%; min-width: 0; }
+.marketing-page .marketing-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: end; }
+.marketing-page .marketing-form-grid label { display: flex; min-width: 0; flex-direction: column; gap: 6px; color: var(--muted); font-size: 12px; }
+.marketing-page .marketing-form-grid h2 { margin: 0; font-size: 18px; }
+.marketing-page .marketing-error { margin: 0 0 14px; padding: 10px 12px; border: 1px solid #ef4444; border-radius: 9px; color: #b91c1c; background: #fef2f2; }
+.marketing-page button:not(.primary) { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--soft); color: var(--text); }
+.marketing-page .location-form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.marketing-locations-page .location-section { margin-top: 22px; min-width: 0; }
+.marketing-locations-page .location-list-heading { margin-bottom: 12px; }
+.marketing-locations-page .location-list-heading h2, .marketing-locations-page .location-card h3 { margin: 0; }
+.marketing-locations-page .location-list-heading p { margin: 4px 0 0; }
+.marketing-locations-page .pagination { margin: 0 0 12px; max-width: 100%; }
+.marketing-locations-page .location-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; }
+.marketing-locations-page .location-card { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card, var(--surface)); }
+.marketing-locations-page .location-card-icon { display: flex; flex: 0 0 38px; width: 38px; height: 38px; align-items: center; justify-content: center; border-radius: 10px; color: var(--primary, #2563eb); background: var(--soft); }
+.marketing-locations-page .location-card-content { flex: 1 1 auto; min-width: 0; }
+.marketing-locations-page .location-card-content h3 { overflow-wrap: anywhere; font-size: 15px; font-weight: 650; }
+.marketing-locations-page .location-card-content p { margin: 4px 0 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.marketing-locations-page .location-card-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.marketing-locations-page .location-card-actions button { display: inline-flex; align-items: center; gap: 5px; }
+.marketing-locations-page .location-empty-state { padding: 22px 16px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); text-align: center; background: var(--card, var(--surface)); }
 
-.marketing-page .marketing-form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: end;
-}
-
-.marketing-page .marketing-form-grid label {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.marketing-page .marketing-form-grid h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.marketing-page .marketing-error {
-  margin: 0 0 14px;
-  padding: 10px 12px;
-  border: 1px solid #ef4444;
-  border-radius: 9px;
-  color: #b91c1c;
-  background: #fef2f2;
-}
-
-.marketing-page button:not(.primary) {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 10px;
-  background: var(--soft);
-  color: var(--text);
-}
-
-.marketing-page .location-form-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.marketing-locations-page .location-section {
-  margin-top: 22px;
-  min-width: 0;
-}
-
-.marketing-locations-page .location-list-heading {
-  margin-bottom: 12px;
-}
-
-.marketing-locations-page .location-list-heading h2,
-.marketing-locations-page .location-card h3 {
-  margin: 0;
-}
-
-.marketing-locations-page .location-list-heading p {
-  margin: 4px 0 0;
-}
-
-.marketing-locations-page .pagination {
-  margin: 0 0 12px;
-  max-width: 100%;
-}
-
-.marketing-locations-page .location-list {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 10px;
-  min-width: 0;
-}
-
-.marketing-locations-page .location-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--card, var(--surface));
-}
-
-.marketing-locations-page .location-card-icon {
-  display: flex;
-  flex: 0 0 38px;
-  width: 38px;
-  height: 38px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  color: var(--primary, #2563eb);
-  background: var(--soft);
-}
-
-.marketing-locations-page .location-card-content {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.marketing-locations-page .location-card-content h3 {
-  overflow-wrap: anywhere;
-  font-size: 15px;
-  font-weight: 650;
-}
-
-.marketing-locations-page .location-card-content p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
-
-.marketing-locations-page .location-card-actions {
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 6px;
-}
-
-.marketing-locations-page .location-card-actions button {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.marketing-locations-page .location-empty-state {
-  padding: 22px 16px;
-  border: 1px dashed var(--line);
-  border-radius: 12px;
-  color: var(--muted);
-  text-align: center;
-  background: var(--card, var(--surface));
-}
-
+/* Marketing list: responsive item cards instead of a wide, hard-to-read table. */
+.marketing-list-page .marketing-list-form { padding: 20px; margin-bottom: 24px; }
+.marketing-list-page .marketing-form-title { display: flex; grid-column: 1 / -1; align-items: center; gap: 10px; color: var(--primary, #2563eb); }
+.marketing-list-page .marketing-form-title h2 { color: var(--text); }
+.marketing-list-page .marketing-list-form-actions { display: flex; grid-column: 1 / -1; flex-wrap: wrap; gap: 8px; }
+.marketing-list-page .marketing-items-section { min-width: 0; }
+.marketing-list-page .marketing-items-heading { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+.marketing-list-page .marketing-items-heading h2 { margin: 0; font-size: 19px; }
+.marketing-list-page .marketing-items-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.marketing-list-page .marketing-list-legend { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 12px; }
+.marketing-list-page .marketing-list-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.marketing-list-page .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.marketing-list-page .pending-dot { background: #d97706; }
+.marketing-list-page .purchased-dot { background: #16a34a; }
+.marketing-list-page .pagination { margin: 0 0 14px; max-width: 100%; }
+.marketing-list-page .marketing-item-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.marketing-list-page .marketing-item-card { display: flex; flex-direction: column; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--card, var(--surface)); box-shadow: 0 2px 8px rgb(15 23 42 / 4%); }
+.marketing-list-page .marketing-item-card.status-pending { border-top: 3px solid #d97706; }
+.marketing-list-page .marketing-item-card.status-purchased { border-top: 3px solid #16a34a; }
+.marketing-list-page .marketing-item-card.status-removed { border-top: 3px solid #9ca3af; opacity: .88; }
+.marketing-list-page .marketing-item-card-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.marketing-list-page .marketing-status-pill { display: inline-flex; align-items: center; gap: 5px; width: fit-content; border-radius: 999px; padding: 5px 9px; font-size: 11px; font-weight: 700; }
+.marketing-list-page .marketing-status-pill.pending { color: #92400e; background: #fef3c7; }
+.marketing-list-page .marketing-status-pill.purchased { color: #166534; background: #dcfce7; }
+.marketing-list-page .marketing-status-pill.removed { color: #4b5563; background: #f3f4f6; }
+.marketing-list-page .marketing-item-date { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 12px; }
+.marketing-list-page .marketing-item-main { display: flex; align-items: center; gap: 12px; margin: 16px 0; min-width: 0; }
+.marketing-list-page .marketing-item-icon { display: flex; flex: 0 0 44px; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 12px; color: var(--primary, #2563eb); background: var(--soft); }
+.marketing-list-page .marketing-item-name { min-width: 0; }
+.marketing-list-page .marketing-item-name h3 { margin: 0; overflow-wrap: anywhere; font-size: 16px; font-weight: 700; color: var(--text); }
+.marketing-list-page .marketing-item-name p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.marketing-list-page .marketing-item-details { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.marketing-list-page .marketing-item-details > div { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.marketing-list-page .marketing-item-details span { color: var(--muted); font-size: 11px; }
+.marketing-list-page .marketing-item-details strong { color: var(--text); font-size: 13px; overflow-wrap: anywhere; }
+.marketing-list-page .marketing-location-value { display: inline-flex; align-items: center; gap: 4px; }
+.marketing-list-page .marketing-purchase-price { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 12px; }
+.marketing-list-page .marketing-purchase-price strong { margin-left: auto; color: var(--text); font-size: 15px; }
+.marketing-list-page .marketing-removed-note { margin-top: 12px; color: var(--muted); font-size: 12px; }
+.marketing-list-page .marketing-item-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 14px; }
+.marketing-list-page .marketing-item-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.marketing-list-page .marketing-item-actions .primary { flex: 1 1 180px; }
+.marketing-list-page .marketing-readonly-label { display: inline-flex; align-items: center; gap: 6px; padding: 5px 0; color: var(--muted); font-size: 12px; }
+.marketing-list-page .marketing-list-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 150px; padding: 24px 16px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; background: var(--card, var(--surface)); }
+.marketing-list-page .marketing-list-empty strong { color: var(--text); }
+.marketing-list-page .marketing-loading-mark { width: 20px; height: 20px; border: 2px solid var(--line); border-top-color: var(--primary, #2563eb); border-radius: 50%; }
+@media (max-width: 760px) { .marketing-list-page .marketing-item-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) {
-  .marketing-page .marketing-form-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .marketing-locations-page .location-card {
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 12px;
-  }
-
-  .marketing-locations-page .location-card-content {
-    flex-basis: calc(100% - 52px);
-  }
-
-  .marketing-locations-page .location-card-actions {
-    width: 100%;
-    padding-left: 50px;
-    justify-content: flex-start;
-  }
+  .marketing-page .marketing-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .marketing-locations-page .location-card { align-items: flex-start; flex-wrap: wrap; padding: 12px; }
+  .marketing-locations-page .location-card-content { flex-basis: calc(100% - 52px); }
+  .marketing-locations-page .location-card-actions { width: 100%; padding-left: 50px; justify-content: flex-start; }
+  .marketing-list-page .marketing-list-form { padding: 15px; }
+  .marketing-list-page .marketing-item-card { padding: 14px; }
+  .marketing-list-page .marketing-item-details { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
 }
