@@ -118,3 +118,11 @@
   .marketing-list-page .marketing-item-details { padding: 5px 0; }
   .marketing-list-page .marketing-item-actions { padding-top: 6px; }
 }
+
+
+/* Minimal-height cards: omit repeated date/location and align status with quantity. */
+.marketing-list-page .marketing-item-card-top { min-height: 0; }
+.marketing-list-page .marketing-item-card-top:empty { display: none; }
+.marketing-list-page .marketing-item-quantity-status { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.marketing-list-page .marketing-item-quantity-status > div { min-width: 0; }
+.marketing-list-page .marketing-item-quantity-status .marketing-status-pill { flex: 0 0 auto; margin-left: auto; }
