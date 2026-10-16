@@ -1,4 +1,4 @@
-const DEFAULT_API="https://daily-expenses-g4ze.onrender.com/api";
+const DEFAULT_API="https://daily-expenses-8pbr.vercel.app/api";
 function base(){return (String(import.meta.env.VITE_API_BASE_URL||"").trim()||DEFAULT_API).replace(/\/$/,"");}
 let busy=false,last="",lastAt=0;
 function user(){try{return JSON.parse(localStorage.getItem("daily-expenses:error-user")||"null")}catch{return null}}

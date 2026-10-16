@@ -2,7 +2,7 @@ import { Capacitor } from "@capacitor/core";
 import { Directory, Filesystem } from "@capacitor/filesystem";
 import { Share } from "@capacitor/share";
 
-const RENDER_API_BASE_URL = "https://daily-expenses-g4ze.onrender.com/api";
+const RENDER_API_BASE_URL = "https://daily-expenses-8pbr.vercel.app/api";
 
 function isNativePlatform() {
   try {
