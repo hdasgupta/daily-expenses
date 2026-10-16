@@ -162,7 +162,9 @@ export default function MarketingList({ navigate }) {
 
   const canSelectMarketingItems = Boolean(form.categoryId && form.locationId);
 
-  const selectionControls = (position) => canSelectMarketingItems ? (
+  const canShowSelectionControls = canSelectMarketingItems && pendingFilteredRows.length > 0;
+
+  const selectionControls = (position) => canShowSelectionControls ? (
     <div className={`marketing-bulk-toolbar marketing-bulk-toolbar-${position}`}>
       <label className="marketing-select-all"><input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />{allFilteredSelected ? "Deselect all" : "Select all pending items"}</label>
       <span>{selectedPendingRows.length} selected</span>
