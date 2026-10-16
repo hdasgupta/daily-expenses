@@ -126,3 +126,17 @@
 .marketing-list-page .marketing-item-quantity-status { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .marketing-list-page .marketing-item-quantity-status > div { min-width: 0; }
 .marketing-list-page .marketing-item-quantity-status .marketing-status-pill { flex: 0 0 auto; margin-left: auto; }
+
+
+/* Require and visually emphasize selected marketing items using the active theme colors. */
+.marketing-list-page .marketing-item-card.is-selected {
+  background: var(--soft, color-mix(in srgb, var(--primary, #2563eb) 10%, var(--card, var(--surface, #fff))));
+  border-color: var(--primary, #2563eb);
+  box-shadow: inset 0 0 0 1px var(--primary, #2563eb);
+}
+.marketing-list-page .marketing-item-card.is-selected .marketing-item-name h3 {
+  color: var(--text);
+}
+.marketing-list-page .marketing-item-card.is-selected .marketing-item-checkbox input {
+  accent-color: var(--primary, #2563eb);
+}

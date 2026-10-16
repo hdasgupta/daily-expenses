@@ -115,6 +115,10 @@ export default function MarketingList({ navigate }) {
   const save = async (event) => {
     event.preventDefault();
     setError("");
+    if (!form.locationId) {
+      setError("Shopping location is required.");
+      return;
+    }
     try {
       const payload = { ...form, itemName: form.itemName.trim() };
       await api(editing ? `/marketing-list/${editing}` : "/marketing-list", {
@@ -187,7 +191,7 @@ export default function MarketingList({ navigate }) {
       <form className="card marketing-form-grid marketing-list-form" onSubmit={save}>
         <div className="marketing-form-title"><ShoppingBasket size={20} /><h2>{editing ? "Edit marketing item" : "Add an item to the list"}</h2></div>
         <label className="marketing-date-field">Date<input required type="date" value={form.purchaseDate} onChange={(event) => { change("purchaseDate", event.target.value); setPage(1); }} /></label>
-        <label>Shopping location<select value={form.locationId} onChange={(event) => { change("locationId", event.target.value); setPage(1); }}><option value="">Choose location</option>{locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}</select></label>
+        <label>Shopping location<select required value={form.locationId} onChange={(event) => { change("locationId", event.target.value); setPage(1); }}><option value="">Choose location</option>{locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}</select></label>
         <label>Category<select value={form.categoryId} onChange={(event) => { change("categoryId", event.target.value); setPage(1); }}><option value="">Choose category</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
         <label>Known item<select value={form.itemId} onChange={(event) => change("itemId", event.target.value)}><option value="">Custom / type item name</option>{items.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
         <label>Item name<input required value={form.itemName} onChange={(event) => change("itemName", event.target.value)} placeholder="e.g. Potatoes" /></label>
@@ -207,7 +211,8 @@ export default function MarketingList({ navigate }) {
               const status = row.status === "pending" ? "pending" : row.status === "removed" ? "removed" : "purchased";
               const quantity = status === "purchased" ? (row.purchased_quantity ?? row.quantity ?? "—") : (row.quantity ?? "—");
               const unit = status === "purchased" ? (row.purchased_unit_name || row.unit_name || "") : (row.unit_name || "");
-              return <article className={`marketing-item-card status-${status}`} key={row.id}>
+              const isSelected = selectedIds.includes(String(row.id));
+              return <article className={`marketing-item-card status-${status}${isSelected ? " is-selected" : ""}`} key={row.id}>
                 <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}</div>
                 <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div>{status === "pending" && <button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button>}</div>
                 <div className="marketing-item-details marketing-item-quantity-status"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span></div>
