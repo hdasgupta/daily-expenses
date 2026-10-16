@@ -12,6 +12,7 @@ import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
 import * as scheduledReportController from "../controllers/scheduledReportController.js";
 import * as marketingController from "../controllers/marketingController.js";
+import * as dietChartController from "../controllers/dietChartController.js";
 import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
 import { checkDbConnection } from "../db/index.js";
 
@@ -74,6 +75,15 @@ export function createRouter(maxUploadBytes) {
   router.put("/pagination/:module", auth, paginationController.save);
 
   router.get("/meta/categories", auth, masterDataController.metaCategories);
+  router.get("/recipes", auth, dietChartController.listRecipes);
+  router.post("/recipes", auth, dietChartController.createRecipe);
+  router.put("/recipes/:id", auth, dietChartController.updateRecipe);
+  router.delete("/recipes/:id", auth, dietChartController.deleteRecipe);
+  router.get("/food-chart", auth, dietChartController.listFoodChart);
+  router.post("/food-chart", auth, dietChartController.addFoodChartEntry);
+  router.put("/food-chart/:id", auth, dietChartController.updateFoodChartEntry);
+  router.delete("/food-chart/:id", auth, dietChartController.removeFoodChartEntry);
+
   router.get("/marketing-list", auth, marketingController.listItems);
   router.post("/marketing-list", auth, marketingController.createItem);
   router.put("/marketing-list/:id", auth, marketingController.updateItem);

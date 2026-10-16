@@ -251,4 +251,33 @@ CREATE INDEX IF NOT EXISTS idx_scheduler_job_runs_started_at
 CREATE INDEX IF NOT EXISTS idx_scheduler_job_runs_job_name
   ON public.scheduler_job_runs(job_name, started_at DESC);
 CREATE UNIQUE INDEX IF NOT EXISTS one_remaining_share_per_expense ON public.expense_shares(expense_id) WHERE share_type = 'remaining';
+CREATE TABLE IF NOT EXISTS public.recipe_master (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  name VARCHAR(200) NOT NULL,
+  category VARCHAR(100) NOT NULL DEFAULT 'Other',
+  region VARCHAR(100) NOT NULL DEFAULT 'Indian',
+  ingredients JSONB NOT NULL DEFAULT '[]'::jsonb,
+  steps JSONB NOT NULL DEFAULT '[]'::jsonb,
+  prep_minutes INTEGER NOT NULL DEFAULT 0 CHECK (prep_minutes >= 0),
+  cook_minutes INTEGER NOT NULL DEFAULT 0 CHECK (cook_minutes >= 0),
+  servings NUMERIC(8,2) NOT NULL DEFAULT 2 CHECK (servings > 0),
+  notes TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(user_id, name)
+);
+CREATE INDEX IF NOT EXISTS idx_recipe_master_user_name ON public.recipe_master(user_id, name);
+CREATE TABLE IF NOT EXISTS public.food_chart_entries (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  chart_date DATE NOT NULL,
+  meal VARCHAR(30) NOT NULL CHECK (meal IN ('Breakfast','Lunch','Evening Snacks','Dinner')),
+  recipe_id BIGINT REFERENCES public.recipe_master(id) ON DELETE SET NULL,
+  recipe_snapshot JSONB NOT NULL,
+  servings NUMERIC(8,2) NOT NULL DEFAULT 2 CHECK (servings > 0),
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_food_chart_user_date ON public.food_chart_entries(user_id, chart_date, meal, sort_order, id);
 `;

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
   ChevronDown,
   ClipboardList,
+  BookOpen,
+  Utensils,
   Database,
   FileBarChart,
   Gauge,
@@ -22,6 +24,8 @@ import {
 const navItems = [
   { group: "Add Data", path: "/marketing-list", label: "Marketing list", icon: ClipboardList, permission: "add-expense" },
   { group: "Add Data", path: "/add-expense", label: "Add Expense", icon: ClipboardList, permission: "add-expense" },
+  { group: "Diet Chart", path: "/food-chart", label: "Food Chart", icon: Utensils, permission: "add-expense" },
+  { group: "Diet Chart", path: "/recipe-master", label: "Recipe Master", icon: BookOpen, permission: "add-expense" },
   { group: "Manipulation", path: "/report", label: "Reports", icon: FileBarChart, permission: "report" },
   { group: "Manipulation", path: "/dashboard", label: "Dashboard", icon: Gauge, permission: "dashboard" },
   { group: "Job", path: "/job-status", label: "Job status", icon: RefreshCw, permission: "job-status" },

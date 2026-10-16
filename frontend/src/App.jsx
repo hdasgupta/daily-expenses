@@ -17,6 +17,8 @@ import Users from "./pages/Users";
 import JobStatus from "./pages/JobStatus";
 import MarketingList from "./pages/MarketingList";
 import MarketingLocations from "./pages/MarketingLocations";
+import FoodChart from "./pages/FoodChart";
+import RecipeMaster from "./pages/RecipeMaster";
 import { api } from "./lib/api";
 import {
   clearAccounts,
@@ -73,6 +75,8 @@ const routes = {
   },
   "/marketing-list": { component: MarketingList, permission: "add-expense" },
   "/marketing-locations": { component: MarketingLocations, permission: "add-expense" },
+  "/food-chart": { component: FoodChart, permission: "add-expense" },
+  "/recipe-master": { component: RecipeMaster, permission: "add-expense" },
 };
 
 const PERMISSIONS_BY_ROLE = {
