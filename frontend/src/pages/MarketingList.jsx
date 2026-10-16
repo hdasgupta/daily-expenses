@@ -158,13 +158,19 @@ export default function MarketingList({ navigate }) {
     navigate("/add-expense");
   };
 
+  const canAddExpenseForSelectedDate = String(form.purchaseDate || "").slice(0, 10) <= todayKolkata();
+
   const selectionControls = (position) => (
     <div className={`marketing-bulk-toolbar marketing-bulk-toolbar-${position}`}>
       <label className="marketing-select-all"><input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />{allFilteredSelected ? "Deselect all" : "Select all pending items"}</label>
       <span>{selectedPendingRows.length} selected</span>
-      <button type="button" className="primary" onClick={buySelected} disabled={!selectedPendingRows.length || !selectedCategoryCompatible}>
-        <CheckCircle2 size={15} /> Purchased all / Add expense
-      </button>
+      {canAddExpenseForSelectedDate ? (
+        <button type="button" className="primary" onClick={buySelected} disabled={!selectedPendingRows.length || !selectedCategoryCompatible}>
+          <CheckCircle2 size={15} /> Purchased all / Add expense
+        </button>
+      ) : (
+        <span className="marketing-selection-hint" role="status">You can add to expense in future</span>
+      )}
       {selectedPendingRows.length > 0 && !selectedCategoryCompatible && <span className="marketing-selection-hint">Select items from one category at a time.</span>}
     </div>
   );
