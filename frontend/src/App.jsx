@@ -15,6 +15,8 @@ import DashboardDetail from "./pages/DashboardDetail";
 import DashboardDrilldown from "./pages/DashboardDrilldown";
 import Users from "./pages/Users";
 import JobStatus from "./pages/JobStatus";
+import MarketingList from "./pages/MarketingList";
+import MarketingLocations from "./pages/MarketingLocations";
 import { api } from "./lib/api";
 import {
   clearAccounts,
@@ -69,6 +71,8 @@ const routes = {
     component: JobStatus,
     permission: "job-status",
   },
+  "/marketing-list": { component: MarketingList, permission: "add-expense" },
+  "/marketing-locations": { component: MarketingLocations, permission: "add-expense" },
 };
 
 const PERMISSIONS_BY_ROLE = {
@@ -83,6 +87,7 @@ const PERMISSIONS_BY_ROLE = {
     "dashboard",
     "add-user",
     "job-status",
+    "marketing-list",
   ],
   manager: [
     "add-expense",
@@ -92,8 +97,9 @@ const PERMISSIONS_BY_ROLE = {
     "report",
     "dashboard",
     "job-status",
+    "marketing-list",
   ],
-  editor: ["add-expense"],
+  editor: ["add-expense", "marketing-list"],
 };
 
 const LAST_AUTHENTICATED_PATH_KEY = "daily-expenses:last-authenticated-path";

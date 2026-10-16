@@ -7,6 +7,7 @@ import {
   Gauge,
   KeyRound,
   LogOut,
+  MapPin,
   Menu,
   Moon,
   Plus,
@@ -19,6 +20,8 @@ import {
 } from "lucide-react";
 
 const navItems = [
+  { path: "/marketing-list", label: "Marketing List", icon: ClipboardList, permission: "add-expense" },
+  { path: "/marketing-locations", label: "Add Location", icon: MapPin, permission: "add-expense" },
   {
     path: "/add-expense",
     label: "Add expenses",

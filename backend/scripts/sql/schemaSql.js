@@ -193,6 +193,44 @@ CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_creator
   ON public.scheduled_report_jobs(created_by_user_id);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
   ON public.scheduled_report_jobs(active, frequency, time_of_day);
+CREATE TABLE IF NOT EXISTS public.marketing_locations (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(150) NOT NULL UNIQUE,
+  address TEXT,
+  created_by BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS public.marketing_list_items (
+  id BIGSERIAL PRIMARY KEY,
+  category_id BIGINT REFERENCES public.categories(id) ON DELETE SET NULL,
+  item_id BIGINT REFERENCES public.items(id) ON DELETE SET NULL,
+  item_name VARCHAR(200) NOT NULL,
+  quantity NUMERIC(14,4),
+  unit_id BIGINT REFERENCES public.units(id) ON DELETE SET NULL,
+  purchase_date DATE NOT NULL,
+  location_id BIGINT REFERENCES public.marketing_locations(id) ON DELETE SET NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','purchased','removed')),
+  expense_id BIGINT,
+  expense_price NUMERIC(14,2),
+  purchased_quantity NUMERIC(14,4),
+  purchased_unit_id BIGINT REFERENCES public.units(id) ON DELETE SET NULL,
+  created_by BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
+  updated_by BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_marketing_list_date_status ON public.marketing_list_items(purchase_date,status);
+CREATE OR REPLACE FUNCTION public.marketing_mark_expense_removed() RETURNS trigger AS $$
+BEGIN
+  UPDATE public.marketing_list_items SET status='removed', expense_id=NULL, updated_at=now()
+   WHERE expense_id=OLD.id AND status='purchased';
+  RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+DROP TRIGGER IF EXISTS trg_marketing_expense_removed ON public.expenses;
+CREATE TRIGGER trg_marketing_expense_removed AFTER DELETE ON public.expenses
+FOR EACH ROW EXECUTE FUNCTION public.marketing_mark_expense_removed();
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,

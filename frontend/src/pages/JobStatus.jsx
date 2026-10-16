@@ -15,6 +15,7 @@ const scheduleLabels = {
   "weekly-email-report": "Weekly 4-week email report",
   "monthly-email-report": "Monthly 3-month email report",
   "yearly-email-report": "Yearly 12-month email report",
+  "marketing-list-email": "Marketing List email (next day)",
 };
 
 const scheduleOrder = {
@@ -29,6 +30,7 @@ const staticScheduleOrder = {
   "weekly-email-report": 2,
   "monthly-email-report": 3,
   "yearly-email-report": 4,
+  "marketing-list-email": 5,
 };
 
 const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -721,7 +723,7 @@ export default function JobStatus({ user }) {
                 <th>Finished</th>
                 <th>Running since</th>
                 <th>Duration</th>
-                <th>Error</th>
+                <th>Error / details</th>
               </tr>
             </thead>
 

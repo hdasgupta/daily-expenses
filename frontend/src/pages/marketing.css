@@ -1,0 +1,8 @@
+.marketing-page { width: 100%; }
+.marketing-page .marketing-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:end; }
+.marketing-page .marketing-form-grid label { display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:12px; }
+.marketing-page .marketing-form-grid h2 { margin:0; font-size:18px; }
+.marketing-page .marketing-error { margin:0 0 14px; padding:10px 12px; border:1px solid #ef4444; border-radius:9px; color:#b91c1c; background:#fef2f2; }
+.marketing-page .data-table { min-width:760px; }
+.marketing-page button:not(.primary) { border:1px solid var(--line); border-radius:8px; padding:8px 10px; background:var(--soft); color:var(--text); }
+@media(max-width:640px) { .marketing-page .marketing-form-grid { grid-template-columns:1fr; } }

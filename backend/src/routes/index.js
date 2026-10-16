@@ -11,6 +11,7 @@ import * as dashboardController from "../controllers/dashboardController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
 import * as scheduledReportController from "../controllers/scheduledReportController.js";
+import * as marketingController from "../controllers/marketingController.js";
 import { auth, permit, indiaTimezoneOnly } from "../middleware/auth.js";
 import { checkDbConnection } from "../db/index.js";
 
@@ -73,6 +74,15 @@ export function createRouter(maxUploadBytes) {
   router.put("/pagination/:module", auth, paginationController.save);
 
   router.get("/meta/categories", auth, masterDataController.metaCategories);
+  router.get("/marketing-list", auth, marketingController.listItems);
+  router.post("/marketing-list", auth, marketingController.createItem);
+  router.put("/marketing-list/:id", auth, marketingController.updateItem);
+  router.post("/marketing-list/:id/purchased", auth, marketingController.markPurchased);
+  router.get("/marketing-locations", auth, marketingController.listLocations);
+  router.post("/marketing-locations", auth, marketingController.createLocation);
+  router.put("/marketing-locations/:id", auth, marketingController.updateLocation);
+  router.delete("/marketing-locations/:id", auth, marketingController.deleteLocation);
+  router.post("/marketing-list/send-email", marketingController.sendScheduledEmail);
   router.get("/meta/units", auth, masterDataController.metaUnits);
   router.get("/meta/items/:categoryId", auth, masterDataController.metaItems);
   router.get("/meta/survivors", auth, survivorController.meta);

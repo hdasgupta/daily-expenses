@@ -27,6 +27,12 @@ const scheduleDefinitions = [
     cron: env.yearlyEmailReportCron,
     timezone: env.yearlyEmailReportTimezone,
   },
+  {
+    jobName: "marketing-list-email",
+    label: "Marketing List email (next day)",
+    cron: env.marketingListEmailCron,
+    timezone: env.marketingListEmailTimezone,
+  },
 ];
 
 export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
