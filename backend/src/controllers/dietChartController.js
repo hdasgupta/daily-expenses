@@ -1,4 +1,5 @@
 import { q } from "../db/index.js";
+import { expandedStarterRecipes } from "../data/expandedStarterRecipes.js";
 
 const cleanRecipe = (body = {}) => ({
   name: String(body.name || "").trim(),
@@ -30,11 +31,38 @@ const starterRecipes = [
 ];
 
 export async function listRecipes(req, res) {
-  const existing = await q("SELECT id FROM public.recipe_master WHERE user_id=$1 LIMIT 1", [req.user.id]);
-  if (!existing.rowCount) {
-    for (const r of starterRecipes) {
-      await q(`INSERT INTO public.recipe_master(user_id,name,category,region,ingredients,steps,prep_minutes,cook_minutes,servings) VALUES($1,$2,$3,$4,$5::jsonb,$6::jsonb,$7,$8,$9) ON CONFLICT(user_id,name) DO NOTHING`, [req.user.id,r.name,r.category,r.region,JSON.stringify(r.ingredients),JSON.stringify(r.steps),r.prepMinutes,r.cookMinutes,r.servings]);
-    }
+  const catalogue = [...new Map([...starterRecipes, ...expandedStarterRecipes].map((recipe) => [recipe.name, recipe])).values()];
+  const names = catalogue.map((recipe) => recipe.name);
+  const existing = await q(
+    "SELECT COUNT(*)::int AS count FROM public.recipe_master WHERE user_id=$1 AND name = ANY($2::text[])",
+    [req.user.id, names],
+  );
+
+  // Seed missing starter recipes for both new and existing accounts. ON CONFLICT
+  // preserves user edits and prevents duplicate names on subsequent requests.
+  if (Number(existing.rows[0]?.count || 0) < catalogue.length) {
+    await q(
+      `INSERT INTO public.recipe_master(user_id,name,category,region,ingredients,steps,prep_minutes,cook_minutes,servings,notes)
+       SELECT $1, r.name, COALESCE(r.category,'Other'), COALESCE(r.region,'Indian'),
+              COALESCE(r.ingredients,'[]'::jsonb), COALESCE(r.steps,'[]'::jsonb),
+              COALESCE(r.prep_minutes,0), COALESCE(r.cook_minutes,0), COALESCE(r.servings,2), r.notes
+       FROM jsonb_to_recordset($2::jsonb) AS r(
+         name text, category text, region text, ingredients jsonb, steps jsonb,
+         prep_minutes integer, cook_minutes integer, servings numeric, notes text
+       )
+       ON CONFLICT(user_id,name) DO NOTHING`,
+      [req.user.id, JSON.stringify(catalogue.map((r) => ({
+        name: r.name,
+        category: r.category,
+        region: r.region,
+        ingredients: r.ingredients || [],
+        steps: r.steps || [],
+        prep_minutes: r.prepMinutes || 0,
+        cook_minutes: r.cookMinutes || 0,
+        servings: r.servings || 2,
+        notes: r.notes || null,
+      })))],
+    );
   }
   const result = await q(`${selectRecipe} WHERE user_id=$1 ORDER BY name`, [req.user.id]);
   res.json(result.rows);
