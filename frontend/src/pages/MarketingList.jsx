@@ -32,6 +32,8 @@ export default function MarketingList({ navigate }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [filterLocationId, setFilterLocationId] = useState("");
+  const [filterCategoryId, setFilterCategoryId] = useState("");
   const pagination = usePagination("marketing-list", "purchase_date");
 
   const load = async () => {
@@ -63,6 +65,8 @@ export default function MarketingList({ navigate }) {
     const selectedDate = String(form.purchaseDate || "").slice(0, 10);
     const filtered = rows.filter((row) => {
       if (String(row.purchase_date || "").slice(0, 10) !== selectedDate) return false;
+      if (filterLocationId && String(row.location_id || "") !== String(filterLocationId)) return false;
+      if (filterCategoryId && String(row.category_id || "") !== String(filterCategoryId)) return false;
       const haystack = [row.item_name, row.category_name, row.location_name, row.unit_name, row.status, row.purchase_date, row.quantity, row.expense_price]
         .map((value) => String(value ?? "")).join(" ").toLowerCase();
       return !term || haystack.includes(term);
@@ -77,7 +81,7 @@ export default function MarketingList({ navigate }) {
       });
     }
     return filtered;
-  }, [rows, form.purchaseDate, pagination.search, pagination.sortColumn, pagination.sortDirection]);
+  }, [rows, form.purchaseDate, filterLocationId, filterCategoryId, pagination.search, pagination.sortColumn, pagination.sortDirection]);
 
   const pageSize = Number(pagination.pageSize) || 10;
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / pageSize));
@@ -92,7 +96,7 @@ export default function MarketingList({ navigate }) {
   }));
 
   const resetForm = ({ preserveSelection = true } = {}) => {
-    const selection = preserveSelection ? { categoryId: form.categoryId, purchaseDate: form.purchaseDate } : {};
+    const selection = preserveSelection ? { categoryId: form.categoryId, purchaseDate: form.purchaseDate, locationId: form.locationId } : {};
     setEditing(null);
     setForm({ ...empty(), ...selection });
   };
@@ -107,9 +111,9 @@ export default function MarketingList({ navigate }) {
       if (editing) {
         resetForm();
       } else {
-        // Keep the selected date and category so multiple items can be added quickly.
+        // Keep the selected date, category, and location so multiple items can be added quickly.
         setEditing(null);
-        setForm({ ...empty(), categoryId: form.categoryId, purchaseDate: form.purchaseDate });
+        setForm({ ...empty(), categoryId: form.categoryId, purchaseDate: form.purchaseDate, locationId: form.locationId });
       }
       setPage(1); await load();
     } catch (e) { setError(e.message || "Unable to save item"); }
@@ -136,17 +140,21 @@ export default function MarketingList({ navigate }) {
       <form className="card marketing-form-grid marketing-list-form" onSubmit={save}>
         <div className="marketing-form-title"><ShoppingBasket size={20} /><h2>{editing ? "Edit marketing item" : "Add an item to the list"}</h2></div>
         <label className="marketing-date-field">Date<input required type="date" value={form.purchaseDate} onChange={(event) => { change("purchaseDate", event.target.value); setPage(1); }} /></label>
+        <label>Shopping location<select value={form.locationId} onChange={(event) => change("locationId", event.target.value)}><option value="">Choose location</option>{locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}</select></label>
         <label>Category<select value={form.categoryId} onChange={(event) => change("categoryId", event.target.value)}><option value="">Choose category</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
         <label>Known item<select value={form.itemId} onChange={(event) => change("itemId", event.target.value)}><option value="">Custom / type item name</option>{items.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
         <label>Item name<input required value={form.itemName} onChange={(event) => change("itemName", event.target.value)} placeholder="e.g. Potatoes" /></label>
         <label>Quantity<input type="number" min="0" step="any" value={form.quantity} onChange={(event) => change("quantity", event.target.value)} placeholder="Quantity" /></label>
         <label>Unit<select value={form.unitId} onChange={(event) => change("unitId", event.target.value)}><option value="">Choose unit</option>{units.map((unit) => <option key={unit.id} value={unit.id}>{unit.name}</option>)}</select></label>
-        <label>Shopping location<select value={form.locationId} onChange={(event) => change("locationId", event.target.value)}><option value="">Choose location</option>{locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}</select></label>
         <div className="marketing-list-form-actions"><button className="primary" type="submit">{editing ? "Save changes" : "Add to marketing list"}</button>{editing && <button type="button" onClick={resetForm}>Cancel</button>}</div>
       </form>
 
       <section className="marketing-items-section" aria-labelledby="marketing-items-heading">
-        <div className="marketing-items-heading"><div><h2 id="marketing-items-heading">Shopping items</h2><p>{filteredRows.length} {filteredRows.length === 1 ? "item" : "items"} for {displayDate(form.purchaseDate)}{pagination.search ? " matching your search" : ""}</p></div><div className="marketing-list-legend"><span><i className="status-dot pending-dot" /> Pending</span><span><i className="status-dot purchased-dot" /> Purchased</span></div></div>
+        <div className="marketing-items-heading"><div><h2 id="marketing-items-heading">Shopping items</h2><p>{filteredRows.length} {filteredRows.length === 1 ? "item" : "items"} for {displayDate(form.purchaseDate)}{filterLocationId ? ` · ${locations.find((location) => String(location.id) === String(filterLocationId))?.name || "selected location"}` : ""}{filterCategoryId ? ` · ${categories.find((category) => String(category.id) === String(filterCategoryId))?.name || "selected category"}` : ""}{pagination.search ? " matching your search" : ""}</p></div><div className="marketing-list-legend"><span><i className="status-dot pending-dot" /> Pending</span><span><i className="status-dot purchased-dot" /> Purchased</span></div></div>
+        <div className="marketing-list-filters" aria-label="Filter shopping items">
+          <label>Location filter<select value={filterLocationId} onChange={(event) => { setFilterLocationId(event.target.value); setPage(1); }}><option value="">All locations</option>{locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}</select></label>
+          <label>Category filter<select value={filterCategoryId} onChange={(event) => { setFilterCategoryId(event.target.value); setPage(1); }}><option value="">All categories</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
+        </div>
         <Pagination page={safePage} setPage={setPage} total={filteredRows.length} {...pagination} sortOptions={sortOptions} />
 
         {loading ? <div className="marketing-list-empty"><span className="marketing-loading-mark" />Loading marketing list…</div> : visibleRows.length ? (
@@ -165,7 +173,7 @@ export default function MarketingList({ navigate }) {
               </article>;
             })}
           </div>
-        ) : <div className="marketing-list-empty"><ShoppingBasket size={28} /><strong>{pagination.search ? "No matching items" : `No items for ${displayDate(form.purchaseDate)}`}</strong><span>{pagination.search ? "Try another search term." : "Choose another date or add a shopping item using the form above."}</span></div>}
+        ) : <div className="marketing-list-empty"><ShoppingBasket size={28} /><strong>{pagination.search || filterLocationId || filterCategoryId ? "No matching items" : `No items for ${displayDate(form.purchaseDate)}`}</strong><span>{pagination.search || filterLocationId || filterCategoryId ? "Try different filters or a search term." : "Choose another date or add a shopping item using the form above."}</span></div>}
       </section>
     </div>
   );
