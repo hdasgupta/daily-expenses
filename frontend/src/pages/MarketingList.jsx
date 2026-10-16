@@ -160,7 +160,9 @@ export default function MarketingList({ navigate }) {
 
   const canAddExpenseForSelectedDate = String(form.purchaseDate || "").slice(0, 10) <= todayKolkata();
 
-  const selectionControls = (position) => (
+  const canSelectMarketingItems = Boolean(form.categoryId && form.locationId);
+
+  const selectionControls = (position) => canSelectMarketingItems ? (
     <div className={`marketing-bulk-toolbar marketing-bulk-toolbar-${position}`}>
       <label className="marketing-select-all"><input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />{allFilteredSelected ? "Deselect all" : "Select all pending items"}</label>
       <span>{selectedPendingRows.length} selected</span>
@@ -173,7 +175,7 @@ export default function MarketingList({ navigate }) {
       )}
       {selectedPendingRows.length > 0 && !selectedCategoryCompatible && <span className="marketing-selection-hint">Select items from one category at a time.</span>}
     </div>
-  );
+  ) : null;
 
   return (
     <div className="marketing-page marketing-list-page">
@@ -204,7 +206,7 @@ export default function MarketingList({ navigate }) {
               const quantity = status === "purchased" ? (row.purchased_quantity ?? row.quantity ?? "—") : (row.quantity ?? "—");
               const unit = status === "purchased" ? (row.purchased_unit_name || row.unit_name || "") : (row.unit_name || "");
               return <article className={`marketing-item-card status-${status}`} key={row.id}>
-                <div className="marketing-item-card-top">{status === "pending" && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}<span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span><span className="marketing-item-date"><CalendarDays size={14} />{displayDate(row.purchase_date)}</span></div>
+                <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}<span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span><span className="marketing-item-date"><CalendarDays size={14} />{displayDate(row.purchase_date)}</span></div>
                 <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div></div>
                 <div className="marketing-item-details"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><div><span>Location</span><strong className="marketing-location-value"><MapPin size={14} />{row.location_name || "Not specified"}</strong></div></div>
                 {status === "purchased" && <div className="marketing-purchase-price"><Wallet size={16} /><span>Expense price</span><strong>₹{Number(row.expense_price || 0).toFixed(2)}</strong></div>}
