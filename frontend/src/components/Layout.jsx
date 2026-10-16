@@ -20,68 +20,18 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { path: "/marketing-list", label: "Marketing List", icon: ClipboardList, permission: "add-expense" },
-  { path: "/marketing-locations", label: "Add Location", icon: MapPin, permission: "add-expense" },
-  {
-    path: "/add-expense",
-    label: "Add expenses",
-    icon: ClipboardList,
-    permission: "add-expense",
-  },
-  {
-    path: "/add-survivor",
-    label: "Add survivors",
-    icon: Users,
-    permission: "add-survivor",
-  },
-  {
-    path: "/add-item",
-    label: "Add items",
-    icon: Tags,
-    permission: "add-item",
-  },
-  {
-    path: "/add-unit",
-    label: "Add units",
-    icon: Database,
-    permission: "add-unit",
-  },
-  {
-    path: "/bulk-upload-expenses",
-    label: "Bulk upload expenses",
-    icon: ClipboardList,
-    permission: "bulk-upload-expenses",
-  },
-  {
-    path: "/bulk-upload-categories-items",
-    label: "Bulk upload categories/items",
-    icon: Tags,
-    permission: "bulk-upload-categories-items",
-  },
-  {
-    path: "/report",
-    label: "Reports",
-    icon: FileBarChart,
-    permission: "report",
-  },
-  {
-    path: "/dashboard",
-    label: "Dashboard",
-    icon: Gauge,
-    permission: "dashboard",
-  },
-  {
-    path: "/job-status",
-    label: "Job Status",
-    icon: RefreshCw,
-    permission: "job-status",
-  },
-  {
-    path: "/add-user",
-    label: "Add users",
-    icon: UserRound,
-    permission: "add-user",
-  },
+  { group: "Add Data", path: "/marketing-list", label: "Marketing list", icon: ClipboardList, permission: "add-expense" },
+  { group: "Add Data", path: "/add-expense", label: "Add Expense", icon: ClipboardList, permission: "add-expense" },
+  { group: "Manipulation", path: "/report", label: "Reports", icon: FileBarChart, permission: "report" },
+  { group: "Manipulation", path: "/dashboard", label: "Dashboard", icon: Gauge, permission: "dashboard" },
+  { group: "Job", path: "/job-status", label: "Job status", icon: RefreshCw, permission: "job-status" },
+  { group: "Metadata", path: "/add-item", label: "Add Items", icon: Tags, permission: "add-item" },
+  { group: "Metadata", path: "/add-unit", label: "Add units", icon: Database, permission: "add-unit" },
+  { group: "Metadata", path: "/add-survivor", label: "Add Survivor", icon: Users, permission: "add-survivor" },
+  { group: "Metadata", path: "/marketing-locations", label: "Add location", icon: MapPin, permission: "add-expense" },
+  { group: "Bulk upload", path: "/bulk-upload-categories-items", label: "Bulk upload categories/items", icon: Tags, permission: "bulk-upload-categories-items" },
+  { group: "Bulk upload", path: "/bulk-upload-expenses", label: "Bulk upload expenses", icon: ClipboardList, permission: "bulk-upload-expenses" },
+  { group: "Administration", path: "/add-user", label: "Add users", icon: UserRound, permission: "add-user" },
 ];
 
 function normalizePermissions(permissions) {
@@ -359,22 +309,25 @@ export default function Layout({
       <aside className={`navigation-drawer ${open ? "open" : ""}`}>
         <div className="drawer-title">Navigation</div>
 
-        {navigationItems.map((item) => {
+        {navigationItems.map((item, index) => {
           const Icon = item.icon;
+          const startsGroup = index === 0 || navigationItems[index - 1].group !== item.group;
 
           return (
-            <button
-              key={item.path}
-              className={
-                path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
-                  ? "active"
-                  : ""
-              }
-              onClick={() => navigate(item.path)}
-            >
-              <Icon size={18} />
-              {item.label}
-            </button>
+            <React.Fragment key={item.path}>
+              {startsGroup ? <div className="drawer-section-title">{item.group}</div> : null}
+              <button
+                className={
+                  path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
+                    ? "active"
+                    : ""
+                }
+                onClick={() => navigate(item.path)}
+              >
+                <Icon size={18} />
+                {item.label}
+              </button>
+            </React.Fragment>
           );
         })}
 
