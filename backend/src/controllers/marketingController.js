@@ -38,6 +38,21 @@ export async function markPurchased(req,res) {
  if(!r.rowCount) return res.status(409).json({error:"Item is no longer pending or does not exist"});
  res.json(r.rows[0]);
 }
+export async function markPurchasedBulk(req, res) {
+ const b = req.body || {};
+ const ids = [...new Set((Array.isArray(b.itemIds) ? b.itemIds : []).map((id) => String(id)).filter((id) => /^\d+$/.test(id)))];
+ if (!ids.length || !b.expenseId) return res.status(400).json({ error: "Item IDs and expense ID are required" });
+ const result = await q(`UPDATE public.marketing_list_items
+ SET status='purchased', expense_id=$2, expense_price=$3,
+     purchased_quantity=quantity, purchased_unit_id=unit_id,
+     updated_by=$4, updated_at=now()
+ WHERE id = ANY($1::bigint[]) AND status='pending'
+   AND (SELECT COUNT(*) FROM public.marketing_list_items WHERE id = ANY($1::bigint[]) AND status='pending') = cardinality($1::bigint[])
+ RETURNING id`, [ids, b.expenseId, Number(b.price || 0), req.user.id]);
+ if (result.rowCount !== ids.length) return res.status(409).json({ error: "One or more selected items are no longer pending. Refresh the Marketing List and try again." });
+ res.json({ ok: true, purchasedCount: result.rowCount, itemIds: result.rows.map((row) => row.id) });
+}
+
 export async function listLocations(req,res) { const r=await q("SELECT id,name,address FROM public.marketing_locations ORDER BY name"); res.json(r.rows); }
 export async function createLocation(req,res) { const name=String(req.body?.name||"").trim(); if(!name) return res.status(400).json({error:"Location name is required"}); const r=await q("INSERT INTO public.marketing_locations(name,address,created_by) VALUES($1,$2,$3) RETURNING *",[name,String(req.body?.address||"").trim()||null,req.user.id]); res.status(201).json(r.rows[0]); }
 export async function updateLocation(req,res) { const name=String(req.body?.name||"").trim(); if(!name) return res.status(400).json({error:"Location name is required"}); const r=await q("UPDATE public.marketing_locations SET name=$2,address=$3,updated_at=now() WHERE id=$1 RETURNING *",[req.params.id,name,String(req.body?.address||"").trim()||null]); if(!r.rowCount) return res.status(404).json({error:"Location not found"}); res.json(r.rows[0]); }

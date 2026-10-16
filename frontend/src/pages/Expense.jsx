@@ -186,10 +186,10 @@ export default function Expense() {
     if (!categories.length || !units.length) return;
     let prefill;
     try { prefill = JSON.parse(localStorage.getItem("marketing-purchase-prefill") || "null"); } catch { prefill = null; }
-    if (!prefill?.marketingItemId) return;
+    if (!prefill?.marketingItemId && !Array.isArray(prefill?.marketingItemIds)) return;
     setEditingId(null);
     setDate(prefill.expenseDate || today());
-    setForm({ ...emptyForm(prefill.expenseDate || today()), categoryId: String(prefill.categoryId || ""), itemId: String(prefill.itemId || (prefill.itemName ? OTHER_ITEM : TOTAL_ITEM)), otherItem: prefill.itemId ? "" : String(prefill.itemName || ""), quantity: prefill.quantity ?? "", unitId: String(prefill.unitId || "") });
+    setForm({ ...emptyForm(prefill.expenseDate || today()), categoryId: String(prefill.categoryId || ""), itemId: prefill.marketingItemIds ? TOTAL_ITEM : String(prefill.itemId || (prefill.itemName ? OTHER_ITEM : TOTAL_ITEM)), otherItem: prefill.marketingItemIds ? "" : (prefill.itemId ? "" : String(prefill.itemName || "")), quantity: prefill.marketingItemIds ? "" : (prefill.quantity ?? ""), unitId: prefill.marketingItemIds ? "" : String(prefill.unitId || ""), comment: String(prefill.comment || "") });
     if (prefill.categoryId) loadItems(String(prefill.categoryId)).catch(() => {});
   }, [categories, units]);
 
@@ -281,12 +281,19 @@ export default function Expense() {
     const expenseId = result.id;
     let marketingPrefill = null;
     try { marketingPrefill = JSON.parse(localStorage.getItem("marketing-purchase-prefill") || "null"); } catch { marketingPrefill = null; }
-    if (marketingPrefill?.marketingItemId && expenseId) {
+    if ((marketingPrefill?.marketingItemId || Array.isArray(marketingPrefill?.marketingItemIds)) && expenseId) {
       try {
-        await api(`/marketing-list/${marketingPrefill.marketingItemId}/purchased`, {
-          method: "POST",
-          body: JSON.stringify({ expenseId, price: payload.totalCost, quantity: payload.quantity, unitId: payload.unitId }),
-        });
+        if (Array.isArray(marketingPrefill.marketingItemIds)) {
+          await api("/marketing-list/purchased-bulk", {
+            method: "POST",
+            body: JSON.stringify({ itemIds: marketingPrefill.marketingItemIds, expenseId, price: payload.totalCost }),
+          });
+        } else {
+          await api(`/marketing-list/${marketingPrefill.marketingItemId}/purchased`, {
+            method: "POST",
+            body: JSON.stringify({ expenseId, price: payload.totalCost, quantity: payload.quantity, unitId: payload.unitId }),
+          });
+        }
         localStorage.removeItem("marketing-purchase-prefill");
       } catch (error) {
         setFormError(`Expense saved, but the Marketing List status could not be updated: ${error.message || "Please retry from Marketing List"}`);

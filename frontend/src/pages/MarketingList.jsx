@@ -33,6 +33,7 @@ export default function MarketingList({ navigate }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [selectedIds, setSelectedIds] = useState([]);
   const pagination = usePagination("marketing-list", "id");
 
   const load = async () => {
@@ -86,6 +87,18 @@ export default function MarketingList({ navigate }) {
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / pageSize));
   const safePage = Math.min(page, pageCount);
   const visibleRows = filteredRows.slice((safePage - 1) * pageSize, safePage * pageSize);
+  const pendingFilteredRows = filteredRows.filter((row) => row.status === "pending");
+  const selectedPendingRows = pendingFilteredRows.filter((row) => selectedIds.includes(String(row.id)));
+  const allFilteredSelected = pendingFilteredRows.length > 0 && pendingFilteredRows.every((row) => selectedIds.includes(String(row.id)));
+  const selectedCategoryIds = [...new Set(selectedPendingRows.map((row) => String(row.category_id || "")))];
+  const selectedCategoryCompatible = selectedPendingRows.length > 0 && selectedCategoryIds.length === 1 && Boolean(selectedCategoryIds[0]);
+  const toggleAll = () => setSelectedIds((current) => allFilteredSelected
+    ? current.filter((id) => !pendingFilteredRows.some((row) => String(row.id) === id))
+    : [...new Set([...current, ...pendingFilteredRows.map((row) => String(row.id))])]);
+  const toggleOne = (id) => setSelectedIds((current) => current.includes(String(id))
+    ? current.filter((value) => value !== String(id))
+    : [...current, String(id)]);
+  useEffect(() => { setSelectedIds([]); }, [form.purchaseDate, form.locationId, form.categoryId, pagination.search]);
   useEffect(() => { if (page !== safePage) setPage(safePage); }, [page, safePage]);
 
   const change = (key, value) => setForm((current) => ({
@@ -125,11 +138,36 @@ export default function MarketingList({ navigate }) {
     setError(""); window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const buy = (row) => {
-    if (row.status !== "pending") return;
-    localStorage.setItem("marketing-purchase-prefill", JSON.stringify({ marketingItemId: row.id, categoryId: String(row.category_id || ""), itemId: String(row.item_id || ""), itemName: row.item_name, quantity: row.quantity ?? "", unitId: String(row.unit_id || ""), expenseDate: todayKolkata() }));
+  const buySelected = () => {
+    if (!selectedPendingRows.length) return;
+    if (!selectedCategoryCompatible) {
+      setError("Select items from one category at a time. Use the Category filter to narrow the list.");
+      return;
+    }
+    const first = selectedPendingRows[0];
+    const comment = selectedPendingRows.map((row) => {
+      const quantity = row.quantity === null || row.quantity === undefined || row.quantity === "" ? "" : ` — ${row.quantity}${row.unit_name ? ` ${row.unit_name}` : ""}`;
+      return `• ${row.item_name}${quantity}`;
+    }).join("\n");
+    localStorage.setItem("marketing-purchase-prefill", JSON.stringify({
+      marketingItemIds: selectedPendingRows.map((row) => String(row.id)),
+      categoryId: String(first.category_id || ""),
+      expenseDate: String(form.purchaseDate || todayKolkata()).slice(0, 10),
+      comment: `Marketing list items:\n${comment}`,
+    }));
     navigate("/add-expense");
   };
+
+  const selectionControls = (position) => (
+    <div className={`marketing-bulk-toolbar marketing-bulk-toolbar-${position}`}>
+      <label className="marketing-select-all"><input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />{allFilteredSelected ? "Deselect all" : "Select all pending items"}</label>
+      <span>{selectedPendingRows.length} selected</span>
+      <button type="button" className="primary" onClick={buySelected} disabled={!selectedPendingRows.length || !selectedCategoryCompatible}>
+        <CheckCircle2 size={15} /> Purchased all / Add expense
+      </button>
+      {selectedPendingRows.length > 0 && !selectedCategoryCompatible && <span className="marketing-selection-hint">Select items from one category at a time.</span>}
+    </div>
+  );
 
   return (
     <div className="marketing-page marketing-list-page">
@@ -150,6 +188,7 @@ export default function MarketingList({ navigate }) {
 
       <section className="marketing-items-section" aria-labelledby="marketing-items-heading">
         <div className="marketing-items-heading"><div><h2 id="marketing-items-heading">Shopping items</h2><p>{filteredRows.length} {filteredRows.length === 1 ? "item" : "items"} for {displayDate(form.purchaseDate)}{form.locationId ? ` · ${locations.find((location) => String(location.id) === String(form.locationId))?.name || "selected location"}` : ""}{form.categoryId ? ` · ${categories.find((category) => String(category.id) === String(form.categoryId))?.name || "selected category"}` : ""}{pagination.search ? " matching your search" : ""}</p></div><div className="marketing-list-legend"><span><i className="status-dot pending-dot" /> Pending</span><span><i className="status-dot purchased-dot" /> Purchased</span></div></div>
+        {selectionControls("top")}
         <Pagination page={safePage} setPage={setPage} total={filteredRows.length} {...pagination} sortOptions={sortOptions} />
 
         {loading ? <div className="marketing-list-empty"><span className="marketing-loading-mark" />Loading marketing list…</div> : visibleRows.length ? (
@@ -159,16 +198,17 @@ export default function MarketingList({ navigate }) {
               const quantity = status === "purchased" ? (row.purchased_quantity ?? row.quantity ?? "—") : (row.quantity ?? "—");
               const unit = status === "purchased" ? (row.purchased_unit_name || row.unit_name || "") : (row.unit_name || "");
               return <article className={`marketing-item-card status-${status}`} key={row.id}>
-                <div className="marketing-item-card-top"><span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span><span className="marketing-item-date"><CalendarDays size={14} />{displayDate(row.purchase_date)}</span></div>
+                <div className="marketing-item-card-top">{status === "pending" && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}<span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span><span className="marketing-item-date"><CalendarDays size={14} />{displayDate(row.purchase_date)}</span></div>
                 <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div></div>
                 <div className="marketing-item-details"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><div><span>Location</span><strong className="marketing-location-value"><MapPin size={14} />{row.location_name || "Not specified"}</strong></div></div>
                 {status === "purchased" && <div className="marketing-purchase-price"><Wallet size={16} /><span>Expense price</span><strong>₹{Number(row.expense_price || 0).toFixed(2)}</strong></div>}
                 {status === "removed" && <div className="marketing-removed-note">The linked expense was removed.</div>}
-                <div className="marketing-item-actions">{status === "pending" ? <><button type="button" onClick={() => edit(row)}><Pencil size={15} /> Edit</button><button type="button" className="primary" onClick={() => buy(row)}><CheckCircle2 size={15} /> Purchased / Add expense</button></> : <span className="marketing-readonly-label">{status === "purchased" ? <><CheckCircle2 size={15} /> Purchased · Read-only</> : "Removed · Read-only"}</span>}</div>
+                <div className="marketing-item-actions">{status === "pending" ? <button type="button" onClick={() => edit(row)}><Pencil size={15} /> Edit</button> : <span className="marketing-readonly-label">{status === "purchased" ? <><CheckCircle2 size={15} /> Purchased · Read-only</> : "Removed · Read-only"}</span>}</div>
               </article>;
             })}
           </div>
         ) : <div className="marketing-list-empty"><ShoppingBasket size={28} /><strong>{pagination.search || form.locationId || form.categoryId ? "No matching items" : `No items for ${displayDate(form.purchaseDate)}`}</strong><span>{pagination.search || form.locationId || form.categoryId ? "Try changing the date, shopping location, category, or search term above." : "Choose another date or add a shopping item using the form above."}</span></div>}
+        {selectionControls("bottom")}
       </section>
     </div>
   );
