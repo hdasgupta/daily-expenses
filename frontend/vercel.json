@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://daily-expenses-g4ze.onrender.com/api/:path*"
+      "destination": "https://daily-expenses-8pbr.vercel.app/api/:path*"
     },
     {
       "source": "/(.*)",

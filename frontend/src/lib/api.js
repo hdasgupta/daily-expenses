@@ -1,5 +1,5 @@
 import { reportClientError } from "./clientErrorReporter";
-const RENDER_API_BASE_URL = "https://daily-expenses-g4ze.onrender.com/api";
+const BACKEND_API_BASE_URL = "https://daily-expenses-8pbr.vercel.app/api";
 
 function isCapacitorNative() {
   if (typeof window === "undefined") {
@@ -62,11 +62,20 @@ function isCapacitorNative() {
 }
 
 const configuredBaseUrl = String(import.meta.env.VITE_API_BASE_URL || "").trim();
+const useDirectBackend = Boolean(import.meta.env.PROD) || isCapacitorNative();
 
-const baseUrl = (configuredBaseUrl || (isCapacitorNative() ? RENDER_API_BASE_URL : "/api")).replace(
-  /\/$/,
-  "",
-);
+/*
+ * In production, a relative /api URL can be rewritten to the SPA's
+ * index.html if the frontend's Vercel rewrite configuration is missing or
+ * stale. Resolve that default to the deployed backend directly. Keep /api
+ * for local web development, where Vite proxies it to localhost:4000.
+ */
+const requestedBaseUrl = configuredBaseUrl || (useDirectBackend ? BACKEND_API_BASE_URL : "/api");
+const resolvedBaseUrl =
+  useDirectBackend && /^\/api\/?$/i.test(requestedBaseUrl)
+    ? BACKEND_API_BASE_URL
+    : requestedBaseUrl;
+const baseUrl = resolvedBaseUrl.replace(/\/$/, "");
 
 const TRANSIENT_STATUS_CODES = new Set([502, 503, 504]);
 
