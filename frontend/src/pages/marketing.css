@@ -76,3 +76,7 @@
   .marketing-list-page .marketing-item-card { padding: 14px; }
   .marketing-list-page .marketing-item-details { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
 }
+
+/* Keep the selected marketing-list date first and visually prominent. */
+.marketing-list-page .marketing-date-field { grid-column: 1 / -1; }
+.marketing-list-page .marketing-date-field input { max-width: 360px; }
