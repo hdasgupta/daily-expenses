@@ -8,6 +8,7 @@ import { todayKolkata } from "../utils/dates.js";
 
 const empty = () => ({ categoryId: "", itemId: "", itemName: "", quantity: "", unitId: "", purchaseDate: todayKolkata(), locationId: "" });
 const sortOptions = [
+  { value: "id", label: "Entry order" },
   { value: "purchase_date", label: "Purchase date" },
   { value: "category_name", label: "Category" },
   { value: "item_name", label: "Item" },
@@ -32,7 +33,7 @@ export default function MarketingList({ navigate }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const pagination = usePagination("marketing-list", "purchase_date");
+  const pagination = usePagination("marketing-list", "id");
 
   const load = async () => {
     setLoading(true);
@@ -72,9 +73,9 @@ export default function MarketingList({ navigate }) {
     if (pagination.sortColumn) {
       const column = pagination.sortColumn;
       filtered.sort((a, b) => {
-        const left = String(a[column] ?? "").toLowerCase();
-        const right = String(b[column] ?? "").toLowerCase();
-        const result = left.localeCompare(right, undefined, { numeric: true });
+        const result = column === "id"
+          ? Number(a.id || 0) - Number(b.id || 0)
+          : String(a[column] ?? "").toLowerCase().localeCompare(String(b[column] ?? "").toLowerCase(), undefined, { numeric: true });
         return pagination.sortDirection === "desc" ? -result : result;
       });
     }
