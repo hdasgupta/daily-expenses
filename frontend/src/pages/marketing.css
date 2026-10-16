@@ -1,8 +1,165 @@
-.marketing-page { width: 100%; }
-.marketing-page .marketing-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:end; }
-.marketing-page .marketing-form-grid label { display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:12px; }
-.marketing-page .marketing-form-grid h2 { margin:0; font-size:18px; }
-.marketing-page .marketing-error { margin:0 0 14px; padding:10px 12px; border:1px solid #ef4444; border-radius:9px; color:#b91c1c; background:#fef2f2; }
-.marketing-page .data-table { min-width:760px; }
-.marketing-page button:not(.primary) { border:1px solid var(--line); border-radius:8px; padding:8px 10px; background:var(--soft); color:var(--text); }
-@media(max-width:640px) { .marketing-page .marketing-form-grid { grid-template-columns:1fr; } }
+.marketing-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.marketing-page .marketing-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.marketing-page .marketing-form-grid label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.marketing-page .marketing-form-grid h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.marketing-page .marketing-error {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid #ef4444;
+  border-radius: 9px;
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+.marketing-page button:not(.primary) {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--soft);
+  color: var(--text);
+}
+
+.marketing-page .location-form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.marketing-locations-page .location-section {
+  margin-top: 22px;
+  min-width: 0;
+}
+
+.marketing-locations-page .location-list-heading {
+  margin-bottom: 12px;
+}
+
+.marketing-locations-page .location-list-heading h2,
+.marketing-locations-page .location-card h3 {
+  margin: 0;
+}
+
+.marketing-locations-page .location-list-heading p {
+  margin: 4px 0 0;
+}
+
+.marketing-locations-page .pagination {
+  margin: 0 0 12px;
+  max-width: 100%;
+}
+
+.marketing-locations-page .location-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  min-width: 0;
+}
+
+.marketing-locations-page .location-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card, var(--surface));
+}
+
+.marketing-locations-page .location-card-icon {
+  display: flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--primary, #2563eb);
+  background: var(--soft);
+}
+
+.marketing-locations-page .location-card-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.marketing-locations-page .location-card-content h3 {
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.marketing-locations-page .location-card-content p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.marketing-locations-page .location-card-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.marketing-locations-page .location-card-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.marketing-locations-page .location-empty-state {
+  padding: 22px 16px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+  background: var(--card, var(--surface));
+}
+
+@media (max-width: 640px) {
+  .marketing-page .marketing-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .marketing-locations-page .location-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+
+  .marketing-locations-page .location-card-content {
+    flex-basis: calc(100% - 52px);
+  }
+
+  .marketing-locations-page .location-card-actions {
+    width: 100%;
+    padding-left: 50px;
+    justify-content: flex-start;
+  }
+}
