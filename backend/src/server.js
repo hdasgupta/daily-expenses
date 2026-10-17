@@ -13,6 +13,8 @@ import { startOneTimeReportEmailScheduler } from "./services/oneTimeReportEmailS
 loadEnv();
 
 const app = express();
+const isVercel = process.env.VERCEL === "1";
+let startupPromise = null;
 
 const configuredOrigins = env.corsOrigin
   .split(",")
@@ -50,6 +52,26 @@ app.use(
 app.use(express.json({ limit: "10mb" }));
 app.use(requestLogger);
 
+// Vercel reuses serverless instances across requests. Wait for one-time
+// database/bootstrap initialization before any API handler touches the pool.
+if (isVercel) {
+  app.use(async (req, res, next) => {
+    try {
+      if (startupPromise) await startupPromise;
+      if (!app.locals.ready) {
+        return res.status(503).json({
+          error: "Backend initialization failed or is still in progress",
+          status: app.locals.starting ? "starting" : "unavailable",
+        });
+      }
+      return next();
+    } catch (error) {
+      console.error("Vercel request initialization failed", error);
+      return res.status(503).json({ error: "Backend initialization failed" });
+    }
+  });
+}
+
 app.use("/api", createRouter(env.maxUploadBytes));
 
 app.use(notFound);
@@ -71,8 +93,10 @@ process.on("uncaughtException", (error) => {
     }),
   );
 
-  process.exitCode = 1;
-  void shutdown("uncaughtException");
+  if (!isVercel) {
+    process.exitCode = 1;
+    void shutdown("uncaughtException");
+  }
 });
 
 process.on("unhandledRejection", (reason) => {
@@ -84,8 +108,10 @@ process.on("unhandledRejection", (reason) => {
     }),
   );
 
-  process.exitCode = 1;
-  void shutdown("unhandledRejection");
+  if (!isVercel) {
+    process.exitCode = 1;
+    void shutdown("unhandledRejection");
+  }
 });
 
 async function shutdown(signal) {
@@ -139,33 +165,36 @@ async function shutdown(signal) {
   process.exit(1);
 }
 
-process.once("SIGTERM", () => void shutdown("SIGTERM"));
-
-process.once("SIGINT", () => void shutdown("SIGINT"));
+if (!isVercel) {
+  process.once("SIGTERM", () => void shutdown("SIGTERM"));
+  process.once("SIGINT", () => void shutdown("SIGINT"));
+}
 
 async function start() {
-  httpServer = app.listen(env.port, "0.0.0.0", () => {
-    console.log(
-      JSON.stringify({
-        event: "http_server_listening",
-        port: env.port,
-        pid: process.pid,
-        nodeEnv: env.nodeEnv,
-      }),
-    );
-  });
+  if (!isVercel) {
+    httpServer = app.listen(env.port, "0.0.0.0", () => {
+      console.log(
+        JSON.stringify({
+          event: "http_server_listening",
+          port: env.port,
+          pid: process.pid,
+          nodeEnv: env.nodeEnv,
+        }),
+      );
+    });
 
-  httpServer.on("error", (error) => {
-    console.error(
-      JSON.stringify({
-        event: "http_server_error",
-        message: error?.message || String(error),
-        stack: error?.stack,
-      }),
-    );
+    httpServer.on("error", (error) => {
+      console.error(
+        JSON.stringify({
+          event: "http_server_error",
+          message: error?.message || String(error),
+          stack: error?.stack,
+        }),
+      );
 
-    void shutdown("httpServerError");
-  });
+      void shutdown("httpServerError");
+    });
+  }
 
   try {
     console.log("Backend startup: initializing database");
@@ -180,9 +209,14 @@ async function start() {
 
     console.log("Backend startup: application seeded");
 
-    startEmailSchedulers();
-    startScheduledReportScheduler();
-    startOneTimeReportEmailScheduler();
+    // Cron tasks must not be relied on inside Vercel serverless functions:
+    // instances are ephemeral and may be frozen between requests. Run these
+    // schedulers in the persistent backend worker instead.
+    if (!isVercel) {
+      startEmailSchedulers();
+      startScheduledReportScheduler();
+      startOneTimeReportEmailScheduler();
+    }
 
     app.locals.starting = false;
     app.locals.ready = true;
@@ -206,11 +240,13 @@ async function start() {
       }),
     );
 
-    await shutdown("startupFailure");
-    process.exit(1);
+    if (!isVercel) {
+      await shutdown("startupFailure");
+      process.exit(1);
+    }
   }
 }
 
-void start();
+startupPromise = start();
 
 export default app;
