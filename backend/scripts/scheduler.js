@@ -5,6 +5,7 @@ import { sendDailyEmailReportToManagers } from "../src/services/dailyEmailReport
 import { sendMonthlyEmailReportToManagers } from "../src/services/monthlyEmailReportService.js";
 import { sendWeeklyEmailReportToManagers } from "../src/services/weeklyEmailReportService.js";
 import { sendYearlyEmailReportToManagers } from "../src/services/yearlyEmailReportService.js";
+import { sendDailyPlannedRecipeEmailToAdmins } from "../src/services/dailyPlannedRecipeEmailService.js";
 import { notifyAdminFailure } from "../src/services/adminAlertService.js";
 
 let started = false;
@@ -68,15 +69,15 @@ async function markJobStarted(client, jobName, scheduledKey) {
   return result.rows[0]?.id;
 }
 
-async function markJobCompleted(client, executionId, durationMs) {
+async function markJobCompleted(client, executionId, durationMs, status = "completed", details = null) {
   await client.query(
     `UPDATE public.scheduler_job_executions
-     SET status = 'completed',
+     SET status = $3,
          completed_at = now(),
          duration_ms = $2,
-         error_message = NULL
+         error_message = $4
      WHERE id = $1`,
-    [executionId, durationMs],
+    [executionId, durationMs, status, details],
   );
 }
 
@@ -100,7 +101,9 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
     jobName,
     scheduledKey,
     timezone:
-      jobName === "daily-email-report"
+      jobName === "daily-planned-recipe-email"
+        ? env.dailyPlannedRecipeTimezone
+        : jobName === "daily-email-report"
         ? env.dailyEmailReportTimezone
         : jobName === "monthly-email-report"
           ? env.monthlyEmailReportTimezone
@@ -108,7 +111,9 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
             ? env.yearlyEmailReportTimezone
             : env.weeklyEmailReportTimezone,
     localTime:
-      jobName === "daily-email-report"
+      jobName === "daily-planned-recipe-email"
+        ? getLocalDateParts(env.dailyPlannedRecipeTimezone)
+        : jobName === "daily-email-report"
         ? getLocalDateParts(env.dailyEmailReportTimezone)
         : jobName === "monthly-email-report"
           ? getLocalDateParts(env.monthlyEmailReportTimezone)
@@ -131,7 +136,7 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
        FROM public.scheduler_job_executions
        WHERE job_name = $1
          AND scheduled_key = $2
-         AND status = 'completed'
+         AND status IN ('completed', 'skipped')
        ORDER BY completed_at DESC NULLS LAST
        LIMIT 1`,
       [jobName, scheduledKey],
@@ -159,9 +164,10 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
       try {
         const result = await send();
         const durationMs = Date.now() - startedAt;
-        await markJobCompleted(client, executionId, durationMs);
+        const executionStatus = result?.skipped ? "skipped" : "completed";
+        await markJobCompleted(client, executionId, durationMs, executionStatus, result?.reason || null);
 
-        logSchedulerEvent("scheduler_job_completed", {
+        logSchedulerEvent(executionStatus === "skipped" ? "scheduler_job_skipped" : "scheduler_job_completed", {
           jobName,
           scheduledKey,
           executionId,
@@ -212,6 +218,15 @@ async function runDailyEmailReport() {
       `7-day email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
     );
   }
+}
+
+async function runDailyPlannedRecipeEmail() {
+  const scheduledKey = localDateKey(env.dailyPlannedRecipeTimezone);
+  return runEmailJobOnce(
+    "daily-planned-recipe-email",
+    scheduledKey,
+    () => sendDailyPlannedRecipeEmailToAdmins(scheduledKey),
+  );
 }
 
 async function runMonthlyEmailReport() {
@@ -341,6 +356,8 @@ export function startEmailSchedulers() {
   logSchedulerEvent("scheduler_starting", {
     serverTime: new Date().toISOString(),
     dailyEmailReportCron: env.dailyEmailReportCron,
+    dailyPlannedRecipeCron: env.dailyPlannedRecipeCron,
+    dailyPlannedRecipeTimezone: env.dailyPlannedRecipeTimezone,
     dailyEmailReportTimezone: env.dailyEmailReportTimezone,
     monthlyEmailReportCron: env.monthlyEmailReportCron,
     monthlyEmailReportTimezone: env.monthlyEmailReportTimezone,
@@ -371,6 +388,33 @@ export function startEmailSchedulers() {
     );
     console.log(
       `7-day email report scheduler enabled: ${env.dailyEmailReportCron} (${env.dailyEmailReportTimezone})`,
+    );
+  }
+
+  if (!cron.validate(env.dailyPlannedRecipeCron)) {
+    console.error(`Invalid DAILY_PLANNED_RECIPE_CRON: ${env.dailyPlannedRecipeCron}`);
+  } else {
+    cron.schedule(
+      env.dailyPlannedRecipeCron,
+      async () => {
+        logSchedulerEvent("daily_planned_recipe_email_triggered", {
+          cron: env.dailyPlannedRecipeCron,
+          timezone: env.dailyPlannedRecipeTimezone,
+          localTime: getLocalDateParts(env.dailyPlannedRecipeTimezone),
+        });
+        try {
+          const result = await runDailyPlannedRecipeEmail();
+          if (result && !result.skipped) {
+            console.log(`Daily planned recipe email sent to ${result.recipients} admin(s)`);
+          }
+        } catch (error) {
+          console.error("Daily planned recipe email job failed", error);
+        }
+      },
+      { timezone: env.dailyPlannedRecipeTimezone },
+    );
+    console.log(
+      `Daily planned recipe email scheduler enabled: ${env.dailyPlannedRecipeCron} (${env.dailyPlannedRecipeTimezone})`,
     );
   }
 

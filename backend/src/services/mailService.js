@@ -558,6 +558,24 @@ export async function sendReportEmail(email, pdfBuffer, options = {}) {
   });
 }
 
+export async function sendDailyPlannedRecipeEmail(email, planDate, sections) {
+  const safe = (value) => escapeHtml(value ?? "—");
+  const sectionHtml = sections.map((section, index) => {
+    const content = section.recipes.length
+      ? `<ul style="margin:12px 0 0;padding-left:22px">${section.recipes.map((recipe) => `<li style="padding:5px 0;color:#26364b"><strong>${safe(recipe.name)}</strong>${recipe.category ? ` <span style="color:#64748b">(${safe(recipe.category)})</span>` : ""}<div style="font-size:12px;color:#64748b;margin-top:3px">${safe(recipe.location)} · Serves ${safe(recipe.servings)}</div></li>`).join("")}</ul>`
+      : `<div style="margin-top:12px;padding:12px 14px;border-radius:8px;background:#f8fafc;color:#64748b;font-style:italic">No planned recipe under this section.</div>`;
+    return `<tr><td style="padding:0 0 14px"><div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden"><div style="background:${index % 2 === 0 ? "#eef4ff" : "#f0fdfa"};padding:13px 16px;color:#17345f;font-size:16px;font-weight:bold">${safe(section.meal)}</div><div style="padding:14px 16px">${content}</div></div></td></tr>`;
+  }).join("");
+  const htmlBody = `<!doctype html><html><body style="margin:0;padding:0;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#172033"><div style="padding:24px 10px"><div style="max-width:720px;margin:0 auto;background:#fff;border:1px solid #e2e8f0;border-radius:18px;overflow:hidden"><div style="padding:28px 30px;background:linear-gradient(135deg,#163b70,#287a78);color:#fff"><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.9">${safe(env.organizationName || "Daily Expenses")}</div><h1 style="margin:10px 0 5px;font-size:26px;line-height:1.25">Daily Planned Recipes</h1><div style="font-size:15px;opacity:.95">${safe(planDate)}</div></div><div style="padding:24px 22px"><p style="margin:0 0 20px;line-height:1.6;color:#475569">Here is the food chart planned for today, from breakfast through dinner.</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0">${sectionHtml}</table><div style="margin-top:8px;padding-top:16px;border-top:1px solid #e2e8f0;color:#94a3b8;font-size:11px;line-height:1.5">Automatically generated at 6:00 AM India Standard Time. If no recipes are planned for the day, no email is sent.</div></div></div></div></body></html>`;
+  const textBody = [`Daily Planned Recipes — ${planDate}`, ...sections.map((section) => `${section.meal}:\n${section.recipes.length ? section.recipes.map((recipe) => `- ${recipe.name} (${recipe.location}; serves ${recipe.servings})`).join("\n") : "No planned recipe under this section."}`)].join("\n\n");
+  await postEmail({
+    to: email,
+    subject: `Daily Planned Recipes — ${planDate}`,
+    htmlBody,
+    textBody,
+  });
+}
+
 export async function sendMarketingListEmail(email, purchaseDate, items) {
   const safe = (value) => String(value ?? "—").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
   const rows = items.map((item) => `<tr><td style="padding:12px;border-bottom:1px solid #e5e7eb">${safe(item.category_name || "—")}</td><td style="padding:12px;border-bottom:1px solid #e5e7eb"><b>${safe(item.item_name)}</b></td><td style="padding:12px;border-bottom:1px solid #e5e7eb">${safe(item.quantity ?? "—")} ${safe(item.unit_name || "")}</td><td style="padding:12px;border-bottom:1px solid #e5e7eb">${safe(item.location_name || "—")}</td></tr>`).join("");

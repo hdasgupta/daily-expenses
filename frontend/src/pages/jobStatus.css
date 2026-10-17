@@ -43,6 +43,10 @@
   color: var(--danger);
   background: var(--danger-soft);
 }
+.job-status-badge.skipped {
+  color: var(--muted);
+  background: var(--soft);
+}
 .job-status-badge.running {
   color: var(--primary);
   background: var(--soft);

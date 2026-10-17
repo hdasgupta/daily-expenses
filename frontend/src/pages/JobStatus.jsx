@@ -11,6 +11,7 @@ import "./jobStatus.css";
 import "./scheduledReports.css";
 
 const scheduleLabels = {
+  "daily-planned-recipe-email": "Daily planned recipe email (admin only)",
   "daily-email-report": "Daily 7-day email report",
   "weekly-email-report": "Weekly 4-week email report",
   "monthly-email-report": "Monthly 3-month email report",
@@ -26,11 +27,12 @@ const scheduleOrder = {
 };
 
 const staticScheduleOrder = {
-  "daily-email-report": 1,
-  "weekly-email-report": 2,
-  "monthly-email-report": 3,
-  "yearly-email-report": 4,
-  "marketing-list-email": 5,
+  "daily-planned-recipe-email": 1,
+  "daily-email-report": 2,
+  "weekly-email-report": 3,
+  "monthly-email-report": 4,
+  "yearly-email-report": 5,
+  "marketing-list-email": 6,
 };
 
 const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -257,6 +259,10 @@ function statusIcon(status) {
 
   if (status === "failed") {
     return <XCircle size={15} />;
+  }
+
+  if (status === "skipped") {
+    return <CheckCircle2 size={15} />;
   }
 
   return <LoaderCircle size={15} className="job-status-spin" />;

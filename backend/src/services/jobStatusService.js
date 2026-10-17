@@ -4,6 +4,13 @@ import { env } from "../config/env.js";
 
 const scheduleDefinitions = [
   {
+    jobName: "daily-planned-recipe-email",
+    label: "Daily planned recipe email (admin only)",
+    cron: env.dailyPlannedRecipeCron,
+    timezone: env.dailyPlannedRecipeTimezone,
+    adminOnly: true,
+  },
+  {
     jobName: "daily-email-report",
     label: "Daily 7-day email report",
     cron: env.dailyEmailReportCron,
@@ -62,6 +69,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
            e.duration_ms, e.error_message, NULL::text AS scheduled_report_name,
            NULL::text AS owner_name, NULL::text AS owner_email
       FROM public.scheduler_job_executions e
+     WHERE ($1::boolean = TRUE OR e.job_name <> 'daily-planned-recipe-email')
     UNION ALL
     SELECT ('scheduled-' || split_part(r.job_name, ':', 2) || '-' || r.scheduled_key)::text AS id,
            r.job_name, r.scheduled_key, r.status, r.started_at, r.completed_at,
@@ -162,7 +170,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     return { ...job, config: { ...config, filters } };
   });
 
-  const schedules = scheduleDefinitions.map((item) => {
+  const schedules = scheduleDefinitions.filter((item) => isAdmin || !item.adminOnly).map((item) => {
     const valid = Boolean(item.cron && cron.validate(item.cron));
     let nextRunAt = null;
     if (valid) {

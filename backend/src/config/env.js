@@ -48,6 +48,8 @@ export const env = {
   marketingListCronSecret: process.env.MARKETING_LIST_CRON_SECRET || "",
   marketingListEmailCron: "59 23 * * *",
   marketingListEmailTimezone: "Asia/Kolkata",
+  dailyPlannedRecipeCron: "0 6 * * *",
+  dailyPlannedRecipeTimezone: "Asia/Kolkata",
   appTimezone: process.env.APP_TIMEZONE || "Asia/Kolkata",
   organizationName: process.env.ORGANIZATION_NAME || "Rehabilitation Center",
   organizationLogoUrl: process.env.ORGANIZATION_LOGO_URL || "",
