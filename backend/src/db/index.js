@@ -8,7 +8,11 @@ export const pool = new Pool({
   connectionString: env.databaseUrl,
   options: "-c timezone=Asia/Kolkata",
   ssl: env.databaseUrl.includes("sslmode=require") ? { rejectUnauthorized: false } : undefined,
-  max: Number(process.env.DB_POOL_MAX || 10),
+  // Vercel may create many short-lived instances concurrently. A large pool
+  // per instance can exhaust the database connection limit and make pool.connect
+  // time out during startup. Keep the serverless default small; allow an explicit
+  // DB_POOL_MAX override when the database plan supports it.
+  max: Number(process.env.DB_POOL_MAX || (process.env.VERCEL === "1" ? 2 : 10)),
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: Number(process.env.DB_CONNECTION_TIMEOUT_MS || 10000),
   statement_timeout: Number(process.env.DB_STATEMENT_TIMEOUT_MS || 30000),
