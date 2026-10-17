@@ -15,6 +15,10 @@ loadEnv();
 const app = express();
 const isVercel = process.env.VERCEL === "1";
 let startupPromise = null;
+// Avoid permanently poisoning a warm serverless instance after a transient
+// database/bootstrap failure. Failed startup attempts are retried at most once
+// every 15 seconds when a later request arrives.
+let lastStartupAttemptAt = Date.now();
 
 const configuredOrigins = env.corsOrigin
   .split(",")
@@ -56,8 +60,29 @@ app.use(requestLogger);
 // database/bootstrap initialization before any API handler touches the pool.
 if (isVercel) {
   app.use(async (req, res, next) => {
+    // Keep health checks reachable even when startup has failed, so the
+    // readiness endpoint can report the recorded startup error.
+    if (req.path === "/api/health" || req.path === "/api/health/ready") {
+      return next();
+    }
+
     try {
       if (startupPromise) await startupPromise;
+
+      // A transient DB/bootstrap error should not leave this warm Vercel
+      // instance returning 503 forever. Retry startup with a short cooldown;
+      // app.locals.starting prevents concurrent requests from starting it twice.
+      if (
+        !app.locals.ready &&
+        !app.locals.starting &&
+        Date.now() - lastStartupAttemptAt >= 15000
+      ) {
+        app.locals.starting = true;
+        lastStartupAttemptAt = Date.now();
+        startupPromise = start();
+        await startupPromise;
+      }
+
       if (!app.locals.ready) {
         return res.status(503).json({
           error: "Backend initialization failed or is still in progress",
