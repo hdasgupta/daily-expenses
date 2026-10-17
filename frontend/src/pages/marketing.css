@@ -49,9 +49,14 @@
 .marketing-list-page .marketing-item-main { display: flex; align-items: center; gap: 12px; margin: 16px 0; min-width: 0; }
 .marketing-list-page .marketing-item-icon { display: flex; flex: 0 0 44px; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 12px; color: var(--primary, #2563eb); background: var(--soft); }
  .marketing-list-page .marketing-item-name { min-width: 0; flex: 1 1 auto; }
-.marketing-list-page .marketing-item-edit-icon { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-left: auto; padding: 0; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: transparent; cursor: pointer; }
+.marketing-list-page .marketing-item-icon-actions { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 5px; margin-left: auto; }
+.marketing-list-page .marketing-item-edit-icon,
+.marketing-list-page .marketing-item-remove-icon { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: transparent; cursor: pointer; }
 .marketing-list-page .marketing-item-edit-icon:hover { color: var(--primary, #2563eb); background: var(--soft); }
-.marketing-list-page .marketing-item-edit-icon:focus-visible { outline: 2px solid var(--primary, #2563eb); outline-offset: 2px; }
+.marketing-list-page .marketing-item-remove-icon { color: #dc2626; }
+.marketing-list-page .marketing-item-remove-icon:hover { color: #b91c1c; background: #fef2f2; }
+.marketing-list-page .marketing-item-edit-icon:focus-visible,
+.marketing-list-page .marketing-item-remove-icon:focus-visible { outline: 2px solid var(--primary, #2563eb); outline-offset: 2px; }
 .marketing-list-page .marketing-item-name h3 { margin: 0; overflow-wrap: anywhere; font-size: 16px; font-weight: 700; color: var(--text); }
 .marketing-list-page .marketing-item-name p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
 .marketing-list-page .marketing-item-details { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

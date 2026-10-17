@@ -1,6 +1,6 @@
 import "./marketing.css";
 import React, { useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Clock3, Pencil, ShoppingBasket, Wallet } from "lucide-react";
+import { CheckCircle2, Clock3, Pencil, ShoppingBasket, Trash2, Wallet } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
 import { usePagination } from "../hooks/usePagination";
@@ -135,6 +135,21 @@ export default function MarketingList({ navigate }) {
     } catch (e) { setError(e.message || "Unable to save item"); }
   };
 
+  const remove = async (row) => {
+    if (row.status !== "pending") return;
+    const itemName = row.item_name || "this marketing item";
+    if (!window.confirm(`Remove ${itemName} from the marketing list? It will remain visible with Removed status.`)) return;
+    setError("");
+    try {
+      await api(`/marketing-list/${row.id}`, { method: "DELETE" });
+      if (editing === row.id) resetForm();
+      setSelectedIds((current) => current.filter((id) => id !== String(row.id)));
+      await load();
+    } catch (e) {
+      setError(e.message || "Unable to remove marketing item");
+    }
+  };
+
   const edit = (row) => {
     if (row.status !== "pending") return;
     setEditing(row.id);
@@ -214,7 +229,7 @@ export default function MarketingList({ navigate }) {
               const isSelected = selectedIds.includes(String(row.id));
               return <article className={`marketing-item-card status-${status}${isSelected ? " is-selected" : ""}`} key={row.id}>
                 <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}</div>
-                <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div>{status === "pending" && <button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button>}</div>
+                <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div>{status === "pending" && <div className="marketing-item-icon-actions"><button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button><button type="button" className="marketing-item-remove-icon" onClick={() => remove(row)} aria-label={`Remove ${row.item_name || "marketing item"}`} title="Remove item"><Trash2 size={16} /></button></div>}</div>
                 <div className="marketing-item-details marketing-item-quantity-status"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span></div>
                 {status === "purchased" && <div className="marketing-purchase-price"><Wallet size={16} /><span>Expense price</span><strong>₹{Number(row.expense_price || 0).toFixed(2)}</strong></div>}
                 {status === "removed" && <div className="marketing-removed-note">The linked expense was removed.</div>}

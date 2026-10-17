@@ -32,6 +32,18 @@ export async function updateItem(req,res) {
  const r=await q(`UPDATE public.marketing_list_items SET category_id=NULLIF($2,'')::bigint,item_id=NULLIF($3,'')::bigint,item_name=$4,quantity=NULLIF($5,'')::numeric,unit_id=NULLIF($6,'')::bigint,purchase_date=$7,location_id=NULLIF($8,'')::bigint,updated_by=$9,updated_at=now() WHERE id=$1 RETURNING *`,[req.params.id,String(b.categoryId||""),String(b.itemId||""),String(b.itemName).trim(),String(b.quantity??""),String(b.unitId||""),b.purchaseDate,String(b.locationId||""),req.user.id]);
  res.json(r.rows[0]);
 }
+export async function removeItem(req, res) {
+ const result = await q(`UPDATE public.marketing_list_items
+ SET status='removed', updated_by=$2, updated_at=now()
+ WHERE id=$1 AND status='pending' RETURNING id,status`, [req.params.id, req.user.id]);
+ if (!result.rowCount) {
+  const existing = await q("SELECT status FROM public.marketing_list_items WHERE id=$1", [req.params.id]);
+  if (!existing.rowCount) return res.status(404).json({ error: "Marketing item not found" });
+  return res.status(409).json({ error: "Purchased or already removed items cannot be removed again" });
+ }
+ res.json({ ok: true, ...result.rows[0] });
+}
+
 export async function markPurchased(req,res) {
  const b=req.body||{};
  const r=await q(`UPDATE public.marketing_list_items SET status='purchased',expense_id=$2,expense_price=$3,purchased_quantity=NULLIF($4,'')::numeric,purchased_unit_id=NULLIF($5,'')::bigint,updated_by=$6,updated_at=now() WHERE id=$1 AND status='pending' RETURNING *`,[req.params.id,b.expenseId,b.price,String(b.quantity??""),String(b.unitId||""),req.user.id]);
