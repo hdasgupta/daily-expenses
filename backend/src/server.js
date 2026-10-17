@@ -127,9 +127,16 @@ async function shutdown(signal) {
     }),
   );
 
+  // Once the shared PostgreSQL pool has been ended, this process must not
+  // continue running cron callbacks against that closed pool. In particular,
+  // the old unhandled-rejection path only set exitCode and left the scheduler
+  // alive, causing later jobs to fail with "Cannot use a pool after calling
+  // end on the pool". Exit after cleanup so the process manager can restart it.
   if (signal === "SIGTERM" || signal === "SIGINT") {
     process.exit(0);
   }
+
+  process.exit(1);
 }
 
 process.once("SIGTERM", () => void shutdown("SIGTERM"));
