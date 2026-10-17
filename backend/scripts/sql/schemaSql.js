@@ -279,5 +279,6 @@ CREATE TABLE IF NOT EXISTS public.food_chart_entries (
   sort_order INTEGER NOT NULL DEFAULT 0,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-CREATE INDEX IF NOT EXISTS idx_food_chart_user_date ON public.food_chart_entries(user_id, chart_date, meal, sort_order, id);
+ALTER TABLE public.food_chart_entries ADD COLUMN IF NOT EXISTS location_id BIGINT REFERENCES public.marketing_locations(id) ON DELETE SET NULL;
+CREATE INDEX IF NOT EXISTS idx_food_chart_user_date_location ON public.food_chart_entries(user_id, chart_date, location_id, meal, sort_order, id);
 `;
