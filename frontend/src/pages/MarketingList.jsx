@@ -30,6 +30,8 @@ export default function MarketingList({ navigate }) {
   const [items, setItems] = useState([]);
   const [form, setForm] = useState(empty);
   const [editing, setEditing] = useState(null);
+  const [pendingRemoval, setPendingRemoval] = useState(null);
+  const [removing, setRemoving] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -135,18 +137,21 @@ export default function MarketingList({ navigate }) {
     } catch (e) { setError(e.message || "Unable to save item"); }
   };
 
-  const remove = async (row) => {
-    if (row.status !== "pending") return;
-    const itemName = row.item_name || "this marketing item";
-    if (!window.confirm(`Remove ${itemName} from the marketing list? It will remain visible with Removed status.`)) return;
+  const remove = async () => {
+    const row = pendingRemoval;
+    if (!row || row.status !== "pending" || removing) return;
+    setRemoving(true);
     setError("");
     try {
       await api(`/marketing-list/${row.id}`, { method: "DELETE" });
-      if (editing === row.id) resetForm();
+      if (String(editing) === String(row.id)) resetForm();
       setSelectedIds((current) => current.filter((id) => id !== String(row.id)));
+      setPendingRemoval(null);
       await load();
     } catch (e) {
-      setError(e.message || "Unable to remove marketing item");
+      setError(e.message || "Unable to permanently delete marketing item");
+    } finally {
+      setRemoving(false);
     }
   };
 
@@ -229,7 +234,7 @@ export default function MarketingList({ navigate }) {
               const isSelected = selectedIds.includes(String(row.id));
               return <article className={`marketing-item-card status-${status}${isSelected ? " is-selected" : ""}`} key={row.id}>
                 <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}</div>
-                <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div>{status === "pending" && <div className="marketing-item-icon-actions"><button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button><button type="button" className="marketing-item-remove-icon" onClick={() => remove(row)} aria-label={`Remove ${row.item_name || "marketing item"}`} title="Remove item"><Trash2 size={16} /></button></div>}</div>
+                <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div>{status === "pending" && <div className="marketing-item-icon-actions"><button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button><button type="button" className="marketing-item-remove-icon" onClick={() => setPendingRemoval(row)} aria-label={`Remove ${row.item_name || "marketing item"}`} title="Remove item"><Trash2 size={16} /></button></div>}</div>
                 <div className="marketing-item-details marketing-item-quantity-status"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span></div>
                 {status === "purchased" && <div className="marketing-purchase-price"><Wallet size={16} /><span>Expense price</span><strong>₹{Number(row.expense_price || 0).toFixed(2)}</strong></div>}
                 {status === "removed" && <div className="marketing-removed-note">The linked expense was removed.</div>}
@@ -240,6 +245,19 @@ export default function MarketingList({ navigate }) {
         ) : <div className="marketing-list-empty"><ShoppingBasket size={28} /><strong>{pagination.search || form.locationId || form.categoryId ? "No matching items" : `No items for ${displayDate(form.purchaseDate)}`}</strong><span>{pagination.search || form.locationId || form.categoryId ? "Try changing the date, shopping location, category, or search term above." : "Choose another date or add a shopping item using the form above."}</span></div>}
         {selectionControls("bottom")}
       </section>
+      {pendingRemoval && (
+        <div className="marketing-confirm-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget && !removing) setPendingRemoval(null); }}>
+          <div className="marketing-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="marketing-confirm-title" aria-describedby="marketing-confirm-description">
+            <div className="marketing-confirm-icon"><Trash2 size={22} /></div>
+            <h2 id="marketing-confirm-title">Permanently delete item?</h2>
+            <p id="marketing-confirm-description">Are you sure you want to permanently delete <strong>{pendingRemoval.item_name || "this item"}</strong> from the marketing list? This cannot be undone. Purchased items cannot be deleted.</p>
+            <div className="marketing-confirm-actions">
+              <button type="button" onClick={() => setPendingRemoval(null)} disabled={removing}>Cancel</button>
+              <button type="button" className="marketing-confirm-delete" onClick={remove} disabled={removing}>{removing ? "Deleting…" : "Confirm delete"}</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

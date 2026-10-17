@@ -145,3 +145,25 @@
 .marketing-list-page .marketing-item-card.is-selected .marketing-item-checkbox input {
   accent-color: var(--primary, #2563eb);
 }
+
+
+/* Confirmation dialog for permanent marketing-list deletion. */
+.marketing-list-page .marketing-confirm-overlay {
+  position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center;
+  padding: 18px; background: rgb(0 0 0 / 48%);
+}
+.marketing-list-page .marketing-confirm-dialog {
+  width: min(100%, 420px); padding: 22px; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--card, var(--surface, #fff)); color: var(--text); box-shadow: 0 20px 60px rgb(0 0 0 / 25%);
+}
+.marketing-list-page .marketing-confirm-icon {
+  display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: 12px;
+  border-radius: 12px; color: var(--danger, #dc2626); background: color-mix(in srgb, var(--danger, #dc2626) 12%, transparent);
+}
+.marketing-list-page .marketing-confirm-dialog h2 { margin: 0 0 8px; font-size: 19px; color: var(--text); }
+.marketing-list-page .marketing-confirm-dialog p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.marketing-list-page .marketing-confirm-dialog p strong { color: var(--text); }
+.marketing-list-page .marketing-confirm-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+.marketing-list-page .marketing-confirm-actions button { min-height: 38px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 9px; background: var(--card, var(--surface, #fff)); color: var(--text); cursor: pointer; }
+.marketing-list-page .marketing-confirm-actions .marketing-confirm-delete { border-color: var(--danger, #dc2626); background: var(--danger, #dc2626); color: #fff; }
+.marketing-list-page .marketing-confirm-actions button:disabled { opacity: .6; cursor: not-allowed; }

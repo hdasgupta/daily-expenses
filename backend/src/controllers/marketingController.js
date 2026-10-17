@@ -33,15 +33,14 @@ export async function updateItem(req,res) {
  res.json(r.rows[0]);
 }
 export async function removeItem(req, res) {
- const result = await q(`UPDATE public.marketing_list_items
- SET status='removed', updated_by=$2, updated_at=now()
- WHERE id=$1 AND status='pending' RETURNING id,status`, [req.params.id, req.user.id]);
+ const result = await q(`DELETE FROM public.marketing_list_items
+ WHERE id=$1 AND status='pending' RETURNING id`, [req.params.id]);
  if (!result.rowCount) {
   const existing = await q("SELECT status FROM public.marketing_list_items WHERE id=$1", [req.params.id]);
   if (!existing.rowCount) return res.status(404).json({ error: "Marketing item not found" });
-  return res.status(409).json({ error: "Purchased or already removed items cannot be removed again" });
+  return res.status(409).json({ error: "Purchased items cannot be deleted. Only pending items can be permanently deleted." });
  }
- res.json({ ok: true, ...result.rows[0] });
+ res.json({ ok: true, deleted: true, id: result.rows[0].id });
 }
 
 export async function markPurchased(req,res) {
