@@ -5,7 +5,7 @@ import { env, DEFAULT_EMAIL_API_URL, DEFAULT_EMAIL_API_KEY } from "../config/env
 const isVercel = process.env.VERCEL === "1";
 const EMAIL_API_MAX_RETRIES = isVercel ? 1 : 2;
 const EMAIL_API_RETRY_DELAYS_MS = isVercel ? [800] : [1500, 4000];
-const EMAIL_REQUEST_TIMEOUT_MS = isVercel ? 8000 : 15000;
+const EMAIL_REQUEST_TIMEOUT_MS = isVercel ? 12000 : 20000;
 
 function sanitizeUrl(rawUrl) {
   const cleaned = String(rawUrl ?? "")
@@ -48,6 +48,15 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function stripHtmlTags(html) {
+  return String(html || "")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function formatNetworkError(error) {
   if (!error) return "Unknown network error";
   const base = error.message || String(error);
@@ -64,27 +73,130 @@ function formatNetworkError(error) {
   return base;
 }
 
+function evaluateEmailApiResponse({ status, statusText, text }) {
+  if (status < 200 || status >= 300) {
+    return {
+      ok: false,
+      errorReason: `HTTP ${status}${statusText ? ` ${statusText}` : ""}${
+        text ? `: ${String(text).slice(0, 400)}` : ""
+      }`,
+    };
+  }
+
+  const trimmed = String(text || "").trim();
+  if (!trimmed) {
+    return { ok: true };
+  }
+
+  if (trimmed.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (
+        parsed &&
+        typeof parsed === "object" &&
+        (parsed.ok === false ||
+          parsed.success === false ||
+          String(parsed.status || "").toLowerCase() === "error" ||
+          String(parsed.result || "").toLowerCase() === "error" ||
+          (typeof parsed.error === "string" && parsed.error.trim().length > 0))
+      ) {
+        return {
+          ok: false,
+          errorReason: String(
+            parsed.error || parsed.message || parsed.reason || trimmed,
+          ).slice(0, 500),
+        };
+      }
+    } catch {
+      // Non-JSON text body; continue inspection
+    }
+  }
+
+  const lower = trimmed.toLowerCase();
+  if (lower.startsWith("<!doctype html") || lower.startsWith("<html")) {
+    if (
+      lower.includes("accounts.google.com/servicelogin") ||
+      lower.includes("sign in - google accounts")
+    ) {
+      return {
+        ok: false,
+        errorReason:
+          "Google Apps Script Web App redirected to Google Sign-In. Ensure the deployment has 'Who has access: Anyone'.",
+      };
+    }
+
+    const errorMatch = trimmed.match(
+      /(Exception:[^<]+|ReferenceError:[^<]+|TypeError:[^<]+|SyntaxError:[^<]+|Script function not found:[^<]+|Authorization is required[^<]*|Limit exceeded:[^<]+)/i,
+    );
+    if (errorMatch) {
+      return {
+        ok: false,
+        errorReason: `Google Apps Script error: ${errorMatch[1].trim()}`,
+      };
+    }
+  }
+
+  return { ok: true };
+}
+
 /**
- * Perform an HTTP/HTTPS request using Node's native http/https modules with
- * agent: false (avoiding stale keep-alive sockets across Vercel serverless
- * freezes and avoiding undici AbortSignal/redirect bugs with Google Apps Script).
+ * Primary HTTP transport using standard fetch() WITHOUT passing an AbortSignal
+ * (passing AbortSignal.timeout() on Vercel's instrumented fetch throws a cross-realm
+ * TypeError: fetch failed). Uses Promise.race for timeout protection instead.
  */
-function rawHttpRequest(urlString, { method = "GET", headers = {}, body = null, timeoutMs = EMAIL_REQUEST_TIMEOUT_MS } = {}) {
+async function sendEmailViaFetch(targetUrl, bodyString, timeoutMs = EMAIL_REQUEST_TIMEOUT_MS) {
+  let timer = null;
+  const timeoutPromise = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      reject(new Error(`Email API fetch timed out after ${timeoutMs}ms`));
+    }, timeoutMs);
+  });
+
+  try {
+    const fetchPromise = (async () => {
+      const response = await fetch(targetUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json, text/plain, */*",
+        },
+        body: bodyString,
+        redirect: "follow",
+      });
+      const text = await response.text();
+      return {
+        status: response.status,
+        statusText: response.statusText || "",
+        text,
+      };
+    })();
+
+    return await Promise.race([fetchPromise, timeoutPromise]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+function rawHttpRequest(
+  urlString,
+  { method = "GET", headers = {}, body = null, timeoutMs = EMAIL_REQUEST_TIMEOUT_MS } = {},
+) {
   return new Promise((resolve, reject) => {
     let parsedUrl;
     try {
       parsedUrl = new URL(urlString);
-    } catch (err) {
+    } catch {
       reject(new Error(`Invalid Email API URL: ${urlString}`));
       return;
     }
 
     const transport = parsedUrl.protocol === "https:" ? https : http;
-    const bodyBuffer = body != null ? (Buffer.isBuffer(body) ? body : Buffer.from(String(body), "utf8")) : null;
+    const bodyBuffer =
+      body != null ? (Buffer.isBuffer(body) ? body : Buffer.from(String(body), "utf8")) : null;
 
     const requestHeaders = {
       Accept: "application/json, text/plain, */*",
-      "User-Agent": "DailyExpensesScheduler/2.0",
+      "User-Agent": "Mozilla/5.0 (compatible; DailyExpensesScheduler/2.0)",
       ...headers,
     };
 
@@ -97,6 +209,7 @@ function rawHttpRequest(urlString, { method = "GET", headers = {}, body = null, 
       {
         method,
         headers: requestHeaders,
+        servername: parsedUrl.hostname,
         agent: false,
         timeout: timeoutMs,
       },
@@ -129,48 +242,25 @@ function rawHttpRequest(urlString, { method = "GET", headers = {}, body = null, 
   });
 }
 
-/**
- * Send JSON payload to Google Apps Script Email API, following 301/302/303/307/308
- * redirects cleanly via GET (as Google Apps Script executes doPost before returning
- * a 302 redirect to script.googleusercontent.com/macros/echo).
- */
-async function sendEmailHttpRequest(targetUrl, bodyString) {
+async function sendEmailViaNodeHttps(targetUrl, bodyString, timeoutMs = EMAIL_REQUEST_TIMEOUT_MS) {
   let currentUrl = targetUrl;
   let method = "POST";
   let body = bodyString;
   let headers = { "Content-Type": "application/json" };
 
   for (let redirectCount = 0; redirectCount <= 5; redirectCount += 1) {
-    let response;
-    try {
-      response = await rawHttpRequest(currentUrl, {
-        method,
-        headers,
-        body,
-        timeoutMs: EMAIL_REQUEST_TIMEOUT_MS,
-      });
-    } catch (httpsError) {
-      // If we already received a 302 redirect from script.google.com to
-      // script.googleusercontent.com/macros/echo on a previous hop, doPost()
-      // has already executed and sent the email; do not fail if the echo read drops.
-      if (redirectCount > 0 && currentUrl.includes("googleusercontent.com/macros/echo")) {
-        return {
-          ok: true,
-          status: 200,
-          statusText: "OK (redirect echo completed)",
-          text: '{"ok":true}',
-        };
-      }
-      throw httpsError;
-    }
+    const response = await rawHttpRequest(currentUrl, {
+      method,
+      headers,
+      body,
+      timeoutMs,
+    });
 
     const { status, statusText, text } = response;
     const location = response.headers?.location;
 
     if ([301, 302, 303, 307, 308].includes(status) && location) {
-      const nextUrl = new URL(location, currentUrl).toString();
-      currentUrl = nextUrl;
-      // Google Apps Script 302/303 redirects after doPost must be followed with GET
+      currentUrl = new URL(location, currentUrl).toString();
       if (status === 301 || status === 302 || status === 303) {
         method = "GET";
         body = null;
@@ -180,7 +270,6 @@ async function sendEmailHttpRequest(targetUrl, bodyString) {
     }
 
     return {
-      ok: status >= 200 && status < 300,
       status,
       statusText,
       text,
@@ -188,6 +277,28 @@ async function sendEmailHttpRequest(targetUrl, bodyString) {
   }
 
   throw new Error("Email API exceeded maximum redirects");
+}
+
+async function sendEmailHttpRequest(targetUrl, bodyString) {
+  let rawResult;
+  try {
+    rawResult = await sendEmailViaFetch(targetUrl, bodyString, EMAIL_REQUEST_TIMEOUT_MS);
+  } catch (fetchErr) {
+    logEmailEvent("email_api_fetch_fallback_to_https", {
+      url: targetUrl,
+      fetchError: formatNetworkError(fetchErr),
+    });
+    rawResult = await sendEmailViaNodeHttps(targetUrl, bodyString, EMAIL_REQUEST_TIMEOUT_MS);
+  }
+
+  const evaluation = evaluateEmailApiResponse(rawResult);
+  return {
+    ok: evaluation.ok,
+    status: rawResult.status,
+    statusText: rawResult.statusText,
+    text: rawResult.text,
+    errorReason: evaluation.errorReason || null,
+  };
 }
 
 function escapeHtml(value) {
@@ -404,11 +515,39 @@ function buildPasswordOtpHtml(otp, ttlMinutes) {
   `.trim();
 }
 
+function normalizeAttachments(attachments) {
+  if (!Array.isArray(attachments) || !attachments.length) return undefined;
+  return attachments.map((item) => {
+    const filename = item.filename || item.name || "report.pdf";
+    const mimeType = item.mimeType || item.contentType || "application/pdf";
+    let content = item.content;
+    if (Buffer.isBuffer(content)) {
+      content = content.toString("base64");
+    } else if (content instanceof Uint8Array) {
+      content = Buffer.from(content).toString("base64");
+    } else {
+      content = String(content || "");
+    }
+    return {
+      filename,
+      name: filename,
+      mimeType,
+      contentType: mimeType,
+      content,
+    };
+  });
+}
+
 export async function postEmail(payload) {
-  const recipient = payload.to;
-  const subject = payload.subject;
-  const attachmentCount = Array.isArray(payload.attachments) ? payload.attachments.length : 0;
+  const recipient = String(payload.to || "").trim();
+  const subject = String(payload.subject || "").trim();
+  const normalizedAttachments = normalizeAttachments(payload.attachments);
+  const attachmentCount = Array.isArray(normalizedAttachments) ? normalizedAttachments.length : 0;
   const candidateUrls = getCandidateEmailUrls();
+
+  if (!recipient) {
+    throw new Error("Email recipient (to) is required");
+  }
 
   if (!candidateUrls.length) {
     logEmailEvent("email_api_not_configured", {
@@ -424,9 +563,19 @@ export async function postEmail(payload) {
     return;
   }
 
+  const textBody =
+    payload.textBody || stripHtmlTags(payload.htmlBody) || subject || "Attached expense report.";
+  const htmlBody = payload.htmlBody || `<p>${escapeHtml(textBody)}</p>`;
   const apiKey = env.emailApiKey || DEFAULT_EMAIL_API_KEY;
+
   const bodyString = JSON.stringify({
     ...payload,
+    to: recipient,
+    subject,
+    htmlBody,
+    textBody,
+    body: textBody,
+    ...(normalizedAttachments ? { attachments: normalizedAttachments } : {}),
     apiKey,
   });
 
@@ -470,6 +619,7 @@ export async function postEmail(payload) {
           subject,
           status: response.status,
           statusText: response.statusText,
+          errorReason: response.errorReason,
           responseBody: String(response.text || "").slice(0, 1000),
           durationMs: Date.now() - startedAt,
           attempt,
@@ -478,9 +628,10 @@ export async function postEmail(payload) {
         });
 
         lastError = new Error(
-          "Email API returned HTTP " +
-            response.status +
-            (response.text ? ": " + String(response.text).slice(0, 500) : ""),
+          response.errorReason ||
+            "Email API returned HTTP " +
+              response.status +
+              (response.text ? ": " + String(response.text).slice(0, 500) : ""),
         );
 
         if (!retryable || !hasRetriesRemaining) {
@@ -548,11 +699,12 @@ export async function sendDashboardEmail(email, pdfBuffer, reportDate) {
     to: email,
     subject: "Expense Dashboard PDF Attached — Expense Overview & Summary — " + reportDate,
     htmlBody: "<p>" + text + "</p>",
+    textBody: text,
     attachments: [
       {
         filename,
         mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
+        content: Buffer.from(pdfBuffer).toString("base64"),
       },
     ],
   });
@@ -570,11 +722,12 @@ export async function sendDailyEmailReport(email, pdfBuffer, reportDate) {
       "Expense Report PDF Attached — Daily Expenses & Survivor Details — Last 7 Days — " +
       reportDate,
     htmlBody: "<p>" + text + "</p>",
+    textBody: text,
     attachments: [
       {
         filename,
         mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
+        content: Buffer.from(pdfBuffer).toString("base64"),
       },
     ],
   });
@@ -592,11 +745,12 @@ export async function sendWeeklyEmailReport(email, pdfBuffer, reportDate) {
       "Expense Report PDF Attached — Weekly Expenses & Survivor Details — Last 4 Weeks — " +
       reportDate,
     htmlBody: "<p>" + text + "</p>",
+    textBody: text,
     attachments: [
       {
         filename,
         mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
+        content: Buffer.from(pdfBuffer).toString("base64"),
       },
     ],
   });
@@ -614,11 +768,12 @@ export async function sendYearlyEmailReport(email, pdfBuffer, reportDate) {
       "Expense Report PDF Attached — Yearly Expenses & Survivor Details — Last 2 Years — " +
       reportDate,
     htmlBody: "<p>" + text + "</p>",
+    textBody: text,
     attachments: [
       {
         filename,
         mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
+        content: Buffer.from(pdfBuffer).toString("base64"),
       },
     ],
   });
@@ -636,11 +791,12 @@ export async function sendMonthlyEmailReport(email, pdfBuffer, reportDate) {
       "Expense Report PDF Attached — Monthly Expenses & Survivor Details — Last 3 Months — " +
       reportDate,
     htmlBody: "<p>" + text + "</p>",
+    textBody: text,
     attachments: [
       {
         filename,
         mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
+        content: Buffer.from(pdfBuffer).toString("base64"),
       },
     ],
   });
@@ -660,15 +816,21 @@ export async function sendReportEmail(email, pdfBuffer, options = {}) {
     options.htmlBody ||
     "<p>Attached is your expense report PDF containing the scheduled expense summary and detailed expense information.</p>";
 
+  const textBody =
+    options.textBody ||
+    stripHtmlTags(htmlBody) ||
+    "Attached is your expense report PDF containing the scheduled expense summary and detailed expense information.";
+
   await postEmail({
     to: email,
     subject,
     htmlBody,
+    textBody,
     attachments: [
       {
         filename,
         mimeType: "application/pdf",
-        content: pdfBuffer.toString("base64"),
+        content: Buffer.from(pdfBuffer).toString("base64"),
       },
     ],
   });

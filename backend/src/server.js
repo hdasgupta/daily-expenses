@@ -187,11 +187,6 @@ async function shutdown(signal) {
     }),
   );
 
-  // Once the shared PostgreSQL pool has been ended, this process must not
-  // continue running cron callbacks against that closed pool. In particular,
-  // the old unhandled-rejection path only set exitCode and left the scheduler
-  // alive, causing later jobs to fail with "Cannot use a pool after calling
-  // end on the pool". Exit after cleanup so the process manager can restart it.
   if (signal === "SIGTERM" || signal === "SIGINT") {
     process.exit(0);
   }
@@ -250,9 +245,6 @@ async function start() {
       reconcileStaleOneTimeReportEmailJobs(),
     ]);
 
-    // Cron tasks must not be relied on inside Vercel serverless functions:
-    // instances are ephemeral and may be frozen between requests. Run these
-    // schedulers in the persistent backend worker instead.
     if (!isVercel) {
       startEmailSchedulers();
       startScheduledReportScheduler();

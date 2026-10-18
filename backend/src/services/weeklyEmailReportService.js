@@ -104,9 +104,9 @@ export async function sendWeeklyEmailReportToManagers() {
   const pdf = await buildWeeklyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate = report.generatedAt.slice(0, 10);
-  await Promise.all(
-    result.rows.map((row) => sendWeeklyEmailReport(row.email, pdf, reportDate)),
-  );
+  for (const row of result.rows) {
+    await sendWeeklyEmailReport(row.email, pdf, reportDate);
+  }
   return { recipients: result.rows.length, rows: report.dump.length };
 }
 

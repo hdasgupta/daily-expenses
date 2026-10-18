@@ -161,13 +161,17 @@ export async function api(path, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  window.dispatchEvent(
-    new CustomEvent("app:api:start", {
-      detail: {
-        message: options.loadingMessage || "Please wait…",
-      },
-    }),
-  );
+  const showLoader = !options.silent;
+
+  if (showLoader) {
+    window.dispatchEvent(
+      new CustomEvent("app:api:start", {
+        detail: {
+          message: options.loadingMessage || "Please wait…",
+        },
+      }),
+    );
+  }
 
   try {
     const { retryTransient, transientRetries, ...requestOptions } = options;
@@ -223,7 +227,8 @@ export async function api(path, options = {}) {
       showToast(options.toast.type || "information", options.toast.message || "Done.");
     } else if (
       ["POST", "PUT", "PATCH", "DELETE"].includes(String(options.method || "GET").toUpperCase()) &&
-      !options.silentToast
+      !options.silentToast &&
+      !options.silent
     ) {
       showToast("success", "Operation completed successfully.");
     }
@@ -248,7 +253,10 @@ export async function api(path, options = {}) {
     // Backend HTTP failures are reported by the backend error handler.
     // Report only failures that can occur entirely on the client side, such
     // as a network outage or an API request accidentally receiving the SPA.
-    if (isFetchFailure || String(message || "").includes("routed to the frontend")) {
+    if (
+      !options.silent &&
+      (isFetchFailure || String(message || "").includes("routed to the frontend"))
+    ) {
       void reportClientError({
         category: "frontend-api-runtime",
         error,
@@ -265,7 +273,9 @@ export async function api(path, options = {}) {
 
     throw new Error(message);
   } finally {
-    window.dispatchEvent(new CustomEvent("app:api:end"));
+    if (showLoader) {
+      window.dispatchEvent(new CustomEvent("app:api:end"));
+    }
   }
 }
 

@@ -84,39 +84,31 @@ function computeNextLastDayOfMonthRun(minute, hour, timezone = "Asia/Kolkata") {
   return !Number.isNaN(candidate.getTime()) ? candidate.toISOString() : null;
 }
 
-export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
-  const safePage = Math.max(1, Number(page) || 1);
-  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
-  const safeSearch = String(search || "").trim();
-  const searchPattern = safeSearch ? `%${safeSearch}%` : "";
-  const offset = (safePage - 1) * safePageSize;
-
-  // Reconcile stale "running" records across all three scheduler tables first.
+export async function runSchedulerTick({ maxJobs = 1, budgetMs = 7000 } = {}) {
   await Promise.all([
     reconcileStaleScheduledReportRuns(),
     reconcileStaleEmailExecutions(),
     reconcileStaleOneTimeReportEmailJobs(),
   ]);
 
-  // IMPORTANT: On serverless deployments (Vercel), un-awaited background tasks
-  // ("void ...") are frozen by the runtime the instant the HTTP response is sent,
-  // leaving jobs stuck in "running" state and later timing out. Always AWAIT
-  // bounded job execution before returning the HTTP response so every claimed
-  // job completes cleanly within the request lifecycle.
+  let executedCount = 0;
   let hasMoreDueJobs = false;
-  const deadlineMs = Date.now() + 5000;
+  const deadlineMs = Date.now() + budgetMs;
+
   try {
     const oneTimeOutcome = await processDueOneTimeReportEmailJobs({
-      maxJobs: 1,
+      maxJobs,
       deadlineMs,
     });
+    executedCount += Number(oneTimeOutcome?.executedCount || 0);
     if (oneTimeOutcome?.hasMoreDue) hasMoreDueJobs = true;
 
     if (Date.now() < deadlineMs) {
       const scheduledOutcome = await processDueScheduledReportJobs({
-        maxJobs: 1,
+        maxJobs,
         deadlineMs,
       });
+      executedCount += Number(scheduledOutcome?.executedCount || 0);
       if (scheduledOutcome?.hasMoreDue) hasMoreDueJobs = true;
     } else {
       hasMoreDueJobs = true;
@@ -124,16 +116,39 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
 
     if (Date.now() < deadlineMs) {
       const systemOutcome = await catchUpMissedEmailReports({
-        maxJobs: 1,
+        maxJobs,
         deadlineMs,
       });
+      executedCount += Number(systemOutcome?.executedCount || 0);
       if (systemOutcome?.hasMoreDue) hasMoreDueJobs = true;
     } else {
       hasMoreDueJobs = true;
     }
   } catch (pollError) {
-    console.error("Scheduler poll during getJobStatus failed", pollError);
+    console.error("Scheduler tick failed", pollError);
   }
+
+  return {
+    ok: true,
+    executedCount,
+    hasMoreDueJobs,
+  };
+}
+
+export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
+  const safePage = Math.max(1, Number(page) || 1);
+  const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
+  const safeSearch = String(search || "").trim();
+  const searchPattern = safeSearch ? `%${safeSearch}%` : "";
+  const offset = (safePage - 1) * safePageSize;
+
+  // IMPORTANT: On serverless deployments (Vercel), un-awaited background tasks
+  // ("void ...") are frozen by the runtime the instant the HTTP response is sent,
+  // leaving jobs stuck in "running" state and later timing out. Always AWAIT
+  // bounded job execution before returning the HTTP response so every claimed
+  // job completes cleanly within the request lifecycle.
+  const tickOutcome = await runSchedulerTick({ maxJobs: 1, budgetMs: 7000 });
+  const hasMoreDueJobs = Boolean(tickOutcome?.hasMoreDueJobs);
 
   // Older one-time report jobs and scheduled report jobs were created before
   // created_by_user_id was populated. Backfill missing creators.

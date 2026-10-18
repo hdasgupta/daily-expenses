@@ -103,9 +103,9 @@ export async function sendDailyEmailReportToManagers() {
   const pdf = await buildDailyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate = report.generatedAt.slice(0, 10);
-  await Promise.all(
-    result.rows.map((row) => sendDailyEmailReport(row.email, pdf, reportDate)),
-  );
+  for (const row of result.rows) {
+    await sendDailyEmailReport(row.email, pdf, reportDate);
+  }
   return { recipients: result.rows.length, rows: report.dump.length };
 }
 

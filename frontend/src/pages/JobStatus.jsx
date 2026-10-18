@@ -322,6 +322,8 @@ export default function JobStatus({ user }) {
   const [deletingOneTimeJob, setDeletingOneTimeJob] = useState(null);
   const [oneTimeDeleteBusy, setOneTimeDeleteBusy] = useState(false);
   const followUpTimerRef = useRef(null);
+  const loadInFlightRef = useRef(false);
+  const lastDueTriggerAtRef = useRef(0);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 1000);
@@ -333,55 +335,61 @@ export default function JobStatus({ user }) {
   }, []);
 
   const load = async ({ silent = false } = {}) => {
-    if (!pagination.ready) return;
+    if (!pagination.ready || loadInFlightRef.current) return;
+    loadInFlightRef.current = true;
+
     if (followUpTimerRef.current) {
       clearTimeout(followUpTimerRef.current);
       followUpTimerRef.current = null;
     }
 
-    const [statusData, customJobs] = await Promise.all([
-      api(
-        `/job-status?page=${page}&pageSize=${pagination.pageSize}&search=${encodeURIComponent(
-          pagination.search,
-        )}`,
-        {
-          loadingMessage: silent ? undefined : "Loading job status…",
+    try {
+      const [statusData, customJobs] = await Promise.all([
+        api(
+          `/job-status?page=${page}&pageSize=${pagination.pageSize}&search=${encodeURIComponent(
+            pagination.search,
+          )}`,
+          {
+            loadingMessage: silent ? undefined : "Loading job status…",
+            silent,
+          },
+        ),
+        api("/scheduled-reports", {
+          loadingMessage: silent ? undefined : "Loading scheduled reports…",
           silent,
-        },
-      ),
-      api("/scheduled-reports", {
-        loadingMessage: silent ? undefined : "Loading scheduled reports…",
-        silent,
-      }),
-    ]);
+        }),
+      ]);
 
-    setSchedules(
-      [...(statusData.schedules || [])].sort(
-        (a, b) => (staticScheduleOrder[a.jobName] || 99) - (staticScheduleOrder[b.jobName] || 99),
-      ),
-    );
+      setSchedules(
+        [...(statusData.schedules || [])].sort(
+          (a, b) => (staticScheduleOrder[a.jobName] || 99) - (staticScheduleOrder[b.jobName] || 99),
+        ),
+      );
 
-    const fetchedRows = statusData.rows || [];
-    setRows(fetchedRows);
-    setTotal(statusData.total || 0);
-    setOneTimeJobs(statusData.oneTimeScheduledJobs || []);
+      const fetchedRows = statusData.rows || [];
+      setRows(fetchedRows);
+      setTotal(statusData.total || 0);
+      setOneTimeJobs(statusData.oneTimeScheduledJobs || []);
 
-    setScheduledJobs(
-      [...(customJobs || [])].sort(
-        (a, b) =>
-          (scheduleOrder[a.frequency] || 99) - (scheduleOrder[b.frequency] || 99) ||
-          String(a.time_of_day).localeCompare(String(b.time_of_day)) ||
-          String(a.name).localeCompare(String(b.name)),
-      ),
-    );
+      setScheduledJobs(
+        [...(customJobs || [])].sort(
+          (a, b) =>
+            (scheduleOrder[a.frequency] || 99) - (scheduleOrder[b.frequency] || 99) ||
+            String(a.time_of_day).localeCompare(String(b.time_of_day)) ||
+            String(a.name).localeCompare(String(b.name)),
+        ),
+      );
 
-    if (
-      statusData.hasMoreDueJobs ||
-      fetchedRows.some((row) => row.status === "running")
-    ) {
-      followUpTimerRef.current = setTimeout(() => {
-        load({ silent: true }).catch(() => {});
-      }, 1500);
+      if (
+        statusData.hasMoreDueJobs ||
+        fetchedRows.some((row) => row.status === "running")
+      ) {
+        followUpTimerRef.current = setTimeout(() => {
+          load({ silent: true }).catch(() => {});
+        }, 1500);
+      }
+    } finally {
+      loadInFlightRef.current = false;
     }
   };
 
@@ -398,10 +406,34 @@ export default function JobStatus({ user }) {
 
     const timer = setInterval(() => {
       load({ silent: true }).catch(() => {});
-    }, 30000);
+    }, 15000);
 
     return () => clearInterval(timer);
   }, [page, pagination.pageSize, pagination.search, pagination.ready]);
+
+  // Immediately trigger a silent poll as soon as any scheduled one-time email
+  // or custom dashboard report crosses its scheduled timestamp.
+  useEffect(() => {
+    if (!pagination.ready || loadInFlightRef.current) return;
+    if (now - lastDueTriggerAtRef.current < 8000) return;
+
+    const hasDueOneTime = oneTimeJobs.some((job) => {
+      if (!job.scheduled_for) return false;
+      const targetMs = new Date(job.scheduled_for).getTime();
+      return Number.isFinite(targetMs) && targetMs <= now;
+    });
+
+    const hasDueScheduled = scheduledJobs.some((job) => {
+      if (!job.active || !job.next_run_at) return false;
+      const targetMs = new Date(job.next_run_at).getTime();
+      return Number.isFinite(targetMs) && targetMs <= now;
+    });
+
+    if (hasDueOneTime || hasDueScheduled) {
+      lastDueTriggerAtRef.current = now;
+      load({ silent: true }).catch(() => {});
+    }
+  }, [now, oneTimeJobs, scheduledJobs, pagination.ready]);
 
   const refresh = async () => {
     setRefreshing(true);

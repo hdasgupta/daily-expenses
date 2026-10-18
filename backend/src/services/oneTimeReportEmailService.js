@@ -5,7 +5,7 @@ import { sendReportEmail } from "./mailService.js";
 import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
-const STALE_RUNNING_SECONDS = 25;
+const STALE_RUNNING_SECONDS = 35;
 const FAILED_RETRY_COOLDOWN_MINUTES = 1;
 
 export async function ensureOneTimeReportEmailSchedulerSchema() {
@@ -113,16 +113,20 @@ export async function reconcileStaleOneTimeReportEmailJobs() {
     );
 
     await q(
-      `DELETE FROM public.scheduler_job_runs
+      `UPDATE public.scheduler_job_runs
+          SET status = 'failed',
+              completed_at = now() - INTERVAL '2 minutes',
+              duration_ms = COALESCE(
+                duration_ms,
+                GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
+              ),
+              error_message = COALESCE(
+                error_message,
+                'Execution interrupted or timed out before completion'
+              )
         WHERE job_name LIKE 'one-time-report:%'
-          AND (
-            error_message = 'Execution interrupted or timed out before completion'
-            OR error_message ILIKE '%fetch failed%'
-            OR (
-              status = 'running'
-              AND started_at < now() - ($1::int * INTERVAL '1 second')
-            )
-          )`,
+          AND status = 'running'
+          AND started_at < now() - ($1::int * INTERVAL '1 second')`,
       [STALE_RUNNING_SECONDS],
     );
   } catch (error) {
@@ -191,8 +195,10 @@ async function resolveScheduledFor(value) {
   const scheduledFor = result.rows[0]?.scheduled_for;
   const timestamp = scheduledFor ? new Date(scheduledFor).getTime() : NaN;
 
-  if (!Number.isFinite(timestamp) || timestamp <= Date.now() + 30_000) {
-    throw error("Choose a date and time at least 30 seconds in the future.");
+  // HTML <input type="time"> only has minute resolution (HH:MM), so selecting the
+  // current minute or the next minute when seconds > 30 should be accepted cleanly.
+  if (!Number.isFinite(timestamp) || timestamp < Date.now() - 60_000) {
+    throw error("Choose a current or future date and time.");
   }
 
   return new Date(timestamp).toISOString();
@@ -262,7 +268,20 @@ export async function scheduleOneTimeReportEmail({
   );
 
   const emailById = new Map(recipients.map((recipient) => [String(recipient.id), recipient.email]));
-  if (process.env.VERCEL !== "1") {
+
+  if (new Date(when).getTime() <= Date.now() + 2000) {
+    try {
+      await processDueOneTimeReportEmailJobs({
+        maxJobs: 2,
+        deadlineMs: Date.now() + 6000,
+      });
+    } catch (schedulerError) {
+      console.error("One-time report email immediate execution failed", {
+        error: schedulerError?.message || String(schedulerError),
+        stack: schedulerError?.stack,
+      });
+    }
+  } else if (process.env.VERCEL !== "1") {
     void processDueOneTimeReportEmailJobs().catch((schedulerError) => {
       console.error("One-time report email immediate poll failed", {
         error: schedulerError?.message || String(schedulerError),

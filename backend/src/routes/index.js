@@ -64,6 +64,11 @@ export function createRouter(maxUploadBytes) {
     });
   });
 
+  // Allow both Vercel Cron (GET) and the frontend background heartbeat (POST)
+  // to trigger due scheduled jobs regardless of active page or caller timezone header.
+  router.get("/scheduler/tick", jobStatusController.tick);
+  router.post("/scheduler/tick", jobStatusController.tick);
+
   router.use(indiaTimezoneOnly);
 
   router.post("/auth/login", authController.loginController);

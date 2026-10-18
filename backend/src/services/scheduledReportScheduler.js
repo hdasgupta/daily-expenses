@@ -8,10 +8,11 @@ import { notifyAdminFailure } from "./adminAlertService.js";
 
 let started = false;
 let activePollPromise = null;
+let migrationChecked = false;
 const activeJobLocks = new Set();
 
-const STALE_RUNNING_SECONDS = 25;
-const FAILED_RETRY_COOLDOWN_MINUTES = 5;
+const STALE_RUNNING_SECONDS = 35;
+const FAILED_RETRY_COOLDOWN_MINUTES = 2;
 
 const WEEKDAY_INDEX = {
   Sunday: 0,
@@ -23,7 +24,7 @@ const WEEKDAY_INDEX = {
   Saturday: 6,
 };
 
-function localParts() {
+function localParts(date = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Kolkata",
     year: "numeric",
@@ -33,7 +34,7 @@ function localParts() {
     minute: "2-digit",
     weekday: "long",
     hourCycle: "h23",
-  }).formatToParts(new Date());
+  }).formatToParts(date);
 
   const mapped = Object.fromEntries(
     parts.filter(({ type }) => type !== "literal").map(({ type, value }) => [type, value]),
@@ -44,6 +45,11 @@ function localParts() {
   }
 
   return mapped;
+}
+
+function yesterdayDateKey(local) {
+  const d = new Date(Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day) - 1));
+  return d.toISOString().slice(0, 10);
 }
 
 function dueFor(job, local) {
@@ -103,30 +109,62 @@ function executionJobName(jobId) {
   return `scheduled-report:${jobId}`;
 }
 
+async function runOneTimeV4ResetIfNeeded() {
+  if (migrationChecked) return;
+  try {
+    await q(`
+      CREATE TABLE IF NOT EXISTS public.scheduler_migrations (
+        key TEXT PRIMARY KEY,
+        applied_at TIMESTAMPTZ NOT NULL DEFAULT now()
+      )
+    `);
+    const mig = await q(
+      `INSERT INTO public.scheduler_migrations (key)
+       VALUES ('reset_oct_2026_email_runs_v4')
+       ON CONFLICT (key) DO NOTHING
+       RETURNING key`,
+    );
+    if (mig.rowCount > 0) {
+      await q(
+        `DELETE FROM public.scheduler_job_runs
+          WHERE job_name LIKE 'scheduled-report:%'
+            AND started_at >= '2026-10-16T00:00:00Z'`,
+      );
+      await q(
+        `DELETE FROM public.scheduler_job_executions
+          WHERE job_name <> 'daily-planned-recipe-email'
+            AND (
+              status IN ('failed', 'running')
+              OR started_at >= '2026-10-18T00:00:00Z'
+            )`,
+      );
+    }
+    migrationChecked = true;
+  } catch (error) {
+    console.error("Failed to run one-time scheduler v4 migration", error);
+  }
+}
+
 export async function reconcileStaleScheduledReportRuns() {
   try {
-    const local = localParts();
-    const todayKey = `${local.year}-${local.month}-${local.day}`;
+    await runOneTimeV4ResetIfNeeded();
 
-    // Remove interrupted ghost runs or prior "fetch failed" runs so today's due
-    // runs immediately re-execute with the native https email transport and old
-    // ghost rows do not stay failed in Execution History.
     await q(
-      `DELETE FROM public.scheduler_job_runs
+      `UPDATE public.scheduler_job_runs
+          SET status = 'failed',
+              completed_at = now() - ($1::int * INTERVAL '1 minute'),
+              duration_ms = COALESCE(
+                duration_ms,
+                GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
+              ),
+              error_message = COALESCE(
+                error_message,
+                'Execution interrupted or timed out before completion'
+              )
         WHERE job_name LIKE 'scheduled-report:%'
-          AND (
-            error_message = 'Execution interrupted or timed out before completion'
-            OR error_message ILIKE '%fetch failed%'
-            OR (
-              status = 'running'
-              AND started_at < now() - ($1::int * INTERVAL '1 second')
-            )
-          )
-          AND (
-            scheduled_key <= $2
-            OR started_at < now() - ($1::int * INTERVAL '1 second')
-          )`,
-      [STALE_RUNNING_SECONDS, todayKey],
+          AND status = 'running'
+          AND started_at < now() - ($2::int * INTERVAL '1 second')`,
+      [FAILED_RETRY_COOLDOWN_MINUTES + 1, STALE_RUNNING_SECONDS],
     );
   } catch (error) {
     console.error("Failed to reconcile stale scheduled-report runs", {
@@ -148,12 +186,24 @@ async function isAlreadyCompletedOrCoolingDown(job, key) {
 
   const row = existing.rows[0];
   if (!row) return false;
-  if (row.status === "completed") return true;
 
   if (row.status === "running") {
     const ageMs = Date.now() - new Date(row.started_at).getTime();
     if (ageMs < STALE_RUNNING_SECONDS * 1000) return true;
+    return false;
   }
+
+  // If the user edited the scheduled report after the previous run started,
+  // allow the updated schedule to execute again for the current period.
+  if (job.updated_at && row.started_at) {
+    const updatedMs = new Date(job.updated_at).getTime();
+    const startedMs = new Date(row.started_at).getTime();
+    if (Number.isFinite(updatedMs) && Number.isFinite(startedMs) && updatedMs > startedMs) {
+      return false;
+    }
+  }
+
+  if (row.status === "completed") return true;
 
   if (
     row.status === "failed" &&
@@ -179,6 +229,10 @@ async function claimExecution(job, key) {
 
   activeJobLocks.add(lockKey);
 
+  const jobUpdatedAt = job.updated_at
+    ? new Date(job.updated_at).toISOString()
+    : new Date(0).toISOString();
+
   try {
     const result = await q(
       `INSERT INTO public.scheduler_job_runs (
@@ -197,22 +251,27 @@ async function claimExecution(job, key) {
              completed_at = NULL,
              duration_ms = NULL,
              error_message = NULL
-       WHERE public.scheduler_job_runs.status <> 'completed'
-         AND (
-           public.scheduler_job_runs.status <> 'running'
-           OR public.scheduler_job_runs.started_at < now() - ($3::int * INTERVAL '1 second')
+       WHERE (
+         public.scheduler_job_runs.status <> 'running'
+         OR public.scheduler_job_runs.started_at < now() - ($3::int * INTERVAL '1 second')
+       )
+       AND (
+         public.scheduler_job_runs.started_at < $5::timestamptz
+         OR (
+           public.scheduler_job_runs.status <> 'completed'
+           AND (
+             public.scheduler_job_runs.status <> 'failed'
+             OR public.scheduler_job_runs.error_message = 'Execution interrupted or timed out before completion'
+             OR public.scheduler_job_runs.error_message ILIKE '%fetch failed%'
+             OR COALESCE(
+                  public.scheduler_job_runs.completed_at,
+                  public.scheduler_job_runs.started_at
+                ) <= now() - ($4::int * INTERVAL '1 minute')
+           )
          )
-         AND (
-           public.scheduler_job_runs.status <> 'failed'
-           OR public.scheduler_job_runs.error_message = 'Execution interrupted or timed out before completion'
-           OR public.scheduler_job_runs.error_message ILIKE '%fetch failed%'
-           OR COALESCE(
-                public.scheduler_job_runs.completed_at,
-                public.scheduler_job_runs.started_at
-              ) <= now() - ($4::int * INTERVAL '1 minute')
-         )
+       )
        RETURNING job_name, scheduled_key`,
-      [jobName, key, STALE_RUNNING_SECONDS, FAILED_RETRY_COOLDOWN_MINUTES],
+      [jobName, key, STALE_RUNNING_SECONDS, FAILED_RETRY_COOLDOWN_MINUTES, jobUpdatedAt],
     );
 
     if (!result.rowCount) {
@@ -335,6 +394,67 @@ async function runJob(jobId, key) {
   }
 }
 
+async function resolveDueKeyForJob(job, local) {
+  const todayKey = `${local.year}-${local.month}-${local.day}`;
+
+  if (dueFor(job, local)) {
+    const key = scheduledKey(job, local);
+    if (!(await isAlreadyCompletedOrCoolingDown(job, key))) {
+      return key;
+    }
+  }
+
+  // If a daily job's time for today has not yet arrived, check whether yesterday's
+  // scheduled run was missed (for jobs created before today).
+  if (job.frequency === "daily") {
+    const createdDateKey = job.created_at
+      ? (() => {
+          const p = localParts(new Date(job.created_at));
+          return `${p.year}-${p.month}-${p.day}`;
+        })()
+      : null;
+
+    if (!createdDateKey || createdDateKey < todayKey) {
+      const yKey = yesterdayDateKey(local);
+      const existingYesterday = await q(
+        `SELECT status
+           FROM public.scheduler_job_runs
+          WHERE job_name = $1
+            AND scheduled_key = $2`,
+        [executionJobName(job.id), yKey],
+      );
+      if (
+        !existingYesterday.rows[0] ||
+        (existingYesterday.rows[0].status === "failed" &&
+          !(await isAlreadyCompletedOrCoolingDown(job, yKey)))
+      ) {
+        return yKey;
+      }
+    }
+  }
+
+  // Retry any recent failed run for this job from the last 7 days
+  const failedRun = await q(
+    `SELECT scheduled_key
+       FROM public.scheduler_job_runs
+      WHERE job_name = $1
+        AND status = 'failed'
+        AND started_at >= now() - INTERVAL '7 days'
+      ORDER BY started_at DESC
+      LIMIT 1`,
+    [executionJobName(job.id)],
+  );
+
+  if (failedRun.rows[0]?.scheduled_key) {
+    const fKey = failedRun.rows[0].scheduled_key;
+    if (!(await isAlreadyCompletedOrCoolingDown(job, fKey))) {
+      return fKey;
+    }
+  }
+
+  return null;
+}
+
 export async function processDueScheduledReportJobs({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
   if (activePollPromise) {
     return activePollPromise;
@@ -350,19 +470,17 @@ export async function processDueScheduledReportJobs({ maxJobs = Infinity, deadli
       const local = localParts();
 
       const result = await q(
-        `SELECT *
-           FROM public.scheduled_report_jobs
-          WHERE active = TRUE
-          ORDER BY id`,
+        `SELECT j.*
+           FROM public.scheduled_report_jobs j
+           JOIN public.users u ON u.id = j.owner_user_id
+          WHERE j.active = TRUE
+            AND u.is_disabled = FALSE
+          ORDER BY j.id`,
       );
 
       for (const job of result.rows) {
-        if (!dueFor(job, local)) continue;
-
-        const key = scheduledKey(job, local);
-        if (await isAlreadyCompletedOrCoolingDown(job, key)) {
-          continue;
-        }
+        const key = await resolveDueKeyForJob(job, local);
+        if (!key) continue;
 
         if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
           hasMoreDue = true;

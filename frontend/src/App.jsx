@@ -400,6 +400,67 @@ export default function App() {
     }
   }, [path, user]);
 
+  /*
+   * Global silent scheduler heartbeat: ensures due one-time report emails,
+   * custom scheduled dashboard reports, and system recurring emails execute
+   * reliably on serverless deployments even when the user is on /report,
+   * /dashboard, /add-expense, or any other page besides /job-status.
+   */
+  useEffect(() => {
+    if (!user) return undefined;
+
+    let active = true;
+    let inFlight = false;
+    let followUpTimer = null;
+
+    const triggerTick = async () => {
+      if (!active || inFlight) return;
+      if (normalizePath(window.location.pathname) === "/job-status") return;
+      inFlight = true;
+      try {
+        const res = await api("/scheduler/tick", {
+          method: "POST",
+          silent: true,
+          silentToast: true,
+          retryTransient: false,
+        });
+        if (active && res?.hasMoreDueJobs) {
+          followUpTimer = setTimeout(() => {
+            void triggerTick();
+          }, 1500);
+        }
+      } catch {
+        // Ignore silent background scheduler tick errors.
+      } finally {
+        inFlight = false;
+      }
+    };
+
+    const initialTimer = setTimeout(() => {
+      void triggerTick();
+    }, 1000);
+
+    const interval = setInterval(() => {
+      void triggerTick();
+    }, 20000);
+
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") {
+        void triggerTick();
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      active = false;
+      clearTimeout(initialTimer);
+      clearInterval(interval);
+      if (followUpTimer) clearTimeout(followUpTimer);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [user]);
+
   useEffect(() => {
     const popState = () => {
       const nextPath = normalizePath(window.location.pathname);

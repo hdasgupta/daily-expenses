@@ -13,8 +13,18 @@ let started = false;
 let activeCatchUpPromise = null;
 const activeEmailJobs = new Set();
 
-const STALE_RUNNING_SECONDS = 25;
-const FAILED_RETRY_COOLDOWN_MINUTES = 5;
+const STALE_RUNNING_SECONDS = 35;
+const FAILED_RETRY_COOLDOWN_MINUTES = 2;
+
+const WEEKDAY_NUM = {
+  Sunday: 0,
+  Monday: 1,
+  Tuesday: 2,
+  Wednesday: 3,
+  Thursday: 4,
+  Friday: 5,
+  Saturday: 6,
+};
 
 export function normalizeCronExpression(cronExpr) {
   const raw = String(cronExpr || "").trim();
@@ -45,6 +55,24 @@ function getLocalDateParts(timezone, date = new Date()) {
 function localDateKey(timezone, date = new Date()) {
   const { year, month, day } = getLocalDateParts(timezone, date);
   return `${year}-${month}-${day}`;
+}
+
+function yesterdayDateKeyFromLocal(local) {
+  const d = new Date(Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day) - 1));
+  return d.toISOString().slice(0, 10);
+}
+
+function lastPastSaturdayDateKey(local) {
+  const weekday =
+    local.weekday in WEEKDAY_NUM
+      ? WEEKDAY_NUM[local.weekday]
+      : new Date(Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day))).getUTCDay();
+  // Number of days since the most recent past Saturday (strictly before today: 1..7 days ago)
+  const daysSinceSaturday = ((weekday - 6 + 7) % 7) || 7;
+  const d = new Date(
+    Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day) - daysSinceSaturday),
+  );
+  return d.toISOString().slice(0, 10);
 }
 
 function isLastDayOfMonth(local) {
@@ -92,6 +120,34 @@ export async function reconcileStaleEmailExecutions() {
       stack: error?.stack,
     });
   }
+}
+
+async function isSystemJobDueOrRetryable(jobName, scheduledKey) {
+  const existing = await q(
+    `SELECT status, started_at, completed_at, error_message
+       FROM public.scheduler_job_executions
+      WHERE job_name = $1
+        AND scheduled_key = $2`,
+    [jobName, scheduledKey],
+  );
+  const row = existing.rows[0];
+  if (!row) return true;
+  if (row.status === "completed" || row.status === "skipped") return false;
+  if (row.status === "running") {
+    const ageMs = Date.now() - new Date(row.started_at).getTime();
+    return ageMs >= STALE_RUNNING_SECONDS * 1000;
+  }
+  if (
+    row.status === "failed" &&
+    row.error_message !== "Execution interrupted or timed out before completion" &&
+    !String(row.error_message || "").toLowerCase().includes("fetch failed")
+  ) {
+    const refMs = new Date(row.completed_at || row.started_at).getTime();
+    if (Date.now() - refMs < FAILED_RETRY_COOLDOWN_MINUTES * 60 * 1000) {
+      return false;
+    }
+  }
+  return true;
 }
 
 async function claimJobExecution(jobName, scheduledKey) {
@@ -420,56 +476,109 @@ export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs
         return { executedCount, hasMoreDue };
       }
 
+      // 1. Daily planned recipe email (due at 06:00 AM IST today)
       const recipeLocal = getLocalDateParts(env.dailyPlannedRecipeTimezone);
       const recipeHour = Number(recipeLocal.hour === "24" ? 0 : recipeLocal.hour);
-      if (recipeHour >= 6 && executedCount < maxJobs && Date.now() < deadlineMs) {
+      const recipeTodayKey = `${recipeLocal.year}-${recipeLocal.month}-${recipeLocal.day}`;
+      if (recipeHour >= 6 && (await isSystemJobDueOrRetryable("daily-planned-recipe-email", recipeTodayKey))) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          return { executedCount, hasMoreDue };
+        }
         try {
-          const ran = await runDailyPlannedRecipeEmail();
+          const ran = await runDailyPlannedRecipeEmail(recipeTodayKey);
           if (ran) executedCount += 1;
         } catch (error) {
           console.error("Missed daily planned recipe email catch-up failed", error);
         }
       }
 
+      // 2. Daily 7-day email report & Marketing List email
+      //    - If it is currently 23:59, run for todayKey (and tomorrow's marketing list).
+      //    - Otherwise, ensure yesterday's 23:59 run (yesterdayKey, and today's marketing list)
+      //      was not missed when the serverless function was idle at 23:59.
       const dailyLocal = getLocalDateParts(env.dailyEmailReportTimezone);
       const dailyHour = Number(dailyLocal.hour === "24" ? 0 : dailyLocal.hour);
       const dailyMinute = Number(dailyLocal.minute);
+      const dailyTodayKey = `${dailyLocal.year}-${dailyLocal.month}-${dailyLocal.day}`;
+      const dailyYesterdayKey = yesterdayDateKeyFromLocal(dailyLocal);
 
-      if (dailyHour === 23 && dailyMinute >= 59 && executedCount < maxJobs && Date.now() < deadlineMs) {
+      const dueDailyKey =
+        dailyHour === 23 && dailyMinute >= 59 ? dailyTodayKey : dailyYesterdayKey;
+
+      if (await isSystemJobDueOrRetryable("daily-email-report", dueDailyKey)) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          return { executedCount, hasMoreDue };
+        }
         try {
-          const ran = await runDailyEmailReport();
+          const ran = await runDailyEmailReport(dueDailyKey);
           if (ran) executedCount += 1;
         } catch (error) {
           console.error("Missed 7-day email report catch-up failed", error);
         }
-        if (executedCount < maxJobs && Date.now() < deadlineMs) {
-          try {
-            const ran = await runMarketingListEmail();
-            if (ran) executedCount += 1;
-          } catch (error) {
-            console.error("Missed marketing list email catch-up failed", error);
-          }
+      }
+
+      const dueMarketingPurchaseDate =
+        dailyHour === 23 && dailyMinute >= 59 ? nextDayIST() : dailyTodayKey;
+      const dueMarketingKey = `marketing-list-email:${dueMarketingPurchaseDate}`;
+      if (await isSystemJobDueOrRetryable("marketing-list-email", dueMarketingKey)) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          return { executedCount, hasMoreDue };
+        }
+        try {
+          const ran = await runMarketingListEmail(dueMarketingPurchaseDate);
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed marketing list email catch-up failed", error);
         }
       }
 
+      // 3. Weekly 4-week email report (due Saturday 23:59 IST; catch up most recent Saturday if missed)
       const weeklyLocal = getLocalDateParts(env.weeklyEmailReportTimezone);
       const weeklyHour = Number(weeklyLocal.hour === "24" ? 0 : weeklyLocal.hour);
       const weeklyMinute = Number(weeklyLocal.minute);
-      if (
-        weeklyLocal.weekday === "Saturday" &&
-        weeklyHour === 23 &&
-        weeklyMinute >= 59 &&
-        executedCount < maxJobs &&
-        Date.now() < deadlineMs
-      ) {
+      const weeklyTodayKey = `${weeklyLocal.year}-${weeklyLocal.month}-${weeklyLocal.day}`;
+      const dueWeeklyKey =
+        weeklyLocal.weekday === "Saturday" && weeklyHour === 23 && weeklyMinute >= 59
+          ? weeklyTodayKey
+          : lastPastSaturdayDateKey(weeklyLocal);
+
+      if (await isSystemJobDueOrRetryable("weekly-email-report", dueWeeklyKey)) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          return { executedCount, hasMoreDue };
+        }
         try {
-          const ran = await runWeeklyEmailReport();
+          const ran = await runWeeklyEmailReport(dueWeeklyKey);
           if (ran) executedCount += 1;
         } catch (error) {
           console.error("Missed 4-week email report catch-up failed", error);
         }
       }
 
+      // 4. Monthly 3-month email report (due last day of month at 23:59 IST)
+      const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
+      const monthlyHour = Number(monthlyLocal.hour === "24" ? 0 : monthlyLocal.hour);
+      const monthlyMinute = Number(monthlyLocal.minute);
+      if (isLastDayOfMonth(monthlyLocal) && monthlyHour === 23 && monthlyMinute >= 59) {
+        const monthlyKey = `${monthlyLocal.year}-${monthlyLocal.month}`;
+        if (await isSystemJobDueOrRetryable("monthly-email-report", monthlyKey)) {
+          if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+            hasMoreDue = true;
+            return { executedCount, hasMoreDue };
+          }
+          try {
+            const ran = await runMonthlyEmailReport(monthlyKey);
+            if (ran) executedCount += 1;
+          } catch (error) {
+            console.error("Missed 3-month email report catch-up failed", error);
+          }
+        }
+      }
+
+      // 5. Yearly 2-year email report (due Dec 31 at 23:59 IST)
       const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
       const yearlyHour = Number(yearlyLocal.hour === "24" ? 0 : yearlyLocal.hour);
       const yearlyMinute = Number(yearlyLocal.minute);
@@ -477,33 +586,20 @@ export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs
         yearlyLocal.month === "12" &&
         yearlyLocal.day === "31" &&
         yearlyHour === 23 &&
-        yearlyMinute >= 59 &&
-        executedCount < maxJobs &&
-        Date.now() < deadlineMs
+        yearlyMinute >= 59
       ) {
-        try {
-          const ran = await runYearlyEmailReport();
-          if (ran) executedCount += 1;
-        } catch (error) {
-          console.error("Missed 2-year email report catch-up failed", error);
-        }
-      }
-
-      const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
-      const monthlyHour = Number(monthlyLocal.hour === "24" ? 0 : monthlyLocal.hour);
-      const monthlyMinute = Number(monthlyLocal.minute);
-      if (
-        isLastDayOfMonth(monthlyLocal) &&
-        monthlyHour === 23 &&
-        monthlyMinute >= 59 &&
-        executedCount < maxJobs &&
-        Date.now() < deadlineMs
-      ) {
-        try {
-          const ran = await runMonthlyEmailReport();
-          if (ran) executedCount += 1;
-        } catch (error) {
-          console.error("Missed 3-month email report catch-up failed", error);
+        const yearlyKey = `${yearlyLocal.year}`;
+        if (await isSystemJobDueOrRetryable("yearly-email-report", yearlyKey)) {
+          if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+            hasMoreDue = true;
+            return { executedCount, hasMoreDue };
+          }
+          try {
+            const ran = await runYearlyEmailReport(yearlyKey);
+            if (ran) executedCount += 1;
+          } catch (error) {
+            console.error("Missed 2-year email report catch-up failed", error);
+          }
         }
       }
     } finally {

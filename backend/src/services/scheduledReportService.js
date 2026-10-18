@@ -109,8 +109,8 @@ function normalizePayload(data = {}, existing = null) {
       : frequency === "weekly"
         ? `${minute} ${hour} * * ${dayOfWeek}`
         : frequency === "monthly"
-          ? `${minute} ${hour} ${dayOfMonth} * *`
-          : `${minute} ${hour} ${dayOfMonth} ${monthOfYear} *`;
+           ? `${minute} ${hour} ${dayOfMonth} * *`
+           : `${minute} ${hour} ${dayOfMonth} ${monthOfYear} *`;
 
   if (!cron.validate(cronExpression)) {
     throw error("The selected schedule is not valid.");
@@ -221,20 +221,19 @@ function canManage(job, user) {
   return user.role === "admin" || String(job.owner_user_id) === String(user.id);
 }
 
-function triggerImmediateScheduledReportPoll() {
-  // On Vercel serverless, un-awaited background tasks get frozen as soon as
-  // the HTTP response finishes. JobStatus.jsx immediately calls GET /api/job-status
-  // after create/update, which awaits due jobs cleanly.
-  if (process.env.VERCEL === "1") return;
-
-  void import("./scheduledReportScheduler.js")
-    .then((mod) => mod.processDueScheduledReportJobs())
-    .catch((pollError) => {
-      console.error("Immediate scheduled-report poll failed", {
-        error: pollError?.message || String(pollError),
-        stack: pollError?.stack,
-      });
+async function triggerImmediateScheduledReportPoll() {
+  try {
+    const mod = await import("./scheduledReportScheduler.js");
+    await mod.processDueScheduledReportJobs({
+      maxJobs: 1,
+      deadlineMs: Date.now() + 6000,
     });
+  } catch (pollError) {
+    console.error("Immediate scheduled-report poll failed", {
+      error: pollError?.message || String(pollError),
+      stack: pollError?.stack,
+    });
+  }
 }
 
 export async function createScheduledReportJob(data, user) {
@@ -299,7 +298,7 @@ export async function createScheduledReportJob(data, user) {
 
   const jobs = result.rows.map(decorateJob);
 
-  triggerImmediateScheduledReportPoll();
+  await triggerImmediateScheduledReportPoll();
 
   if (requestedIds.length > 1) {
     return {
@@ -354,9 +353,19 @@ export async function updateScheduledReportJob(id, data, user) {
     ],
   );
 
+  // Clear any non-running execution lock from the current day/month/year so that
+  // editing a job's delivery time allows it to fire at the newly selected time today.
+  await q(
+    `DELETE FROM public.scheduler_job_runs
+      WHERE job_name = $1
+        AND status <> 'running'
+        AND started_at >= now() - INTERVAL '36 hours'`,
+    [`scheduled-report:${id}`],
+  );
+
   const updated = decorateJob(result.rows[0]);
 
-  triggerImmediateScheduledReportPoll();
+  await triggerImmediateScheduledReportPoll();
 
   return updated;
 }
