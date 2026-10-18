@@ -1,4 +1,5 @@
 import { env } from "../config/env.js";
+import { postEmail } from "./mailService.js";
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -87,26 +88,12 @@ export async function sendAdminFailureAlert(details = {}) {
     .filter(Boolean)
     .join("\n");
 
-  const response = await fetch(env.emailApiUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      to: recipient,
-      subject,
-      htmlBody,
-      textBody,
-      apiKey: env.emailApiKey,
-    }),
+  await postEmail({
+    to: recipient,
+    subject,
+    htmlBody,
+    textBody,
   });
-
-  if (!response.ok) {
-    const responseText = await response.text();
-    throw new Error(
-      `Admin failure alert email API returned HTTP ${response.status}${
-        responseText ? `: ${responseText.slice(0, 500)}` : ""
-      }`,
-    );
-  }
 }
 
 export async function notifyAdminFailure(details = {}) {

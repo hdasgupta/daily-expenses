@@ -108,15 +108,15 @@ export async function reconcileStaleScheduledReportRuns() {
     const local = localParts();
     const todayKey = `${local.year}-${local.month}-${local.day}`;
 
-    // Remove orphaned/interrupted ghost runs from previous days or current runs
-    // that were interrupted mid-flight by serverless container freezes, so
-    // today's due runs can execute cleanly and old interrupted ghost rows do
-    // not clutter Execution History with false failures.
+    // Remove interrupted ghost runs or prior "fetch failed" runs so today's due
+    // runs immediately re-execute with the native https email transport and old
+    // ghost rows do not stay failed in Execution History.
     await q(
       `DELETE FROM public.scheduler_job_runs
         WHERE job_name LIKE 'scheduled-report:%'
           AND (
             error_message = 'Execution interrupted or timed out before completion'
+            OR error_message ILIKE '%fetch failed%'
             OR (
               status = 'running'
               AND started_at < now() - ($1::int * INTERVAL '1 second')
@@ -157,7 +157,8 @@ async function isAlreadyCompletedOrCoolingDown(job, key) {
 
   if (
     row.status === "failed" &&
-    row.error_message !== "Execution interrupted or timed out before completion"
+    row.error_message !== "Execution interrupted or timed out before completion" &&
+    !String(row.error_message || "").toLowerCase().includes("fetch failed")
   ) {
     const refTime = new Date(row.completed_at || row.started_at).getTime();
     if (Date.now() - refTime < FAILED_RETRY_COOLDOWN_MINUTES * 60 * 1000) {
@@ -204,6 +205,7 @@ async function claimExecution(job, key) {
          AND (
            public.scheduler_job_runs.status <> 'failed'
            OR public.scheduler_job_runs.error_message = 'Execution interrupted or timed out before completion'
+           OR public.scheduler_job_runs.error_message ILIKE '%fetch failed%'
            OR COALESCE(
                 public.scheduler_job_runs.completed_at,
                 public.scheduler_job_runs.started_at

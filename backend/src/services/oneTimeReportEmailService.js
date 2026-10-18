@@ -117,6 +117,7 @@ export async function reconcileStaleOneTimeReportEmailJobs() {
         WHERE job_name LIKE 'one-time-report:%'
           AND (
             error_message = 'Execution interrupted or timed out before completion'
+            OR error_message ILIKE '%fetch failed%'
             OR (
               status = 'running'
               AND started_at < now() - ($1::int * INTERVAL '1 second')
@@ -386,6 +387,7 @@ export async function processDueOneTimeReportEmailJobs({ maxJobs = Infinity, dea
                 AND (
                   last_attempt_at IS NULL
                   OR last_error LIKE 'Previous execution was interrupted%'
+                  OR last_error ILIKE '%fetch failed%'
                   OR last_attempt_at <= clock_timestamp() - ($1::int * INTERVAL '1 minute')
                 )
               )

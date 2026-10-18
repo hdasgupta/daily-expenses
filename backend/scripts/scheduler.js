@@ -114,6 +114,7 @@ async function claimJobExecution(jobName, scheduledKey) {
        AND (
          public.scheduler_job_executions.status <> 'failed'
          OR public.scheduler_job_executions.error_message = 'Execution interrupted or timed out before completion'
+         OR public.scheduler_job_executions.error_message ILIKE '%fetch failed%'
          OR COALESCE(
               public.scheduler_job_executions.completed_at,
               public.scheduler_job_executions.started_at
@@ -357,9 +358,13 @@ async function retryRecentFailedSystemJobs({ maxJobs = Infinity, deadlineMs = In
        FROM public.scheduler_job_executions
       WHERE status = 'failed'
         AND scheduled_key IS NOT NULL
-        AND started_at >= now() - INTERVAL '48 hours'
+        AND (
+          started_at >= now() - INTERVAL '7 days'
+          OR error_message ILIKE '%fetch failed%'
+        )
         AND (
           error_message = 'Execution interrupted or timed out before completion'
+          OR error_message ILIKE '%fetch failed%'
           OR COALESCE(completed_at, started_at) <= now() - ($1::int * INTERVAL '1 minute')
         )
       ORDER BY started_at DESC`,
