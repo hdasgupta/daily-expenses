@@ -1,6 +1,19 @@
 import cron from "node-cron";
 import { q } from "../db/index.js";
 import { env } from "../config/env.js";
+import {
+  reconcileStaleScheduledReportRuns,
+  processDueScheduledReportJobs,
+} from "./scheduledReportScheduler.js";
+import {
+  reconcileStaleOneTimeReportEmailJobs,
+  processDueOneTimeReportEmailJobs,
+} from "./oneTimeReportEmailService.js";
+import {
+  reconcileStaleEmailExecutions,
+  catchUpMissedEmailReports,
+  normalizeCronExpression,
+} from "../../scripts/scheduler.js";
 
 const scheduleDefinitions = [
   {
@@ -42,17 +55,60 @@ const scheduleDefinitions = [
   },
 ];
 
+function computeNextLastDayOfMonthRun(minute, hour, timezone = "Asia/Kolkata") {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: timezone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+  let year = Number(values.year);
+  let month = Number(values.month);
+
+  const buildCandidate = (y, m) => {
+    const lastDay = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    const pad = (n) => String(n).padStart(2, "0");
+    return new Date(`${y}-${pad(m)}-${pad(lastDay)}T${pad(hour)}:${pad(minute)}:00+05:30`);
+  };
+
+  let candidate = buildCandidate(year, month);
+  if (candidate.getTime() <= Date.now()) {
+    month += 1;
+    if (month > 12) {
+      month = 1;
+      year += 1;
+    }
+    candidate = buildCandidate(year, month);
+  }
+  return !Number.isNaN(candidate.getTime()) ? candidate.toISOString() : null;
+}
+
 export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
   const safePage = Math.max(1, Number(page) || 1);
   const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
+  const searchPattern = safeSearch ? `%${safeSearch}%` : "";
   const offset = (safePage - 1) * safePageSize;
 
-  // Older one-time report jobs were created before created_by_user_id was
-  // populated. The user confirmed those legacy jobs were created by the
-  // administrator, so when an administrator opens Job Status, backfill the
-  // missing creator with the currently logged-in administrator. New jobs
-  // already store created_by_user_id at creation time.
+  // Reconcile any stale "running" records across all three scheduler tables so
+  // interrupted executions never stay spinning forever in Execution History.
+  await Promise.all([
+    reconcileStaleScheduledReportRuns(),
+    reconcileStaleEmailExecutions(),
+    reconcileStaleOneTimeReportEmailJobs(),
+  ]);
+
+  // On serverless deployments (Vercel), background timers may be frozen between
+  // requests. Trigger a non-blocking poll of due jobs when Job Status is accessed.
+  if (process.env.VERCEL === "1") {
+    void processDueScheduledReportJobs().catch(() => {});
+    void processDueOneTimeReportEmailJobs().catch(() => {});
+    void catchUpMissedEmailReports().catch(() => {});
+  }
+
+  // Older one-time report jobs and scheduled report jobs were created before
+  // created_by_user_id was populated. Backfill missing creators.
   if (isAdmin && userId) {
     await q(
       `UPDATE public.one_time_report_email_jobs
@@ -62,11 +118,26 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
       [userId],
     );
   }
+  await q(
+    `UPDATE public.scheduled_report_jobs
+        SET created_by_user_id = owner_user_id,
+            updated_at = now()
+      WHERE created_by_user_id IS NULL`,
+  );
 
   const historySql = `(
     SELECT e.id::text AS id,
            e.job_name, e.scheduled_key, e.status, e.started_at, e.completed_at,
-           e.duration_ms, e.error_message, NULL::text AS scheduled_report_name,
+           e.duration_ms, e.error_message,
+           CASE e.job_name
+             WHEN 'daily-planned-recipe-email' THEN 'Daily planned recipe email (admin only)'
+             WHEN 'daily-email-report' THEN 'Daily 7-day email report'
+             WHEN 'weekly-email-report' THEN 'Weekly 4-week email report'
+             WHEN 'monthly-email-report' THEN 'Monthly 3-month email report'
+             WHEN 'yearly-email-report' THEN 'Yearly 2-year email report'
+             WHEN 'marketing-list-email' THEN 'Marketing List email (next day)'
+             ELSE NULL::text
+           END AS scheduled_report_name,
            NULL::text AS owner_name, NULL::text AS owner_email
       FROM public.scheduler_job_executions e
      WHERE ($1::boolean = TRUE OR e.job_name <> 'daily-planned-recipe-email')
@@ -99,6 +170,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   ) history`;
   const historyWhere =
     `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3
+      OR history.status ILIKE $3 OR history.scheduled_key ILIKE $3 OR history.error_message ILIKE $3
       OR ($1::boolean = TRUE AND (history.owner_name ILIKE $3 OR history.owner_email ILIKE $3))`;
 
   const [countResult, rowsResult] = await Promise.all([
@@ -107,7 +179,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
         WHERE ${historyWhere}`, [
       Boolean(isAdmin),
       userId,
-      safeSearch,
+      searchPattern,
     ]),
     q(
       `SELECT id, job_name, scheduled_key, status, started_at, completed_at,
@@ -116,7 +188,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
         WHERE ${historyWhere}
         ORDER BY started_at DESC
         LIMIT $4 OFFSET $5`,
-      [Boolean(isAdmin), userId, safeSearch, safePageSize, offset],
+      [Boolean(isAdmin), userId, searchPattern, safePageSize, offset],
     ),
   ]);
 
@@ -136,9 +208,6 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   );
 
   const oneTimeJobs = oneTimeResult.rows;
-  // Load the canonical category ID/name map once. Avoid a filtered lookup here:
-  // saved manager configs can contain legacy IDs or mixed numeric/string formats.
-  // The info tooltip must use actual names from the category master table.
   const categoryResult = await q(
     `SELECT id, name FROM public.categories`,
   );
@@ -171,18 +240,30 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   });
 
   const schedules = scheduleDefinitions.filter((item) => isAdmin || !item.adminOnly).map((item) => {
-    const valid = Boolean(item.cron && cron.validate(item.cron));
+    const normalizedCron = normalizeCronExpression(item.cron);
+    const valid = Boolean(normalizedCron && cron.validate(normalizedCron));
     let nextRunAt = null;
     if (valid) {
       try {
-        const task = cron.schedule(item.cron, () => {}, { timezone: item.timezone });
-        const nextRun = task.getNextRun();
-        nextRunAt =
-          nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
-            ? nextRun.toISOString()
-            : null;
-        task.stop();
-        task.destroy();
+        const lastDayMatch = String(item.cron || "")
+          .trim()
+          .match(/^(\d+)\s+(\d+)\s+L\s+\*\s+\*$/i);
+        if (lastDayMatch) {
+          nextRunAt = computeNextLastDayOfMonthRun(
+            Number(lastDayMatch[1]),
+            Number(lastDayMatch[2]),
+            item.timezone,
+          );
+        } else {
+          const task = cron.schedule(normalizedCron, () => {}, { timezone: item.timezone });
+          const nextRun = task.getNextRun();
+          nextRunAt =
+            nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
+              ? nextRun.toISOString()
+              : null;
+          task.stop();
+          task.destroy();
+        }
       } catch (error) {
         console.error(`Unable to calculate next run for ${item.jobName}`, error);
       }

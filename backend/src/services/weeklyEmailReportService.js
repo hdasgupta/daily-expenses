@@ -2,7 +2,7 @@ import { q } from "../db/index.js";
 import { userSql } from "../../scripts/sql/userSql.js";
 import { sendWeeklyEmailReport } from "./mailService.js";
 import { buildWeeklyEmailReportPdf } from "./weeklyEmailReportPdfService.js";
-import { nowIso } from "../utils/dates.js";
+import { nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const WEEKLY_REPORT_SQL = {
@@ -56,29 +56,27 @@ const WEEKLY_REPORT_SQL = {
 };
 
 export async function buildWeeklyEmailReport() {
-  const [weekly, survivors, dump] = await Promise.all([
-    q(WEEKLY_REPORT_SQL.weeklySummary),
-    q(WEEKLY_REPORT_SQL.survivorSummary),
-    q(WEEKLY_REPORT_SQL.dump),
-  ]);
+  const weekly = await q(WEEKLY_REPORT_SQL.weeklySummary);
+  const survivors = await q(WEEKLY_REPORT_SQL.survivorSummary);
+  const dump = await q(WEEKLY_REPORT_SQL.dump);
 
   return {
     generatedAt: nowIso(),
     weeklySummary: weekly.rows.map((row) => ({
-      weekStart: String(row.week_start).slice(0, 10),
-      weekEnd: String(row.week_end).slice(0, 10),
+      weekStart: toIsoDateString(row.week_start),
+      weekEnd: toIsoDateString(row.week_end),
       total: Number(row.total || 0),
       expenseCount: Number(row.expense_count || 0),
     })),
     survivorSummary: survivors.rows.map((row) => ({
-      weekStart: String(row.week_start).slice(0, 10),
-      weekEnd: String(row.week_end).slice(0, 10),
+      weekStart: toIsoDateString(row.week_start),
+      weekEnd: toIsoDateString(row.week_end),
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
     dump: await Promise.all(
       dump.rows.map(async (row) => ({
-        date: String(row.date).slice(0, 10),
+        date: toIsoDateString(row.date),
         category: row.category || "—",
         item: row.item || "—",
         survivor: row.survivor || "—",

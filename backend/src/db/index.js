@@ -2,7 +2,12 @@ import pg from "pg";
 import { env } from "../config/env.js";
 import { schemaSql, transactionSql } from "../../scripts/sql/schemaSql.js";
 
-const { Pool } = pg;
+const { Pool, types } = pg;
+
+// Return PostgreSQL DATE columns (OID 1082) as YYYY-MM-DD strings rather than
+// JavaScript Date objects so backend services and PDF builders never corrupt
+// dates via Date.prototype.toString().slice(0, 10).
+types.setTypeParser(1082, (value) => value);
 
 export const pool = new Pool({
   connectionString: env.databaseUrl,

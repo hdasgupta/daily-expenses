@@ -15,7 +15,7 @@ const scheduleLabels = {
   "daily-email-report": "Daily 7-day email report",
   "weekly-email-report": "Weekly 4-week email report",
   "monthly-email-report": "Monthly 3-month email report",
-  "yearly-email-report": "Yearly 12-month email report",
+  "yearly-email-report": "Yearly 2-year email report",
   "marketing-list-email": "Marketing List email (next day)",
 };
 
@@ -96,7 +96,7 @@ function describeCron(cronExpression, jobName = "") {
 
   if (
     jobName === "monthly-email-report" &&
-    /^\d+\s+\d+\s+L\s+\*\s+\*$/.test(normalizedCron)
+    /^\d+\s+\d+\s+(L|28-31)\s+\*\s+\*$/i.test(normalizedCron)
   ) {
     const parts = normalizedCron.split(/\s+/);
     return `Last day of every month at ${formatCronTime(parts[1], parts[0])}`;

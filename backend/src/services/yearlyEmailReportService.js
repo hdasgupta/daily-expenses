@@ -2,7 +2,7 @@ import { q } from "../db/index.js";
 import { userSql } from "../../scripts/sql/userSql.js";
 import { sendYearlyEmailReport } from "./mailService.js";
 import { buildYearlyEmailReportPdf } from "./yearlyEmailReportPdfService.js";
-import { nowIso } from "../utils/dates.js";
+import { nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const YEARLY_REPORT_SQL = {
@@ -65,29 +65,27 @@ const YEARLY_REPORT_SQL = {
 };
 
 export async function buildYearlyEmailReport() {
-  const [yearly, survivors, dump] = await Promise.all([
-    q(YEARLY_REPORT_SQL.yearlySummary),
-    q(YEARLY_REPORT_SQL.survivorSummary),
-    q(YEARLY_REPORT_SQL.dump),
-  ]);
+  const yearly = await q(YEARLY_REPORT_SQL.yearlySummary);
+  const survivors = await q(YEARLY_REPORT_SQL.survivorSummary);
+  const dump = await q(YEARLY_REPORT_SQL.dump);
 
   return {
     generatedAt: nowIso(),
     yearlySummary: yearly.rows.map((row) => ({
-      yearStart: String(row.year_start).slice(0, 10),
-      yearEnd: String(row.year_end).slice(0, 10),
+      yearStart: toIsoDateString(row.year_start),
+      yearEnd: toIsoDateString(row.year_end),
       total: Number(row.total || 0),
       expenseCount: Number(row.expense_count || 0),
     })),
     survivorSummary: survivors.rows.map((row) => ({
-      yearStart: String(row.year_start).slice(0, 10),
-      yearEnd: String(row.year_end).slice(0, 10),
+      yearStart: toIsoDateString(row.year_start),
+      yearEnd: toIsoDateString(row.year_end),
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
     dump: await Promise.all(
       dump.rows.map(async (row) => ({
-        date: String(row.date).slice(0, 10),
+        date: toIsoDateString(row.date),
         category: row.category || "—",
         item: row.item || "—",
         survivor: row.survivor || "—",

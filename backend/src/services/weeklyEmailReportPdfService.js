@@ -5,11 +5,28 @@ function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
 }
 
-function dateLabel(value) {
-  const d = new Date(`${String(value).slice(0, 10)}T00:00:00Z`);
+function normalizeIsoDateText(value) {
+  if (value == null || value === "") return "";
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return "";
+    return value.toISOString().slice(0, 10);
+  }
+  const text = String(value).trim();
+  const match = text.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (match) return match[1];
+  const parsed = new Date(text);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+  return text.slice(0, 10);
+}
 
-  return Number.isNaN(d.getTime())
-    ? String(value)
+function dateLabel(value) {
+  const iso = normalizeIsoDateText(value);
+  const d = new Date(`${iso}T00:00:00Z`);
+
+  return !iso || Number.isNaN(d.getTime())
+    ? String(value ?? "—")
     : new Intl.DateTimeFormat("en-IN", {
         timeZone: "UTC",
         day: "2-digit",
@@ -23,11 +40,10 @@ function weekLabel(start, end) {
 }
 
 function weekEndFromStart(value) {
-  const start = new Date(
-    `${String(value ?? "").slice(0, 10)}T00:00:00Z`,
-  );
+  const iso = normalizeIsoDateText(value);
+  const start = new Date(`${iso}T00:00:00Z`);
 
-  if (Number.isNaN(start.getTime())) {
+  if (!iso || Number.isNaN(start.getTime())) {
     return null;
   }
 
@@ -37,8 +53,8 @@ function weekEndFromStart(value) {
 }
 
 function safeWeekLabel(start, end = null) {
-  const startText = String(start ?? "").slice(0, 10);
-  const endText = end ?? weekEndFromStart(start);
+  const startText = normalizeIsoDateText(start);
+  const endText = end ? normalizeIsoDateText(end) : weekEndFromStart(startText);
 
   if (!startText || !endText) {
     return "Unknown week";
@@ -92,7 +108,7 @@ function pivot(rows, periods) {
 
 function drawBarChart(doc, data) {
   if (!data.length) {
-    doc.fontSize(9).fillColor("#555").text("No expense data available.");
+    doc.fontSize(9).fillColor("#555").text("No expense data available.", doc.page.margins.left, doc.y);
     doc.fillColor("black");
     return;
   }
@@ -150,6 +166,7 @@ function drawBarChart(doc, data) {
       );
   });
 
+  doc.x = doc.page.margins.left;
   doc.y = base + 30;
 }
 
@@ -158,7 +175,7 @@ function drawSurvivorChart(doc, rows, survivors) {
     doc
       .fontSize(9)
       .fillColor("#555")
-      .text("No survivor share data available.");
+      .text("No survivor share data available.", doc.page.margins.left, doc.y);
 
     doc.fillColor("black");
     return;
@@ -279,6 +296,7 @@ function drawSurvivorChart(doc, rows, survivors) {
     lx += lw;
   });
 
+  doc.x = doc.page.margins.left;
   doc.y = ly + 18;
 }
 
@@ -366,7 +384,7 @@ function drawTable(
           x + 3,
           y + 5,
           {
-            width: width - 6,
+            width: Math.max(width - 6, 4),
             height: rowHeight - 7,
             ellipsis: true,
             link: proof
@@ -379,6 +397,7 @@ function drawTable(
       x += width;
     });
 
+    doc.x = doc.page.margins.left;
     doc.y = y + rowHeight;
   };
 
@@ -483,17 +502,15 @@ export function buildWeeklyEmailReportPdfInProcess(
 
     doc.on("error", reject);
 
-    /*
-     * ---------------------------------------------------------
-     * REPORT HEADER
-     * ---------------------------------------------------------
-     */
+    const left = doc.page.margins.left;
 
     doc
       .fontSize(20)
       .font("Helvetica-Bold")
       .text(
         "Rehabilitation Center Expense - 4 Week Weekly Report",
+        left,
+        doc.y,
       );
 
     doc
@@ -502,23 +519,21 @@ export function buildWeeklyEmailReportPdfInProcess(
       .fillColor("#555")
       .text(
         `Generated: ${report.generatedAt}`,
+        left,
+        doc.y,
       );
 
     doc
       .fillColor("black")
       .moveDown();
 
-    /*
-     * ---------------------------------------------------------
-     * 1. FOUR-WEEK WEEKLY EXPENSE BAR CHART
-     * ---------------------------------------------------------
-     */
-
     doc
       .fontSize(14)
       .font("Helvetica-Bold")
       .text(
         "1. Four-week weekly expense bar chart",
+        left,
+        doc.y,
       );
 
     doc.moveDown(0.4);
@@ -528,19 +543,16 @@ export function buildWeeklyEmailReportPdfInProcess(
       report.weeklySummary,
     );
 
-    /*
-     * ---------------------------------------------------------
-     * 2. FOUR-WEEK WEEKLY SUMMARY TABLE
-     * ---------------------------------------------------------
-     */
-
     doc.moveDown();
 
+    doc.x = left;
     doc
       .fontSize(14)
       .font("Helvetica-Bold")
       .text(
         "2. Four-week weekly summary table",
+        left,
+        doc.y,
       );
 
     doc.moveDown(0.4);
@@ -563,12 +575,6 @@ export function buildWeeklyEmailReportPdfInProcess(
       })),
     );
 
-    /*
-     * ---------------------------------------------------------
-     * 3. FOUR-WEEK SURVIVOR PIVOT BAR CHART
-     * ---------------------------------------------------------
-     */
-
     doc.addPage();
 
     doc
@@ -576,6 +582,8 @@ export function buildWeeklyEmailReportPdfInProcess(
       .font("Helvetica-Bold")
       .text(
         "3. Four-week weekly group-by-survivor summarized pivot bar chart",
+        left,
+        doc.y,
       );
 
     doc.moveDown(0.4);
@@ -593,12 +601,6 @@ export function buildWeeklyEmailReportPdfInProcess(
       survivorPivot.survivors,
     );
 
-    /*
-     * ---------------------------------------------------------
-     * 4. FOUR-WEEK SURVIVOR PIVOT DATA
-     * ---------------------------------------------------------
-     */
-
     doc.addPage();
 
     doc
@@ -606,6 +608,8 @@ export function buildWeeklyEmailReportPdfInProcess(
       .font("Helvetica-Bold")
       .text(
         "4. Four-week weekly group-by-survivor summarized pivot data",
+        left,
+        doc.y,
       );
 
     doc.moveDown(0.4);
@@ -620,6 +624,8 @@ export function buildWeeklyEmailReportPdfInProcess(
         .fillColor("#555")
         .text(
           "No survivor share data available for the four completed weeks.",
+          left,
+          doc.y,
         );
 
       doc.fillColor("black");
@@ -648,12 +654,6 @@ export function buildWeeklyEmailReportPdfInProcess(
       );
     }
 
-    /*
-     * ---------------------------------------------------------
-     * 5. FOUR-WEEK RAW EXPENSE DATA DUMP
-     * ---------------------------------------------------------
-     */
-
     doc.addPage();
 
     doc
@@ -661,6 +661,8 @@ export function buildWeeklyEmailReportPdfInProcess(
       .font("Helvetica-Bold")
       .text(
         "5. Four-week raw expense data dump",
+        left,
+        doc.y,
       );
 
     doc.moveDown(0.3);
@@ -674,6 +676,8 @@ export function buildWeeklyEmailReportPdfInProcess(
           "The share column lists every survivor and their share amount " +
           "with the percentage of the expense total. " +
           "Proof links are clickable when a proof document was uploaded.",
+        left,
+        doc.y,
       );
 
     doc
@@ -689,6 +693,8 @@ export function buildWeeklyEmailReportPdfInProcess(
         .fillColor("#555")
         .text(
           "No expense records were found for the four completed weeks.",
+          left,
+          doc.y,
         );
 
       doc.fillColor("black");

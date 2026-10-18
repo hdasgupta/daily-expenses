@@ -5,11 +5,28 @@ function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
 }
 
-function dateLabel(value) {
-  const date = new Date(`${String(value).slice(0, 10)}T00:00:00Z`);
+function normalizeIsoDateText(value) {
+  if (value == null || value === "") return "";
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return "";
+    return value.toISOString().slice(0, 10);
+  }
+  const text = String(value).trim();
+  const match = text.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (match) return match[1];
+  const parsed = new Date(text);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+  return text.slice(0, 10);
+}
 
-  if (Number.isNaN(date.getTime())) {
-    return String(value);
+function dateLabel(value) {
+  const iso = normalizeIsoDateText(value);
+  const date = new Date(`${iso}T00:00:00Z`);
+
+  if (!iso || Number.isNaN(date.getTime())) {
+    return String(value ?? "—");
   }
 
   return new Intl.DateTimeFormat("en-IN", {
@@ -77,6 +94,8 @@ function drawBarChart(doc, data) {
   if (!data.length) {
     doc.fontSize(10).text(
       "No expense data for this period.",
+      doc.page.margins.left,
+      doc.y,
     );
     return;
   }
@@ -124,6 +143,7 @@ function drawBarChart(doc, data) {
       );
   });
 
+  doc.x = doc.page.margins.left;
   doc.y = baseline + 28;
 }
 
@@ -178,6 +198,8 @@ function drawSurvivorBarChart(
   if (!rows.length || !survivors.length) {
     doc.fontSize(10).text(
       "No survivor data for this period.",
+      doc.page.margins.left,
+      doc.y,
     );
     return;
   }
@@ -229,7 +251,7 @@ function drawSurvivorBarChart(
       );
   });
 
-  const legendY = baseline + 25;
+  let legendY = baseline + 25;
   let legendX = startX;
 
   survivors.forEach((survivor, i) => {
@@ -250,6 +272,7 @@ function drawSurvivorBarChart(
         doc.page.margins.right
     ) {
       legendX = startX;
+      legendY += 13;
     }
 
     doc.save();
@@ -283,6 +306,7 @@ function drawSurvivorBarChart(
     legendX += labelWidth;
   });
 
+  doc.x = doc.page.margins.left;
   doc.y = legendY + 18;
 }
 
@@ -384,7 +408,7 @@ function drawTable(
           x + 3,
           y + 5,
           {
-            width: width - 6,
+            width: Math.max(width - 6, 4),
             height: height - 7,
             ellipsis: true,
             link: proof
@@ -397,6 +421,7 @@ function drawTable(
       x += width;
     });
 
+    doc.x = doc.page.margins.left;
     doc.y = y + height;
   };
 
@@ -551,16 +576,14 @@ export function buildDailyEmailReportPdfInProcess(
 
       doc.on("error", reject);
 
-      /*
-       * ---------------------------------------------------------
-       * COVER / REPORT INFORMATION
-       * ---------------------------------------------------------
-       */
+      const left = doc.page.margins.left;
 
       doc
         .fontSize(20)
         .text(
           "Rehabilitation Center Expense - 7 Day Daily Report",
+          left,
+          doc.y,
         );
 
       doc
@@ -568,22 +591,20 @@ export function buildDailyEmailReportPdfInProcess(
         .fillColor("#555")
         .text(
           `Generated: ${report.generatedAt}`,
+          left,
+          doc.y,
         );
 
       doc
         .fillColor("black")
         .moveDown();
 
-      /*
-       * ---------------------------------------------------------
-       * 1. SEVEN-DAY DAILY BAR CHART
-       * ---------------------------------------------------------
-       */
-
       doc
         .fontSize(14)
         .text(
           "1. Seven-day daily expense bar chart",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -593,18 +614,14 @@ export function buildDailyEmailReportPdfInProcess(
         report.dailySummary,
       );
 
-      /*
-       * ---------------------------------------------------------
-       * 2. SEVEN-DAY DAILY SUMMARY TABLE
-       * ---------------------------------------------------------
-       */
-
       doc.addPage();
 
       doc
         .fontSize(14)
         .text(
           "2. Seven-day daily summary table",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -630,12 +647,6 @@ export function buildDailyEmailReportPdfInProcess(
         ),
       );
 
-      /*
-       * ---------------------------------------------------------
-       * PREPARE SURVIVOR PIVOT DATA
-       * ---------------------------------------------------------
-       */
-
       const pivot =
         pivotSurvivorRows(
           report.survivorSummary.map(
@@ -650,18 +661,14 @@ export function buildDailyEmailReportPdfInProcess(
           ),
         );
 
-      /*
-       * ---------------------------------------------------------
-       * 3. SEVEN-DAY SURVIVOR PIVOT BAR CHART
-       * ---------------------------------------------------------
-       */
-
       doc.addPage();
 
       doc
         .fontSize(14)
         .text(
           "3. Seven-day daily group-by-survivor summarized pivot bar chart",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -674,18 +681,14 @@ export function buildDailyEmailReportPdfInProcess(
         dateLabel,
       );
 
-      /*
-       * ---------------------------------------------------------
-       * 4. SEVEN-DAY SURVIVOR PIVOT DATA
-       * ---------------------------------------------------------
-       */
-
       doc.addPage();
 
       doc
         .fontSize(14)
         .text(
           "4. Seven-day daily group-by-survivor summarized pivot data",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -701,14 +704,10 @@ export function buildDailyEmailReportPdfInProcess(
           .fontSize(10)
           .text(
             "No survivor share data for this period.",
+            left,
+            doc.y,
           );
       }
-
-      /*
-       * ---------------------------------------------------------
-       * 5. RAW DATA DUMP WITH SHARE + PROOF LINK
-       * ---------------------------------------------------------
-       */
 
       doc.addPage();
 
@@ -716,6 +715,8 @@ export function buildDailyEmailReportPdfInProcess(
         .fontSize(14)
         .text(
           "5. Seven-day raw expense data dump",
+          left,
+          doc.y,
         );
 
       doc
@@ -723,6 +724,8 @@ export function buildDailyEmailReportPdfInProcess(
         .fillColor("#555")
         .text(
           "Each expense is grouped into one understandable row. Survivor shares include amount and percentage of the expense total. Proof links are clickable where proof was uploaded.",
+          left,
+          doc.y,
         );
 
       doc

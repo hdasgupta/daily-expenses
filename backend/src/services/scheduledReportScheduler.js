@@ -1,11 +1,27 @@
 import cron from "node-cron";
-import { q, pool } from "../db/index.js";
+import { q } from "../db/index.js";
 import {
   getScheduledReportForExecution,
   sendScheduledReportJob,
 } from "./scheduledReportService.js";
+import { notifyAdminFailure } from "./adminAlertService.js";
 
 let started = false;
+let isPolling = false;
+const activeJobLocks = new Set();
+
+const STALE_RUNNING_MINUTES = 5;
+const FAILED_RETRY_COOLDOWN_MINUTES = 5;
+
+const WEEKDAY_INDEX = {
+  Sunday: 0,
+  Monday: 1,
+  Tuesday: 2,
+  Wednesday: 3,
+  Thursday: 4,
+  Friday: 5,
+  Saturday: 6,
+};
 
 function localParts() {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -16,12 +32,18 @@ function localParts() {
     hour: "2-digit",
     minute: "2-digit",
     weekday: "long",
-    hour12: false,
+    hourCycle: "h23",
   }).formatToParts(new Date());
 
-  return Object.fromEntries(
+  const mapped = Object.fromEntries(
     parts.filter(({ type }) => type !== "literal").map(({ type, value }) => [type, value]),
   );
+
+  if (mapped.hour === "24") {
+    mapped.hour = "00";
+  }
+
+  return mapped;
 }
 
 function dueFor(job, local) {
@@ -30,7 +52,9 @@ function dueFor(job, local) {
     .split(":")
     .map(Number);
 
-  const currentMinutes = Number(local.hour) * 60 + Number(local.minute);
+  const currentHour = Number(local.hour === "24" ? 0 : local.hour);
+  const currentMinute = Number(local.minute);
+  const currentMinutes = currentHour * 60 + currentMinute;
   const scheduledMinutes = hour * 60 + minute;
 
   if (currentMinutes < scheduledMinutes) return false;
@@ -38,13 +62,11 @@ function dueFor(job, local) {
   if (job.frequency === "daily") return true;
 
   if (job.frequency === "weekly") {
-    return (
-      Number(
-        local.weekday === undefined
-          ? -1
-          : new Date(`${local.year}-${local.month}-${local.day}T00:00:00Z`).getUTCDay(),
-      ) === Number(job.day_of_week)
-    );
+    const weekday =
+      local.weekday in WEEKDAY_INDEX
+        ? WEEKDAY_INDEX[local.weekday]
+        : new Date(`${local.year}-${local.month}-${local.day}T00:00:00Z`).getUTCDay();
+    return Number(weekday) === Number(job.day_of_week);
   }
 
   if (job.frequency === "monthly") {
@@ -83,115 +105,124 @@ function executionJobName(jobId) {
   return `scheduled-report:${jobId}`;
 }
 
-async function claimExecution(client, job, key) {
+export async function reconcileStaleScheduledReportRuns() {
+  try {
+    await q(
+      `UPDATE public.scheduler_job_runs
+          SET status = 'failed',
+              completed_at = COALESCE(completed_at, now() - ($1::int * INTERVAL '1 minute')),
+              duration_ms = COALESCE(
+                duration_ms,
+                GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
+              ),
+              error_message = COALESCE(
+                error_message,
+                'Execution interrupted or timed out before completion'
+              )
+        WHERE job_name LIKE 'scheduled-report:%'
+          AND status = 'running'
+          AND started_at < now() - ($2::int * INTERVAL '1 minute')`,
+      [FAILED_RETRY_COOLDOWN_MINUTES + 1, STALE_RUNNING_MINUTES],
+    );
+  } catch (error) {
+    console.error("Failed to reconcile stale scheduled-report runs", {
+      error: error?.message || String(error),
+      stack: error?.stack,
+    });
+  }
+}
+
+async function claimExecution(job, key) {
   const jobName = executionJobName(job.id);
   const lockKey = `${jobName}:${key}`;
 
-  const lock = await client.query("SELECT pg_try_advisory_lock(hashtext($1)) AS locked", [lockKey]);
-
-  if (!lock.rows[0]?.locked) {
+  if (activeJobLocks.has(lockKey)) {
     return { acquired: false };
   }
 
-  const existing = await client.query(
-    `SELECT job_name, scheduled_key, status, started_at
-       FROM public.scheduler_job_runs
-      WHERE job_name = $1 AND scheduled_key = $2
-      FOR UPDATE`,
-    [jobName, key],
-  );
+  activeJobLocks.add(lockKey);
 
-  if (existing.rows[0]?.status === "completed") {
-    await client.query("SELECT pg_advisory_unlock(hashtext($1))", [lockKey]);
-
-    return { acquired: false };
-  }
-
-  if (existing.rows[0]) {
-    await client.query(
-      `UPDATE public.scheduler_job_runs
-          SET status = 'running',
-              started_at = now(),
-              completed_at = NULL,
-              duration_ms = NULL,
-              error_message = NULL
-        WHERE job_name = $1
-          AND scheduled_key = $2`,
-      [jobName, key],
+  try {
+    const result = await q(
+      `INSERT INTO public.scheduler_job_runs (
+         job_name,
+         scheduled_key,
+         status,
+         started_at,
+         completed_at,
+         duration_ms,
+         error_message
+       )
+       VALUES ($1, $2, 'running', now(), NULL, NULL, NULL)
+       ON CONFLICT (job_name, scheduled_key) DO UPDATE
+         SET status = 'running',
+             started_at = now(),
+             completed_at = NULL,
+             duration_ms = NULL,
+             error_message = NULL
+       WHERE public.scheduler_job_runs.status <> 'completed'
+         AND (
+           public.scheduler_job_runs.status <> 'running'
+           OR public.scheduler_job_runs.started_at < now() - ($3::int * INTERVAL '1 minute')
+         )
+         AND (
+           public.scheduler_job_runs.status <> 'failed'
+           OR COALESCE(
+                public.scheduler_job_runs.completed_at,
+                public.scheduler_job_runs.started_at
+              ) <= now() - ($4::int * INTERVAL '1 minute')
+         )
+       RETURNING job_name, scheduled_key`,
+      [jobName, key, STALE_RUNNING_MINUTES, FAILED_RETRY_COOLDOWN_MINUTES],
     );
-  } else {
-    await client.query(
-      `INSERT INTO public.scheduler_job_runs(
-        job_name,
-        scheduled_key,
-        status,
-        started_at,
-        completed_at
-      )
-      VALUES ($1, $2, 'running', now(), NULL)`,
-      [jobName, key],
-    );
-  }
 
-  return {
-    acquired: true,
-    lockKey,
-    jobName,
-  };
+    if (!result.rowCount) {
+      activeJobLocks.delete(lockKey);
+      return { acquired: false };
+    }
+
+    return {
+      acquired: true,
+      lockKey,
+      jobName,
+      scheduledKey: key,
+    };
+  } catch (error) {
+    activeJobLocks.delete(lockKey);
+    throw error;
+  }
 }
 
-async function finishExecution(client, execution, status, startedAt, errorMessage = null) {
-  const durationMs = Date.now() - startedAt;
+async function finishExecution(execution, status, startedAt, errorMessage = null) {
+  const durationMs = Math.max(0, Date.now() - startedAt);
 
-  if (status === "completed") {
-    await client.query(
-      `UPDATE public.scheduler_job_runs
-          SET status = 'completed',
-              completed_at = now(),
-              duration_ms = $1,
-              error_message = $2
-        WHERE job_name = $3
-          AND scheduled_key = $4`,
-      [durationMs, errorMessage, execution.jobName, execution.scheduledKey],
-    );
-  } else {
-    await client.query(
-      `UPDATE public.scheduler_job_runs
-          SET status = 'failed',
-              completed_at = NULL,
-              duration_ms = $1,
-              error_message = $2
-        WHERE job_name = $3
-          AND scheduled_key = $4`,
-      [durationMs, errorMessage, execution.jobName, execution.scheduledKey],
-    );
-  }
-
-  await client.query("SELECT pg_advisory_unlock(hashtext($1))", [execution.lockKey]);
+  await q(
+    `UPDATE public.scheduler_job_runs
+        SET status = $1,
+            completed_at = now(),
+            duration_ms = $2,
+            error_message = $3
+      WHERE job_name = $4
+        AND scheduled_key = $5`,
+    [status, durationMs, errorMessage, execution.jobName, execution.scheduledKey],
+  );
 }
 
 async function runJob(jobId, key) {
-  let client = null;
   let execution = null;
   let startedAt = Date.now();
   let job = null;
 
   try {
-    client = await pool.connect();
-
     job = await getScheduledReportForExecution(jobId);
 
     if (!job) return;
 
-    const claim = await claimExecution(client, job, key);
+    const claim = await claimExecution(job, key);
 
     if (!claim.acquired) return;
 
-    execution = {
-      ...claim,
-      scheduledKey: key,
-    };
-
+    execution = claim;
     startedAt = Date.now();
 
     console.log(
@@ -205,9 +236,7 @@ async function runJob(jobId, key) {
 
     const result = await sendScheduledReportJob(job);
 
-    await finishExecution(client, execution, "completed", startedAt, null);
-
-    execution = null;
+    await finishExecution(execution, "completed", startedAt, null);
 
     console.log(
       JSON.stringify({
@@ -227,6 +256,19 @@ async function runJob(jobId, key) {
       stack: error?.stack,
     });
 
+    if (execution) {
+      try {
+        await finishExecution(execution, "failed", startedAt, errorMessage);
+      } catch (finishError) {
+        console.error("Failed to record scheduled report failure", {
+          jobId,
+          scheduledKey: key,
+          error: finishError?.message || String(finishError),
+          stack: finishError?.stack,
+        });
+      }
+    }
+
     const failedJob = typeof job === "object" && job ? job : null;
     void notifyAdminFailure({
       category: "custom-scheduler-email",
@@ -239,49 +281,50 @@ async function runJob(jobId, key) {
       failureTime: new Date().toISOString(),
       failureMessage: errorMessage,
       stack: error?.stack,
+    }).catch((alertError) => {
+      console.error("Failed to send scheduled report admin alert", {
+        jobId,
+        error: alertError?.message || String(alertError),
+      });
     });
-
-    if (client && execution) {
-      try {
-        await finishExecution(client, execution, "failed", startedAt, errorMessage);
-
-        execution = null;
-      } catch (finishError) {
-        console.error("Failed to record scheduled report failure", {
-          jobId,
-          scheduledKey: key,
-          error: finishError?.message || String(finishError),
-          stack: finishError?.stack,
-        });
-      }
-    }
   } finally {
-    if (client) {
-      client.release();
+    if (execution?.lockKey) {
+      activeJobLocks.delete(execution.lockKey);
     }
   }
 }
 
-async function processDueJobs() {
-  const local = localParts();
+export async function processDueScheduledReportJobs() {
+  if (isPolling) return;
+  isPolling = true;
 
-  const result = await q(
-    `SELECT *
-       FROM public.scheduled_report_jobs
-      WHERE active = TRUE
-      ORDER BY id`,
-  );
+  try {
+    await reconcileStaleScheduledReportRuns();
 
-  for (const job of result.rows) {
-    if (!dueFor(job, local)) continue;
+    const local = localParts();
 
-    void runJob(job.id, scheduledKey(job, local)).catch((error) => {
-      console.error("Scheduled report worker failed unexpectedly", {
-        jobId: job.id,
-        error: error?.message || String(error),
-        stack: error?.stack,
-      });
-    });
+    const result = await q(
+      `SELECT *
+         FROM public.scheduled_report_jobs
+        WHERE active = TRUE
+        ORDER BY id`,
+    );
+
+    for (const job of result.rows) {
+      if (!dueFor(job, local)) continue;
+
+      try {
+        await runJob(job.id, scheduledKey(job, local));
+      } catch (error) {
+        console.error("Scheduled report worker failed unexpectedly", {
+          jobId: job.id,
+          error: error?.message || String(error),
+          stack: error?.stack,
+        });
+      }
+    }
+  } finally {
+    isPolling = false;
   }
 }
 
@@ -301,7 +344,7 @@ export function startScheduledReportScheduler() {
     "* * * * *",
     async () => {
       try {
-        await processDueJobs();
+        await processDueScheduledReportJobs();
       } catch (error) {
         console.error("Scheduled-report scheduler poll failed", error);
       }
@@ -309,7 +352,7 @@ export function startScheduledReportScheduler() {
     { timezone: "Asia/Kolkata" },
   );
 
-  void processDueJobs().catch((error) => {
+  void processDueScheduledReportJobs().catch((error) => {
     console.error("Initial scheduled-report scheduler poll failed", error);
   });
 }

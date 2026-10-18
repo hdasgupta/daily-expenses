@@ -4,7 +4,7 @@ import { getDashboardDefinition, runDashboardReport } from "./dashboardReportSer
 import { buildScheduledReportPdf } from "./scheduledReportPdfService.js";
 import { sendReportEmail } from "./mailService.js";
 import { signedObjectUrl } from "./storageService.js";
-import { nowIso } from "../utils/dates.js";
+import { nowIso, toIsoDateString } from "../utils/dates.js";
 
 const FREQUENCIES = new Set(["daily", "weekly", "monthly", "yearly"]);
 
@@ -173,12 +173,20 @@ export async function listScheduledReportRecipients() {
 }
 
 export async function listScheduledReportJobs({ userId, isAdmin = false }) {
+  await q(
+    `UPDATE public.scheduled_report_jobs
+        SET created_by_user_id = owner_user_id,
+            updated_at = now()
+      WHERE created_by_user_id IS NULL`,
+  );
+
   const result = await q(
     `SELECT j.id, j.name, j.owner_user_id, j.created_by_user_id, j.report_key, j.frequency,
             j.time_of_day, j.day_of_week, j.day_of_month, j.month_of_year,
             j.cron_expression, j.active, j.created_at, j.updated_at,
             u.full_name AS owner_name, u.email AS owner_email,
-            c.full_name AS creator_name, c.email AS creator_email
+            COALESCE(c.full_name, u.full_name) AS creator_name,
+            COALESCE(c.email, u.email) AS creator_email
        FROM public.scheduled_report_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
        LEFT JOIN public.users c ON c.id = j.created_by_user_id
@@ -211,6 +219,17 @@ async function getJob(id) {
 
 function canManage(job, user) {
   return user.role === "admin" || String(job.owner_user_id) === String(user.id);
+}
+
+function triggerImmediateScheduledReportPoll() {
+  void import("./scheduledReportScheduler.js")
+    .then((mod) => mod.processDueScheduledReportJobs())
+    .catch((pollError) => {
+      console.error("Immediate scheduled-report poll failed", {
+        error: pollError?.message || String(pollError),
+        stack: pollError?.stack,
+      });
+    });
 }
 
 export async function createScheduledReportJob(data, user) {
@@ -275,6 +294,8 @@ export async function createScheduledReportJob(data, user) {
 
   const jobs = result.rows.map(decorateJob);
 
+  triggerImmediateScheduledReportPoll();
+
   if (requestedIds.length > 1) {
     return {
       jobs,
@@ -328,7 +349,11 @@ export async function updateScheduledReportJob(id, data, user) {
     ],
   );
 
-  return decorateJob(result.rows[0]);
+  const updated = decorateJob(result.rows[0]);
+
+  triggerImmediateScheduledReportPoll();
+
+  return updated;
 }
 
 export async function deleteScheduledReportJob(id, user) {
@@ -355,14 +380,15 @@ export async function getScheduledReportForExecution(id) {
        FROM public.scheduled_report_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
       WHERE j.id = $1
-        AND j.active = TRUE`,
+        AND j.active = TRUE
+        AND u.is_disabled = FALSE`,
     [id],
   );
 
   return result.rows[0] || null;
 }
 
-function rawDumpSql(dateFrom, dateTo) {
+function rawDumpSql() {
   return `
     SELECT e.id AS expense_id,
            e.expense_date,
@@ -393,25 +419,27 @@ function rawDumpSql(dateFrom, dateTo) {
 export async function buildScheduledReport(reportKey) {
   const summary = await runDashboardReport(reportKey, "summary");
 
-  const rawResult = await runDashboardReport(reportKey, "drilldown");
-
   const match = String(summary.rangeLabel || "").match(
     /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/,
   );
 
-  let dumpRows = rawResult.rows || [];
+  let dumpRows = [];
 
   if (match) {
-    const dumpResult = await q(rawDumpSql(match[1], match[2]), [match[1], match[2]]);
+    const dumpResult = await q(rawDumpSql(), [match[1], match[2]]);
 
     dumpRows = await Promise.all(
       dumpResult.rows.map(async (row) => ({
         ...row,
+        expense_date: toIsoDateString(row.expense_date),
         total_cost: Number(row.total_cost || 0),
         share_price: row.share_price == null ? null : Number(row.share_price),
         proof_url: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
       })),
     );
+  } else {
+    const rawResult = await runDashboardReport(reportKey, "drilldown");
+    dumpRows = rawResult.rows || [];
   }
 
   return {

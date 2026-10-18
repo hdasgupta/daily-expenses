@@ -2,7 +2,7 @@ import { userSql } from "../../scripts/sql/userSql.js";
 import { q } from "../db/index.js";
 import { sendDailyEmailReport } from "./mailService.js";
 import { buildDailyEmailReportPdf } from "./dailyEmailReportPdfService.js";
-import { nowIso } from "../utils/dates.js";
+import { nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const DAILY_REPORT_SQL = {
@@ -57,27 +57,25 @@ const DAILY_REPORT_SQL = {
 };
 
 export async function buildDailyEmailReport() {
-  const [daily, survivors, dump] = await Promise.all([
-    q(DAILY_REPORT_SQL.dailySummary),
-    q(DAILY_REPORT_SQL.survivorSummary),
-    q(DAILY_REPORT_SQL.dump),
-  ]);
+  const daily = await q(DAILY_REPORT_SQL.dailySummary);
+  const survivors = await q(DAILY_REPORT_SQL.survivorSummary);
+  const dump = await q(DAILY_REPORT_SQL.dump);
 
   return {
     generatedAt: nowIso(),
     dailySummary: daily.rows.map((row) => ({
-      date: String(row.day).slice(0, 10),
+      date: toIsoDateString(row.day),
       total: Number(row.total || 0),
       expenseCount: Number(row.expense_count || 0),
     })),
     survivorSummary: survivors.rows.map((row) => ({
-      date: String(row.day).slice(0, 10),
+      date: toIsoDateString(row.day),
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
     dump: await Promise.all(
       dump.rows.map(async (row) => ({
-        date: String(row.date).slice(0, 10),
+        date: toIsoDateString(row.date),
         category: row.category || "—",
         item: row.item || "—",
         survivor: row.survivor || "—",

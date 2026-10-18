@@ -2,7 +2,7 @@ import { q } from "../db/index.js";
 import { userSql } from "../../scripts/sql/userSql.js";
 import { sendMonthlyEmailReport } from "./mailService.js";
 import { buildMonthlyEmailReportPdf } from "./monthlyEmailReportPdfService.js";
-import { nowIso } from "../utils/dates.js";
+import { nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const MONTHLY_REPORT_SQL = {
@@ -65,29 +65,27 @@ const MONTHLY_REPORT_SQL = {
 };
 
 export async function buildMonthlyEmailReport() {
-  const [monthly, survivors, dump] = await Promise.all([
-    q(MONTHLY_REPORT_SQL.monthlySummary),
-    q(MONTHLY_REPORT_SQL.survivorSummary),
-    q(MONTHLY_REPORT_SQL.dump),
-  ]);
+  const monthly = await q(MONTHLY_REPORT_SQL.monthlySummary);
+  const survivors = await q(MONTHLY_REPORT_SQL.survivorSummary);
+  const dump = await q(MONTHLY_REPORT_SQL.dump);
 
   return {
     generatedAt: nowIso(),
     monthlySummary: monthly.rows.map((row) => ({
-      monthStart: String(row.month_start).slice(0, 10),
-      monthEnd: String(row.month_end).slice(0, 10),
+      monthStart: toIsoDateString(row.month_start),
+      monthEnd: toIsoDateString(row.month_end),
       total: Number(row.total || 0),
       expenseCount: Number(row.expense_count || 0),
     })),
     survivorSummary: survivors.rows.map((row) => ({
-      monthStart: String(row.month_start).slice(0, 10),
-      monthEnd: String(row.month_end).slice(0, 10),
+      monthStart: toIsoDateString(row.month_start),
+      monthEnd: toIsoDateString(row.month_end),
       survivor: row.survivor || "Unknown",
       total: Number(row.total || 0),
     })),
     dump: await Promise.all(
       dump.rows.map(async (row) => ({
-        date: String(row.date).slice(0, 10),
+        date: toIsoDateString(row.date),
         category: row.category || "—",
         item: row.item || "—",
         survivor: row.survivor || "—",

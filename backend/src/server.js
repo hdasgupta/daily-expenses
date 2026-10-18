@@ -6,9 +6,19 @@ import { seedApplication } from "./services/bootstrapService.js";
 import { createRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/requestLogger.js";
-import { startEmailSchedulers } from "../scripts/scheduler.js";
-import { startScheduledReportScheduler } from "./services/scheduledReportScheduler.js";
-import { startOneTimeReportEmailScheduler } from "./services/oneTimeReportEmailService.js";
+import {
+  startEmailSchedulers,
+  reconcileStaleEmailExecutions,
+} from "../scripts/scheduler.js";
+import {
+  startScheduledReportScheduler,
+  reconcileStaleScheduledReportRuns,
+} from "./services/scheduledReportScheduler.js";
+import {
+  startOneTimeReportEmailScheduler,
+  ensureOneTimeReportEmailSchedulerSchema,
+  reconcileStaleOneTimeReportEmailJobs,
+} from "./services/oneTimeReportEmailService.js";
 
 loadEnv();
 
@@ -224,6 +234,7 @@ async function start() {
     console.log("Backend startup: initializing database");
 
     await initDb();
+    await ensureOneTimeReportEmailSchedulerSchema();
 
     console.log("Backend startup: database initialized");
 
@@ -232,6 +243,12 @@ async function start() {
     await seedApplication();
 
     console.log("Backend startup: application seeded");
+
+    await Promise.all([
+      reconcileStaleScheduledReportRuns(),
+      reconcileStaleEmailExecutions(),
+      reconcileStaleOneTimeReportEmailJobs(),
+    ]);
 
     // Cron tasks must not be relied on inside Vercel serverless functions:
     // instances are ephemeral and may be frozen between requests. Run these

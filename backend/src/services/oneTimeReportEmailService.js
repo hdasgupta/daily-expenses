@@ -5,8 +5,10 @@ import { sendReportEmail } from "./mailService.js";
 import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
+const STALE_RUNNING_MINUTES = 5;
+const FAILED_RETRY_COOLDOWN_MINUTES = 1;
 
-async function ensureOneTimeReportEmailSchedulerSchema() {
+export async function ensureOneTimeReportEmailSchedulerSchema() {
   await q(`
     CREATE TABLE IF NOT EXISTS public.one_time_report_email_jobs (
       id BIGSERIAL PRIMARY KEY,
@@ -96,6 +98,46 @@ async function ensureOneTimeReportEmailSchedulerSchema() {
 
   await q(`CREATE INDEX IF NOT EXISTS idx_one_time_report_email_jobs_due
             ON public.one_time_report_email_jobs(status, scheduled_for, id)`);
+}
+
+export async function reconcileStaleOneTimeReportEmailJobs() {
+  try {
+    await q(
+      `UPDATE public.one_time_report_email_jobs
+          SET status = 'failed',
+              last_error = COALESCE(
+                last_error,
+                'Previous execution was interrupted before completion; queued for retry'
+              ),
+              updated_at = now()
+        WHERE status = 'running'
+          AND COALESCE(last_attempt_at, updated_at, created_at) < now() - ($1::int * INTERVAL '1 minute')`,
+      [STALE_RUNNING_MINUTES],
+    );
+
+    await q(
+      `UPDATE public.scheduler_job_runs
+          SET status = 'failed',
+              completed_at = COALESCE(completed_at, now()),
+              duration_ms = COALESCE(
+                duration_ms,
+                GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
+              ),
+              error_message = COALESCE(
+                error_message,
+                'Execution interrupted or timed out before completion'
+              )
+        WHERE job_name LIKE 'one-time-report:%'
+          AND status = 'running'
+          AND started_at < now() - ($1::int * INTERVAL '1 minute')`,
+      [STALE_RUNNING_MINUTES],
+    );
+  } catch (error) {
+    console.error("Failed to reconcile stale one-time report email jobs", {
+      error: error?.message || String(error),
+      stack: error?.stack,
+    });
+  }
 }
 
 function error(message, statusCode = 400) {
@@ -228,8 +270,6 @@ export async function scheduleOneTimeReportEmail({
 
   const emailById = new Map(recipients.map((recipient) => [String(recipient.id), recipient.email]));
   // Wake the in-process worker immediately after a schedule is created.
-  // This avoids waiting for the next polling tick and also makes newly-created
-  // jobs resilient when the scheduler started just before this request.
   void processDueOneTimeReportEmailJobs().catch((schedulerError) => {
     console.error("One-time report email immediate poll failed", {
       error: schedulerError?.message || String(schedulerError),
@@ -280,6 +320,7 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
 
 let schedulerStarted = false;
 let schedulerTimer = null;
+let isPollingOneTime = false;
 const SCHEDULER_POLL_MS = 5_000;
 
 export function startOneTimeReportEmailScheduler() {
@@ -330,41 +371,53 @@ export function startOneTimeReportEmailScheduler() {
 }
 
 export async function processDueOneTimeReportEmailJobs() {
-  const due = await q(
-    `SELECT id
-       FROM public.one_time_report_email_jobs
-      WHERE scheduled_for <= clock_timestamp()
-        AND status IN ('pending', 'failed')
-      ORDER BY scheduled_for ASC, id ASC
-      LIMIT 20`,
-  );
+  if (isPollingOneTime) return;
+  isPollingOneTime = true;
 
-  const next = await q(
-    `SELECT id, scheduled_for, status
-       FROM public.one_time_report_email_jobs
-      WHERE status IN ('pending', 'failed', 'running')
-      ORDER BY scheduled_for ASC, id ASC
-      LIMIT 1`,
-  );
+  try {
+    await reconcileStaleOneTimeReportEmailJobs();
 
-  console.log(JSON.stringify({
-    event: due.rows.length ? "one_time_report_email_due_jobs_found" : "one_time_report_email_poll",
-    count: due.rows.length,
-    jobIds: due.rows.map((row) => row.id),
-    nextJobId: next.rows[0]?.id || null,
-    nextScheduledFor: next.rows[0]?.scheduled_for || null,
-    nextStatus: next.rows[0]?.status || null,
-    databaseNow: new Date().toISOString(),
-  }));
+    const due = await q(
+      `SELECT id
+         FROM public.one_time_report_email_jobs
+        WHERE scheduled_for <= clock_timestamp()
+          AND (
+            status = 'pending'
+            OR (
+              status = 'failed'
+              AND (
+                last_attempt_at IS NULL
+                OR last_attempt_at <= clock_timestamp() - ($1::int * INTERVAL '1 minute')
+              )
+            )
+          )
+        ORDER BY scheduled_for ASC, id ASC
+        LIMIT 20`,
+      [FAILED_RETRY_COOLDOWN_MINUTES],
+    );
 
-  for (const row of due.rows) {
-    void executeOneTimeReportEmailJob(row.id).catch((workerError) => {
-      console.error("One-time report email worker failed unexpectedly", {
-        jobId: row.id,
-        error: workerError?.message || String(workerError),
-        stack: workerError?.stack,
-      });
-    });
+    if (due.rows.length) {
+      console.log(JSON.stringify({
+        event: "one_time_report_email_due_jobs_found",
+        count: due.rows.length,
+        jobIds: due.rows.map((row) => row.id),
+        databaseNow: new Date().toISOString(),
+      }));
+    }
+
+    for (const row of due.rows) {
+      try {
+        await executeOneTimeReportEmailJob(row.id);
+      } catch (workerError) {
+        console.error("One-time report email worker failed unexpectedly", {
+          jobId: row.id,
+          error: workerError?.message || String(workerError),
+          stack: workerError?.stack,
+        });
+      }
+    }
+  } finally {
+    isPollingOneTime = false;
   }
 }
 
@@ -585,7 +638,7 @@ async function executeOneTimeReportEmailJob(id) {
         await updateExecutionHistory(executionJobName, scheduledKey, {
           status: "failed",
           startedAt: new Date(startedAt).toISOString(),
-          completedAt: null,
+          completedAt: new Date().toISOString(),
           durationMs,
           errorMessage,
         });

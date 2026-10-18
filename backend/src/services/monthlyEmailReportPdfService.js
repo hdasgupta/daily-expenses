@@ -5,13 +5,28 @@ function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
 }
 
-function dateLabel(value) {
-  const date = new Date(
-    `${String(value).slice(0, 10)}T00:00:00Z`,
-  );
+function normalizeIsoDateText(value) {
+  if (value == null || value === "") return "";
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return "";
+    return value.toISOString().slice(0, 10);
+  }
+  const text = String(value).trim();
+  const match = text.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (match) return match[1];
+  const parsed = new Date(text);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+  return text.slice(0, 10);
+}
 
-  if (Number.isNaN(date.getTime())) {
-    return String(value);
+function dateLabel(value) {
+  const iso = normalizeIsoDateText(value);
+  const date = new Date(`${iso}T00:00:00Z`);
+
+  if (!iso || Number.isNaN(date.getTime())) {
+    return String(value ?? "—");
   }
 
   return new Intl.DateTimeFormat("en-IN", {
@@ -27,19 +42,17 @@ function monthLabel(start, end) {
 }
 
 function safeMonthLabel(start, end = null) {
-  const startText = String(start ?? "").slice(0, 10);
+  const startText = normalizeIsoDateText(start);
 
   if (!startText) {
     return "Unknown month";
   }
 
   if (end) {
-    return monthLabel(startText, end);
+    return monthLabel(startText, normalizeIsoDateText(end));
   }
 
-  const date = new Date(
-    `${startText}T00:00:00Z`,
-  );
+  const date = new Date(`${startText}T00:00:00Z`);
 
   if (Number.isNaN(date.getTime())) {
     return "Unknown month";
@@ -107,6 +120,8 @@ function drawMonthlyBarChart(doc, data) {
       .fillColor("#555")
       .text(
         "No monthly expense data available.",
+        doc.page.margins.left,
+        doc.y,
       );
 
     doc.fillColor("black");
@@ -182,6 +197,7 @@ function drawMonthlyBarChart(doc, data) {
       );
   });
 
+  doc.x = doc.page.margins.left;
   doc.y = baseline + 35;
 }
 
@@ -200,6 +216,8 @@ function drawSurvivorBarChart(
       .fillColor("#555")
       .text(
         "No survivor share data available.",
+        doc.page.margins.left,
+        doc.y,
       );
 
     doc.fillColor("black");
@@ -362,6 +380,7 @@ function drawSurvivorBarChart(
     },
   );
 
+  doc.x = doc.page.margins.left;
   doc.y = legendY + 20;
 }
 
@@ -473,7 +492,7 @@ function drawTable(
             x + 3,
             y + 5,
             {
-              width: width - 6,
+              width: Math.max(width - 6, 4),
               height: height - 7,
               ellipsis: true,
               link: isProofLink
@@ -490,6 +509,7 @@ function drawTable(
       },
     );
 
+    doc.x = doc.page.margins.left;
     doc.y = y + height;
   };
 
@@ -665,17 +685,15 @@ export function buildMonthlyEmailReportPdfInProcess(
 
       doc.on("error", reject);
 
-      /*
-       * =====================================================
-       * REPORT HEADER
-       * =====================================================
-       */
+      const left = doc.page.margins.left;
 
       doc
         .fontSize(20)
         .font("Helvetica-Bold")
         .text(
           "Rehabilitation Center Expense - 3 Month Monthly Report",
+          left,
+          doc.y,
         );
 
       doc
@@ -684,23 +702,21 @@ export function buildMonthlyEmailReportPdfInProcess(
         .fillColor("#555")
         .text(
           `Generated: ${report.generatedAt}`,
+          left,
+          doc.y,
         );
 
       doc
         .fillColor("black")
         .moveDown();
 
-      /*
-       * =====================================================
-       * 1. THREE MONTHS' MONTHLY BAR CHART
-       * =====================================================
-       */
-
       doc
         .fontSize(14)
         .font("Helvetica-Bold")
         .text(
           "1. Three-month monthly expense bar chart",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -710,19 +726,16 @@ export function buildMonthlyEmailReportPdfInProcess(
         report.monthlySummary,
       );
 
-      /*
-       * =====================================================
-       * 2. THREE MONTHS' MONTHLY SUMMARY TABLE
-       * =====================================================
-       */
-
       doc.moveDown();
 
+      doc.x = left;
       doc
         .fontSize(14)
         .font("Helvetica-Bold")
         .text(
           "2. Three-month monthly summary table",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -749,12 +762,6 @@ export function buildMonthlyEmailReportPdfInProcess(
         ),
       );
 
-      /*
-       * =====================================================
-       * 3. THREE MONTHS' SURVIVOR PIVOT BAR CHART
-       * =====================================================
-       */
-
       doc.addPage();
 
       doc
@@ -762,6 +769,8 @@ export function buildMonthlyEmailReportPdfInProcess(
         .font("Helvetica-Bold")
         .text(
           "3. Three-month monthly group-by-survivor summarized pivot bar chart",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -808,12 +817,6 @@ export function buildMonthlyEmailReportPdfInProcess(
           ),
       );
 
-      /*
-       * =====================================================
-       * 4. THREE MONTHS' SURVIVOR PIVOT DATA
-       * =====================================================
-       */
-
       doc.addPage();
 
       doc
@@ -821,6 +824,8 @@ export function buildMonthlyEmailReportPdfInProcess(
         .font("Helvetica-Bold")
         .text(
           "4. Three-month monthly group-by-survivor summarized pivot data",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -835,6 +840,8 @@ export function buildMonthlyEmailReportPdfInProcess(
           .fillColor("#555")
           .text(
             "No survivor share data available for the three completed months.",
+            left,
+            doc.y,
           );
 
         doc.fillColor("black");
@@ -857,12 +864,6 @@ export function buildMonthlyEmailReportPdfInProcess(
         );
       }
 
-      /*
-       * =====================================================
-       * 5. THREE MONTHS' RAW EXPENSE DATA DUMP
-       * =====================================================
-       */
-
       doc.addPage();
 
       doc
@@ -870,6 +871,8 @@ export function buildMonthlyEmailReportPdfInProcess(
         .font("Helvetica-Bold")
         .text(
           "5. Three-month raw expense data dump",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.3);
@@ -883,6 +886,8 @@ export function buildMonthlyEmailReportPdfInProcess(
             "The share column lists every survivor and their share amount " +
             "with the percentage of the expense total. " +
             "Proof links are clickable when a proof document was uploaded.",
+          left,
+          doc.y,
         );
 
       doc
@@ -900,6 +905,8 @@ export function buildMonthlyEmailReportPdfInProcess(
           .fillColor("#555")
           .text(
             "No expense records were found for the three completed months.",
+            left,
+            doc.y,
           );
 
         doc.fillColor("black");

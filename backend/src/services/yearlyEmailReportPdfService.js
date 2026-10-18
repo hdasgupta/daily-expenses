@@ -5,13 +5,28 @@ function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
 }
 
-function dateLabel(value) {
-  const date = new Date(
-    `${String(value).slice(0, 10)}T00:00:00Z`,
-  );
+function normalizeIsoDateText(value) {
+  if (value == null || value === "") return "";
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return "";
+    return value.toISOString().slice(0, 10);
+  }
+  const text = String(value).trim();
+  const match = text.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (match) return match[1];
+  const parsed = new Date(text);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+  return text.slice(0, 10);
+}
 
-  if (Number.isNaN(date.getTime())) {
-    return String(value);
+function dateLabel(value) {
+  const iso = normalizeIsoDateText(value);
+  const date = new Date(`${iso}T00:00:00Z`);
+
+  if (!iso || Number.isNaN(date.getTime())) {
+    return String(value ?? "—");
   }
 
   return new Intl.DateTimeFormat("en-IN", {
@@ -23,12 +38,11 @@ function dateLabel(value) {
 }
 
 function yearLabel(value) {
-  const date = new Date(
-    `${String(value).slice(0, 10)}T00:00:00Z`,
-  );
+  const iso = normalizeIsoDateText(value);
+  const date = new Date(`${iso}T00:00:00Z`);
 
-  if (Number.isNaN(date.getTime())) {
-    return String(value);
+  if (!iso || Number.isNaN(date.getTime())) {
+    return String(value ?? "—");
   }
 
   return new Intl.DateTimeFormat("en-IN", {
@@ -82,6 +96,8 @@ function drawYearlyBarChart(doc, data) {
       .fillColor("#555")
       .text(
         "No yearly expense data available.",
+        doc.page.margins.left,
+        doc.y,
       );
 
     doc.fillColor("black");
@@ -155,6 +171,7 @@ function drawYearlyBarChart(doc, data) {
       );
   });
 
+  doc.x = doc.page.margins.left;
   doc.y = baseline + 35;
 }
 
@@ -172,6 +189,8 @@ function drawSurvivorChart(
       .fillColor("#555")
       .text(
         "No survivor share data available.",
+        doc.page.margins.left,
+        doc.y,
       );
 
     doc.fillColor("black");
@@ -337,6 +356,7 @@ function drawSurvivorChart(
     },
   );
 
+  doc.x = doc.page.margins.left;
   doc.y = legendY + 20;
 }
 
@@ -451,8 +471,7 @@ function drawTable(
             x + 3,
             y + 5,
             {
-              width:
-                width - 6,
+              width: Math.max(width - 6, 4),
               height:
                 rowHeight - 7,
               ellipsis: true,
@@ -468,6 +487,7 @@ function drawTable(
       },
     );
 
+    doc.x = doc.page.margins.left;
     doc.y =
       y + rowHeight;
   };
@@ -592,17 +612,15 @@ export function buildYearlyEmailReportPdfInProcess(
 
       doc.on("error", reject);
 
-      /*
-       * =====================================================
-       * REPORT HEADER
-       * =====================================================
-       */
+      const left = doc.page.margins.left;
 
       doc
         .fontSize(20)
         .font("Helvetica-Bold")
         .text(
           "Rehabilitation Center Expense - 2 Year Yearly Report",
+          left,
+          doc.y,
         );
 
       doc
@@ -611,23 +629,21 @@ export function buildYearlyEmailReportPdfInProcess(
         .fillColor("#555")
         .text(
           `Generated: ${report.generatedAt}`,
+          left,
+          doc.y,
         );
 
       doc
         .fillColor("black")
         .moveDown();
 
-      /*
-       * =====================================================
-       * 1. TWO YEARS' YEARLY BAR CHART
-       * =====================================================
-       */
-
       doc
         .fontSize(14)
         .font("Helvetica-Bold")
         .text(
           "1. Two-year yearly expense bar chart",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -637,19 +653,16 @@ export function buildYearlyEmailReportPdfInProcess(
         report.yearlySummary,
       );
 
-      /*
-       * =====================================================
-       * 2. TWO YEARS' YEARLY SUMMARY TABLE
-       * =====================================================
-       */
-
       doc.moveDown();
 
+      doc.x = left;
       doc
         .fontSize(14)
         .font("Helvetica-Bold")
         .text(
           "2. Two-year yearly summary table",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -675,12 +688,6 @@ export function buildYearlyEmailReportPdfInProcess(
         ),
       );
 
-      /*
-       * =====================================================
-       * 3. TWO YEARS' SURVIVOR PIVOT BAR CHART
-       * =====================================================
-       */
-
       doc.addPage();
 
       doc
@@ -688,6 +695,8 @@ export function buildYearlyEmailReportPdfInProcess(
         .font("Helvetica-Bold")
         .text(
           "3. Two-year yearly group-by-survivor summarized pivot bar chart",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -707,12 +716,6 @@ export function buildYearlyEmailReportPdfInProcess(
         survivorPivot.survivors,
       );
 
-      /*
-       * =====================================================
-       * 4. TWO YEARS' SURVIVOR PIVOT DATA
-       * =====================================================
-       */
-
       doc.addPage();
 
       doc
@@ -720,6 +723,8 @@ export function buildYearlyEmailReportPdfInProcess(
         .font("Helvetica-Bold")
         .text(
           "4. Two-year yearly group-by-survivor summarized pivot data",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.4);
@@ -734,6 +739,8 @@ export function buildYearlyEmailReportPdfInProcess(
           .fillColor("#555")
           .text(
             "No survivor share data available for the two completed years.",
+            left,
+            doc.y,
           );
 
         doc.fillColor("black");
@@ -766,12 +773,6 @@ export function buildYearlyEmailReportPdfInProcess(
         );
       }
 
-      /*
-       * =====================================================
-       * 5. TWO YEARS' RAW EXPENSE DATA DUMP
-       * =====================================================
-       */
-
       doc.addPage();
 
       doc
@@ -779,6 +780,8 @@ export function buildYearlyEmailReportPdfInProcess(
         .font("Helvetica-Bold")
         .text(
           "5. Two-year raw expense data dump",
+          left,
+          doc.y,
         );
 
       doc.moveDown(0.3);
@@ -794,6 +797,8 @@ export function buildYearlyEmailReportPdfInProcess(
             "of the expense total. " +
             "Proof links are clickable when a proof " +
             "document was uploaded.",
+          left,
+          doc.y,
         );
 
       doc
@@ -811,6 +816,8 @@ export function buildYearlyEmailReportPdfInProcess(
           .fillColor("#555")
           .text(
             "No expense records were found for the two completed years.",
+            left,
+            doc.y,
           );
 
         doc.fillColor("black");
