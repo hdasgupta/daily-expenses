@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Edit3, Info, LoaderCircle, RefreshCw, Trash2, XCircle } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
@@ -321,15 +321,23 @@ export default function JobStatus({ user }) {
   const [deleteBusy, setDeleteBusy] = useState(false);
   const [deletingOneTimeJob, setDeletingOneTimeJob] = useState(null);
   const [oneTimeDeleteBusy, setOneTimeDeleteBusy] = useState(false);
+  const followUpTimerRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 1000);
 
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      if (followUpTimerRef.current) clearTimeout(followUpTimerRef.current);
+    };
   }, []);
 
   const load = async ({ silent = false } = {}) => {
     if (!pagination.ready) return;
+    if (followUpTimerRef.current) {
+      clearTimeout(followUpTimerRef.current);
+      followUpTimerRef.current = null;
+    }
 
     const [statusData, customJobs] = await Promise.all([
       api(
@@ -353,7 +361,8 @@ export default function JobStatus({ user }) {
       ),
     );
 
-    setRows(statusData.rows || []);
+    const fetchedRows = statusData.rows || [];
+    setRows(fetchedRows);
     setTotal(statusData.total || 0);
     setOneTimeJobs(statusData.oneTimeScheduledJobs || []);
 
@@ -365,6 +374,15 @@ export default function JobStatus({ user }) {
           String(a.name).localeCompare(String(b.name)),
       ),
     );
+
+    if (
+      statusData.hasMoreDueJobs ||
+      fetchedRows.some((row) => row.status === "running")
+    ) {
+      followUpTimerRef.current = setTimeout(() => {
+        load({ silent: true }).catch(() => {});
+      }, 1500);
+    }
   };
 
   useEffect(() => {

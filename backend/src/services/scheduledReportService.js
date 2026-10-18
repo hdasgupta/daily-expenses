@@ -222,6 +222,11 @@ function canManage(job, user) {
 }
 
 function triggerImmediateScheduledReportPoll() {
+  // On Vercel serverless, un-awaited background tasks get frozen as soon as
+  // the HTTP response finishes. JobStatus.jsx immediately calls GET /api/job-status
+  // after create/update, which awaits due jobs cleanly.
+  if (process.env.VERCEL === "1") return;
+
   void import("./scheduledReportScheduler.js")
     .then((mod) => mod.processDueScheduledReportJobs())
     .catch((pollError) => {
@@ -427,6 +432,15 @@ export async function buildScheduledReport(reportKey) {
 
   if (match) {
     const dumpResult = await q(rawDumpSql(), [match[1], match[2]]);
+    const proofCache = new Map();
+
+    const getCachedProofUrl = async (key) => {
+      if (!key) return null;
+      if (!proofCache.has(key)) {
+        proofCache.set(key, signedObjectUrl(key));
+      }
+      return proofCache.get(key);
+    };
 
     dumpRows = await Promise.all(
       dumpResult.rows.map(async (row) => ({
@@ -434,7 +448,7 @@ export async function buildScheduledReport(reportKey) {
         expense_date: toIsoDateString(row.expense_date),
         total_cost: Number(row.total_cost || 0),
         share_price: row.share_price == null ? null : Number(row.share_price),
-        proof_url: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+        proof_url: await getCachedProofUrl(row.proof_key),
       })),
     );
   } else {

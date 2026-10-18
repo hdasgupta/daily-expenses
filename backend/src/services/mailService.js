@@ -3,8 +3,10 @@ import { env } from "../config/env.js";
 const EMAIL_API_URL = env.emailApiUrl;
 const EMAIL_API_KEY = env.emailApiKey;
 
-const EMAIL_API_MAX_RETRIES = 3;
-const EMAIL_API_RETRY_DELAYS_MS = [2000, 5000, 10000];
+const isVercel = process.env.VERCEL === "1";
+const EMAIL_API_MAX_RETRIES = isVercel ? 1 : 3;
+const EMAIL_API_RETRY_DELAYS_MS = isVercel ? [1000] : [2000, 5000, 10000];
+const EMAIL_FETCH_TIMEOUT_MS = isVercel ? 7000 : 15000;
 
 function logEmailEvent(event, details = {}) {
   console.log(
@@ -26,12 +28,12 @@ function getRetryAfterMs(response, fallbackMs) {
 
   const seconds = Number(retryAfter);
   if (Number.isFinite(seconds) && seconds >= 0) {
-    return Math.min(seconds * 1000, 60000);
+    return Math.min(seconds * 1000, isVercel ? 2000 : 60000);
   }
 
   const retryDate = Date.parse(retryAfter);
   if (!Number.isNaN(retryDate)) {
-    return Math.min(Math.max(retryDate - Date.now(), 0), 60000);
+    return Math.min(Math.max(retryDate - Date.now(), 0), isVercel ? 2000 : 60000);
   }
 
   return fallbackMs;
@@ -290,6 +292,7 @@ async function postEmail(payload) {
       const response = await fetch(EMAIL_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(EMAIL_FETCH_TIMEOUT_MS),
         body: JSON.stringify({
           ...payload,
           apiKey: EMAIL_API_KEY,
@@ -351,9 +354,6 @@ async function postEmail(payload) {
       await sleep(delayMs);
     } catch (error) {
       const hasRetriesRemaining = attempt <= EMAIL_API_MAX_RETRIES;
-
-      const retryableException = true;
-
       const isHttpError = String(error?.message || "").startsWith("Email API returned HTTP ");
 
       if (!isHttpError && hasRetriesRemaining) {
@@ -367,7 +367,7 @@ async function postEmail(payload) {
           error: error?.message || String(error),
           errorCode: error?.code,
           attempt,
-          retryable: retryableException,
+          retryable: true,
           retriesRemaining: EMAIL_API_MAX_RETRIES - attempt + 1,
         });
 

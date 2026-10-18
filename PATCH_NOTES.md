@@ -1,4 +1,4 @@
-Scheduler Module Verification & Fixes
+Scheduler Module Verification & Fixes (Updated for Vercel Serverless Lifecycle)
 
 Changed:
 - backend/scripts/scheduler.js
@@ -8,6 +8,7 @@ Changed:
 - backend/src/services/dailyEmailReportPdfService.js
 - backend/src/services/dailyEmailReportService.js
 - backend/src/services/jobStatusService.js
+- backend/src/services/mailService.js
 - backend/src/services/monthlyEmailReportPdfService.js
 - backend/src/services/monthlyEmailReportService.js
 - backend/src/services/oneTimeReportEmailService.js
@@ -23,10 +24,7 @@ Changed:
 - frontend/src/pages/JobStatus.jsx
 
 Summary of root causes fixed:
-1. Missing `notifyAdminFailure` import in `scheduledReportScheduler.js` threw `ReferenceError` inside the `catch` block before `finishExecution` could mark failed jobs as `'failed'`, leaving custom scheduled reports (`Daily Survivor vs Category Report`, `Daily Category`, etc.) stuck in `'running'` forever.
-2. `Intl.DateTimeFormat("en-US", { hour12: false })` returned `hour = "24"` between `00:00` and `00:59` IST in `scheduledReportScheduler.js` and `scheduler.js`, causing `currentMinutes = 1440+` and triggering all daily scheduled reports prematurely at midnight.
-3. Holding `pool.connect()` clients open across PDF generation and HTTP email retries while running due jobs concurrently starved the PostgreSQL connection pool (`DB_POOL_MAX`). Replaced with atomic SQL claims, sequential job execution, and no long-held pooled clients.
-4. `markJobStarted` in `scheduler.js` omitted `WHERE scheduled_key IS NOT NULL` in `ON CONFLICT (job_name, scheduled_key)`, failing against the partial unique index `uq_scheduler_job_executions_period`.
-5. `monthlyEmailReportCron` (`"59 23 L * *"`) failed `node-cron` validation (`L` is unsupported in `node-cron`); added `L -> 28-31` normalization for `node-cron` plus exact last-day-of-month `nextRunAt` calculation.
-6. Added automatic reconciliation of stale `'running'` jobs across `scheduler_job_runs`, `scheduler_job_executions`, and `one_time_report_email_jobs`, plus retry cooldowns and `marketing-list-email` cron scheduling.
-7. Configured `pg` DATE type parser (`OID 1082`) and `toIsoDateString` normalization so PostgreSQL `DATE` values are never corrupted by `String(dateObj).slice(0, 10)`, and fixed PDF layout/chunking in `scheduledReportPdfService.js`.
+1. Vercel Serverless CPU freeze on un-awaited `void` jobs: On Vercel (`https://daily-expenses-8pbr.vercel.app`), calling `void processDueScheduledReportJobs()` / `void catchUpMissedEmailReports()` without `await` allowed only sub-300ms jobs (like `Daily planned recipe email` with 0 recipes, `285 ms`) to finish before `res.json(...)` returned. Jobs that generated a PDF and sent email (~2s) were frozen by Vercel mid-flight in `'running'` state, and then marked `'failed: Execution interrupted or timed out before completion'` 5 minutes later. `getJobStatus` now `await`s bounded job execution before returning the HTTP response, and `JobStatus.jsx` automatically chains 1.5s silent polls when `hasMoreDueJobs` is true until all due jobs finish as `'completed'`.
+2. Cleanup of interrupted ghost rows: `reconcileStaleScheduledReportRuns()` now removes interrupted ghost records (`Execution interrupted or timed out before completion` or stale `'running'` > 25s) so today's due jobs immediately re-run to `'completed'` and superseded yesterday's (`2026-10-17`) ghost rows no longer show false red `'failed'` badges.
+3. Fast execution within serverless limits: Cached S3 presigned URLs per unique `proof_key`, parallelized manager email delivery (`Promise.all`), and added per-request `AbortSignal.timeout` in `mailService.js`.
+4. Fixed missing `notifyAdminFailure` import in `scheduledReportScheduler.js`, midnight `hour = "24"` bug (`hourCycle: "h23"`), `ON CONFLICT ... WHERE scheduled_key IS NOT NULL` in `scheduler.js`, `59 23 L * *` monthly cron normalization, `pg` `DATE` (`OID 1082`) type parsing, and PDF pivot table chunking.

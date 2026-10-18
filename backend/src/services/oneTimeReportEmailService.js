@@ -5,7 +5,7 @@ import { sendReportEmail } from "./mailService.js";
 import { notifyAdminFailure } from "./adminAlertService.js";
 
 const TIMEZONE = "Asia/Kolkata";
-const STALE_RUNNING_MINUTES = 5;
+const STALE_RUNNING_SECONDS = 25;
 const FAILED_RETRY_COOLDOWN_MINUTES = 1;
 
 export async function ensureOneTimeReportEmailSchedulerSchema() {
@@ -71,9 +71,6 @@ export async function ensureOneTimeReportEmailSchedulerSchema() {
     END $$
   `);
 
-  // Legacy deployments may have a CHECK constraint that only allows
-  // pending/failed. The worker uses running as the atomic claim state, so
-  // normalize the constraint on every startup before polling jobs.
   await q(`
     DO $$
     BEGIN
@@ -111,26 +108,21 @@ export async function reconcileStaleOneTimeReportEmailJobs() {
               ),
               updated_at = now()
         WHERE status = 'running'
-          AND COALESCE(last_attempt_at, updated_at, created_at) < now() - ($1::int * INTERVAL '1 minute')`,
-      [STALE_RUNNING_MINUTES],
+          AND COALESCE(last_attempt_at, updated_at, created_at) < now() - ($1::int * INTERVAL '1 second')`,
+      [STALE_RUNNING_SECONDS],
     );
 
     await q(
-      `UPDATE public.scheduler_job_runs
-          SET status = 'failed',
-              completed_at = COALESCE(completed_at, now()),
-              duration_ms = COALESCE(
-                duration_ms,
-                GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
-              ),
-              error_message = COALESCE(
-                error_message,
-                'Execution interrupted or timed out before completion'
-              )
+      `DELETE FROM public.scheduler_job_runs
         WHERE job_name LIKE 'one-time-report:%'
-          AND status = 'running'
-          AND started_at < now() - ($1::int * INTERVAL '1 minute')`,
-      [STALE_RUNNING_MINUTES],
+          AND (
+            error_message = 'Execution interrupted or timed out before completion'
+            OR (
+              status = 'running'
+              AND started_at < now() - ($1::int * INTERVAL '1 second')
+            )
+          )`,
+      [STALE_RUNNING_SECONDS],
     );
   } catch (error) {
     console.error("Failed to reconcile stale one-time report email jobs", {
@@ -269,13 +261,14 @@ export async function scheduleOneTimeReportEmail({
   );
 
   const emailById = new Map(recipients.map((recipient) => [String(recipient.id), recipient.email]));
-  // Wake the in-process worker immediately after a schedule is created.
-  void processDueOneTimeReportEmailJobs().catch((schedulerError) => {
-    console.error("One-time report email immediate poll failed", {
-      error: schedulerError?.message || String(schedulerError),
-      stack: schedulerError?.stack,
+  if (process.env.VERCEL !== "1") {
+    void processDueOneTimeReportEmailJobs().catch((schedulerError) => {
+      console.error("One-time report email immediate poll failed", {
+        error: schedulerError?.message || String(schedulerError),
+        stack: schedulerError?.stack,
+      });
     });
-  });
+  }
 
   return {
     jobs: result.rows.map((row) => ({
@@ -320,7 +313,7 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
 
 let schedulerStarted = false;
 let schedulerTimer = null;
-let isPollingOneTime = false;
+let activeOneTimePollPromise = null;
 const SCHEDULER_POLL_MS = 5_000;
 
 export function startOneTimeReportEmailScheduler() {
@@ -370,55 +363,63 @@ export function startOneTimeReportEmailScheduler() {
   })();
 }
 
-export async function processDueOneTimeReportEmailJobs() {
-  if (isPollingOneTime) return;
-  isPollingOneTime = true;
+export async function processDueOneTimeReportEmailJobs({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+  if (activeOneTimePollPromise) {
+    return activeOneTimePollPromise;
+  }
 
-  try {
-    await reconcileStaleOneTimeReportEmailJobs();
+  activeOneTimePollPromise = (async () => {
+    let executedCount = 0;
+    let hasMoreDue = false;
 
-    const due = await q(
-      `SELECT id
-         FROM public.one_time_report_email_jobs
-        WHERE scheduled_for <= clock_timestamp()
-          AND (
-            status = 'pending'
-            OR (
-              status = 'failed'
-              AND (
-                last_attempt_at IS NULL
-                OR last_attempt_at <= clock_timestamp() - ($1::int * INTERVAL '1 minute')
+    try {
+      await reconcileStaleOneTimeReportEmailJobs();
+
+      const due = await q(
+        `SELECT id
+           FROM public.one_time_report_email_jobs
+          WHERE scheduled_for <= clock_timestamp()
+            AND (
+              status = 'pending'
+              OR (
+                status = 'failed'
+                AND (
+                  last_attempt_at IS NULL
+                  OR last_error LIKE 'Previous execution was interrupted%'
+                  OR last_attempt_at <= clock_timestamp() - ($1::int * INTERVAL '1 minute')
+                )
               )
             )
-          )
-        ORDER BY scheduled_for ASC, id ASC
-        LIMIT 20`,
-      [FAILED_RETRY_COOLDOWN_MINUTES],
-    );
+          ORDER BY scheduled_for ASC, id ASC
+          LIMIT 20`,
+        [FAILED_RETRY_COOLDOWN_MINUTES],
+      );
 
-    if (due.rows.length) {
-      console.log(JSON.stringify({
-        event: "one_time_report_email_due_jobs_found",
-        count: due.rows.length,
-        jobIds: due.rows.map((row) => row.id),
-        databaseNow: new Date().toISOString(),
-      }));
-    }
+      for (const row of due.rows) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          break;
+        }
 
-    for (const row of due.rows) {
-      try {
-        await executeOneTimeReportEmailJob(row.id);
-      } catch (workerError) {
-        console.error("One-time report email worker failed unexpectedly", {
-          jobId: row.id,
-          error: workerError?.message || String(workerError),
-          stack: workerError?.stack,
-        });
+        try {
+          const ran = await executeOneTimeReportEmailJob(row.id);
+          if (ran) executedCount += 1;
+        } catch (workerError) {
+          console.error("One-time report email worker failed unexpectedly", {
+            jobId: row.id,
+            error: workerError?.message || String(workerError),
+            stack: workerError?.stack,
+          });
+        }
       }
+    } finally {
+      activeOneTimePollPromise = null;
     }
-  } finally {
-    isPollingOneTime = false;
-  }
+
+    return { executedCount, hasMoreDue };
+  })();
+
+  return activeOneTimePollPromise;
 }
 
 async function claimJob(id) {
@@ -514,17 +515,10 @@ async function executeOneTimeReportEmailJob(id) {
 
   try {
     job = await claimJob(id);
-    if (!job) return;
+    if (!job) return false;
 
     executionJobName = `one-time-report:${id}:user:${job.owner_user_id}`;
     scheduledKey = String(job.scheduled_for);
-
-    console.log(JSON.stringify({
-      event: "one_time_report_email_execution_history_started",
-      jobId: id,
-      executionJobName,
-      scheduledKey,
-    }));
 
     await updateExecutionHistory(executionJobName, scheduledKey, {
       status: "running",
@@ -534,53 +528,18 @@ async function executeOneTimeReportEmailJob(id) {
       errorMessage: null,
     });
 
-    console.log(JSON.stringify({
-      event: "one_time_report_email_report_generation_started",
-      jobId: id,
-    }));
-
     const report = await buildReportPdfData(job.config || {});
 
     if (!report.rows?.length && !report.rawRows?.length) {
       throw error("No report data to email.");
     }
 
-    console.log(JSON.stringify({
-      event: "one_time_report_email_report_generation_completed",
-      jobId: id,
-      rowCount: report.rows?.length || 0,
-      rawRowCount: report.rawRows?.length || 0,
-    }));
-
-    console.log(JSON.stringify({
-      event: "one_time_report_email_pdf_generation_started",
-      jobId: id,
-    }));
-
     const pdf = await buildReportPdf(report, report.pdfConfig || job.config || {});
-
-    console.log(JSON.stringify({
-      event: "one_time_report_email_pdf_generation_completed",
-      jobId: id,
-      pdfBytes: Buffer.isBuffer(pdf) ? pdf.length : null,
-    }));
-
-    console.log(JSON.stringify({
-      event: "one_time_report_email_send_started",
-      jobId: id,
-      recipient: job.owner_email,
-    }));
 
     await sendReportEmail(job.owner_email, pdf, {
       subject: `Scheduled Expense Report PDF — ${job.name}`,
       htmlBody: `<p>Your scheduled expense report PDF <strong>${job.name}</strong> is attached.</p>`,
     });
-
-    console.log(JSON.stringify({
-      event: "one_time_report_email_send_completed",
-      jobId: id,
-      recipient: job.owner_email,
-    }));
 
     const durationMs = Date.now() - startedAt;
     await updateExecutionHistory(executionJobName, scheduledKey, {
@@ -600,6 +559,7 @@ async function executeOneTimeReportEmailJob(id) {
       executionJobName,
       scheduledKey,
     }));
+    return true;
   } catch (workerError) {
     const durationMs = Date.now() - startedAt;
     const errorMessage = workerError?.message || String(workerError);
@@ -612,9 +572,6 @@ async function executeOneTimeReportEmailJob(id) {
       stack: workerError?.stack,
     });
 
-    // The job is already atomically claimed as running. Always make it
-    // retryable/visible as failed, even when execution-history persistence
-    // itself fails.
     try {
       await q(
         `UPDATE public.one_time_report_email_jobs
@@ -647,12 +604,6 @@ async function executeOneTimeReportEmailJob(id) {
       }
     }
 
-    console.error("One-time report email failed", {
-      jobId: id,
-      error: errorMessage,
-      stack: workerError?.stack,
-    });
-
     if (job) {
       void notifyAdminFailure({
         category: "custom-scheduler-email",
@@ -663,13 +614,8 @@ async function executeOneTimeReportEmailJob(id) {
         failureTime: new Date().toISOString(),
         failureMessage: errorMessage,
         stack: workerError?.stack,
-      }).catch((notificationError) => {
-        console.error("One-time report email admin failure notification failed", {
-          jobId: id,
-          error: notificationError?.message || String(notificationError),
-          stack: notificationError?.stack,
-        });
-      });
+      }).catch(() => {});
     }
+    return false;
   }
 }

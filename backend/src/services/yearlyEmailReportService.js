@@ -68,6 +68,15 @@ export async function buildYearlyEmailReport() {
   const yearly = await q(YEARLY_REPORT_SQL.yearlySummary);
   const survivors = await q(YEARLY_REPORT_SQL.survivorSummary);
   const dump = await q(YEARLY_REPORT_SQL.dump);
+  const proofCache = new Map();
+
+  const getCachedProofUrl = async (key) => {
+    if (!key) return null;
+    if (!proofCache.has(key)) {
+      proofCache.set(key, signedObjectUrl(key));
+    }
+    return proofCache.get(key);
+  };
 
   return {
     generatedAt: nowIso(),
@@ -93,7 +102,7 @@ export async function buildYearlyEmailReport() {
         expenseId: row.expense_id,
         totalCost: Number(row.total_cost || 0),
         comment: row.comment || "—",
-        proofUrl: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
+        proofUrl: await getCachedProofUrl(row.proof_key),
       })),
     ),
   };
@@ -104,9 +113,9 @@ export async function sendYearlyEmailReportToManagers() {
   const pdf = await buildYearlyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate = report.generatedAt.slice(0, 10);
-  for (const row of result.rows) {
-    await sendYearlyEmailReport(row.email, pdf, reportDate);
-  }
+  await Promise.all(
+    result.rows.map((row) => sendYearlyEmailReport(row.email, pdf, reportDate)),
+  );
   return { recipients: result.rows.length, rows: report.dump.length };
 }
 

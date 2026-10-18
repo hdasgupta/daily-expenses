@@ -7,10 +7,10 @@ import {
 import { notifyAdminFailure } from "./adminAlertService.js";
 
 let started = false;
-let isPolling = false;
+let activePollPromise = null;
 const activeJobLocks = new Set();
 
-const STALE_RUNNING_MINUTES = 5;
+const STALE_RUNNING_SECONDS = 25;
 const FAILED_RETRY_COOLDOWN_MINUTES = 5;
 
 const WEEKDAY_INDEX = {
@@ -89,8 +89,6 @@ function scheduledKey(job, local) {
   }
 
   if (job.frequency === "weekly") {
-    // Weekly jobs are keyed by their scheduled weekday/date. Since weekly
-    // jobs only become due on their configured weekday, this is one key per week.
     return `${local.year}-${local.month}-${local.day}`;
   }
 
@@ -107,22 +105,28 @@ function executionJobName(jobId) {
 
 export async function reconcileStaleScheduledReportRuns() {
   try {
+    const local = localParts();
+    const todayKey = `${local.year}-${local.month}-${local.day}`;
+
+    // Remove orphaned/interrupted ghost runs from previous days or current runs
+    // that were interrupted mid-flight by serverless container freezes, so
+    // today's due runs can execute cleanly and old interrupted ghost rows do
+    // not clutter Execution History with false failures.
     await q(
-      `UPDATE public.scheduler_job_runs
-          SET status = 'failed',
-              completed_at = COALESCE(completed_at, now() - ($1::int * INTERVAL '1 minute')),
-              duration_ms = COALESCE(
-                duration_ms,
-                GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
-              ),
-              error_message = COALESCE(
-                error_message,
-                'Execution interrupted or timed out before completion'
-              )
+      `DELETE FROM public.scheduler_job_runs
         WHERE job_name LIKE 'scheduled-report:%'
-          AND status = 'running'
-          AND started_at < now() - ($2::int * INTERVAL '1 minute')`,
-      [FAILED_RETRY_COOLDOWN_MINUTES + 1, STALE_RUNNING_MINUTES],
+          AND (
+            error_message = 'Execution interrupted or timed out before completion'
+            OR (
+              status = 'running'
+              AND started_at < now() - ($1::int * INTERVAL '1 second')
+            )
+          )
+          AND (
+            scheduled_key <= $2
+            OR started_at < now() - ($1::int * INTERVAL '1 second')
+          )`,
+      [STALE_RUNNING_SECONDS, todayKey],
     );
   } catch (error) {
     console.error("Failed to reconcile stale scheduled-report runs", {
@@ -130,6 +134,38 @@ export async function reconcileStaleScheduledReportRuns() {
       stack: error?.stack,
     });
   }
+}
+
+async function isAlreadyCompletedOrCoolingDown(job, key) {
+  const jobName = executionJobName(job.id);
+  const existing = await q(
+    `SELECT status, started_at, completed_at, error_message
+       FROM public.scheduler_job_runs
+      WHERE job_name = $1
+        AND scheduled_key = $2`,
+    [jobName, key],
+  );
+
+  const row = existing.rows[0];
+  if (!row) return false;
+  if (row.status === "completed") return true;
+
+  if (row.status === "running") {
+    const ageMs = Date.now() - new Date(row.started_at).getTime();
+    if (ageMs < STALE_RUNNING_SECONDS * 1000) return true;
+  }
+
+  if (
+    row.status === "failed" &&
+    row.error_message !== "Execution interrupted or timed out before completion"
+  ) {
+    const refTime = new Date(row.completed_at || row.started_at).getTime();
+    if (Date.now() - refTime < FAILED_RETRY_COOLDOWN_MINUTES * 60 * 1000) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 async function claimExecution(job, key) {
@@ -163,17 +199,18 @@ async function claimExecution(job, key) {
        WHERE public.scheduler_job_runs.status <> 'completed'
          AND (
            public.scheduler_job_runs.status <> 'running'
-           OR public.scheduler_job_runs.started_at < now() - ($3::int * INTERVAL '1 minute')
+           OR public.scheduler_job_runs.started_at < now() - ($3::int * INTERVAL '1 second')
          )
          AND (
            public.scheduler_job_runs.status <> 'failed'
+           OR public.scheduler_job_runs.error_message = 'Execution interrupted or timed out before completion'
            OR COALESCE(
                 public.scheduler_job_runs.completed_at,
                 public.scheduler_job_runs.started_at
               ) <= now() - ($4::int * INTERVAL '1 minute')
          )
        RETURNING job_name, scheduled_key`,
-      [jobName, key, STALE_RUNNING_MINUTES, FAILED_RETRY_COOLDOWN_MINUTES],
+      [jobName, key, STALE_RUNNING_SECONDS, FAILED_RETRY_COOLDOWN_MINUTES],
     );
 
     if (!result.rowCount) {
@@ -216,11 +253,11 @@ async function runJob(jobId, key) {
   try {
     job = await getScheduledReportForExecution(jobId);
 
-    if (!job) return;
+    if (!job) return false;
 
     const claim = await claimExecution(job, key);
 
-    if (!claim.acquired) return;
+    if (!claim.acquired) return false;
 
     execution = claim;
     startedAt = Date.now();
@@ -246,6 +283,7 @@ async function runJob(jobId, key) {
         result,
       }),
     );
+    return true;
   } catch (error) {
     const errorMessage = error?.message || String(error);
 
@@ -287,6 +325,7 @@ async function runJob(jobId, key) {
         error: alertError?.message || String(alertError),
       });
     });
+    return false;
   } finally {
     if (execution?.lockKey) {
       activeJobLocks.delete(execution.lockKey);
@@ -294,38 +333,59 @@ async function runJob(jobId, key) {
   }
 }
 
-export async function processDueScheduledReportJobs() {
-  if (isPolling) return;
-  isPolling = true;
-
-  try {
-    await reconcileStaleScheduledReportRuns();
-
-    const local = localParts();
-
-    const result = await q(
-      `SELECT *
-         FROM public.scheduled_report_jobs
-        WHERE active = TRUE
-        ORDER BY id`,
-    );
-
-    for (const job of result.rows) {
-      if (!dueFor(job, local)) continue;
-
-      try {
-        await runJob(job.id, scheduledKey(job, local));
-      } catch (error) {
-        console.error("Scheduled report worker failed unexpectedly", {
-          jobId: job.id,
-          error: error?.message || String(error),
-          stack: error?.stack,
-        });
-      }
-    }
-  } finally {
-    isPolling = false;
+export async function processDueScheduledReportJobs({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+  if (activePollPromise) {
+    return activePollPromise;
   }
+
+  activePollPromise = (async () => {
+    let executedCount = 0;
+    let hasMoreDue = false;
+
+    try {
+      await reconcileStaleScheduledReportRuns();
+
+      const local = localParts();
+
+      const result = await q(
+        `SELECT *
+           FROM public.scheduled_report_jobs
+          WHERE active = TRUE
+          ORDER BY id`,
+      );
+
+      for (const job of result.rows) {
+        if (!dueFor(job, local)) continue;
+
+        const key = scheduledKey(job, local);
+        if (await isAlreadyCompletedOrCoolingDown(job, key)) {
+          continue;
+        }
+
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          break;
+        }
+
+        try {
+          const ran = await runJob(job.id, key);
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Scheduled report worker failed unexpectedly", {
+            jobId: job.id,
+            error: error?.message || String(error),
+            stack: error?.stack,
+          });
+        }
+      }
+    } finally {
+      activePollPromise = null;
+    }
+
+    return { executedCount, hasMoreDue };
+  })();
+
+  return activePollPromise;
 }
 
 export function startScheduledReportScheduler() {

@@ -91,20 +91,48 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   const searchPattern = safeSearch ? `%${safeSearch}%` : "";
   const offset = (safePage - 1) * safePageSize;
 
-  // Reconcile any stale "running" records across all three scheduler tables so
-  // interrupted executions never stay spinning forever in Execution History.
+  // Reconcile stale "running" records across all three scheduler tables first.
   await Promise.all([
     reconcileStaleScheduledReportRuns(),
     reconcileStaleEmailExecutions(),
     reconcileStaleOneTimeReportEmailJobs(),
   ]);
 
-  // On serverless deployments (Vercel), background timers may be frozen between
-  // requests. Trigger a non-blocking poll of due jobs when Job Status is accessed.
-  if (process.env.VERCEL === "1") {
-    void processDueScheduledReportJobs().catch(() => {});
-    void processDueOneTimeReportEmailJobs().catch(() => {});
-    void catchUpMissedEmailReports().catch(() => {});
+  // IMPORTANT: On serverless deployments (Vercel), un-awaited background tasks
+  // ("void ...") are frozen by the runtime the instant the HTTP response is sent,
+  // leaving jobs stuck in "running" state and later timing out. Always AWAIT
+  // bounded job execution before returning the HTTP response so every claimed
+  // job completes cleanly within the request lifecycle.
+  let hasMoreDueJobs = false;
+  const deadlineMs = Date.now() + 5000;
+  try {
+    const oneTimeOutcome = await processDueOneTimeReportEmailJobs({
+      maxJobs: 1,
+      deadlineMs,
+    });
+    if (oneTimeOutcome?.hasMoreDue) hasMoreDueJobs = true;
+
+    if (Date.now() < deadlineMs) {
+      const scheduledOutcome = await processDueScheduledReportJobs({
+        maxJobs: 1,
+        deadlineMs,
+      });
+      if (scheduledOutcome?.hasMoreDue) hasMoreDueJobs = true;
+    } else {
+      hasMoreDueJobs = true;
+    }
+
+    if (Date.now() < deadlineMs) {
+      const systemOutcome = await catchUpMissedEmailReports({
+        maxJobs: 1,
+        deadlineMs,
+      });
+      if (systemOutcome?.hasMoreDue) hasMoreDueJobs = true;
+    } else {
+      hasMoreDueJobs = true;
+    }
+  } catch (pollError) {
+    console.error("Scheduler poll during getJobStatus failed", pollError);
   }
 
   // Older one-time report jobs and scheduled report jobs were created before
@@ -279,5 +307,6 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     page: safePage,
     pageSize: safePageSize,
     search: safeSearch,
+    hasMoreDueJobs,
   };
 }

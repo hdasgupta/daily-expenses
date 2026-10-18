@@ -10,18 +10,15 @@ import { sendMarketingListForDate, nextDayIST } from "../src/controllers/marketi
 import { notifyAdminFailure } from "../src/services/adminAlertService.js";
 
 let started = false;
-let isCatchingUp = false;
+let activeCatchUpPromise = null;
 const activeEmailJobs = new Set();
 
-const STALE_RUNNING_MINUTES = 5;
+const STALE_RUNNING_SECONDS = 25;
 const FAILED_RETRY_COOLDOWN_MINUTES = 5;
 
 export function normalizeCronExpression(cronExpr) {
   const raw = String(cronExpr || "").trim();
   if (!raw) return "";
-  // node-cron does not support 'L' in the day-of-month field; replace 'L' with
-  // '28-31' so node-cron triggers on potential month-end days and the handler
-  // verifies isLastDayOfMonth(local).
   return raw.replace(/^(\S+\s+\S+\s+)L(\s+\S+\s+\S+)$/i, "$128-31$2");
 }
 
@@ -76,7 +73,7 @@ export async function reconcileStaleEmailExecutions() {
     await q(
       `UPDATE public.scheduler_job_executions
           SET status = 'failed',
-              completed_at = COALESCE(completed_at, now() - ($1::int * INTERVAL '1 minute')),
+              completed_at = now() - ($1::int * INTERVAL '1 minute'),
               duration_ms = COALESCE(
                 duration_ms,
                 GREATEST(0, (EXTRACT(EPOCH FROM (now() - started_at)) * 1000)::int)
@@ -86,8 +83,8 @@ export async function reconcileStaleEmailExecutions() {
                 'Execution interrupted or timed out before completion'
               )
         WHERE status = 'running'
-          AND started_at < now() - ($2::int * INTERVAL '1 minute')`,
-      [FAILED_RETRY_COOLDOWN_MINUTES + 1, STALE_RUNNING_MINUTES],
+          AND started_at < now() - ($2::int * INTERVAL '1 second')`,
+      [FAILED_RETRY_COOLDOWN_MINUTES + 1, STALE_RUNNING_SECONDS],
     );
   } catch (error) {
     console.error("Failed to reconcile stale email scheduler executions", {
@@ -112,17 +109,18 @@ async function claimJobExecution(jobName, scheduledKey) {
      WHERE public.scheduler_job_executions.status NOT IN ('completed', 'skipped')
        AND (
          public.scheduler_job_executions.status <> 'running'
-         OR public.scheduler_job_executions.started_at < now() - ($3::int * INTERVAL '1 minute')
+         OR public.scheduler_job_executions.started_at < now() - ($3::int * INTERVAL '1 second')
        )
        AND (
          public.scheduler_job_executions.status <> 'failed'
+         OR public.scheduler_job_executions.error_message = 'Execution interrupted or timed out before completion'
          OR COALESCE(
               public.scheduler_job_executions.completed_at,
               public.scheduler_job_executions.started_at
             ) <= now() - ($4::int * INTERVAL '1 minute')
        )
      RETURNING id`,
-    [jobName, scheduledKey, STALE_RUNNING_MINUTES, FAILED_RETRY_COOLDOWN_MINUTES],
+    [jobName, scheduledKey, STALE_RUNNING_SECONDS, FAILED_RETRY_COOLDOWN_MINUTES],
   );
   return result.rows[0]?.id || null;
 }
@@ -238,13 +236,13 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
       stack: error?.stack,
     });
 
-    await notifyAdminFailure({
+    void notifyAdminFailure({
       category: "default-scheduler-email",
       schedulerType: jobName,
       failureTime: new Date().toISOString(),
       failureMessage: error?.message || String(error),
       stack: error?.stack,
-    });
+    }).catch(() => {});
     throw error;
   } finally {
     activeEmailJobs.delete(lockKey);
@@ -263,6 +261,7 @@ async function runDailyEmailReport(customScheduledKey = null) {
       `7-day email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
     );
   }
+  return Boolean(result);
 }
 
 async function runDailyPlannedRecipeEmail(customScheduledKey = null) {
@@ -288,7 +287,7 @@ async function runMonthlyEmailReport(customScheduledKey = null) {
         local,
         cron: env.monthlyEmailReportCron,
       });
-      return;
+      return false;
     }
     customScheduledKey = `${local.year}-${local.month}`;
   }
@@ -302,6 +301,7 @@ async function runMonthlyEmailReport(customScheduledKey = null) {
       `3-month email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
     );
   }
+  return Boolean(result);
 }
 
 async function runYearlyEmailReport(customScheduledKey = null) {
@@ -309,7 +309,7 @@ async function runYearlyEmailReport(customScheduledKey = null) {
     const local = getLocalDateParts(env.yearlyEmailReportTimezone);
     if (local.month !== "12" || local.day !== "31") {
       logSchedulerEvent("yearly_email_report_skipped_not_december_31", { local });
-      return;
+      return false;
     }
     customScheduledKey = `${local.year}`;
   }
@@ -323,6 +323,7 @@ async function runYearlyEmailReport(customScheduledKey = null) {
       `2-year email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
     );
   }
+  return Boolean(result);
 }
 
 async function runWeeklyEmailReport(customScheduledKey = null) {
@@ -330,7 +331,7 @@ async function runWeeklyEmailReport(customScheduledKey = null) {
     const local = getLocalDateParts(env.weeklyEmailReportTimezone);
     if (local.weekday !== undefined && local.weekday !== "Saturday") {
       logSchedulerEvent("weekly_email_report_skipped_not_saturday", { local });
-      return;
+      return false;
     }
     customScheduledKey = localDateKey(env.weeklyEmailReportTimezone);
   }
@@ -344,122 +345,170 @@ async function runWeeklyEmailReport(customScheduledKey = null) {
       `4-week email report sent to ${result.recipients} manager(s), ${result.rows} dump row(s)`,
     );
   }
+  return Boolean(result);
 }
 
-async function retryRecentFailedSystemJobs() {
+async function retryRecentFailedSystemJobs({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+  let executedCount = 0;
+  let hasMoreDue = false;
+
   const failed = await q(
     `SELECT job_name, scheduled_key
        FROM public.scheduler_job_executions
       WHERE status = 'failed'
         AND scheduled_key IS NOT NULL
-        AND started_at >= now() - INTERVAL '36 hours'
-        AND COALESCE(completed_at, started_at) <= now() - ($1::int * INTERVAL '1 minute')
+        AND started_at >= now() - INTERVAL '48 hours'
+        AND (
+          error_message = 'Execution interrupted or timed out before completion'
+          OR COALESCE(completed_at, started_at) <= now() - ($1::int * INTERVAL '1 minute')
+        )
       ORDER BY started_at DESC`,
     [FAILED_RETRY_COOLDOWN_MINUTES],
   );
 
   for (const row of failed.rows) {
+    if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+      hasMoreDue = true;
+      break;
+    }
+
     try {
+      let ran = false;
       if (row.job_name === "daily-email-report") {
-        await runDailyEmailReport(row.scheduled_key);
+        ran = Boolean(await runDailyEmailReport(row.scheduled_key));
       } else if (row.job_name === "daily-planned-recipe-email") {
-        await runDailyPlannedRecipeEmail(row.scheduled_key);
+        ran = Boolean(await runDailyPlannedRecipeEmail(row.scheduled_key));
       } else if (row.job_name === "weekly-email-report") {
-        await runWeeklyEmailReport(row.scheduled_key);
+        ran = Boolean(await runWeeklyEmailReport(row.scheduled_key));
       } else if (row.job_name === "monthly-email-report") {
-        await runMonthlyEmailReport(row.scheduled_key);
+        ran = Boolean(await runMonthlyEmailReport(row.scheduled_key));
       } else if (row.job_name === "yearly-email-report") {
-        await runYearlyEmailReport(row.scheduled_key);
+        ran = Boolean(await runYearlyEmailReport(row.scheduled_key));
       } else if (row.job_name === "marketing-list-email") {
         const purchaseDate = String(row.scheduled_key).replace(/^marketing-list-email:/, "");
-        await runMarketingListEmail(purchaseDate);
+        ran = Boolean(await runMarketingListEmail(purchaseDate));
       }
+      if (ran) executedCount += 1;
     } catch (error) {
       console.error(`Failed retry for system job ${row.job_name} (${row.scheduled_key})`, error);
     }
   }
+
+  return { executedCount, hasMoreDue };
 }
 
-export async function catchUpMissedEmailReports() {
-  if (isCatchingUp) return;
-  isCatchingUp = true;
-
-  try {
-    await reconcileStaleEmailExecutions();
-    await retryRecentFailedSystemJobs();
-
-    const recipeLocal = getLocalDateParts(env.dailyPlannedRecipeTimezone);
-    const recipeHour = Number(recipeLocal.hour === "24" ? 0 : recipeLocal.hour);
-    if (recipeHour >= 6) {
-      try {
-        await runDailyPlannedRecipeEmail();
-      } catch (error) {
-        console.error("Missed daily planned recipe email catch-up failed", error);
-      }
-    }
-
-    const dailyLocal = getLocalDateParts(env.dailyEmailReportTimezone);
-    const dailyHour = Number(dailyLocal.hour === "24" ? 0 : dailyLocal.hour);
-    const dailyMinute = Number(dailyLocal.minute);
-    logSchedulerEvent("scheduler_catchup_check", {
-      dailyLocal,
-      dailyCron: env.dailyEmailReportCron,
-      dailyTimezone: env.dailyEmailReportTimezone,
-    });
-
-    if (dailyHour === 23 && dailyMinute >= 59) {
-      try {
-        await runDailyEmailReport();
-      } catch (error) {
-        console.error("Missed 7-day email report catch-up failed", error);
-      }
-      try {
-        await runMarketingListEmail();
-      } catch (error) {
-        console.error("Missed marketing list email catch-up failed", error);
-      }
-    }
-
-    const weeklyLocal = getLocalDateParts(env.weeklyEmailReportTimezone);
-    const weeklyHour = Number(weeklyLocal.hour === "24" ? 0 : weeklyLocal.hour);
-    const weeklyMinute = Number(weeklyLocal.minute);
-    if (weeklyLocal.weekday === "Saturday" && weeklyHour === 23 && weeklyMinute >= 59) {
-      try {
-        await runWeeklyEmailReport();
-      } catch (error) {
-        console.error("Missed 4-week email report catch-up failed", error);
-      }
-    }
-
-    const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
-    const yearlyHour = Number(yearlyLocal.hour === "24" ? 0 : yearlyLocal.hour);
-    const yearlyMinute = Number(yearlyLocal.minute);
-    if (
-      yearlyLocal.month === "12" &&
-      yearlyLocal.day === "31" &&
-      yearlyHour === 23 &&
-      yearlyMinute >= 59
-    ) {
-      try {
-        await runYearlyEmailReport();
-      } catch (error) {
-        console.error("Missed 2-year email report catch-up failed", error);
-      }
-    }
-
-    const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
-    const monthlyHour = Number(monthlyLocal.hour === "24" ? 0 : monthlyLocal.hour);
-    const monthlyMinute = Number(monthlyLocal.minute);
-    if (isLastDayOfMonth(monthlyLocal) && monthlyHour === 23 && monthlyMinute >= 59) {
-      try {
-        await runMonthlyEmailReport();
-      } catch (error) {
-        console.error("Missed 3-month email report catch-up failed", error);
-      }
-    }
-  } finally {
-    isCatchingUp = false;
+export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+  if (activeCatchUpPromise) {
+    return activeCatchUpPromise;
   }
+
+  activeCatchUpPromise = (async () => {
+    let executedCount = 0;
+    let hasMoreDue = false;
+
+    try {
+      await reconcileStaleEmailExecutions();
+      const retryOutcome = await retryRecentFailedSystemJobs({ maxJobs, deadlineMs });
+      executedCount += retryOutcome.executedCount;
+      if (retryOutcome.hasMoreDue) {
+        hasMoreDue = true;
+        return { executedCount, hasMoreDue };
+      }
+
+      const recipeLocal = getLocalDateParts(env.dailyPlannedRecipeTimezone);
+      const recipeHour = Number(recipeLocal.hour === "24" ? 0 : recipeLocal.hour);
+      if (recipeHour >= 6 && executedCount < maxJobs && Date.now() < deadlineMs) {
+        try {
+          const ran = await runDailyPlannedRecipeEmail();
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed daily planned recipe email catch-up failed", error);
+        }
+      }
+
+      const dailyLocal = getLocalDateParts(env.dailyEmailReportTimezone);
+      const dailyHour = Number(dailyLocal.hour === "24" ? 0 : dailyLocal.hour);
+      const dailyMinute = Number(dailyLocal.minute);
+
+      if (dailyHour === 23 && dailyMinute >= 59 && executedCount < maxJobs && Date.now() < deadlineMs) {
+        try {
+          const ran = await runDailyEmailReport();
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed 7-day email report catch-up failed", error);
+        }
+        if (executedCount < maxJobs && Date.now() < deadlineMs) {
+          try {
+            const ran = await runMarketingListEmail();
+            if (ran) executedCount += 1;
+          } catch (error) {
+            console.error("Missed marketing list email catch-up failed", error);
+          }
+        }
+      }
+
+      const weeklyLocal = getLocalDateParts(env.weeklyEmailReportTimezone);
+      const weeklyHour = Number(weeklyLocal.hour === "24" ? 0 : weeklyLocal.hour);
+      const weeklyMinute = Number(weeklyLocal.minute);
+      if (
+        weeklyLocal.weekday === "Saturday" &&
+        weeklyHour === 23 &&
+        weeklyMinute >= 59 &&
+        executedCount < maxJobs &&
+        Date.now() < deadlineMs
+      ) {
+        try {
+          const ran = await runWeeklyEmailReport();
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed 4-week email report catch-up failed", error);
+        }
+      }
+
+      const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
+      const yearlyHour = Number(yearlyLocal.hour === "24" ? 0 : yearlyLocal.hour);
+      const yearlyMinute = Number(yearlyLocal.minute);
+      if (
+        yearlyLocal.month === "12" &&
+        yearlyLocal.day === "31" &&
+        yearlyHour === 23 &&
+        yearlyMinute >= 59 &&
+        executedCount < maxJobs &&
+        Date.now() < deadlineMs
+      ) {
+        try {
+          const ran = await runYearlyEmailReport();
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed 2-year email report catch-up failed", error);
+        }
+      }
+
+      const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
+      const monthlyHour = Number(monthlyLocal.hour === "24" ? 0 : monthlyLocal.hour);
+      const monthlyMinute = Number(monthlyLocal.minute);
+      if (
+        isLastDayOfMonth(monthlyLocal) &&
+        monthlyHour === 23 &&
+        monthlyMinute >= 59 &&
+        executedCount < maxJobs &&
+        Date.now() < deadlineMs
+      ) {
+        try {
+          const ran = await runMonthlyEmailReport();
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed 3-month email report catch-up failed", error);
+        }
+      }
+    } finally {
+      activeCatchUpPromise = null;
+    }
+
+    return { executedCount, hasMoreDue };
+  })();
+
+  return activeCatchUpPromise;
 }
 
 export function startEmailSchedulers() {
@@ -635,7 +684,6 @@ export function startEmailSchedulers() {
     );
   }
 
-  // Periodic recovery check every 5 minutes for stale running jobs or failed system jobs
   cron.schedule(
     "*/5 * * * *",
     async () => {
