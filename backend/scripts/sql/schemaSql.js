@@ -150,8 +150,6 @@ CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_started_at
   ON public.scheduler_job_executions(started_at DESC);
 CREATE INDEX IF NOT EXISTS idx_scheduler_job_executions_job_name
   ON public.scheduler_job_executions(job_name, started_at DESC);
--- Keep one persisted execution record per common job and reporting period.
--- Older failed retries may have produced duplicate rows, so retain the latest row before adding the constraint.
 DELETE FROM public.scheduler_job_executions e
 WHERE e.scheduled_key IS NOT NULL
   AND e.id IN (
@@ -197,10 +195,28 @@ CREATE TABLE IF NOT EXISTS public.marketing_locations (
   id BIGSERIAL PRIMARY KEY,
   name VARCHAR(150) NOT NULL UNIQUE,
   address TEXT,
+  latitude DOUBLE PRECISION,
+  longitude DOUBLE PRECISION,
   created_by BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE public.marketing_locations
+  ADD COLUMN IF NOT EXISTS latitude DOUBLE PRECISION,
+  ADD COLUMN IF NOT EXISTS longitude DOUBLE PRECISION;
+CREATE TABLE IF NOT EXISTS public.marketing_location_gps_logs (
+  id BIGSERIAL PRIMARY KEY,
+  location_id BIGINT NOT NULL REFERENCES public.marketing_locations(id) ON DELETE CASCADE,
+  user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
+  latitude DOUBLE PRECISION,
+  longitude DOUBLE PRECISION,
+  source VARCHAR(50) NOT NULL DEFAULT 'selection',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_marketing_location_gps_logs_loc
+  ON public.marketing_location_gps_logs(location_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_marketing_location_gps_logs_user
+  ON public.marketing_location_gps_logs(user_id, created_at DESC);
 CREATE TABLE IF NOT EXISTS public.marketing_list_items (
   id BIGSERIAL PRIMARY KEY,
   category_id BIGINT REFERENCES public.categories(id) ON DELETE SET NULL,

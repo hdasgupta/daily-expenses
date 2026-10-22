@@ -1,7 +1,16 @@
 import "./marketing.css";
-import React, { useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Clock3, Pencil, ShoppingBasket, Trash2, Wallet } from "lucide-react";
-import { api } from "../lib/api";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { CheckCircle2, Clock3, LocateFixed, Pencil, ShoppingBasket, Trash2, Wallet } from "lucide-react";
+import { api, showToast } from "../lib/api";
+import {
+  describeAutoMatchReason,
+  fetchLocationsWithGps,
+  formatLocationOptionLabel,
+  getCurrentGpsPosition,
+  isValidCoordinates,
+  pickBestLocation,
+  recordLocationSelection,
+} from "../lib/locationTracker";
 import Pagination from "../components/Pagination";
 import { usePagination } from "../hooks/usePagination";
 import { todayKolkata } from "../utils/dates.js";
@@ -29,6 +38,9 @@ export default function MarketingList({ navigate }) {
   const [locations, setLocations] = useState([]);
   const [items, setItems] = useState([]);
   const [form, setForm] = useState(empty);
+  const [currentCoords, setCurrentCoords] = useState(null);
+  const [autoLocationHint, setAutoLocationHint] = useState("");
+  const [detectingGps, setDetectingGps] = useState(false);
   const [editing, setEditing] = useState(null);
   const [pendingRemoval, setPendingRemoval] = useState(null);
   const [removing, setRemoving] = useState(false);
@@ -36,19 +48,74 @@ export default function MarketingList({ navigate }) {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState([]);
+  const userChoseLocationRef = useRef(false);
   const pagination = usePagination("marketing-list", "id");
+
+  const applyBestLocationIfUnset = (locList, bestLoc, force = false) => {
+    if (!bestLoc) return;
+    setForm((current) => {
+      if (!force && current.locationId && userChoseLocationRef.current) {
+        return current;
+      }
+      if (!force && current.locationId && locList.some((l) => String(l.id) === String(current.locationId))) {
+        return current;
+      }
+      setAutoLocationHint(describeAutoMatchReason(bestLoc));
+      return {
+        ...current,
+        locationId: String(bestLoc.id),
+      };
+    });
+  };
 
   const load = async () => {
     setLoading(true);
     try {
-      const [r, c, u, l] = await Promise.all([
-        api("/marketing-list"), api("/meta/categories"), api("/meta/units"), api("/marketing-locations"),
+      const [r, c, u, locBundle] = await Promise.all([
+        api("/marketing-list"),
+        api("/meta/categories"),
+        api("/meta/units"),
+        fetchLocationsWithGps({ coords: currentCoords, silent: true, fastInitial: true }),
       ]);
       setRows(Array.isArray(r) ? r : []);
       setCategories(Array.isArray(c) ? c : []);
       setUnits(Array.isArray(u) ? u : []);
-      setLocations(Array.isArray(l) ? l : []);
+      const locList = Array.isArray(locBundle?.locations) ? locBundle.locations : [];
+      setLocations(locList);
+      if (isValidCoordinates(locBundle?.coords)) {
+        setCurrentCoords(locBundle.coords);
+      }
+      applyBestLocationIfUnset(locList, locBundle?.bestLocation);
       setError("");
+
+      // Refresh with live GPS coordinates in the background to refine nearest/most-frequent mapping
+      getCurrentGpsPosition({ timeout: 6000 }).then(async (liveCoords) => {
+        if (!isValidCoordinates(liveCoords)) return;
+        setCurrentCoords(liveCoords);
+        try {
+          const refreshed = await fetchLocationsWithGps({ coords: liveCoords, silent: true });
+          if (Array.isArray(refreshed?.locations) && refreshed.locations.length) {
+            setLocations(refreshed.locations);
+            if (!userChoseLocationRef.current && refreshed.bestLocation) {
+              setForm((current) => ({
+                ...current,
+                locationId: String(refreshed.bestLocation.id),
+              }));
+              setAutoLocationHint(describeAutoMatchReason(refreshed.bestLocation));
+            }
+          }
+        } catch {
+          const localRefined = pickBestLocation(locList, liveCoords);
+          setLocations(localRefined.locations);
+          if (!userChoseLocationRef.current && localRefined.bestLocation) {
+            setForm((current) => ({
+              ...current,
+              locationId: String(localRefined.bestLocation.id),
+            }));
+            setAutoLocationHint(describeAutoMatchReason(localRefined.bestLocation));
+          }
+        }
+      });
     } catch (e) {
       setError(e.message || "Unable to load marketing list");
     } finally {
@@ -61,6 +128,35 @@ export default function MarketingList({ navigate }) {
     if (!form.categoryId) { setItems([]); return; }
     api(`/meta/items/${form.categoryId}`).then((result) => setItems(Array.isArray(result) ? result : [])).catch(() => setItems([]));
   }, [form.categoryId]);
+
+  const handleAutoDetectNearestLocation = async () => {
+    setDetectingGps(true);
+    try {
+      const coords = await getCurrentGpsPosition({
+        timeout: 8000,
+        maximumAge: 0,
+        enableHighAccuracy: true,
+      });
+      setCurrentCoords(coords);
+      const refreshed = await fetchLocationsWithGps({ coords, silent: true });
+      const locList = Array.isArray(refreshed?.locations) ? refreshed.locations : locations;
+      setLocations(locList);
+      if (refreshed?.bestLocation) {
+        userChoseLocationRef.current = false;
+        setForm((current) => ({
+          ...current,
+          locationId: String(refreshed.bestLocation.id),
+        }));
+        const reason = describeAutoMatchReason(refreshed.bestLocation);
+        setAutoLocationHint(reason);
+        showToast("success", `${refreshed.bestLocation.name} selected (${reason}).`);
+      }
+    } catch (e) {
+      showToast("warning", e.message || "Unable to auto-detect location.");
+    } finally {
+      setDetectingGps(false);
+    }
+  };
 
   const filteredRows = useMemo(() => {
     const term = String(pagination.search || "").trim().toLowerCase();
@@ -103,11 +199,20 @@ export default function MarketingList({ navigate }) {
   useEffect(() => { setSelectedIds([]); }, [form.purchaseDate, form.locationId, form.categoryId, pagination.search]);
   useEffect(() => { if (page !== safePage) setPage(safePage); }, [page, safePage]);
 
-  const change = (key, value) => setForm((current) => ({
-    ...current,
-    [key]: value,
-    ...(key === "itemId" ? { itemName: items.find((item) => String(item.id) === String(value))?.name || current.itemName } : {}),
-  }));
+  const change = (key, value) => {
+    if (key === "locationId") {
+      userChoseLocationRef.current = Boolean(value);
+      setAutoLocationHint("");
+      if (value) {
+        void recordLocationSelection(value, { coords: currentCoords, source: "marketing_list_select" });
+      }
+    }
+    setForm((current) => ({
+      ...current,
+      [key]: value,
+      ...(key === "itemId" ? { itemName: items.find((item) => String(item.id) === String(value))?.name || current.itemName } : {}),
+    }));
+  };
 
   const resetForm = ({ preserveSelection = true } = {}) => {
     const selection = preserveSelection ? { categoryId: form.categoryId, purchaseDate: form.purchaseDate, locationId: form.locationId } : {};
@@ -122,10 +227,22 @@ export default function MarketingList({ navigate }) {
       return;
     }
     try {
-      const payload = { ...form, itemName: form.itemName.trim() };
+      const coords = isValidCoordinates(currentCoords)
+        ? currentCoords
+        : await getCurrentGpsPosition({ timeout: 2500 });
+      if (isValidCoordinates(coords)) {
+        setCurrentCoords(coords);
+      }
+      const payload = {
+        ...form,
+        itemName: form.itemName.trim(),
+        latitude: coords ? coords.latitude : null,
+        longitude: coords ? coords.longitude : null,
+      };
       await api(editing ? `/marketing-list/${editing}` : "/marketing-list", {
         method: editing ? "PUT" : "POST", body: JSON.stringify(payload),
       });
+      void recordLocationSelection(form.locationId, { coords, source: "marketing_list_save" });
       if (editing) {
         resetForm();
       } else {
@@ -158,6 +275,7 @@ export default function MarketingList({ navigate }) {
   const edit = (row) => {
     if (row.status !== "pending") return;
     setEditing(row.id);
+    userChoseLocationRef.current = true;
     setForm({ categoryId: String(row.category_id || ""), itemId: String(row.item_id || ""), itemName: row.item_name || "", quantity: row.quantity ?? "", unitId: String(row.unit_id || ""), purchaseDate: String(row.purchase_date).slice(0, 10), locationId: String(row.location_id || "") });
     setError(""); window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -211,7 +329,32 @@ export default function MarketingList({ navigate }) {
       <form className="card marketing-form-grid marketing-list-form" onSubmit={save}>
         <div className="marketing-form-title"><ShoppingBasket size={20} /><h2>{editing ? "Edit marketing item" : "Add an item to the list"}</h2></div>
         <label className="marketing-date-field">Date<input required type="date" value={form.purchaseDate} onChange={(event) => { change("purchaseDate", event.target.value); setPage(1); }} /></label>
-        <label>Shopping location<select required value={form.locationId} onChange={(event) => { change("locationId", event.target.value); setPage(1); }}><option value="">Choose location</option>{locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}</select></label>
+        <label>
+          <span className="location-label-row">
+            <span>Shopping location</span>
+            <button
+              type="button"
+              className="gps-auto-button"
+              onClick={handleAutoDetectNearestLocation}
+              disabled={detectingGps || !locations.length}
+              title="Automatically select nearest & most frequent location from current GPS"
+            >
+              <LocateFixed size={13} />
+              <span>{detectingGps ? "Locating…" : "Auto GPS"}</span>
+            </button>
+          </span>
+          <select required value={form.locationId} onChange={(event) => { change("locationId", event.target.value); setPage(1); }}>
+            <option value="">Choose location</option>
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {formatLocationOptionLabel(location)}
+              </option>
+            ))}
+          </select>
+          {autoLocationHint && (
+            <small className="location-auto-hint">{autoLocationHint}</small>
+          )}
+        </label>
         <label>Category<select value={form.categoryId} onChange={(event) => { change("categoryId", event.target.value); setPage(1); }}><option value="">Choose category</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
         <label>Known item<select value={form.itemId} onChange={(event) => change("itemId", event.target.value)}><option value="">Custom / type item name</option>{items.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
         <label>Item name<input required value={form.itemName} onChange={(event) => change("itemName", event.target.value)} placeholder="e.g. Potatoes" /></label>
