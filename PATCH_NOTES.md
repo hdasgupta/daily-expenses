@@ -1,25 +1,21 @@
-# Scheduler Module Verification & Complete Fixes
+# Complete Project Updates (Scheduler Fixes & Recipe Master Expansion)
 
-## Root Causes Identified & Resolved
+## 1. Recipe Master Catalogue Expansion (`backend/src/data/recipes.json`, `backend/src/data/expandedStarterRecipes.js`)
+- Merged all **67** recipes from `backend/src/data/expandedStarterRecipes.js` that were previously missing from `backend/src/data/recipes.json` (10 Starters, 1 Boiled Egg, 14 Omelettes, 22 Sandwiches, 8 Bread/Toast items, and 12 Vegetable Bhartas).
+- Added **26** additional Indian and Bengali Vegetable Bharta recipes (including *Patol Bharta (Pointed Gourd / Parwal Mash), Aloo Chokha, Ucche Aloo Bharta, Potol Khosa Bharta, Lau Khosa Bharta, Kacha Tomato Bharta, Bhindi Bharta, Dherosh Shorshe Bharta, Kacha Kola Bharta, Kanchkola Khosa Bharta, Pepe Bharta, Jhinge Bharta, Dhundul Bharta, Chichinda Bharta, Tinda Bharta, Kundru Bharta, Gobi Bharta, Bandhakopi Bharta, Borboti Bharta, Matar Bharta, Ol Bharta, Kochur Mukhi Bharta, Gajor Bharta, Beetroot Bharta, Sajne Data Bharta,* and *Echorer Bharta*).
+- Preserved all **920** original recipe IDs (`static-0001`–`static-0920`) and assigned sequential IDs (`static-0921`–`static-1013`) to the **93** newly added recipes (**1,013** total recipes, sorted alphabetically by name).
 
-1. **Email Delivery Transport (`backend/src/services/mailService.js`)**
-   - Restored standard `fetch(targetUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: bodyString, redirect: "follow" })` **without `AbortSignal.timeout(...)`** (using a `Promise.race` timer instead so Vercel's instrumented `fetch` never throws cross-realm `TypeError: fetch failed`), with automatic fallback to `node:https` (`servername: parsedUrl.hostname` for TLS SNI) if `fetch` throws a network error.
-   - Added response-body inspection (`evaluateEmailApiResponse`) so JSON error payloads (`{"ok":false}`, `{"status":"error"}`) or Google Apps Script HTML error/sign-in pages are detected and retried rather than falsely marking jobs as `completed`.
-   - Ensured `textBody` and `body` are always populated on every report PDF email (`sendReportEmail`, `sendDailyEmailReport`, `sendWeeklyEmailReport`, `sendMonthlyEmailReport`, `sendYearlyEmailReport`, `sendDashboardEmail`) and normalized PDF buffers with `Buffer.from(pdfBuffer).toString("base64")`.
-
-2. **Re-Running Edited Schedules & Clearing False Prior Completions (`backend/src/services/scheduledReportScheduler.js`, `backend/src/services/scheduledReportService.js`)**
-   - Added a one-time database migration (`reset_oct_2026_email_runs_v4` in `public.scheduler_migrations`) that resets the `2026-10-16` through `2026-10-19` runs once so today's scheduled emails immediately re-execute and deliver with the fixed email transport.
-   - Updated `isAlreadyCompletedOrCoolingDown`, `claimExecution`, and `updateScheduledReportJob` so that whenever a user edits a scheduled report's delivery time (`job.updated_at > row.started_at`), the current period lock is cleared and the updated schedule executes at its newly configured time today.
-   - Added missed previous-day catch-up (`resolveDueKeyForJob`) so daily custom scheduled reports created before today whose yesterday run was missed automatically catch up even before today's scheduled time arrives.
-
-3. **Catching Up Missed `23:59` System Scheduled Emails (`backend/scripts/scheduler.js`, `backend/src/services/*EmailReportService.js`)**
-   - Previously, `catchUpMissedEmailReports()` only checked `if (dailyHour === 23 && dailyMinute >= 59)` — a single 60-second window at `11:59 PM`. If no request hit the serverless backend at `23:59`, yesterday's `daily-email-report`, `marketing-list-email`, and Saturday's `weekly-email-report` were never executed or caught up the next day.
-   - Updated `catchUpMissedEmailReports()` to check and catch up yesterday's `daily-email-report` (`yesterdayKey`), today's `marketing-list-email` (which was due at `23:59` yesterday), and the most recent past Saturday's `weekly-email-report` (`lastPastSaturdayDateKey`) at **any** hour of the day.
-   - Changed manager recipient loops in `dailyEmailReportService.js`, `weeklyEmailReportService.js`, `monthlyEmailReportService.js`, and `yearlyEmailReportService.js` from `Promise.all(...)` to sequential `for...of` delivery so Google Apps Script is not hit with concurrent PDF uploads simultaneously.
-
+## 2. Scheduler Module & Email Delivery Fixes
+1. **Email Transport & Response Verification (`backend/src/services/mailService.js`)**
+   - Uses standard `fetch()` **without `AbortSignal.timeout()`** (using a `Promise.race` timeout instead so Vercel's instrumented `fetch` never throws cross-realm `TypeError: fetch failed`), with automatic fallback to `node:https` (including TLS SNI `servername`) if `fetch` throws a network error.
+   - Inspects the response body (`evaluateEmailApiResponse`) so Google Apps Script JSON error payloads or HTML error/sign-in pages are surfaced and retried instead of falsely marking runs as `completed`.
+   - Populates `textBody`, `body`, and normalized base64 PDF `attachments` across all report email helpers.
+2. **Re-Running Edited Schedules & Clearing Prior Runs (`backend/src/services/scheduledReportScheduler.js`, `backend/src/services/scheduledReportService.js`)**
+   - Added one-time database migration `reset_oct_2026_email_runs_v4` (`public.scheduler_migrations`) and updated `isAlreadyCompletedOrCoolingDown`, `claimExecution`, and `updateScheduledReportJob` so editing a scheduled report (`job.updated_at > row.started_at`) clears the current period lock and runs at the newly configured time.
+   - Added missed previous-day catch-up (`resolveDueKeyForJob`) for daily custom scheduled reports.
+3. **Catching Up Missed `23:59` System Reports (`backend/scripts/scheduler.js`, `backend/src/services/*EmailReportService.js`)**
+   - Updated `catchUpMissedEmailReports()` to catch up yesterday's missed `daily-email-report`, today's `marketing-list-email`, and the most recent past Saturday's `weekly-email-report` at any hour of the day, and switched recipient loops from `Promise.all` to sequential `for...of` to prevent Google Apps Script concurrency throttling.
 4. **One-Time Report PDF Emails (`backend/src/services/oneTimeReportEmailService.js`)**
-   - Allowed scheduling for the current minute (`timestamp >= Date.now() - 60_000`) since HTML `<input type="time">` has minute resolution, and immediately `await`ed execution if the scheduled time is already due.
-
-5. **Global Background Scheduler Trigger Across All Pages (`backend/src/routes/index.js`, `backend/src/controllers/jobStatusController.js`, `backend/src/services/jobStatusService.js`, `backend/vercel.json`, `frontend/src/App.jsx`, `frontend/src/lib/api.js`, `frontend/src/pages/JobStatus.jsx`)**
-   - Added `GET /api/scheduler/tick` and `POST /api/scheduler/tick` (`runSchedulerTick`) so due jobs are executed both via Vercel Cron (`backend/vercel.json` with `maxDuration: 60`) and via a silent 20-second background heartbeat in `frontend/src/App.jsx` while the user is on **any** page (`/report`, `/dashboard`, `/add-expense`, etc.).
-   - Updated `frontend/src/lib/api.js` so `silent: true` requests do not trigger the full-screen `"Please wait…"` loader overlay, and updated `frontend/src/pages/JobStatus.jsx` to trigger a silent poll the instant any scheduled job's target timestamp arrives.
+   - Allowed current-minute scheduling (`timestamp >= Date.now() - 60_000`) and immediately `await`ed execution when due.
+5. **Triggering Across All Pages & Vercel Cron (`backend/src/routes/index.js`, `backend/src/controllers/jobStatusController.js`, `backend/src/services/jobStatusService.js`, `backend/vercel.json`, `frontend/src/App.jsx`, `frontend/src/lib/api.js`, `frontend/src/pages/JobStatus.jsx`)**
+   - Added `GET`/`POST /api/scheduler/tick` (`runSchedulerTick`), `backend/vercel.json` (`maxDuration: 60` + cron), truly silent background requests in `frontend/src/lib/api.js`, a 20-second silent background heartbeat in `frontend/src/App.jsx` across all authenticated pages, and an exact due-timestamp trigger in `JobStatus.jsx`.

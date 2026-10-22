@@ -113,13 +113,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0921",
+    "id": "static-0976",
     "name": "Aloo Bharta (Potato Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Aloo / Potato",
@@ -169,16 +166,16 @@
         "minutes": 3
       }
     ],
-    "notes": "Using pungent kachi ghani mustard oil and a mix of raw and lightly fried onions gives authentic Bengali Aloo Bharta flavour."
-  },
-  {
-    "id": "static-0922",
-    "name": "Aloo Chokha (Bihari Spiced Potato Bharta)",
-    "category": "Vegetable Bharta",
-    "region": "Bihari / Indian",
     "prepMinutes": 10,
     "cookMinutes": 20,
     "servings": 2,
+    "notes": "Using pungent kachi ghani mustard oil and a mix of raw and lightly fried onions gives authentic Bengali Aloo Bharta flavour."
+  },
+  {
+    "id": "static-0988",
+    "name": "Aloo Chokha (Bihari Spiced Potato Bharta)",
+    "category": "Vegetable Bharta",
+    "region": "Bihari / Indian",
     "ingredients": [
       {
         "name": "Aloo / Potato",
@@ -233,6 +230,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Pairs classically with dal-chawal, khichdi, or litti."
   },
   {
@@ -917,6 +917,50 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0925",
+    "name": "Aloo Tikki",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "boiled potatoes",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Mash potatoes with spices, shape into patties and shallow-fry until golden.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0607",
@@ -2412,13 +2456,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0949",
+    "id": "static-1005",
     "name": "Bandhakopi Bharta (Steamed Cabbage Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Bandhakopi / Patta Gobi (Cabbage, shredded)",
@@ -2468,6 +2509,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Drying the steamed cabbage over high heat gives a smoky flavour."
   },
   {
@@ -2977,13 +3021,10 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
-    "id": "static-0956",
+    "id": "static-1011",
     "name": "Beetroot Bharta (Chukandar Mash)",
     "category": "Vegetable Bharta",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Beetroot / Chukandar",
@@ -3033,6 +3074,9 @@
         "minutes": 1
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Earthy beetroot pairs well with sharp mustard oil and lemon."
   },
   {
@@ -3149,13 +3193,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0930",
-    "name": "Begun Bharta (Bengali Roasted Eggplant Mash)",
+    "id": "static-0980",
+    "name": "Begun Bharta (Roasted Eggplant Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Begun / Baingan (Large Eggplant / Brinjal)",
@@ -3205,6 +3246,9 @@
         "minutes": 5
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "In Bengal this raw-onion mustard-oil mash is called Begun Pora / Begun Bharta and pairs wonderfully with hot roti or winter khichuri."
   },
   {
@@ -6898,13 +6942,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0938",
+    "id": "static-0994",
     "name": "Bhindi Bharta (Okra / Dherosh Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 8,
-    "cookMinutes": 12,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Bhindi / Dherosh (Tender okra / ladyfinger)",
@@ -6954,6 +6995,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "servings": 2,
     "notes": "Steaming whole okra before trimming the caps prevents excessive mucilage (stickiness)."
   },
   {
@@ -7043,6 +7087,40 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-0931",
+    "name": "Boiled Egg",
+    "category": "Egg",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Water",
+        "quantity": "enough to cover",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil",
+        "text": "Place eggs in a saucepan, cover with water and bring to a boil.",
+        "minutes": 8
+      },
+      {
+        "section": "Cool and peel",
+        "text": "Simmer 9–12 minutes for firm yolks, cool in cold water, then peel.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "For softer yolks, reduce simmering time; refrigerate promptly if not serving immediately."
   },
   {
     "id": "static-0106",
@@ -8180,13 +8258,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0950",
+    "id": "static-1006",
     "name": "Borboti Bharta (Yardlong Beans / Lobia Beans Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Borboti (Yardlong green beans)",
@@ -8236,7 +8311,156 @@
         "minutes": 4
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Can also be made with regular French beans (Beans Bharta)."
+  },
+  {
+    "id": "static-0967",
+    "name": "Bread and Butter",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "butter",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread butter evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0968",
+    "name": "Bread and Jam",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "fruit jam",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread fruit jam evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0954",
+    "name": "Bread Butter and Jam Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "butter and fruit jam",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0969",
+    "name": "Bread Butter Jam",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "butter and fruit jam",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread butter and fruit jam evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0907",
@@ -8458,6 +8682,50 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-0953",
+    "name": "Butter Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "softened butter",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0785",
@@ -9156,6 +9424,50 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-0928",
+    "name": "Cheese Balls",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "grated cheese and potato",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Mix cheese with mashed potato and seasoning, shape balls, coat with crumbs and fry until golden.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0714",
     "name": "Cheese Chilli Toast Sandwich",
     "category": "Sandwich",
@@ -9210,13 +9522,191 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
-    "id": "static-0945",
+    "id": "static-0938",
+    "name": "Cheese Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "2 tbsp grated cheese",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0957",
+    "name": "Cheese Onion Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "cheese and onion slices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0955",
+    "name": "Cheese Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "cheese slices or grated cheese",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0956",
+    "name": "Cheese Tomato Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "cheese and tomato slices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1001",
     "name": "Chichinda Bharta (Snake Gourd Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Chichinda / Padwal (Snake gourd)",
@@ -9266,6 +9756,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Light, savoury gourd mash that goes well with hot rice."
   },
   {
@@ -15117,6 +15610,50 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-0924",
+    "name": "Crispy Onion Pakora",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "sliced onion",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Toss onion with besan, chilli, ajwain and a little water; fry small portions until crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0457",
     "name": "Crispy Pakora",
     "category": "Snacks",
@@ -15888,6 +16425,94 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-0930",
+    "name": "Cucumber Raita",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "cucumber and yogurt",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Whisk yogurt, fold in grated cucumber, roasted cumin and salt; chill before serving.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0948",
+    "name": "Cucumber Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "thinly sliced cucumber",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0639",
     "name": "Curd Rice (Homestyle)",
     "category": "Rice",
@@ -16359,13 +16984,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0939",
+    "id": "static-0995",
     "name": "Dherosh Shorshe Bharta (Bengali Mustard Okra Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 8,
-    "cookMinutes": 12,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Dherosh / Bhindi (Tender okra)",
@@ -16415,6 +17037,9 @@
         "minutes": 1
       }
     ],
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "servings": 2,
     "notes": "Fresh mustard paste adds sharp Bengali pungency."
   },
   {
@@ -16536,13 +17161,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0944",
+    "id": "static-1000",
     "name": "Dhundul Bharta (Sponge Gourd / Nenua Chokha)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Bihari / Indian",
-    "prepMinutes": 8,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Dhundul / Nenua / Gilki (Sponge gourd)",
@@ -16592,6 +17214,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 8,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Known as Nenua ka Chokha in Bihar and Dhundul Bharta in Bengal."
   },
   {
@@ -16811,6 +17436,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-0943",
+    "name": "Double Egg Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "3 eggs instead of 2",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0882",
     "name": "Double Ka Meetha",
     "category": "Sweets",
@@ -16919,13 +17593,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0958",
+    "id": "static-1013",
     "name": "Echorer Bharta (Raw Jackfruit / Kathal Chokha)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Bihari / Indian",
-    "prepMinutes": 15,
-    "cookMinutes": 20,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Echor / Kathal (Raw green jackfruit cubes)",
@@ -16975,6 +17646,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Known as Echorer Bharta in Bengal and Kathal ka Chokha in Bihar."
   },
   {
@@ -18112,6 +18786,50 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-0960",
+    "name": "Egg Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "chopped boiled egg with a little mayonnaise or yogurt",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0285",
     "name": "Egg White Bhuna",
     "category": "Egg",
@@ -18434,6 +19152,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0944",
+    "name": "Egg White Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "4 egg whites and chopped vegetables",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0405",
@@ -20040,13 +20807,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0955",
+    "id": "static-1010",
     "name": "Gajor Bharta (Spiced Carrot Mash)",
     "category": "Vegetable Bharta",
     "region": "Indian / Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Gajor / Gajar (Carrots)",
@@ -20096,7 +20860,88 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Nutritious, colourful side dish for lunch or dinner."
+  },
+  {
+    "id": "static-0927",
+    "name": "Garlic Bread",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "bread slices",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Spread garlic butter on bread and toast or bake until crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0974",
+    "name": "Garlic Butter Toast",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "garlic butter",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread garlic butter evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0745",
@@ -20153,13 +20998,10 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
-    "id": "static-0923",
-    "name": "Garlic Potato Bharta (Lasooni Aloo Bharta)",
+    "id": "static-0987",
+    "name": "Garlic Potato Bharta",
     "category": "Vegetable Bharta",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Aloo / Potato",
@@ -20209,6 +21051,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Slowly frying the garlic until golden infuses the oil and removes raw pungency."
   },
   {
@@ -20266,13 +21111,10 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
-    "id": "static-0948",
+    "id": "static-1004",
     "name": "Gobi Bharta (Roasted Cauliflower / Phulkopi Mash)",
     "category": "Vegetable Bharta",
     "region": "North Indian / Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Gobi / Phulkopi (Cauliflower florets)",
@@ -20327,6 +21169,9 @@
         "minutes": 4
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "For a Bengali Phulkopi Bharta variation, skip the tomato and mash boiled florets directly with raw mustard oil, roasted red chilli, onion, and coriander."
   },
   {
@@ -20644,6 +21489,55 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-0936",
+    "name": "Green Chilli Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1 green chilli, finely chopped",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0828",
     "name": "Green Smoothie",
     "category": "Beverage",
@@ -20830,6 +21724,50 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-0963",
+    "name": "Grilled Tomato Cheese Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "tomato and cheese",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0850",
     "name": "Gulab Jamun",
     "category": "Sweets",
@@ -20887,6 +21825,99 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-0923",
+    "name": "Hara Bhara Kebab",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "spinach, peas and potato",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Mash the cooked greens, peas and potato with spices, shape patties and shallow-fry.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0942",
+    "name": "Herb Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1 tbsp chopped coriander or parsley",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0334",
@@ -21595,6 +22626,50 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0965",
+    "name": "Honey Butter Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "butter and honey",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0795",
@@ -22357,13 +23432,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0943",
+    "id": "static-0999",
     "name": "Jhinge Bharta (Ridge Gourd / Turai Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Jhinge / Turai (Ridge gourd)",
@@ -22413,6 +23485,9 @@
         "minutes": 4
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Both the flesh and the tender ridged peel of jhinge make a delicious bharta."
   },
   {
@@ -22976,13 +24051,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0940",
+    "id": "static-0996",
     "name": "Kacha Kola Bharta (Raw Banana / Plantain Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Kacha Kola (Raw green banana / plantain)",
@@ -23032,16 +24104,16 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "Always mash raw bananas while still hot, as they firm up quickly on cooling."
   },
   {
-    "id": "static-0932",
+    "id": "static-0992",
     "name": "Kacha Tomato Bharta (Green Tomato Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 8,
-    "cookMinutes": 14,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Kacha Tomato (Unripe green tomatoes)",
@@ -23091,6 +24163,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 8,
+    "cookMinutes": 14,
+    "servings": 2,
     "notes": "Tangy and vibrant winter relish."
   },
   {
@@ -23143,13 +24218,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0926",
-    "name": "Kakrol Bharta (Spiny Gourd / Kantola Mash)",
+    "id": "static-0978",
+    "name": "Kakrol Bharta (Spiny Gourd Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Kakrol / Kankrol / Kantola (Spiny gourd)",
@@ -23204,6 +24276,9 @@
         "minutes": 5
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "Remove hard seeds if the kakrol is over-ripe before mashing."
   },
   {
@@ -23782,13 +24857,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0941",
+    "id": "static-0997",
     "name": "Kanchkola Khosa Bharta (Raw Banana Peel Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Kanchkola khosa (Raw green banana peels)",
@@ -23838,16 +24910,16 @@
         "minutes": 4
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Rich in iron and fibre; a staple Bengali comfort dish."
   },
   {
-    "id": "static-0924",
-    "name": "Karela Bharta (Bitter Gourd / Korola Mash)",
+    "id": "static-0977",
+    "name": "Karela Bharta (Bitter Gourd Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 15,
-    "cookMinutes": 15,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Karela / Korola (Bitter gourd)",
@@ -23902,6 +24974,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Salting and resting karela before cooking mellows the bitterness while keeping its digestive benefits."
   },
   {
@@ -25315,13 +26390,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0953",
+    "id": "static-1009",
     "name": "Kochur Mukhi Bharta (Taro Root / Arbi Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Kochur Mukhi / Gathi Kochu / Arbi (Taro root)",
@@ -25371,6 +26443,9 @@
         "minutes": 1
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "Creamy texture that pairs wonderfully with plain masoor or moong dal."
   },
   {
@@ -26268,13 +27343,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0947",
+    "id": "static-1003",
     "name": "Kundru Bharta (Ivy Gourd / Tendli / Telakucha Mash)",
     "category": "Vegetable Bharta",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Kundru / Tendli / Telakucha (Ivy gourd)",
@@ -26324,6 +27396,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Pan-roasting kundru brings out a pleasant nutty flavour."
   },
   {
@@ -26538,13 +27613,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0933",
-    "name": "Lau Bharta (Bottle Gourd / Lauki Mash)",
+    "id": "static-0982",
+    "name": "Lau Bharta (Bottle Gourd Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Lau / Lauki (Bottle gourd)",
@@ -26599,6 +27671,9 @@
         "minutes": 5
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Light, cooling, and easy to digest."
   },
   {
@@ -26838,13 +27913,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0934",
+    "id": "static-0993",
     "name": "Lau Khosa Bharta (Bottle Gourd Peel Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Lau khosa (Tender bottle gourd peels)",
@@ -26894,6 +27966,9 @@
         "minutes": 5
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Use fresh, tender bottle gourd skins for a smooth, non-fibrous texture."
   },
   {
@@ -29360,6 +30435,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-0937",
+    "name": "Masala Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1/2 onion, chilli, coriander and a pinch of garam masala",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0733",
     "name": "Masala Omelette Sandwich",
     "category": "Sandwich",
@@ -29417,6 +30541,50 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-0929",
+    "name": "Masala Papad",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "papad",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Roast or fry papad; top with chopped onion, tomato, coriander, lemon and chaat masala.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0227",
@@ -30681,13 +31849,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0951",
+    "id": "static-1007",
     "name": "Matar Bharta (Green Peas / Koraishuti Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 8,
-    "cookMinutes": 12,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Matar / Koraishuti (Fresh green peas)",
@@ -30737,6 +31902,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "servings": 2,
     "notes": "Fresh winter green peas make a vibrant, naturally sweet and spicy bharta."
   },
   {
@@ -31044,6 +32212,50 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-0966",
+    "name": "Mint Chutney Vegetable Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "mint chutney, tomato, onion and cucumber",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0770",
     "name": "Mint Tea",
     "category": "Tea",
@@ -31240,13 +32452,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0936",
-    "name": "Misti Kumro Bharta (Sweet Pumpkin / Kaddu Mash)",
+    "id": "static-0984",
+    "name": "Misti Kumro Bharta (Pumpkin Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Misti Kumro / Kaddu (Ripe yellow pumpkin)",
@@ -31296,6 +32505,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "The natural sweetness of misti kumro balances the smoky heat of fried red chillies and mustard oil."
   },
   {
@@ -32453,13 +33665,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0935",
-    "name": "Mulo Bharta (Radish / Mooli Mash)",
+    "id": "static-0983",
+    "name": "Mulo Bharta (Radish Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Mulo / Mooli (White radish)",
@@ -32509,6 +33718,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "A popular winter Bengali side dish served with steamed rice."
   },
   {
@@ -32608,6 +33820,55 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-0941",
+    "name": "Mushroom Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1/2 cup sliced mushrooms",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0877",
@@ -33002,13 +34263,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0952",
+    "id": "static-1008",
     "name": "Ol Bharta (Elephant Foot Yam / Suran Chokha)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Bihari / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Ol / Suran / Jimikand (Elephant foot yam)",
@@ -33058,6 +34316,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Lemon juice neutralizes any natural calcium oxalate itchiness in the yam and brightens the flavour."
   },
   {
@@ -33383,6 +34644,50 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0961",
+    "name": "Omelette Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "freshly cooked omelette",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0153",
@@ -34031,6 +35336,261 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0975",
+    "name": "Onion Capsicum Sandwich",
+    "category": "Sandwich",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1/2",
+        "unit": "medium, thinly sliced"
+      },
+      {
+        "name": "Capsicum / bell pepper",
+        "quantity": "1/2",
+        "unit": "medium, thinly sliced"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1/2",
+        "unit": "medium, thinly sliced (optional)"
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1-2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt, black pepper and chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Cheese or green chutney",
+        "quantity": "as desired",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare vegetables",
+        "text": "Thinly slice the onion and capsicum. Add tomato if desired, and season with salt, black pepper and a little chaat masala.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook the filling",
+        "text": "Heat a little butter or oil in a pan. Sauté onion and capsicum for 3–4 minutes until slightly softened but still crisp. Add cheese if desired.",
+        "minutes": 4
+      },
+      {
+        "section": "Assemble sandwich",
+        "text": "Spread butter or green chutney on the bread. Add the vegetable filling and close with the remaining bread slices.",
+        "minutes": 2
+      },
+      {
+        "section": "Toast and serve",
+        "text": "Toast in a pan or sandwich maker until golden and crisp. Cut and serve hot.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 8,
+    "cookMinutes": 7,
+    "servings": 2,
+    "notes": "Adjust the vegetables and seasoning to taste. For a raw version, skip sautéing and use thinly sliced vegetables."
+  },
+  {
+    "id": "static-0951",
+    "name": "Onion Cucumber Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "onion and cucumber slices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0933",
+    "name": "Onion Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1 small onion, finely chopped",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0947",
+    "name": "Onion Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "thinly sliced onion",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0935",
+    "name": "Onion Tomato Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1/2 onion and 1 small tomato, chopped",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0756",
@@ -35107,6 +36667,94 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-0962",
+    "name": "Paneer Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "crumbled paneer with spices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0922",
+    "name": "Paneer Tikka",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "paneer cubes",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Marinate paneer and vegetables in spiced yogurt, thread onto skewers and grill or pan-sear.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0715",
@@ -36200,13 +37848,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0927",
+    "id": "static-0990",
     "name": "Patol Bharta (Pointed Gourd / Parwal Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Bihari / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Patol / Potol / Parwal (Pointed gourd)",
@@ -36261,6 +37906,9 @@
         "minutes": 6
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "Also known as Potol Bharta in West Bengal and Parwal Chokha in Bihar and eastern UP."
   },
   {
@@ -36642,6 +38290,50 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-0964",
+    "name": "Peanut Butter Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "peanut butter",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0862",
     "name": "Peanut Chikki",
     "category": "Sweets",
@@ -36838,13 +38530,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0942",
+    "id": "static-0998",
     "name": "Pepe Bharta (Raw Papaya Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Kacha Pepe (Raw green papaya)",
@@ -36889,6 +38578,9 @@
         "minutes": 3
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "Gentle on the stomach and frequently included in convalescent and wholesome daily diets."
   },
   {
@@ -38311,6 +40003,50 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-0932",
+    "name": "Plain Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0063",
     "name": "Poha (Homestyle)",
     "category": "Breakfast",
@@ -38841,6 +40577,50 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-0959",
+    "name": "Potato Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "boiled potato slices with chaat masala",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0011",
     "name": "Potol Bhaja",
     "category": "Vegetable",
@@ -38900,13 +40680,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0928",
+    "id": "static-0979",
     "name": "Potol Bharta (Pointed Gourd Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Potol / Patol (Pointed gourd)",
@@ -38961,6 +40738,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Adding a few small fried prawns (chingri) or roasted garlic is a popular Bengali variation."
   },
   {
@@ -39200,13 +40980,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0929",
+    "id": "static-0991",
     "name": "Potol Khosa Bharta (Pointed Gourd Peel Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Potol / Patol peels (Pointed gourd skins)",
@@ -39256,6 +41033,9 @@
         "minutes": 6
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "A classic Bengali zero-waste delicacy (Potol Khosa Bata / Bharta) served with hot steamed rice."
   },
   {
@@ -43237,13 +45017,10 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0957",
+    "id": "static-1012",
     "name": "Sajne Data Bharta (Drumstick / Moringa Pod Pulp Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali / Indian",
-    "prepMinutes": 12,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Sajne Data / Moringa drumsticks",
@@ -43288,6 +45065,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Nutrient-dense seasonal spring bharta popular in Bengal."
   },
   {
@@ -43880,13 +45660,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0937",
-    "name": "Shim Bharta (Flat Beans / Sem Mash)",
+    "id": "static-0985",
+    "name": "Shim Bharta (Flat Beans Mash)",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Shim / Sem (Flat winter broad beans)",
@@ -43941,6 +45718,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "A beloved winter Bengali delicacy."
   },
   {
@@ -44968,6 +46748,55 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-0945",
+    "name": "Spanish Potato Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1 small thinly sliced potato and 1/2 onion",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0183",
@@ -46378,6 +48207,55 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-0940",
+    "name": "Spinach Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1/2 cup chopped spinach",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0008",
@@ -48230,13 +50108,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0954",
-    "name": "Sweet Potato Bharta (Ranga Aloo / Shakarkandi Bharta)",
+    "id": "static-0986",
+    "name": "Sweet Potato Bharta",
     "category": "Vegetable Bharta",
-    "region": "Indian / Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 20,
-    "servings": 2,
+    "region": "Indian",
     "ingredients": [
       {
         "name": "Ranga Aloo / Shakarkandi (Sweet potato)",
@@ -48286,6 +50161,9 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 2,
     "notes": "Lemon juice and chilli balance the natural sweetness of the sweet potato."
   },
   {
@@ -49122,13 +51000,10 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
-    "id": "static-0946",
+    "id": "static-1002",
     "name": "Tinda Bharta (Apple Gourd / Indian Round Gourd Mash)",
     "category": "Vegetable Bharta",
     "region": "North Indian / Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 18,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Tinda (Apple gourd / Round gourd)",
@@ -49178,7 +51053,146 @@
         "minutes": 4
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 2,
     "notes": "Choose small, tender green tinda without hard seeds."
+  },
+  {
+    "id": "static-0970",
+    "name": "Toast with Butter",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "butter",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread butter evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0972",
+    "name": "Toast with Honey",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "honey",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread honey evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0971",
+    "name": "Toast with Jam",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "fruit jam",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread fruit jam evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0973",
+    "name": "Toast with Peanut Butter",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Spread",
+        "quantity": "peanut butter",
+        "unit": "as needed"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast bread",
+        "text": "Toast bread in a toaster or pan if making toast; leave soft for plain bread.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and serve",
+        "text": "Spread peanut butter evenly over the bread and serve.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 3,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0722",
@@ -49235,13 +51249,10 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
-    "id": "static-0931",
-    "name": "Tomato Bharta (Charred Tomato Mash / Tamatar Chokha)",
+    "id": "static-0981",
+    "name": "Tomato Bharta",
     "category": "Vegetable Bharta",
-    "region": "Bengali / Indian",
-    "prepMinutes": 5,
-    "cookMinutes": 15,
-    "servings": 2,
+    "region": "Bengali",
     "ingredients": [
       {
         "name": "Ripe Tomatoes",
@@ -49296,7 +51307,191 @@
         "minutes": 2
       }
     ],
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Char-roasting concentrates the sweetness and tang of the tomatoes."
+  },
+  {
+    "id": "static-0950",
+    "name": "Tomato Cucumber Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "tomato and cucumber slices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0934",
+    "name": "Tomato Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "1 small tomato, finely chopped",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0952",
+    "name": "Tomato Onion Cucumber Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "tomato, onion and cucumber slices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0949",
+    "name": "Tomato Onion Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "tomato and onion slices",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0693",
@@ -49405,6 +51600,94 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0946",
+    "name": "Tomato Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "sliced tomato",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-0926",
+    "name": "Tomato Soup",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "ripe tomatoes",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Simmer tomatoes with onion and stock, blend smooth and season before serving.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0399",
@@ -50075,13 +52358,10 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
-    "id": "static-0925",
+    "id": "static-0989",
     "name": "Ucche Aloo Bharta (Bitter Gourd & Potato Mash)",
     "category": "Vegetable Bharta",
     "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 15,
-    "servings": 2,
     "ingredients": [
       {
         "name": "Ucche / Small bitter gourd (Karela)",
@@ -50122,10 +52402,13 @@
       },
       {
         "section": "Mash with mustard oil",
-        "text": "Mash warm ucche and potato together with chopped green chillies, salt, and raw mustard oil. Serve as a traditional Bengali shukto/first-course starter with hot rice.",
+        "text": "Mash warm ucche and potato together with chopped green chillies, salt, and raw mustard oil. Serve as a traditional Bengali first-course starter with hot rice.",
         "minutes": 2
       }
     ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
     "notes": "Traditionally eaten at the start of a Bengali lunch with hot steamed rice (gorom bhaat)."
   },
   {
@@ -51190,6 +53473,50 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-0921",
+    "name": "Vegetable Cutlet",
+    "category": "Starters",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Main ingredient",
+        "quantity": "mixed vegetables and potato",
+        "unit": "2 cups"
+      },
+      {
+        "name": "Onion or mixed vegetables",
+        "quantity": "as needed",
+        "unit": "1/2 cup"
+      },
+      {
+        "name": "Spices and salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil or yogurt/breadcrumbs as needed",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare",
+        "text": "Wash, chop or mash ingredients and mix with seasoning.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook or assemble",
+        "text": "Shape the seasoned mixture into patties, coat with breadcrumbs and shallow-fry until crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
     "id": "static-0202",
     "name": "Vegetable Dosa",
     "category": "Breakfast",
@@ -51350,6 +53677,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0939",
+    "name": "Vegetable Omelette",
+    "category": "Breakfast",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Milk or water (optional)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Variation ingredient",
+        "quantity": "2 tbsp chopped capsicum, onion and tomato",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat eggs",
+        "text": "Beat eggs with salt, pepper and optional milk or water; prepare the listed variation ingredients.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook omelette",
+        "text": "Heat butter or oil in a pan. Add vegetables first if needed, pour in eggs and cook gently; fold when set.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 6,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0321",
@@ -51674,6 +54050,50 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-0958",
+    "name": "Vegetable Sandwich",
+    "category": "Sandwiches",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Filling",
+        "quantity": "cucumber, tomato, onion and grated carrot",
+        "unit": "as needed"
+      },
+      {
+        "name": "Butter, chutney or spread",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt, pepper or chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare filling",
+        "text": "Wash and slice vegetables or prepare the listed filling.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble",
+        "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
     "id": "static-0557",
