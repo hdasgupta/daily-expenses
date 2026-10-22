@@ -308,16 +308,23 @@ export default function MarketingList({ navigate }) {
 
   const selectionControls = (position) => canShowSelectionControls ? (
     <div className={`marketing-bulk-toolbar marketing-bulk-toolbar-${position}`}>
-      <label className="marketing-select-all"><input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />{allFilteredSelected ? "Deselect all" : "Select all pending items"}</label>
-      <span>{selectedPendingRows.length} selected</span>
+      <label className="marketing-select-all">
+        <input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />
+        <span>{allFilteredSelected ? "Deselect all" : "Select all pending items"}</span>
+      </label>
+      <div className="marketing-selection-count">{selectedPendingRows.length} selected</div>
       {canAddExpenseForSelectedDate ? (
-        <button type="button" className="primary" onClick={buySelected} disabled={!selectedPendingRows.length || !selectedCategoryCompatible}>
-          <CheckCircle2 size={15} /> Purchased all / Add expense
-        </button>
+        <div className="marketing-selection-action">
+          <button type="button" className="primary" onClick={buySelected} disabled={!selectedPendingRows.length || !selectedCategoryCompatible}>
+            <CheckCircle2 size={15} /> Purchased all / Add expense
+          </button>
+        </div>
       ) : (
-        <span className="marketing-selection-hint" role="status">You can add to expense in future</span>
+        <div className="marketing-selection-hint" role="status">You can add to expense in future</div>
       )}
-      {selectedPendingRows.length > 0 && !selectedCategoryCompatible && <span className="marketing-selection-hint">Select items from one category at a time.</span>}
+      {selectedPendingRows.length > 0 && !selectedCategoryCompatible && (
+        <div className="marketing-selection-hint">Select items from one category at a time.</div>
+      )}
     </div>
   ) : null;
 
