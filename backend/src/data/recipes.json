@@ -305,6 +305,70 @@
     "notes": "Pairs classically with dal-chawal, khichdi, or litti."
   },
   {
+    "id": "static-1161",
+    "name": "Aloo Diye Macher Dimer Jhuri (Crisp Potato Matchsticks & Crumbled Fish Egg Stir-Fry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into thin matchsticks (jhuri)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potato matchsticks",
+        "text": "Heat mustard oil, temper with nigella seeds, and fry potato matchsticks with a pinch of turmeric until golden and tender-crisp.",
+        "minutes": 6
+      },
+      {
+        "section": "Scramble fish roe and onions",
+        "text": "Push potatoes aside, add sliced onion, green chillies, and mashed fish eggs with salt and chilli powder, and stir-fry until the roe turns crumbly.",
+        "minutes": 7
+      },
+      {
+        "section": "Toss together",
+        "text": "Mix the crisp potatoes and golden fish roe granules together and garnish with fresh coriander.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Great side dish alongside masoor dal and steamed rice."
+  },
+  {
     "id": "static-0065",
     "name": "Aloo Do Pyaza",
     "category": "Vegetable",
@@ -927,6 +991,75 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1139",
+    "name": "Aloo Potol Diye Macher Dimer Borar Jhol (Pointed Gourd, Potato & Fish Egg Fritter Curry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Pointed gourd (potol / parwal), scraped and halved",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into wedges",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Onion, chopped & ginger paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, cumin seeds, cumin-coriander powder, turmeric, garam masala & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish egg boras, potol and potatoes",
+        "text": "Make small boras from fish eggs, chopped onion, besan, turmeric, and salt; fry in mustard oil. Fry potol halves and potato wedges until golden.",
+        "minutes": 9
+      },
+      {
+        "section": "Cook spice base",
+        "text": "Temper oil with bay leaf and cumin seeds, sauté ginger paste, chopped tomato, turmeric, and cumin-coriander powder.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer curry",
+        "text": "Add fried potatoes, potol, and warm water; simmer until tender, then add the fish roe boras for the final 4 minutes and finish with garam masala.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Wholesome Bengali summer lunch curry."
   },
   {
     "id": "static-0094",
@@ -2121,6 +2254,134 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1158",
+    "name": "Assamese Maasor Dimo Tenga (Assamese Tangy Tomato & Lemon Fish Egg Curry)",
+    "category": "Fish Roe",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs (maasor dim), cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Ripe tomatoes, finely chopped",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Potato, boiled and lightly mashed (for body)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & mustard seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh lemon juice (kaji nemu) or tenga",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion & 2 tbsp besan (for boras)",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, green chillies, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish roe boras",
+        "text": "Mix fish eggs with chopped onion, besan, turmeric, and salt; fry small golden fritters in mustard oil.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook tomato tenga broth",
+        "text": "Temper oil with fenugreek and mustard seeds, add chopped tomatoes, turmeric, salt, and lightly mashed boiled potato; cook until tomatoes break down into a tangy sauce.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer with lemon and coriander",
+        "text": "Pour in warm water, add the fish egg boras and slit green chillies, simmer 5 minutes, and finish off-heat with lemon juice and fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Light, oil-sparing Assamese sour curry ideal for warm days."
+  },
+  {
+    "id": "static-1129",
+    "name": "Assamese Maasor Konir Bora (Assamese Herb & Onion Fish Egg Fritters)",
+    "category": "Fish Roe",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Freshwater fish roe (maasor koni), cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely sliced",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rice flour & besan",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mash roe with onions and rice flour",
+        "text": "Mash the fish eggs with sliced onions, green chillies, fresh coriander, turmeric, salt, rice flour, and besan.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry in mustard oil",
+        "text": "Heat mustard oil in a heavy pan and fry flat spoonfuls on medium-low heat until crisp and golden brown on both sides.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Rice flour gives Assamese Maasor Konir Bora its signature light crunch."
   },
   {
     "id": "static-0860",
@@ -3339,6 +3600,75 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1164",
+    "name": "Begun Aloo Diye Macher Dimer Jhal (Eggplant, Potato & Fish Egg Mustard Medley)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggplant (begun), cut into wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into wedges",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, sliced & tomato, chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Mustard paste (shorshe bata)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry eggplant and fish roe",
+        "text": "Fry eggplant wedges in mustard oil until golden and set aside. Pan-fry seasoned fish roe and cut into chunks.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook potato and onion-tomato base",
+        "text": "Temper oil with nigella seeds, sauté sliced onion, potato wedges, and chopped tomato with turmeric and salt until potatoes are tender.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer with mustard, roe and eggplant",
+        "text": "Add mustard paste mixed with warm water, fried eggplant, and fish roe chunks; simmer for 5 minutes and garnish with coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Silky eggplant and fish roe soaked in a tangy mustard-tomato sauce."
   },
   {
     "id": "static-0124",
@@ -19211,6 +19541,75 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1166",
+    "name": "Data Aloo Diye Macher Dimer Chorchori (Drumstick, Potato & Fish Egg Chorchori)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Drumsticks (sajne data), peeled and cut into batons",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into lengthwise strips",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Onion, sliced & tomato, chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Mustard paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish roe chunks",
+        "text": "Sear seasoned fish roe in mustard oil until firm, break into bite-sized pieces, and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook drumsticks and potatoes",
+        "text": "Temper oil with nigella seeds, sauté sliced onion, potato strips, drumstick batons, tomato, turmeric, and salt with a splash of water covered until tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Finish with mustard paste and roe",
+        "text": "Stir in mustard paste, slit green chillies, and fried fish roe pieces; cook for 5 minutes until coated.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Seasonal spring-summer Bengali chorchori."
+  },
+  {
     "id": "static-0826",
     "name": "Date and Almond Smoothie",
     "category": "Beverage",
@@ -19695,6 +20094,75 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1136",
+    "name": "Doi Diye Macher Dimer Bora Curry (Fish Egg Fritters in Yogurt Gravy)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Plain yogurt (curd), whisked smooth",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Onion paste & chopped onion",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cashew or poppy seed paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, slit green chillies, turmeric, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish roe fritters",
+        "text": "Mix fish eggs with chopped onion, green chilli, besan, turmeric, and salt; shallow-fry into golden boras.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook aromatic yogurt base",
+        "text": "Temper oil with whole garam masala, sauté onion and ginger-garlic paste, then lower the flame and stir in whisked yogurt and cashew paste.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer fritters",
+        "text": "Add warm water, salt, a pinch of sugar, slit green chillies, and the fried boras; simmer gently for 5-6 minutes.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Tangy, creamy yogurt gravy softens the crisp fish egg fritters into melt-in-the-mouth dumplings."
   },
   {
     "id": "static-0241",
@@ -22809,6 +23277,479 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1159",
+    "name": "Fish Egg Bhurji (Macher Dimer Jhuri Bhaja / Spiced Scrambled Fish Roe)",
+    "category": "Fish Roe",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned and membrane removed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger & garlic, finely minced",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric, cumin, red chilli & garam masala powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves, lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté onions and aromatics",
+        "text": "Heat mustard oil in a pan and fry finely chopped onions, minced garlic, ginger, and green chillies until golden.",
+        "minutes": 5
+      },
+      {
+        "section": "Scramble fish roe with spices",
+        "text": "Add chopped tomato, turmeric, cumin, red chilli powder, and salt, then tip in the mashed fish eggs and stir-fry continuously on medium-low heat.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast until crumbly",
+        "text": "Keep stirring until the roe separates into golden, savory granules (jhuri). Finish with garam masala, lemon juice, and fresh coriander.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Delicious scrambled fish roe bhurji that can be eaten with hot rice, roti, or buttered toast."
+  },
+  {
+    "id": "static-1142",
+    "name": "Fish Egg Curry (Homestyle Indian Macher Dimer Curry)",
+    "category": "Fish Roe",
+    "region": "Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe sacs, cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomatoes, finely chopped or pureed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, cumin & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or cooking oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole spices, garam masala, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Poach and cube fish eggs",
+        "text": "Simmer the fish roe sacs gently in salted turmeric water for 5-6 minutes until firm, cool slightly, cut into bite-sized cubes, and lightly sear in oil.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook onion-tomato masala",
+        "text": "Temper oil with cumin seeds and bay leaf, brown the chopped onions and ginger-garlic paste, then cook tomatoes and spice powders until oil separates.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer curry",
+        "text": "Add warm water to form a smooth gravy, add the seared fish egg cubes, simmer gently for 6 minutes, and finish with garam masala and coriander leaves.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Poaching and cubing the roe allows it to hold its shape like paneer cubes in the curry."
+  },
+  {
+    "id": "static-1131",
+    "name": "Fish Egg Fritter Curry (Macher Dimer Borar Jhol)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into lengthwise wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, finely chopped (half for boras, half for gravy)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger paste & cumin-coriander powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, cumin seeds, green chillies, turmeric, garam masala & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make and fry fish egg boras",
+        "text": "Mix fish eggs with half the chopped onion, chopped green chilli, besan, turmeric, and salt; fry small boras in mustard oil until golden and set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook potato and tomato-cumin gravy",
+        "text": "In the remaining oil, temper with bay leaf and cumin seeds, fry potato wedges and remaining onion, then cook ginger paste, tomato, turmeric, cumin, and coriander powder.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer boras in jhol",
+        "text": "Pour in warm water, cover and cook until potatoes are tender, then drop in the fried fish egg boras and simmer for 4-5 minutes so they soak up the gravy. Finish with garam masala.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Quintessential Bengali homestyle fish egg fritter curry served with steamed rice."
+  },
+  {
+    "id": "static-1118",
+    "name": "Fish Egg Fritters (Macher Dimer Bora)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe (Rohu or Katla macher dim), washed and membrane removed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour (for crispness)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil for frying",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Clean and mash fish eggs",
+        "text": "Wash the fish roe gently, peel off the thin outer membrane, and mash the eggs in a bowl so no tough lumps remain.",
+        "minutes": 4
+      },
+      {
+        "section": "Mix fritter batter",
+        "text": "Add finely chopped onion, green chillies, coriander leaves, nigella seeds, turmeric, salt, besan, and rice flour; whisk vigorously for 2 minutes to aerate.",
+        "minutes": 4
+      },
+      {
+        "section": "Fry golden boras",
+        "text": "Heat mustard oil in a pan over medium-low flame, drop spoonfuls of the mixture, and fry slowly on both sides until crisp outside and cooked through inside.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Fry on medium-low heat and cover briefly if needed, as fish eggs pop slightly in hot oil."
+  },
+  {
+    "id": "static-1143",
+    "name": "Fish Egg Masala (Macher Dimer Kosha / Spicy Fish Roe Masala)",
+    "category": "Fish Roe",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely sliced",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri chilli, cumin, coriander & turmeric powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, garam masala powder, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear firm roe pieces",
+        "text": "Steam or poach the fish roe with salt and turmeric until firm, cut into thick squares, and sear in hot mustard oil until golden.",
+        "minutes": 7
+      },
+      {
+        "section": "Slow-braise kosha masala",
+        "text": "Temper oil with whole garam masala, caramelize sliced onions, and slow-roast ginger-garlic paste, chopped tomato, and spice powders with splashes of water until dark and glossy.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss fish roe in masala",
+        "text": "Add the fried fish roe pieces and a splash of warm water, cook for 5 minutes until coated in thick masala, and finish with garam masala.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Rich, spicy fish egg masala that pairs great with steamed rice, roti, or paratha."
+  },
+  {
+    "id": "static-1119",
+    "name": "Fish Egg Pakora (Crispy Macher Dimer Pakora)",
+    "category": "Fish Roe",
+    "region": "Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour) & cornflour",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies & fresh coriander, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), turmeric & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or vegetable oil for deep frying",
+        "quantity": "200",
+        "unit": "ml"
+      },
+      {
+        "name": "Chaat masala, lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced pakora mix",
+        "text": "Combine cleaned fish eggs with sliced onion, ginger-garlic paste, chopped green chillies, coriander, ajwain, turmeric, chilli powder, lemon juice, salt, besan, and cornflour.",
+        "minutes": 6
+      },
+      {
+        "section": "Deep-fry crisp pakoras",
+        "text": "Drop small bite-sized portions into medium-hot oil and fry for 4-5 minutes, turning occasionally, until deep golden brown and crunchy.",
+        "minutes": 10
+      },
+      {
+        "section": "Season and serve",
+        "text": "Drain on paper towels, dust with chaat masala, and serve hot with kasundi or mint-coriander chutney.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Crunchy evening snack that pairs wonderfully with masala chai or as a starter with dal-rice."
+  },
+  {
+    "id": "static-1144",
+    "name": "Fish Egg Potato Curry (Aloo Diye Macher Dimer Jhol)",
+    "category": "Fish Roe",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, bay leaf, garam masala, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear fish roe and potatoes",
+        "text": "Season fish roe with salt and turmeric, sear whole or in thick slabs in mustard oil until firm, and cut into pieces. Fry potato wedges in the same oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook onion-tomato base",
+        "text": "Temper oil with cumin seeds and bay leaf, fry chopped onion and ginger-garlic paste, then cook tomato and spice powders.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer jhol",
+        "text": "Add potatoes and warm water; cook until tender, then add the fish roe pieces, simmer 5 minutes, and garnish with garam masala and coriander.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Classic homestyle fish egg and potato curry."
+  },
+  {
     "id": "static-0741",
     "name": "Fish Finger Sandwich",
     "category": "Sandwich",
@@ -23685,6 +24626,75 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1154",
+    "name": "Goan Fish Roe Curry (Gabhache Hooman / Coconut Kokum Fish Egg Curry)",
+    "category": "Fish Roe",
+    "region": "Konkan",
+    "ingredients": [
+      {
+        "name": "Fish roe sacs (gabholi), cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Kashmiri dry red chillies",
+        "quantity": "5",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander seeds, turmeric & garlic cloves",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tamarind pulp & kokum petals",
+        "quantity": "5",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Coconut oil & slit green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind Goan coconut masala",
+        "text": "Grind grated coconut, Kashmiri red chillies, coriander seeds, turmeric, garlic, and tamarind with water into a smooth paste.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer curry base",
+        "text": "Heat coconut oil, sauté chopped onion and green chillies until soft, add the ground coconut paste and water, and bring to a simmer.",
+        "minutes": 6
+      },
+      {
+        "section": "Poach fish roe in curry",
+        "text": "Slide in the cleaned fish roe pieces and kokum petals, season with salt, and simmer gently for 7 minutes until the roe is cooked through.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Authentic Goan Gabhache Hooman served with steamed parboiled rice."
   },
   {
     "id": "static-1042",
@@ -25941,6 +26951,193 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1120",
+    "name": "Ilish Macher Dimer Bora (Hilsa Fish Egg Fritters)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hilsa fish eggs (Ilish macher dim), intact lobes or mashed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder (optional)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season Hilsa roe",
+        "text": "Wash the Hilsa roe lobes very gently without breaking the sac, pat dry, and rub evenly with salt, turmeric, and a pinch of red chilli powder.",
+        "minutes": 4
+      },
+      {
+        "section": "Shallow-fry in mustard oil",
+        "text": "Heat mustard oil in a skillet until lightly smoking, lower the flame, and fry the Hilsa roe with slit green chillies for 4-5 minutes per side covered until golden and firm.",
+        "minutes": 10
+      },
+      {
+        "section": "Slice and serve with fragrant oil",
+        "text": "Cut into thick slices and serve immediately over steaming hot plain rice drizzled with the aromatic Hilsa-infused frying oil.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Keep spices minimal for Hilsa roe so its prized, buttery monsoon flavor takes center stage."
+  },
+  {
+    "id": "static-1151",
+    "name": "Ilish Macher Dimer Jhal (Hilsa Fish Roe Mustard-Tomato Gravy)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hilsa fish eggs (Ilish macher dim)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard paste (shorshe bata)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, grated",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Lightly sear Hilsa roe",
+        "text": "Rub Hilsa roe lobes gently with salt and turmeric and sear lightly in hot mustard oil for 2 minutes per side.",
+        "minutes": 4
+      },
+      {
+        "section": "Prepare light mustard-tomato jhal",
+        "text": "Temper the Hilsa-scented oil with nigella seeds and green chillies, sauté grated tomato and turmeric, and stir in mustard paste with warm water.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer gently",
+        "text": "Return the Hilsa roe lobes to the pan, simmer covered for 5-6 minutes, and finish with a drizzle of raw mustard oil.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "notes": "Delicate monsoon Hilsa roe curry best enjoyed with plain steamed rice."
+  },
+  {
+    "id": "static-1152",
+    "name": "Ilish Macher Dimer Tok (Hilsa Roe in Tangy Tamarind Gravy)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hilsa fish eggs (Ilish macher dim)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Tamarind pulp (tentul)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Jaggery or sugar",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Panch phoron & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry Hilsa roe",
+        "text": "Season Hilsa roe with salt and turmeric, shallow-fry in mustard oil for 3 minutes per side, and slice into thick pieces.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer sweet-sour tamarind broth",
+        "text": "Temper oil with panch phoron and dry red chilli, pour in tamarind water, turmeric, salt, mustard paste, and jaggery, and boil for 4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer roe in tok",
+        "text": "Add the fried Hilsa roe slices and simmer gently for 4 minutes.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "notes": "Traditional East Bengali (Bangal) heirloom recipe pairing rich Hilsa roe with tangy tamarind."
+  },
+  {
     "id": "static-0853",
     "name": "Imarti",
     "category": "Sweets",
@@ -26405,6 +27602,75 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "A soothing, light Bengali summer lunch curry (jhol) that is easy to digest."
+  },
+  {
+    "id": "static-1140",
+    "name": "Jhinge Aloo Diye Macher Dimer Borar Jhol (Ridge Gourd, Potato & Fish Egg Fritter Curry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Ridge gourd (jhinge), peeled and cut into wedges",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into wedges",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, finely chopped (for boras)",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Ginger & cumin paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), green chillies, turmeric & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish egg boras",
+        "text": "Mix fish eggs with chopped onion, green chilli, besan, turmeric, and salt; fry small fritters in mustard oil and set aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook potatoes and ridge gourd",
+        "text": "Temper oil with nigella seeds and slit green chillies, fry potato wedges, then add ridge gourd, ginger-cumin paste, turmeric, and warm water.",
+        "minutes": 8
+      },
+      {
+        "section": "Add boras and simmer",
+        "text": "Once vegetables are soft, add the fried fish egg boras and simmer gently for 4-5 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Light, cooling Bengali summer jhol."
   },
   {
     "id": "static-0999",
@@ -26980,6 +28246,75 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1135",
+    "name": "Kacha Aam Diye Macher Dimer Tok (Raw Mango & Fish Egg Sour Curry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Raw green mango (kacha aam), peeled and cut into wedges",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Yellow mustard paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds & dry red chilli (for tempering)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Besan (for fish egg boras)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar or jaggery",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish egg boras",
+        "text": "Beat fish roe with besan, salt, and turmeric; fry small golden fritters in mustard oil.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook raw mango in mustard broth",
+        "text": "Temper oil with mustard seeds and dry red chilli, sauté green mango wedges with turmeric and salt, then add water and cook until mango softens.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer with mustard paste and boras",
+        "text": "Stir in mustard paste, sugar, and fried fish egg boras; simmer for 4 minutes and serve warm or at room temperature.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "A beloved Bengali summer afternoon dish using fresh tart green mangoes."
   },
   {
     "id": "static-0833",
@@ -29027,6 +30362,70 @@
     "notes": "Coconut oil, shallots, and fresh curry leaves give this Kerala toddy-shop classic its signature aroma."
   },
   {
+    "id": "static-1155",
+    "name": "Kerala Fish Roe Roast (Meen Mutta Roast with Shallots & Curry Leaves)",
+    "category": "Fish Roe",
+    "region": "Kerala",
+    "ingredients": [
+      {
+        "name": "Fish roe (meen mutta), cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Shallots (sambar onions), thinly sliced",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger & garlic, crushed",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri chilli, crushed black pepper, fennel & turmeric powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coconut oil & fresh curry leaves",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize shallots in coconut oil",
+        "text": "Heat coconut oil in a heavy pan, splutter curry leaves, and sauté crushed ginger-garlic and sliced shallots until golden brown.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook tomato-pepper masala",
+        "text": "Add chopped tomato, turmeric, Kashmiri chilli, fennel, and black pepper powder; cook until thick and oil separates.",
+        "minutes": 5
+      },
+      {
+        "section": "Roast fish roe",
+        "text": "Add the fish roe (whole slices or coarse chunks), cover on low heat for 5 minutes until cooked, then stir-roast with extra curry leaves and lemon juice.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Spicy, aromatic Kerala toddy-shop style Meen Mutta Roast."
+  },
+  {
     "id": "static-1050",
     "name": "Kerala Prawn Moilee (Chemmeen Molee in Coconut Milk)",
     "category": "Prawns",
@@ -29639,6 +31038,70 @@
     "cookMinutes": 25,
     "servings": 3,
     "notes": "Adding a squeeze of lemon juice at the end balances the earthy taro greens."
+  },
+  {
+    "id": "static-1165",
+    "name": "Kochu Shak Diye Macher Dim (Colocasia Greens with Fish Eggs)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Colocasia stems & greens (kochu shak), peeled and chopped",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), bay leaf & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, lemon juice, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil kochu shak and fry roe",
+        "text": "Boil chopped colocasia stems with salt until soft, drain thoroughly, and mash. Fry seasoned fish roe in mustard oil until golden and crumble coarsely.",
+        "minutes": 10
+      },
+      {
+        "section": "Temper with garlic and kalo jeere",
+        "text": "Temper mustard oil with bay leaf, dry red chilli, nigella seeds, crushed garlic, and green chillies.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook down with fish roe",
+        "text": "Add mashed kochu shak, turmeric, salt, sugar, and crumbled fried fish roe; stir-cook until moisture dries up completely and finish with lemon juice.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Rich, garlicky taro greens elevated with savory fried fish roe granules."
   },
   {
     "id": "static-1052",
@@ -31258,6 +32721,70 @@
     "notes": "One of the most iconic, comforting heirloom dishes of every Bengali household."
   },
   {
+    "id": "static-1141",
+    "name": "Lau Diye Macher Dimer Borar Jhol (Bottle Gourd & Fish Egg Fritter Curry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Bottle gourd (lau), peeled and cubed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped (for boras)",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Ginger paste & roasted cumin powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, cumin seeds, green chillies, coriander leaves, turmeric & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish roe fritters",
+        "text": "Whisk fish eggs with chopped onion, besan, salt, and turmeric; fry into golden boras and set aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Braise bottle gourd",
+        "text": "Temper oil with bay leaf and cumin seeds, sauté ginger paste and turmeric, and cook cubed bottle gourd covered until tender.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold in boras",
+        "text": "Add a splash of warm water, roasted cumin powder, fried fish egg boras, slit green chillies, and fresh coriander; simmer for 5 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Light, comforting bottle gourd curry enriched with savory fish roe dumplings."
+  },
+  {
     "id": "static-0393",
     "name": "Lau Do Pyaza",
     "category": "Vegetable",
@@ -32518,6 +34045,863 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1148",
+    "name": "Macher Dimer Bhapa (Bengali Steamed Mustard & Coconut Fish Eggs)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe (Hilsa, Rohu or Katla), cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow & black mustard seeds (soaked and ground)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Plain yogurt, whisked",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind mustard-coconut-posto paste",
+        "text": "Grind soaked mustard seeds, poppy seeds, grated coconut, 2 green chillies, and a pinch of salt with warm water into a smooth paste.",
+        "minutes": 6
+      },
+      {
+        "section": "Assemble in tiffin box",
+        "text": "In a steel tiffin box, fold cleaned fish roe (whole lobes or lightly pan-seared pieces) with the ground paste, whisked yogurt, turmeric, salt, and 2 tbsp raw mustard oil. Top with slit green chillies.",
+        "minutes": 4
+      },
+      {
+        "section": "Steam until set",
+        "text": "Close the lid tightly and steam in a covered pot with boiling water reaching halfway up the box for 18-20 minutes.",
+        "minutes": 20
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Traditional Bengali tiffin-box steamed fish roe dish; serve with steaming hot white rice."
+  },
+  {
+    "id": "static-1160",
+    "name": "Macher Dimer Bharta (Bengali Smoky Mashed Fish Egg with Mustard Oil)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Dry red chillies & green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-roast chillies, garlic and roe",
+        "text": "Fry dry red chillies and garlic cloves in 1.5 tbsp mustard oil until crisp and golden; set aside. Pan-fry turmeric-salted fish roe covered on low heat until cooked and lightly charred.",
+        "minutes": 8
+      },
+      {
+        "section": "Mash with aromatics",
+        "text": "Crush the dry red chillies and roasted garlic with salt, then mash thoroughly with the cooked fish roe.",
+        "minutes": 2
+      },
+      {
+        "section": "Fold in raw onion and mustard oil",
+        "text": "Mix in finely chopped raw onion, green chillies, fresh coriander leaves, and 1 tbsp pungent raw mustard oil.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Smoky, fiery Bengali bharta meant to be mixed into steaming hot white rice."
+  },
+  {
+    "id": "static-1132",
+    "name": "Macher Dimer Borar Dalna (Bengali Fish Egg Fritter & Potato Dalna)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onions, finely chopped & grated",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato puree & ginger-garlic paste",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, cumin, coriander, Kashmiri chilli, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish roe fritters and potatoes",
+        "text": "Whisk fish eggs with chopped onion, besan, turmeric, and salt; fry round fritters in mustard oil. Fry potato cubes until golden.",
+        "minutes": 9
+      },
+      {
+        "section": "Prepare rich dalna base",
+        "text": "Temper oil with bay leaf, cardamom, cinnamon, and cloves. Sauté onion, ginger-garlic paste, tomato puree, and spice powders until oil separates.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer and finish with ghee",
+        "text": "Add fried potatoes and warm water; once potatoes soften, add the fish roe fritters, simmer 5 minutes, and finish with ghee and Bengali garam masala.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 3,
+    "notes": "Slightly richer than everyday jhol, with warm whole spices and a touch of ghee."
+  },
+  {
+    "id": "static-1133",
+    "name": "Macher Dimer Borar Kalia (Festive Spicy Fish Egg Fritter Kalia)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onions (1 chopped for boras, 2 grated for gravy)",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Plain yogurt (curd), whisked",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, pureed",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Besan & rice flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, Kashmiri chilli, cumin, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry golden boras",
+        "text": "Beat fish eggs with chopped onion, green chillies, besan, rice flour, turmeric, and salt; fry until golden and set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook kalia gravy",
+        "text": "Temper mustard oil with whole garam masala, brown the grated onions, and cook ginger-garlic paste, tomato puree, whisked yogurt, and Kashmiri chilli powder until glossy.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer fritters in kalia",
+        "text": "Add warm water, bring to a boil, gently add the fish egg boras, and simmer for 5 minutes until plump and juicy.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 3,
+    "notes": "Plump fish egg boras absorb the rich yogurt-onion kalia gravy like sponges."
+  },
+  {
+    "id": "static-1134",
+    "name": "Macher Dimer Borar Tok (Bengali Sweet & Sour Tamarind Fish Egg Curry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Ripe tamarind (tentul), soaked in warm water for pulp",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Jaggery (gur) or sugar",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard paste (shorshe bata)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice) & dry red chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Onion & besan (for boras)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish egg fritters",
+        "text": "Mix fish eggs with chopped onion, besan, turmeric, and salt; fry small fritters in mustard oil and set aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Temper and simmer tamarind broth",
+        "text": "Temper 1 tbsp mustard oil with dry red chillies and panch phoron. Pour in strained tamarind pulp, water, mustard paste, turmeric, salt, and jaggery; boil for 5 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Soak boras in tok",
+        "text": "Drop the fried fish egg boras into the tangy-sweet broth and simmer for 4 minutes until soft and juicy.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Traditional Bengali summer meal-ender (tok/ambol) that cools the palate."
+  },
+  {
+    "id": "static-1124",
+    "name": "Macher Dimer Chop (Bengali Spiced Fish Egg Croquettes)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, boiled and mashed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion & ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted peanuts (crushed, optional)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bhaja masala & garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Besan batter or breadcrumbs (for coating)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard oil or vegetable oil for frying",
+        "quantity": "200",
+        "unit": "ml"
+      },
+      {
+        "name": "Turmeric, green chillies, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced filling",
+        "text": "Sauté onion, ginger-garlic, and fish roe with spices until cooked through, then mash together with boiled potatoes, crushed peanuts, bhaja masala, and coriander.",
+        "minutes": 10
+      },
+      {
+        "section": "Coat croquettes",
+        "text": "Roll into round or oval chops and coat either in breadcrumbs or a thick spiced besan batter.",
+        "minutes": 6
+      },
+      {
+        "section": "Fry until crunchy",
+        "text": "Deep-fry in hot oil until golden brown and serve hot with puffed rice (muri) or kasundi.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "A popular Bengali telebhaja variation for monsoon evenings."
+  },
+  {
+    "id": "static-1123",
+    "name": "Macher Dimer Cutlet (Kolkata Cabin-Style Fish Egg Cutlet)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, boiled and mashed",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, ginger & garlic, finely minced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & coriander leaves, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali garam masala & roasted cumin-chilli powder (bhaja masala)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Breadcrumbs (biskuter guro) & cornflour slurry",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Oil for frying",
+        "quantity": "200",
+        "unit": "ml"
+      },
+      {
+        "name": "Lemon juice, black salt & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced fish roe mixture",
+        "text": "Sauté minced onion, ginger, garlic, and green chillies in 1 tbsp oil, add mashed fish eggs and turmeric, and cook until dry and crumbly. Mix with mashed potato, bhaja masala, garam masala, lemon juice, and coriander.",
+        "minutes": 10
+      },
+      {
+        "section": "Shape and double-crumb",
+        "text": "Shape cooled mixture into flat diamond or oval cutlets, dip in cornflour or egg wash, and coat twice with breadcrumbs.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry golden",
+        "text": "Deep-fry in medium-hot oil until crisp and golden brown. Sprinkle black salt and serve with kasundi and onion salad.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Crunchy Kolkata evening snack with a rich, savory fish egg center."
+  },
+  {
+    "id": "static-1147",
+    "name": "Macher Dimer Do Pyaza (Fish Egg Curry with Double Onions)",
+    "category": "Fish Roe",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions (1 finely chopped, 2 cut into petals)",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomatoes, chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & Kashmiri chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, dry red chilli, garam masala, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear fish roe and onion petals",
+        "text": "Pan-sear seasoned fish roe slabs and cut into cubes. Toss onion petals and slit green chillies in hot oil for 2 minutes and set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook base masala",
+        "text": "Temper oil with cumin seeds and dry red chilli, brown chopped onion and ginger-garlic paste, then cook chopped tomatoes and spice powders.",
+        "minutes": 7
+      },
+      {
+        "section": "Combine and simmer",
+        "text": "Add the fish roe cubes, sautéed onion petals, and a splash of water; simmer for 5 minutes and finish with garam masala and coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Sweet, crisp-tender onion petals contrast nicely with savory fish roe."
+  },
+  {
+    "id": "static-1145",
+    "name": "Macher Dimer Kalia (Bengali Rich Fish Egg Curry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, grated or finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato puree & whisked yogurt",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, Kashmiri chilli, cumin, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Steam and sear roe squares",
+        "text": "Steam seasoned fish roe in a greased bowl for 8 minutes, cut into neat squares, and fry lightly in mustard oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook festive kalia gravy",
+        "text": "Temper oil with bay leaf, cardamom, cloves, and cinnamon. Brown grated onions, then cook ginger-garlic paste, tomato puree, yogurt, and spices until oil floats.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer and finish",
+        "text": "Add warm water and the fish roe squares, simmer for 6 minutes, and finish with ghee and Bengali garam masala.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Steaming the fish roe into a cake before cutting gives neat, firm cubes for kalia."
+  },
+  {
+    "id": "static-1146",
+    "name": "Macher Dimer Korma (Creamy Cashew & Yogurt Fish Egg Korma)",
+    "category": "Fish Roe",
+    "region": "Bengali / Mughlai-inspired",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe (steamed or fried boras)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onion paste & fried onion (birista)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Plain yogurt (curd), whisked",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashew nuts & poppy seeds (soaked and ground)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee & white oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, white pepper, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare fish roe pieces",
+        "text": "Either pan-fry small spiced fish egg boras or lightly sear steamed fish roe cubes in ghee.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook creamy korma base",
+        "text": "Temper ghee with cardamom, cinnamon, cloves, and bay leaf. Sauté onion and ginger-garlic paste, then stir in whisked yogurt and cashew-poppy seed paste.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer and garnish",
+        "text": "Add warm water, salt, sugar, and the fish roe pieces; simmer gently for 6 minutes and top with crushed fried onions (birista).",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Delicate, mildly spiced korma that pairs beautifully with pulao or paratha."
+  },
+  {
+    "id": "static-1121",
+    "name": "Macher Dimer Narkel Bora (Fish Egg & Grated Coconut Fritters)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend roe and coconut",
+        "text": "Mash the cleaned fish eggs in a bowl with freshly grated coconut, chopped onion, green chillies, turmeric, salt, and a tiny pinch of sugar.",
+        "minutes": 5
+      },
+      {
+        "section": "Bind with flour",
+        "text": "Fold in besan and rice flour to form a thick, cohesive batter.",
+        "minutes": 3
+      },
+      {
+        "section": "Pan-fry until golden",
+        "text": "Flatten spoonfuls of the mixture in hot mustard oil and shallow-fry on medium-low heat until golden brown on both sides.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Grated coconut keeps the interior of the fish egg fritters moist and subtly sweet."
+  },
+  {
+    "id": "static-1153",
+    "name": "Macher Dimer Omelette Curry (Bengali Fish Egg Omelette Dalna)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Egg (beaten with fish roe for omelette) or 2 tbsp besan",
+        "quantity": "1",
+        "unit": "pc"
+      },
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onions, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, chopped & ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole garam masala, cumin, coriander, turmeric, garam masala & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make fish roe omelette and cut into diamonds",
+        "text": "Beat cleaned fish roe with 1 egg (or besan), half the chopped onion, green chillies, salt, and turmeric. Cook as a thick pancake in mustard oil on low heat, then cut into diamond pieces.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook potato-tomato masala",
+        "text": "Fry potato cubes in oil, temper with bay leaf and whole spices, and sauté remaining onion, ginger-garlic paste, tomato, and ground spices.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer diamond pieces in gravy",
+        "text": "Add warm water and cook until potatoes are soft, then gently add the fish roe omelette diamonds, simmer 5 minutes, and finish with garam masala.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Cutting a thick pan-cooked fish roe omelette into diamonds creates soft, uniform pieces that hold up beautifully in gravy."
+  },
+  {
+    "id": "static-1149",
+    "name": "Macher Dimer Paturi (Banana Leaf Wrapped Mustard Fish Eggs)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard seeds & poppy seeds (soaked and ground)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely chopped (optional)",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Banana leaves (cut into squares and flame-wilted)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix paturi roe mixture",
+        "text": "Combine cleaned fish eggs with smooth mustard-poppy seed paste, grated coconut, finely chopped onion, turmeric, salt, and raw mustard oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Wrap in banana leaf parcels",
+        "text": "Spoon portions onto oiled, flame-softened banana leaves, top each with a slit green chilli, fold into neat square parcels, and tie with cotton thread.",
+        "minutes": 8
+      },
+      {
+        "section": "Pan-roast on low heat",
+        "text": "Cook the banana leaf parcels on a lightly oiled covered tawa over low heat for 7-8 minutes per side until the leaves char and the roe sets firm.",
+        "minutes": 16
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 16,
+    "servings": 3,
+    "notes": "Charred banana leaves infuse the mustard-coated fish roe with an unmistakable smoky aroma."
   },
   {
     "id": "static-0006",
@@ -38248,6 +40632,129 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1130",
+    "name": "Odia Machha Bihana Bara (Odia Spiced Garlic Fish Egg Fritters)",
+    "category": "Fish Roe",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs (machha bihana), cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Garlic cloves & cumin seeds (crushed into paste)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies & curry leaves, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan & rice powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix with crushed garlic-cumin paste",
+        "text": "Combine cleaned fish eggs with crushed garlic-cumin paste, chopped onion, green chillies, curry leaves, turmeric, besan, rice powder, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-fry on tawa",
+        "text": "Shape into flat patties and pan-fry in hot mustard oil over low-medium heat until golden and cooked through.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "A classic Odia accompaniment to Pakhala Bhata (fermented water rice) or dalma."
+  },
+  {
+    "id": "static-1157",
+    "name": "Odia Machha Bihana Besara (Fish Eggs in Odia Mustard-Garlic Gravy)",
+    "category": "Fish Roe",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs (machha bihana), cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into wedges",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Mustard seeds, cumin & garlic cloves (ground to paste)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, chopped & ambula (dried mango) or raw mango",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Besan (1.5 tbsp for roe cakes) & mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-fry fish egg cakes and potatoes",
+        "text": "Mix fish eggs with 1.5 tbsp besan, salt, and turmeric; pan-fry into small cakes alongside potato wedges in mustard oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer garlic-mustard besara",
+        "text": "Temper oil with panch phoron and dry red chilli, sauté chopped tomato, turmeric, and the ground mustard-garlic-cumin paste with warm water and potatoes.",
+        "minutes": 7
+      },
+      {
+        "section": "Add fish egg cakes and ambula",
+        "text": "Once potatoes are soft, add the fish egg cakes and soaked ambula, simmer 5 minutes, and garnish with fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Garlic-scented mustard paste (besara) and tangy ambula make this a signature Odia fish roe curry."
+  },
+  {
     "id": "static-1008",
     "name": "Ol Bharta (Elephant Foot Yam / Suran Chokha)",
     "category": "Vegetable Bharta",
@@ -43016,6 +45523,119 @@
     "notes": "A quintessential Bengali winter stir-fry served with hot steamed rice and dal."
   },
   {
+    "id": "static-1126",
+    "name": "Peyajkoli Diye Macher Dimer Bora (Spring Onion Stalk & Fish Egg Fritters)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Onion flower stalks (peyajkoli), finely chopped",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Green chillies, chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan & rice flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix batter",
+        "text": "Mash cleaned fish eggs with finely chopped peyajkoli, onion, green chillies, coriander, turmeric, salt, besan, and rice flour.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry crisp fritters",
+        "text": "Drop spoonfuls into hot mustard oil, flatten slightly, and fry on medium-low heat until golden and crisp.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Sweet, crunchy winter onion stalks add great texture to fish egg boras."
+  },
+  {
+    "id": "static-1167",
+    "name": "Peyajkoli Diye Macher Dimer Jhuri Bhaja (Spring Onion Stalks & Scrambled Fish Egg Stir-Fry)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Onion flower stalks (peyajkoli), cut into 1-inch pieces",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Scramble fish roe",
+        "text": "Heat mustard oil, temper with nigella seeds, and fry seasoned fish roe while breaking it into golden granules; push to the side.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry peyajkoli",
+        "text": "Add sliced onion, green chillies, and onion flower stalks with salt and turmeric; stir-fry on medium heat for 6-8 minutes until tender-crisp.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Quick winter stir-fry pairing sweet onion stalks with savory scrambled fish roe."
+  },
+  {
     "id": "static-0755",
     "name": "Philly-Style Mushroom Sandwich",
     "category": "Sandwich",
@@ -44502,6 +47122,139 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1122",
+    "name": "Posto Diye Macher Dimer Bora (Poppy Seed Fish Egg Fritters)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seeds (posto — half ground, half whole)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan or rice flour",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix fish roe with posto",
+        "text": "Mix mashed fish eggs with poppy seed paste, chopped onion, green chillies, turmeric, salt, and flour.",
+        "minutes": 5
+      },
+      {
+        "section": "Sprinkle whole poppy seeds",
+        "text": "Shape into small patties and press whole white poppy seeds onto the surface for a nutty crunch.",
+        "minutes": 4
+      },
+      {
+        "section": "Shallow-fry in mustard oil",
+        "text": "Fry on medium-low heat in mustard oil for 4-5 minutes per side until crisp and golden.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Nutty roasted poppy seeds pair wonderfully with savory Bengali fish roe."
+  },
+  {
+    "id": "static-1138",
+    "name": "Posto Diye Macher Dimer Bora Curry (Fish Egg Fritters in Poppy Seed Gravy)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground smooth",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely chopped & sliced",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Potato, cut into wedges (optional)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry boras and potatoes",
+        "text": "Mix fish eggs with chopped onion, green chilli, besan, turmeric, and salt; fry boras in mustard oil. Fry optional potato wedges.",
+        "minutes": 8
+      },
+      {
+        "section": "Sauté onion and posto",
+        "text": "Temper oil with nigella seeds, fry sliced onion until soft, and stir in ground poppy seed paste with warm water.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer with boras",
+        "text": "Add the fried boras and slit green chillies, simmer gently for 5 minutes until coated in creamy posto, and drizzle with raw mustard oil.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Rich, nutty poppy seed gravy with tender fish roe dumplings."
   },
   {
     "id": "static-0465",
@@ -47900,6 +50653,70 @@
     "notes": "Complex, deeply aromatic Goan curry featuring toasted coconut, poppy seeds, and warm spices."
   },
   {
+    "id": "static-1163",
+    "name": "Pui Shak Diye Macher Dimer Chorchori (Malabar Spinach, Pumpkin & Fish Egg Medley)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Malabar spinach leaves & stems (pui shak), chopped",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Sweet red pumpkin (kumro) & potato, cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, sliced & garlic cloves (crushed)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, cumin powder, green chillies, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish roe chunks",
+        "text": "Pan-fry turmeric-salted fish roe in mustard oil until firm, break into bite-sized pieces, and set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook pui shak and vegetables",
+        "text": "Temper oil with panch phoron, dry red chilli, crushed garlic, and sliced onion. Add potato, pumpkin, pui shak stems and leaves, turmeric, cumin powder, and salt; cover and cook until tender.",
+        "minutes": 11
+      },
+      {
+        "section": "Fold in fish roe",
+        "text": "Stir in the fried fish roe pieces, slit green chillies, and a pinch of sugar; cook uncovered for 5 minutes until thick and cohesive.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "notes": "Rustic Bengali monsoon favorite combining leafy greens and sweet pumpkin with fish eggs."
+  },
+  {
     "id": "static-1094",
     "name": "Pui Shak Kumro Chingri Chorchori (Malabar Spinach & Pumpkin with Prawns)",
     "category": "Prawns",
@@ -49666,6 +52483,70 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1128",
+    "name": "Rava Fish Egg Fry (Konkani Semolina-Crusted Fish Roe Fry)",
+    "category": "Fish Roe",
+    "region": "Konkan",
+    "ingredients": [
+      {
+        "name": "Fish roe sacs (gabholi), cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fine semolina (rava / sooji)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric &hing (asafoetida)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tamarind pulp or kokum extract",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coconut oil for shallow frying",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate fish roe",
+        "text": "Cut firm fish roe into thick slabs and marinate with tamarind or kokum extract, red chilli powder, turmeric, a pinch of hing, and salt for 10 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Crust in rava and rice flour",
+        "text": "Mix fine semolina and rice flour on a plate and press each marinated roe slice firmly into the mixture.",
+        "minutes": 3
+      },
+      {
+        "section": "Pan-fry in coconut oil",
+        "text": "Shallow-fry on medium-low heat in coconut oil for 4 minutes per side until golden and crunchy.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 3,
+    "notes": "Traditional Goan and Malvani coastal fish roe fry (Gabholi Rava Fry)."
   },
   {
     "id": "static-0859",
@@ -51726,6 +54607,65 @@
     "notes": "Nutrient-dense seasonal spring bharta popular in Bengal."
   },
   {
+    "id": "static-1125",
+    "name": "Sajne Phool Diye Macher Dimer Bora (Drumstick Blossom & Fish Egg Fritters)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Drumstick blossoms (sajne phool), washed and drained",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan & rice flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds, turmeric & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine blossoms and roe",
+        "text": "Gently wash moringa blossoms, squeeze out excess water, and mix with mashed fish eggs, chopped onion, green chillies, nigella seeds, turmeric, salt, besan, and rice flour.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-fry patties",
+        "text": "Shape into small flat patties and shallow-fry in hot mustard oil over medium-low heat until crisp and golden on both sides.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Seasonal early-spring Bengali specialty combining nutrient-rich moringa flowers with fish roe."
+  },
+  {
     "id": "static-0803",
     "name": "Salted Lassi",
     "category": "Beverage",
@@ -52505,6 +55445,134 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Pungent, classic Bengali mustard prawn curry that takes just 15 minutes to cook."
+  },
+  {
+    "id": "static-1137",
+    "name": "Shorshe Diye Macher Dimer Borar Jhal (Fish Egg Fritters in Mustard Gravy)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow & black mustard seeds (soaked and ground)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely chopped (for boras)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish egg boras",
+        "text": "Combine fish roe, chopped onion, green chillies, besan, turmeric, and salt; fry into golden fritters.",
+        "minutes": 8
+      },
+      {
+        "section": "Prepare mustard jhal",
+        "text": "Temper mustard oil with nigella seeds and slit green chillies, sauté chopped tomato with turmeric, and pour in the mustard paste mixed with warm water.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer and finish",
+        "text": "Add the fish egg boras, simmer for 4-5 minutes, and finish with chopped coriander and a drizzle of raw mustard oil.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Sharp Bengali mustard gravy pairs wonderfully with savory fish roe fritters."
+  },
+  {
+    "id": "static-1150",
+    "name": "Shorshe Macher Dim (Fish Eggs in Bengali Mustard Gravy)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe sacs, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard seeds (soaked and ground with green chillies)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear fish roe slabs",
+        "text": "Rub fish roe sacs with salt and turmeric, sear gently in mustard oil until firm on both sides, and cut into thick slices.",
+        "minutes": 6
+      },
+      {
+        "section": "Temper and simmer mustard gravy",
+        "text": "Temper oil with nigella seeds and slit green chillies, add turmeric, chilli powder, and strained mustard paste with warm water.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook roe slices in mustard",
+        "text": "Add the seared fish roe slices, simmer on low heat for 5 minutes, and drizzle 1 tbsp raw mustard oil before serving.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 3,
+    "notes": "Quick 25-minute Bengali mustard fish roe curry."
   },
   {
     "id": "static-0867",
@@ -53531,6 +56599,70 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1156",
+    "name": "South Indian Fish Egg Pepper Masala (Meen Mutta Milagu Masala)",
+    "category": "Fish Roe",
+    "region": "South Indian",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions or shallots, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Freshly crushed black pepper, cumin & fennel powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sesame (gingelly) oil & curry leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Poach and cube fish roe",
+        "text": "Poach fish roe sacs in salted turmeric water for 5 minutes, drain, and cut into bite-sized pieces.",
+        "minutes": 6
+      },
+      {
+        "section": "Sauté aromatics",
+        "text": "Heat sesame oil, temper with fennel seeds and curry leaves, brown chopped onions and ginger-garlic paste, and cook tomato with turmeric and chilli powder.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss with black pepper",
+        "text": "Add the poached fish roe pieces and freshly crushed black pepper-cumin masala; toss on medium-low heat for 6 minutes and garnish with coriander.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Warm black pepper and sesame oil complement fish eggs without overpowering them."
   },
   {
     "id": "static-0945",
@@ -57333,6 +60465,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1127",
+    "name": "Tawa Fish Egg Fry (Spiced Whole Fish Roe Pan-Fry)",
+    "category": "Fish Roe",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Whole fish roe sacs, cleaned",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric, coriander & black pepper powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour (for dusting)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil or coconut oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curry leaves, sliced onion & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Poach and slice roe",
+        "text": "Simmer the whole fish roe sacs gently in salted turmeric water for 5 minutes until firm, cool, and cut into thick slices.",
+        "minutes": 6
+      },
+      {
+        "section": "Coat in tawa masala",
+        "text": "Rub the slices with ginger-garlic paste, chilli powder, coriander, black pepper, lemon juice, salt, and a light dusting of rice flour.",
+        "minutes": 4
+      },
+      {
+        "section": "Sear on hot tawa",
+        "text": "Pan-fry on a cast-iron tawa with oil and curry leaves for 3 minutes per side until a charred, spicy crust forms.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Poaching the roe briefly first keeps the slices neat and firm for tawa frying."
+  },
+  {
     "id": "static-0356",
     "name": "Tawa Gobi Paratha",
     "category": "Bread",
@@ -59321,6 +62517,75 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Traditionally eaten at the start of a Bengali lunch with hot steamed rice (gorom bhaat)."
+  },
+  {
+    "id": "static-1162",
+    "name": "Ucche Aloo Diye Macher Dimer Chorchori (Bitter Gourd, Potato & Fish Egg Medley)",
+    "category": "Fish Roe",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fish eggs / fish roe, cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Bitter gourd (ucche / korola), thinly sliced",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into thin wedges",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, sliced",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, green chillies & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bitter gourd and fish roe",
+        "text": "Fry bitter gourd slices in mustard oil until golden. Lightly fry seasoned fish roe and break into coarse chunks.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook potato and onion",
+        "text": "Temper oil with panch phoron and green chillies, sauté sliced onion and potato wedges with turmeric and salt until nearly soft.",
+        "minutes": 6
+      },
+      {
+        "section": "Braise with fish roe and mustard",
+        "text": "Add fried bitter gourd, fish roe chunks, mustard paste, and a splash of water; cover and cook on low heat for 5 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Traditional Bengali lunch opener balancing bitter ucche with rich fish roe."
   },
   {
     "id": "static-0897",
