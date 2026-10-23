@@ -4,12 +4,43 @@ import { env } from "../config/env.js";
 import { sendMarketingListEmail } from "../services/mailService.js";
 
 const itemSelect = `SELECT m.*, c.name AS category_name, u.name AS unit_name,
- l.name AS location_name, pu.name AS purchased_unit_name
+ l.name AS location_name, pu.name AS purchased_unit_name,
+ cu.full_name AS created_by_name, uu.full_name AS purchased_by_name,
+ e.expense_date::text AS expense_date, e.total_cost AS expense_total_cost,
+ e.expense_type AS expense_type, e.comment AS expense_comment,
+ e.quantity AS expense_quantity, e.other_item AS expense_other_item,
+ e.proof_key AS expense_proof_key, e.created_at AS expense_created_at,
+ ec.name AS expense_category_name, ei.name AS expense_item_name,
+ eu.name AS expense_unit_name, ecu.full_name AS expense_created_by_name,
+ COALESCE(
+   (
+     SELECT json_agg(
+       json_build_object(
+         'survivorId', s.id,
+         'survivorName', s.full_name,
+         'shareType', es.share_type,
+         'amount', es.amount
+       )
+       ORDER BY s.full_name
+     )
+     FROM public.expense_shares es
+     JOIN public.survivors s ON s.id = es.survivor_id
+     WHERE es.expense_id = m.expense_id
+   ),
+   '[]'::json
+ ) AS expense_shares
  FROM public.marketing_list_items m
  LEFT JOIN public.categories c ON c.id=m.category_id
  LEFT JOIN public.units u ON u.id=m.unit_id
  LEFT JOIN public.marketing_locations l ON l.id=m.location_id
- LEFT JOIN public.units pu ON pu.id=m.purchased_unit_id`;
+ LEFT JOIN public.units pu ON pu.id=m.purchased_unit_id
+ LEFT JOIN public.users cu ON cu.id=m.created_by
+ LEFT JOIN public.users uu ON uu.id=m.updated_by
+ LEFT JOIN public.expenses e ON e.id=m.expense_id
+ LEFT JOIN public.categories ec ON ec.id=e.category_id
+ LEFT JOIN public.items ei ON ei.id=e.item_id
+ LEFT JOIN public.units eu ON eu.id=e.unit_id
+ LEFT JOIN public.users ecu ON ecu.id=e.created_by`;
 
 let locationGpsSchemaReady = false;
 

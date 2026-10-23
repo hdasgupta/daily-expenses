@@ -1,6 +1,6 @@
 import "./marketing.css";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { CheckCircle2, Clock3, LocateFixed, Pencil, ShoppingBasket, Trash2, Wallet } from "lucide-react";
+import { CheckCircle2, Clock3, Eye, FileText, LocateFixed, Pencil, ShoppingBasket, Trash2, Wallet, X } from "lucide-react";
 import { api, showToast } from "../lib/api";
 import {
   describeAutoMatchReason,
@@ -12,6 +12,7 @@ import {
   recordLocationSelection,
 } from "../lib/locationTracker";
 import Pagination from "../components/Pagination";
+import ProofViewer from "../components/ProofViewer";
 import { usePagination } from "../hooks/usePagination";
 import { todayKolkata } from "../utils/dates.js";
 
@@ -31,6 +32,19 @@ function displayDate(value) {
   return Number.isNaN(date.getTime()) ? String(value).slice(0, 10) : date.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 }
 
+function displayDateTime(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
 export default function MarketingList({ navigate }) {
   const [rows, setRows] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -44,6 +58,10 @@ export default function MarketingList({ navigate }) {
   const [editing, setEditing] = useState(null);
   const [pendingRemoval, setPendingRemoval] = useState(null);
   const [removing, setRemoving] = useState(false);
+  const [detailItem, setDetailItem] = useState(null);
+  const [detailExpense, setDetailExpense] = useState(null);
+  const [loadingDetailExpense, setLoadingDetailExpense] = useState(false);
+  const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -155,6 +173,84 @@ export default function MarketingList({ navigate }) {
       showToast("warning", e.message || "Unable to auto-detect location.");
     } finally {
       setDetectingGps(false);
+    }
+  };
+
+  const openExpenseDetails = async (row) => {
+    setDetailItem(row);
+    const hasEmbeddedExpense =
+      row.expense_type !== undefined ||
+      row.expense_comment !== undefined ||
+      Array.isArray(row.expense_shares);
+
+    if (hasEmbeddedExpense) {
+      setDetailExpense({
+        id: row.expense_id,
+        expense_date: row.expense_date || row.purchase_date,
+        total_cost: row.expense_total_cost ?? row.expense_price,
+        expense_type: row.expense_type,
+        comment: row.expense_comment,
+        quantity: row.expense_quantity,
+        unit: row.expense_unit_name,
+        category: row.expense_category_name || row.category_name,
+        item: row.expense_item_name || row.expense_other_item || null,
+        proof_key: row.expense_proof_key,
+        created_by_name: row.expense_created_by_name || row.purchased_by_name,
+        created_at: row.expense_created_at || row.updated_at,
+        shares: Array.isArray(row.expense_shares) ? row.expense_shares : [],
+      });
+    } else {
+      setDetailExpense(null);
+    }
+
+    if (!row.expense_id) return;
+
+    const searchDate = String(row.expense_date || row.purchase_date || "").slice(0, 10);
+    if (!searchDate) return;
+
+    setLoadingDetailExpense(true);
+    try {
+      const res = await api(
+        `/expenses?date=${encodeURIComponent(searchDate)}&page=1&pageSize=50&sortColumn=expense_date&sortDirection=desc`,
+        { silent: true, silentToast: true }
+      );
+      const list = Array.isArray(res?.rows) ? res.rows : [];
+      const matched = list.find((exp) => String(exp.id) === String(row.expense_id));
+      if (matched) {
+        setDetailExpense((prev) => ({
+          ...(prev || {}),
+          ...matched,
+          shares: Array.isArray(matched.shares)
+            ? matched.shares
+            : Array.isArray(prev?.shares)
+            ? prev.shares
+            : [],
+        }));
+      }
+    } catch {
+      // Keep any embedded or marketing-row fallback details if the secondary fetch fails
+    } finally {
+      setLoadingDetailExpense(false);
+    }
+  };
+
+  const closeExpenseDetails = () => {
+    setDetailItem(null);
+    setDetailExpense(null);
+    setLoadingDetailExpense(false);
+  };
+
+  const openExpenseProof = async (expenseId) => {
+    if (!expenseId) return;
+    try {
+      const result = await api(`/expenses/${expenseId}/proof-url`, {
+        loadingMessage: "Opening proof…",
+      });
+      if (result?.url) {
+        setProofViewerUrl(result.url);
+      }
+    } catch (e) {
+      showToast("error", e.message || "Unable to open expense proof.");
     }
   };
 
@@ -328,6 +424,11 @@ export default function MarketingList({ navigate }) {
     </div>
   ) : null;
 
+  const siblingPurchasedItems = useMemo(() => {
+    if (!detailItem?.expense_id) return [];
+    return rows.filter((r) => String(r.expense_id || "") === String(detailItem.expense_id));
+  }, [rows, detailItem]);
+
   return (
     <div className="marketing-page marketing-list-page">
       <div className="page-heading"><div><h1>Marketing List</h1><p>One shared shopping list for everyone. Purchased and removed items remain available for reference.</p></div></div>
@@ -384,9 +485,49 @@ export default function MarketingList({ navigate }) {
               const isSelected = selectedIds.includes(String(row.id));
               return <article className={`marketing-item-card status-${status}${isSelected ? " is-selected" : ""}`} key={row.id}>
                 <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}</div>
-                <div className="marketing-item-main"><div className="marketing-item-icon"><ShoppingBasket size={21} /></div><div className="marketing-item-name"><h3>{row.item_name || "Unnamed item"}</h3><p>{row.category_name || "Uncategorized"}</p></div>{status === "pending" && <div className="marketing-item-icon-actions"><button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button><button type="button" className="marketing-item-remove-icon" onClick={() => setPendingRemoval(row)} aria-label={`Remove ${row.item_name || "marketing item"}`} title="Remove item"><Trash2 size={16} /></button></div>}</div>
+                <div className="marketing-item-main">
+                  <div className="marketing-item-icon"><ShoppingBasket size={21} /></div>
+                  <div className="marketing-item-name">
+                    <h3>{row.item_name || "Unnamed item"}</h3>
+                    <p>{row.category_name || "Uncategorized"}</p>
+                  </div>
+                  {status === "pending" && (
+                    <div className="marketing-item-icon-actions">
+                      <button type="button" className="marketing-item-edit-icon" onClick={() => edit(row)} aria-label={`Edit ${row.item_name || "marketing item"}`} title="Edit item"><Pencil size={16} /></button>
+                      <button type="button" className="marketing-item-remove-icon" onClick={() => setPendingRemoval(row)} aria-label={`Remove ${row.item_name || "marketing item"}`} title="Remove item"><Trash2 size={16} /></button>
+                    </div>
+                  )}
+                  {status === "purchased" && (
+                    <div className="marketing-item-icon-actions">
+                      <button
+                        type="button"
+                        className="marketing-item-detail-icon"
+                        onClick={() => openExpenseDetails(row)}
+                        aria-label={`View purchase and expense details for ${row.item_name || "purchased item"}`}
+                        title="View purchase & expense details"
+                      >
+                        <Eye size={16} />
+                      </button>
+                    </div>
+                  )}
+                </div>
                 <div className="marketing-item-details marketing-item-quantity-status"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span></div>
-                {status === "purchased" && <div className="marketing-purchase-price"><Wallet size={16} /><span>Expense price</span><strong>₹{Number(row.expense_price || 0).toFixed(2)}</strong></div>}
+                {status === "purchased" && (
+                  <div className="marketing-purchase-price">
+                    <Wallet size={16} />
+                    <span>Expense price</span>
+                    <strong>₹{Number(row.expense_price || 0).toFixed(2)}</strong>
+                    <button
+                      type="button"
+                      className="marketing-item-detail-icon marketing-price-detail-icon"
+                      onClick={() => openExpenseDetails(row)}
+                      aria-label={`Expense details for ${row.item_name || "purchased item"}`}
+                      title="Show purchase & expense details"
+                    >
+                      <FileText size={14} />
+                    </button>
+                  </div>
+                )}
                 {status === "removed" && <div className="marketing-removed-note">The linked expense was removed.</div>}
                 {status !== "pending" && <div className="marketing-item-actions"><span className="marketing-readonly-label">{status === "purchased" ? <><CheckCircle2 size={15} /> Purchased · Read-only</> : "Removed · Read-only"}</span></div>}
               </article>;
@@ -395,6 +536,171 @@ export default function MarketingList({ navigate }) {
         ) : <div className="marketing-list-empty"><ShoppingBasket size={28} /><strong>{pagination.search || form.locationId || form.categoryId ? "No matching items" : `No items for ${displayDate(form.purchaseDate)}`}</strong><span>{pagination.search || form.locationId || form.categoryId ? "Try changing the date, shopping location, category, or search term above." : "Choose another date or add a shopping item using the form above."}</span></div>}
         {selectionControls("bottom")}
       </section>
+      {detailItem && (
+        <div
+          className="marketing-confirm-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeExpenseDetails();
+          }}
+        >
+          <div
+            className="marketing-confirm-dialog marketing-expense-detail-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="marketing-expense-detail-title"
+          >
+            <div className="marketing-expense-detail-header">
+              <div className="marketing-expense-detail-title-group">
+                <div className="marketing-expense-detail-icon">
+                  <Wallet size={20} />
+                </div>
+                <div>
+                  <h2 id="marketing-expense-detail-title">{detailItem.item_name || "Purchased Item"}</h2>
+                  <p className="marketing-expense-detail-subtitle">
+                    {detailItem.category_name || "Uncategorized"} · {detailItem.location_name || "Location not set"}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="marketing-item-edit-icon"
+                onClick={closeExpenseDetails}
+                aria-label="Close expense details"
+                title="Close"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="marketing-expense-detail-body">
+              <div className="marketing-expense-detail-grid">
+                <div className="marketing-expense-detail-cell">
+                  <span>Marketing Date</span>
+                  <strong>{displayDate(detailItem.purchase_date)}</strong>
+                </div>
+                <div className="marketing-expense-detail-cell">
+                  <span>Expense Date</span>
+                  <strong>{displayDate(detailExpense?.expense_date || detailItem.expense_date || detailItem.purchase_date)}</strong>
+                </div>
+                <div className="marketing-expense-detail-cell">
+                  <span>Planned Quantity</span>
+                  <strong>
+                    {detailItem.quantity ?? "—"} {detailItem.unit_name || ""}
+                  </strong>
+                </div>
+                <div className="marketing-expense-detail-cell">
+                  <span>Purchased Quantity</span>
+                  <strong>
+                    {detailItem.purchased_quantity ?? detailItem.quantity ?? "—"}{" "}
+                    {detailItem.purchased_unit_name || detailItem.unit_name || ""}
+                  </strong>
+                </div>
+                <div className="marketing-expense-detail-cell">
+                  <span>Total Expense Cost</span>
+                  <strong className="marketing-expense-cost-highlight">
+                    ₹{Number(detailExpense?.total_cost ?? detailItem.expense_total_cost ?? detailItem.expense_price ?? 0).toFixed(2)}
+                  </strong>
+                </div>
+                <div className="marketing-expense-detail-cell">
+                  <span>Payment Mode</span>
+                  <strong className="marketing-expense-capitalize">
+                    {detailExpense?.expense_type || detailItem.expense_type || "Cash / Recorded"}
+                  </strong>
+                </div>
+                {detailItem.expense_id && (
+                  <div className="marketing-expense-detail-cell">
+                    <span>Expense ID</span>
+                    <strong>#{detailItem.expense_id}</strong>
+                  </div>
+                )}
+                {(detailExpense?.category || detailItem.expense_category_name || detailExpense?.item || detailExpense?.other_item) && (
+                  <div className="marketing-expense-detail-cell">
+                    <span>Expense Entry</span>
+                    <strong>
+                      {detailExpense?.category || detailItem.expense_category_name || detailItem.category_name} ·{" "}
+                      {detailExpense?.item || detailExpense?.other_item || detailItem.expense_item_name || detailItem.expense_other_item || "Total"}
+                    </strong>
+                  </div>
+                )}
+                {(detailItem.purchased_by_name || detailExpense?.created_by_name) && (
+                  <div className="marketing-expense-detail-cell">
+                    <span>Recorded By</span>
+                    <strong>{detailItem.purchased_by_name || detailExpense?.created_by_name}</strong>
+                  </div>
+                )}
+                {displayDateTime(detailExpense?.created_at || detailItem.updated_at) && (
+                  <div className="marketing-expense-detail-cell">
+                    <span>Purchased On</span>
+                    <strong>{displayDateTime(detailExpense?.created_at || detailItem.updated_at)}</strong>
+                  </div>
+                )}
+              </div>
+
+              {loadingDetailExpense && (
+                <div className="marketing-expense-detail-loading">Loading linked expense details…</div>
+              )}
+
+              {siblingPurchasedItems.length > 1 && (
+                <div className="marketing-expense-detail-section">
+                  <h3>Items Purchased in This Expense ({siblingPurchasedItems.length})</h3>
+                  <ul className="marketing-expense-detail-list">
+                    {siblingPurchasedItems.map((sib) => (
+                      <li key={sib.id}>
+                        <span>{sib.item_name}</span>
+                        <strong>
+                          {sib.purchased_quantity ?? sib.quantity ?? "—"}{" "}
+                          {sib.purchased_unit_name || sib.unit_name || ""}
+                        </strong>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {(detailExpense?.comment || detailItem.expense_comment) && (
+                <div className="marketing-expense-detail-section">
+                  <h3>Expense Comment / Notes</h3>
+                  <div className="marketing-expense-detail-comment">
+                    {detailExpense?.comment || detailItem.expense_comment}
+                  </div>
+                </div>
+              )}
+
+              {Array.isArray(detailExpense?.shares) && detailExpense.shares.length > 0 && (
+                <div className="marketing-expense-detail-section">
+                  <h3>Survivor Shares Breakdown</h3>
+                  <ul className="marketing-expense-detail-list">
+                    {detailExpense.shares.map((share, idx) => (
+                      <li key={share.survivorId || idx}>
+                        <span>
+                          {share.survivorName}{" "}
+                          <small className="marketing-expense-share-type">({share.shareType})</small>
+                        </span>
+                        <strong>₹{Number(share.amount || 0).toFixed(2)}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            <div className="marketing-confirm-actions">
+              {(detailExpense?.proof_key || detailItem.expense_proof_key) && detailItem.expense_id && (
+                <button
+                  type="button"
+                  className="primary"
+                  onClick={() => openExpenseProof(detailItem.expense_id)}
+                >
+                  <Eye size={15} /> View Proof
+                </button>
+              )}
+              <button type="button" onClick={closeExpenseDetails}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {pendingRemoval && (
         <div className="marketing-confirm-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget && !removing) setPendingRemoval(null); }}>
           <div className="marketing-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="marketing-confirm-title" aria-describedby="marketing-confirm-description">
@@ -408,6 +714,11 @@ export default function MarketingList({ navigate }) {
           </div>
         </div>
       )}
+      <ProofViewer
+        url={proofViewerUrl}
+        title="Expense proof"
+        onClose={() => setProofViewerUrl("")}
+      />
     </div>
   );
 }
