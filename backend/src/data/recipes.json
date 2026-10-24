@@ -54,6 +54,65 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1239",
+    "name": "Achari Aloo (Pickled Five-Spice Tangy Baby Potatoes)",
+    "category": "Vegetable",
+    "region": "North Indian / Indian",
+    "ingredients": [
+      {
+        "name": "Baby potatoes (or cubed potatoes), boiled and halved",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Achari masala (fennel, mustard, nigella, fenugreek & cumin seeds, coarsely crushed)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dry red chillies & hing",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger-garlic paste or grated ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & amchur (dry mango powder)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crack achari spices in smoking mustard oil",
+        "text": "Heat mustard oil until smoking, cool slightly, and crackle dry red chillies, hing, and the coarsely crushed achari five-spice blend.",
+        "minutes": 3
+      },
+      {
+        "section": "Roast potatoes in achari masala",
+        "text": "Add halved boiled potatoes, ginger, turmeric, Kashmiri red chilli, amchur, and salt; toss on medium flame for 10-12 minutes until crusted and tangy.",
+        "minutes": 13
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 3,
+    "notes": "Bold, tangy pickle-spiced potatoes great with poori, paratha, or dal-chawal."
+  },
+  {
     "id": "static-1189",
     "name": "Ajwain Paratha (Carom Seed Layered Flaky Paratha)",
     "category": "Bread",
@@ -101,6 +160,129 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Digestive, aromatic everyday Indian breakfast paratha."
+  },
+  {
+    "id": "static-1231",
+    "name": "Aloo Baingan Masala (Homestyle Potato & Brinjal Curry)",
+    "category": "Vegetable",
+    "region": "Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Eggplant (baingan / begun), cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Tomatoes, chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron or cumin seeds & hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-garlic paste or grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander, red chilli & amchur/garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté potatoes and brinjal",
+        "text": "Heat mustard oil, temper with panch phoron/cumin and hing, and fry cubed potatoes for 4 minutes before adding cubed brinjal.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook with tomatoes and spices",
+        "text": "Add ginger, chopped tomatoes, turmeric, coriander, red chilli powder, and salt; cover and cook on medium-low heat until soft and jammy.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Comforting homestyle sabzi that pairs with both roti and dal-rice."
+  },
+  {
+    "id": "static-1232",
+    "name": "Aloo Beans Bhaja (Crispy French Beans & Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Green French beans, trimmed and cut into 1.5-inch pieces",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into lengthwise strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) or cumin seeds & garlic",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric, cumin & crushed black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper and fry potatoes",
+        "text": "Heat mustard oil, temper with nigella/cumin seeds and green chillies, and fry potato strips for 4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry green beans",
+        "text": "Add French beans, turmeric, cumin powder, and salt; cook covered for 5 minutes, then uncover and stir-fry with black pepper until crisp-tender.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Quick everyday dry side dish for lunchboxes and weekday meals."
   },
   {
     "id": "static-0016",
@@ -219,6 +401,129 @@
     "cookMinutes": 20,
     "servings": 2,
     "notes": "Using pungent kachi ghani mustard oil and a mix of raw and lightly fried onions gives authentic Bengali Aloo Bharta flavour."
+  },
+  {
+    "id": "static-1233",
+    "name": "Aloo Bhindi Masala (Crispy Okra & Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Okra (bhindi), wiped dry and cut into 1-inch pieces",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into thin wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Cumin seeds, ajwain & hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, coriander, red chilli & amchur powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry potatoes",
+        "text": "Heat oil, crackle cumin and ajwain, and fry potato wedges until golden and 75% tender.",
+        "minutes": 7
+      },
+      {
+        "section": "Stir-fry okra and onions",
+        "text": "Add okra pieces and sliced onion; cook uncovered on medium flame with turmeric, coriander, and chilli powder for 8 minutes, then season with salt and amchur at the end.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 3,
+    "notes": "Adding salt and amchur at the very end keeps the okra crisp and non-slimy."
+  },
+  {
+    "id": "static-1237",
+    "name": "Aloo Bori Jhol (Bengali Sun-Dried Lentil Dumpling & Potato Light Broth)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cut into lengthwise wedges",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Bengali urad/moong dal bori (sun-dried lentil dumplings)",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Tomato, quartered",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Ginger paste & cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry boris",
+        "text": "Fry the sun-dried lentil dumplings (bori) in hot mustard oil until golden brown and remove immediately.",
+        "minutes": 3
+      },
+      {
+        "section": "Simmer potato broth",
+        "text": "Temper oil with nigella seeds and slit green chillies, fry potato wedges with ginger paste, cumin powder, turmeric, and tomato, then add warm water and cook until potatoes are soft.",
+        "minutes": 11
+      },
+      {
+        "section": "Add fried boris",
+        "text": "Drop in the fried boris, simmer for 3 minutes until they soften slightly while keeping a bite, and garnish with fresh coriander.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Soothing, light Bengali summer lunch jhol."
   },
   {
     "id": "static-1017",
@@ -352,6 +657,60 @@
     "cookMinutes": 20,
     "servings": 2,
     "notes": "Pairs classically with dal-chawal, khichdi, or litti."
+  },
+  {
+    "id": "static-1217",
+    "name": "Aloo Chorchori (Bengali Mustard-Seasoned Potato Baton Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cut into lengthwise batons",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow & black mustard paste (shorshe bata)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté potato batons",
+        "text": "Temper mustard oil with nigella seeds and slit green chillies; add potato batons, chopped tomato, turmeric, and salt, and sauté for 5 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Braise with mustard paste",
+        "text": "Add warm water, cover and cook until potatoes are soft, then stir in mustard paste and simmer for 4 minutes until semi-dry. Finish with coriander and raw mustard oil.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Tangy, pungent Bengali mustard potato chorchori."
   },
   {
     "id": "static-1161",
@@ -595,6 +954,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1227",
+    "name": "Aloo Gobi Adraki (Dry Spiced Ginger Potato & Cauliflower Stir-Fry)",
+    "category": "Vegetable",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Cauliflower florets",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion & tomato, chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Fresh ginger juliennes & slit green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, turmeric, coriander, red chilli, amchur & garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kasuri methi, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-roast potato and cauliflower",
+        "text": "Heat mustard oil, crackle cumin seeds, and pan-roast potato wedges and cauliflower florets on medium-high flame for 6 minutes until lightly browned.",
+        "minutes": 7
+      },
+      {
+        "section": "Braise with ginger and spices",
+        "text": "Add chopped onion, ginger juliennes, green chillies, turmeric, coriander, red chilli powder, and salt; cover on low heat (no water) until tender-crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss with tomato and amchur",
+        "text": "Add chopped tomato, amchur, garam masala, and kasuri methi; toss uncovered for 3 minutes.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Cooking without water keeps the cauliflower florets firm and flavorful."
+  },
+  {
     "id": "static-0045",
     "name": "Aloo Jhol",
     "category": "Vegetable",
@@ -652,6 +1075,70 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1236",
+    "name": "Aloo Kabuli Chana Tarkari (Bengali Chickpea & Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled kabuli chana (white chickpeas)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped (optional for niramish)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, chopped & ginger paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & Bengali bhaja masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, dry red chilli, hing, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potatoes and aromatics",
+        "text": "Temper mustard oil with bay leaf, dry red chilli, and hing; fry cubed potatoes and chopped onion until golden.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook spice base",
+        "text": "Add ginger paste, chopped tomato, cumin, coriander, and turmeric; cook until pulpy.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer with chickpeas",
+        "text": "Add boiled kabuli chana and warm water; simmer for 9 minutes, lightly mashing a few potatoes, and finish with roasted bhaja masala.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "notes": "Hearty accompaniment to luchi, radhaballabhi, or pitai paratha."
   },
   {
     "id": "static-0075",
@@ -885,6 +1372,193 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1226",
+    "name": "Aloo Matar (Homestyle Spiced Potato & Green Peas Curry)",
+    "category": "Vegetable",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Green peas (fresh or frozen)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Tomatoes, pureed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric, Kashmiri chilli & garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kasuri methi, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté onion-tomato masala",
+        "text": "Heat oil, crackle cumin seeds, brown chopped onion and ginger-garlic paste, then cook tomato puree and spice powders until oil separates.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer potatoes and peas",
+        "text": "Add cubed potatoes, green peas, salt, and warm water; cover and simmer for 12 minutes until potatoes are tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Finish with kasuri methi",
+        "text": "Stir in garam masala, crushed kasuri methi, and chopped coriander leaves.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Comforting everyday curry for roti, paratha, poori, or jeera rice."
+  },
+  {
+    "id": "static-1228",
+    "name": "Aloo Methi (Fresh Fenugreek Leaves & Crispy Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "North Indian / Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, peeled and cut into small cubes",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh methi (fenugreek) leaves, washed and finely chopped",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic cloves (chopped) & whole dry red chillies",
+        "quantity": "5",
+        "unit": "cloves"
+      },
+      {
+        "name": "Cumin seeds, hing, turmeric & coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Amchur (optional) & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry potato cubes",
+        "text": "Heat mustard oil, temper with cumin seeds, hing, chopped garlic, and dry red chillies, and fry cubed potatoes with turmeric until golden and 80% cooked.",
+        "minutes": 10
+      },
+      {
+        "section": "Wilt fresh methi leaves",
+        "text": "Add chopped fenugreek leaves, coriander powder, and salt; stir-fry uncovered on medium-low heat for 6 minutes until the methi wilts and coats the potatoes.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 3,
+    "notes": "Cooking uncovered after adding methi prevents the leaves from turning bitter."
+  },
+  {
+    "id": "static-1229",
+    "name": "Aloo Palak (Potatoes in Spiced Garlic Spinach Gravy)",
+    "category": "Vegetable",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh spinach (palak), blanched and pureed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onion & tomato, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Garlic cloves, finely chopped & green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, turmeric, coriander & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potato cubes",
+        "text": "Pan-fry cubed potatoes in oil with a pinch of salt and turmeric until golden and tender; set aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Sauté garlic and onion-tomato masala",
+        "text": "Temper oil with cumin seeds and chopped garlic, fry chopped onion and tomato with spices until soft.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer with spinach puree",
+        "text": "Stir in the blanched spinach puree and fried potatoes, simmer gently for 5 minutes, and finish with garam masala.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Nutritious spinach and potato curry great with phulkas or steamed rice."
+  },
+  {
     "id": "static-0306",
     "name": "Aloo Paratha (Homestyle)",
     "category": "Bread",
@@ -983,6 +1657,119 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1218",
+    "name": "Aloo Peyajkoli Bhaja (Winter Spring Onion Stalks & Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cut into thin strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion flower stalks (peyajkoli), cut into 1.5-inch pieces",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potato strips",
+        "text": "Temper mustard oil with nigella seeds and slit green chillies; fry potato strips with turmeric for 4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with peyajkoli",
+        "text": "Add onion flower stalks and salt; stir-fry on medium heat for 7-8 minutes until tender-crisp and lightly charred.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Winter staple in Bengali homes."
+  },
+  {
+    "id": "static-1220",
+    "name": "Aloo Phulkopi Dalna (Bengali Roasted Cauliflower & Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower (phulkopi), cut into medium florets",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Fresh green peas (optional)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato, chopped & ginger paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, coriander, turmeric & chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole garam masala, cumin seeds, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Golden-roast cauliflower and potatoes",
+        "text": "Fry cauliflower florets and potato wedges in mustard oil until golden-brown spots appear; set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook ginger-tomato base",
+        "text": "Temper oil with bay leaf, whole garam masala, and cumin seeds; cook ginger paste, chopped tomato, and spice powders until fragrant.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer and finish with ghee",
+        "text": "Add roasted potatoes, cauliflower, green peas, and warm water; simmer until tender and finish with ghee and garam masala.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Pairs equally well with steamed rice, luchi, or radhaballabhi."
+  },
+  {
     "id": "static-0001",
     "name": "Aloo Posto",
     "category": "Vegetable",
@@ -1040,6 +1827,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1219",
+    "name": "Aloo Potol Dalna (Bengali Pointed Gourd & Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol / parwal), scraped and halved",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, chopped & ginger paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & Kashmiri red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole cumin, garam masala, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potol and potatoes",
+        "text": "Fry scraped pointed gourd halves and potato wedges in mustard oil with a pinch of turmeric and salt until golden brown; remove.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook ginger-cumin masala",
+        "text": "Temper oil with bay leaf and cumin seeds, sauté ginger paste, chopped tomato, and spice powders until oil separates.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer dalna",
+        "text": "Return fried potol and potatoes with warm water, salt, and a pinch of sugar; simmer covered until tender and finish with ghee and Bengali garam masala.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "One of the most beloved everyday and festive Bengali vegetable curries."
   },
   {
     "id": "static-1139",
@@ -1160,6 +2006,65 @@
     "notes": "So flavorful they can be eaten on their own with curd, pickle, or chai."
   },
   {
+    "id": "static-1234",
+    "name": "Aloo Shimla Mirch (Potato & Capsicum Stir-Fry)",
+    "category": "Vegetable",
+    "region": "North Indian / Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Green bell peppers (shimla mirch / capsicum), cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion & tomato, cubed/chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Cumin seeds, ginger-garlic & green chilli",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander, red chilli, amchur & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook potato cubes",
+        "text": "Heat oil, crackle cumin seeds, sauté onion and ginger-garlic, and cook cubed potatoes with turmeric and salt covered until nearly tender.",
+        "minutes": 9
+      },
+      {
+        "section": "Toss with crisp capsicum",
+        "text": "Add cubed bell peppers, chopped tomato, coriander powder, chilli powder, and amchur; stir-fry for 5-6 minutes so the capsicum retains a slight crunch.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Flavorful tiffin sabzi that pairs wonderfully with parathas."
+  },
+  {
     "id": "static-0094",
     "name": "Aloo Shorshe",
     "category": "Vegetable",
@@ -1217,6 +2122,70 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1235",
+    "name": "Aloo Soyabean Kosha (Bengali Soya Chunks & Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Soya chunks (meal maker), boiled and squeezed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Potatoes, cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onions, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato, chopped & ginger-garlic paste",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric, Kashmiri chilli & garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole cumin & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear soya chunks and potatoes",
+        "text": "Boil soya chunks in salted water, squeeze dry, and pan-fry in mustard oil with turmeric alongside potato cubes until golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook kosha onion-tomato masala",
+        "text": "Temper oil with bay leaf and cumin seeds, brown chopped onions, and roast ginger-garlic paste, tomato, and spice powders until oil separates.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer curry",
+        "text": "Add fried potatoes, soya chunks, and warm water; simmer covered for 7 minutes until tender and finish with garam masala.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "notes": "High-protein homestyle Bengali soya-potato curry."
   },
   {
     "id": "static-0925",
@@ -1438,6 +2407,124 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1238",
+    "name": "Aloo Uchhe Bhaja (Crispy Fried Bitter Gourd & Potato Slices)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, thinly sliced into rounds or half-moons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Bitter gourd (uchhe / korola), thinly sliced into rounds",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season slices",
+        "text": "Toss thinly sliced bitter gourd and potatoes with salt and turmeric powder.",
+        "minutes": 3
+      },
+      {
+        "section": "Crisp-fry in mustard oil",
+        "text": "Heat mustard oil in a wide skillet and fry the slices on medium heat until crisp and golden brown.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Classic Bengali first-course lunch accompaniment eaten with plain hot rice and ghee."
+  },
+  {
+    "id": "static-1207",
+    "name": "Aloor Chokka (Bengali Spiced Potato & Black Chickpea Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Soaked & boiled kala chana (black chickpeas) or grated coconut",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger paste & green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron, bay leaf & dry red chilli",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & bhaja masala powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potatoes",
+        "text": "Heat mustard oil, temper with bay leaf, dry red chilli, and panch phoron, and fry cubed potatoes for 4-5 minutes until lightly golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook ginger-tomato spice base",
+        "text": "Add ginger paste, chopped tomato, cumin, coriander, turmeric, and salt; sauté until tomatoes soften.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer with chana and bhaja masala",
+        "text": "Add boiled kala chana and warm water; cover and cook until potatoes are tender and gravy is thick. Finish with sugar and roasted bhaja masala.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "notes": "Classic Bengali winter and festive side dish for luchi, porota, or khichuri."
   },
   {
     "id": "static-0138",
@@ -2951,6 +4038,70 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1240",
+    "name": "Banarasi Dum Aloo (Stuffed Potatoes in Rich Tomato-Fennel-Cashew Gravy)",
+    "category": "Vegetable",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Medium potatoes, peeled and hollowed out",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer (crumbled), chopped cashews & raisins (for stuffing)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Ripe tomatoes, pureed",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Cashew paste & fresh cream",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted fennel (saunf), cumin, Kashmiri chilli & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil & ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger, kasuri methi, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Hollow, fry and stuff potatoes",
+        "text": "Scoop the center of peeled potatoes, fry the shells golden, and stuff with a mixture of crumbled paneer, fried scooped potato bits, cashews, raisins, and spices.",
+        "minutes": 12
+      },
+      {
+        "section": "Simmer tomato-cashew-fennel gravy",
+        "text": "Cook tomato puree, ginger paste, cashew paste, roasted fennel powder, and Kashmiri chilli in ghee until velvety and rich.",
+        "minutes": 8
+      },
+      {
+        "section": "Serve stuffed potatoes in gravy",
+        "text": "Halve the stuffed potatoes, nestle into the hot gravy, and garnish with cream, kasuri methi, and coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Festive Banarasi banquet potato dish."
   },
   {
     "id": "static-0658",
@@ -7095,6 +8246,139 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1222",
+    "name": "Bhandare Wale Aloo Ki Sabzi (Temple-Style No-Onion No-Garlic Tomato Potato Curry)",
+    "category": "Vegetable",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled and hand-crushed",
+        "quantity": "450",
+        "unit": "g"
+      },
+      {
+        "name": "Ripe tomatoes, finely chopped or grated",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Cumin seeds, fennel seeds, crushed coriander seeds, cloves & black peppercorns",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Asafoetida (hing), grated ginger & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric, amchur, black salt & kasuri methi",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure ghee or mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast coarsely crushed whole spices in ghee",
+        "text": "Heat ghee, crackle cumin, fennel, crushed coriander seeds, cloves, peppercorns, bay leaf, dry red chilli, and a generous pinch of hing, then sauté grated ginger and green chillies.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook tomatoes with Kashmiri chilli",
+        "text": "Add chopped tomatoes, turmeric, Kashmiri red chilli powder, and black salt; cook until oil separates.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer hand-crushed potatoes",
+        "text": "Add hand-crushed boiled potatoes and hot water; simmer for 10 minutes until thick and aromatic, finishing with amchur, crushed kasuri methi, and coriander.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Iconic North Indian temple-feast (bhandara) sabzi served with crispy bedmi puri or plain poori."
+  },
+  {
+    "id": "static-1205",
+    "name": "Bhanga Aloor Torkari (Bengali Hand-Crushed Potato Curry for Kochuri & Luchi)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled and hand-crushed (bhanga) into uneven chunks",
+        "quantity": "450",
+        "unit": "g"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dry red chillies & bay leaf",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Asafoetida (hing) & grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, chopped (optional)",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Turmeric, cumin powder & Bengali bhaja masala (roasted cumin-red chilli)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, coriander leaves, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Hand-crush boiled potatoes",
+        "text": "Boil potatoes until tender, peel (or leave skin partially on), and break them roughly by hand (bhanga) instead of cutting with a knife so craggy edges release starch.",
+        "minutes": 5
+      },
+      {
+        "section": "Temper with panch phoron and hing",
+        "text": "Heat mustard oil, crackle bay leaf, dry red chillies, panch phoron, and hing, then sauté grated ginger, green chillies, chopped tomato, turmeric, and cumin powder.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer and finish with bhaja masala",
+        "text": "Toss in the hand-broken potatoes, pour in warm water, salt, and a pinch of sugar, and simmer for 8 minutes until thick and glossy. Finish with roasted bhaja masala and fresh coriander.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Hand-crushing (bhanga) the boiled potatoes gives this sweet-shop style curry its signature velvety, starchy gravy."
+  },
+  {
     "id": "static-1021",
     "name": "Bhapa Chingri (Steamed Mustard & Coconut Prawns)",
     "category": "Prawns",
@@ -10147,6 +11431,55 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1214",
+    "name": "Chak Chak Aloo Bhaja (Bengali Spiced Round Potato Medallion Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cut into 1/4-inch thick round discs",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Poppy seeds (posto) or rice flour (1 tsp, optional for crust)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season potato rounds",
+        "text": "Wash potato discs, pat dry, and coat evenly with turmeric, red chilli powder, salt, and optional poppy seeds.",
+        "minutes": 4
+      },
+      {
+        "section": "Shallow-fry in mustard oil",
+        "text": "Arrange in a single layer in hot mustard oil, cook covered on low-medium heat for 4 minutes per side until tender inside, then uncover and crisp both sides golden.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Classic accompaniment to Bengali dal-bhaat or khichuri."
   },
   {
     "id": "static-0912",
@@ -19919,6 +21252,70 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1230",
+    "name": "Dahi Wale Aloo (Potatoes in Tangy Spiced Yogurt Gravy)",
+    "category": "Vegetable",
+    "region": "North Indian / Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled and cubed/crushed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Plain yogurt (curd), whisked with 1 tsp besan",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds, hing & curry leaves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger & green chillies, finely chopped",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper spices",
+        "text": "Heat oil or ghee, crackle cumin seeds, mustard seeds, hing, curry leaves, chopped ginger, and green chillies.",
+        "minutes": 3
+      },
+      {
+        "section": "Simmer whisked yogurt",
+        "text": "Lower heat, pour in yogurt whisked with besan, turmeric, coriander, and chilli powder, and stir continuously until it comes to a gentle boil.",
+        "minutes": 6
+      },
+      {
+        "section": "Add boiled potatoes",
+        "text": "Add boiled potatoes and salt, simmer for 6 minutes until the tangy gravy thickens, and garnish with fresh coriander.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Quick 20-minute comfort curry when you have no tomatoes or onions on hand."
+  },
+  {
     "id": "static-1173",
     "name": "Dal Puri (Spiced Chana Dal Stuffed Fried Puri)",
     "category": "Bread",
@@ -27256,6 +28653,75 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1211",
+    "name": "Hinger Aloor Torkari (Kolkata Club Kachori Style Asafoetida Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled and cubed/crushed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Strong asafoetida (hing)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger & green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron or cumin-fennel seeds & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, coriander, red chilli & amchur / bhaja masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & crispy sev/bhujia (for garnish)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bloom hing and spices in oil",
+        "text": "Heat mustard oil, crackle dry red chilli and panch phoron/cumin, and add hing and ginger-green chilli paste so the aroma blooms.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook tomato and spice paste",
+        "text": "Add chopped tomato, turmeric, coriander, and red chilli powder; cook until soft and pulpy.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer crushed potatoes",
+        "text": "Add boiled cubed/crushed potatoes and warm water; simmer for 8-10 minutes until thick. Finish with bhaja masala, coriander leaves, and a topping of crispy sev.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Famous Bura Bazar / Kolkata morning breakfast potato curry served with Hinger Kochuri or Club Kachori."
+  },
+  {
     "id": "static-1172",
     "name": "Hinger Kochuri (Kolkata Club Kachori Style Asafoetida Puri)",
     "category": "Bread",
@@ -28198,6 +29664,70 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1221",
+    "name": "Jeera Aloo (Cumin & Herb Tossed Spiced Potatoes)",
+    "category": "Vegetable",
+    "region": "North Indian / Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled, peeled and cubed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Whole cumin seeds (jeera)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Crushed coriander seeds & dry mango powder (amchur)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies & grated ginger, finely chopped",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Asafoetida (hing), turmeric, red chilli flakes & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crackle generous cumin seeds",
+        "text": "Heat ghee or oil in a wide pan, add cumin seeds, crushed coriander seeds, hing, ginger, and green chillies; let them sizzle without burning.",
+        "minutes": 3
+      },
+      {
+        "section": "Crisp-toss boiled potatoes",
+        "text": "Add boiled potato cubes, turmeric, red chilli flakes, amchur, and salt; toss on medium-high heat for 6-8 minutes until golden and crusted with cumin.",
+        "minutes": 7
+      },
+      {
+        "section": "Finish with herbs",
+        "text": "Sprinkle crushed kasuri methi and fresh coriander leaves and serve hot.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Chill boiled potatoes for 30 minutes before cubing so they hold their shape and crisp up nicely."
+  },
+  {
     "id": "static-0292",
     "name": "Jeera Rice (Homestyle)",
     "category": "Rice",
@@ -28501,6 +30031,60 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Both the flesh and the tender ridged peel of jhinge make a delicious bharta."
+  },
+  {
+    "id": "static-1213",
+    "name": "Jhuri Aloo Bhaja (Bengali Crispy Matchstick Fried Potatoes with Peanuts)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, grated into fine matchsticks",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Raw peanuts",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry leaves & dry red chillies",
+        "quantity": "2",
+        "unit": "sprigs"
+      },
+      {
+        "name": "Oil for deep frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Black salt, regular salt & optional turmeric",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak and dry potato juliennes",
+        "text": "Rinse finely julienned potatoes in cold water 3-4 times until the water runs completely clear to remove starch, then spread on a kitchen towel until bone-dry.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry peanuts and curry leaves",
+        "text": "Fry raw peanuts, dry red chillies, and curry leaves in hot oil until crisp; drain and set aside.",
+        "minutes": 3
+      },
+      {
+        "section": "Flash-fry potato matchsticks",
+        "text": "Fry the dry potato matchsticks in batches in hot oil until golden and crunchy. Drain on paper towels and toss with fried peanuts, curry leaves, and black salt.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Do not salt the potatoes before frying so they turn out ultra-crispy."
   },
   {
     "id": "static-0842",
@@ -30128,6 +31712,134 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Salting and resting karela before cooking mellows the bitterness while keeping its digestive benefits."
+  },
+  {
+    "id": "static-1210",
+    "name": "Kasha Aloor Dum (Bengali Spicy Slow-Braised Onion-Garlic Potato Dum)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, halved or baby potatoes",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely sliced or grated",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Kashmiri red chilli, cumin, coriander & turmeric powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, bay leaf, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potatoes golden",
+        "text": "Parboil halved potatoes with salt and turmeric for 5 minutes, drain, and fry in hot mustard oil until golden-crusted.",
+        "minutes": 8
+      },
+      {
+        "section": "Koshano (slow-roast onion-garlic masala)",
+        "text": "Temper oil with bay leaf, whole garam masala, and a pinch of sugar. Caramelize onions, then slow-braise ginger-garlic paste, tomato, and spices with splashes of warm water until dark and glossy.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer potatoes in kosha gravy",
+        "text": "Add the fried potatoes and a cup of warm water, cover and cook on low flame until the thick masala coats the potatoes, and finish with ghee.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Rich, meaty-style Bengali kosha gravy for potatoes."
+  },
+  {
+    "id": "static-1225",
+    "name": "Kashmiri Dum Aloo (Fennel & Yogurt Spiced Baby Potato Curry)",
+    "category": "Vegetable",
+    "region": "Kashmiri",
+    "ingredients": [
+      {
+        "name": "Baby potatoes, peeled and pricked all over",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Plain yogurt (curd), whisked until velvety",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Kashmiri red chilli powder (dissolved in water)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fennel powder (saunf) & dry ginger powder (sonth)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (hing), cloves, black cardamom & cinnamon",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Deep-fry pricked baby potatoes",
+        "text": "Prick parboiled baby potatoes thoroughly with a fork or toothpick and fry in hot mustard oil until a golden-brown skin forms all around.",
+        "minutes": 10
+      },
+      {
+        "section": "Whisk spiced yogurt gravy",
+        "text": "Whisk yogurt with Kashmiri red chilli paste, fennel powder (saunf), and dry ginger powder (sonth). Temper 2 tbsp oil with cloves, black cardamom, cinnamon, and hing.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer on dum",
+        "text": "Stir the spiced yogurt into the pan on low flame until boiling, add the fried baby potatoes and salt, and simmer covered on low heat for 10 minutes so the potatoes soak up the gravy.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Authentic Kashmiri Pandit recipe made without onion, garlic, or tomatoes."
   },
   {
     "id": "static-0773",
@@ -31860,6 +33572,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1206",
+    "name": "Khosa-Soho Aloor Torkari (Kolkata Kochuri-Shop Skin-On Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, scrubbed clean and cubed with skin on",
+        "quantity": "450",
+        "unit": "g"
+      },
+      {
+        "name": "Black chickpeas (kala chana, soaked) or green peas (optional)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Panch phoron & whole dry red chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (hing) & ginger-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander & roasted bhaja masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper mustard oil",
+        "text": "Heat mustard oil until smoking, then temper with whole dry red chillies, panch phoron, and a generous pinch of hing.",
+        "minutes": 2
+      },
+      {
+        "section": "Sauté skin-on potatoes",
+        "text": "Add scrubbed skin-on potato cubes, soaked kala chana, ginger-green chilli paste, turmeric, and salt; stir-fry for 5 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer and mash slightly",
+        "text": "Add warm water, cover and cook until potatoes are soft, lightly mash a few pieces into the gravy, and finish with a pinch of sugar and roasted bhaja masala.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Authentic Kolkata street-corner kochuri and petai porota accompaniment."
+  },
+  {
     "id": "static-1051",
     "name": "Kochu Shak Chingri (Colocasia Stems & Greens with Prawns)",
     "category": "Prawns",
@@ -33323,6 +35099,60 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Pan-roasting kundru brings out a pleasant nutty flavour."
+  },
+  {
+    "id": "static-1215",
+    "name": "Kurkure Posto Aloo Bhaja (Bengali Poppy Seed Crusted Crispy Potatoes)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cut into small cubes or thin batons",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seeds (posto)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & dry red chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry potatoes",
+        "text": "Heat mustard oil, temper with dry red chillies and nigella seeds, and fry cubed potatoes with turmeric and salt until golden and tender.",
+        "minutes": 11
+      },
+      {
+        "section": "Toss with whole poppy seeds",
+        "text": "Sprinkle whole white poppy seeds (posto) and slit green chillies over the potatoes and stir-fry on medium-high flame for 3-4 minutes until the posto toasts nutty and crunchy.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Toasted poppy seeds form a crunchy, nutty crust around the fried potatoes."
   },
   {
     "id": "static-0486",
@@ -39190,6 +41020,70 @@
     "notes": "Wholesome winter green pea paratha made with whole wheat flour."
   },
   {
+    "id": "static-1223",
+    "name": "Mathura Dubki Wale Aloo (Spicy Tangy Crushed Potato Curry for Bedmi Puri)",
+    "category": "Vegetable",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled and coarsely mashed by hand",
+        "quantity": "450",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour, 1 tbsp for body)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Asafoetida (hing), cumin, fennel & crushed cloves-peppercorns",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dry mango powder (amchur), red chilli, coriander, garam masala & black salt",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast besan and spices",
+        "text": "Heat mustard oil or ghee, temper with cumin, fennel, cloves, black pepper, and hing, then lightly roast 1 tbsp besan and ginger-green chilli paste for 1 minute.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer crushed potatoes in thin spicy broth",
+        "text": "Add hand-mashed potatoes, spice powders, and 2.5 cups water; simmer on low flame for 12-15 minutes.",
+        "minutes": 13
+      },
+      {
+        "section": "Finish with amchur and garam masala",
+        "text": "Stir in amchur powder, black salt, garam masala, and fresh coriander.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Famous Mathura and Agra breakfast potato curry without onion, garlic, or tomatoes."
+  },
+  {
     "id": "static-0865",
     "name": "Mathura Peda",
     "category": "Sweets",
@@ -41978,6 +43872,70 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1209",
+    "name": "Niramish Aloor Dum (Bengali No-Onion No-Garlic Festive Potato Dum)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, halved or quartered",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Tomatoes, pureed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Cashew nuts & charmagaz (melon seeds), soaked and ground",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Plain yogurt (curd), whisked",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger paste & Kashmiri red chilli powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole garam masala, cumin seeds, hing, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry halved potatoes",
+        "text": "Fry halved potatoes in mustard oil with a pinch of turmeric and salt until golden brown; set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook rich cashew-yogurt-tomato gravy",
+        "text": "Temper oil with bay leaf, whole garam masala, cumin seeds, and hing. Sauté ginger paste, tomato puree, Kashmiri chilli, cumin-coriander powder, whisked yogurt, and cashew-melon seed paste until oil floats.",
+        "minutes": 9
+      },
+      {
+        "section": "Braise potatoes on low heat",
+        "text": "Add fried potatoes, warm water, salt, and a touch of sugar; cover and cook until fork-tender, finishing with ghee and Bengali garam masala.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Traditional Bengali puja bhog and Ashtami luchi accompaniment without onion or garlic."
+  },
+  {
     "id": "static-0834",
     "name": "Nolen Gur Payesh",
     "category": "Sweets",
@@ -42025,6 +43983,70 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1208",
+    "name": "Notun Aloor Dum (Bengali Winter Baby Potato Dum)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Baby new potatoes (notun aloo), peeled and pricked",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh green peas (koraishuti)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomatoes, pureed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger paste & green chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & Kashmiri red chilli powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole garam masala, hing, bhaja masala, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil and golden-fry baby potatoes",
+        "text": "Parboil peeled baby new potatoes in salted turmeric water for 6 minutes, drain, prick with a fork, and fry in mustard oil until golden.",
+        "minutes": 9
+      },
+      {
+        "section": "Slow-cook niramish masala",
+        "text": "Temper oil with bay leaf, whole garam masala, and hing. Cook ginger-green chilli paste, tomato puree, and spice powders until oil separates.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer on dum with green peas",
+        "text": "Add fried baby potatoes, fresh green peas, and warm water; cover and cook on low heat for 8 minutes. Finish with ghee, bhaja masala, and chopped coriander.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Essential companion to Koraishutir Kochuri at every Bengali winter picnic and feast."
   },
   {
     "id": "static-1130",
@@ -44689,6 +46711,75 @@
     "notes": "Adding 2 tbsp fine semolina keeps Palak Puris puffed and crisp for longer."
   },
   {
+    "id": "static-1212",
+    "name": "Panch Phoron Aloor Torkari (Bengali Five-Spice Homestyle Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Panch phoron (fenugreek, nigella, cumin, black mustard, fennel)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dry red chillies & bay leaf",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Tomato, quartered",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crackle panch phoron",
+        "text": "Heat mustard oil until smoking lightly, then temper with bay leaf, dry red chillies, and panch phoron until the seeds pop.",
+        "minutes": 2
+      },
+      {
+        "section": "Sauté potatoes and tomato",
+        "text": "Add cubed potatoes, quartered tomato, slit green chillies, turmeric, and salt; stir-fry for 4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer covered",
+        "text": "Add warm water and a pinch of sugar, cover and cook until potatoes are soft, mash 2-3 pieces to thicken the gravy, and garnish with coriander.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Simple, fragrant 5-spice Bengali potato curry that requires zero spice grinding."
+  },
+  {
     "id": "static-0716",
     "name": "Paneer Bhurji Sandwich",
     "category": "Sandwich",
@@ -47014,6 +49105,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1216",
+    "name": "Peyaj Aloo Bhaja (Bengali Onion & Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, cut into thin matchsticks",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper and fry potatoes",
+        "text": "Heat mustard oil, crackle nigella seeds and slit green chillies, and stir-fry potato matchsticks with turmeric for 5 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Caramelize with sliced onions",
+        "text": "Add thinly sliced onions and salt; fry uncovered on medium flame until both potatoes and onions turn golden brown.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Everyday Bengali comfort stir-fry for roti, paratha, or dal-rice."
   },
   {
     "id": "static-1065",
@@ -52559,6 +54704,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1224",
+    "name": "Puri Bhaji Aloo (Maharashtrian / South Indian Yellow Potato Masala)",
+    "category": "Vegetable",
+    "region": "Maharashtrian / South Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled and cubed/mashed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds, urad dal & chana dal",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh curry leaves, grated ginger & chopped green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & asafoetida (hing)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice, coriander leaves, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper lentils and curry leaves",
+        "text": "Heat oil, splutter mustard seeds, cumin seeds, urad dal, and chana dal until golden, then add hing, curry leaves, ginger, and green chillies.",
+        "minutes": 3
+      },
+      {
+        "section": "Soften sliced onions",
+        "text": "Add sliced onions and turmeric powder; sauté until soft and translucent without browning.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold in boiled potatoes",
+        "text": "Add boiled potatoes, salt, a pinch of sugar, and 1/2 cup warm water; mash slightly and cook covered for 5 minutes. Finish with lemon juice and fresh coriander.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Classic golden potato bhaji served with hot puffed pooris or dosa."
+  },
+  {
     "id": "static-0481",
     "name": "Puttu (Homestyle)",
     "category": "Breakfast",
@@ -55627,6 +57836,70 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1204",
+    "name": "Sada Aloor Torkari (Bengali White Potato Curry with Kalonji & Green Chilli)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Potatoes, peeled and cut into small cubes",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere / kalonji)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Asafoetida (hing, optional)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or white oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper oil with kalo jeere and green chillies",
+        "text": "Heat oil in a kadai and temper with nigella seeds (kalo jeere), a pinch of hing, and 2 slit green chillies until fragrant.",
+        "minutes": 2
+      },
+      {
+        "section": "Sauté cubed potatoes without turmeric",
+        "text": "Add the small potato cubes and salt (do not add turmeric or red chilli powder so the curry stays ivory-white); stir-fry on medium heat for 3-4 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer and lightly mash for creamy broth",
+        "text": "Pour in warm water, cover and cook until potatoes are soft, then mash a few potato cubes against the side of the pan with your ladle to thicken the white broth. Add sugar and remaining green chillies.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Signature Bengali no-turmeric, no-onion-garlic white potato curry classically paired with hot phulko luchi or trikon porota for breakfast."
   },
   {
     "id": "static-0538",
