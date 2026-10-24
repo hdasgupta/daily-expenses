@@ -5,9 +5,58 @@ import { recordLocationGpsSelection } from "./marketingController.js";
 // The recipe catalogue is version-controlled project data. Update recipes.json and redeploy to change it.
 const staticRecipes = JSON.parse(readFileSync(new URL("../data/recipes.json", import.meta.url), "utf8"));
 
-export async function listRecipes(_req, res) {
-  res.set("Cache-Control", "public, max-age=300, stale-while-revalidate=86400");
-  res.json(staticRecipes);
+export async function listRecipes(req, res) {
+  res.set("Cache-Control", "private, no-cache");
+  try {
+    const userId = req.user?.id || null;
+    const usageResult = await q(
+      `SELECT COALESCE(recipe_snapshot->>'id', '') AS recipe_id,
+              LOWER(COALESCE(recipe_snapshot->>'name', '')) AS recipe_name,
+              COUNT(*)::int AS total_count,
+              COUNT(*) FILTER (WHERE user_id = $1)::int AS user_count
+         FROM public.food_chart_entries
+        GROUP BY COALESCE(recipe_snapshot->>'id', ''), LOWER(COALESCE(recipe_snapshot->>'name', ''))`,
+      [userId],
+    );
+
+    const byId = new Map();
+    const byName = new Map();
+
+    for (const row of usageResult.rows) {
+      const total = Number(row.total_count || 0);
+      const userCount = Number(row.user_count || 0);
+      if (row.recipe_id) {
+        const prev = byId.get(row.recipe_id) || { total: 0, user: 0 };
+        byId.set(row.recipe_id, { total: prev.total + total, user: prev.user + userCount });
+      }
+      if (row.recipe_name) {
+        const prev = byName.get(row.recipe_name) || { total: 0, user: 0 };
+        byName.set(row.recipe_name, { total: prev.total + total, user: prev.user + userCount });
+      }
+    }
+
+    const enriched = staticRecipes.map((recipe) => {
+      const idStats = byId.get(String(recipe.id)) || { total: 0, user: 0 };
+      const nameStats = byName.get(String(recipe.name || "").trim().toLowerCase()) || { total: 0, user: 0 };
+      const usageCount = Math.max(idStats.total, nameStats.total);
+      const userUsageCount = Math.max(idStats.user, nameStats.user);
+      return {
+        ...recipe,
+        usageCount,
+        userUsageCount,
+      };
+    });
+
+    enriched.sort((a, b) => {
+      if (b.usageCount !== a.usageCount) return b.usageCount - a.usageCount;
+      if (b.userUsageCount !== a.userUsageCount) return b.userUsageCount - a.userUsageCount;
+      return String(a.name || "").localeCompare(String(b.name || ""));
+    });
+
+    return res.json(enriched);
+  } catch {
+    return res.json(staticRecipes);
+  }
 }
 
 const readOnlyRecipeResponse = (_req, res) => res.status(405).json({

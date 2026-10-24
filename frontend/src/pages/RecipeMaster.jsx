@@ -12,6 +12,34 @@ import {
 import { todayKolkata } from "../utils/dates.js";
 import "./dietChart.css";
 
+const LOCAL_RECIPE_USAGE_KEY = "recipe-master-usage-counts-v1";
+
+function readLocalRecipeUsage() {
+  try {
+    const raw = localStorage.getItem(LOCAL_RECIPE_USAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function incrementLocalRecipeUsage(recipeId) {
+  if (!recipeId) return {};
+  const current = readLocalRecipeUsage();
+  const key = String(recipeId);
+  const next = {
+    ...current,
+    [key]: Number(current[key] || 0) + 1,
+  };
+  try {
+    localStorage.setItem(LOCAL_RECIPE_USAGE_KEY, JSON.stringify(next));
+  } catch {
+    // Ignore storage quota errors
+  }
+  return next;
+}
+
 function RecipeDetails({ recipe, onClose, onAddIngredient }) {
   if (!recipe) return null;
   return (
@@ -37,7 +65,7 @@ function RecipeDetails({ recipe, onClose, onAddIngredient }) {
                 className="icon-button diet-add-marketing-item"
                 title={`Add ${ingredient.name} to marketing list`}
                 aria-label={`Add ${ingredient.name} to marketing list`}
-                onClick={() => onAddIngredient(ingredient)}
+                onClick={() => onAddIngredient(ingredient, recipe)}
               >
                 <Plus size={17} />
               </button>
@@ -217,6 +245,7 @@ function AddIngredientToMarketing({ ingredient, categories, locations, units, on
 
 export default function RecipeMaster() {
   const [recipes, setRecipes] = useState([]);
+  const [localUsage, setLocalUsage] = useState(readLocalRecipeUsage);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
@@ -245,23 +274,45 @@ export default function RecipeMaster() {
     };
   }, []);
 
-  const filtered = useMemo(
-    () =>
-      recipes.filter((recipe) =>
-        [
-          recipe.name,
-          recipe.category,
-          recipe.region,
-          ...(recipe.ingredients || []).map((ingredient) => ingredient.name),
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(query.toLowerCase())
-      ),
-    [recipes, query]
-  );
+  const getRecipeUsageCount = (recipe) => {
+    const serverUsage = Number(recipe?.usageCount ?? recipe?.usage_count ?? 0);
+    const clientUsage = Number(localUsage[String(recipe?.id)] || 0);
+    return serverUsage + clientUsage;
+  };
 
-  const openAddIngredient = async (ingredient) => {
+  const filtered = useMemo(() => {
+    const matching = recipes.filter((recipe) =>
+      [
+        recipe.name,
+        recipe.category,
+        recipe.region,
+        ...(recipe.ingredients || []).map((ingredient) => ingredient.name),
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
+
+    return [...matching].sort((a, b) => {
+      const usageDiff = getRecipeUsageCount(b) - getRecipeUsageCount(a);
+      if (usageDiff !== 0) return usageDiff;
+      const userDiff = Number(b.userUsageCount || 0) - Number(a.userUsageCount || 0);
+      if (userDiff !== 0) return userDiff;
+      return String(a.name || "").localeCompare(String(b.name || ""));
+    });
+  }, [recipes, query, localUsage]);
+
+  const handleViewRecipe = (recipe) => {
+    if (recipe?.id) {
+      setLocalUsage(incrementLocalRecipeUsage(recipe.id));
+    }
+    setViewer(recipe);
+  };
+
+  const openAddIngredient = async (ingredient, sourceRecipe = viewer) => {
+    if (sourceRecipe?.id) {
+      setLocalUsage(incrementLocalRecipeUsage(sourceRecipe.id));
+    }
     setAddIngredient({ ...ingredient, name: String(ingredient?.name || "").trim() });
     try {
       const [categoriesResult, locBundle, unitsResult] = await Promise.all([
@@ -324,9 +375,6 @@ export default function RecipeMaster() {
       <div className="diet-page-heading">
         <div>
           <h1>Recipe Master</h1>
-          <p>
-            Browse the built-in recipe catalogue. To change recipes, update <code>backend/src/data/recipes.json</code> and redeploy the project.
-          </p>
         </div>
       </div>
       {error && <div className="diet-error">{error}</div>}
@@ -342,26 +390,30 @@ export default function RecipeMaster() {
         <p>Loading recipes…</p>
       ) : (
         <div className="diet-recipe-list">
-          {filtered.map((recipe) => (
-            <article className="diet-recipe-row" key={recipe.id}>
-              <div className="diet-recipe-main">
-                <strong>{recipe.name}</strong>
-                <span>
-                  {recipe.category} · {recipe.region} · {recipe.ingredients?.length || 0} ingredients · {Number(recipe.prepMinutes || 0) + Number(recipe.cookMinutes || 0)} min
-                </span>
-              </div>
-              <div className="diet-actions">
-                <button
-                  className="icon-button"
-                  title="View recipe"
-                  aria-label={`View ${recipe.name}`}
-                  onClick={() => setViewer(recipe)}
-                >
-                  <BookOpen size={18} />
-                </button>
-              </div>
-            </article>
-          ))}
+          {filtered.map((recipe) => {
+            const usageCount = getRecipeUsageCount(recipe);
+            return (
+              <article className="diet-recipe-row" key={recipe.id}>
+                <div className="diet-recipe-main">
+                  <strong>{recipe.name}</strong>
+                  <span>
+                    {recipe.category} · {recipe.region} · {recipe.ingredients?.length || 0} ingredients · {Number(recipe.prepMinutes || 0) + Number(recipe.cookMinutes || 0)} min
+                    {usageCount > 0 ? ` · Used ${usageCount}x` : ""}
+                  </span>
+                </div>
+                <div className="diet-actions">
+                  <button
+                    className="icon-button"
+                    title="View recipe"
+                    aria-label={`View ${recipe.name}`}
+                    onClick={() => handleViewRecipe(recipe)}
+                  >
+                    <BookOpen size={18} />
+                  </button>
+                </div>
+              </article>
+            );
+          })}
           {!filtered.length && (
             <div className="diet-empty">
               {query ? "No recipes match your search." : "No recipes found in the static catalogue."}
