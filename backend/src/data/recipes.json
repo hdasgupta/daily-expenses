@@ -17126,6 +17126,577 @@
     "notes": "Comforting, low-spice everyday Bengali prawn jhol."
   },
   {
+    "id": "static-1243",
+    "name": "Chingri Macher Matha Bata (Bengali Smoky Mashed Prawn Head Bharta)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads (with inner meat and ghilu/roe)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped or sliced",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "8",
+        "unit": "cloves"
+      },
+      {
+        "name": "Dry red chillies & green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast prawn heads, garlic and chillies",
+        "text": "Heat mustard oil, fry dry red chillies and nigella seeds, then pan-roast garlic cloves, sliced onion, and turmeric-salted prawn heads until cooked through and smoky.",
+        "minutes": 8
+      },
+      {
+        "section": "Grind into coarse paste (bata)",
+        "text": "Grind the roasted prawn heads, garlic, onions, dry red chillies, green chillies, and fresh coriander on a shil-nora (stone grinder) or food processor with zero water.",
+        "minutes": 4
+      },
+      {
+        "section": "Finish with raw mustard oil",
+        "text": "Season with salt, drizzle 1 tbsp pungent raw mustard oil on top, and serve with steaming hot white rice.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "One of Bengal's most prized zero-waste bata/bharta delicacies."
+  },
+  {
+    "id": "static-1258",
+    "name": "Chingri Macher Matha Diye Aloo Potol Dalna (Pointed Gourd & Potato Curry with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Jumbo prawn heads (Golda chingri matha), cleaned",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Pointed gourd (potol), scraped and halved",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, chopped & ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole cumin, garam masala & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potol, potatoes and prawn heads",
+        "text": "Fry potol halves and potato wedges in mustard oil until golden and remove. Fry seasoned prawn heads until golden and crush slightly.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook onion-ginger masala",
+        "text": "Temper oil with bay leaf and cumin seeds, fry chopped onion and ginger-garlic paste, and cook tomato with spice powders.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer dalna",
+        "text": "Add fried potol, potatoes, prawn heads, and warm water; simmer covered for 7 minutes until tender and finish with ghee and garam masala.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Infuses everyday Aloo Potol Dalna with rich prawn head flavor."
+  },
+  {
+    "id": "static-1252",
+    "name": "Chingri Macher Matha Diye Bandhakopi Ghonto (Bengali Cabbage with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Cabbage (bandhakopi), finely shredded",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cubed & green peas",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato, chopped & ginger paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, coriander, turmeric & garam masala powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole cumin, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry prawn heads and potatoes",
+        "text": "Fry seasoned prawn heads in mustard oil, crush into bite-sized pieces, and set aside. Fry cubed potatoes until golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Braise shredded cabbage",
+        "text": "Temper oil with bay leaf and cumin seeds, cook ginger paste, tomato, and spices, then add shredded cabbage, potatoes, and salt; cover and cook until soft.",
+        "minutes": 11
+      },
+      {
+        "section": "Fold in prawn heads and peas",
+        "text": "Add green peas, crushed prawn heads, sugar, ghee, and garam masala; cook uncovered for 5 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "notes": "Hearty winter Bengali cabbage ghonto flavored with fried prawn heads."
+  },
+  {
+    "id": "static-1256",
+    "name": "Chingri Macher Matha Diye Chalkumro Ghonto (Ash Gourd with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Ash gourd (chalkumro), peeled and grated or finely julienned",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh grated coconut or mustard paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), bay leaf & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry prawn heads",
+        "text": "Season cleaned prawn heads with salt and turmeric, fry in mustard oil until golden, and crush coarsely.",
+        "minutes": 5
+      },
+      {
+        "section": "Braise ash gourd",
+        "text": "Temper oil with bay leaf, nigella seeds, and slit green chillies; add julienned ash gourd, turmeric, and salt, and cook covered until soft.",
+        "minutes": 9
+      },
+      {
+        "section": "Finish with prawn heads and coconut",
+        "text": "Stir in the crushed prawn heads, grated coconut, and a pinch of sugar; cook uncovered for 4 minutes until thick.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Cooling summer gourd dish enriched with prawn heads."
+  },
+  {
+    "id": "static-1253",
+    "name": "Chingri Macher Matha Diye Kochu Shak (Colocasia Greens with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Colocasia stems & greens (kochu shak), peeled and chopped",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), bay leaf & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, lemon juice, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch kochu shak and fry prawn heads",
+        "text": "Boil chopped colocasia stems with salt until tender, drain well, and mash. Fry seasoned prawn heads in mustard oil until crisp and crush coarsely.",
+        "minutes": 10
+      },
+      {
+        "section": "Temper with garlic and kalo jeere",
+        "text": "Temper mustard oil with bay leaf, dry red chilli, nigella seeds, crushed garlic, and slit green chillies.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook down with prawn heads",
+        "text": "Add mashed kochu shak, turmeric, salt, sugar, and crushed prawn heads; stir-cook over medium flame until moisture evaporates and finish with lemon juice.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 22,
+    "servings": 3,
+    "notes": "Traditional Bengali monsoon delicacy."
+  },
+  {
+    "id": "static-1254",
+    "name": "Chingri Macher Matha Diye Kochur Loti (Taro Stolons with Crushed Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Taro stolons (kochur loti), peeled and cut into 2-inch pieces",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely sliced & garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard paste & grated coconut",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch kochur loti and fry prawn heads",
+        "text": "Blanch cleaned taro stolons in salted turmeric water for 2 minutes and drain. Fry seasoned prawn heads in mustard oil and crush coarsely.",
+        "minutes": 7
+      },
+      {
+        "section": "Sauté garlic and onions",
+        "text": "Temper oil with nigella seeds, fry sliced onion and garlic paste with turmeric and chilli powder.",
+        "minutes": 5
+      },
+      {
+        "section": "Braise with prawn heads and mustard-coconut",
+        "text": "Add blanched kochur loti, crushed prawn heads, mustard paste, grated coconut, and green chillies; cook covered on low heat for 8 minutes until tender.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Bold, garlicky East Bengali preparation using crushed prawn heads."
+  },
+  {
+    "id": "static-1257",
+    "name": "Chingri Macher Matha Diye Kumro Chorchori (Sweet Red Pumpkin with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Sweet red pumpkin (misti kumro), cubed",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cubed",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Onion, sliced",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Panch phoron & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, green chillies, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry prawn heads",
+        "text": "Fry turmeric-salted prawn heads in mustard oil, crush coarsely, and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook pumpkin and potato",
+        "text": "Temper oil with panch phoron and dry red chilli, sauté sliced onion, and add pumpkin and potato cubes with turmeric and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Combine and mash lightly",
+        "text": "Add crushed prawn heads, slit green chillies, and a splash of water; cover and cook until pumpkin is soft and slightly mashed. Garnish with coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Sweet red pumpkin balances the savory depth of fried prawn heads."
+  },
+  {
+    "id": "static-1251",
+    "name": "Chingri Macher Matha Diye Lau Ghonto (Bottle Gourd with Crushed Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, halved or crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Tender bottle gourd (lau), peeled and finely chopped",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Cumin seeds, bay leaf & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger paste & cumin-coriander powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, green chillies, fresh coriander, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear and crush prawn heads",
+        "text": "Fry turmeric-salted prawn heads in mustard oil until aromatic and golden, crush lightly to release the inner ghilu, and remove.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook bottle gourd",
+        "text": "Temper oil with bay leaf, dry red chilli, and cumin seeds, sauté ginger paste and cumin-coriander powder, then add finely chopped bottle gourd and salt; cover and cook until soft.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer with prawn heads",
+        "text": "Stir in the fried prawn heads, slit green chillies, and a pinch of sugar; cook until excess liquid reduces and finish with chopped coriander and ghee.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Delicate bottle gourd absorbs the rich scampi flavor of jumbo prawn heads."
+  },
+  {
+    "id": "static-1255",
+    "name": "Chingri Macher Matha Diye Mochar Ghonto (Banana Blossom with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Banana blossom (mocha), cleaned and finely chopped",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, finely cubed",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger paste, cumin & coriander powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole cumin, garam masala, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil mocha and fry prawn heads",
+        "text": "Boil chopped banana blossom with turmeric and salt, drain and mash lightly. Fry seasoned prawn heads and potato cubes in mustard oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook spice base",
+        "text": "Temper oil with bay leaf and cumin seeds, sauté ginger paste, cumin-coriander powder, grated coconut, and fried potatoes.",
+        "minutes": 7
+      },
+      {
+        "section": "Braise with prawn heads",
+        "text": "Add boiled banana blossom, crushed fried prawn heads, salt, and sugar; cook until cohesive and finish with ghee and Bengali garam masala.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Rich, aromatic Bengali banana blossom ghonto."
+  },
+  {
     "id": "static-1114",
     "name": "Chingri Macher Matha Diye Moong Dal (Roasted Moong Dal with Prawn Heads)",
     "category": "Prawns",
@@ -17190,6 +17761,203 @@
     "notes": "Zero-waste Bengali delicacy that turns golda chingri heads into a rich, aromatic dal."
   },
   {
+    "id": "static-1249",
+    "name": "Chingri Macher Matha Diye Muri Ghonto (Gobindobhog Rice & Prawn Head Medley)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Jumbo prawn heads (Golda chingri matha), cleaned and halved",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Gobindobhog rice (washed and air-dried)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Potatoes, cut into small cubes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, finely chopped & ginger-garlic paste",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Cashews & raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole garam masala, cumin, turmeric, garam masala, sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry prawn heads, potatoes and rice",
+        "text": "Fry cubed potatoes in mustard oil and set aside. Fry seasoned prawn heads until golden, crushing them slightly. Lightly toast Gobindobhog rice, cashews, and raisins in 1 tsp ghee.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook aromatic masala",
+        "text": "Temper oil with bay leaf and whole garam masala, brown chopped onion, and cook ginger-garlic paste, tomato, cumin, coriander, and turmeric.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer rice, potatoes and prawn heads",
+        "text": "Add toasted rice, fried potatoes, crushed prawn heads, and 1.25 cups warm water; cover and cook on low heat until rice and potatoes are tender. Finish with ghee, sugar, and garam masala.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "A royal prawn-head version of traditional Bengali Muri Ghonto."
+  },
+  {
+    "id": "static-1250",
+    "name": "Chingri Macher Matha Diye Pui Shak Chorchori (Malabar Spinach & Pumpkin with Prawn Heads)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Malabar spinach leaves & tender stems (pui shak), chopped",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Sweet red pumpkin (kumro) & potato, cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice) & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger & mustard paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, green chillies, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry and crush prawn heads",
+        "text": "Season cleaned prawn heads with salt and turmeric, fry in hot mustard oil until crisp, crush coarsely with the spatula, and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Braise pui shak and vegetables",
+        "text": "Temper oil with panch phoron and dry red chilli, fry potato and pumpkin cubes, then add pui shak stems and leaves, ginger paste, turmeric, and salt; cover and cook until tender.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold in prawn heads and mustard",
+        "text": "Add the crushed fried prawn heads, mustard paste, slit green chillies, and a pinch of sugar; cook uncovered for 5 minutes until thick.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "notes": "Classic Bengali household way to use every bit of prawn head flavor in leafy green chorchori."
+  },
+  {
+    "id": "static-1248",
+    "name": "Chingri Macher Matha Kosha (Bengali Spicy Prawn Head Masala)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Jumbo prawn heads (Golda chingri matha, cleaned with ghilu intact)",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely sliced",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Kashmiri red chilli, cumin, coriander & turmeric powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, garam masala powder, green chillies & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry jumbo prawn heads",
+        "text": "Season cleaned jumbo prawn heads with salt and turmeric and fry in hot mustard oil for 3-4 minutes, pressing lightly so the rich head fat flavors the oil.",
+        "minutes": 6
+      },
+      {
+        "section": "Slow-roast kosha masala",
+        "text": "Temper oil with whole garam masala, brown sliced onions, and slow-cook ginger-garlic paste, chopped tomato, and spice powders until oil separates.",
+        "minutes": 9
+      },
+      {
+        "section": "Braise prawn heads in masala",
+        "text": "Return the prawn heads with a splash of warm water, cook covered for 5 minutes until coated in thick masala, and finish with ghee and Bengali garam masala.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Celebratory Bengali dish where the creamy orange ghilu inside golda chingri heads enriches the kosha gravy."
+  },
+  {
     "id": "static-0005",
     "name": "Chingri Malai Curry",
     "category": "Prawns",
@@ -17242,6 +18010,70 @@
     "cookMinutes": 20,
     "servings": 3,
     "notes": ""
+  },
+  {
+    "id": "static-1246",
+    "name": "Chingri Mathar Chop (Bengali Spiced Prawn Head & Potato Croquettes)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads (minced/crushed with ghilu)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, boiled and mashed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, ginger & garlic, finely minced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali bhaja masala & garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Breadcrumbs (biskuter guro) & cornflour slurry",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Oil for deep frying",
+        "quantity": "200",
+        "unit": "ml"
+      },
+      {
+        "name": "Green chillies, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced prawn head filling",
+        "text": "Sauté minced onion, ginger, garlic, and crushed prawn heads in mustard oil with turmeric and chilli powder until cooked and dry. Fold in mashed potatoes, bhaja masala, garam masala, and coriander.",
+        "minutes": 10
+      },
+      {
+        "section": "Shape and coat in breadcrumbs",
+        "text": "Shape cooled mixture into oval croquettes, dip in cornflour slurry, and coat generously in breadcrumbs.",
+        "minutes": 6
+      },
+      {
+        "section": "Deep-fry until crisp",
+        "text": "Fry in hot oil until deep golden brown and serve with kasundi and onion-cucumber salad.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Rich, savory Bengali chop infused with the deep flavor of prawn head roe (ghilu)."
   },
   {
     "id": "static-1035",
@@ -19772,6 +20604,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1247",
+    "name": "Crispy Fried Whole Prawn Heads (Salt & Pepper / Tempura Prawn Heads)",
+    "category": "Prawns",
+    "region": "East Asian-inspired",
+    "ingredients": [
+      {
+        "name": "Whole jumbo or tiger prawn heads (eyes and sharp beak trimmed, gills removed)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Cornstarch (cornflour) & rice flour",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic powder or minced garlic",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Crushed black/white pepper & red chilli flakes",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh lemon wedges",
+        "quantity": "1",
+        "unit": "pc"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "250",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Trim and dry prawn heads",
+        "text": "Snip off the sharp rostrum spine and eyes with kitchen shears, rinse and pat the prawn heads bone-dry with paper towels.",
+        "minutes": 6
+      },
+      {
+        "section": "Dredge in seasoned cornstarch",
+        "text": "Toss the prawn heads with salt, pepper, garlic, cornstarch, and rice flour so every crevice is lightly coated.",
+        "minutes": 3
+      },
+      {
+        "section": "Flash-fry until shatteringly crisp",
+        "text": "Deep-fry in 180°C oil for 3-4 minutes until the shells and legs turn wafer-crisp and golden. Drain, toss with chilli-salt, and serve with lemon.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 8,
+    "servings": 2,
+    "notes": "Japanese izakaya-style crispy shrimp heads where the entire thin shell becomes edible and crunchy."
   },
   {
     "id": "static-0162",
@@ -43671,6 +44562,65 @@
     "notes": "Uses whole freshly grated coconut for a textured, sweet-savory Bengali prawn curry."
   },
   {
+    "id": "static-1244",
+    "name": "Narkel Diye Chingri Mathar Bora (Prawn Head & Grated Coconut Fritters)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, coarsely ground",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies & ginger, finely chopped",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour & besan",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine ground prawn heads and coconut",
+        "text": "Mix coarsely ground cleaned prawn heads with freshly grated coconut, chopped onion, ginger, green chillies, turmeric, salt, and a pinch of sugar.",
+        "minutes": 6
+      },
+      {
+        "section": "Bind and pan-fry",
+        "text": "Add rice flour and besan to bind into a firm mixture, shape into flat cakes, and shallow-fry in mustard oil until crisp and golden on both sides.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Sweet grated coconut complements the rich umami of golda chingri head roe."
+  },
+  {
     "id": "static-0913",
     "name": "Narkel Naru",
     "category": "Sweets",
@@ -50885,6 +51835,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1245",
+    "name": "Posto Diye Chingri Mathar Bora (Poppy Seed & Prawn Head Fritters)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads, crushed or ground",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seeds (posto — half ground, half whole)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rice flour or besan",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix prawn heads with posto",
+        "text": "Fold crushed prawn heads with poppy seed paste, whole poppy seeds, chopped onion, green chillies, turmeric, salt, and rice flour.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry in mustard oil",
+        "text": "Flatten into small discs and pan-fry in hot mustard oil over medium-low heat until nutty, golden, and crisp.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Crunchy poppy seeds and rich prawn head paste make an irresistible starter with dal-bhaat."
+  },
+  {
     "id": "static-1122",
     "name": "Posto Diye Macher Dimer Bora (Poppy Seed Fish Egg Fritters)",
     "category": "Fish Roe",
@@ -53156,6 +54165,203 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Street-style Kolkata prawn chowmein great as an evening meal or dinner."
+  },
+  {
+    "id": "static-1241",
+    "name": "Prawn Head Fritters (Chingri Macher Mathar Bora)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Prawn heads (Golda or Bagda chingri matha, trimmed and cleaned with head roe/ghilu intact)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Garlic cloves & ginger (crushed)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), turmeric & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil for frying",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Clean and crush prawn heads",
+        "text": "Remove the hard outer carapace shell, eyes, and sharp rostrum spine from the prawn heads while keeping the soft inner head meat and orange roe/fat (ghilu). Coarsely grind or pound in a mortar/mixer.",
+        "minutes": 8
+      },
+      {
+        "section": "Mix fritter batter",
+        "text": "Combine the crushed prawn heads with finely chopped onion, crushed garlic-ginger, green chillies, coriander leaves, nigella seeds, turmeric, red chilli powder, salt, besan, and rice flour.",
+        "minutes": 4
+      },
+      {
+        "section": "Shallow-fry crisp boras",
+        "text": "Shape into flat round patties and fry in hot mustard oil over medium heat for 3-4 minutes per side until deep golden and crunchy. Serve hot with steamed rice and masoor dal.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Adding rice flour alongside besan makes Chingri Macher Mathar Bora extra crispy."
+  },
+  {
+    "id": "static-1259",
+    "name": "Prawn Head Garlic Butter Roast (Ghilu-Infused Garlic Prawn Heads)",
+    "category": "Prawns",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Jumbo prawn heads (cleaned with orange roe/ghilu intact)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Salted butter & olive oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garlic cloves, finely minced",
+        "quantity": "8",
+        "unit": "cloves"
+      },
+      {
+        "name": "Red chilli flakes & cracked black pepper",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander or parsley, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté garlic in butter",
+        "text": "Heat olive oil and half the butter in a skillet and gently sauté minced garlic and chilli flakes until fragrant.",
+        "minutes": 2
+      },
+      {
+        "section": "Roast prawn heads and release ghilu",
+        "text": "Add seasoned jumbo prawn heads, sear for 3-4 minutes per side while pressing gently so the creamy orange head fat emulsifies with the garlic butter.",
+        "minutes": 6
+      },
+      {
+        "section": "Finish with lemon and herbs",
+        "text": "Swirl in remaining butter, lemon juice, black pepper, and fresh herbs; serve hot with toasted bread or steamed rice.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "The rich head roe (ghilu) melts into the garlic butter to create a decadent pan sauce."
+  },
+  {
+    "id": "static-1242",
+    "name": "Prawn Head Pakora (Crispy Chingri Mathar Pakora)",
+    "category": "Prawns",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads (trimmed of sharp spines and outer shell)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour) & cornflour/rice flour",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste & lemon juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies & coriander leaves, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), turmeric, Kashmiri chilli & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "200",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate cleaned prawn heads",
+        "text": "Toss trimmed, cleaned prawn heads with lemon juice, ginger-garlic paste, turmeric, red chilli powder, and salt; rest for 10 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Coat in spiced pakora batter",
+        "text": "Mix besan, cornflour/rice flour, sliced onion, green chillies, coriander, ajwain, and a splash of water into a thick coating batter and fold in the prawn heads.",
+        "minutes": 4
+      },
+      {
+        "section": "Deep-fry golden",
+        "text": "Drop small clusters into medium-hot oil and fry for 4-5 minutes until golden brown and crisp. Sprinkle with chaat masala and serve with kasundi.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Crunchy evening snack or starter that turns leftover prawn heads into a gourmet treat."
   },
   {
     "id": "static-1016",
@@ -61323,6 +62529,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1260",
+    "name": "Spiced Prawn Head Soup (Aromatic Chingri Mathar Jhol / Broth)",
+    "category": "Prawns",
+    "region": "Indian / International",
+    "ingredients": [
+      {
+        "name": "Cleaned prawn heads & shells",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, carrot & tomato, roughly chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves & fresh ginger, crushed",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander stems, peppercorns & bay leaf",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice, chopped spring onions & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast prawn heads for deep flavor",
+        "text": "Heat butter or oil in a pot and roast the cleaned prawn heads on medium-high heat for 5 minutes, crushing them with a spoon until deep orange and fragrant.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer with aromatics",
+        "text": "Add crushed garlic, ginger, onion, tomato, coriander stems, and peppercorns; pour in 3.5 cups water and simmer gently for 12-15 minutes.",
+        "minutes": 13
+      },
+      {
+        "section": "Strain and season",
+        "text": "Strain the rich golden broth through a fine sieve, pressing the solids well, and finish with salt, lemon juice, and fresh herbs.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Nutrient-dense, deeply flavorful seafood broth that can be sipped as a soup or used as a base for prawn pulao and curries."
   },
   {
     "id": "static-0064",
