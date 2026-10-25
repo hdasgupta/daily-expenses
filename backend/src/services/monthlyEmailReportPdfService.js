@@ -404,6 +404,32 @@ function drawTable(
   const headerHeight = 25;
   const rowHeight = 28;
 
+  const usablePageHeight =
+    doc.page.height -
+    doc.page.margins.top -
+    doc.page.margins.bottom;
+
+  const measureRowHeight = (values) => {
+    let maxTextHeight = 0;
+    columns.forEach((column, columnIndex) => {
+      const width = columnWidths[columnIndex];
+      const value = values[column];
+      const isProofLink = column === "proof" && value;
+      const cellText = isProofLink
+        ? "Download Proof"
+        : String(value ?? "—");
+      doc.font(isProofLink ? "Helvetica-Bold" : "Helvetica").fontSize(6);
+      const h = doc.heightOfString(cellText, {
+        width: Math.max(width - 6, 4),
+      });
+      if (h > maxTextHeight) maxTextHeight = h;
+    });
+    return Math.min(
+      usablePageHeight,
+      Math.max(rowHeight, Math.ceil(maxTextHeight + 12)),
+    );
+  };
+
   const drawRow = (
     values,
     header = false,
@@ -411,12 +437,13 @@ function drawTable(
   ) => {
     const height = header
       ? headerHeight
-      : rowHeight;
+      : measureRowHeight(values);
 
     if (
       doc.y + height >
-      doc.page.height -
-        doc.page.margins.bottom
+        doc.page.height -
+          doc.page.margins.bottom &&
+      doc.y > doc.page.margins.top + 1
     ) {
       doc.addPage();
     }
@@ -467,6 +494,23 @@ function drawTable(
           column === "proof" &&
           value;
 
+        const cellText = isProofLink
+          ? "Download Proof"
+          : String(value ?? "—");
+
+        const textOptions = header
+          ? {
+              width: Math.max(width - 6, 4),
+              height: height - 7,
+              ellipsis: true,
+            }
+          : {
+              width: Math.max(width - 6, 4),
+              lineBreak: true,
+              link: isProofLink ? String(value) : undefined,
+              underline: Boolean(isProofLink),
+            };
+
         doc
           .fillColor(
             header
@@ -484,25 +528,10 @@ function drawTable(
               : "Helvetica",
           )
           .text(
-            isProofLink
-              ? "Download Proof"
-              : String(
-                  value ?? "—",
-                ),
+            cellText,
             x + 3,
             y + 5,
-            {
-              width: Math.max(width - 6, 4),
-              height: height - 7,
-              ellipsis: true,
-              link: isProofLink
-                ? String(value)
-                : undefined,
-              underline:
-                Boolean(
-                  isProofLink,
-                ),
-            },
+            textOptions,
           );
 
         x += width;
@@ -942,12 +971,12 @@ export function buildMonthlyEmailReportPdfInProcess(
             }),
           ),
           [
-            55,
-            90,
+            65,
             100,
-            125,
-            75,
-            55,
+            115,
+            195,
+            225,
+            69,
           ],
         );
       }

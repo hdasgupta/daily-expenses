@@ -379,6 +379,32 @@ function drawTable(
         columns.length,
     );
 
+  const usablePageHeight =
+    doc.page.height -
+    doc.page.margins.top -
+    doc.page.margins.bottom;
+
+  const measureRowHeight = (values) => {
+    let maxTextHeight = 0;
+    columns.forEach((column, columnIndex) => {
+      const width = columnWidths[columnIndex];
+      const value = values[column];
+      const proof = column === "proof" && value;
+      const cellText = proof
+        ? "Download Proof"
+        : String(value ?? "—");
+      doc.font(proof ? "Helvetica-Bold" : "Helvetica").fontSize(6);
+      const h = doc.heightOfString(cellText, {
+        width: Math.max(width - 6, 4),
+      });
+      if (h > maxTextHeight) maxTextHeight = h;
+    });
+    return Math.min(
+      usablePageHeight,
+      Math.max(28, Math.ceil(maxTextHeight + 12)),
+    );
+  };
+
   const drawRow = (
     values,
     header = false,
@@ -386,12 +412,13 @@ function drawTable(
   ) => {
     const rowHeight = header
       ? 25
-      : 28;
+      : measureRowHeight(values);
 
     if (
       doc.y + rowHeight >
-      doc.page.height -
-        doc.page.margins.bottom
+        doc.page.height -
+          doc.page.margins.bottom &&
+      doc.y > doc.page.margins.top + 1
     ) {
       doc.addPage();
     }
@@ -446,6 +473,23 @@ function drawTable(
           column === "proof" &&
           value;
 
+        const cellText = proof
+          ? "Download Proof"
+          : String(value ?? "—");
+
+        const textOptions = header
+          ? {
+              width: Math.max(width - 6, 4),
+              height: rowHeight - 7,
+              ellipsis: true,
+            }
+          : {
+              width: Math.max(width - 6, 4),
+              lineBreak: true,
+              link: proof ? String(value) : undefined,
+              underline: Boolean(proof),
+            };
+
         doc
           .fillColor(
             header
@@ -463,24 +507,10 @@ function drawTable(
               : "Helvetica",
           )
           .text(
-            proof
-              ? "Download Proof"
-              : String(
-                  value ?? "—",
-                ),
+            cellText,
             x + 3,
             y + 5,
-            {
-              width: Math.max(width - 6, 4),
-              height:
-                rowHeight - 7,
-              ellipsis: true,
-              link: proof
-                ? String(value)
-                : undefined,
-              underline:
-                Boolean(proof),
-            },
+            textOptions,
           );
 
         x += width;
@@ -855,12 +885,12 @@ export function buildYearlyEmailReportPdfInProcess(
             }),
           ),
           [
-            55,
-            85,
+            65,
             100,
-            135,
-            75,
-            60,
+            115,
+            195,
+            225,
+            69,
           ],
         );
       }

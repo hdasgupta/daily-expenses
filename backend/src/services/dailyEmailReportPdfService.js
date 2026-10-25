@@ -329,17 +329,43 @@ function drawTable(
         Math.max(columns.length, 1),
     );
 
+  const usablePageHeight =
+    doc.page.height -
+    doc.page.margins.top -
+    doc.page.margins.bottom;
+
+  const measureRowHeight = (values) => {
+    let maxTextHeight = 0;
+    columns.forEach((column, i) => {
+      const width = columnWidths[i];
+      const proof = column === "proof" && values[column];
+      const cellText = proof
+        ? "Download Proof"
+        : String(values[column] ?? "—");
+      doc.font(proof ? "Helvetica-Bold" : "Helvetica").fontSize(6);
+      const h = doc.heightOfString(cellText, {
+        width: Math.max(width - 6, 4),
+      });
+      if (h > maxTextHeight) maxTextHeight = h;
+    });
+    return Math.min(
+      usablePageHeight,
+      Math.max(28, Math.ceil(maxTextHeight + 12)),
+    );
+  };
+
   const drawRow = (
     values,
     header = false,
     index = 0,
   ) => {
-    const height = header ? 25 : 28;
+    const height = header ? 25 : measureRowHeight(values);
 
     if (
       doc.y + height >
-      doc.page.height -
-        doc.page.margins.bottom
+        doc.page.height -
+          doc.page.margins.bottom &&
+      doc.y > doc.page.margins.top + 1
     ) {
       doc.addPage();
     }
@@ -385,6 +411,23 @@ function drawTable(
         column === "proof" &&
         values[column];
 
+      const cellText = proof
+        ? "Download Proof"
+        : String(values[column] ?? "—");
+
+      const textOptions = header
+        ? {
+            width: Math.max(width - 6, 4),
+            height: height - 7,
+            ellipsis: true,
+          }
+        : {
+            width: Math.max(width - 6, 4),
+            lineBreak: true,
+            link: proof ? String(values[column]) : undefined,
+            underline: Boolean(proof),
+          };
+
       doc
         .fillColor(
           header
@@ -400,22 +443,10 @@ function drawTable(
             : "Helvetica",
         )
         .text(
-          proof
-            ? "Download Proof"
-            : String(
-                values[column] ?? "—",
-              ),
+          cellText,
           x + 3,
           y + 5,
-          {
-            width: Math.max(width - 6, 4),
-            height: height - 7,
-            ellipsis: true,
-            link: proof
-              ? String(values[column])
-              : undefined,
-            underline: Boolean(proof),
-          },
+          textOptions,
         );
 
       x += width;
@@ -763,12 +794,12 @@ export function buildDailyEmailReportPdfInProcess(
           }),
         ),
         [
-          55,
-          85,
+          65,
           100,
-          135,
-          75,
-          60,
+          115,
+          195,
+          225,
+          69,
         ],
       );
 

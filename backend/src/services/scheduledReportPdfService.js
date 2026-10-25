@@ -270,10 +270,28 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
 
 function drawTable(doc, columns, rows, widths = null) {
   const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
+  const usablePageHeight = doc.page.height - doc.page.margins.top - doc.page.margins.bottom;
   const columnWidths = widths || columns.map(() => usableWidth / Math.max(columns.length, 1));
+
+  const measureRowHeight = (values) => {
+    let maxTextHeight = 0;
+    columns.forEach((column, columnIndex) => {
+      const width = columnWidths[columnIndex];
+      const value = values[column];
+      const isProof = column === "proof" && value;
+      const cellText = isProof ? "Download Proof" : String(value ?? "—");
+      doc.font(isProof ? "Helvetica-Bold" : "Helvetica").fontSize(6);
+      const h = doc.heightOfString(cellText, { width: Math.max(width - 6, 4) });
+      if (h > maxTextHeight) maxTextHeight = h;
+    });
+    return Math.min(usablePageHeight, Math.max(29, Math.ceil(maxTextHeight + 12)));
+  };
+
   const drawRow = (values, header = false, index = 0) => {
-    const height = header ? 25 : 29;
-    if (doc.y + height > doc.page.height - doc.page.margins.bottom) doc.addPage();
+    const height = header ? 25 : measureRowHeight(values);
+    if (doc.y + height > doc.page.height - doc.page.margins.bottom && doc.y > doc.page.margins.top + 1) {
+      doc.addPage();
+    }
     const y = doc.y;
     let x = doc.page.margins.left;
     columns.forEach((column, columnIndex) => {
@@ -285,17 +303,24 @@ function drawTable(doc, columns, rows, widths = null) {
       doc.strokeColor("#b8c7da").rect(x, y, width, height).stroke();
       const value = values[column];
       const isProof = !header && column === "proof" && value;
+      const cellText = isProof ? "Download Proof" : String(value ?? "—");
+      const textOptions = header
+        ? {
+            width: Math.max(width - 6, 4),
+            height: height - 7,
+            ellipsis: true,
+          }
+        : {
+            width: Math.max(width - 6, 4),
+            lineBreak: true,
+            link: isProof ? String(value) : undefined,
+            underline: Boolean(isProof),
+          };
       doc
         .fillColor(header ? "#ffffff" : isProof ? "#2563eb" : "#1f2937")
         .fontSize(header ? 7 : 6)
         .font(header ? "Helvetica-Bold" : "Helvetica")
-        .text(isProof ? "Download Proof" : String(value ?? "—"), x + 3, y + 5, {
-          width: Math.max(width - 6, 4),
-          height: height - 7,
-          ellipsis: true,
-          link: isProof ? String(value) : undefined,
-          underline: Boolean(isProof),
-        });
+        .text(cellText, x + 3, y + 5, textOptions);
       x += width;
     });
     doc.x = doc.page.margins.left;
@@ -498,7 +523,7 @@ export function buildScheduledReportPdfInProcess({ summary, raw, generatedAt }) 
       doc,
       ["date", "category", "item", "share", "total", "comment", "proof"],
       normaliseRawRows(raw),
-      [55, 80, 85, 150, 58, 95, 58],
+      [62, 92, 105, 185, 65, 195, 65],
     );
     doc.end();
   });

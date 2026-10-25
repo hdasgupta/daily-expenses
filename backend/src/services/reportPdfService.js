@@ -241,22 +241,38 @@ function drawCell(doc, value, column, x, y, width, height, textColor, fontSize) 
     .fontSize(fontSize)
     .font(isProof ? "Helvetica-Bold" : "Helvetica")
     .text(text, x + 3, y + 5, {
-      width: width - 6,
-      height: height - 7,
-      ellipsis: true,
+      width: Math.max(width - 6, 4),
+      lineBreak: true,
       link: isProof ? String(value) : undefined,
       underline: Boolean(isProof),
     });
 }
 
 function ensureSpace(doc, height = 40) {
-  if (doc.y + height > doc.page.height - doc.page.margins.bottom) {
+  if (
+    doc.y + height > doc.page.height - doc.page.margins.bottom &&
+    doc.y > doc.page.margins.top + 1
+  ) {
     doc.addPage();
   }
 }
 
 function usableWidthFor(doc) {
   return doc.page.width - doc.page.margins.left - doc.page.margins.right;
+}
+
+function defaultColumnWidthsFor(columns, usableWidth) {
+  const weights = columns.map((column) => {
+    if (column === "comment") return 2.3;
+    if (column === "share") return 1.65;
+    if (column === "item" || column === "category" || column === "survivor") return 1.05;
+    if (column === "quantity" || column === "unit") return 0.55;
+    if (column === "proof_url" || column === "proof") return 0.7;
+    if (["expense_date", "total_cost", "expense_amount", "price", "total"].includes(column)) return 0.78;
+    return 1.0;
+  });
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0) || 1;
+  return weights.map((w) => (w / totalWeight) * usableWidth);
 }
 
 function drawSectionTitle(doc, title, subtitle = "") {
@@ -288,12 +304,29 @@ function drawTable(doc, columns, rows, widths = null, options = {}) {
   if (!columns.length) return;
 
   const usableWidth = usableWidthFor(doc);
-  const columnWidths = widths || columns.map(() => usableWidth / columns.length);
+  const usablePageHeight = doc.page.height - doc.page.margins.top - doc.page.margins.bottom;
+  const columnWidths = widths || defaultColumnWidthsFor(columns, usableWidth);
   const headerHeight = options.headerHeight || 25;
   const rowHeight = options.rowHeight || 28;
+  const cellFontSize = options.fontSize || 6;
+
+  const measureRowHeight = (values) => {
+    let maxTextHeight = 0;
+    columns.forEach((column, columnIndex) => {
+      const width = columnWidths[columnIndex];
+      const isProof = column === "proof_url" && values[column];
+      const text = isProof ? "Open proof" : formatCell(values[column], column);
+      doc.font(isProof ? "Helvetica-Bold" : "Helvetica").fontSize(cellFontSize);
+      const h = doc.heightOfString(String(text ?? "—"), {
+        width: Math.max(width - 6, 4),
+      });
+      if (h > maxTextHeight) maxTextHeight = h;
+    });
+    return Math.min(usablePageHeight, Math.max(rowHeight, Math.ceil(maxTextHeight + 12)));
+  };
 
   const drawRow = (values, header = false, index = 0) => {
-    const height = header ? headerHeight : rowHeight;
+    const height = header ? headerHeight : measureRowHeight(values);
     ensureSpace(doc, height);
 
     const y = doc.y;
@@ -317,17 +350,18 @@ function drawTable(doc, columns, rows, widths = null, options = {}) {
           .fontSize(7)
           .font("Helvetica-Bold")
           .text(String(column).replace(/_/g, " ").toUpperCase(), x + 3, y + 5, {
-            width: width - 6,
+            width: Math.max(width - 6, 4),
             height: height - 7,
             ellipsis: true,
           });
       } else {
-        drawCell(doc, values[column], column, x, y, width, height, "#1f2937", options.fontSize || 6);
+        drawCell(doc, values[column], column, x, y, width, height, "#1f2937", cellFontSize);
       }
 
       x += width;
     });
 
+    doc.x = doc.page.margins.left;
     doc.y = y + height;
   };
 
