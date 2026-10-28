@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, CalendarDays, LocateFixed, MapPin, Pencil, Plus, Search, ShoppingBasket, Trash2, X } from "lucide-react";
 import { api, showToast } from "../lib/api";
 import {
@@ -14,10 +14,97 @@ import { todayKolkata } from "../utils/dates.js";
 import "./dietChart.css";
 
 const meals = ["Breakfast", "Lunch", "Evening Snacks", "Dinner"];
+const LOCAL_RECIPE_USAGE_KEY = "recipe-master-usage-counts-v1";
+const RECIPES_CACHE_KEY = "de_recipes_catalogue_cache_v1";
+const INITIAL_PICKER_LIMIT = 120;
 
-function RecipeViewer({ entry, onClose, onAddIngredient }) {
-  const recipe = entry?.recipe;
-  if (!recipe) return null;
+function readLocalRecipeUsage() {
+  try {
+    const raw = localStorage.getItem(LOCAL_RECIPE_USAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function incrementLocalRecipeUsage(recipeId) {
+  if (!recipeId) return readLocalRecipeUsage();
+  const current = readLocalRecipeUsage();
+  const key = String(recipeId);
+  const next = {
+    ...current,
+    [key]: Number(current[key] || 0) + 1,
+  };
+  try {
+    localStorage.setItem(LOCAL_RECIPE_USAGE_KEY, JSON.stringify(next));
+  } catch {
+    // Ignore storage quota errors
+  }
+  return next;
+}
+
+function readCachedRecipes() {
+  try {
+    const raw = sessionStorage.getItem(RECIPES_CACHE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeCachedRecipes(list) {
+  try {
+    if (Array.isArray(list) && list.length) {
+      sessionStorage.setItem(RECIPES_CACHE_KEY, JSON.stringify(list));
+    }
+  } catch {
+    // Ignore sessionStorage quota errors
+  }
+}
+
+function resolveEntryRecipe(entry, recipesMap) {
+  let r = entry?.recipe ?? entry?.recipe_snapshot ?? null;
+  if (typeof r === "string") {
+    try {
+      r = JSON.parse(r);
+    } catch {
+      r = null;
+    }
+  }
+  const fallbackId = entry?.recipeId ?? entry?.recipe_id ?? r?.id;
+  const fallback = fallbackId != null ? recipesMap.get(String(fallbackId)) : null;
+  if (r && typeof r === "object" && (r.name || r.title)) {
+    return {
+      ...(fallback || {}),
+      ...r,
+      name: r.name || r.title || fallback?.name || "Recipe",
+      category: r.category || fallback?.category || "Recipe",
+      region: r.region || fallback?.region || "Indian",
+      ingredients:
+        Array.isArray(r.ingredients) && r.ingredients.length
+          ? r.ingredients
+          : fallback?.ingredients || [],
+      steps:
+        Array.isArray(r.steps) && r.steps.length
+          ? r.steps
+          : fallback?.steps || [],
+    };
+  }
+  if (fallback) return fallback;
+  return {
+    name: entry?.recipeName || entry?.name || "Recipe",
+    category: "Recipe",
+    region: "Indian",
+    ingredients: [],
+    steps: [],
+  };
+}
+
+function RecipeViewer({ entry, recipe, onClose, onAddIngredient }) {
+  if (!entry || !recipe) return null;
   const ratio = Number(entry.servings || recipe.servings || 2) / Number(recipe.servings || 2);
   return (
     <div className="diet-modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
@@ -243,10 +330,13 @@ export default function FoodChart() {
   const [autoLocationHint, setAutoLocationHint] = useState("");
   const [detectingGps, setDetectingGps] = useState(false);
   const [entries, setEntries] = useState([]);
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState(readCachedRecipes);
+  const [recipesLoading, setRecipesLoading] = useState(false);
+  const [localUsage, setLocalUsage] = useState(readLocalRecipeUsage);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [adding, setAdding] = useState(false);
+  const [pickerLimit, setPickerLimit] = useState(INITIAL_PICKER_LIMIT);
   const [meal, setMeal] = useState("Breakfast");
   const [query, setQuery] = useState("");
   const [viewer, setViewer] = useState(null);
@@ -257,30 +347,46 @@ export default function FoodChart() {
   const [addIngredient, setAddIngredient] = useState(null);
   const [addingToMarketing, setAddingToMarketing] = useState(false);
   const userChoseLocationRef = useRef(false);
+  const hasEntriesForDateRef = useRef(false);
 
+  const loadRecipesCatalogue = useCallback(async (silent = false) => {
+    setRecipesLoading(true);
+    try {
+      const master = await api("/recipes", { silent });
+      if (Array.isArray(master) && master.length) {
+        setRecipes(master);
+        writeCachedRecipes(master);
+      }
+    } catch (e) {
+      if (!silent) {
+        setError(e.message || "Unable to load recipes");
+      }
+    } finally {
+      setRecipesLoading(false);
+    }
+  }, []);
+
+  // Load recipe catalogue and locations independently so neither blocks the other on Android WebView
   useEffect(() => {
     let active = true;
+    void loadRecipesCatalogue(true);
+
     (async () => {
-      setLoading(true);
       try {
-        const [master, locBundle] = await Promise.all([
-          api("/recipes"),
-          fetchLocationsWithGps({ silent: true, fastInitial: true }),
-        ]);
+        const locBundle = await fetchLocationsWithGps({ silent: true, fastInitial: true });
         if (!active) return;
-        setRecipes(Array.isArray(master) ? master : []);
         const locList = Array.isArray(locBundle?.locations) ? locBundle.locations : [];
         setLocations(locList);
         if (isValidCoordinates(locBundle?.coords)) {
           setCurrentCoords(locBundle.coords);
         }
-        if (!locationId && locBundle?.bestLocation) {
-          setLocationId(String(locBundle.bestLocation.id));
+        if (!userChoseLocationRef.current && locBundle?.bestLocation) {
+          setLocationId((prev) => prev || String(locBundle.bestLocation.id));
           setAutoLocationHint(describeAutoMatchReason(locBundle.bestLocation));
         }
-        setError("");
 
-        // Refine location with live GPS in background
+        // Refine location with live GPS in background ONLY if the user has not chosen a location
+        // and the currently displayed date does not already have planned recipes.
         getCurrentGpsPosition({ timeout: 6000 }).then(async (liveCoords) => {
           if (!active || !isValidCoordinates(liveCoords)) return;
           setCurrentCoords(liveCoords);
@@ -289,7 +395,11 @@ export default function FoodChart() {
             if (!active) return;
             if (Array.isArray(refreshed?.locations) && refreshed.locations.length) {
               setLocations(refreshed.locations);
-              if (!userChoseLocationRef.current && refreshed.bestLocation) {
+              if (
+                !userChoseLocationRef.current &&
+                !hasEntriesForDateRef.current &&
+                refreshed.bestLocation
+              ) {
                 setLocationId(String(refreshed.bestLocation.id));
                 setAutoLocationHint(describeAutoMatchReason(refreshed.bestLocation));
               }
@@ -298,38 +408,56 @@ export default function FoodChart() {
             const localRefined = pickBestLocation(locList, liveCoords);
             if (!active) return;
             setLocations(localRefined.locations);
-            if (!userChoseLocationRef.current && localRefined.bestLocation) {
+            if (
+              !userChoseLocationRef.current &&
+              !hasEntriesForDateRef.current &&
+              localRefined.bestLocation
+            ) {
               setLocationId(String(localRefined.bestLocation.id));
               setAutoLocationHint(describeAutoMatchReason(localRefined.bestLocation));
             }
           }
         });
-      } catch (e) {
-        if (active) setError(e.message || "Unable to load food chart");
-      } finally {
-        if (active) setLoading(false);
+      } catch {
+        // Non-fatal: food chart entries still load by date even if locations fail
       }
     })();
+
     return () => {
       active = false;
     };
-  }, []);
+  }, [loadRecipesCatalogue]);
+
+  // If the Add Recipe modal is opened and recipes haven't loaded yet, fetch them immediately
+  useEffect(() => {
+    if (adding && recipes.length === 0 && !recipesLoading) {
+      void loadRecipesCatalogue(false);
+    }
+  }, [adding, recipes.length, recipesLoading, loadRecipesCatalogue]);
 
   useEffect(() => {
     let active = true;
-    if (!locationId) {
-      setEntries([]);
-      return () => {
-        active = false;
-      };
-    }
     setLoading(true);
-    api(`/food-chart?date=${encodeURIComponent(date)}&locationId=${encodeURIComponent(locationId)}`)
+    const strictFlag = userChoseLocationRef.current ? "&strictLocation=true" : "";
+    api(
+      `/food-chart?date=${encodeURIComponent(date)}&locationId=${encodeURIComponent(
+        locationId || ""
+      )}${strictFlag}`
+    )
       .then((chart) => {
-        if (active) {
-          setEntries(Array.isArray(chart) ? chart : []);
-          setError("");
+        if (!active) return;
+        const list = Array.isArray(chart) ? chart : [];
+        hasEntriesForDateRef.current = list.length > 0;
+        setEntries(list);
+        // If auto-location had no entries for this date and the server returned entries planned
+        // under another location on this date, sync the location dropdown to match.
+        if (!userChoseLocationRef.current && list.length > 0) {
+          const entryLoc = list.find((item) => item?.locationId != null)?.locationId;
+          if (entryLoc != null && String(entryLoc) !== String(locationId)) {
+            setLocationId(String(entryLoc));
+          }
         }
+        setError("");
       })
       .catch((e) => {
         if (active) setError(e.message || "Unable to load food chart");
@@ -368,15 +496,43 @@ export default function FoodChart() {
     }
   };
 
-  const filteredRecipes = useMemo(
-    () =>
-      recipes.filter((r) =>
-        [r.name, r.category, r.region, ...(r.ingredients || []).map((i) => i.name)]
-          .join(" ")
-          .toLowerCase()
-          .includes(query.toLowerCase())
-      ),
-    [recipes, query]
+  const recipesMap = useMemo(
+    () => new Map(recipes.map((r) => [String(r.id), r])),
+    [recipes]
+  );
+
+  const getRecipeUsageCount = useCallback(
+    (recipe) => {
+      const serverUsage = Number(recipe?.usageCount ?? recipe?.usage_count ?? 0);
+      const clientUsage = Number(localUsage[String(recipe?.id)] || 0);
+      return serverUsage + clientUsage;
+    },
+    [localUsage]
+  );
+
+  const filteredRecipes = useMemo(() => {
+    const qText = query.trim().toLowerCase();
+    const matching = qText
+      ? recipes.filter((r) =>
+          [r.name, r.category, r.region, ...(r.ingredients || []).map((i) => i.name)]
+            .join(" ")
+            .toLowerCase()
+            .includes(qText)
+        )
+      : recipes;
+
+    return [...matching].sort((a, b) => {
+      const usageDiff = getRecipeUsageCount(b) - getRecipeUsageCount(a);
+      if (usageDiff !== 0) return usageDiff;
+      const userDiff = Number(b.userUsageCount || 0) - Number(a.userUsageCount || 0);
+      if (userDiff !== 0) return userDiff;
+      return String(a.name || "").localeCompare(String(b.name || ""));
+    });
+  }, [recipes, query, getRecipeUsageCount]);
+
+  const visiblePickerRecipes = useMemo(
+    () => filteredRecipes.slice(0, pickerLimit),
+    [filteredRecipes, pickerLimit]
   );
 
   const add = async (recipe) => {
@@ -388,11 +544,13 @@ export default function FoodChart() {
       if (isValidCoordinates(coords)) {
         setCurrentCoords(coords);
       }
+      const effectiveLocationId =
+        locationId || (locations[0]?.id != null ? String(locations[0].id) : "");
       const result = await api("/food-chart", {
         method: "POST",
         body: JSON.stringify({
           date,
-          locationId,
+          locationId: effectiveLocationId,
           meal,
           recipeId: recipe.id,
           servings: recipe.servings || 2,
@@ -400,7 +558,13 @@ export default function FoodChart() {
           longitude: coords ? coords.longitude : null,
         }),
       });
-      void recordLocationSelection(locationId, { coords, source: "food_chart_add" });
+      if (recipe?.id) {
+        setLocalUsage(incrementLocalRecipeUsage(recipe.id));
+      }
+      if (effectiveLocationId) {
+        void recordLocationSelection(effectiveLocationId, { coords, source: "food_chart_add" });
+      }
+      hasEntriesForDateRef.current = true;
       setEntries((old) => [...old, result]);
       setAdding(false);
       setQuery("");
@@ -433,9 +597,10 @@ export default function FoodChart() {
   };
 
   const remove = async (entry) => {
+    const resolved = resolveEntryRecipe(entry, recipesMap);
     if (
       !window.confirm(
-        `Remove ${entry.recipe?.name || "this recipe"} from ${mealFor(entry)} on ${date}? It will remain in Recipe Master.`
+        `Remove ${resolved.name || "this recipe"} from ${mealFor(entry)} on ${date}? It will remain in Recipe Master.`
       )
     )
       return;
@@ -508,17 +673,16 @@ export default function FoodChart() {
           <h1>Food Chart</h1>
           <p>Plan meals independently for each date using your reusable recipe library.</p>
         </div>
-        {locationId && (
-          <button
-            className="diet-primary"
-            onClick={() => {
-              setMeal("Breakfast");
-              setAdding(true);
-            }}
-          >
-            <Plus size={17} /> Add Recipe
-          </button>
-        )}
+        <button
+          className="diet-primary"
+          onClick={() => {
+            setMeal("Breakfast");
+            setPickerLimit(INITIAL_PICKER_LIMIT);
+            setAdding(true);
+          }}
+        >
+          <Plus size={17} /> Add Recipe
+        </button>
       </div>
       <div className="diet-date-bar">
         <CalendarDays size={18} />
@@ -544,14 +708,13 @@ export default function FoodChart() {
             userChoseLocationRef.current = Boolean(val);
             setAutoLocationHint("");
             setLocationId(val);
-            setEntries([]);
             setAdding(false);
             if (val) {
               void recordLocationSelection(val, { coords: currentCoords, source: "food_chart_select" });
             }
           }}
         >
-          <option value="">Select location</option>
+          <option value="">All locations</option>
           {locations.map((location) => (
             <option key={location.id} value={location.id}>
               {formatLocationOptionLabel(location)}
@@ -571,9 +734,7 @@ export default function FoodChart() {
         {autoLocationHint && <span className="diet-auto-location-hint">{autoLocationHint}</span>}
       </div>
       {error && <div className="diet-error">{error}</div>}
-      {!locationId ? (
-        <p className="diet-empty">Select a location to view or plan meals for this date.</p>
-      ) : loading ? (
+      {loading ? (
         <p>Loading food chart…</p>
       ) : (
         <div className="diet-meals">
@@ -592,6 +753,7 @@ export default function FoodChart() {
                     className="diet-secondary diet-add-meal"
                     onClick={() => {
                       setMeal(m);
+                      setPickerLimit(INITIAL_PICKER_LIMIT);
                       setAdding(true);
                       setQuery("");
                     }}
@@ -601,42 +763,45 @@ export default function FoodChart() {
                 </header>
                 {list.length ? (
                   <div className="diet-meal-entries">
-                    {list.map((entry) => (
-                      <article className="diet-recipe-row" key={entry.id}>
-                        <div className="diet-recipe-main">
-                          <strong>{entry.recipe?.name || "Recipe"}</strong>
-                          <span>
-                            {entry.recipe?.category || "Recipe"} · Serves {entry.servings}
-                          </span>
-                        </div>
-                        <div className="diet-actions">
-                          <button
-                            className="icon-button"
-                            title="Edit servings"
-                            aria-label="Edit servings"
-                            onClick={() => edit(entry)}
-                          >
-                            <Pencil size={18} />
-                          </button>
-                          <button
-                            className="icon-button"
-                            title="View recipe"
-                            aria-label="View recipe"
-                            onClick={() => setViewer(entry)}
-                          >
-                            <BookOpen size={18} />
-                          </button>
-                          <button
-                            className="icon-button danger"
-                            title="Remove from this day's chart"
-                            aria-label="Remove recipe"
-                            onClick={() => remove(entry)}
-                          >
-                            <Trash2 size={18} />
-                          </button>
-                        </div>
-                      </article>
-                    ))}
+                    {list.map((entry) => {
+                      const resolved = resolveEntryRecipe(entry, recipesMap);
+                      return (
+                        <article className="diet-recipe-row" key={entry.id}>
+                          <div className="diet-recipe-main">
+                            <strong>{resolved.name}</strong>
+                            <span>
+                              {resolved.category} · Serves {entry.servings}
+                            </span>
+                          </div>
+                          <div className="diet-actions">
+                            <button
+                              className="icon-button"
+                              title="Edit servings"
+                              aria-label="Edit servings"
+                              onClick={() => edit(entry)}
+                            >
+                              <Pencil size={18} />
+                            </button>
+                            <button
+                              className="icon-button"
+                              title="View recipe"
+                              aria-label="View recipe"
+                              onClick={() => setViewer(entry)}
+                            >
+                              <BookOpen size={18} />
+                            </button>
+                            <button
+                              className="icon-button danger"
+                              title="Remove from this day's chart"
+                              aria-label="Remove recipe"
+                              onClick={() => remove(entry)}
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                          </div>
+                        </article>
+                      );
+                    })}
                   </div>
                 ) : (
                   <p className="diet-empty">No recipes planned for {m.toLowerCase()}.</p>
@@ -653,7 +818,7 @@ export default function FoodChart() {
               <div>
                 <h2>Add Recipe</h2>
                 <p className="diet-muted">
-                  {date} · {locations.find((x) => String(x.id) === String(locationId))?.name || "Selected location"} · Choose the meal and recipe to add.
+                  {date} · {locations.find((x) => String(x.id) === String(locationId))?.name || "All locations"} · Choose the meal and recipe to add.
                 </p>
               </div>
               <button className="icon-button" onClick={() => setAdding(false)} aria-label="Close">
@@ -671,34 +836,75 @@ export default function FoodChart() {
             <label className="diet-search">
               <Search size={17} />
               <input
-                autoFocus
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setPickerLimit(INITIAL_PICKER_LIMIT);
+                }}
                 placeholder="Search recipe, ingredient, category or region…"
               />
             </label>
             <div className="diet-picker-list">
-              {filteredRecipes.map((r) => (
-                <div className="diet-picker-item" key={r.id}>
-                  <div>
-                    <strong>{r.name}</strong>
-                    <span>
-                      {r.category} · {r.region} · {r.ingredients?.length || 0} ingredients
-                    </span>
-                  </div>
-                  <button className="diet-primary" disabled={saving} onClick={() => add(r)}>
-                    {saving ? "Adding…" : "Add"}
-                  </button>
-                </div>
-              ))}
-              {!filteredRecipes.length && (
-                <p className="diet-empty">No matching recipes. Add one in Recipe Master first.</p>
+              {recipesLoading && !recipes.length ? (
+                <p className="diet-empty">Loading recipes…</p>
+              ) : (
+                <>
+                  {visiblePickerRecipes.map((r) => {
+                    const usageCount = getRecipeUsageCount(r);
+                    return (
+                      <div className="diet-picker-item" key={r.id}>
+                        <div>
+                          <strong>{r.name}</strong>
+                          <span>
+                            {r.category} · {r.region} · {r.ingredients?.length || 0} ingredients
+                            {usageCount > 0 ? ` · Used ${usageCount}x` : ""}
+                          </span>
+                        </div>
+                        <button className="diet-primary" disabled={saving} onClick={() => add(r)}>
+                          {saving ? "Adding…" : "Add"}
+                        </button>
+                      </div>
+                    );
+                  })}
+                  {filteredRecipes.length > visiblePickerRecipes.length && (
+                    <div className="diet-picker-more">
+                      <button
+                        type="button"
+                        className="diet-secondary"
+                        onClick={() => setPickerLimit((n) => n + INITIAL_PICKER_LIMIT)}
+                      >
+                        Show more recipes ({filteredRecipes.length - visiblePickerRecipes.length} more)
+                      </button>
+                    </div>
+                  )}
+                  {!filteredRecipes.length && (
+                    <div className="diet-empty">
+                      <p style={{ margin: "0 0 8px" }}>
+                        {query ? "No matching recipes found." : "Unable to load recipes."}
+                      </p>
+                      {!query && (
+                        <button
+                          type="button"
+                          className="diet-secondary"
+                          onClick={() => void loadRecipesCatalogue(false)}
+                        >
+                          Retry loading recipes
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </section>
         </div>
       )}
-      <RecipeViewer entry={viewer} onClose={() => setViewer(null)} onAddIngredient={openAddIngredient} />
+      <RecipeViewer
+        entry={viewer}
+        recipe={viewer ? resolveEntryRecipe(viewer, recipesMap) : null}
+        onClose={() => setViewer(null)}
+        onAddIngredient={openAddIngredient}
+      />
       <AddIngredientToMarketing
         ingredient={addIngredient}
         categories={marketingCategories}

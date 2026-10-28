@@ -14,3 +14,9 @@
 .diet-date-bar select{padding:7px 9px;border:1px solid var(--diet-border);border-radius:8px;background:var(--diet-surface);color:inherit;font:inherit}
 .diet-gps-btn{padding:6px 10px;font-size:.82rem}
 .diet-auto-location-hint{font-size:.8rem;color:var(--primary,#2563eb);font-weight:500}
+
+/* Android WebView modal & recipe picker flex-height stability */
+.diet-modal.diet-picker{overflow:hidden;max-height:min(90dvh,90vh,860px)}
+.diet-modal.diet-picker>header,.diet-modal.diet-picker>label,.diet-modal.diet-picker>.diet-search{flex-shrink:0}
+.diet-picker-list{flex:1 1 auto;min-height:220px;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--diet-border);border-radius:10px}
+.diet-picker-more{display:flex;justify-content:center;padding:12px}

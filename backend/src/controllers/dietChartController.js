@@ -4,6 +4,46 @@ import { recordLocationGpsSelection } from "./marketingController.js";
 
 // The recipe catalogue is version-controlled project data. Update recipes.json and redeploy to change it.
 const staticRecipes = JSON.parse(readFileSync(new URL("../data/recipes.json", import.meta.url), "utf8"));
+const staticRecipesById = new Map(staticRecipes.map((r) => [String(r.id), r]));
+const staticRecipesByName = new Map(
+  staticRecipes.map((r) => [String(r.name || "").trim().toLowerCase(), r]),
+);
+
+function normalizeRecipeSnapshot(snapshot, recipeId = null) {
+  let parsed = snapshot;
+  if (typeof parsed === "string") {
+    try {
+      parsed = JSON.parse(parsed);
+    } catch {
+      parsed = null;
+    }
+  }
+  if (parsed && typeof parsed === "object" && parsed.name) {
+    const fallback =
+      (parsed.id && staticRecipesById.get(String(parsed.id))) ||
+      staticRecipesByName.get(String(parsed.name || "").trim().toLowerCase()) ||
+      null;
+    if (fallback) {
+      return {
+        ...fallback,
+        ...parsed,
+        ingredients:
+          Array.isArray(parsed.ingredients) && parsed.ingredients.length
+            ? parsed.ingredients
+            : fallback.ingredients || [],
+        steps:
+          Array.isArray(parsed.steps) && parsed.steps.length
+            ? parsed.steps
+            : fallback.steps || [],
+      };
+    }
+    return parsed;
+  }
+  if (recipeId && staticRecipesById.has(String(recipeId))) {
+    return staticRecipesById.get(String(recipeId));
+  }
+  return parsed || { name: "Recipe", category: "Other", region: "Indian", ingredients: [], steps: [] };
+}
 
 export async function listRecipes(req, res) {
   res.set("Cache-Control", "private, no-cache");
@@ -67,14 +107,26 @@ export const updateRecipe = readOnlyRecipeResponse;
 export const deleteRecipe = readOnlyRecipeResponse;
 
 export async function listFoodChart(req, res) {
+  res.set("Cache-Control", "private, no-cache");
   const date = String(req.query.date || "").slice(0, 10);
   const locationId = String(req.query.locationId || "").trim();
+  const strictLocation = String(req.query.strictLocation || "") === "true";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
     return res.status(400).json({ error: "A valid chart date is required" });
   }
-  const result = await q(
+
+  const orderClause = `ORDER BY CASE meal
+                 WHEN 'Breakfast' THEN 1
+                 WHEN 'Lunch' THEN 2
+                 WHEN 'Evening Snacks' THEN 3
+                 ELSE 4
+               END,
+               sort_order,
+               id`;
+
+  let result = await q(
     `SELECT id,
-            chart_date AS date,
+            chart_date::text AS date,
             meal,
             location_id AS "locationId",
             recipe_id AS "recipeId",
@@ -82,20 +134,38 @@ export async function listFoodChart(req, res) {
             servings,
             sort_order AS "sortOrder"
        FROM public.food_chart_entries
-      WHERE user_id = $1
-        AND chart_date = $2::date
-        AND ($3 = '' OR location_id = NULLIF($3, '')::bigint OR location_id IS NULL)
-      ORDER BY CASE meal
-                 WHEN 'Breakfast' THEN 1
-                 WHEN 'Lunch' THEN 2
-                 WHEN 'Evening Snacks' THEN 3
-                 ELSE 4
-               END,
-               sort_order,
-               id`,
-    [req.user.id, date, locationId],
+      WHERE chart_date = $1::date
+        AND ($2 = '' OR location_id = NULLIF($2, '')::bigint OR location_id IS NULL)
+      ${orderClause}`,
+    [date, locationId],
   );
-  res.json(result.rows);
+
+  // If the client auto-selected a different default location on Android vs Web
+  // and that location has no entries for this date, fall back to showing all
+  // planned entries for the date unless strictLocation=true was explicitly passed.
+  if (!result.rows.length && locationId && !strictLocation) {
+    result = await q(
+      `SELECT id,
+              chart_date::text AS date,
+              meal,
+              location_id AS "locationId",
+              recipe_id AS "recipeId",
+              recipe_snapshot AS recipe,
+              servings,
+              sort_order AS "sortOrder"
+         FROM public.food_chart_entries
+        WHERE chart_date = $1::date
+        ${orderClause}`,
+      [date],
+    );
+  }
+
+  const rows = result.rows.map((row) => ({
+    ...row,
+    recipe: normalizeRecipeSnapshot(row.recipe, row.recipeId),
+  }));
+
+  res.json(rows);
 }
 
 export async function addFoodChartEntry(req, res) {
@@ -116,13 +186,13 @@ export async function addFoodChartEntry(req, res) {
   }
   const servings = Math.max(0.25, Number(b.servings) || Number(snapshot.servings) || 2);
   const order = await q(
-    "SELECT COALESCE(MAX(sort_order),-1)+1 AS n FROM public.food_chart_entries WHERE user_id=$1 AND chart_date=$2::date AND meal=$3",
-    [req.user.id, date, meal],
+    "SELECT COALESCE(MAX(sort_order),-1)+1 AS n FROM public.food_chart_entries WHERE chart_date=$1::date AND meal=$2",
+    [date, meal],
   );
   const result = await q(
     `INSERT INTO public.food_chart_entries(user_id,chart_date,meal,location_id,recipe_id,recipe_snapshot,servings,sort_order)
      VALUES($1,$2::date,$3,NULLIF($4,'')::bigint,NULL,$5::jsonb,$6,$7)
-     RETURNING id,chart_date AS date,meal,location_id AS "locationId",recipe_id AS "recipeId",recipe_snapshot AS recipe,servings,sort_order AS "sortOrder"`,
+     RETURNING id,chart_date::text AS date,meal,location_id AS "locationId",recipe_id AS "recipeId",recipe_snapshot AS recipe,servings,sort_order AS "sortOrder"`,
     [req.user.id, date, meal, locationId, JSON.stringify(snapshot), servings, order.rows[0].n],
   );
 
@@ -136,7 +206,11 @@ export async function addFoodChartEntry(req, res) {
     }).catch(() => {});
   }
 
-  res.status(201).json(result.rows[0]);
+  const row = result.rows[0];
+  res.status(201).json({
+    ...row,
+    recipe: normalizeRecipeSnapshot(row.recipe, row.recipeId),
+  });
 }
 
 export async function updateFoodChartEntry(req, res) {
@@ -144,19 +218,23 @@ export async function updateFoodChartEntry(req, res) {
   if (!servings) return res.status(400).json({ error: "A valid serving quantity is required" });
   const result = await q(
     `UPDATE public.food_chart_entries
-        SET servings = $3
-      WHERE id = $1 AND user_id = $2
-      RETURNING id,chart_date AS date,meal,location_id AS "locationId",recipe_id AS "recipeId",recipe_snapshot AS recipe,servings,sort_order AS "sortOrder"`,
-    [req.params.id, req.user.id, servings],
+        SET servings = $2
+      WHERE id = $1
+      RETURNING id,chart_date::text AS date,meal,location_id AS "locationId",recipe_id AS "recipeId",recipe_snapshot AS recipe,servings,sort_order AS "sortOrder"`,
+    [req.params.id, servings],
   );
   if (!result.rowCount) return res.status(404).json({ error: "Food chart entry not found" });
-  res.json(result.rows[0]);
+  const row = result.rows[0];
+  res.json({
+    ...row,
+    recipe: normalizeRecipeSnapshot(row.recipe, row.recipeId),
+  });
 }
 
 export async function removeFoodChartEntry(req, res) {
   const result = await q(
-    "DELETE FROM public.food_chart_entries WHERE id=$1 AND user_id=$2 RETURNING id",
-    [req.params.id, req.user.id],
+    "DELETE FROM public.food_chart_entries WHERE id=$1 RETURNING id",
+    [req.params.id],
   );
   if (!result.rowCount) return res.status(404).json({ error: "Food chart entry not found" });
   res.json({ ok: true, id: result.rows[0].id });
