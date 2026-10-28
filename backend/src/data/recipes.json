@@ -1077,6 +1077,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1283",
+    "name": "Aloo Kabli (Kolkata Street-Style Tangy Boiled Potato & Chickpea Chaat)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled, peeled and sliced into thick rounds/cubes",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Boiled kabuli chana / kala chana & soaked yellow matar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cucumber, tomato & onion, finely chopped",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander leaves, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali bhaja masala & black salt (bitnoon)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tamarind pulp (tetul jol) & Gondhoraj lemon juice",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Spicy chanachur / sev for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss potatoes with chickpeas, salad and spices",
+        "text": "Combine cubed boiled potatoes, chickpeas, cucumber, tomato, onion, green chillies, and coriander in a bowl.",
+        "minutes": 3
+      },
+      {
+        "section": "Dress with tamarind, bhaja masala and chanachur",
+        "text": "Add tangy tamarind pulp, Gondhoraj lemon juice, bitnoon, and roasted bhaja masala; toss well and top with crunchy chanachur.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "servings": 2,
+    "notes": "A nostalgic outside-school-gate Kolkata street chaat."
+  },
+  {
     "id": "static-1236",
     "name": "Aloo Kabuli Chana Tarkari (Bengali Chickpea & Potato Curry)",
     "category": "Vegetable",
@@ -12105,6 +12164,60 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1275",
+    "name": "Cheese Egg Roll (Kolkata Street-Style Melted Cheese & Double Egg Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Grated cheddar/processed cheese",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion rings, cucumber juliennes & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Chaat masala, black pepper, bitnoon & tomato-chilli sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil/butter for frying & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook egg-paratha and melt cheese",
+        "text": "Pour whisked eggs onto the hot tawa, press the laccha paratha on top, flip, and sprinkle grated cheese over the hot egg surface so it melts immediately.",
+        "minutes": 6
+      },
+      {
+        "section": "Add crunchy filling and wrap",
+        "text": "Top with sliced onions, cucumber, green chillies, black pepper, chaat masala, and sauces, then roll tightly while warm.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Indulgent college-street favorite with gooey melted cheese inside a crispy egg roll."
+  },
+  {
     "id": "static-0938",
     "name": "Cheese Omelette",
     "category": "Breakfast",
@@ -13543,6 +13656,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1269",
+    "name": "Chicken Kathi Roll (Kolkata Nizam's-Style Skewer-Roasted Chicken Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boneless chicken thigh/breast, cut into bite-sized strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Hung curd, ginger-garlic paste & mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri chilli, cumin, coriander, black pepper & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Onion rings, cucumber juliennes & chopped green chillies",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Lemon juice, bitnoon, chaat masala & tomato-chilli sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil for tawa frying & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate and char-roast chicken kababs",
+        "text": "Marinate chicken strips in yogurt, ginger-garlic paste, mustard oil, Kashmiri chilli, cumin, garam masala, and salt. Sear on skewers or a cast-iron tawa over high heat until smoky and tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Wrap in flaky laccha paratha",
+        "text": "Shallow-fry laccha parathas until crisp and golden, line with smoky chicken kabab pieces, sliced onions, cucumber, green chillies, lemon juice, bitnoon, and chaat masala, and roll in paper.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "notes": "Inspired by Nizam's of New Market, Kolkata—the birthplace of the original Kathi Roll."
   },
   {
     "id": "static-0581",
@@ -15711,6 +15883,114 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1272",
+    "name": "Chilli Chicken Roll (Kolkata Tangra-Style Indo-Chinese Chilli Chicken Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boneless chicken strips, batter-fried",
+        "quantity": "220",
+        "unit": "g"
+      },
+      {
+        "name": "Maida laccha paratha & 2 eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion petals, capsicum strips & spring onion greens",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped garlic, ginger & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dark soy sauce, green chilli sauce, tomato ketchup & vinegar",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cornflour, black pepper, oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Wok-toss dry Tangra-style chilli chicken",
+        "text": "Crisp-fry cornflour-coated chicken strips, then toss on high heat with garlic, ginger, green chillies, onion petals, capsicum, soy sauce, chilli sauce, and ketchup until coated in a glossy dry glaze.",
+        "minutes": 10
+      },
+      {
+        "section": "Wrap in egg-lined laccha paratha",
+        "text": "Place the hot dry chilli chicken onto egg-fried laccha parathas, top with spring onions and raw onion rings, and roll up.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 2,
+    "notes": "A beloved Kolkata street fusion combining Tangra-style dry Chilli Chicken with a flaky Kathi Roll."
+  },
+  {
+    "id": "static-1273",
+    "name": "Chilli Paneer Roll (Kolkata Street-Style Indo-Chinese Chilli Paneer Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Paneer cubes, lightly dusted in cornflour and pan-fried",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Capsicum, onion petals & spring onion greens",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic, ginger & green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Soy sauce, green chilli sauce, tomato ketchup & black pepper",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare dry chilli paneer",
+        "text": "Toss golden-fried paneer cubes in a hot wok with minced garlic, ginger, chillies, capsicum, onions, soy sauce, chilli sauce, and ketchup.",
+        "minutes": 8
+      },
+      {
+        "section": "Assemble roll",
+        "text": "Spoon the glossy chilli paneer along crisp tawa-fried laccha parathas, garnish with spring onions, cucumber, and chaat masala, and wrap tightly.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Spicy, tangy Indo-Chinese Chilli Paneer wrapped in a flaky Kolkata paratha."
   },
   {
     "id": "static-0750",
@@ -19052,6 +19332,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1279",
+    "name": "Churmur (Kolkata Street-Style Crushed Phuchka & Spiced Potato Chaat)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Crisp phuchka/papri shells, coarsely crushed",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Boiled potatoes, cut into small cubes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Boiled kala chana / yellow peas",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, cucumber, green chillies & coriander leaves",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali bhaja masala & black salt (bitnoon)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tangy tamarind pulp water (tetul jol) & Gondhoraj lemon juice",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss diced potatoes with spices and tamarind",
+        "text": "In a deep bowl (or sal-leaf dona), mix cubed boiled potatoes, boiled kala chana, chopped onion, cucumber, green chillies, coriander, bhaja masala, bitnoon, and tangy tetul jol.",
+        "minutes": 3
+      },
+      {
+        "section": "Fold in crushed phuchkas and serve",
+        "text": "Crush crisp phuchka shells directly into the bowl, squeeze fresh Gondhoraj lemon juice, toss quickly so the shells stay crunchy, and serve immediately.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "servings": 2,
+    "notes": "No Kolkata phuchka outing is complete without a bowl of tangy, crunchy Churmur served in a sal-leaf bowl."
   },
   {
     "id": "static-0762",
@@ -22929,6 +23263,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1287",
+    "name": "Dimer Devil (Kolkata Street-Style Spiced Mutton/Potato Scotch Egg Croquette)",
+    "category": "Egg",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Hard-boiled eggs, halved lengthwise",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Boiled potatoes, mashed (plus optional 150g spiced mutton keema)",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, ginger, garlic & green chillies, finely minced",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali bhaja masala, garam masala, turmeric & chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Raw egg / cornflour batter & biscuit crumbs (biskuter guro)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "200",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced potato/keema encasing mixture",
+        "text": "Sauté onion, ginger, garlic, and green chillies (with optional mutton keema) until dry, then fold in mashed potatoes, bhaja masala, and Bengali garam masala.",
+        "minutes": 10
+      },
+      {
+        "section": "Encase boiled egg halves and crumb-coat",
+        "text": "Wrap each hard-boiled egg half completely in the spiced mixture to form a whole egg shape, dip in egg/cornflour wash, and roll in biscuit crumbs.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry until crunchy",
+        "text": "Deep-fry in hot oil until deep golden brown and serve with kasundi and salad.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Kolkata's beloved Anglo-Bengali take on the Scotch egg, found at every telebhaja and cabin counter."
+  },
+  {
     "id": "static-1136",
     "name": "Doi Diye Macher Dimer Bora Curry (Fish Egg Fritters in Yogurt Gravy)",
     "category": "Fish Roe",
@@ -22996,6 +23389,55 @@
     "cookMinutes": 20,
     "servings": 3,
     "notes": "Tangy, creamy yogurt gravy softens the crisp fish egg fritters into melt-in-the-mouth dumplings."
+  },
+  {
+    "id": "static-1278",
+    "name": "Doi Phuchka (Kolkata Street-Style Sweet Yogurt & Tamarind Chutney Phuchka)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Crisp phuchka shells",
+        "quantity": "18",
+        "unit": "pcs"
+      },
+      {
+        "name": "Boiled potatoes mashed with bhaja masala, kala chana & green chillies",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick whisked curd (yogurt) lightly sweetened with sugar",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sweet-tangy tamarind-date chutney & green coriander chutney",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fine sev (bhujia), bhaja masala, bitnoon & chopped coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stuff phuchka shells",
+        "text": "Arrange crisp phuchka shells on a plate, crack the tops, and fill each shell with spiced bhaja-masala potato and kala chana mash.",
+        "minutes": 3
+      },
+      {
+        "section": "Top with chilled yogurt, chutneys and sev",
+        "text": "Spoon chilled whisked yogurt generously over the phuchkas, drizzle with tamarind and green chutneys, and shower with bhaja masala, bitnoon, coriander, and fine sev.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 5,
+    "servings": 3,
+    "notes": "Cool, creamy, tangy, and crunchy Kolkata street chaat favorite."
   },
   {
     "id": "static-0241",
@@ -23153,6 +23595,65 @@
     "cookMinutes": 6,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1262",
+    "name": "Double Egg Roll (Kolkata Street-Style Double Anda Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Eggs (2 per roll)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion & cucumber, thinly sliced/julienned",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander, chopped",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat masala, black salt (bitnoon) & black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Lemon juice, tomato ketchup & green chilli sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk double egg and fry with laccha paratha",
+        "text": "Whisk 2 eggs per roll with salt and black pepper, pour onto a sizzling oiled tawa, and press a flaky laccha paratha over the fluffy egg layer until golden brown.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and wrap",
+        "text": "Top the thick double-egg base with sliced onions, cucumber juliennes, chopped green chillies, lemon juice, bitnoon, chaat masala, and sauces, then wrap tightly.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Extra-fluffy, protein-packed Kolkata double egg kathi roll."
   },
   {
     "id": "static-0882",
@@ -23826,6 +24327,60 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1270",
+    "name": "Egg Chicken Roll (Kolkata Street-Style Anda Chicken Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boneless chicken tikka/kabab strips, spiced and tawa-seared",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion rings, cucumber juliennes & green chillies",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Chaat masala, black salt (bitnoon), lemon juice & chilli-tomato sauce",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for tawa frying & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry egg-lined laccha paratha",
+        "text": "Cook flaky laccha parathas on a hot tawa, pour 1 beaten egg per roll on the griddle, and press the paratha onto the egg until crisp and golden.",
+        "minutes": 7
+      },
+      {
+        "section": "Fill with smoky chicken and salad",
+        "text": "Arrange hot tawa-seared chicken kabab strips along the center, top with sliced onion, cucumber, green chillies, lemon juice, bitnoon, chaat masala, and sauces, and wrap tightly.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "notes": "The single most ordered kathi roll across Kolkata roll corners from Park Street to Golpark."
   },
   {
     "id": "static-0007",
@@ -24525,6 +25080,65 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1264",
+    "name": "Egg Paneer Roll (Kolkata Street-Style Anda Paneer Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Paneer cubes, spiced and tawa-roasted",
+        "quantity": "180",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, capsicum & cucumber juliennes",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste, Kashmiri chilli & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat masala, bitnoon, lemon juice & green chilli-tomato sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for tawa frying & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced paneer filling",
+        "text": "Toss paneer cubes on a hot tawa with ginger-garlic paste, onions, capsicum, Kashmiri chilli, garam masala, and a splash of tomato-chilli sauce.",
+        "minutes": 7
+      },
+      {
+        "section": "Line paratha with egg and stuff with paneer",
+        "text": "Fry each laccha paratha over a beaten egg, place the hot spiced paneer down the center, garnish with onion-cucumber salad, chaat masala, bitnoon, and lemon juice, and roll up.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Popular Kolkata fusion roll combining an egg-lined flaky paratha with smoky paneer masala."
+  },
+  {
     "id": "static-1182",
     "name": "Egg Paratha (Anda Paratha / Dim Porota)",
     "category": "Bread",
@@ -24577,6 +25191,193 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Quick, filling breakfast or tiffin favorite."
+  },
+  {
+    "id": "static-1266",
+    "name": "Egg Potato Roll / Egg Aloo Roll (Kolkata Street-Style Anda Aloo Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boiled potatoes, cubed and spiced with bhaja masala",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion rings, cucumber juliennes & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Bhaja masala, chaat masala & black salt (bitnoon)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Lemon juice, tomato ketchup & green chilli sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for tawa frying & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Tawa-roast spiced aloo",
+        "text": "Toss boiled potatoes on the tawa with onions, green chillies, bhaja masala, and salt until golden at the edges.",
+        "minutes": 6
+      },
+      {
+        "section": "Fry egg-coated paratha and roll",
+        "text": "Coat each flaky paratha with a beaten egg on the hot tawa, fill with the spiced potato masala, top with onion-cucumber salad, lemon juice, bitnoon, and sauces, and roll up.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Hearty Kolkata street favorite pairing a golden egg paratha with chatpata tawa-fried masala aloo."
+  },
+  {
+    "id": "static-1268",
+    "name": "Egg Prawn Roll / Egg Chingri Roll (Kolkata Street-Style Anda Chingri Kathi Roll)",
+    "category": "Prawns",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Medium prawns (chingri), shelled and deveined",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, capsicum & cucumber juliennes",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste, turmeric, chilli powder & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasundi / chilli-tomato sauce, lemon juice, bitnoon & chaat masala",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard/refined oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced prawn filling",
+        "text": "Sauté marinated prawns on a hot tawa with ginger-garlic, onions, capsicum, and garam masala until just tender and glossy.",
+        "minutes": 6
+      },
+      {
+        "section": "Coat paratha with egg and wrap",
+        "text": "Pour a beaten egg on the tawa, press a flaky laccha paratha over it until golden, fill with the spicy chingri masala, top with onion-cucumber salad, lemon juice, chaat masala, and sauces, and roll tightly.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Rich Kolkata street roll pairing a golden fried egg paratha with spicy masala prawns."
+  },
+  {
+    "id": "static-1261",
+    "name": "Egg Roll (Kolkata Street-Style Flaky Laccha Paratha Egg Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Maida (all-purpose flour) for flaky laccha paratha",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, thinly sliced into rings",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Cucumber, peeled and julienned",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, finely chopped",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Lemon juice & black salt (bitnoon)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat masala & tomato-chilli sauce",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil for shallow frying & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roll and shallow-fry flaky laccha paratha",
+        "text": "Knead maida with salt, a pinch of sugar, oil, and warm water into a soft dough. Roll into pleated laccha parathas and shallow-fry on a hot tawa until golden and flaky.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook egg layer onto the paratha",
+        "text": "Beat 1 egg per roll with a pinch of salt, pour onto the hot oiled tawa, immediately press the cooked paratha on top of the egg, and flip until the egg is golden and lightly crisp.",
+        "minutes": 3
+      },
+      {
+        "section": "Assemble with crunchy salad and roll in paper",
+        "text": "Lay egg-side up, arrange sliced onion rings, cucumber juliennes, chopped green chillies, a squeeze of fresh lemon juice, black salt, chaat masala, and a drizzle of tomato-chilli sauce. Roll tightly in butter paper.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "The quintessential Kolkata street snack—flaky tawa-fried maida paratha lined with a golden fried egg and tangy cucumber-onion crunch."
   },
   {
     "id": "static-0960",
@@ -26735,6 +27536,60 @@
     "notes": ""
   },
   {
+    "id": "static-1274",
+    "name": "Fish Tikka Kathi Roll (Kolkata Street-Style Bhetki Fish Roll)",
+    "category": "Fish",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boneless Bhetki fish cubes",
+        "quantity": "220",
+        "unit": "g"
+      },
+      {
+        "name": "Maida laccha paratha & 1–2 eggs (optional)",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste & lemon juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Hung curd, kasundi (mustard sauce) & garam masala",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion rings, cucumber juliennes & fresh coriander",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard oil, chaat masala, bitnoon & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear kasundi fish tikka",
+        "text": "Marinate boneless Bhetki cubes with lemon juice, ginger-garlic-chilli paste, yogurt, kasundi, garam masala, and salt. Sear on a hot tawa in mustard oil until flaky and golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Wrap in flaky paratha",
+        "text": "Lay the smoky Bhetki tikka pieces over crisp laccha parathas, top with onion rings, cucumber, coriander, chaat masala, and a squeeze of lime, and roll tightly.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Delicate Kolkata Bhetki fish tikka infused with kasundi and wrapped in a crisp kathi roll."
+  },
+  {
     "id": "static-0786",
     "name": "Flat White",
     "category": "Coffee",
@@ -27572,6 +28427,114 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Pairs wonderfully with vegetable or egg fried rice and hakka noodles."
+  },
+  {
+    "id": "static-1284",
+    "name": "Ghoti Gorom (Kolkata Street-Style Warm Spiced Chanachur & Raw Mango Mix)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Fine Bengali ঝুরিভাজা / jhuribhaja & chanachur (warmed)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Raw green mango (kacha aam) or cucumber, finely grated/diced",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies & fresh coriander leaves, finely chopped",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bhaja masala, black salt (bitnoon) & lemon juice",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Raw mustard oil",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss warm chanachur with raw mango and onion",
+        "text": "Toss warm jhuribhaja/chanachur with finely chopped onion, tart raw mango bits, green chillies, coriander, bitnoon, bhaja masala, lemon juice, and a few drops of mustard oil.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "servings": 2,
+    "notes": "Named after the brass vessel (ghoti) with hot charcoal inside that street vendors carry along the Ganges ghats and Maidan."
+  },
+  {
+    "id": "static-1281",
+    "name": "Ghugni Chaat (Kolkata Street-Style Spiced Yellow Pea Curry with Tamarind & Sev)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Dried yellow peas (matar), soaked overnight and boiled",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Potato, cut into small cubes",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, tomato & ginger-garlic paste",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, cumin, coriander & Bengali garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bengali bhaja masala & tamarind pulp water (tetul jol)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped raw onion, green chillies, coriander, lemon wedges & bhujia sev for topping",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer spiced yellow pea ghugni",
+        "text": "Heat mustard oil, temper with bay leaf and cumin, sauté onions, ginger-garlic, tomatoes, potato cubes, and spices, then add boiled yellow peas with cooking liquid and simmer until thick and glossy.",
+        "minutes": 20
+      },
+      {
+        "section": "Garnish street-chaat style",
+        "text": "Ladle hot ghugni into bowls and top with chopped raw onion, green chillies, coriander leaves, a drizzle of tangy tamarind water, bhaja masala, bitnoon, lemon juice, and crunchy sev.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Served steaming hot across Kolkata streets, railway stations, and evening tea stalls."
   },
   {
     "id": "static-0765",
@@ -34837,6 +35800,419 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1286",
+    "name": "Kolkata Cabin-Style Fish Fry (Crumb-Fried Bhetki Fillet with Kasundi)",
+    "category": "Fish",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boneless Kolkata Bhetki fish fillets (thin rectangular fillets)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander leaves, mint leaves & green chillies (ground into green paste)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste & Gondhoraj lemon juice",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Eggs (beaten) & cornflour",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Crisp biscuit crumbs (biskuter guro / breadcrumbs)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Black pepper, black salt, oil for deep frying & kasundi",
+        "quantity": "200",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate Bhetki fillets in green herb paste",
+        "text": "Marinate Bhetki fillets first with lemon juice, salt, and black pepper, then coat in a vibrant paste of coriander, mint, green chillies, ginger, and garlic for 20 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Double-crumb coat into classic diamond shape",
+        "text": "Dust each fillet with cornflour, dip in beaten egg, press firmly in biscuit crumbs, dip in egg a second time, and coat again in crumbs, shaping the edges neatly with a flat knife.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry golden and serve with kasundi",
+        "text": "Deep-fry in medium-hot oil until crisp and golden brown. Serve hot with pungent Bengali kasundi and thinly sliced onion-cucumber salad.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "The crown jewel of College Street and Golpark cabins—double-crumbed Bhetki Fish Fry."
+  },
+  {
+    "id": "static-1288",
+    "name": "Kolkata Chicken Kabiraji Cutlet (Crispy Spun Egg-Net Coated Chicken Cutlet)",
+    "category": "Starters",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Minced chicken (chicken keema)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, ginger, garlic, mint & coriander leaves, finely minced",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali garam masala, black pepper & green chilli paste",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Breadcrumbs (biskuter guro) & cornflour",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Eggs (for the lacy egg-net 'kabiraji' coating)",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Oil for frying & salt",
+        "quantity": "250",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape and crumb-coat spiced chicken cutlets",
+        "text": "Mix minced chicken with ginger-garlic, onion, mint, coriander, green chilli, black pepper, garam masala, and salt. Shape into flat rectangular cutlets and coat in breadcrumbs.",
+        "minutes": 10
+      },
+      {
+        "section": "Wrap in lacy fried egg web",
+        "text": "Whisk eggs with a pinch of cornflour and water; drizzle from your fingertips over hot oil to form a lacy golden egg net, place the fried cutlet at the edge, and roll it up inside the crisp egg web.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "notes": "Famous North Kolkata heritage cabin delicacy derived from the 'Coverage' cutlet."
+  },
+  {
+    "id": "static-1289",
+    "name": "Kolkata Hing-er Kachori & Aloor Torkari (Club Kachori with Spiced Potato Curry)",
+    "category": "Breakfast",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Maida (all-purpose flour) & semolina (suji)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Urad dal (soaked and ground with ginger & green chillies)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Asafoetida (hing) & crushed fennel-cumin seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Boiled potatoes (with skin) for street-style aloor torkari",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron, dry red chillies, turmeric, Kashmiri chilli & black salt",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep frying & mustard oil for curry",
+        "quantity": "200",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer panch-phoron street aloor torkari",
+        "text": "Temper mustard oil with panch phoron, dry red chillies, and hing; add cubed skin-on potatoes, turmeric, Kashmiri chilli, water, and black salt, simmering into a thick, tangy gravy.",
+        "minutes": 12
+      },
+      {
+        "section": "Stuff and fry crisp hing-er kachoris",
+        "text": "Stuff maida dough balls with spiced hing-urad dal paste (or knead into club kachori dough), roll into small discs, and deep-fry until puffed and crisp. Serve hot with the potato curry and bhujia.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Burrabazar and Sovabazar's iconic morning street breakfast."
+  },
+  {
+    "id": "static-1280",
+    "name": "Kolkata Jhalmuri (Spiced Puffed Rice with Chanachur, Coconut & Mustard Oil)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Crisp muri (Bengali puffed rice)",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Bengali spicy chanachur & roasted peanuts",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Boiled potato, finely diced",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Sprouted moong / soaked kala chana",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, cucumber, tomato, green chillies & fresh coriander, finely chopped",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh coconut slivers (narkel kuchi)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Jhalmuri bhaja masala & black salt (bitnoon)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pungent raw mustard oil (kacha shorsher tel) & lemon juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine muri and fresh crunchy mix-ins",
+        "text": "In a large mixing tin, combine puffed rice, chanachur, diced boiled potato, sprouted kala chana, chopped onion, cucumber, green chillies, coriander, and coconut slivers.",
+        "minutes": 3
+      },
+      {
+        "section": "Toss with bhaja masala and raw mustard oil",
+        "text": "Sprinkle jhalmuri bhaja masala, bitnoon, lemon juice, and pungent raw mustard oil. Shake and toss vigorously for 30 seconds and serve in paper cones (thonga).",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "servings": 2,
+    "notes": "The unmistakable aroma of raw mustard oil and roasted bhaja masala defines authentic Kolkata Jhalmuri."
+  },
+  {
+    "id": "static-1277",
+    "name": "Kolkata Phuchka (Crisp Semolina Shells with SpicedAloo & Tangy Tetul Jol)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Crisp semolina-wheat phuchka puris",
+        "quantity": "24",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes, boiled and peeled",
+        "quantity": "4",
+        "unit": "medium"
+      },
+      {
+        "name": "Boiled kala chana (black chickpeas) & yellow matar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Seedless tamarind (tetul) pulp",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali bhaja masala (roasted cumin, coriander & dry red chilli powder)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, ginger, fresh coriander & Gondhoraj lemon juice",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black salt (bitnoon) & regular salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spicy Kolkata phuchka aloo mash",
+        "text": "Mash boiled potatoes with boiled kala chana, crushed green chillies, chopped coriander, generous bhaja masala, bitnoon, and a splash of tamarind water.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk aromatic tetul jol (tamarind water)",
+        "text": "Dissolve tamarind pulp in chilled water with bitnoon, roasted cumin-chilli bhaja masala, grated ginger, crushed green chillies, coriander leaves, and fragrant Gondhoraj lime juice.",
+        "minutes": 5
+      },
+      {
+        "section": "Crack, stuff, dunk and serve",
+        "text": "Crack the top of each crisp phuchka, stuff with spiced potato mash, dunk into the tangy tetul jol, and serve immediately (finished with a dry 'sukha phuchka'!).",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Unlike pani puri elsewhere, authentic Kolkata Phuchka uses zero sweet chutney and relies on smoky bhaja masala, kala chana, bitnoon, and Gondhoraj-scented tetul jol."
+  },
+  {
+    "id": "static-1285",
+    "name": "Kolkata Street-Style Egg Chowmein (Wok-Tossed Hakka Noodles with Egg & Salad)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Hakka noodles, boiled al dente and tossed with 1 tsp oil",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cabbage, carrot, capsicum & onion, thinly julienned",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic & green chillies, finely chopped",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Soy sauce, green chilli sauce, tomato ketchup & white vinegar",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper powder & spring onion greens",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cucumber-onion juliennes & roasted peanuts for street-style topping",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Refined oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Scramble eggs and stir-fry julienned vegetables",
+        "text": "Heat oil in a smoking-hot wok, scramble the eggs with a pinch of salt and set aside. Stir-fry garlic, green chillies, onions, cabbage, carrot, and capsicum on high flame for 2 minutes so they stay crunchy.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss noodles on high flame and garnish",
+        "text": "Add boiled Hakka noodles, scrambled eggs, soy sauce, vinegar, black pepper, and chilli sauce; toss vigorously. Serve hot topped with raw cucumber-onion juliennes, tomato ketchup, green chilli sauce, and a handful of salted peanuts.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Kolkata para-corner Egg Chowmein is famously served with raw cucumber-onion salad and a drizzle of ketchup & chilli sauce on top."
+  },
+  {
+    "id": "static-1290",
+    "name": "Kolkata Telebhaja Platter (Street-Style Beguni, Peyaji & Phuluri)",
+    "category": "Fritters",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Besan (gram flour) & rice flour",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Eggplant (begun), sliced thin lengthwise",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onions, thinly sliced (for crispy peyaji)",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Poppy seeds (posto), nigella seeds (kalo jeere), turmeric & chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, finely chopped & a pinch of baking soda",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil / vegetable oil for deep frying & bitnoon",
+        "quantity": "250",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk airy besan batter and onion-peyaji mix",
+        "text": "Whisk besan, rice flour, kalo jeere, posto, turmeric, chilli powder, salt, and a pinch of soda into an airy batter for beguni and phuluri. Mix sliced onions and green chillies with coarse besan for peyaji.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry crisp beguni, peyaji and phuluri",
+        "text": "Dip eggplant slices in batter and fry until puffed into golden begunis; drop small batter balls for fluffy phuluris; and fry lacy onion clusters into crisp peyajis. Sprinkle with bitnoon and serve with muri.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "The heart of Kolkata's evening adda—hot telebhaja with puffed rice (muri) and adrak chai."
+  },
+  {
     "id": "static-1053",
     "name": "Kolmi no Patio (Parsi Sweet, Sour & Spicy Prawn Curry)",
     "category": "Prawns",
@@ -39177,6 +40553,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1282",
+    "name": "Mangsher Ghugni (Kolkata Street-Style Mutton Keema Yellow Pea Ghugni)",
+    "category": "Curry",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Dried yellow peas (matar), soaked and pressure-cooked",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced mutton (keema)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potato cubes & fresh coconut bits",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, ginger-garlic paste & tomato",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, cumin, coriander & Bengali garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, ghee, bhaja masala, chopped onion & coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bhuna mutton keema with spices",
+        "text": "Fry potato and coconut bits in mustard oil; in the same pan, sauté onions, ginger-garlic, tomatoes, and spices, then slow-roast (kosha) the minced mutton until rich and oil separates.",
+        "minutes": 18
+      },
+      {
+        "section": "Simmer with yellow peas and finish with bhaja masala",
+        "text": "Add boiled yellow peas, fried potatoes, and coconut; simmer for 10 minutes and finish with ghee, Bengali garam masala, bhaja masala, chopped onions, and coriander.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 30,
+    "servings": 4,
+    "notes": "Iconic Kolkata Dacres Lane & cabin-style Mangsher Ghugni—delicious on its own or with luchi/paratha."
+  },
+  {
     "id": "static-0286",
     "name": "Masala Aloo Paratha",
     "category": "Bread",
@@ -42794,6 +44224,60 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1276",
+    "name": "Mixed Vegetable & Mushroom Kathi Roll (Kolkata Street-Style Veg Masala Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Button mushrooms, carrots, beans, capsicum & cabbage, julienned",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potato & paneer cubes",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger-garlic paste, cumin, Kashmiri chilli & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Onion rings, cucumber, lemon juice, bitnoon & chaat masala",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato-chilli sauce, oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry spiced vegetable and mushroom filling",
+        "text": "Sauté mushrooms, julienned vegetables, boiled potato, and paneer cubes on high heat with ginger-garlic, cumin, garam masala, and tomato-chilli sauce so the vegetables stay crisp-tender.",
+        "minutes": 8
+      },
+      {
+        "section": "Roll in flaky paratha",
+        "text": "Spoon the hot vegetable filling onto crisp laccha parathas, top with raw onion rings, cucumber, bitnoon, chaat masala, and lemon juice, and roll up.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Wholesome, crunchy Kolkata street-style mixed veg and mushroom roll."
+  },
+  {
     "id": "static-0914",
     "name": "Moa (Khoi and Gur)",
     "category": "Sweets",
@@ -44290,6 +45774,65 @@
     "cookMinutes": 6,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1271",
+    "name": "Mutton Kathi Roll (Kolkata Street-Style Spiced Mutton Kabab Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Boneless tender mutton cubes or minced mutton seekh kabab",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs (optional for egg-mutton coating)",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Raw papaya paste, ginger-garlic paste & hung curd",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali garam masala, mace-nutmeg powder & Kashmiri chilli",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sliced onion rings, green chillies, lemon juice & chaat masala",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard/refined oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Tenderize and roast mutton kababs",
+        "text": "Marinate mutton with raw papaya paste, ginger-garlic, yogurt, mustard oil, Kashmiri chilli, and royal garam masala; pan-roast until melt-in-the-mouth tender and lightly charred.",
+        "minutes": 15
+      },
+      {
+        "section": "Assemble Kolkata Mutton Kathi Roll",
+        "text": "Fry flaky laccha parathas (with or without an egg layer), pile the juicy mutton kababs in the center with onion rings, green chillies, lemon juice, and chaat masala, and roll tightly.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 2,
+    "notes": "Classic Old Kolkata style mutton kathi roll with aromatic mace and nutmeg notes."
   },
   {
     "id": "static-0877",
@@ -47895,6 +49438,70 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Protein-rich Punjabi breakfast paratha."
+  },
+  {
+    "id": "static-1263",
+    "name": "Paneer Roll (Kolkata Street-Style Spiced Paneer Tikka Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Paneer (Indian cottage cheese), cut into cubes or strips",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Thick curd (hung yogurt) & ginger-garlic paste",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Capsicum & onion, sliced into strips",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Kashmiri chilli, turmeric, cumin, garam masala & kasuri methi",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cucumber juliennes, onion rings & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Chaat masala, bitnoon, lemon juice & tomato-chilli sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & refined oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate and sear spiced paneer",
+        "text": "Marinate paneer cubes in hung curd, ginger-garlic paste, mustard oil, Kashmiri chilli, cumin, garam masala, kasuri methi, and salt. Sear on a hot tawa with capsicum and onion strips until smoky and charred at the edges.",
+        "minutes": 8
+      },
+      {
+        "section": "Crisp laccha paratha and assemble roll",
+        "text": "Shallow-fry flaky laccha parathas until crisp, pile the smoky paneer masala down the center, top with raw onion rings, cucumber, green chillies, chaat masala, bitnoon, lemon juice, and sauces, and roll tightly.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Kolkata's favorite vegetarian kathi roll with smoky tawa-seared paneer tikka filling."
   },
   {
     "id": "static-0962",
@@ -52351,6 +53958,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1265",
+    "name": "Potato Roll / Aloo Roll (Kolkata Street-Style Spiced Masala Aloo Kathi Roll)",
+    "category": "Snacks",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Potatoes, boiled, peeled and cubed/mashed coarsely",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, finely chopped + sliced rings for topping",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Cucumber juliennes & chopped green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali bhaja masala, chaat masala, cumin & Kashmiri chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted peanuts & fresh coriander leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice, bitnoon (black salt) & tamarind/tomato-chilli sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard/refined oil & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté chatpata Kolkata aloo filling",
+        "text": "Heat oil on a tawa, sauté chopped onions and green chillies, add boiled potato cubes, turmeric, Kashmiri chilli, bhaja masala, chaat masala, and crushed roasted peanuts, mashing lightly until crusty and aromatic.",
+        "minutes": 7
+      },
+      {
+        "section": "Assemble in crisp laccha paratha",
+        "text": "Fry flaky laccha parathas until golden, spoon the hot spiced potato filling along the center, top with crunchy onion rings, cucumber, coriander, lemon juice, bitnoon, and tangy sauces, and wrap tightly.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Classic, budget-friendly Kolkata street-side Aloo Roll seasoned with aromatic bhaja masala and crunchy peanuts."
+  },
+  {
     "id": "static-0959",
     "name": "Potato Sandwich",
     "category": "Sandwiches",
@@ -55229,6 +56900,70 @@
     "cookMinutes": 20,
     "servings": 3,
     "notes": "Silky, ivory-white Kolkata Mughlai gravy that pairs wonderfully with roomali roti, parotta, or pulao."
+  },
+  {
+    "id": "static-1267",
+    "name": "Prawn Roll / Chingri Roll (Kolkata Street-Style Masala Prawn Kathi Roll)",
+    "category": "Prawns",
+    "region": "Bengali / Kolkata Street Food",
+    "ingredients": [
+      {
+        "name": "Medium prawns (chingri), shelled and deveined",
+        "quantity": "220",
+        "unit": "g"
+      },
+      {
+        "name": "Maida laccha paratha",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion & capsicum, thinly sliced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, roasted cumin & Bengali garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cucumber juliennes, raw onion rings & fresh coriander",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Kasundi (Bengali mustard sauce), lemon juice, bitnoon & chaat masala",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & refined oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear spicy tawa chingri filling",
+        "text": "Marinate cleaned prawns with turmeric, Kashmiri chilli, ginger-garlic paste, lemon juice, and salt. Sear in hot mustard oil with sliced onions, capsicum, roasted cumin, and Bengali garam masala for 4-5 minutes until juicy and coated in thick masala.",
+        "minutes": 7
+      },
+      {
+        "section": "Assemble Prawn Kathi Roll",
+        "text": "Shallow-fry flaky laccha parathas until crisp, arrange the spicy tawa prawns down the center, top with cucumber juliennes, onion rings, chaat masala, bitnoon, lemon juice, and a drizzle of pungent kasundi or chilli sauce, and wrap tightly.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "notes": "Signature Kolkata coastal-street kathi roll loaded with succulent mustard-and-garam-masala tossed prawns."
   },
   {
     "id": "static-1091",
