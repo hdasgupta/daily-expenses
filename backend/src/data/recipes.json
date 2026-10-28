@@ -4645,6 +4645,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1313",
+    "name": "Barbati Fry / Borboti Aloo Bhaja (Crispy Yardlong Beans & Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Yardlong beans (barbati / borboti), cut into 1.5-inch pieces",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, cut into thin wedges (optional)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron or nigella seeds & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder, roasted cumin powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper and fry yardlong beans with potato",
+        "text": "Heat mustard oil, crackle panch phoron and green chillies, add barbati and potato wedges with turmeric and salt, and stir-fry until tender and blistered.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss with onions and roasted cumin",
+        "text": "Add sliced onions, red chilli powder, and roasted cumin powder, frying on medium-high flame for 4 minutes until caramelized.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Delicious with both hot steamed rice and roti/paratha."
+  },
+  {
     "id": "static-0173",
     "name": "Basmati Rice (Homestyle)",
     "category": "Rice",
@@ -5498,6 +5552,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1300",
+    "name": "Begun Fry (Bengali Mustard-Oil Pan-Fried Eggplant / Brinjal Medallions)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Large purple eggplant (begun), cut into thick round medallions",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar (a pinch, for rich caramelization)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Score and season eggplant rounds",
+        "text": "Cut the eggplant into 1/2-inch thick round discs, score a light crisscross pattern on both faces, and rub generously with turmeric, red chilli powder, salt, and a pinch of sugar.",
+        "minutes": 5
+      },
+      {
+        "section": "Pan-fry in hot mustard oil",
+        "text": "Sear the eggplant medallions in smoking mustard oil over medium heat for 3-4 minutes per side until deep golden-brown outside and melt-in-the-mouth creamy inside.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 3,
+    "notes": "Essential companion to Bengali khichuri, luchi, or गरम ভাত (steamed rice) and dal."
   },
   {
     "id": "static-0154",
@@ -11654,6 +11757,55 @@
     "notes": "Cooling Bengali summer dish that pairs wonderfully with steamed afternoon rice."
   },
   {
+    "id": "static-1307",
+    "name": "Chalkumro Fry / Chal Kumro Bhaja (Bengali Pan-Fried Ash Gourd Slices)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Ash gourd / winter melon (chalkumro), peeled and cut into 1/3-inch slabs",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour & white poppy seeds (posto)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar (a pinch) & salt",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Score and season ash gourd slabs",
+        "text": "Score a light diamond pattern on the peeled chalkumro slabs, rub with salt, turmeric, chilli powder, and a pinch of sugar, and coat lightly with rice flour and poppy seeds.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry in mustard oil",
+        "text": "Pan-fry in hot mustard oil over medium flame for 4-5 minutes per side until the outside is golden-crisp and the inside is juicy and tender.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Delicate summer Bengali Chalkumro Bhaja."
+  },
+  {
     "id": "static-0836",
     "name": "Cham Cham",
     "category": "Sweets",
@@ -12594,6 +12746,55 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Light, savoury gourd mash that goes well with hot rice."
+  },
+  {
+    "id": "static-1312",
+    "name": "Chichinga Fry / Chichinga Bhaja (Bengali Snake Gourd Stir-Fry with Coconut)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Snake gourd (chichinga), scraped and thinly sliced into rings",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, salt & a pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry snake gourd rings",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add sliced chichinga, turmeric, and salt, and stir-fry until tender-crisp.",
+        "minutes": 9
+      },
+      {
+        "section": "Fold in fresh grated coconut",
+        "text": "Add grated coconut and a pinch of sugar, tossing for 2-3 minutes until golden and fragrant.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "A homestyle Bengali monsoon vegetable fry."
   },
   {
     "id": "static-0089",
@@ -20601,6 +20802,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1296",
+    "name": "Crispy Batter-Fried Kakrol Fry (Poppy-Rice Flour Coated Spiny Gourd Fry)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Spiny gourd (kakrol), sliced into round rings",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Rice flour & besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil for frying",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk crispy posto-rice flour batter",
+        "text": "Mix rice flour, besan, poppy seeds, kalo jeere, turmeric, red chilli powder, salt, and water into a medium-thick coating batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip kakrol slices and fry crisp",
+        "text": "Dip each kakrol slice into the batter and shallow-fry in hot mustard oil until golden and crunchy on both sides.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Crunchy outside and tender inside—great with dal-rice or as a rainy-day telebhaja."
+  },
+  {
     "id": "static-0571",
     "name": "Crispy Beguni",
     "category": "Snacks",
@@ -22917,6 +23167,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1305",
+    "name": "Dherosh Fry / Bhindi Fry (Bengali Crispy Okra / Ladies Finger Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Fresh tender okra (dherosh / bhindi), wiped dry and cut into 1-inch pieces",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, sliced (optional)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) or cumin seeds",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Wash, dry completely and chop okra",
+        "text": "Wash okra and wipe every pod completely dry with a kitchen towel before chopping so there is zero stickiness.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry uncovered on medium-high flame",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add okra (and sliced onion), stir-fry uncovered for 8 minutes, then add turmeric, chilli powder, and salt at the end so the okra stays bright green and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Adding salt near the end of cooking keeps Dherosh Fry non-slimy and crisp."
   },
   {
     "id": "static-0995",
@@ -25797,6 +26101,50 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1323",
+    "name": "Eggplant & Potato Fry (Aloo Begun Fry / Aloo Begun Bhaja)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Eggplant (begun), cut into thick cubes or wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into thin wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry potatoes then add eggplant",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, fry potato wedges until half-done, then add eggplant pieces, turmeric, chilli powder, and salt, frying on medium-high flame until golden and soft.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Quick, comforting Bengali Aloo Begun Fry."
+  },
+  {
     "id": "static-0405",
     "name": "Eggplant Egg Bhuna",
     "category": "Egg",
@@ -27759,6 +28107,55 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1317",
+    "name": "Gajar Beans Fry (Crispy Carrot & French Beans Stir-Fry with Panch Phoron)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Carrots & French beans, cut into thin diagonal batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Bengali panch phoron & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & black pepper / bhaja masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted crushed peanuts or poppy seeds (optional)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil / ghee & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry on high flame",
+        "text": "Heat mustard oil, crackle panch phoron and green chillies, add carrot and bean batons with turmeric and salt, and stir-fry on medium-high heat so they stay bright and crisp-tender.",
+        "minutes": 8
+      },
+      {
+        "section": "Finish with bhaja masala or crushed peanuts",
+        "text": "Toss with roasted bhaja masala or crushed peanuts and serve hot.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 3,
+    "notes": "Colorful, nutritious everyday vegetable fry."
   },
   {
     "id": "static-0280",
@@ -31887,6 +32284,55 @@
     "notes": "Both the flesh and the tender ridged peel of jhinge make a delicious bharta."
   },
   {
+    "id": "static-1310",
+    "name": "Jhinge Fry / Jhinge Posto Bhaja (Bengali Ridge Gourd Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Ridge gourd (jhinge), peeled in stripes and cut into batons or rounds",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "White poppy seeds (posto) or roasted peanuts, coarsely crushed",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, salt & a pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry ridge gourd over high heat",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add jhinge pieces, turmeric, and salt, and cook uncovered on high heat until the released moisture evaporates and the gourd caramelizes.",
+        "minutes": 9
+      },
+      {
+        "section": "Toss with poppy seeds",
+        "text": "Sprinkle poppy seeds (posto) or crushed peanuts and toss for 2 minutes until toasted.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Light, cooling Bengali summer stir-fry."
+  },
+  {
     "id": "static-1213",
     "name": "Jhuri Aloo Bhaja (Bengali Crispy Matchstick Fried Potatoes with Peanuts)",
     "category": "Vegetable",
@@ -32688,6 +33134,55 @@
     "notes": "Tangy and vibrant winter relish."
   },
   {
+    "id": "static-1318",
+    "name": "Kachu Fry / Mukhi Kochu Bhaja (Crispy Taro Root / Arbi Tawa Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Colocasia / taro root (mukhi kochu / arbi), parboiled, peeled and sliced into rounds",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Carom seeds (ajwain) / radhuni & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, coriander & amchur powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour (1 tbsp) & lemon juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil and spice taro rounds",
+        "text": "Boil taro roots until just fork-tender (do not overcook), peel, slice into thick discs, and coat with turmeric, chilli, coriander, amchur, rice flour, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Crisp-fry in tempered mustard oil",
+        "text": "Heat mustard oil with ajwain/radhuni and dry red chilli, and shallow-fry the taro slices until crisp and golden brown on both sides.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Crispy outside and creamy inside—finish with a squeeze of lemon juice."
+  },
+  {
     "id": "static-1048",
     "name": "Kadai Prawns (Prawns with Bell Peppers & Kadai Masala)",
     "category": "Prawns",
@@ -32868,6 +33363,55 @@
     "cookMinutes": 18,
     "servings": 2,
     "notes": "Remove hard seeds if the kakrol is over-ripe before mashing."
+  },
+  {
+    "id": "static-1294",
+    "name": "Kakrol Fry / Kakrol Bhaja (Bengali Crispy Spiny Gourd / Teasle Gourd Pan-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Spiny gourd / teasle gourd (kakrol), cut into 1/4-inch round discs",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour (optional, for extra crispness)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slice and par-blanch or salt kakrol discs",
+        "text": "Wash the spiny gourds gently, slice into even round discs, and rub with turmeric powder, red chilli powder, salt, and a light dusting of rice flour.",
+        "minutes": 5
+      },
+      {
+        "section": "Pan-fry golden brown",
+        "text": "Heat mustard oil in a wide pan, arrange the kakrol discs in a single layer, and fry on medium heat for 4-5 minutes per side until crisp on the edges and soft in the center.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Classic monsoon Bengali Kakrol Fry—pairs wonderfully with masoor dal and steamed rice."
   },
   {
     "id": "static-0555",
@@ -33443,6 +33987,55 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1309",
+    "name": "Kanchkola Fry / Kacha Kola Bhaja (Bengali Crispy Raw Banana / Plantain Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / South Indian",
+    "ingredients": [
+      {
+        "name": "Raw green bananas (kanchkola), peeled and cut into diagonal slices or rounds",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric powder & Kashmiri red chilli powder",
+        "quantity": "1.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin powder & black pepper",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour (for crispness)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak in turmeric water and coat with spices",
+        "text": "Soak sliced raw banana in turmeric water for 5 minutes to prevent darkening, drain, and toss with turmeric, chilli powder, cumin, pepper, rice flour, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Pan-fry until crisp and golden",
+        "text": "Shallow-fry in hot mustard oil over medium flame for 4-5 minutes per side until crisp outside and fluffy inside.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Crunchy, savory raw banana fry that pairs with dal-chawal or sambar-rice."
   },
   {
     "id": "static-0997",
@@ -36896,6 +37489,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1297",
+    "name": "Kumro Fry (Bengali Sweet Red Pumpkin / Mishti Kumro Pan-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Ripe sweet pumpkin (mishti kumro), cut into 1/4-inch half-moon slices with skin on",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pinch of sugar (optional, to caramelize)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slice pumpkin and season",
+        "text": "Cut mishti kumro into uniform half-moon wedges leaving the green/orange rind intact so the slices hold together. Rub with turmeric, red chilli powder, salt, and a tiny pinch of sugar.",
+        "minutes": 4
+      },
+      {
+        "section": "Pan-fry in mustard oil",
+        "text": "Heat mustard oil in a flat pan and fry the pumpkin slices in a single layer for 3-4 minutes per side until caramelized, golden-charred on the outside, and creamy inside.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 3,
+    "notes": "Sweet, smoky, and savory Bengali Kumro Fry—a classic pairing with biulir dal or masoor dal."
+  },
+  {
     "id": "static-0483",
     "name": "Kumro Jhol",
     "category": "Vegetable",
@@ -37130,6 +37772,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1299",
+    "name": "Kumro Phool Fry (Crispy Rice-Besan Batter-Fried Pumpkin Blossom Fry)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh pumpkin blossoms (kumro phool), stems and pistils removed",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rice flour & besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & salt",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil for shallow frying",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Clean blossoms and prepare crisp batter",
+        "text": "Gently rinse pumpkin blossoms, remove the inner stamen, and pat dry. Whisk rice flour, besan, posto, kalo jeere, turmeric, chilli powder, and salt with cold water into a smooth batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Flatten and shallow-fry until lacy and crisp",
+        "text": "Dip each blossom in batter, lay flat in hot mustard oil, and fry for 2-3 minutes per side until golden and paper-crisp.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 3,
+    "notes": "Delicate, shatteringly crisp Bengali pumpkin flower fry."
   },
   {
     "id": "static-0523",
@@ -37368,6 +38059,50 @@
     "notes": "Pan-roasting kundru brings out a pleasant nutty flavour."
   },
   {
+    "id": "static-1311",
+    "name": "Kundru Fry / Kudri Bhaja (Crispy Ivy Gourd / Tendli Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Ivy gourd (kundru / kudri / tendli), sliced lengthwise into quarters or thin rounds",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds & curry leaves / dry red chilli",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, coriander & roasted cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper and slow-roast ivy gourd",
+        "text": "Heat oil, crackle mustard seeds, cumin seeds, and dry red chilli, add sliced kundru with turmeric and salt, and stir-fry uncovered until tender and browned at the edges.",
+        "minutes": 12
+      },
+      {
+        "section": "Toss with dry masala",
+        "text": "Sprinkle Kashmiri chilli, coriander, and roasted cumin powder and toss on high heat for 2 minutes.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Slicing kundru thin and cooking uncovered keeps it crisp rather than soggy."
+  },
+  {
     "id": "static-1215",
     "name": "Kurkure Posto Aloo Bhaja (Bengali Poppy Seed Crusted Crispy Potatoes)",
     "category": "Vegetable",
@@ -37420,6 +38155,55 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Toasted poppy seeds form a crunchy, nutty crust around the fried potatoes."
+  },
+  {
+    "id": "static-1306",
+    "name": "Kurkuri Bhindi Fry (Spiced Gram-Flour Crusted Crispy Okra Fry)",
+    "category": "Vegetable",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Okra (bhindi / dherosh), julienned lengthwise and deseeded",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour / cornflour",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, coriander, cumin & amchur/chaat masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & lemon juice",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for frying & salt",
+        "quantity": "150",
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Julienne okra and toss in dry spice-flour coating",
+        "text": "Slice okra into thin lengthwise strips, toss with lemon juice, spices, besan, and rice flour just before frying.",
+        "minutes": 6
+      },
+      {
+        "section": "Fry until golden and crunchy",
+        "text": "Fry in batches in hot oil until crisp and golden; finish with a sprinkle of chaat masala.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Ultra-crunchy restaurant-style Kurkuri Bhindi Fry."
   },
   {
     "id": "static-0486",
@@ -38904,6 +39688,45 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1302",
+    "name": "Lomba Begun Fry / Begun Sundori (Bengali Boat-Cut Long Brinjal Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Slender purple brinjals, halved lengthwise with stem attached",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric, red chilli powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate stem-on brinjal halves",
+        "text": "Halve slender brinjals lengthwise keeping the green crown/stem intact, and rub with turmeric, chilli powder, and salt.",
+        "minutes": 4
+      },
+      {
+        "section": "Fry cut-side down then skin-side down",
+        "text": "Shallow-fry in hot mustard oil until the flesh is golden-caramelized and the purple skin is blistered and tender.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "notes": "Festive Bengali bhoj-style long brinjal fry served with basanti polao or khichuri."
   },
   {
     "id": "static-0010",
@@ -41461,6 +42284,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1298",
+    "name": "Masala Kumro Fry (Kalo Jeere & Dry Chilli Tempered Crispy Pumpkin Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Sweet pumpkin (kumro), sliced into wedges or thick cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & whole dry red chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour (for crisp coating)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, roasted cumin-chilli bhaja masala & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves & mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper oil and fry rice-flour dusted kumro",
+        "text": "Toss pumpkin pieces with turmeric, salt, and rice flour. Temper hot mustard oil with dry red chillies and kalo jeere, add the pumpkin, and pan-fry uncovered until golden and crisp at the edges.",
+        "minutes": 10
+      },
+      {
+        "section": "Finish with bhaja masala",
+        "text": "Sprinkle roasted Bengali bhaja masala and chopped coriander leaves over the hot fried pumpkin before serving.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Fragrant with kalo jeere and roasted bhaja masala."
+  },
+  {
     "id": "static-1196",
     "name": "Masala Kumro Puri (Bengali Sweet Pumpkin Spiced Poori)",
     "category": "Bread",
@@ -42275,6 +43147,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1292",
+    "name": "Masala Potol Fry (Spiced Cumin-Coriander Pointed Gourd Tawa Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol), halved lengthwise",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Roasted cumin powder, coriander powder & Kashmiri chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & amchur (dry mango powder) / chaat masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour or besan (for crisp spice crust)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat potol in spice-flour rub",
+        "text": "Toss halved pointed gourds with turmeric, Kashmiri chilli, roasted cumin, coriander powder, amchur, salt, and 1 tbsp rice flour with a few drops of oil so the masala clings.",
+        "minutes": 5
+      },
+      {
+        "section": "Pan-fry on cast-iron tawa",
+        "text": "Arrange on a hot oiled tawa and shallow-fry on medium-low flame for 5-6 minutes per side until the spice crust is crisp and caramelized.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Adding a spoonful of rice flour locks the masala onto the potol for an extra-crispy crust."
+  },
+  {
     "id": "static-0451",
     "name": "Masala Puttu",
     "category": "Breakfast",
@@ -42538,6 +43459,50 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1301",
+    "name": "Masala Tawa Begun Fry (Spiced Besan-Crusted Crispy Eggplant Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Eggplant (begun), sliced into round discs",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour) & fine semolina (rava/suji)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, cumin, coriander & amchur powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat eggplant discs in spiced suji-besan mix",
+        "text": "Rub eggplant slices with turmeric, chilli, cumin, coriander, amchur, and salt; rest 5 minutes so moisture releases, then dredge both sides in besan and semolina.",
+        "minutes": 6
+      },
+      {
+        "section": "Tawa-fry until crunchy",
+        "text": "Shallow-fry on a hot cast-iron tawa with mustard oil until the semolina-besan crust is golden and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "The semolina and besan coating prevents the eggplant from absorbing excess oil while adding a crunchy crust."
   },
   {
     "id": "static-0666",
@@ -45629,6 +46594,55 @@
     "notes": "A popular winter Bengali side dish served with steamed rice."
   },
   {
+    "id": "static-1315",
+    "name": "Mulo Fry / Mulo Bhaja (Bengali Grated White Radish Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "White radish (mulo), peeled and finely julienned or coarsely grated",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit & fresh coriander leaves, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, salt & a pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Salt and squeeze grated radish",
+        "text": "Toss julienned/grated radish with a pinch of salt for 5 minutes and squeeze out excess water.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry with kalo jeere and green chillies",
+        "text": "Heat mustard oil, temper with dry red chilli, kalo jeere, and green chillies, add the radish and turmeric, and stir-fry until golden, dry, and fragrant; finish with coriander leaves.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Earthy, aromatic winter Bengali Mulo Bhaja."
+  },
+  {
     "id": "static-0915",
     "name": "Murir Moa",
     "category": "Sweets",
@@ -46791,6 +47805,50 @@
     "cookMinutes": 25,
     "servings": 3,
     "notes": "Meaty elephant foot yam cubes soak up the spiced prawn gravy wonderfully."
+  },
+  {
+    "id": "static-1319",
+    "name": "Ol Fry / Ol Bhaja (Bengali Crispy Elephant Foot Yam / Suran Pan-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Elephant foot yam (ol / suran), peeled, cut into triangles/slabs and parboiled with lemon",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & roasted cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour & poppy seeds (posto)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice, mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil yam with lemon juice",
+        "text": "Boil sliced elephant foot yam in salted water with 1 tsp lemon juice for 5 minutes until just tender, then drain.",
+        "minutes": 6
+      },
+      {
+        "section": "Crust with spices and pan-fry",
+        "text": "Coat the yam slices with turmeric, red chilli, roasted cumin, rice flour, poppy seeds, and salt, and shallow-fry in hot mustard oil until golden and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Boiling with lemon juice removes any acridity and makes Ol Fry tender and delicious."
   },
   {
     "id": "static-0226",
@@ -49273,6 +50331,65 @@
     "notes": "Simple, fragrant 5-spice Bengali potato curry that requires zero spice grinding."
   },
   {
+    "id": "static-1325",
+    "name": "Panchmishali Sabzi Fry / Bhaja Thali (Bengali Five-Vegetable Crispy Fry Platter)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol), halved lengthwise",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Spiny gourd (kakrol), sliced into rounds",
+        "quantity": "1",
+        "unit": "pc"
+      },
+      {
+        "name": "Sweet pumpkin (kumro), cut into half-moon wedges",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Eggplant (begun), cut into thick medallions",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Potatoes (aloo), cut into round medallions or wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder, posto & salt",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil for pan-frying",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season all five vegetables with turmeric and salt",
+        "text": "Rub potol, kakrol, kumro, begun, and aloo separately with turmeric powder, red chilli powder, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Pan-fry in batches in mustard oil",
+        "text": "In a cast-iron kadai with smoking mustard oil, fry aloo, potol, kakrol, kumro, and finally begun until each vegetable is golden brown and crisp, and arrange around steamed rice and dal.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Traditional Bengali Panch-Bhaja (five-vegetable fry) platter served at festive lunches and Pujo bhog."
+  },
+  {
     "id": "static-0716",
     "name": "Paneer Bhurji Sandwich",
     "category": "Sandwich",
@@ -51419,6 +52536,55 @@
     "notes": "Gentle on the stomach and frequently included in convalescent and wholesome daily diets."
   },
   {
+    "id": "static-1320",
+    "name": "Pepe Fry / Kacha Pepe Bhaja (Bengali Grated Raw Papaya Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Raw green papaya (kacha pepe), peeled and julienned or grated",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard seeds or kalo jeere & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh grated coconut (optional)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, salt & a pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper and stir-fry julienned raw papaya",
+        "text": "Heat mustard oil, crackle mustard seeds/kalo jeere and slit green chillies, add julienned raw papaya with turmeric and salt, and stir-fry over medium flame until tender and lightly golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Garnish with grated coconut",
+        "text": "Fold in fresh grated coconut and a tiny pinch of sugar, tossing for 2 minutes before serving.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Light, wholesome, and easy-to-digest Bengali raw papaya fry."
+  },
+  {
     "id": "static-0771",
     "name": "Peppermint Herbal Tea",
     "category": "Tea",
@@ -51716,6 +52882,55 @@
     "cookMinutes": 14,
     "servings": 3,
     "notes": "Everyday Bengali comfort stir-fry for roti, paratha, or dal-rice."
+  },
+  {
+    "id": "static-1304",
+    "name": "Peyaj Diye Korola Fry (Caramelized Onion & Bitter Gourd Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Bitter gourd (korola), thinly sliced",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry korola slices",
+        "text": "Heat mustard oil, temper with kalo jeere, and fry turmeric-salted bitter gourd slices until lightly crisp.",
+        "minutes": 8
+      },
+      {
+        "section": "Caramelize with sliced onions",
+        "text": "Add sliced onions and slit green chillies and stir-fry together until the onions turn golden and sweet, balancing the bitterness of the korola.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Sweet caramelized onions balance the bitter gourd beautifully."
   },
   {
     "id": "static-1065",
@@ -52399,6 +53614,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1316",
+    "name": "Phulkopi Fry (Golden Pan-Roasted Spiced Cauliflower Florets Fry)",
+    "category": "Vegetable",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Cauliflower (phulkopi), cut into medium florets",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) or cumin seeds & green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & roasted cumin-coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Rice flour (1 tsp, for crisp edges) & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch florets briefly in salted warm water",
+        "text": "Soak cauliflower florets in warm salted turmeric water for 5 minutes, drain thoroughly, and pat dry.",
+        "minutes": 5
+      },
+      {
+        "section": "Roast in mustard oil until golden-charred",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add the florets with spices and a light dusting of rice flour, and pan-roast uncovered until golden brown and crisp-tender.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Delicious with dal-rice, khichuri, or roti."
   },
   {
     "id": "static-0586",
@@ -53344,6 +54608,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1321",
+    "name": "Pointed Gourd & Potato Fry (Aloo Potol Fry / Aloo Potol Bhaja)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol), cut into lengthwise wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into matching lengthwise wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, thinly sliced (optional)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry potol wedges first, then potatoes",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add potol and potato wedges with turmeric and salt, and stir-fry uncovered until golden and crisp on the outside.",
+        "minutes": 12
+      },
+      {
+        "section": "Season with roasted cumin and chilli",
+        "text": "Sprinkle red chilli powder and roasted cumin powder and toss on high heat for 2 minutes.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Classic homestyle Aloo Potol Fry that pairs with both dal-rice and roti."
+  },
+  {
     "id": "static-0597",
     "name": "Poori (Homestyle)",
     "category": "Bread",
@@ -53632,6 +54950,60 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "Rich, nutty poppy seed gravy with tender fish roe dumplings."
+  },
+  {
+    "id": "static-1293",
+    "name": "Posto Potol Fry (Poppy Seed Crusted Crispy Pointed Gourd Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol), cut into lengthwise halves or thick rings",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seeds (posto)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate and crust with poppy seeds",
+        "text": "Toss potol halves with turmeric, chilli powder, salt, rice flour, and white poppy seeds (posto) so the seeds coat every piece.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry until poppy seeds crackle and turn golden",
+        "text": "Shallow-fry in hot mustard oil with slit green chillies until the potol is tender and the posto crust is nutty and crunchy.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Nutty toasted poppy seeds give this Bengali potol fry a wonderful crunch."
   },
   {
     "id": "static-0465",
@@ -54433,6 +55805,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1291",
+    "name": "Potol Fry (Bengali Crispy Pan-Fried Pointed Gourd / Parwal Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol / parwal), scraped in stripes and halved lengthwise",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Peel in alternating stripes and score",
+        "text": "Wash the potol, trim both ends, peel the skin in alternating lengthwise stripes so the gourd holds its shape, and halve lengthwise (or score diagonal slits on whole potol).",
+        "minutes": 5
+      },
+      {
+        "section": "Rub with turmeric and salt",
+        "text": "Toss the halved potol with turmeric powder, red chilli powder, and salt, and rest for 5 minutes.",
+        "minutes": 3
+      },
+      {
+        "section": "Shallow-fry in smoking mustard oil",
+        "text": "Heat mustard oil in a flat kadai or tawa until smoking, place potol cut-side down first over medium heat, then flip and fry both sides until blistered, golden brown, and tender inside.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "An everyday Bengali lunch staple served alongside hot steamed rice, dal, and a wedge of Gondhoraj lebu."
   },
   {
     "id": "static-0263",
@@ -57589,6 +59015,158 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1322",
+    "name": "Pumpkin & Potato Fry (Aloo Kumro Fry / Aloo Kumro Bhaja)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Sweet red pumpkin (kumro), cut into cubes or wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into cubes or wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron & dry red chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, salt & a pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & chopped coriander leaves",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper with panch phoron and fry potatoes & pumpkin",
+        "text": "Heat mustard oil, crackle panch phoron and dry red chillies, fry potato cubes for 3 minutes, then add pumpkin cubes, turmeric, and salt and pan-fry until golden and tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Finish with coriander",
+        "text": "Toss with a pinch of sugar and fresh coriander leaves; serve hot with luchi, paratha, or rice.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Fragrant panch-phoron tempered Aloo Kumro Fry."
+  },
+  {
+    "id": "static-1308",
+    "name": "Pur Bhora Chalkumro Fry (Mustard-Poppy Stuffed Ash Gourd Pan-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Ash gourd (chalkumro), cut into thick pocket slices",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard seeds & poppy seeds (posto), soaked and ground with green chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated coconut",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour & besan batter",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, sugar, salt & mustard oil",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stuff ash gourd pockets with shorshe-posto-narkel paste",
+        "text": "Cut a pocket into each chalkumro slice, rub lightly with salt, and stuff with thick mustard, poppy seed, grated coconut, and green chilli paste.",
+        "minutes": 10
+      },
+      {
+        "section": "Dip in crisp batter and shallow-fry",
+        "text": "Dip stuffed slices into seasoned rice-besan batter and shallow-fry in mustard oil until golden brown on both sides.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "A prized traditional Bengali delicacy—juicy ash gourd filled with pungent mustard-poppy paste."
+  },
+  {
+    "id": "static-1295",
+    "name": "Pur Bhora Kakrol Fry (Mustard-Coconut Stuffed Spiny Gourd Pan-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Medium spiny gourds (kakrol), halved lengthwise and seeds scooped",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Yellow & black mustard seeds + poppy seeds (posto), soaked and ground",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rice flour & besan (for sealing batter)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil kakrol shells and prepare stuffing",
+        "text": "Boil halved kakrol in salted turmeric water for 4 minutes, scoop out the inner seeds, and grind the tender seeds with mustard paste, poppy seeds, grated coconut, green chillies, and salt.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff shells, dip in batter and fry",
+        "text": "Fill the kakrol cavities with the spiced mustard-coconut paste, seal the top with a thin rice-flour & besan batter, and shallow-fry in mustard oil until golden and crisp.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "A traditional Bengali bhoj-style stuffed spiny gourd delicacy."
   },
   {
     "id": "static-0895",
@@ -62272,6 +63850,55 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1314",
+    "name": "Seem Fry / Sheem Bhaja (Bengali Winter Flat Broad Beans Pan-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Winter flat broad beans (seem / sheem), strings removed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & fresh coriander leaves",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season and pan-sear broad beans",
+        "text": "Trim both ends and side strings of the seem pods, rub with turmeric and salt, and sear in hot mustard oil tempered with kalo jeere and green chillies until golden spots appear.",
+        "minutes": 9
+      },
+      {
+        "section": "Sprinkle poppy seeds and coriander",
+        "text": "Toss with white poppy seeds and fresh coriander leaves for 2 minutes before serving.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "A beloved Bengali winter lunch side dish."
+  },
+  {
     "id": "static-0171",
     "name": "Seviyan Kheer (Homestyle)",
     "category": "Other",
@@ -65350,6 +66977,60 @@
     "cookMinutes": 6,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1324",
+    "name": "Spiny Gourd & Potato Fry (Aloo Kakrol Fry / Aloo Kakrol Bhaja)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Spiny gourd (kakrol), cut into thin wedges or half-moons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into thin wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, thinly sliced (optional)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & poppy seeds (posto)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry kakrol and potato wedges",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add kakrol and potato wedges with turmeric and salt, and fry uncovered until crisp and golden.",
+        "minutes": 11
+      },
+      {
+        "section": "Toss with poppy seeds",
+        "text": "Add sliced onion (if using), red chilli powder, and white poppy seeds (posto), tossing for 3 minutes until toasted.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 14,
+    "servings": 3,
+    "notes": "Crisp monsoon Aloo Kakrol Fry with nutty poppy seeds."
   },
   {
     "id": "static-0008",
@@ -69863,6 +71544,50 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "Traditional Bengali lunch opener balancing bitter ucche with rich fish roe."
+  },
+  {
+    "id": "static-1303",
+    "name": "Uchhe Fry / Korola Bhaja (Bengali Crispy Bitter Gourd Rings Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Bitter gourd (uchhe or korola), thinly sliced into rings",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Salt and drain excess bitterness",
+        "text": "Toss thinly sliced bitter gourd rings with salt and turmeric, rest for 10 minutes, and gently squeeze out excess bitter water.",
+        "minutes": 6
+      },
+      {
+        "section": "Fry crisp in mustard oil",
+        "text": "Spread in hot mustard oil and fry over medium heat, turning occasionally, until crisp and golden brown.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "notes": "Traditionally eaten as the first course (sukto/tetor dal starter) of a Bengali lunch."
   },
   {
     "id": "static-0897",
