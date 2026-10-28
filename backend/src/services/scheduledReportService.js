@@ -109,8 +109,8 @@ function normalizePayload(data = {}, existing = null) {
       : frequency === "weekly"
         ? `${minute} ${hour} * * ${dayOfWeek}`
         : frequency === "monthly"
-           ? `${minute} ${hour} ${dayOfMonth} * *`
-           : `${minute} ${hour} ${dayOfMonth} ${monthOfYear} *`;
+          ? `${minute} ${hour} ${dayOfMonth} * *`
+          : `${minute} ${hour} ${dayOfMonth} ${monthOfYear} *`;
 
   if (!cron.validate(cronExpression)) {
     throw error("The selected schedule is not valid.");
@@ -430,12 +430,71 @@ function rawDumpSql() {
      LIMIT 5000`;
 }
 
+function enumeratePeriodBuckets(unit, count, dateFrom) {
+  if (!dateFrom) return [];
+  const [y, m, d] = String(dateFrom).slice(0, 10).split("-").map(Number);
+  if (!y || !m || !d) return [];
+
+  if (unit === "day") {
+    return Array.from({ length: count }, (_, idx) => {
+      const dt = new Date(Date.UTC(y, m - 1, d + idx));
+      return dt.toISOString().slice(0, 10);
+    });
+  }
+
+  if (unit === "week") {
+    return Array.from({ length: count }, (_, idx) => {
+      const dt = new Date(Date.UTC(y, m - 1, d + idx * 7));
+      return dt.toISOString().slice(0, 10);
+    });
+  }
+
+  if (unit === "month") {
+    return Array.from({ length: count }, (_, idx) => {
+      const dt = new Date(Date.UTC(y, m - 1 + idx, 1));
+      return dt.toISOString().slice(0, 10);
+    });
+  }
+
+  if (unit === "year") {
+    return Array.from({ length: count }, (_, idx) => y + idx);
+  }
+
+  return [];
+}
+
 export async function buildScheduledReport(reportKey) {
+  const definition = getDashboardDefinition(reportKey);
   const summary = await runDashboardReport(reportKey, "summary");
 
   const match = String(summary.rangeLabel || "").match(
     /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/,
   );
+
+  if (definition && match) {
+    const periodColumn = definition.groupBy?.[0];
+    const periods = enumeratePeriodBuckets(definition.unit, definition.count, match[1]);
+    summary.periods = periods;
+    summary.periodColumn = periodColumn;
+
+    if (Array.isArray(definition.groupBy) && definition.groupBy.length === 1 && periodColumn && periods.length) {
+      const byPeriod = new Map();
+      for (const row of summary.rows || []) {
+        const key =
+          periodColumn === "year"
+            ? String(Number(row[periodColumn]))
+            : toIsoDateString(row[periodColumn]);
+        byPeriod.set(key, Number(byPeriod.get(key) || 0) + Number(row.total || 0));
+      }
+      summary.rows = periods.map((periodValue) => {
+        const key = String(periodValue);
+        return {
+          [periodColumn]: periodValue,
+          total: Number(byPeriod.get(key) || 0),
+        };
+      });
+    }
+  }
 
   let dumpRows = [];
 

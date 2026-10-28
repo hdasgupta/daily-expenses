@@ -46,13 +46,27 @@ function rowLabel(row, groupBy) {
   return groupBy.map((column) => prettyValue(row[column], column)).join(" · ");
 }
 
-function pivotSummary(rows, groupBy) {
+function pivotSummary(rows, groupBy, periods = []) {
   if (!Array.isArray(groupBy) || groupBy.length <= 1) return null;
   const rowColumns = groupBy.slice(0, -1);
   const columnColumn = groupBy[groupBy.length - 1];
   const columnValues = [];
   const columnKeys = new Set();
   const rowMap = new Map();
+
+  if (rowColumns.length === 1 && Array.isArray(periods) && periods.length) {
+    const periodCol = rowColumns[0];
+    for (const periodVal of periods) {
+      const rowKey = JSON.stringify(periodVal ?? null);
+      if (!rowMap.has(rowKey)) {
+        rowMap.set(rowKey, {
+          values: { [periodCol]: periodVal },
+          cells: {},
+          total: 0,
+        });
+      }
+    }
+  }
 
   for (const row of rows || []) {
     const columnValue = row[columnColumn];
@@ -140,7 +154,7 @@ function drawSimpleBarChart(doc, title, rows, groupBy) {
   doc.y = baseline + 30;
 }
 
-function drawPivotBarChart(doc, title, rows, groupBy) {
+function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
   const left = doc.page.margins.left;
   const groups = Array.isArray(groupBy) ? groupBy : [];
   const period = groups.find((column) => ["date", "week", "month", "year"].includes(column));
@@ -151,7 +165,7 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
   doc.x = left;
   doc.fontSize(13).text(title, left, doc.y);
   doc.moveDown(0.35);
-  if (!rows.length) {
+  if (!rows.length && !periods.length) {
     doc.fontSize(10).text("No summary data for this period.", left, doc.y);
     doc.moveDown();
     return;
@@ -165,6 +179,14 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
   const baseline = doc.y + chartHeight;
   const startX = doc.page.margins.left + 12;
   const xMap = new Map();
+  if (Array.isArray(periods) && periods.length) {
+    for (const p of periods) {
+      const xKey = String(p ?? "—");
+      if (!xMap.has(xKey)) {
+        xMap.set(xKey, { key: xKey, label: prettyValue(p, xColumn) });
+      }
+    }
+  }
   const categoryMap = new Map();
   const survivorMap = new Map();
   const seriesColumn = groups.find((column) => column !== xColumn) || groups[1];
@@ -208,7 +230,7 @@ function drawPivotBarChart(doc, title, rows, groupBy) {
   const stackWidth = Math.max(6, Math.min(24, (slot - 10) / Math.max(outerItems.length, 1) - 2));
 
   xItems.forEach((xItem, xIndex) => {
-    const groupWidth = outerItems.length * (stackWidth + 2) - 2;
+    const groupWidth = Math.max(outerItems.length, 1) * (stackWidth + 2) - 2;
     const groupStart = startX + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
     outerItems.forEach((outer, outerIndex) => {
       const bx = groupStart + outerIndex * (stackWidth + 2);
@@ -472,13 +494,14 @@ export function buildScheduledReportPdfInProcess({ summary, raw, generatedAt }) 
 
     const left = doc.page.margins.left;
     const groupBy = summary.groupBy || [];
+    const periods = Array.isArray(summary.periods) ? summary.periods : [];
     doc.fontSize(20).text(`Expense Report - ${summary.title}`, left, doc.y);
     doc.fontSize(9).fillColor("#555").text(`Generated: ${generatedAt}`, left, doc.y);
     doc.fontSize(9).text(`Report range: ${summary.rangeLabel}`, left, doc.y);
     doc.fillColor("black").moveDown();
 
     if (groupBy.length > 1) {
-      drawPivotBarChart(doc, "1. Pivot bar chart", summary.rows || [], groupBy);
+      drawPivotBarChart(doc, "1. Pivot bar chart", summary.rows || [], groupBy, periods);
       doc.moveDown(0.5);
     } else {
       drawSimpleBarChart(doc, "1. Summary bar chart", summary.rows || [], groupBy);
@@ -491,7 +514,7 @@ export function buildScheduledReportPdfInProcess({ summary, raw, generatedAt }) 
     doc.x = left;
     doc.fontSize(14).text(groupBy.length > 1 ? "2. Pivot summary table" : "2. Summary table", left, doc.y);
     doc.moveDown(0.4);
-    const pivot = pivotSummary(summary.rows || [], groupBy);
+    const pivot = pivotSummary(summary.rows || [], groupBy, periods);
     if (pivot) {
       drawPivotTable(doc, pivot);
     } else {

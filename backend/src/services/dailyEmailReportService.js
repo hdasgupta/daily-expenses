@@ -9,8 +9,8 @@ const DAILY_REPORT_SQL = {
   dailySummary: `WITH days AS (
       SELECT gs::date AS day
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '7 days')::date,
-        (CURRENT_DATE - INTERVAL '1 day')::date,
+        (CURRENT_DATE - INTERVAL '6 days')::date,
+        CURRENT_DATE::date,
         INTERVAL '1 day'
       ) AS gs
     )
@@ -25,8 +25,8 @@ const DAILY_REPORT_SQL = {
   survivorSummary: `WITH days AS (
       SELECT gs::date AS day
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '7 days')::date,
-        (CURRENT_DATE - INTERVAL '1 day')::date,
+        (CURRENT_DATE - INTERVAL '6 days')::date,
+        CURRENT_DATE::date,
         INTERVAL '1 day'
       ) AS gs
     )
@@ -51,8 +51,8 @@ const DAILY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= CURRENT_DATE - INTERVAL '7 days'
-      AND e.expense_date < CURRENT_DATE
+    WHERE e.expense_date >= (CURRENT_DATE - INTERVAL '6 days')::date
+      AND e.expense_date <= CURRENT_DATE::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 

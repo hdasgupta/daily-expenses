@@ -110,12 +110,17 @@ function drawBarChart(doc, data) {
 
     const y = baseline - height;
 
-    doc.rect(
-      x,
-      y,
-      barWidth,
-      height,
-    ).fill();
+    doc
+      .save()
+      .fillColor("#315f9f")
+      .rect(
+        x,
+        y,
+        barWidth,
+        height,
+      )
+      .fill()
+      .restore();
 
     doc
       .fillColor("black")
@@ -734,7 +739,7 @@ export function buildDailyEmailReportPdfInProcess(
         doc
           .fontSize(10)
           .text(
-            "No survivor share data for this period.",
+            "No survivor share data for the last seven days.",
             left,
             doc.y,
           );

@@ -10,8 +10,8 @@ const WEEKLY_REPORT_SQL = {
       SELECT gs::date AS week_start,
              (gs::date + 6) AS week_end
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '28 days')::date,
-        (CURRENT_DATE - INTERVAL '7 days')::date,
+        (CURRENT_DATE - INTERVAL '27 days')::date,
+        (CURRENT_DATE - INTERVAL '6 days')::date,
         INTERVAL '7 days'
       ) AS gs
     )
@@ -25,18 +25,27 @@ const WEEKLY_REPORT_SQL = {
     GROUP BY w.week_start, w.week_end
     ORDER BY w.week_start`,
 
-  survivorSummary: `SELECT
-      (e.expense_date - EXTRACT(DOW FROM e.expense_date)::int)::date AS week_start,
-      ((e.expense_date - EXTRACT(DOW FROM e.expense_date)::int)::date + 6) AS week_end,
+  survivorSummary: `WITH weeks AS (
+      SELECT gs::date AS week_start,
+             (gs::date + 6) AS week_end
+      FROM generate_series(
+        (CURRENT_DATE - INTERVAL '27 days')::date,
+        (CURRENT_DATE - INTERVAL '6 days')::date,
+        INTERVAL '7 days'
+      ) AS gs
+    )
+    SELECT w.week_start,
+      w.week_end,
       s.full_name AS survivor,
       COALESCE(SUM(es.amount), 0) AS total
-    FROM public.expenses e
+    FROM weeks w
+    JOIN public.expenses e
+      ON e.expense_date >= w.week_start
+     AND e.expense_date <= w.week_end
     JOIN public.expense_shares es ON es.expense_id = e.id
     JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= CURRENT_DATE - INTERVAL '28 days'
-      AND e.expense_date < CURRENT_DATE
-    GROUP BY week_start, week_end, s.id, s.full_name
-    ORDER BY week_start, s.full_name`,
+    GROUP BY w.week_start, w.week_end, s.id, s.full_name
+    ORDER BY w.week_start, s.full_name`,
 
   dump: `SELECT e.id AS expense_id, e.total_cost, e.expense_date AS date,
       c.name AS category,
@@ -50,8 +59,8 @@ const WEEKLY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= CURRENT_DATE - INTERVAL '28 days'
-      AND e.expense_date < CURRENT_DATE
+    WHERE e.expense_date >= (CURRENT_DATE - INTERVAL '27 days')::date
+      AND e.expense_date <= CURRENT_DATE::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 

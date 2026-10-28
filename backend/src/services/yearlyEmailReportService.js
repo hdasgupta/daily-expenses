@@ -10,8 +10,8 @@ const YEARLY_REPORT_SQL = {
       SELECT gs::date AS year_start,
              (gs::date + INTERVAL '1 year - 1 day')::date AS year_end
       FROM generate_series(
-        (date_trunc('year', CURRENT_DATE) - INTERVAL '2 years')::date,
         (date_trunc('year', CURRENT_DATE) - INTERVAL '1 year')::date,
+        date_trunc('year', CURRENT_DATE)::date,
         INTERVAL '1 year'
       ) AS gs
     )
@@ -29,8 +29,8 @@ const YEARLY_REPORT_SQL = {
       SELECT gs::date AS year_start,
              (gs::date + INTERVAL '1 year - 1 day')::date AS year_end
       FROM generate_series(
-        (date_trunc('year', CURRENT_DATE) - INTERVAL '2 years')::date,
         (date_trunc('year', CURRENT_DATE) - INTERVAL '1 year')::date,
+        date_trunc('year', CURRENT_DATE)::date,
         INTERVAL '1 year'
       ) AS gs
     )
@@ -59,8 +59,8 @@ const YEARLY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= date_trunc('year', CURRENT_DATE) - INTERVAL '2 years'
-      AND e.expense_date < date_trunc('year', CURRENT_DATE)
+    WHERE e.expense_date >= (date_trunc('year', CURRENT_DATE) - INTERVAL '1 year')::date
+      AND e.expense_date <= (date_trunc('year', CURRENT_DATE) + INTERVAL '1 year - 1 day')::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 

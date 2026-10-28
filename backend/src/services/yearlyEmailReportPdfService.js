@@ -137,13 +137,16 @@ function drawYearlyBarChart(doc, data) {
       y = baseline - barHeight;
 
     doc
+      .save()
+      .fillColor("#315f9f")
       .rect(
         x,
         y,
         barWidth,
         barHeight,
       )
-      .fill();
+      .fill()
+      .restore();
 
     doc
       .fillColor("black")
@@ -768,7 +771,7 @@ export function buildYearlyEmailReportPdfInProcess(
           .font("Helvetica")
           .fillColor("#555")
           .text(
-            "No survivor share data available for the two completed years.",
+            "No survivor share data available for the last two years.",
             left,
             doc.y,
           );
@@ -845,7 +848,7 @@ export function buildYearlyEmailReportPdfInProcess(
           .fontSize(9)
           .fillColor("#555")
           .text(
-            "No expense records were found for the two completed years.",
+            "No expense records were found for the last two years.",
             left,
             doc.y,
           );

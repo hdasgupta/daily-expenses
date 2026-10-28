@@ -161,12 +161,17 @@ function drawMonthlyBarChart(doc, data) {
         index * (barWidth + 18),
       y = baseline - height;
 
-    doc.rect(
-      x,
-      y,
-      barWidth,
-      height,
-    ).fill();
+    doc
+      .save()
+      .fillColor("#315f9f")
+      .rect(
+        x,
+        y,
+        barWidth,
+        height,
+      )
+      .fill()
+      .restore();
 
     doc
       .fillColor("black")
@@ -868,7 +873,7 @@ export function buildMonthlyEmailReportPdfInProcess(
           .font("Helvetica")
           .fillColor("#555")
           .text(
-            "No survivor share data available for the three completed months.",
+            "No survivor share data available for the last three months.",
             left,
             doc.y,
           );
@@ -933,7 +938,7 @@ export function buildMonthlyEmailReportPdfInProcess(
           .fontSize(9)
           .fillColor("#555")
           .text(
-            "No expense records were found for the three completed months.",
+            "No expense records were found for the last three months.",
             left,
             doc.y,
           );

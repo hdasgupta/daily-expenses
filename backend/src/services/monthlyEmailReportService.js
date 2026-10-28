@@ -10,8 +10,8 @@ const MONTHLY_REPORT_SQL = {
       SELECT gs::date AS month_start,
              (gs::date + INTERVAL '1 month - 1 day')::date AS month_end
       FROM generate_series(
-        (date_trunc('month', CURRENT_DATE) - INTERVAL '3 months')::date,
-        (date_trunc('month', CURRENT_DATE) - INTERVAL '1 month')::date,
+        (date_trunc('month', CURRENT_DATE) - INTERVAL '2 months')::date,
+        date_trunc('month', CURRENT_DATE)::date,
         INTERVAL '1 month'
       ) AS gs
     )
@@ -29,8 +29,8 @@ const MONTHLY_REPORT_SQL = {
       SELECT gs::date AS month_start,
              (gs::date + INTERVAL '1 month - 1 day')::date AS month_end
       FROM generate_series(
-        (date_trunc('month', CURRENT_DATE) - INTERVAL '3 months')::date,
-        (date_trunc('month', CURRENT_DATE) - INTERVAL '1 month')::date,
+        (date_trunc('month', CURRENT_DATE) - INTERVAL '2 months')::date,
+        date_trunc('month', CURRENT_DATE)::date,
         INTERVAL '1 month'
       ) AS gs
     )
@@ -59,8 +59,8 @@ const MONTHLY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= date_trunc('month', CURRENT_DATE) - INTERVAL '3 months'
-      AND e.expense_date < date_trunc('month', CURRENT_DATE)
+    WHERE e.expense_date >= (date_trunc('month', CURRENT_DATE) - INTERVAL '2 months')::date
+      AND e.expense_date <= (date_trunc('month', CURRENT_DATE) + INTERVAL '1 month - 1 day')::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 

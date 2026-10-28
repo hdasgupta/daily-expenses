@@ -138,7 +138,12 @@ function drawBarChart(doc, data) {
       x = x0 + index * (bw + 15),
       y = base - bh;
 
-    doc.rect(x, y, bw, bh).fill();
+    doc
+      .save()
+      .fillColor("#315f9f")
+      .rect(x, y, bw, bh)
+      .fill()
+      .restore();
 
     doc
       .fillColor("black")
@@ -170,7 +175,7 @@ function drawBarChart(doc, data) {
   doc.y = base + 30;
 }
 
-function drawSurvivorChart(doc, rows, survivors) {
+function drawSurvivorChart(doc, rows, survivors, labelFormatter = safeWeekLabel) {
   if (!rows.length || !survivors.length) {
     doc
       .fontSize(9)
@@ -243,7 +248,7 @@ function drawSurvivorChart(doc, rows, survivors) {
       .fillColor("black")
       .fontSize(5.5)
       .text(
-        safeWeekLabel(row.period),
+        labelFormatter(row.period),
         x - 5,
         base + 5,
         {
@@ -626,10 +631,18 @@ export function buildWeeklyEmailReportPdfInProcess(
       ),
     );
 
+    const weeklyLabels = new Map(
+      report.weeklySummary.map((row) => [
+        row.weekStart,
+        weekLabel(row.weekStart, row.weekEnd),
+      ]),
+    );
+
     drawSurvivorChart(
       doc,
       survivorPivot.rows,
       survivorPivot.survivors,
+      (period) => weeklyLabels.get(period) || safeWeekLabel(period),
     );
 
     doc.addPage();
@@ -654,7 +667,7 @@ export function buildWeeklyEmailReportPdfInProcess(
         .font("Helvetica")
         .fillColor("#555")
         .text(
-          "No survivor share data available for the four completed weeks.",
+          "No survivor share data available for the last four weeks.",
           left,
           doc.y,
         );
@@ -668,9 +681,9 @@ export function buildWeeklyEmailReportPdfInProcess(
           ...survivorPivot.survivors,
         ],
         survivorPivot.rows.map((row) => ({
-          week: safeWeekLabel(
-            row.period,
-          ),
+          week:
+            weeklyLabels.get(row.period) ||
+            safeWeekLabel(row.period),
           ...Object.fromEntries(
             survivorPivot.survivors.map(
               (survivor) => [
@@ -723,7 +736,7 @@ export function buildWeeklyEmailReportPdfInProcess(
         .fontSize(9)
         .fillColor("#555")
         .text(
-          "No expense records were found for the four completed weeks.",
+          "No expense records were found for the last four weeks.",
           left,
           doc.y,
         );

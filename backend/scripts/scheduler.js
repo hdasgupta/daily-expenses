@@ -75,6 +75,15 @@ function lastPastSaturdayDateKey(local) {
   return d.toISOString().slice(0, 10);
 }
 
+function previousMonthKeyFromLocal(local) {
+  const d = new Date(Date.UTC(Number(local.year), Number(local.month) - 2, 1));
+  return d.toISOString().slice(0, 7);
+}
+
+function previousYearKeyFromLocal(local) {
+  return String(Number(local.year) - 1);
+}
+
 function isLastDayOfMonth(local) {
   const date = new Date(`${local.year}-${local.month}-${local.day}T00:00:00Z`);
   const tomorrow = new Date(date);
@@ -558,48 +567,50 @@ export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs
         }
       }
 
-      // 4. Monthly 3-month email report (due last day of month at 23:59 IST)
+      // 4. Monthly 3-month email report (due last day of month at 23:59 IST; catch up previous month if missed)
       const monthlyLocal = getLocalDateParts(env.monthlyEmailReportTimezone);
       const monthlyHour = Number(monthlyLocal.hour === "24" ? 0 : monthlyLocal.hour);
       const monthlyMinute = Number(monthlyLocal.minute);
-      if (isLastDayOfMonth(monthlyLocal) && monthlyHour === 23 && monthlyMinute >= 59) {
-        const monthlyKey = `${monthlyLocal.year}-${monthlyLocal.month}`;
-        if (await isSystemJobDueOrRetryable("monthly-email-report", monthlyKey)) {
-          if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
-            hasMoreDue = true;
-            return { executedCount, hasMoreDue };
-          }
-          try {
-            const ran = await runMonthlyEmailReport(monthlyKey);
-            if (ran) executedCount += 1;
-          } catch (error) {
-            console.error("Missed 3-month email report catch-up failed", error);
-          }
+      const dueMonthlyKey =
+        isLastDayOfMonth(monthlyLocal) && monthlyHour === 23 && monthlyMinute >= 59
+          ? `${monthlyLocal.year}-${monthlyLocal.month}`
+          : previousMonthKeyFromLocal(monthlyLocal);
+
+      if (await isSystemJobDueOrRetryable("monthly-email-report", dueMonthlyKey)) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          return { executedCount, hasMoreDue };
+        }
+        try {
+          const ran = await runMonthlyEmailReport(dueMonthlyKey);
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed 3-month email report catch-up failed", error);
         }
       }
 
-      // 5. Yearly 2-year email report (due Dec 31 at 23:59 IST)
+      // 5. Yearly 2-year email report (due Dec 31 at 23:59 IST; catch up previous year if missed)
       const yearlyLocal = getLocalDateParts(env.yearlyEmailReportTimezone);
       const yearlyHour = Number(yearlyLocal.hour === "24" ? 0 : yearlyLocal.hour);
       const yearlyMinute = Number(yearlyLocal.minute);
-      if (
+      const dueYearlyKey =
         yearlyLocal.month === "12" &&
         yearlyLocal.day === "31" &&
         yearlyHour === 23 &&
         yearlyMinute >= 59
-      ) {
-        const yearlyKey = `${yearlyLocal.year}`;
-        if (await isSystemJobDueOrRetryable("yearly-email-report", yearlyKey)) {
-          if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
-            hasMoreDue = true;
-            return { executedCount, hasMoreDue };
-          }
-          try {
-            const ran = await runYearlyEmailReport(yearlyKey);
-            if (ran) executedCount += 1;
-          } catch (error) {
-            console.error("Missed 2-year email report catch-up failed", error);
-          }
+          ? `${yearlyLocal.year}`
+          : previousYearKeyFromLocal(yearlyLocal);
+
+      if (await isSystemJobDueOrRetryable("yearly-email-report", dueYearlyKey)) {
+        if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
+          hasMoreDue = true;
+          return { executedCount, hasMoreDue };
+        }
+        try {
+          const ran = await runYearlyEmailReport(dueYearlyKey);
+          if (ran) executedCount += 1;
+        } catch (error) {
+          console.error("Missed 2-year email report catch-up failed", error);
         }
       }
     } finally {
