@@ -28065,6 +28065,1111 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1345",
+    "name": "Fulkopir Datta Aloo Jhol / Patla Torkari (Light Homestyle Cauliflower Stem & Potato Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta) & small florets, peeled and cut",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into lengthwise wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ripe tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Cumin seeds (jeere), bay leaf & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger paste, cumin powder, coriander powder, turmeric & salt",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & chopped coriander leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté fulkopir datta and potatoes with ginger-cumin spices",
+        "text": "Heat mustard oil, temper with cumin seeds and bay leaf, sauté potatoes and peeled cauliflower stems for 4 minutes, then add ginger paste, chopped tomato, turmeric, cumin, coriander powder, and salt.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer in light broth and garnish",
+        "text": "Add 1.5 cups warm water, cover and simmer until the fulkopir datta and potatoes are fork-tender, and finish with slit green chillies and fresh coriander leaves.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 19,
+    "servings": 4,
+    "notes": "Light, soothing everyday Bengali jhol using tender cauliflower stems and potatoes."
+  },
+  {
+    "id": "static-1332",
+    "name": "Fulkopir Datta Aloo Kumro Torkari (Cauliflower Stem, Sweet Pumpkin & Potato Panch-Phoron Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Sweet red pumpkin (kumro), cubed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes (aloo), cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron, bay leaf & dry red chilli",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger, cumin powder, turmeric, salt & sugar",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & fresh coriander leaves",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper and simmer fulkopir datta with pumpkin and potato",
+        "text": "Heat mustard oil, crackle panch phoron, bay leaf, and dry red chilli, add grated ginger, potatoes, and fulkopir datta; sauté 4 minutes, then add pumpkin, turmeric, cumin, salt, and warm water to cover and cook until tender.",
+        "minutes": 14
+      },
+      {
+        "section": "Mash a few pumpkin cubes and garnish",
+        "text": "Lightly mash a few pumpkin pieces to thicken the gravy, balance with a pinch of sugar, and garnish with chopped coriander leaves.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Great accompaniment to गरम luchi, paratha, roti, or dal-chawal."
+  },
+  {
+    "id": "static-1329",
+    "name": "Fulkopir Datta Bharta / Phulkopir Data Bata (Spiced Mashed Cauliflower Stem & Leaf Paste with Mustard Oil)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender cauliflower stems & inner leaves (fulkopir datta o pata), chopped",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Onion, finely sliced",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dry red chillies & green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil and grind the fulkopir datta",
+        "text": "Blanch or steam the chopped cauliflower stems until soft, drain thoroughly, and grind into a coarse paste with green chillies and half the garlic.",
+        "minutes": 10
+      },
+      {
+        "section": "Temper and roast paste in mustard oil until dry",
+        "text": "Heat mustard oil, crackle kalo jeere, dry red chillies, remaining garlic, and onion until golden, then add the ground fulkopir datta paste and salt; stir continuously on medium flame until all moisture evaporates and oil separates.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Earthy, smoky Bangal-style Fulkopir Datta Bata served as the first course with hot steamed rice."
+  },
+  {
+    "id": "static-1342",
+    "name": "Fulkopir Datta Bora / Pakora (Crispy Spiced Cauliflower Stem & Gram Flour Fritters)",
+    "category": "Starter",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender cauliflower stems (fulkopir datta), peeled and finely julienned or parboiled strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Gram flour (besan)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro) for extra crunch",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), poppy seeds (posto) & chopped green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil for frying",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare the spiced fritter batter",
+        "text": "Toss finely julienned (or lightly steamed) cauliflower stems with salt, turmeric, chilli powder, kalo jeere, posto, besan, and rice flour, sprinkling just enough water to bind into tight clusters.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry until golden and crisp",
+        "text": "Drop spoonfuls into medium-hot mustard oil and fry on both sides until crisp and golden brown; serve hot with kasundi or dal-rice.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Crispy zero-waste Bengali bora made from sweet, tender cauliflower stalks."
+  },
+  {
+    "id": "static-1331",
+    "name": "Fulkopir Datta Bori Begun Chorchori (Cauliflower Stem, Eggplant & Fried Lentil Dumpling Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggplant (begun), cubed",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes (aloo), cut into strips",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Sun-dried lentil dumplings (biulir daler bori)",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard paste, turmeric, salt & pinch of sugar",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry the bori until crisp",
+        "text": "Fry the lentil dumplings (bori) in hot mustard oil until golden brown, crush lightly, and set aside.",
+        "minutes": 3
+      },
+      {
+        "section": "Braise vegetables and fold in crispy bori",
+        "text": "Temper the oil with panch phoron, cook fulkopir datta and potatoes until nearly soft, add eggplant and mustard paste, cook until thick, and top with crushed fried bori before serving.",
+        "minutes": 14
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 17,
+    "servings": 4,
+    "notes": "Pure vegetarian (niramish) winter chorchori with crunchy fried bori."
+  },
+  {
+    "id": "static-1330",
+    "name": "Fulkopir Datta Chingri Chorchori (Cauliflower Stem, Potato & Prawn Dry Curry)",
+    "category": "Fish & Seafood",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Small prawns (kucho chingri), cleaned and deveined",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes & brinjal, cut into wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste & mustard paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron, turmeric, cumin powder & salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Lightly fry the prawns",
+        "text": "Toss prawns with a pinch of turmeric and salt, flash-fry in hot mustard oil for 1–2 minutes, and set aside.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook fulkopir datta, potatoes, and prawns together",
+        "text": "Temper oil with panch phoron and sliced onion, add ginger-garlic paste, turmeric, cumin, fulkopir datta, and potatoes; cover until tender, then fold in brinjal, fried prawns, and mustard paste, cooking until dry and well-coated.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Sweet kucho chingri elevates humble cauliflower stems into a prized Bengali lunch dish."
+  },
+  {
+    "id": "static-1326",
+    "name": "Fulkopir Datta Chorchori / Phulkopir Data Chorchori (Bengali Cauliflower Stem, Potato, Brinjal & Mustard Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender cauliflower stems/stalks (fulkopir datta), peeled and cut into 2-inch batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes (aloo), cut into lengthwise wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Brinjal / Eggplant (begun), cut into lengthwise pieces",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Sweet pumpkin (kumro), cubed",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow & black mustard paste (shorshe bata)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice) & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, green chillies, salt & pinch of sugar",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep the fulkopir datta and vegetables",
+        "text": "Peel the tough outer skin off the thick cauliflower stems (fulkopir datta) and slice into finger-length batons along with any tender inner leaves. Cut potatoes, pumpkin, and brinjal into similar sizes.",
+        "minutes": 10
+      },
+      {
+        "section": "Temper with panch phoron and braise stems",
+        "text": "Heat mustard oil in a kadai, crackle panch phoron and dry red chilli, add potatoes and fulkopir datta with turmeric and salt, and sauté covered with a splash of water until 75% tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Add brinjal, pumpkin, and mustard paste",
+        "text": "Add pumpkin and brinjal pieces, cook until soft, then stir in mustard paste, slit green chillies, a pinch of sugar, and a raw mustard oil drizzle; cook for 3 minutes until mushy (ga-makha).",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 17,
+    "servings": 4,
+    "notes": "Classic zero-waste Bengali winter delicacy using tender cauliflower stems (fulkopir datta) in a mustard-laced chorchori."
+  },
+  {
+    "id": "static-1338",
+    "name": "Fulkopir Datta Diye Masoor Dal (Red Lentil Dal Cooked with Tender Cauliflower Stems)",
+    "category": "Dal",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Red lentils (masoor dal), washed",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Tender cauliflower stems (fulkopir datta), peeled and cut into 1.5-inch pieces",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Ripe tomato, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron or kalo jeere & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slit green chillies, turmeric powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & chopped coriander leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil masoor dal with fulkopir datta",
+        "text": "Simmer washed masoor dal with turmeric, salt, and peeled cauliflower stem pieces until the lentils are creamy and the stems are tender yet hold their shape.",
+        "minutes": 15
+      },
+      {
+        "section": "Temper with kalo jeere, tomato, and coriander",
+        "text": "Heat mustard oil, crackle kalo jeere, dry red chilli, and green chillies, sauté chopped tomato until soft, pour the boiled dal over, simmer 3 minutes, and garnish with fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Comforting everyday Bengali winter masoor dal infused with the sweetness of cauliflower stems."
+  },
+  {
+    "id": "static-1339",
+    "name": "Fulkopir Datta Diye Motor Dal (Yellow Split Pea Dal with Cauliflower Stems & Coconut)",
+    "category": "Dal",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Yellow split peas (motor dal), soaked 1 hour",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Tender cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh coconut bits or grated coconut",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, bay leaf, dry red chilli & grated ginger",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, salt, pinch of sugar & ghee/mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pressure-cook motor dal and add fulkopir datta",
+        "text": "Boil motor dal until soft, then simmer with peeled cauliflower stems, turmeric, and salt until the stems are tender.",
+        "minutes": 16
+      },
+      {
+        "section": "Temper with cumin, ginger, and coconut",
+        "text": "Heat mustard oil and a spoon of ghee, crackle cumin seeds, bay leaf, and red chilli, fry coconut bits and grated ginger, pour in the dal, and simmer 3 minutes.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Nutty, aromatic Bengali winter motor dal with tender fulkopir datta."
+  },
+  {
+    "id": "static-1335",
+    "name": "Fulkopir Datta Fry / Fulkopir Data Bhaja (Crispy Mustard-Tempered Cauliflower Stem & Potato Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender cauliflower stems (fulkopir datta), peeled and julienned into thin matchsticks",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, julienned into thin matchsticks",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "White poppy seeds (posto) for tossing",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder & salt",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry julienned fulkopir datta and potatoes",
+        "text": "Heat mustard oil, temper with kalo jeere and green chillies, add thinly julienned cauliflower stems and potatoes with turmeric and salt, and stir-fry on medium flame until tender and golden.",
+        "minutes": 11
+      },
+      {
+        "section": "Toss with poppy seeds",
+        "text": "Sprinkle white poppy seeds (posto) and toss on high heat for 2 minutes until nutty and crisp.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 13,
+    "servings": 3,
+    "notes": "Quick, crunchy side fry (bhaja) to serve alongside dal and steamed rice."
+  },
+  {
+    "id": "static-1334",
+    "name": "Fulkopir Datta Macher Dimer Chorchori (Cauliflower Stem, Potato & Fish Roe Scramble Curry)",
+    "category": "Fish & Seafood",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh fish roe / fish eggs (macher dim)",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into thin strips",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, finely chopped & green chillies",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-garlic paste, turmeric, cumin & red chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Panch phoron, mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Scramble-fry the fish roe",
+        "text": "Season fish eggs with turmeric and salt, pan-fry in hot mustard oil while breaking into coarse nuggets, and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook fulkopir datta and toss with fish roe",
+        "text": "Temper oil with panch phoron, sauté onion and ginger-garlic paste, add cauliflower stems, potato strips, and spices; cook covered until tender, then fold in the fried fish roe and cook 3 minutes until well combined.",
+        "minutes": 14
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 19,
+    "servings": 4,
+    "notes": "Hearty Bengali homestyle dish combining tender fulkopir datta with savory macher dim."
+  },
+  {
+    "id": "static-1333",
+    "name": "Fulkopir Datta Macher Matha Diye Chorchori (Cauliflower Stem & Potato Medley with Fish Head)",
+    "category": "Fish & Seafood",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Rohu or Katla fish head (macher matha), halved and cleaned",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Potatoes, pumpkin & brinjal, cut into wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, sliced & ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron, turmeric, cumin, coriander & red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, salt & pinch of garam masala",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry and break the fish head",
+        "text": "Marinate fish head pieces with turmeric and salt, fry in smoking mustard oil until crisp and golden, break into bite-sized chunks with the spatula, and set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Braise fulkopir datta with spices and fish head",
+        "text": "Temper oil with panch phoron, sauté onion and ginger-garlic paste, add fulkopir datta, potatoes, pumpkin, brinjal, and spice powders; cook covered until tender, fold in the fried fish head chunks, and finish with garam masala.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 21,
+    "servings": 4,
+    "notes": "Rich, rustic Bengali Macher Matha Diye Fulkopir Datta Chorchori."
+  },
+  {
+    "id": "static-1337",
+    "name": "Fulkopir Datta Mulo Begun Bori Ghonto (Cauliflower Stem, Radish, Brinjal & Bori Winter Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "White radish (mulo), peeled and cut into batons",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Brinjal (begun) & potato, cubed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Lentil dumplings (bori), fried",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron, grated ginger & cumin-coriander paste",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, salt, sugar & mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook fulkopir datta and radish together",
+        "text": "Temper mustard oil with panch phoron, add fulkopir datta, radish (mulo), and potatoes with ginger, cumin-coriander, turmeric, and salt; cover and braise until soft.",
+        "minutes": 13
+      },
+      {
+        "section": "Add brinjal and fried bori",
+        "text": "Add brinjal cubes and crushed fried bori, cook until thick and mushy (ghonto consistency), and balance with a pinch of sugar.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 14,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Traditional winter vegetable ghonto combining cauliflower stems and white radish."
+  },
+  {
+    "id": "static-1344",
+    "name": "Fulkopir Datta Narkel Diye Chorchori (Niramish Cauliflower Stem & Grated Coconut Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh grated coconut (narkel kora)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Potatoes & sweet pumpkin, cut into wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Panch phoron, dry red chilli & bay leaf",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger paste, turmeric, roasted cumin powder, salt & sugar",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Braise stems with ginger and panch phoron",
+        "text": "Heat mustard oil, crackle panch phoron, red chilli, and bay leaf, add ginger paste, fulkopir datta, potatoes, and pumpkin with turmeric and salt, and cook covered until soft.",
+        "minutes": 13
+      },
+      {
+        "section": "Fold in fresh grated coconut and roasted cumin",
+        "text": "Stir in fresh grated coconut, roasted cumin powder, a pinch of sugar, and 1 tsp ghee; cook 3 minutes until fragrant.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Traditional niramish (no-onion, no-garlic) cauliflower stem curry enriched with fresh grated coconut."
+  },
+  {
+    "id": "static-1341",
+    "name": "Fulkopir Datta Palong Shak Chorchori (Cauliflower Stem, Spinach & Winter Vegetable Chorchori)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into strips",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh spinach (palong shak), washed and chopped",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, pumpkin & brinjal, cubed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Lentil dumplings (bori), fried",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron, dry red chilli & grated ginger",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, salt, sugar & mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook fulkopir datta and root vegetables",
+        "text": "Fry bori and set aside. Temper oil with panch phoron and red chilli, add grated ginger, fulkopir datta, potato, and pumpkin with turmeric and salt; cook until nearly tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Wilting spinach and finishing with bori",
+        "text": "Add brinjal and chopped palong shak, cook uncovered until the greens wilt and moisture reduces, and top with crushed fried bori.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Nutrient-rich Bengali Palong-Fulkopir Datta Chorchori."
+  },
+  {
+    "id": "static-1327",
+    "name": "Fulkopir Datta Posto / Phulkopir Data Posto (Cauliflower Stem & Potato in Poppy Seed Paste)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes (aloo), cut into batons",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground with 2 green chillies",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder (optional, tiny pinch) & salt",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté fulkopir datta and potato batons",
+        "text": "Heat mustard oil, temper with kalo jeere and dry red chilli, add cauliflower stem batons and potato batons with salt, and stir-fry covered on low-medium flame until tender.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold in fresh posto bata",
+        "text": "Add the ground poppy seed-green chilli paste with 3 tbsp water, toss gently for 3–4 minutes until the posto coats the stems, and finish with 1 tsp raw mustard oil.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Nutty, creamy Bengali posto dish celebrating the sweet crunch of tender cauliflower stems."
+  },
+  {
+    "id": "static-1328",
+    "name": "Fulkopir Datta Shorshe / Shorshe Bata Diye Fulkopir Data (Cauliflower Stem in Mustard Gravy)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into 2-inch strips",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into wedges",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Black & yellow mustard seeds ground with green chillies and a pinch of salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, salt & pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & slit green chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook cauliflower stems and potatoes",
+        "text": "Heat mustard oil, temper with kalo jeere, add fulkopir datta and potato wedges with turmeric, salt, and a splash of water; cover and cook until tender.",
+        "minutes": 12
+      },
+      {
+        "section": "Simmer with pungent mustard paste",
+        "text": "Pour in strained or smooth mustard paste and slit green chillies, simmer for 3 minutes until thick and clinging, and drizzle raw mustard oil before serving with hot rice.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Pungent shorshe-bata preparation that pairs wonderfully with steamed white rice."
+  },
+  {
+    "id": "static-1340",
+    "name": "Fulkopir Datta Shorshe Posto Chorchori (Cauliflower Stem in Mustard & Poppy Seed Paste)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cut into batons",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Poppy seeds (posto) & yellow mustard seeds ground together with green chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, salt & pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Braise fulkopir datta and potato batons",
+        "text": "Heat mustard oil, temper with kalo jeere, add cauliflower stems and potatoes with turmeric and salt, and cook covered with a splash of water until tender.",
+        "minutes": 12
+      },
+      {
+        "section": "Coat with shorshe-posto paste",
+        "text": "Stir in the combined mustard-poppy seed paste, slit green chillies, and a pinch of sugar, simmer 3–4 minutes until thick, and finish with raw mustard oil.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Balances the nutty creaminess of posto with the sharp zing of yellow mustard."
+  },
+  {
+    "id": "static-1343",
+    "name": "Fulkopir Datta Shutki Chorchori (Bengali Cauliflower Stem, Potato & Dried Fish Spicy Medley)",
+    "category": "Fish & Seafood",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Loitta or Chingri shutki (dried fish/shrimp), washed in warm water",
+        "quantity": "75",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes & brinjal, cut into wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, sliced & generous garlic cloves, crushed",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & slit green chillies",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast cleaned shutki with garlic and onion",
+        "text": "Heat mustard oil, fry cleaned shutki with crushed garlic and sliced onion until fragrant and golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Braise fulkopir datta, potato, and brinjal",
+        "text": "Add fulkopir datta, potatoes, brinjal, turmeric, red chilli powder, and salt; cover and cook on low-medium heat until the stems are tender and coated in spicy garlic-shutki oil.",
+        "minutes": 14
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Bold, garlicky Bangal-style shutki chorchori where fibrous cauliflower stems soak up the savory flavors."
+  },
+  {
+    "id": "static-1336",
+    "name": "Fulkopir Datta Sim Aloo Chorchori (Winter Cauliflower Stem, Flat Bean & New Potato Chorchori)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower stems (fulkopir datta), peeled and cut into batons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Flat broad beans (sim / sheem), trimmed and halved",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "New winter potatoes (notun aloo), cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ripe tomato, quartered",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Mustard paste (shorshe bata) & green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron, turmeric, salt & fresh coriander leaves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté winter vegetables with panch phoron",
+        "text": "Heat mustard oil, crackle panch phoron, add fulkopir datta, new potatoes, and flat beans (sim) with turmeric and salt; cover and cook until tender.",
+        "minutes": 12
+      },
+      {
+        "section": "Simmer with tomato, mustard paste, and coriander",
+        "text": "Add tomato wedges, mustard paste, and green chillies, cook 4 minutes until coated, and finish with fresh winter coriander leaves.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Quintessential Bengali winter afternoon chorchori with notun aloo, sim, and fulkopir datta."
+  },
+  {
     "id": "static-0863",
     "name": "Gajak",
     "category": "Sweets",
