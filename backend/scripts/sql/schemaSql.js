@@ -224,6 +224,7 @@ CREATE TABLE IF NOT EXISTS public.marketing_list_items (
   item_name VARCHAR(200) NOT NULL,
   quantity NUMERIC(14,4),
   unit_id BIGINT REFERENCES public.units(id) ON DELETE SET NULL,
+  approximate_cost NUMERIC(14,2),
   purchase_date DATE NOT NULL,
   location_id BIGINT REFERENCES public.marketing_locations(id) ON DELETE SET NULL,
   status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','purchased','removed')),
@@ -236,6 +237,7 @@ CREATE TABLE IF NOT EXISTS public.marketing_list_items (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE public.marketing_list_items ADD COLUMN IF NOT EXISTS approximate_cost NUMERIC(14,2);
 CREATE INDEX IF NOT EXISTS idx_marketing_list_date_status ON public.marketing_list_items(purchase_date,status);
 CREATE OR REPLACE FUNCTION public.marketing_mark_expense_removed() RETURNS trigger AS $$
 BEGIN

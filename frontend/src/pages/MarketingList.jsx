@@ -16,12 +16,23 @@ import ProofViewer from "../components/ProofViewer";
 import { usePagination } from "../hooks/usePagination";
 import { todayKolkata } from "../utils/dates.js";
 
-const empty = () => ({ categoryId: "", itemId: "", itemName: "", quantity: "", unitId: "", purchaseDate: todayKolkata(), locationId: "" });
+const empty = () => ({
+  categoryId: "",
+  itemId: "",
+  itemName: "",
+  quantity: "",
+  unitId: "",
+  approximateCost: "",
+  purchaseDate: todayKolkata(),
+  locationId: "",
+});
+
 const sortOptions = [
   { value: "id", label: "Entry order" },
   { value: "purchase_date", label: "Purchase date" },
   { value: "category_name", label: "Category" },
   { value: "item_name", label: "Item" },
+  { value: "approximate_cost", label: "Approximate cost" },
   { value: "location_name", label: "Location" },
   { value: "status", label: "Status" },
 ];
@@ -261,21 +272,52 @@ export default function MarketingList({ navigate }) {
       if (String(row.purchase_date || "").slice(0, 10) !== selectedDate) return false;
       if (form.locationId && String(row.location_id || "") !== String(form.locationId)) return false;
       if (form.categoryId && String(row.category_id || "") !== String(form.categoryId)) return false;
-      const haystack = [row.item_name, row.category_name, row.location_name, row.unit_name, row.status, row.purchase_date, row.quantity, row.expense_price]
-        .map((value) => String(value ?? "")).join(" ").toLowerCase();
+      const haystack = [
+        row.item_name,
+        row.category_name,
+        row.location_name,
+        row.unit_name,
+        row.status,
+        row.purchase_date,
+        row.quantity,
+        row.approximate_cost,
+        row.expense_price,
+      ]
+        .map((value) => String(value ?? ""))
+        .join(" ")
+        .toLowerCase();
       return !term || haystack.includes(term);
     });
     if (pagination.sortColumn) {
       const column = pagination.sortColumn;
       filtered.sort((a, b) => {
-        const result = column === "id"
-          ? Number(a.id || 0) - Number(b.id || 0)
-          : String(a[column] ?? "").toLowerCase().localeCompare(String(b[column] ?? "").toLowerCase(), undefined, { numeric: true });
+        const result =
+          column === "id" || column === "approximate_cost"
+            ? Number(a[column] || 0) - Number(b[column] || 0)
+            : String(a[column] ?? "")
+                .toLowerCase()
+                .localeCompare(String(b[column] ?? "").toLowerCase(), undefined, { numeric: true });
         return pagination.sortDirection === "desc" ? -result : result;
       });
     }
     return filtered;
   }, [rows, form.purchaseDate, form.locationId, form.categoryId, pagination.search, pagination.sortColumn, pagination.sortDirection]);
+
+  const filteredCostSummary = useMemo(() => {
+    let totalCost = 0;
+    let costItemCount = 0;
+    for (const row of filteredRows) {
+      const approx = Number(row.approximate_cost);
+      if (Number.isFinite(approx) && approx > 0) {
+        totalCost += approx;
+        costItemCount += 1;
+      }
+    }
+    return {
+      totalCost,
+      costItemCount,
+    };
+  }, [filteredRows]);
 
   const pageSize = Number(pagination.pageSize) || 10;
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / pageSize));
@@ -329,9 +371,11 @@ export default function MarketingList({ navigate }) {
       if (isValidCoordinates(coords)) {
         setCurrentCoords(coords);
       }
+      const approxNum = Number(form.approximateCost);
       const payload = {
         ...form,
         itemName: form.itemName.trim(),
+        approximateCost: Number.isFinite(approxNum) && approxNum > 0 ? String(approxNum) : "",
         latitude: coords ? coords.latitude : null,
         longitude: coords ? coords.longitude : null,
       };
@@ -372,7 +416,17 @@ export default function MarketingList({ navigate }) {
     if (row.status !== "pending") return;
     setEditing(row.id);
     userChoseLocationRef.current = true;
-    setForm({ categoryId: String(row.category_id || ""), itemId: String(row.item_id || ""), itemName: row.item_name || "", quantity: row.quantity ?? "", unitId: String(row.unit_id || ""), purchaseDate: String(row.purchase_date).slice(0, 10), locationId: String(row.location_id || "") });
+    const approxVal = Number(row.approximate_cost);
+    setForm({
+      categoryId: String(row.category_id || ""),
+      itemId: String(row.item_id || ""),
+      itemName: row.item_name || "",
+      quantity: row.quantity ?? "",
+      unitId: String(row.unit_id || ""),
+      approximateCost: Number.isFinite(approxVal) && approxVal > 0 ? String(row.approximate_cost) : "",
+      purchaseDate: String(row.purchase_date).slice(0, 10),
+      locationId: String(row.location_id || ""),
+    });
     setError(""); window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -385,7 +439,9 @@ export default function MarketingList({ navigate }) {
     const first = selectedPendingRows[0];
     const comment = selectedPendingRows.map((row) => {
       const quantity = row.quantity === null || row.quantity === undefined || row.quantity === "" ? "" : ` — ${row.quantity}${row.unit_name ? ` ${row.unit_name}` : ""}`;
-      return `• ${row.item_name}${quantity}`;
+      const approx = Number(row.approximate_cost);
+      const approxText = Number.isFinite(approx) && approx > 0 ? ` (Approx. ₹${approx.toFixed(2)})` : "";
+      return `• ${row.item_name}${quantity}${approxText}`;
     }).join("\n");
     localStorage.setItem("marketing-purchase-prefill", JSON.stringify({
       marketingItemIds: selectedPendingRows.map((row) => String(row.id)),
@@ -468,11 +524,51 @@ export default function MarketingList({ navigate }) {
         <label>Item name<input required value={form.itemName} onChange={(event) => change("itemName", event.target.value)} placeholder="e.g. Potatoes" /></label>
         <label>Quantity<input type="number" min="0" step="any" value={form.quantity} onChange={(event) => change("quantity", event.target.value)} placeholder="Quantity" /></label>
         <label>Unit<select value={form.unitId} onChange={(event) => change("unitId", event.target.value)}><option value="">Choose unit</option>{units.map((unit) => <option key={unit.id} value={unit.id}>{unit.name}</option>)}</select></label>
+        <label>
+          Approximate cost (₹, optional)
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            value={form.approximateCost}
+            onChange={(event) => change("approximateCost", event.target.value)}
+            placeholder="Optional (e.g. 50)"
+          />
+        </label>
         <div className="marketing-list-form-actions"><button className="primary" type="submit">{editing ? "Save changes" : "Add to marketing list"}</button>{editing && <button type="button" onClick={resetForm}>Cancel</button>}</div>
       </form>
 
       <section className="marketing-items-section" aria-labelledby="marketing-items-heading">
-        <div className="marketing-items-heading"><div><h2 id="marketing-items-heading">Shopping items</h2><p>{filteredRows.length} {filteredRows.length === 1 ? "item" : "items"} for {displayDate(form.purchaseDate)}{form.locationId ? ` · ${locations.find((location) => String(location.id) === String(form.locationId))?.name || "selected location"}` : ""}{form.categoryId ? ` · ${categories.find((category) => String(category.id) === String(form.categoryId))?.name || "selected category"}` : ""}{pagination.search ? " matching your search" : ""}</p></div><div className="marketing-list-legend"><span><i className="status-dot pending-dot" /> Pending</span><span><i className="status-dot purchased-dot" /> Purchased</span></div></div>
+        <div className="marketing-items-heading">
+          <div>
+            <h2 id="marketing-items-heading">Shopping items</h2>
+            <p>
+              {filteredRows.length} {filteredRows.length === 1 ? "item" : "items"} for {displayDate(form.purchaseDate)}
+              {form.locationId ? ` · ${locations.find((location) => String(location.id) === String(form.locationId))?.name || "selected location"}` : ""}
+              {form.categoryId ? ` · ${categories.find((category) => String(category.id) === String(form.categoryId))?.name || "selected category"}` : ""}
+              {pagination.search ? " matching your search" : ""}
+            </p>
+          </div>
+          <div className="marketing-heading-right">
+            <div className="marketing-total-cost-banner" aria-live="polite">
+              <Wallet size={16} />
+              <div className="marketing-total-cost-copy">
+                <span>Total cost (filtered)</span>
+                <strong>₹{filteredCostSummary.totalCost.toFixed(2)}</strong>
+                {filteredCostSummary.costItemCount > 0 && (
+                  <small>
+                    {filteredCostSummary.costItemCount} of {filteredRows.length}{" "}
+                    {filteredRows.length === 1 ? "item" : "items"} with cost
+                  </small>
+                )}
+              </div>
+            </div>
+            <div className="marketing-list-legend">
+              <span><i className="status-dot pending-dot" /> Pending</span>
+              <span><i className="status-dot purchased-dot" /> Purchased</span>
+            </div>
+          </div>
+        </div>
         {selectionControls("top")}
         <Pagination page={safePage} setPage={setPage} total={filteredRows.length} {...pagination} sortOptions={sortOptions} />
 
@@ -482,6 +578,8 @@ export default function MarketingList({ navigate }) {
               const status = row.status === "pending" ? "pending" : row.status === "removed" ? "removed" : "purchased";
               const quantity = status === "purchased" ? (row.purchased_quantity ?? row.quantity ?? "—") : (row.quantity ?? "—");
               const unit = status === "purchased" ? (row.purchased_unit_name || row.unit_name || "") : (row.unit_name || "");
+              const approxCost = Number(row.approximate_cost);
+              const hasApproxCost = Number.isFinite(approxCost) && approxCost > 0;
               const isSelected = selectedIds.includes(String(row.id));
               return <article className={`marketing-item-card status-${status}${isSelected ? " is-selected" : ""}`} key={row.id}>
                 <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}</div>
@@ -511,7 +609,19 @@ export default function MarketingList({ navigate }) {
                     </div>
                   )}
                 </div>
-                <div className="marketing-item-details marketing-item-quantity-status"><div><span>Quantity</span><strong>{quantity} {unit}</strong></div><span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span></div>
+                <div className="marketing-item-details marketing-item-quantity-status">
+                  <div>
+                    <span>Quantity</span>
+                    <strong>{quantity} {unit}</strong>
+                  </div>
+                  {hasApproxCost && (
+                    <div className="marketing-item-approx-cost">
+                      <span>Approx. cost</span>
+                      <strong>₹{approxCost.toFixed(2)}</strong>
+                    </div>
+                  )}
+                  <span className={`marketing-status-pill ${status}`}>{status === "pending" ? <><Clock3 size={13} /> Pending</> : status === "removed" ? "Removed" : <><CheckCircle2 size={13} /> Purchased</>}</span>
+                </div>
                 {status === "purchased" && (
                   <div className="marketing-purchase-price">
                     <Wallet size={16} />
@@ -595,6 +705,12 @@ export default function MarketingList({ navigate }) {
                     {detailItem.purchased_unit_name || detailItem.unit_name || ""}
                   </strong>
                 </div>
+                {Number(detailItem.approximate_cost) > 0 && (
+                  <div className="marketing-expense-detail-cell">
+                    <span>Approximate Cost</span>
+                    <strong>₹{Number(detailItem.approximate_cost).toFixed(2)}</strong>
+                  </div>
+                )}
                 <div className="marketing-expense-detail-cell">
                   <span>Total Expense Cost</span>
                   <strong className="marketing-expense-cost-highlight">

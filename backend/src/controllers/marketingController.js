@@ -43,6 +43,31 @@ const itemSelect = `SELECT m.*, c.name AS category_name, u.name AS unit_name,
  LEFT JOIN public.users ecu ON ecu.id=e.created_by`;
 
 let locationGpsSchemaReady = false;
+let marketingItemCostSchemaReady = false;
+
+async function ensureMarketingItemCostSchema() {
+  if (marketingItemCostSchemaReady) return;
+  try {
+    await q(`
+      ALTER TABLE public.marketing_list_items
+        ADD COLUMN IF NOT EXISTS approximate_cost NUMERIC(14, 2)
+    `);
+    marketingItemCostSchemaReady = true;
+  } catch (error) {
+    console.error("Failed to ensure marketing item approximate_cost schema", error);
+  }
+}
+
+function normalizeApproximateCost(rawValue) {
+  if (rawValue === null || rawValue === undefined || String(rawValue).trim() === "") {
+    return "";
+  }
+  const parsed = Number(rawValue);
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    return "";
+  }
+  return String(Number(parsed.toFixed(2)));
+}
 
 async function ensureLocationGpsSchema() {
   if (locationGpsSchemaReady) return;
@@ -192,24 +217,28 @@ export function nextDayIST(baseDate = new Date()) {
 }
 
 export async function listItems(req, res) {
+  await ensureMarketingItemCostSchema();
   const result = await q(`${itemSelect} ORDER BY m.purchase_date DESC, m.id DESC`);
   res.json(result.rows);
 }
 
 export async function createItem(req, res) {
+  await ensureMarketingItemCostSchema();
   const b = req.body || {};
   if (!String(b.itemName || "").trim() || !b.purchaseDate) {
     return res.status(400).json({ error: "Item name and purchase date are required" });
   }
+  const approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
   const result = await q(
-    `INSERT INTO public.marketing_list_items(category_id,item_id,item_name,quantity,unit_id,purchase_date,location_id,created_by,updated_by)
-     VALUES(NULLIF($1,'')::bigint,NULLIF($2,'')::bigint,$3,NULLIF($4,'')::numeric,NULLIF($5,'')::bigint,$6,NULLIF($7,'')::bigint,$8,$8) RETURNING *`,
+    `INSERT INTO public.marketing_list_items(category_id,item_id,item_name,quantity,unit_id,approximate_cost,purchase_date,location_id,created_by,updated_by)
+     VALUES(NULLIF($1,'')::bigint,NULLIF($2,'')::bigint,$3,NULLIF($4,'')::numeric,NULLIF($5,'')::bigint,NULLIF($6,'')::numeric,$7,NULLIF($8,'')::bigint,$9,$9) RETURNING *`,
     [
       String(b.categoryId || ""),
       String(b.itemId || ""),
       String(b.itemName).trim(),
       String(b.quantity ?? ""),
       String(b.unitId || ""),
+      approximateCost,
       b.purchaseDate,
       String(b.locationId || ""),
       req.user.id,
@@ -230,6 +259,7 @@ export async function createItem(req, res) {
 }
 
 export async function updateItem(req, res) {
+  await ensureMarketingItemCostSchema();
   const b = req.body || {};
   const existing = await q("SELECT status FROM public.marketing_list_items WHERE id=$1", [
     req.params.id,
@@ -241,8 +271,9 @@ export async function updateItem(req, res) {
   if (!String(b.itemName || "").trim() || !b.purchaseDate) {
     return res.status(400).json({ error: "Item name and purchase date are required" });
   }
+  const approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
   const r = await q(
-    `UPDATE public.marketing_list_items SET category_id=NULLIF($2,'')::bigint,item_id=NULLIF($3,'')::bigint,item_name=$4,quantity=NULLIF($5,'')::numeric,unit_id=NULLIF($6,'')::bigint,purchase_date=$7,location_id=NULLIF($8,'')::bigint,updated_by=$9,updated_at=now() WHERE id=$1 RETURNING *`,
+    `UPDATE public.marketing_list_items SET category_id=NULLIF($2,'')::bigint,item_id=NULLIF($3,'')::bigint,item_name=$4,quantity=NULLIF($5,'')::numeric,unit_id=NULLIF($6,'')::bigint,approximate_cost=NULLIF($7,'')::numeric,purchase_date=$8,location_id=NULLIF($9,'')::bigint,updated_by=$10,updated_at=now() WHERE id=$1 RETURNING *`,
     [
       req.params.id,
       String(b.categoryId || ""),
@@ -250,6 +281,7 @@ export async function updateItem(req, res) {
       String(b.itemName).trim(),
       String(b.quantity ?? ""),
       String(b.unitId || ""),
+      approximateCost,
       b.purchaseDate,
       String(b.locationId || ""),
       req.user.id,
@@ -602,6 +634,7 @@ export async function deleteLocation(req, res) {
 }
 
 export async function sendMarketingListForDate(purchaseDate = nextDayIST()) {
+  await ensureMarketingItemCostSchema();
   const items = (
     await q(
       `${itemSelect} WHERE m.status='pending' AND m.purchase_date=$1::date ORDER BY c.name,m.item_name`,

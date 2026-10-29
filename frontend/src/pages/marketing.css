@@ -29,6 +29,39 @@
 .marketing-list-page .marketing-items-heading { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
 .marketing-list-page .marketing-items-heading h2 { margin: 0; font-size: 19px; }
 .marketing-list-page .marketing-items-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.marketing-list-page .marketing-heading-right { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.marketing-list-page .marketing-total-cost-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 13px;
+  border: 1px solid color-mix(in srgb, var(--primary, #2563eb) 32%, var(--line));
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--primary, #2563eb) 8%, var(--card, var(--surface, #fff)));
+  color: var(--primary, #2563eb);
+}
+.marketing-list-page .marketing-total-cost-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+.marketing-list-page .marketing-total-cost-copy span {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.marketing-list-page .marketing-total-cost-copy strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.marketing-list-page .marketing-total-cost-copy small {
+  font-size: 10.5px;
+  color: var(--muted);
+}
 .marketing-list-page .marketing-list-legend { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 12px; }
 .marketing-list-page .marketing-list-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .marketing-list-page .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
@@ -63,6 +96,7 @@
 .marketing-list-page .marketing-item-details > div { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .marketing-list-page .marketing-item-details span { color: var(--muted); font-size: 11px; }
 .marketing-list-page .marketing-item-details strong { color: var(--text); font-size: 13px; overflow-wrap: anywhere; }
+.marketing-list-page .marketing-item-approx-cost strong { color: var(--primary, #2563eb); }
 .marketing-list-page .marketing-location-value { display: inline-flex; align-items: center; gap: 4px; }
 .marketing-list-page .marketing-purchase-price { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 12px; }
 .marketing-list-page .marketing-purchase-price strong { margin-left: auto; color: var(--text); font-size: 15px; }
@@ -128,7 +162,7 @@
 /* Minimal-height cards: omit repeated date/location and align status with quantity. */
 .marketing-list-page .marketing-item-card-top { min-height: 0; }
 .marketing-list-page .marketing-item-card-top:empty { display: none; }
-.marketing-list-page .marketing-item-quantity-status { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.marketing-list-page .marketing-item-quantity-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .marketing-list-page .marketing-item-quantity-status > div { min-width: 0; }
 .marketing-list-page .marketing-item-quantity-status .marketing-status-pill { flex: 0 0 auto; margin-left: auto; }
 
