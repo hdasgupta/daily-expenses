@@ -49,7 +49,7 @@ const scheduleDefinitions = [
   },
   {
     jobName: "marketing-list-email",
-    label: "Marketing List email (next day)",
+    label: "Marketing List email",
     cron: env.marketingListEmailCron,
     timezone: env.marketingListEmailTimezone,
   },
@@ -178,7 +178,7 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
              WHEN 'weekly-email-report' THEN 'Weekly 4-week email report'
              WHEN 'monthly-email-report' THEN 'Monthly 3-month email report'
              WHEN 'yearly-email-report' THEN 'Yearly 2-year email report'
-             WHEN 'marketing-list-email' THEN 'Marketing List email (next day)'
+             WHEN 'marketing-list-email' THEN 'Marketing List email'
              ELSE NULL::text
            END AS scheduled_report_name,
            NULL::text AS owner_name, NULL::text AS owner_email

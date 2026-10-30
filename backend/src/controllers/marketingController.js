@@ -12,6 +12,12 @@ const itemSelect = `SELECT m.*, c.name AS category_name, u.name AS unit_name,
  e.proof_key AS expense_proof_key, e.created_at AS expense_created_at,
  ec.name AS expense_category_name, ei.name AS expense_item_name,
  eu.name AS expense_unit_name, ecu.full_name AS expense_created_by_name,
+ (
+   SELECT COUNT(*)::int
+     FROM public.marketing_list_items s
+    WHERE s.expense_id IS NOT NULL
+      AND s.expense_id = m.expense_id
+ ) AS expense_linked_item_count,
  COALESCE(
    (
      SELECT json_agg(
@@ -67,6 +73,130 @@ function normalizeApproximateCost(rawValue) {
     return "";
   }
   return String(Number(parsed.toFixed(2)));
+}
+
+function normalizeUnitFamily(unitName) {
+  const raw = String(unitName || "").trim().toLowerCase().replace(/\./g, "");
+  if (!raw) return null;
+  if (["kg", "kgs", "kilogram", "kilograms", "kilo", "kilos"].includes(raw)) {
+    return { family: "mass", factor: 1000 };
+  }
+  if (["g", "gm", "gms", "gram", "grams"].includes(raw)) {
+    return { family: "mass", factor: 1 };
+  }
+  if (["mg", "milligram", "milligrams"].includes(raw)) {
+    return { family: "mass", factor: 0.001 };
+  }
+  if (["l", "ltr", "ltrs", "litre", "litres", "liter", "liters"].includes(raw)) {
+    return { family: "volume", factor: 1000 };
+  }
+  if (["ml", "millilitre", "millilitres", "milliliter", "milliliters"].includes(raw)) {
+    return { family: "volume", factor: 1 };
+  }
+  if (["doz", "dozen", "dozens"].includes(raw)) {
+    return { family: "count", factor: 12 };
+  }
+  if (["pc", "pcs", "piece", "pieces", "no", "nos", "number", "numbers", "unit", "units"].includes(raw)) {
+    return { family: "count", factor: 1 };
+  }
+  return { family: `exact:${raw}`, factor: 1 };
+}
+
+function computeUnitConversionRatio(fromUnitId, fromUnitName, toUnitId, toUnitName) {
+  if (fromUnitId && toUnitId && String(fromUnitId) === String(toUnitId)) {
+    return 1;
+  }
+  const fromNorm = normalizeUnitFamily(fromUnitName);
+  const toNorm = normalizeUnitFamily(toUnitName);
+  if (fromNorm && toNorm && fromNorm.family === toNorm.family && fromNorm.factor > 0) {
+    return toNorm.factor / fromNorm.factor;
+  }
+  return null;
+}
+
+async function estimateCostFromLastItem({ itemId, itemName, quantity, unitId }) {
+  const qty = Number(quantity);
+  const cleanUnitId = String(unitId || "").trim();
+  const cleanName = String(itemName || "").trim();
+  if (!Number.isFinite(qty) || qty <= 0 || !cleanUnitId || !cleanName) {
+    return "";
+  }
+
+  try {
+    const targetUnitRes = await q("SELECT id, name FROM public.units WHERE id = NULLIF($1, '')::bigint", [
+      cleanUnitId,
+    ]);
+    const targetUnitName = targetUnitRes.rows[0]?.name || "";
+
+    const historyRes = await q(
+      `SELECT m.id,
+              m.quantity,
+              m.unit_id,
+              u.name AS unit_name,
+              m.purchased_quantity,
+              m.purchased_unit_id,
+              pu.name AS purchased_unit_name,
+              m.approximate_cost,
+              CASE
+                WHEN m.expense_id IS NOT NULL
+                 AND (SELECT COUNT(*) FROM public.marketing_list_items s WHERE s.expense_id = m.expense_id) = 1
+                THEN COALESCE(m.expense_price, e.total_cost)
+                ELSE NULL
+              END AS single_expense_price
+         FROM public.marketing_list_items m
+         LEFT JOIN public.units u ON u.id = m.unit_id
+         LEFT JOIN public.units pu ON pu.id = m.purchased_unit_id
+         LEFT JOIN public.expenses e ON e.id = m.expense_id
+        WHERE (
+                (NULLIF($1, '')::bigint IS NOT NULL AND m.item_id = NULLIF($1, '')::bigint)
+                OR LOWER(TRIM(m.item_name)) = LOWER(TRIM($2))
+              )
+          AND COALESCE(m.approximate_cost, m.expense_price, e.total_cost, 0) > 0
+          AND COALESCE(m.quantity, m.purchased_quantity, 0) > 0
+        ORDER BY m.purchase_date DESC, m.id DESC
+        LIMIT 25`,
+      [String(itemId || ""), cleanName],
+    );
+
+    for (const row of historyRes.rows) {
+      const refCost =
+        Number(row.approximate_cost) > 0
+          ? Number(row.approximate_cost)
+          : Number(row.single_expense_price) > 0
+          ? Number(row.single_expense_price)
+          : 0;
+      if (!(refCost > 0)) continue;
+
+      const refQty =
+        Number(row.approximate_cost) > 0 && Number(row.quantity) > 0
+          ? Number(row.quantity)
+          : Number(row.purchased_quantity) > 0
+          ? Number(row.purchased_quantity)
+          : Number(row.quantity);
+      const refUnitId =
+        Number(row.approximate_cost) > 0 && row.unit_id
+          ? row.unit_id
+          : row.purchased_unit_id || row.unit_id;
+      const refUnitName =
+        Number(row.approximate_cost) > 0 && row.unit_name
+          ? row.unit_name
+          : row.purchased_unit_name || row.unit_name;
+
+      if (!(refQty > 0) || !refUnitId) continue;
+
+      const ratio = computeUnitConversionRatio(refUnitId, refUnitName, cleanUnitId, targetUnitName);
+      if (ratio === null) continue;
+
+      const estimated = (refCost / refQty) * (qty * ratio);
+      if (Number.isFinite(estimated) && estimated > 0) {
+        return String(Number(estimated.toFixed(2)));
+      }
+    }
+  } catch (error) {
+    console.error("Failed to estimate approximate cost from last item", error);
+  }
+
+  return "";
 }
 
 async function ensureLocationGpsSchema() {
@@ -228,7 +358,15 @@ export async function createItem(req, res) {
   if (!String(b.itemName || "").trim() || !b.purchaseDate) {
     return res.status(400).json({ error: "Item name and purchase date are required" });
   }
-  const approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
+  let approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
+  if (!approximateCost && b.autoCalculateCost !== false) {
+    approximateCost = await estimateCostFromLastItem({
+      itemId: b.itemId,
+      itemName: b.itemName,
+      quantity: b.quantity,
+      unitId: b.unitId,
+    });
+  }
   const result = await q(
     `INSERT INTO public.marketing_list_items(category_id,item_id,item_name,quantity,unit_id,approximate_cost,purchase_date,location_id,created_by,updated_by)
      VALUES(NULLIF($1,'')::bigint,NULLIF($2,'')::bigint,$3,NULLIF($4,'')::numeric,NULLIF($5,'')::bigint,NULLIF($6,'')::numeric,$7,NULLIF($8,'')::bigint,$9,$9) RETURNING *`,
@@ -320,9 +458,20 @@ export async function removeItem(req, res) {
 }
 
 export async function markPurchased(req, res) {
+  await ensureMarketingItemCostSchema();
   const b = req.body || {};
   const r = await q(
-    `UPDATE public.marketing_list_items SET status='purchased',expense_id=$2,expense_price=$3,purchased_quantity=NULLIF($4,'')::numeric,purchased_unit_id=NULLIF($5,'')::bigint,updated_by=$6,updated_at=now() WHERE id=$1 AND status='pending' RETURNING *`,
+    `UPDATE public.marketing_list_items
+        SET status='purchased',
+            expense_id=$2,
+            expense_price=$3,
+            approximate_cost=COALESCE(approximate_cost, CASE WHEN $3::numeric > 0 THEN $3::numeric ELSE NULL END),
+            purchased_quantity=NULLIF($4,'')::numeric,
+            purchased_unit_id=NULLIF($5,'')::bigint,
+            updated_by=$6,
+            updated_at=now()
+      WHERE id=$1 AND status='pending'
+      RETURNING *`,
     [
       req.params.id,
       b.expenseId,
@@ -339,6 +488,7 @@ export async function markPurchased(req, res) {
 }
 
 export async function markPurchasedBulk(req, res) {
+  await ensureMarketingItemCostSchema();
   const b = req.body || {};
   const ids = [
     ...new Set(
@@ -353,6 +503,11 @@ export async function markPurchasedBulk(req, res) {
   const result = await q(
     `UPDATE public.marketing_list_items
      SET status='purchased', expense_id=$2, expense_price=$3,
+         approximate_cost = CASE
+           WHEN approximate_cost IS NOT NULL AND approximate_cost > 0 THEN approximate_cost
+           WHEN cardinality($1::bigint[]) = 1 AND $3::numeric > 0 THEN $3::numeric
+           ELSE approximate_cost
+         END,
          purchased_quantity=quantity, purchased_unit_id=unit_id,
          updated_by=$4, updated_at=now()
      WHERE id = ANY($1::bigint[]) AND status='pending'

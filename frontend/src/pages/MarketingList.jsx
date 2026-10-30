@@ -56,6 +56,129 @@ function displayDateTime(value) {
   });
 }
 
+function normalizeUnitFamily(unitName) {
+  const raw = String(unitName || "").trim().toLowerCase().replace(/\./g, "");
+  if (!raw) return null;
+  if (["kg", "kgs", "kilogram", "kilograms", "kilo", "kilos"].includes(raw)) {
+    return { family: "mass", factor: 1000 };
+  }
+  if (["g", "gm", "gms", "gram", "grams"].includes(raw)) {
+    return { family: "mass", factor: 1 };
+  }
+  if (["mg", "milligram", "milligrams"].includes(raw)) {
+    return { family: "mass", factor: 0.001 };
+  }
+  if (["l", "ltr", "ltrs", "litre", "litres", "liter", "liters"].includes(raw)) {
+    return { family: "volume", factor: 1000 };
+  }
+  if (["ml", "millilitre", "millilitres", "milliliter", "milliliters"].includes(raw)) {
+    return { family: "volume", factor: 1 };
+  }
+  if (["doz", "dozen", "dozens"].includes(raw)) {
+    return { family: "count", factor: 12 };
+  }
+  if (["pc", "pcs", "piece", "pieces", "no", "nos", "number", "numbers", "unit", "units"].includes(raw)) {
+    return { family: "count", factor: 1 };
+  }
+  return { family: `exact:${raw}`, factor: 1 };
+}
+
+function computeUnitConversionRatio(fromUnitId, fromUnitName, toUnitId, toUnitName) {
+  if (fromUnitId && toUnitId && String(fromUnitId) === String(toUnitId)) {
+    return 1;
+  }
+  const fromNorm = normalizeUnitFamily(fromUnitName);
+  const toNorm = normalizeUnitFamily(toUnitName);
+  if (fromNorm && toNorm && fromNorm.family === toNorm.family && fromNorm.factor > 0) {
+    return toNorm.factor / fromNorm.factor;
+  }
+  return null;
+}
+
+function calculateApproximateCostFromHistory(draftForm, allRows, allUnits, editingId = null) {
+  const qty = Number(draftForm.quantity);
+  const unitId = String(draftForm.unitId || "").trim();
+  const itemId = String(draftForm.itemId || "").trim();
+  const itemName = String(draftForm.itemName || "").trim().toLowerCase();
+
+  if (!Number.isFinite(qty) || qty <= 0 || !unitId || (!itemId && !itemName)) {
+    return { value: "", hint: "" };
+  }
+
+  const targetUnit = (allUnits || []).find((u) => String(u.id) === unitId);
+  const targetUnitName = targetUnit?.name || "";
+
+  const candidates = [];
+  for (const row of allRows || []) {
+    if (editingId && String(row.id) === String(editingId)) continue;
+
+    const rowItemId = String(row.item_id || "").trim();
+    const rowItemName = String(row.item_name || "").trim().toLowerCase();
+    const matchesItem =
+      (itemId && rowItemId && itemId === rowItemId) ||
+      (itemName && rowItemName && itemName === rowItemName);
+    if (!matchesItem) continue;
+
+    const approxCost = Number(row.approximate_cost);
+    const singleExpenseCost =
+      Number(row.expense_linked_item_count || 1) === 1 && Number(row.expense_price) > 0
+        ? Number(row.expense_price)
+        : 0;
+    const refCost =
+      Number.isFinite(approxCost) && approxCost > 0
+        ? approxCost
+        : singleExpenseCost > 0
+        ? singleExpenseCost
+        : 0;
+    if (!(refCost > 0)) continue;
+
+    const usePlanned = Number.isFinite(approxCost) && approxCost > 0 && Number(row.quantity) > 0 && row.unit_id;
+    const refQty = usePlanned
+      ? Number(row.quantity)
+      : Number(row.purchased_quantity) > 0
+      ? Number(row.purchased_quantity)
+      : Number(row.quantity);
+    const refUnitId = usePlanned
+      ? String(row.unit_id || "")
+      : String(row.purchased_unit_id || row.unit_id || "");
+    const refUnitName = usePlanned
+      ? row.unit_name || ""
+      : row.purchased_unit_name || row.unit_name || "";
+
+    if (!(refQty > 0) || !refUnitId) continue;
+
+    const ratio = computeUnitConversionRatio(refUnitId, refUnitName, unitId, targetUnitName);
+    if (ratio === null) continue;
+
+    candidates.push({
+      row,
+      refCost,
+      refQty,
+      refUnitId,
+      refUnitName,
+      ratio,
+      exactUnitMatch: refUnitId === unitId,
+    });
+  }
+
+  if (!candidates.length) {
+    return { value: "", hint: "" };
+  }
+
+  // Prefer the most recent entry with the exact same unit, otherwise the most recent convertible unit entry
+  const chosen = candidates.find((c) => c.exactUnitMatch) || candidates[0];
+  const estimated = (chosen.refCost / chosen.refQty) * (qty * chosen.ratio);
+  if (!Number.isFinite(estimated) || estimated <= 0) {
+    return { value: "", hint: "" };
+  }
+
+  const rounded = Number(estimated.toFixed(2));
+  return {
+    value: String(rounded),
+    hint: `Calculated from last entry (${chosen.refQty} ${chosen.refUnitName} @ ₹${chosen.refCost.toFixed(2)})`,
+  };
+}
+
 export default function MarketingList({ navigate }) {
   const [rows, setRows] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -65,6 +188,7 @@ export default function MarketingList({ navigate }) {
   const [form, setForm] = useState(empty);
   const [currentCoords, setCurrentCoords] = useState(null);
   const [autoLocationHint, setAutoLocationHint] = useState("");
+  const [autoCostHint, setAutoCostHint] = useState("");
   const [detectingGps, setDetectingGps] = useState(false);
   const [editing, setEditing] = useState(null);
   const [pendingRemoval, setPendingRemoval] = useState(null);
@@ -78,6 +202,7 @@ export default function MarketingList({ navigate }) {
   const [page, setPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState([]);
   const userChoseLocationRef = useRef(false);
+  const userEditedCostRef = useRef(false);
   const pagination = usePagination("marketing-list", "id");
 
   const applyBestLocationIfUnset = (locList, bestLoc, force = false) => {
@@ -345,16 +470,45 @@ export default function MarketingList({ navigate }) {
         void recordLocationSelection(value, { coords: currentCoords, source: "marketing_list_select" });
       }
     }
-    setForm((current) => ({
-      ...current,
-      [key]: value,
-      ...(key === "itemId" ? { itemName: items.find((item) => String(item.id) === String(value))?.name || current.itemName } : {}),
-    }));
+
+    if (key === "approximateCost") {
+      userEditedCostRef.current = true;
+      setAutoCostHint("");
+      setForm((current) => ({
+        ...current,
+        approximateCost: value,
+      }));
+      return;
+    }
+
+    if (key === "itemId" || key === "itemName") {
+      userEditedCostRef.current = false;
+    }
+
+    setForm((current) => {
+      const next = {
+        ...current,
+        [key]: value,
+        ...(key === "itemId"
+          ? { itemName: items.find((item) => String(item.id) === String(value))?.name || current.itemName }
+          : {}),
+      };
+
+      if (["itemId", "itemName", "quantity", "unitId"].includes(key) && !userEditedCostRef.current) {
+        const estimated = calculateApproximateCostFromHistory(next, rows, units, editing);
+        next.approximateCost = estimated.value;
+        setAutoCostHint(estimated.hint);
+      }
+
+      return next;
+    });
   };
 
   const resetForm = ({ preserveSelection = true } = {}) => {
     const selection = preserveSelection ? { categoryId: form.categoryId, purchaseDate: form.purchaseDate, locationId: form.locationId } : {};
     setEditing(null);
+    userEditedCostRef.current = false;
+    setAutoCostHint("");
     setForm({ ...empty(), ...selection });
   };
   const save = async (event) => {
@@ -372,10 +526,12 @@ export default function MarketingList({ navigate }) {
         setCurrentCoords(coords);
       }
       const approxNum = Number(form.approximateCost);
+      const hasValidApprox = Number.isFinite(approxNum) && approxNum > 0;
       const payload = {
         ...form,
         itemName: form.itemName.trim(),
-        approximateCost: Number.isFinite(approxNum) && approxNum > 0 ? String(approxNum) : "",
+        approximateCost: hasValidApprox ? String(approxNum) : "",
+        autoCalculateCost: !userEditedCostRef.current,
         latitude: coords ? coords.latitude : null,
         longitude: coords ? coords.longitude : null,
       };
@@ -383,6 +539,8 @@ export default function MarketingList({ navigate }) {
         method: editing ? "PUT" : "POST", body: JSON.stringify(payload),
       });
       void recordLocationSelection(form.locationId, { coords, source: "marketing_list_save" });
+      userEditedCostRef.current = false;
+      setAutoCostHint("");
       if (editing) {
         resetForm();
       } else {
@@ -417,16 +575,29 @@ export default function MarketingList({ navigate }) {
     setEditing(row.id);
     userChoseLocationRef.current = true;
     const approxVal = Number(row.approximate_cost);
-    setForm({
+    const hasExistingCost = Number.isFinite(approxVal) && approxVal > 0;
+    userEditedCostRef.current = hasExistingCost;
+
+    const draft = {
       categoryId: String(row.category_id || ""),
       itemId: String(row.item_id || ""),
       itemName: row.item_name || "",
       quantity: row.quantity ?? "",
       unitId: String(row.unit_id || ""),
-      approximateCost: Number.isFinite(approxVal) && approxVal > 0 ? String(row.approximate_cost) : "",
+      approximateCost: hasExistingCost ? String(row.approximate_cost) : "",
       purchaseDate: String(row.purchase_date).slice(0, 10),
       locationId: String(row.location_id || ""),
-    });
+    };
+
+    if (!hasExistingCost) {
+      const estimated = calculateApproximateCostFromHistory(draft, rows, units, row.id);
+      draft.approximateCost = estimated.value;
+      setAutoCostHint(estimated.hint);
+    } else {
+      setAutoCostHint("");
+    }
+
+    setForm(draft);
     setError(""); window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -532,8 +703,11 @@ export default function MarketingList({ navigate }) {
             step="0.01"
             value={form.approximateCost}
             onChange={(event) => change("approximateCost", event.target.value)}
-            placeholder="Optional (e.g. 50)"
+            placeholder="Auto-calculated if past data exists"
           />
+          {autoCostHint && (
+            <small className="location-auto-hint">{autoCostHint}</small>
+          )}
         </label>
         <div className="marketing-list-form-actions"><button className="primary" type="submit">{editing ? "Save changes" : "Add to marketing list"}</button>{editing && <button type="button" onClick={resetForm}>Cancel</button>}</div>
       </form>

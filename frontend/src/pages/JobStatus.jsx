@@ -16,7 +16,7 @@ const scheduleLabels = {
   "weekly-email-report": "Weekly 4-week email report",
   "monthly-email-report": "Monthly 3-month email report",
   "yearly-email-report": "Yearly 2-year email report",
-  "marketing-list-email": "Marketing List email (next day)",
+  "marketing-list-email": "Marketing List email",
 };
 
 const scheduleOrder = {
@@ -361,9 +361,16 @@ export default function JobStatus({ user }) {
       ]);
 
       setSchedules(
-        [...(statusData.schedules || [])].sort(
-          (a, b) => (staticScheduleOrder[a.jobName] || 99) - (staticScheduleOrder[b.jobName] || 99),
-        ),
+        [...(statusData.schedules || [])]
+          .map((item) => ({
+            ...item,
+            label:
+              scheduleLabels[item.jobName] ||
+              String(item.label || "").replace(/\s*\(next day\)/gi, ""),
+          }))
+          .sort(
+            (a, b) => (staticScheduleOrder[a.jobName] || 99) - (staticScheduleOrder[b.jobName] || 99),
+          ),
       );
 
       const fetchedRows = statusData.rows || [];
@@ -787,7 +794,12 @@ export default function JobStatus({ user }) {
               {rows.map((row) => (
                 <tr key={row.id}>
                   <td>
-                    {row.scheduled_report_name || scheduleLabels[row.job_name] || row.job_name}
+                    {String(
+                      scheduleLabels[row.job_name] ||
+                        row.scheduled_report_name ||
+                        row.job_name ||
+                        "",
+                    ).replace(/\s*\(next day\)/gi, "")}
                   </td>
 
                   {user?.role === "admin" ? (
