@@ -54,6 +54,55 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1357",
+    "name": "Abar Khabo Sandesh (Stuffed Pistachio-Khoya & Rose Chhena Sandesh)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh cow-milk chhena",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Grated khoya (kheer), chopped pistachios, cashews & raisins",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rose water & green cardamom powder",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced khoya-nut filling",
+        "text": "Lightly cook grated khoya with 2 tbsp sugar, cardamom powder, rose water, and finely chopped pistachios, cashews, and raisins; cool and roll into small balls.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook soft naram-pak chhena shell",
+        "text": "Knead chhena with the remaining sugar until smooth and cook on low flame for 7–8 minutes until soft and pliable without browning.",
+        "minutes": 10
+      },
+      {
+        "section": "Encase khoya filling inside chhena spheres",
+        "text": "Flatten portions of warm chhena dough, stuff each with a spiced khoya-nut ball, seal into smooth spheres, and garnish with saffron and pistachios.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Legendary Kolkata sweet created by Nobin Chandra Das whose name translates to 'I will eat it again'."
+  },
+  {
     "id": "static-1239",
     "name": "Achari Aloo (Pickled Five-Spice Tangy Baby Potatoes)",
     "category": "Vegetable",
@@ -111,6 +160,60 @@
     "cookMinutes": 16,
     "servings": 3,
     "notes": "Bold, tangy pickle-spiced potatoes great with poori, paratha, or dal-chawal."
+  },
+  {
+    "id": "static-1407",
+    "name": "Achari Mathri (Tangy Pickle-Masala Layered Flaky Savory Crackers)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida) & 2 tbsp besan",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Mango or mixed pickle masala (achari sambhar) & mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fennel, nigella (kalonji), fenugreek & mustard seeds (coarsely crushed)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee, turmeric, hing & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead dough with achari masala and five-spice",
+        "text": "Mix maida, besan, ghee, pickle masala oil, crushed achari spices, turmeric, and salt, and knead into a firm dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Roll pinwheels or discs",
+        "text": "Roll out the dough, brush with a thin layer of pickle masala, roll into a tight log, slice into pinwheels, and flatten slightly.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry slowly until crisp and golden",
+        "text": "Fry on low-medium flame for 12–15 minutes until crisp and fragrant with tangy pickle spices.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Bold, tangy pickle-spiced flaky mathri pinwheels."
   },
   {
     "id": "static-1189",
@@ -460,6 +563,60 @@
     "cookMinutes": 16,
     "servings": 3,
     "notes": "Adding salt and amchur at the very end keeps the okra crisp and non-slimy."
+  },
+  {
+    "id": "static-1393",
+    "name": "Aloo Bhujia (Crispy Spiced Mashed Potato, Mint & Besan Sev Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Boiled potatoes, peeled and finely grated (lump-free)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Gram flour (besan) & 2 tbsp rice flour",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Dry mint powder, chaat masala, amchur & black salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder, turmeric, garam masala & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead waterless potato-besan dough",
+        "text": "Knead finely grated boiled potatoes with besan, rice flour, turmeric, chilli powder, garam masala, hing, and 1 tbsp oil into a smooth dough without adding water.",
+        "minutes": 12
+      },
+      {
+        "section": "Press fine sev into medium-hot oil",
+        "text": "Extrude the dough through the fine disc of a sev maker into medium-hot oil and fry for 1–2 minutes per side until crisp and golden.",
+        "minutes": 12
+      },
+      {
+        "section": "Toss warm strands with mint-amchur masala",
+        "text": "Drain excess oil, crush lightly into short noodles, and toss with dry mint powder, chaat masala, amchur, and black salt.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Tangy, melt-in-the-mouth potato sev seasoned with dried mint and chaat masala."
   },
   {
     "id": "static-1237",
@@ -1316,6 +1473,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1418",
+    "name": "Aloo Lachha Namkeen / Farali Potato Chiwda (Crispy Potato Juliennes, Peanuts & Cashews)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Large starchy potatoes, peeled and grated into thick juliennes",
+        "quantity": "3",
+        "unit": "large"
+      },
+      {
+        "name": "Raw peanuts, cashews, almonds & golden raisins",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh curry leaves & slit green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rock salt (sendha namak), black pepper, roasted cumin & powdered sugar",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rinse starch from potato juliennes and dry completely",
+        "text": "Wash grated potato sticks 3–4 times in cold water until the water runs clear, then spread on a kitchen towel to dry completely.",
+        "minutes": 12
+      },
+      {
+        "section": "Deep-fry potato sticks and nuts until crisp",
+        "text": "Fry the dried potato juliennes in medium-hot oil in batches until crisp and golden; separately fry peanuts, cashews, almonds, raisins, and curry leaves.",
+        "minutes": 12
+      },
+      {
+        "section": "Toss lightly with rock salt, pepper, and sugar",
+        "text": "Gently toss the crisp potato lachha and dry fruits with rock salt, freshly ground black pepper, roasted cumin, and powdered sugar.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Crisp potato-and-nut namkeen popular both as an everyday snack and on fasting days."
   },
   {
     "id": "static-0035",
@@ -2871,6 +3082,55 @@
     "notes": "Traditional coastal Andhra semi-dry prawn curry that pairs wonderfully with steamed rice and rasam."
   },
   {
+    "id": "static-1378",
+    "name": "Anjeer Dry Fruit Barfi (Sugar-Free Fig, Almond, Cashew & Pistachio Sweet)",
+    "category": "Sweets",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Dried figs (anjeer), soaked in warm water and ground",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Seedless dates (khajoor), finely chopped",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Almonds, cashews, pistachios & walnuts, coarsely chopped",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Poppy seeds (khus-khus), cardamom powder & pure ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast nuts and poppy seeds in ghee",
+        "text": "Toast chopped almonds, cashews, pistachios, and walnuts in 1 tbsp ghee until crunchy; separately dry-roast poppy seeds.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook fig and date paste until thick",
+        "text": "Sauté ground anjeer paste and dates in 1 tbsp ghee over low-medium heat for 8–10 minutes until glossy and thick.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold in roasted nuts, roll in poppy seeds, and slice",
+        "text": "Mix in the toasted nuts and cardamom powder, shape into a firm log coated with poppy seeds, chill for 1 hour, and slice into discs.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Naturally sweetened, nutrient-dense dry-fruit sweet with zero refined sugar."
+  },
+  {
     "id": "static-0421",
     "name": "Appam (Homestyle)",
     "category": "Breakfast",
@@ -3947,6 +4207,114 @@
     "notes": ""
   },
   {
+    "id": "static-1348",
+    "name": "Baked Rosogolla / Baked Rasgulla (Caramelized Kheer & Khoya Baked Sponge Rasgulla)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Sponge rasgullas, lightly squeezed of excess syrup",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Thickened milk (rabri / kheer) & sweetened condensed milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated khoya (mawa)",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Green cardamom powder & saffron strands",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slivered pistachios & almonds",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Arrange squeezed rasgullas in baking dish",
+        "text": "Gently press about half the sugar syrup out of the sponge rasgullas and arrange them snugly in an earthen or ovenproof dish.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk spiced khoya-rabri custard",
+        "text": "Simmer thickened milk, condensed milk, grated khoya, cardamom powder, and saffron for 5 minutes until creamy, then pour evenly over the rasgullas.",
+        "minutes": 8
+      },
+      {
+        "section": "Bake until golden-brown and blistered on top",
+        "text": "Top with pistachios and almonds and bake at 200°C (or broil) for 12–15 minutes until the top develops golden caramelized spots.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Contemporary Kolkata winter favorite served warm straight from the oven."
+  },
+  {
+    "id": "static-1375",
+    "name": "Balushahi / Badusha (Flaky Ghee-Shortened Glazed Sweet Doughnuts)",
+    "category": "Sweets",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Melted pure ghee & thick yogurt",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking soda & pinch of salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar, saffron & cardamom powder (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil for slow deep-frying & pistachio slivers",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bring together flaky ghee-yogurt dough without over-kneading",
+        "text": "Mix maida, baking soda, salt, ghee, and yogurt, gently pressing and stacking the dough 4–5 times to create flaky layers; shape into balls with a thumb indentation in the center.",
+        "minutes": 15
+      },
+      {
+        "section": "Slow-fry in low-temperature ghee",
+        "text": "Slide the discs into barely warm ghee and fry on low heat for 16–18 minutes, flipping once they float, until crisp and golden.",
+        "minutes": 18
+      },
+      {
+        "section": "Soak briefly in 1-thread saffron syrup",
+        "text": "Immerse warm balushahis in single-thread saffron-cardamom syrup for 4 minutes per side, drain, and garnish with pistachio slivers.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Crisp outside and flaky-juicy inside — a festive favorite across Bengal, Bihar, and North India."
+  },
+  {
     "id": "static-0909",
     "name": "Banana Fritters (Sweet)",
     "category": "Sweets",
@@ -4697,6 +5065,55 @@
     "cookMinutes": 14,
     "servings": 3,
     "notes": "Delicious with both hot steamed rice and roti/paratha."
+  },
+  {
+    "id": "static-1394",
+    "name": "Barik Nylon Sev (Ultra-Fine Crispy Gram Flour Noodles for Namkeen & Chaat)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Super-fine sieved gram flour (besan)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Turmeric, hing (asafoetida) & salt",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Hot oil & pinch of baking soda (whisked with water)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Emulsify oil and water and knead soft besan dough",
+        "text": "Whisk 2 tbsp hot oil, 2 tbsp water, salt, hing, and a tiny pinch of soda until milky, then mix with double-sieved besan and turmeric into a soft, smooth dough.",
+        "minutes": 10
+      },
+      {
+        "section": "Press through 0-number nylon sev plate",
+        "text": "Load the dough into a sev press fitted with the finest pinhole disc and press thin loops into hot oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry for 45 seconds and drain",
+        "text": "Fry briefly on medium heat until the bubbles subside and the threads are pale yellow and crisp; cool and crush lightly.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Essential delicate crispy sev for bhel puri, phuchka, ghugni chaat, and standalone snacking."
   },
   {
     "id": "static-0173",
@@ -6240,6 +6657,163 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1360",
+    "name": "Bengali Amriti (Crispy Flower-Shaped Urad Dal Sweet in Saffron Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Split skinless black gram (biuli / urad dal), soaked 4 hours",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour or cornflour",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar, water, saffron & cardamom (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind and whip airy urad dal batter",
+        "text": "Grind soaked urad dal with minimal iced water into a thick paste, add rice flour, and whisk vigorously by hand for 8–10 minutes until light and fluffy enough to float on water.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare warm saffron-cardamom syrup",
+        "text": "Boil sugar, water, saffron strands, and cardamom to a single-thread consistency syrup.",
+        "minutes": 8
+      },
+      {
+        "section": "Pipe floral rings into hot ghee and soak",
+        "text": "Pipe concentric scalloped rings directly into medium-hot ghee, fry until crisp and golden, and dip into warm saffron syrup for 3–4 minutes.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Crisp scalloped urad-dal cousin of jalebi popular across Bengal during Maha Ashtami andBijoya."
+  },
+  {
+    "id": "static-1399",
+    "name": "Bengali Chira Bhaja Mixture (Crispy Fried Poha with Peanuts, Sev & Curry Leaves)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Medium-thick flattened rice (chira / poha)",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts & cashews",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fine besan sev or chanachur",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Slit green chillies & fresh curry leaves",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, black salt & roasted cumin-chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Flash-fry chira in a wire strainer",
+        "text": "Lower a metal mesh strainer holding a handful of chira into hot oil for 8–10 seconds until puffed and white; drain well on paper towels.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry peanuts, cashews, curry leaves, and chillies",
+        "text": "In the same strainer, fry peanuts, cashews, slit green chillies, and curry leaves with a pinch of turmeric until crisp.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with black salt, cumin, and sev",
+        "text": "Combine puffed chira, nuts, curry leaves, black salt, roasted cumin powder, and fine sev; store airtight once cool.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Classic Bengali evening snack ('chira-badam bhaja') served alongside hot milk tea or black tea."
+  },
+  {
+    "id": "static-1361",
+    "name": "Bengali Goja / Misti Gaja (Flaky Ghee-Shortened Sweet Pastry Cubes in Sugar Glaze)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure ghee (for moyan shortening) & pinch of baking soda",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kalonji (nigella seeds) & pinch of salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar & water (for thick coating syrup)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Oil or ghee for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rub ghee into maida and laminate dough",
+        "text": "Rub ghee, baking soda, salt, and kalonji into maida until crumbly, bind with minimal cold water into a stiff dough, fold and roll 3 times to build flaky layers, and cut into 1.5-inch thick squares.",
+        "minutes": 15
+      },
+      {
+        "section": "Slow-fry on low heat until flaky and golden",
+        "text": "Drop the squares into barely warm oil and fry on low heat for 15–18 minutes so the interior layers open up and turn crisp through to the center.",
+        "minutes": 18
+      },
+      {
+        "section": "Toss in 1-thread sugar syrup until frosted",
+        "text": "Transfer warm fried gojas into thick 1-thread cardamom sugar syrup, toss for 3–4 minutes, and remove to a rack so a crystalline sugar glaze sets on the outside.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Traditional Bengali festive and Bijoya Dashami sweet pastry with a flaky crumb and frosted sugar crust."
   },
   {
     "id": "static-0634",
@@ -8408,6 +8982,109 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1397",
+    "name": "Besan Papdi Gathiya (Crisp Flat Gram Flour Ribbon Crackers)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fine gram flour (besan)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ajwain (carom seeds, finely crushed) & hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil, salt & pinch of baking soda",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead smooth pale besan dough",
+        "text": "Emulsify oil, water, salt, hing, and baking soda, then knead with besan and crushed ajwain into a soft, pliable dough.",
+        "minutes": 10
+      },
+      {
+        "section": "Press flat ribbons into medium-hot oil",
+        "text": "Use the flat slotted ribbon plate in a farsan press to extrude thin strips directly into medium-hot oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until crisp and light yellow",
+        "text": "Fry for 1–2 minutes turning once so the ribbons stay pale yellow and crunchy; cool and break into pieces.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Light, flaky gram-flour ribbon namkeen enjoyed with tea or fried green chillies."
+  },
+  {
+    "id": "static-1408",
+    "name": "Bhakarwadi (Crispy Spiral Namkeen Rolls Stuffed with Coconut, Sesame & Poppy Masala)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida) & 3 tbsp besan (for outer dough)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Desiccated coconut, white sesame seeds & poppy seeds (posto)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Coriander, cumin, fennel, red chilli, garam masala, sugar & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sweet-tangy tamarind-jaggery chutney (for adhering layer)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for shortening & deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast and grind sweet-spicy coconut-sesame stuffing",
+        "text": "Dry-roast sesame seeds, poppy seeds, grated dry coconut, coriander, cumin, and fennel; pulse coarsely with red chilli powder, garam masala, sugar, and salt.",
+        "minutes": 12
+      },
+      {
+        "section": "Roll dough, brush tamarind chutney, and roll tight spirals",
+        "text": "Knead a stiff maida-besan dough with hot oil; roll into rectangles, brush lightly with tamarind chutney, press the coconut-sesame masala on top, roll tightly into logs, and slice into 0.5-inch spirals.",
+        "minutes": 18
+      },
+      {
+        "section": "Deep-fry on low-medium flame until crunchy",
+        "text": "Deep-fry the spiral slices over low-medium heat for 10–12 minutes until dark golden and crisp all the way to the center.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Classic Pune/Gujarati sweet, tangy, and spicy spiral namkeen with a shelf life of several weeks."
+  },
+  {
     "id": "static-1222",
     "name": "Bhandare Wale Aloo Ki Sabzi (Temple-Style No-Onion No-Garlic Tomato Potato Curry)",
     "category": "Vegetable",
@@ -8667,6 +9344,55 @@
     "cookMinutes": 15,
     "servings": 4,
     "notes": "Soaking semolina in yogurt gives bhaturas a crisp exterior that stays puffed."
+  },
+  {
+    "id": "static-1396",
+    "name": "Bhavnagari Gathiya (Soft-Crunch Carom & Asafoetida Gram Flour Namkeen Sticks)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Gram flour (besan)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ajwain (carom seeds), crushed black pepper & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking oil & papad khar / baking soda",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whip oil-soda emulsion and knead stretchy besan dough",
+        "text": "Whisk 3.5 tbsp oil, 1/3 cup water, salt, and baking soda until white and frothy; mix in besan, ajwain, black pepper, and hing, kneading for 6–8 minutes until light and pale.",
+        "minutes": 12
+      },
+      {
+        "section": "Extrude thick gathiya logs into medium oil",
+        "text": "Fit a gathiya/murukku press with the thick round-hole disc and press spirals into medium-hot oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until crisp outside and airy inside",
+        "text": "Fry on medium-low heat until pale golden and crisp without browning; drain and break into sticks.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Classic melt-in-the-mouth tea-time gathiya seasoned with carom seeds and black pepper."
   },
   {
     "id": "static-0569",
@@ -9503,6 +10229,55 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "A quick weekday homestyle side dish combining tender okra with savory prawns."
+  },
+  {
+    "id": "static-1392",
+    "name": "Bikaneri Bhujia (Crispy Moth Dal & Besan Spiced Fine Noodle Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Moth dal flour (dew bean flour) & fine besan",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Clove powder, black pepper, cardamom, nutmeg & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder, dry mango powder (amchur) & black salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Hot oil (for dough & frying)",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead spiced moth-dal and besan dough",
+        "text": "Sieve moth flour and besan with ground clove, black pepper, hing, chilli powder, and salt; add 2 tbsp hot oil and warm water to knead a soft, sticky dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Extrude through fine bhujia plate into hot oil",
+        "text": "Fill a fine-mesh sev press with the dough and press circular rounds directly into medium-hot oil.",
+        "minutes": 12
+      },
+      {
+        "section": "Fry briefly and crush into short bhujia strands",
+        "text": "Fry for 1–2 minutes per side until crisp and pale golden, drain, and gently break into short strands tossed with black salt and amchur.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Authentic Rajasthani moth-bean bhujia with signature warming clove and black-pepper notes."
   },
   {
     "id": "static-0763",
@@ -10821,6 +11596,55 @@
     "notes": "Can also be made with regular French beans (Beans Bharta)."
   },
   {
+    "id": "static-1387",
+    "name": "Boro Nimki / Konakriti Flaky Layered Triangular Bengali Nimki",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee & cornflour/rice flour (for layering satha)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kalonji (nigella seeds), crushed black pepper & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead firm kalonji dough and divide into balls",
+        "text": "Rub 2.5 tbsp ghee, salt, and kalonji into maida, knead into a firm dough with water, rest 15 minutes, and divide into 10–12 balls.",
+        "minutes": 15
+      },
+      {
+        "section": "Fold into flaky triangles and prick with fork",
+        "text": "Roll each ball into a thin disc, brush with ghee-cornflour paste, fold in half and then into a triangle, roll lightly, and prick all over with a fork so it stays flaky without puffing like a puri.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry on low-medium flame until crisp",
+        "text": "Deep-fry the triangles over low-medium heat for 7–8 minutes per batch until every internal layer is golden and crunchy.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Classic Kolkata sweet-shop ('mishtir dokan') large triangular flaky savory pastry."
+  },
+  {
     "id": "static-0967",
     "name": "Bread and Butter",
     "category": "Breakfast",
@@ -11644,6 +12468,109 @@
     "notes": "Classic accompaniment to Bengali dal-bhaat or khichuri."
   },
   {
+    "id": "static-1411",
+    "name": "Chakli / Butter Murukku (Crisp Spiral Rice Flour, Roasted Gram & Butter Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fine rice flour",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Roasted chana dal (dalia / pottukadalai), ground to fine flour",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Softened butter, white sesame seeds & cumin/ajwain seeds",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Hing (asafoetida), turmeric, red chilli powder & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead butter, rice flour, and roasted gram dough",
+        "text": "Rub softened butter, sesame seeds, cumin, hing, chilli powder, and salt into sieved rice flour and roasted chana dal flour, then knead with warm water into a soft, crack-free dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Pipe concentric star spirals",
+        "text": "Fill a chakli press fitted with the star-shaped nozzle and pipe concentric 3-ring spirals onto oiled parchment squares.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep-fry until golden and crunchy",
+        "text": "Slide the spirals into medium-hot oil and fry on both sides until bubbling subsides and they turn golden and crisp.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Buttery, crunchy spiral chakli studded with sesame and cumin seeds."
+  },
+  {
+    "id": "static-1369",
+    "name": "Chaler Naru (Bengali Toasted Rice Flour, Coconut & Jaggery Ladoo)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Coarse gobindobhog or parboiled rice flour",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Freshly grated coconut",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Jaggery (gur) & water",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Cardamom powder, black pepper powder & ghee",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast rice flour until aromatic",
+        "text": "Roast rice flour in a heavy pan over low flame for 8–10 minutes until nutty and light golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer jaggery and coconut",
+        "text": "Melt jaggery with 1/4 cup water and grated coconut, cooking until bubbly and sticky.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold in roasted rice flour and roll balls",
+        "text": "Stir in the toasted rice flour, cardamom, and a pinch of black pepper; mix well off the heat and shape into firm round narus while warm.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Traditional rural Bengali festive sweet offered during Kojagori Lakshmi Puja."
+  },
+  {
     "id": "static-0912",
     "name": "Chaler Payesh with Jaggery",
     "category": "Sweets",
@@ -12010,6 +12937,55 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1404",
+    "name": "Chana Jor Garam (Spiced Flattened Black Chickpea Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Whole black chickpeas (kala chana), soaked overnight & parboiled",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Black salt, amchur (dry mango powder) & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder, roasted cumin, black pepper & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil and flatten each chickpea into a disc",
+        "text": "Boil soaked black chickpeas until just tender (not mushy), drain, and press each chickpea flat under the base of a heavy bowl; air-dry for 30 minutes.",
+        "minutes": 20
+      },
+      {
+        "section": "Deep-fry flattened chickpeas until crunchy",
+        "text": "Fry the dried flattened chana discs in hot oil for 1–2 minutes until crisp and puffy.",
+        "minutes": 10
+      },
+      {
+        "section": "Coat with tangy amchur and black-salt masala",
+        "text": "Toss hot fried chana discs with black salt, amchur, roasted cumin, red chilli powder, and hing.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Iconic street-side crunchy flattened kala-chana snack enjoyed standalone or with chopped onion and lemon."
   },
   {
     "id": "static-0916",
@@ -12687,6 +13663,168 @@
     "cookMinutes": 20,
     "servings": 3,
     "notes": "Freshly roasted black pepper and fennel give Chettinad prawn masala its signature warmth."
+  },
+  {
+    "id": "static-1347",
+    "name": "Chhanar Jilapi / Chanar Jalebi (Bengali Cottage Cheese Pretzel Jalebi in Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Freshly curdled cow-milk chhena, drained",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Khoya (mawa), finely grated",
+        "quantity": "50",
+        "unit": "g"
+      },
+      {
+        "name": "All-purpose flour (maida) & cornflour",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar, water & green cardamom pods (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil for frying & pinch of baking soda",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead smooth chhena dough and coil spirals",
+        "text": "Knead chhena, khoya, maida, cornflour, baking soda, and a splash of milk into a pliable dough; roll into thin ropes and coil into 2.5-inch pretzel/jalebi spirals.",
+        "minutes": 20
+      },
+      {
+        "section": "Simmer cardamom sugar syrup",
+        "text": "Boil sugar, water, and cardamom pods until slightly viscous and fragrant.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry until mahogany-brown and soak in syrup",
+        "text": "Fry the chhena coils over low-medium heat until rich reddish-brown and transfer to warm syrup for 30–45 minutes until juicy.",
+        "minutes": 17
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Iconic Bengali sweet-shop specialty combining the soft richness of pantua with the coiled shape of jalebi."
+  },
+  {
+    "id": "static-1383",
+    "name": "Chhanar Malpua (Bengali Soft Cottage Cheese & Fennel Pancakes in Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh soft chhena (paneer), mashed smooth",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "All-purpose flour (maida), semolina (suji) & khoya",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Warm milk & crushed fennel seeds (mouri)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar, water & cardamom (for syrup)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee for shallow-frying",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk chhena, khoya, maida, and fennel batter",
+        "text": "Blend mashed chhena, grated khoya, maida, suji, crushed fennel seeds, and warm milk into a smooth, pourable pancake batter; rest 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare warm cardamom syrup",
+        "text": "Boil sugar, water, and cardamom for 6 minutes until sticky.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry in ghee and dip in syrup",
+        "text": "Pour ladlefuls of batter into shallow hot ghee, fry until golden and crisp at the lacy edges, and soak in warm sugar syrup for 5 minutes.",
+        "minutes": 14
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Rich Bengali chhena-enriched malpua with a soft center and crisp caramelized edges."
+  },
+  {
+    "id": "static-1354",
+    "name": "Chhanar Payesh / Chanar Payesh (Bengali Cottage Cheese Kheer with Saffron & Pistachios)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Full-cream milk",
+        "quantity": "1",
+        "unit": "l"
+      },
+      {
+        "name": "Fresh soft chhena (paneer), crumbled or shaped into tiny pearls",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Sugar or Nolen Gur & condensed milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder, saffron & rose water",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chopped pistachios & cashews",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Reduce milk with saffron and cardamom",
+        "text": "Boil full-cream milk in a heavy pan and simmer on medium-low heat until reduced to nearly half, stirring in saffron strands and cardamom powder.",
+        "minutes": 18
+      },
+      {
+        "section": "Sweeten and fold in soft chhena",
+        "text": "Stir in sugar (or condensed milk), then gently add crumbled fresh chhena (or tiny poached chhena pearls) and simmer on low flame for 5 minutes without overboiling.",
+        "minutes": 7
+      },
+      {
+        "section": "Garnish with nuts and chill",
+        "text": "Finish with a few drops of rose water and slivered pistachios, then chill before serving.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Velvety grain-free Bengali kheer suitable for fasting days (upobash) and festive feasts."
   },
   {
     "id": "static-1001",
@@ -18803,6 +19941,50 @@
     "notes": "Nostalgic childhood favorite across Bengali and Indian households."
   },
   {
+    "id": "static-1371",
+    "name": "Chirer Moa (Crispy Fried Flattened Rice & Jaggery Balls)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Thick flattened rice (chira / poha)",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Jaggery (akher gur)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee or oil (for puffing chira) & cardamom",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast or flash-fry chira until crisp and puffed",
+        "text": "Dry-roast or flash-fry flattened rice in a strainer until light, airy, and crunchy; drain thoroughly.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook jaggery to sticky thread stage",
+        "text": "Melt jaggery with 2 tbsp water and cardamom over low flame until frothy and reaches a two-thread consistency.",
+        "minutes": 7
+      },
+      {
+        "section": "Coat crispy chira and shape into balls",
+        "text": "Fold the crispy chira into the hot jaggery syrup and shape into round moas with water-dampened or ghee-greased hands.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Classic Bengali puffed flattened-rice sweet ball alongside Murir Moa and Khoier Moa."
+  },
+  {
     "id": "static-0539",
     "name": "Chirer Polao (Homestyle)",
     "category": "Breakfast",
@@ -20038,6 +21220,60 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1400",
+    "name": "Cornflakes Chivda / Khatta Meetha Cornflakes Mixture",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Crisp plain cornflakes (or makai poha)",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Peanuts, cashews & sliced dry coconut (kopra)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Golden raisins, sesame seeds & curry leaves",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Powdered sugar, amchur, black salt, turmeric & Kashmiri chilli",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for tempering",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper nuts, dry coconut, and curry leaves",
+        "text": "Heat 2 tbsp oil in a wide kadai, crackle mustard seeds and curry leaves, and roast peanuts, thin dry coconut slices, cashews, sesame seeds, and raisins until golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Bloom spices in warm oil",
+        "text": "Lower the flame and stir in turmeric, Kashmiri red chilli powder, amchur, and black salt.",
+        "minutes": 3
+      },
+      {
+        "section": "Fold in crisp cornflakes and powdered sugar",
+        "text": "Gently toss in the cornflakes and powdered sugar over low heat for 2 minutes until evenly coated and crunchy.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Light, low-oil sweet-and-tangy cornflakes namkeen studded with dry fruits."
   },
   {
     "id": "static-0189",
@@ -21848,6 +23084,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1402",
+    "name": "Crispy Salted Moong Dal Namkeen (Haldiram-Style Fried Split Yellow Lentils)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Split yellow moong dal, soaked 3 hours with pinch of baking soda",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fine salt & black salt (bit noon)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "White pepper powder or chaat masala (optional)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Drain and air-dry soaked moong dal",
+        "text": "Rinse the soaked moong dal thoroughly, drain, and spread on a clean cotton cloth for 20 minutes until surface moisture disappears.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry in wire strainer until floating and crisp",
+        "text": "Lower batches of dried moong dal in a metal strainer into hot oil and fry for 3–4 minutes until bubbling stops and the grains float and turn crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Drain thoroughly and season with salt",
+        "text": "Drain on paper towels to remove excess oil and toss warm with fine salt and black salt.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Classic golden, airy, crunchy salted moong dal namkeen."
+  },
+  {
     "id": "static-0039",
     "name": "Crispy Samosa",
     "category": "Snacks",
@@ -22791,6 +24076,60 @@
     "notes": "Quick 20-minute comfort curry when you have no tomatoes or onions on hand."
   },
   {
+    "id": "static-1403",
+    "name": "Dal Moth / Masoor & Chana Dal Namkeen Mixture",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Whole brown masoor dal & chana dal, soaked 4 hours",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fine besan sev & fried cashews/melon seeds",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Black pepper, clove powder, dry mango powder (amchur) & black salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder, roasted cumin, dry ginger & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry and deep-fry whole masoor and chana dal",
+        "text": "Pat soaked masoor and chana dal dry on a towel and fry in hot oil using a strainer until crisp and hollow.",
+        "minutes": 12
+      },
+      {
+        "section": "Grind tangy-spicy dal-moth masala",
+        "text": "Blend black salt, amchur, black pepper, clove, dry ginger, roasted cumin, red chilli powder, and hing.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss fried lentils with masala, sev, and nuts",
+        "text": "Toss the hot fried lentils with the spice blend, fried cashews, melon seeds, and fine besan sev.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Tangy, peppery Agra-style lentil and sev namkeen."
+  },
+  {
     "id": "static-1173",
     "name": "Dal Puri (Spiced Chana Dal Stuffed Fried Puri)",
     "category": "Bread",
@@ -23626,6 +24965,60 @@
     "notes": "Kolkata's beloved Anglo-Bengali take on the Scotch egg, found at every telebhaja and cabin counter."
   },
   {
+    "id": "static-1379",
+    "name": "Dodha Barfi (Punjabi Roasted Milk, Sprouted Wheat, Coconut & Nut Fudge)",
+    "category": "Sweets",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Full-cream milk & heavy cream",
+        "quantity": "1.5",
+        "unit": "l"
+      },
+      {
+        "name": "Coarse wheat flour / daliya or sprouted wheat flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Jaggery or brown sugar & 1 tbsp cocoa/caramel",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (for curdling into grainy texture) & pure ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Desiccated coconut, cashews, almonds & pistachios",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast coarse wheat in ghee and simmer with milk",
+        "text": "Roast coarse wheat flour in ghee until nutty, add milk and cream, and bring to a boil.",
+        "minutes": 12
+      },
+      {
+        "section": "Curdle gently and reduce with jaggery",
+        "text": "Stir in whisked curd so soft milk granules form, then add jaggery and simmer continuously until thick, chewy, and deep reddish-brown.",
+        "minutes": 25
+      },
+      {
+        "section": "Fold in coconut and nuts and set in tray",
+        "text": "Stir in desiccated coconut, roasted cashews, and cardamom, press into a ghee-greased tray topped with pistachios, and cut into squares.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 4,
+    "notes": "Rich, chewy, caramelized grainy milk fudge studded with nuts."
+  },
+  {
     "id": "static-1136",
     "name": "Doi Diye Macher Dimer Bora Curry (Fish Egg Fritters in Yogurt Gravy)",
     "category": "Fish Roe",
@@ -23742,6 +25135,60 @@
     "cookMinutes": 5,
     "servings": 3,
     "notes": "Cool, creamy, tangy, and crunchy Kolkata street chaat favorite."
+  },
+  {
+    "id": "static-1366",
+    "name": "Dorbesh / Darbesh (Bengali Tri-Color Boondi & Khoya Ladoo)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fine gram flour (besan) for red, yellow & natural boondi",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated khoya (mawa)",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Sugar, cardamom powder & nutmeg",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cashews, raisins & melon seeds fried in ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure ghee for frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crisp multi-colored boondi in ghee",
+        "text": "Divide whisked besan batter into yellow, saffron-red, and plain portions and fry crisp boondi pearls in pure ghee.",
+        "minutes": 15
+      },
+      {
+        "section": "Simmer boondi in cardamom syrup until absorbed",
+        "text": "Add the fried boondi to boiling 1-thread cardamom-nutmeg sugar syrup, cook for 2 minutes, then cover and rest for 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Bind with roasted khoya and nuts into firm ladoos",
+        "text": "Fold in lightly sautéed khoya, ghee-fried cashews, raisins, and melon seeds, and shape tightly into large round Dorbesh ladoos.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Rich Bengali cousin of Motichoor Ladoo enriched with khoya and whole nuts."
   },
   {
     "id": "static-0241",
@@ -24017,6 +25464,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1409",
+    "name": "Dry Fruit Masala Kachori / Mini Farsan Kachori (Long-Shelf-Life Sweet & Spicy Namkeen Kachori)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida) & 3 tbsp melted ghee (for crust)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Roasted besan / crushed gathiya & desiccated coconut",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped cashews, raisins, sesame seeds & fennel seeds",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Red chilli powder, garam masala, amchur, powdered sugar & hing",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for slow deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare dry sweet-and-spicy nut masala filling",
+        "text": "Mix roasted besan (or crushed gathiya), toasted sesame, fennel, chopped cashews, raisins, coconut, powdered sugar, amchur, garam masala, chilli powder, and 1 tbsp oil into a crumbly dry filling.",
+        "minutes": 12
+      },
+      {
+        "section": "Stuff and seal bite-sized round kachori balls",
+        "text": "Knead a firm maida-ghee dough, flatten small portions into cups, pack tightly with the dry masala, and seal into smooth walnut-sized balls.",
+        "minutes": 15
+      },
+      {
+        "section": "Slow-fry on low flame until crisp and golden",
+        "text": "Fry the mini kachoris over low flame for 15–18 minutes until the crust is thoroughly crisp and golden-brown.",
+        "minutes": 18
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Crisp, travel-friendly dry kachori filled with a sweet, tangy, and nutty masala."
   },
   {
     "id": "static-0846",
@@ -26467,6 +27968,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1364",
+    "name": "Elo Jhelo / Elojhelo (Bengali Ribbon-Twisted Crispy Sweet Pastry in Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee & kalonji (nigella seeds)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar & water (for syrup)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cut slit strips and fold into tangled bows",
+        "text": "Knead maida, ghee, pinch of salt, and kalonji into a firm dough; roll into rectangles, cut multiple parallel vertical slits leaving the borders intact, and pull one end through the center to form a tangled ribbon ('elo-jhelo').",
+        "minutes": 20
+      },
+      {
+        "section": "Fry until crisp and golden",
+        "text": "Deep-fry on medium-low heat until every ribbon fold is crisp and golden.",
+        "minutes": 12
+      },
+      {
+        "section": "Coat in warm sugar syrup",
+        "text": "Dip into warm single-thread sugar syrup for 1–2 minutes and drain.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Traditional Bengali home-made festive sweet prepared for Bijoya Dashami and weddings."
   },
   {
     "id": "static-0783",
@@ -29170,6 +30720,60 @@
     "notes": "Quintessential Bengali winter afternoon chorchori with notun aloo, sim, and fulkopir datta."
   },
   {
+    "id": "static-1420",
+    "name": "Fulwadi (Crispy Spiced Coarse Besan, Curd, Sesame & Coriander Seed Namkeen Logs)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Coarse gram flour (dardara besan)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sour curd (yogurt) & hot oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed coriander seeds, fennel seeds & white sesame seeds",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red chilli powder, garam masala, powdered sugar, baking soda & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk spiced curd-oil batter with coarse besan",
+        "text": "Whisk sour curd, 3 tbsp hot oil, sugar, and baking soda until frothy, then fold in coarse besan, crushed coriander, fennel, sesame seeds, chilli powder, and salt into a thick batter.",
+        "minutes": 12
+      },
+      {
+        "section": "Pipe short logs into hot oil",
+        "text": "Pipe or press 1.5-inch cylindrical fingers into medium-hot oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until deep golden and porous-crunchy",
+        "text": "Fry on medium-low heat for 6–7 minutes until deep golden-brown, crisp on the outside, and airy inside.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Crunchy, spice-studded savory gram-flour logs bursting with whole coriander and sesame seeds."
+  },
+  {
     "id": "static-0863",
     "name": "Gajak",
     "category": "Sweets",
@@ -31149,6 +32753,55 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1419",
+    "name": "Gujarati Fafda (Crisp Carom-Spiced Gram Flour Strips with Fried Green Chillies)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fine gram flour (besan)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ajwain (carom seeds), crushed black pepper, turmeric & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil & papad khar / baking soda",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies (slit & salted) & oil for frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead elastic besan dough with soda-oil water",
+        "text": "Dissolve salt, hing, and baking soda in warm water with 2 tbsp oil, add to besan, turmeric, and ajwain, and knead for 8 minutes into a smooth, stretchy dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Pull thin strips on a wooden board with the heel of your palm",
+        "text": "Place a small log of dough on a greased wooden board, press with the base of your palm and slide forward in one stroke to form a thin ribbon strip, then lift off with a flat knife.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry on medium-low flame with salted green chillies",
+        "text": "Fry the fafda strips on medium-low heat until crisp without browning, and serve with fried salted green chillies and jalebi.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Iconic crunchy gram-flour strips traditionally paired with hot jalebi and fried green chillies."
+  },
+  {
     "id": "static-0850",
     "name": "Gulab Jamun",
     "category": "Sweets",
@@ -31206,6 +32859,99 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1359",
+    "name": "Gurer Kalakand (Nolen Gur Infused Granular Bengali Milk Cake)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh moist chhena (paneer), crumbled",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Full-cream milk & sweetened condensed milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Patali Gur / Nolen Gur (date palm jaggery), grated",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder, ghee & chopped pistachios",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook crumbled chhena with milk",
+        "text": "Combine crumbled chhena, milk, and condensed milk in a heavy pan and cook on medium flame, stirring until thick and grainy.",
+        "minutes": 15
+      },
+      {
+        "section": "Fold in grated Nolen Gur",
+        "text": "Lower the flame, add grated Nolen Gur and cardamom powder, and cook for 5–6 minutes until the mixture turns caramel-hued and leaves the pan sides.",
+        "minutes": 7
+      },
+      {
+        "section": "Set in greased tray and slice into squares",
+        "text": "Spread into a ghee-lined tray, scatter chopped pistachios on top, cool for 1 hour, and cut into squares.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Moist, granular Bengali winter milk cake perfumed with smoky date-palm jaggery."
+  },
+  {
+    "id": "static-1368",
+    "name": "Gurer Narkel Naru (Bengali Date Palm Jaggery & Grated Coconut Ladoo)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Freshly grated mature coconut",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Crushed Patali Gur or sugarcane jaggery (akher gur)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Green cardamom powder & 1 tsp ghee",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead grated coconut and jaggery together",
+        "text": "Massage freshly grated coconut and crushed jaggery together in a heavy pan for 5 minutes until juicy.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook over low heat until sticky (pak)",
+        "text": "Cook on low flame, stirring continuously for 15–18 minutes until the moisture evaporates and the coconut-jaggery mixture turns glossy and sticky.",
+        "minutes": 18
+      },
+      {
+        "section": "Roll warm mixture into smooth naru balls",
+        "text": "Stir in cardamom powder, grease palms with ghee, and quickly roll warm spoonfuls into smooth bite-sized balls.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Quintessential Lakshmi Puja and Bijoya Dashami home-made Bengali coconut sweet."
   },
   {
     "id": "static-0923",
@@ -33192,6 +34938,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1390",
+    "name": "Jhal Chanachur (Extra-Spicy Bengali Green Chilli & Black Salt Mixture)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Gram flour (besan) infused with green chilli-ginger paste",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts, fried chana dal & green peas",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Slit green chillies & curry leaves, fried crisp",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Black salt, black pepper, dry ginger powder & red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil / vegetable oil for frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare green-chilli spiced sev and gathiya",
+        "text": "Mix besan with strained green chilli-ginger juice, salt, and hot oil; press through a sev press into hot oil and fry until fiery and crisp.",
+        "minutes": 12
+      },
+      {
+        "section": "Fry lentils, peanuts, and crisp green chillies",
+        "text": "Fry peanuts, soaked chana dal, curry leaves, and slit green chillies until completely moisture-free and crunchy.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss with pungent black salt and pepper masala",
+        "text": "Mix all components with black salt, freshly ground black pepper, dry ginger powder, and red chilli powder.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 6,
+    "notes": "Fiery Bengali jhal chanachur ideal for rainy-day chai or mixing into spicy jhalmuri."
+  },
+  {
     "id": "static-1047",
     "name": "Jhinge Aloo Chingri (Ridge Gourd, Potato & Prawn Curry)",
     "category": "Prawns",
@@ -33492,6 +35292,55 @@
     "notes": "Do not salt the potatoes before frying so they turn out ultra-crispy."
   },
   {
+    "id": "static-1362",
+    "name": "Jibe Goja / Jibhe Goja (Crisp Sugar-Glazed Tongue-Shaped Bengali Sweet Pastry)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Melted ghee (for shortening & layering paste)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar & cardamom pods (for syrup)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Oil or ghee for frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roll oval pastries and score the center",
+        "text": "Knead a firm maida-ghee dough, divide into small balls, roll into thin elongated oval shapes resembling a tongue ('jibhe'), and make 3–4 parallel knife slits down the middle without cutting the ends.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry until blistered and golden",
+        "text": "Deep-fry the ovals on medium-low heat until crisp and light golden.",
+        "minutes": 12
+      },
+      {
+        "section": "Glaze in cardamom sugar syrup",
+        "text": "Dip the crisp fried pastries in warm single-thread sugar syrup for 2 minutes and drain on a wire rack.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Classic Bengali fair ('mela') and Rathayatra sweet pastry prized for its delicate crispness."
+  },
+  {
     "id": "static-0842",
     "name": "Jolbhora Sandesh",
     "category": "Sweets",
@@ -33534,6 +35383,55 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1367",
+    "name": "Joynagarer Moa (Winter Kanakchur Khoi & Nolen Gur Sweet Balls with Ghee & Cashews)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Aromatic popped paddy rice (Kanakchur khoi)",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Liquid Nolen Gur (date palm jaggery / jhola gur)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated khoya (kheer) & pure cow ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cashews, pistachios, raisins & green cardamom powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer Nolen Gur to light binding consistency",
+        "text": "Warm liquid Nolen Gur in a pan for 3–4 minutes with cardamom powder and 1 tbsp ghee until fragrant and lightly syrupy.",
+        "minutes": 6
+      },
+      {
+        "section": "Fold in khoi and grated khoya",
+        "text": "Toss clean Kanakchur khoi with the warm Nolen Gur and half the grated khoya, coating gently without crushing the delicate puffed grains, and rest for 1 hour to soften.",
+        "minutes": 10
+      },
+      {
+        "section": "Shape soft balls and garnish with khoya & nuts",
+        "text": "Grease palms with cow ghee, shape into round moas, and crown each with a pinch of grated khoya, a cashew half, pistachio, and raisin.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "GI-tagged South 24 Parganas winter delicacy prized for its melt-in-the-mouth texture and Nolen Gur aroma."
   },
   {
     "id": "static-0627",
@@ -34406,6 +36304,55 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1377",
+    "name": "Kaju Pista Roll (Cashew Marzipan Roll Stuffed with Pistachio Fudge)",
+    "category": "Sweets",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cashew nuts (kaju), ground to fine powder",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Pistachios, ground to fine powder",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar & water",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee, cardamom powder & rose water",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook cashew and pistachio fudges separately",
+        "text": "Boil sugar and water to 1-thread syrup; mix 3/4 of the syrup with cashew powder and 1/4 with pistachio powder and cardamom, cooking each on low flame with a tsp of ghee into smooth pliable doughs.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll cashew sheet and pistachio cylinder",
+        "text": "Roll the warm cashew dough between parchment sheets into a thin rectangle and roll the green pistachio dough into tight cylindrical logs.",
+        "minutes": 10
+      },
+      {
+        "section": "Wrap, roll tight, and slice into cylinders",
+        "text": "Wrap the cashew sheet tightly around the pistachio log, roll until seamless, and slice into 1.5-inch Kaju Pista Rolls.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Showstopping Diwali and festive confection pairing smooth cashew katli with vibrant pistachio filling."
+  },
+  {
     "id": "static-0978",
     "name": "Kakrol Bharta (Spiny Gourd Mash)",
     "category": "Vegetable Bharta",
@@ -35202,6 +37149,60 @@
     "notes": "Rich in iron and fibre; a staple Bengali comfort dish."
   },
   {
+    "id": "static-1380",
+    "name": "Karachi Halwa / Bombay Ice Halwa (Glossy Cornflour, Ghee & Cashew Jelly Sweet)",
+    "category": "Sweets",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cornflour (cornstarch)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar & water",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure ghee (added in stages)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped cashews, pistachios & melon seeds (magaj)",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Lemon juice, cardamom powder & saffron/orange food tint",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dissolve cornflour and cook with sugar syrup",
+        "text": "Whisk cornflour with 1.5 cups water until lump-free; boil sugar with 0.75 cup water and lemon juice, then slowly stir in the cornflour slurry over low flame.",
+        "minutes": 10
+      },
+      {
+        "section": "Incorporate ghee spoon by spoon until glossy and translucent",
+        "text": "Cook on low-medium flame for 20 minutes, adding 1 tbsp ghee at a time while stirring until the halwa turns translucent, chewy, and pulls away from the pan.",
+        "minutes": 20
+      },
+      {
+        "section": "Fold in nuts and set into jewel-like squares",
+        "text": "Mix in cardamom, saffron tint, cashews, and melon seeds, pour into a greased square tin, cool completely, and cut into jewel-bright squares.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "servings": 4,
+    "notes": "Chewy, jewel-toned translucent halwa studded with crunchy cashews and melon seeds."
+  },
+  {
     "id": "static-0977",
     "name": "Karela Bharta (Bitter Gourd Mash)",
     "category": "Vegetable Bharta",
@@ -35264,6 +37265,55 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Salting and resting karela before cooking mellows the bitterness while keeping its digestive benefits."
+  },
+  {
+    "id": "static-1414",
+    "name": "Karela Nimki / Karela Mathri (Crisp Accordion-Pleated Spiced Savory Pastry)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil (for shortening)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kalonji (nigella seeds), ajwain, crushed black pepper & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roll small ovals and cut parallel center slits",
+        "text": "Knead a firm maida-ghee dough with kalonji, ajwain, and salt; roll small balls into thin ovals and make closely spaced parallel knife slits down the center without cutting the outer rim.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll and pinch ends into bitter-gourd (karela) shape",
+        "text": "Roll each slit oval lengthwise from one side to the other and pinch both pointed ends together so the middle fans out like a karela.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry on low-medium flame until crisp",
+        "text": "Fry in medium-low oil until every pleated strip turns golden and crunchy.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Decorative accordion-pleated Bengali/Bihari nimki that stays extra crunchy due to its separated strips."
   },
   {
     "id": "static-1210",
@@ -36692,6 +38742,55 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1363",
+    "name": "Khaja (Digha / Puri Style Multi-Layered Crispy Ghee Pastry in Sugar Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure ghee & rice flour (for satha layering paste)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar, water & crushed cardamom (for syrup)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Oil or ghee for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roll thin sheets and coil with ghee-rice flour paste",
+        "text": "Roll stiff maida dough into 5 paper-thin rotis, brush each layer with a paste of ghee and rice flour, stack and roll tightly into a log, slice into 1-inch pieces, and roll lightly lengthwise.",
+        "minutes": 20
+      },
+      {
+        "section": "Deep-fry on low flame so layers puff open",
+        "text": "Fry the khaja pieces in low-temperature oil, splashing hot oil over the top until the concentric layers separate and turn golden-crisp.",
+        "minutes": 15
+      },
+      {
+        "section": "Dip briefly in warm cardamom syrup",
+        "text": "Submerge warm khajas in 1-thread cardamom sugar syrup for 2 minutes and drain so the layers remain crisp yet juicy.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Iconic multi-layered sweet pastry beloved in coastal Bengal (Digha) and Puri Jagannath Dham."
+  },
+  {
     "id": "static-0377",
     "name": "Khandvi (Classic)",
     "category": "Snacks",
@@ -36808,6 +38907,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1413",
+    "name": "Khara Shankarpali / Salted Diamond Biscuits (Crisp Cumin & Pepper Tea-Time Crackers)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida) & 2 tbsp fine rava (suji)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Hot melted ghee",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds (jeera), ajwain & crushed black pepper",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt & oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pour sizzling ghee over flour and knead stiff dough",
+        "text": "Pour hot melted ghee over maida, rava, cumin, ajwain, crushed black pepper, and salt; rub thoroughly and knead with water into a stiff dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Roll thick sheet and cut into squares or diamonds",
+        "text": "Roll dough to a 0.25-inch thickness and cut with a fluted cutter or knife into 1-inch squares.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry on low flame until flaky and biscuit-crisp",
+        "text": "Deep-fry over low-medium heat for 10–12 minutes until pale golden and flaky like shortbread biscuits.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Melt-in-the-mouth savory diamond biscuits seasoned with cumin and black pepper."
   },
   {
     "id": "static-1202",
@@ -36965,6 +39113,104 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1382",
+    "name": "Kheer Kadam / Raskadam (Mini Rasgulla Encased in Roasted Khoya Sphere)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Mini sponge rasgullas (or Nolen Gur rasgullas), drained",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Grated khoya (mawa / kheer)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Powdered sugar & cardamom powder",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted poppy seeds (posto) or dry khoya crumbs (for coating)",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze mini rasgullas lightly",
+        "text": "Gently press excess syrup out of the mini rasgullas and rest them on a sieve for 15 minutes so they remain juicy inside but dry on the surface.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook pliable khoya shell",
+        "text": "Cook grated khoya with powdered sugar and cardamom over low flame for 6–8 minutes until smooth and firm, then cool completely.",
+        "minutes": 12
+      },
+      {
+        "section": "Wrap each mini rasgulla in khoya and coat",
+        "text": "Flatten portions of khoya dough, encase one mini rasgulla inside each, roll into smooth balls, and coat in roasted poppy seeds or dry khoya crumbs.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Iconic Bengali dual-textured sweet revealing a juicy mini rasgulla inside a rich khoya shell."
+  },
+  {
+    "id": "static-1372",
+    "name": "Kheer Puli Pithe (Bengali Rice Dumplings Stuffed with Coconut in Thickened Gur Milk)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Gobindobhog rice flour (for dumpling dough)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated coconut, khoya & Nolen Gur (for stuffing)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Full-cream milk & extra Nolen Gur (for kheer bath)",
+        "quantity": "1",
+        "unit": "l"
+      },
+      {
+        "name": "Green cardamom pods & bay leaf",
+        "quantity": "3",
+        "unit": "pcs"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare coconut-gur pur and rice-flour dough",
+        "text": "Cook grated coconut, khoya, and Nolen Gur into a sticky filling; knead rice flour with boiling salted water into a soft, smooth dough.",
+        "minutes": 18
+      },
+      {
+        "section": "Shape crescent puli dumplings",
+        "text": "Shape small dough discs, fill with coconut-khoya pur, and pinch the edges into pleated half-moon dumplings.",
+        "minutes": 12
+      },
+      {
+        "section": "Simmer dumplings in Nolen Gur thickened milk",
+        "text": "Reduce milk with cardamom and bay leaf to a creamy kheer, gently simmer the puli dumplings for 10 minutes until they float, and stir in Nolen Gur off the heat.",
+        "minutes": 20
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Beloved Poush Sankranti winter pithe simmered in aromatic date-palm jaggery milk."
   },
   {
     "id": "static-0917",
@@ -37857,6 +40103,60 @@
     "notes": "Kolkata para-corner Egg Chowmein is famously served with raw cucumber-onion salad and a drizzle of ketchup & chilli sauce on top."
   },
   {
+    "id": "static-1388",
+    "name": "Kolkata Style Garam Chanachur (Bengali Spicy Besan Sev, Peanut & Curry Leaf Mixture)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Gram flour (besan) & rice flour (for sev & boondi)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts & thick poha (chira)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted chana dal & split green moong",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh curry leaves, dry red chillies & cashews",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Black salt (bit noon), Kashmiri chilli, roasted cumin, amchur & hing",
+        "quantity": "2.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Press and fry crisp besan sev and boondi",
+        "text": "Knead spiced besan and rice flour dough with hot oil and press through a sev maker into hot oil to make crunchy sev and khara boondi.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry chira, peanuts, lentils, and curry leaves",
+        "text": "In a mesh strainer, flash-fry thick chira, raw peanuts, cashews, soaked/dried chana dal, and fresh curry leaves until crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss warm with Bengali chanachur masala",
+        "text": "Combine all warm fried components in a wide bowl and toss thoroughly with black salt, amchur, roasted cumin-coriander powder, chilli powder, and hing.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 6,
+    "notes": "Signature Kolkata tea-time and jhalmuri chanachur bursting with smoky spices and curry leaves."
+  },
+  {
     "id": "static-1290",
     "name": "Kolkata Telebhaja Platter (Street-Style Beguni, Peyaji & Phuluri)",
     "category": "Fritters",
@@ -37978,6 +40278,109 @@
     "cookMinutes": 20,
     "servings": 3,
     "notes": "Traditionally served alongside Parsi yellow dal (Dhan Dar) and steamed rice."
+  },
+  {
+    "id": "static-1349",
+    "name": "Komola Bhog / Kamalabhog (Bengali Orange-Flavored Chhena Rasgulla)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh cow-milk chhena (paneer)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fine semolina (suji) & maida",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh sweet orange pulp, zest & juice",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar & water (for boiling syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Drop of food-grade orange extract or saffron-orange tint",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead orange-scented chhena balls",
+        "text": "Knead drained chhena with the heel of your palm for 8–10 minutes with suji, fine orange zest, and orange tint until smooth; roll into crack-free balls.",
+        "minutes": 15
+      },
+      {
+        "section": "Boil in covered sugar syrup",
+        "text": "Bring sugar and 4 cups water to a rolling boil, drop in the chhena balls, and cook covered on medium-high heat for 18 minutes until doubled in size.",
+        "minutes": 18
+      },
+      {
+        "section": "Infuse with fresh orange juice and chill",
+        "text": "Turn off the heat, stir strained sweet orange juice into the warm syrup, and let the komolabhog soak for 3–4 hours before serving chilled.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Fragrant winter Bengali rasgulla variation infused with real Nagpur/Darjeeling orange flavor."
+  },
+  {
+    "id": "static-1356",
+    "name": "Kora Pak Nolen Gur Sandesh (Firm Winter Date Palm Jaggery Sandesh)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Freshly curdled cow-milk chhena",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Patali Gur / Nolen Gur (crushed date palm jaggery)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fine rice flour or cornflour",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pistachio slivers (for garnish)",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind chhena and patali gur until ultra-smooth",
+        "text": "Knead or pulse fresh chhena with crushed Patali Gur and 1 tsp rice flour until completely smooth and lump-free.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook over low flame to kora pak (firm stage)",
+        "text": "Cook the mixture in a heavy kadai over very low flame, stirring continuously for 15–18 minutes until moisture evaporates and the dough pulls cleanly from the sides.",
+        "minutes": 17
+      },
+      {
+        "section": "Press into terracotta/wooden sandesh moulds",
+        "text": "While still warm, press portions into greased conch or floral sandesh moulds, unmould carefully, and top with pistachio slivers.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Traditional long-keeping firm ('kora pak') Bengali sandesh stamped in intricate wooden or clay moulds."
   },
   {
     "id": "static-1171",
@@ -38145,6 +40548,60 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Crunchy, savory Bengali starter accompaniment for hot rice and masoor dal."
+  },
+  {
+    "id": "static-1386",
+    "name": "Kucho Nimki (Bengali Crispy Diamond-Cut Kalonji Savory Crackers)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or hot oil (for moyan shortening)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kalonji (nigella seeds) & ajwain (carom seeds)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt & pinch of sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rub shortening into flour and knead stiff dough",
+        "text": "Rub ghee, salt, sugar, kalonji, and ajwain into maida for 4–5 minutes until it holds a breadcrumb texture, then add minimal water to knead a stiff dough and rest 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll thin and cut into small diamonds",
+        "text": "Roll the dough into a thin sheet and slice crosswise with a knife into bite-sized 0.75-inch diamond shapes.",
+        "minutes": 8
+      },
+      {
+        "section": "Slow-fry until golden and crunchy",
+        "text": "Drop the diamonds into medium-low heat oil and fry slowly, stirring constantly, until evenly golden-brown and crisp; cool and store in an airtight jar.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Quintessential Bengali tea-time and Bijoya Dashami savory snack that stays crisp for weeks."
   },
   {
     "id": "static-0705",
@@ -40368,6 +42825,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1353",
+    "name": "Ledikeni / Ladykini (Bengali Fried Chhena & Semolina Sweet in Rose-Cardamom Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh cow-milk chhena",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fine semolina (suji), maida & melted ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar & water (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Raisins & crushed cardamom (for center stuffing)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead chhena-suji dough and stuff with raisin",
+        "text": "Knead chhena, suji, maida, melted ghee, and a pinch of baking soda into a smooth dough; shape into oval balls with a raisin and cardamom seed tucked in the center.",
+        "minutes": 15
+      },
+      {
+        "section": "Boil cardamom-rose sugar syrup",
+        "text": "Simmer sugar and water with crushed green cardamom pods for 8 minutes until sticky.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry until dark reddish-brown and soak",
+        "text": "Fry the ovals over low heat until deep reddish-brown, then transfer into hot syrup and soak for 1–2 hours until soft and juicy.",
+        "minutes": 17
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Created in 1858 by Bhim Chandra Nag in Kolkata in honor of Lady Canning."
+  },
+  {
     "id": "static-0764",
     "name": "Lemon Black Tea",
     "category": "Tea",
@@ -40979,6 +43490,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1384",
+    "name": "Lyangcha / Shaktigarh Style Langcha (Elongated Khoya & Chhena Fried Sweet in Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh cow-milk chhena & grated khoya (in equal ratio)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "All-purpose flour (maida) & pinch of baking soda",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed green cardamom seeds & 1 tsp ghee",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar & water (for light syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead chhena-khoya dough and shape elongated cylinders",
+        "text": "Knead chhena, khoya, maida, ghee, baking soda, and crushed cardamom seeds for 10 minutes until silky, then roll into 3.5-inch cylindrical logs.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare boiling cardamom sugar syrup",
+        "text": "Boil sugar and 2 cups water with cardamom pods for 7 minutes into a thin, hot syrup.",
+        "minutes": 7
+      },
+      {
+        "section": "Deep-fry until dark mahogany and soak",
+        "text": "Fry the cylinders over low heat until dark mahogany-brown, then plunge into hot syrup and soak for 1–2 hours until plump.",
+        "minutes": 18
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Famous highway delicacy of Shaktigarh in Purba Bardhaman, West Bengal."
   },
   {
     "id": "static-0787",
@@ -42039,6 +44604,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1376",
+    "name": "Malai Ghevar (Rajasthani-Style Honeycomb Sweet Disc Topped with Saffron Rabri)",
+    "category": "Sweets",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida) & 1 tbsp besan",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Solidified ghee & ice cubes (for aerated batter)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Thickened saffron rabri / malai",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar & cardamom syrup",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee for frying & slivered almonds/pistachios",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk ice-cold aerated ghevar batter",
+        "text": "Rub ghee with ice cubes until white and creamy, then whisk in maida, besan, chilled milk, and chilled water to form a thin, watery batter.",
+        "minutes": 15
+      },
+      {
+        "section": "Pour in thin streams into hot ghee mould",
+        "text": "Pour small ladlefuls of cold batter from a height into bubbling hot ghee inside a cylindrical ring mould so it sets into a lacy honeycomb disc; lift out when golden.",
+        "minutes": 18
+      },
+      {
+        "section": "Glaze with syrup and crown with saffron rabri",
+        "text": "Spoon warm 1-thread cardamom sugar syrup over the crisp ghevar disc, spread thick saffron rabri on top, and garnish with nuts.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 30,
+    "servings": 4,
+    "notes": "Festive lacy honeycomb pastry topped with creamy rabri and nuts."
+  },
+  {
     "id": "static-0709",
     "name": "Malpua (Traditional)",
     "category": "Other",
@@ -42636,6 +45255,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1391",
+    "name": "Masala Badam Bhaja / Tasty Peanuts (Crispy Spiced Besan-Coated Fried Peanuts)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Raw whole peanuts with skin",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Gram flour (besan) & rice flour",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Red chilli powder, turmeric, garlic-ginger paste & hing",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat masala, black salt & amchur powder (for tossing)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat damp peanuts with spiced besan-rice flour",
+        "text": "Toss rinsed damp peanuts with ginger-garlic paste, hing, turmeric, chilli powder, besan, and rice flour, sprinkling drops of water so a craggy masala coat clings to each peanut.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep-fry on medium-low heat until crunchy",
+        "text": "Drop coated peanuts into medium-hot oil, separating gently with a slotted spoon, and fry on low-medium flame for 8–10 minutes until crisp all the way through.",
+        "minutes": 10
+      },
+      {
+        "section": "Dust hot peanuts with chaat masala and black salt",
+        "text": "Drain on absorbent paper and immediately toss with chaat masala, black salt, and amchur powder.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Crunchy masala-crusted peanut namkeen served with evening tea."
   },
   {
     "id": "static-0143",
@@ -43286,6 +45959,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1415",
+    "name": "Masala Kaju Namkeen (Ghee-Roasted Black Pepper & Chaat Masala Cashews)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Whole cashew nuts (kaju)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure cow ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Freshly cracked black pepper, black salt & chaat masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dry mint powder or Kashmiri chilli powder (optional)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast cashews in pure ghee",
+        "text": "Warm pure ghee in a heavy pan over low flame and roast whole cashews, stirring constantly for 6–8 minutes until evenly golden and fragrant.",
+        "minutes": 8
+      },
+      {
+        "section": "Toss hot cashews with pepper and chaat masala",
+        "text": "Transfer the hot ghee-coated cashews to a bowl and immediately toss with cracked black pepper, black salt, and chaat masala so the spices adhere.",
+        "minutes": 2
+      },
+      {
+        "section": "Cool completely for maximum crunch",
+        "text": "Spread on a plate to cool to room temperature before storing in an airtight glass jar.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Rich, crunchy ghee-roasted pepper cashews served on festive platters and with evening tea."
+  },
+  {
     "id": "static-0442",
     "name": "Masala Kashmiri Pulao",
     "category": "Rice",
@@ -43338,6 +46060,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1398",
+    "name": "Masala Khara Boondi (Spiced Crispy Gram Flour Pearls with Peanuts & Curry Leaves)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Gram flour (besan) & 2 tbsp rice flour",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts & cashews",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh curry leaves & crushed garlic (optional)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Red chilli powder, turmeric, hing, black salt & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk smooth besan-rice flour batter",
+        "text": "Whisk besan, rice flour, turmeric, hing, salt, 1 tbsp hot oil, and water into a smooth pouring batter.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry crispy boondi pearls through perforated ladle",
+        "text": "Pour batter through a perforated boondi jhara over hot oil and fry until golden and crunchy.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss with fried peanuts, curry leaves, and spices",
+        "text": "Fry peanuts, cashews, and curry leaves until crisp, then toss warm with the boondi, red chilli powder, black salt, and chaat masala.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Crunchy savory boondi mixture great for tea-time snacking or topping raita and chaat."
   },
   {
     "id": "static-0687",
@@ -43740,6 +46516,55 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1401",
+    "name": "Masala Muri / Kolhapuri-Bengali Spiced Roasted Puffed Rice Namkeen",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Puffed rice (muri / murmura)",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts & roasted chana dal (dalia)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard oil, curry leaves, garlic cloves (crushed) & dry red chilli",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder, chaat masala & black salt",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry peanuts, roasted chana dal, garlic, and curry leaves",
+        "text": "Heat mustard oil in a wide pan, fry crushed garlic, dry red chillies, curry leaves, peanuts, and chana dal until golden and crisp.",
+        "minutes": 6
+      },
+      {
+        "section": "Add turmeric and spice powders",
+        "text": "Stir in turmeric, red chilli powder, black salt, and chaat masala on low flame.",
+        "minutes": 2
+      },
+      {
+        "section": "Toss muri until crisp and golden yellow",
+        "text": "Add puffed rice (muri) and roast on low heat for 4–5 minutes until super-crisp and coated in spiced oil.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Crisp jar-friendly spiced muri mixture that stays crunchy even in humid weather."
   },
   {
     "id": "static-0633",
@@ -45848,6 +48673,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1385",
+    "name": "Mihidana & Sitabhog (Bardhaman GI-Tagged Fine Saffron Pearls & Chhena Vermicelli Sweet)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh chhena & Gobindobhog rice flour (for Sitabhog)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Kamini atap rice flour, besan & saffron (for Mihidana)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar & cardamom syrup",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fried mini nikhuti, cashews & raisins",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure cow ghee for frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Press and fry fine chhena-rice vermicelli (Sitabhog)",
+        "text": "Knead chhena and Gobindobhog rice flour into a soft dough, press through a fine sev mould directly into hot cow ghee for 30 seconds until white-golden, and soak briefly in warm cardamom syrup.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry micro-fine saffron pearls (Mihidana)",
+        "text": "Pour thin saffron-tinted rice-and-besan batter through a micro-perforated brass ladle into hot ghee and soak the tiny golden pearls in warm syrup.",
+        "minutes": 15
+      },
+      {
+        "section": "Garnish with nikhuti, cashews, and raisins",
+        "text": "Drain excess syrup and serve the fragrant Sitabhog and Mihidana topped with mini fried nikhuti, cashews, and raisins.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Royal twin GI-tagged sweets of Bardhaman, West Bengal, traditionally served together."
+  },
+  {
     "id": "static-0887",
     "name": "Milk Barfi",
     "category": "Sweets",
@@ -45900,6 +48779,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1410",
+    "name": "Mini Dry Namkeen Samosa / Farsan Cocktail Samosa",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida), ajwain & 3 tbsp ghee",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fried moong dal namkeen & besan sev, coarsely crushed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped cashews, raisins, fennel seeds & coriander seeds",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Amchur, Kashmiri chilli, garam masala, powdered sugar & black salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend crunchy lentil-and-nut dry filling",
+        "text": "Pulse fried moong dal and sev into coarse crumbs and mix with toasted fennel, crushed coriander, cashews, raisins, amchur, sugar, chilli powder, and 1 tsp tamarind paste.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold and seal mini cones",
+        "text": "Roll stiff maida-ghee dough into small ovals, cut in half, form miniature cones, stuff with the dry masala, and crimp the edges tightly.",
+        "minutes": 18
+      },
+      {
+        "section": "Deep-fry on low heat until crisp",
+        "text": "Fry on low-medium heat for 14–16 minutes until crisp and golden so they stay crunchy for weeks.",
+        "minutes": 16
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Bite-sized dry farsan samosas with a zero-moisture lentil, cashew, and raisin stuffing."
   },
   {
     "id": "static-0966",
@@ -45988,6 +48921,55 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1365",
+    "name": "Mishti Boondi / Bengali Bonde (Sweet Saffron & Cardamom Fried Gram Flour Pearls)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fine gram flour (besan)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour & pinch of baking soda",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar, water, saffron & cardamom (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil for frying & melon seeds (magaj)",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk smooth pouring besan batter",
+        "text": "Whisk sieved besan, rice flour, a tsp of hot ghee, and water for 5 minutes into a smooth, lump-free flowing batter.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry pearls through a perforated ladle (jhara)",
+        "text": "Hold a perforated boondi ladle above hot ghee/oil, pour batter so round droplets fall into the oil, and fry until crisp without browning.",
+        "minutes": 12
+      },
+      {
+        "section": "Soak in warm saffron-cardamom syrup",
+        "text": "Toss hot fried boondi directly into warm 1-thread saffron-cardamom sugar syrup with toasted melon seeds and let soak for 30 minutes until plump and glossy.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Classic Bengali sweet boondi enjoyed with luchis, mudhi (puffed rice), or as Puja bhog."
   },
   {
     "id": "static-0835",
@@ -47576,6 +50558,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1355",
+    "name": "Mouchak (Bengali Honeycomb-Layered Khoya, Chhena & Boondi Sweet)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Sweet fried boondi pearls",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh chhena & grated khoya (mawa)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Sugar & cardamom syrup",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped cashews, raisins & pistachios",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee & rose water",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare sweet khoya-chhena cream layer",
+        "text": "Sauté chhena and khoya with powdered sugar and cardamom on low heat for 6–8 minutes until soft and creamy.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss boondi with nuts in warm syrup",
+        "text": "Fold crisp boondi pearls and fried cashews/raisins into warm sugar syrup until glossy but still distinct.",
+        "minutes": 10
+      },
+      {
+        "section": "Mould honeycomb layers and slice",
+        "text": "Press alternating layers of syrup-glazed boondi and creamy khoya-chhena in a greased tray, garnish with pistachios, chill to set, and slice into squares.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Named after its honeycomb ('mouchak') cross-section of golden boondi and white khoya-chhena."
+  },
+  {
     "id": "static-1175",
     "name": "Mughlai Paratha (Kolkata Cabin-Style Egg & Spiced Keema Stuffed Paratha)",
     "category": "Bread",
@@ -48160,6 +51196,104 @@
     "notes": "Beloved Bengali catering & festive favorite—soft like a baby naan inside and puffed like a puri outside; pairs with chana masala or aloor dum."
   },
   {
+    "id": "static-1405",
+    "name": "Namak Para (Crisp Ajwain & Cumin Savory Flour Ribbon Crackers)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida) & 2 tbsp fine semolina (suji)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee or oil (for moyan shortening)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ajwain (carom seeds), cumin seeds & crushed black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt & oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead stiff maida-suji dough with carom and cumin",
+        "text": "Rub ghee, salt, ajwain, cumin, and black pepper into maida and suji, then bind with minimal water into a stiff dough; rest 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll and slice into diagonal ribbon strips",
+        "text": "Roll dough into medium-thin sheets and cut with a pastry wheel or knife into 2.5-inch diagonal strips.",
+        "minutes": 8
+      },
+      {
+        "section": "Slow-fry until golden and flaky-crisp",
+        "text": "Deep-fry on medium-low flame, stirring regularly for even coloring, until golden and crisp.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Crisp, carom-scented savory ribbon crackers ideal for tea time."
+  },
+  {
+    "id": "static-1381",
+    "name": "Narkel Chapa / Chandrakala Narkel Sandesh (Moulded Coconut & Khoya Sweet)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Finely grated fresh white coconut meat",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated khoya (mawa) & sweetened condensed milk",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar & green cardamom powder",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee & camphor/rose essence (pinch)",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind coconut into a fine paste",
+        "text": "Pulse grated white coconut in a grinder with 2 tbsp milk into a smooth, fine paste.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook with khoya and sugar over low flame",
+        "text": "Cook the coconut paste, grated khoya, condensed milk, and sugar in a heavy pan over low flame for 15 minutes until it forms a soft, non-sticky dough.",
+        "minutes": 15
+      },
+      {
+        "section": "Stamp in floral sandesh moulds",
+        "text": "Add cardamom powder, let cool until warm to touch, and press into ghee-brushed floral moulds to form delicate Narkel Chapa.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Refined Bengali moulded coconut-khoya sweet prepared for Kojagori Lakshmi Puja."
+  },
+  {
     "id": "static-1062",
     "name": "Narkel Chingri (Prawns in Spiced Grated Coconut)",
     "category": "Prawns",
@@ -48435,6 +51569,114 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1417",
+    "name": "Navratan Mixture (Nine-Gem Lentil, Potato Lachha, Nut & Raisin Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Crispy potato sticks (aloo lachha) & fine besan sev/boondi",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fried chana dal, moong dal & whole masoor dal",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fried peanuts, cashews, almonds, melon seeds & raisins",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Dry mango powder (amchur), powdered sugar, black salt & dry mint",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red chilli powder, black pepper, clove & cinnamon powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crisp potato lachha and lentils",
+        "text": "Rinse and dry grated potato juliennes and deep-fry until crisp; separately fry soaked chana, moong, and masoor dals until crunchy.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry dry fruits and curry leaves",
+        "text": "Lightly fry peanuts, cashews, almonds, melon seeds, and raisins until golden.",
+        "minutes": 5
+      },
+      {
+        "section": "Combine nine components with sweet-tangy-mint masala",
+        "text": "Toss potato lachha, fried dals, besan sev, boondi, and dry fruits with black salt, amchur, powdered sugar, dried mint, and warm spices.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "notes": "Classic nine-ingredient ('Navratan') festive namkeen blending crunchy lentils, potato sticks, and dry fruits."
+  },
+  {
+    "id": "static-1346",
+    "name": "Nikuti / Nikhuti (Bengali Tiny Fried Chhena & Khoya Sweets in Cardamom Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh chhena (paneer) & grated khoya (mawa)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "All-purpose flour (maida) & semolina (suji)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar (for light cardamom syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Green cardamom powder & pinch of baking soda",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or refined oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead chhena-khoya dough and shape tiny cylinders",
+        "text": "Knead fresh chhena, grated khoya, maida, suji, cardamom powder, and a pinch of baking soda until smooth, then roll into bite-sized 1-inch cylindrical shapes.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare warm cardamom sugar syrup",
+        "text": "Boil sugar with 1.5 cups water and crushed cardamom pods for 6–7 minutes to form a sticky single-thread light syrup; keep warm.",
+        "minutes": 8
+      },
+      {
+        "section": "Slow-fry until golden brown and soak",
+        "text": "Deep-fry the nikhuti cylinders on low-medium heat in ghee/oil until deep golden-brown, then transfer directly into warm sugar syrup and soak for 1 hour.",
+        "minutes": 17
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Classic Bengali miniature pantua-style sweet served standalone or as a garnish over payesh and sitabhog."
+  },
+  {
     "id": "static-0808",
     "name": "Nimbu Pani",
     "category": "Beverage",
@@ -48595,6 +51837,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1350",
+    "name": "Nolen Gurer Rosogolla (Winter Date Palm Jaggery Spongy Rasgulla)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Freshly prepared cow-milk chhena, drained",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Liquid Nolen Gur (date palm jaggery / jhola gur)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar (for base boiling syrup)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "4",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead chhena until silky and roll balls",
+        "text": "Knead the moist chhena with maida for 10 minutes until smooth and non-grainy, then roll into 12–14 smooth balls without cracks.",
+        "minutes": 15
+      },
+      {
+        "section": "Simmer nolen gur and sugar syrup",
+        "text": "Boil water, sugar, and Nolen Gur in a wide deep pot, skimming any foam so the aromatic amber syrup boils briskly.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook covered until spongy and plump",
+        "text": "Gently slide in the chhena balls, cover tightly, and boil on medium-high flame for 18–20 minutes until spongy and soaked through with smoky date-palm jaggery.",
+        "minutes": 20
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Signature Bengali winter sweet made with aromatic new-season Nolen Gur."
   },
   {
     "id": "static-1208",
@@ -57502,6 +60798,55 @@
     "notes": "An aristocratic Bengali culinary classic served on special occasions."
   },
   {
+    "id": "static-1358",
+    "name": "Pranhara Sandesh (Soft Chhena Sandesh Coated in Powdered Khoya)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh cow-milk chhena",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Dry khoya (mawa), finely grated and sieved",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder & rose water",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast and sieve dry khoya",
+        "text": "Lightly warm 60 g of grated khoya in a dry pan for 2 minutes, let cool, and rub through a fine sieve to create a snowy khoya crumb coating.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook soft chhena-sugar sandesh mixture",
+        "text": "Knead chhena, remaining 40 g khoya, and powdered sugar until smooth, then cook on low heat for 7–8 minutes with cardamom and rose water.",
+        "minutes": 10
+      },
+      {
+        "section": "Roll balls and coat generously in khoya crumbs",
+        "text": "Roll warm mixture into bite-sized balls or discs and roll immediately in the sieved khoya crumbs until evenly coated.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Melt-in-the-mouth Bengali sandesh whose name means 'stealer of hearts'."
+  },
+  {
     "id": "static-1069",
     "name": "Prawn 65 (South Indian Spicy Deep-Fried Prawns)",
     "category": "Prawns",
@@ -60171,6 +63516,60 @@
     "notes": "Fragrant panch-phoron tempered Aloo Kumro Fry."
   },
   {
+    "id": "static-1406",
+    "name": "Punjabi Methi Mathri (Flaky Kasuri Methi & Black Pepper Whole-Wheat Biscuits)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida), whole wheat flour (atta) & suji",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Dried fenugreek leaves (kasuri methi), crushed",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure ghee (for shortening)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coarsely crushed black peppercorns, ajwain, hing & salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead coarse, stiff methi-pepper dough",
+        "text": "Rub ghee, crushed kasuri methi, coarse black pepper, ajwain, hing, and salt into the flours, then bind with minimal warm water into a tight, crumbly dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Flatten into rustic discs and prick",
+        "text": "Pinch small balls, press between your palms into rustic 2-inch discs with cracked edges, and prick with a fork.",
+        "minutes": 8
+      },
+      {
+        "section": "Slow-fry on low heat until deep golden",
+        "text": "Fry in low-temperature oil for 14–16 minutes per batch until cooked through and flaky-crisp.",
+        "minutes": 16
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Rustic, flaky fenugreek savory biscuits traditionally served with mango pickle and masala chai."
+  },
+  {
     "id": "static-1308",
     "name": "Pur Bhora Chalkumro Fry (Mustard-Poppy Stuffed Ash Gourd Pan-Fry)",
     "category": "Vegetable",
@@ -61895,6 +65294,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1374",
+    "name": "Ranga Aloor Pantua (Bengali Red Sweet Potato & Khoya Gulab Jamun)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Red sweet potatoes (ranga aloo), boiled, peeled and mashed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Grated khoya (mawa) & all-purpose flour (maida)",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Sugar, water & green cardamom (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee, cardamom powder & pinch of baking powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil or ghee for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead mashed sweet potato and khoya dough",
+        "text": "Mash boiled ranga aloo until completely smooth and knead with grated khoya, maida, cardamom powder, 1 tsp ghee, and baking powder into soft balls.",
+        "minutes": 15
+      },
+      {
+        "section": "Simmer cardamom sugar syrup",
+        "text": "Boil sugar, water, and cardamom pods for 7–8 minutes until lightly syrupy.",
+        "minutes": 8
+      },
+      {
+        "section": "Deep-fry on low heat and soak",
+        "text": "Fry the sweet potato balls over low-medium heat until deep golden-brown, then soak in warm sugar syrup for 45 minutes.",
+        "minutes": 17
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Traditional Bengali winter sweet transforming earthy sweet potatoes into melt-in-the-mouth pantuas."
+  },
+  {
     "id": "static-0830",
     "name": "Rasgulla",
     "category": "Sweets",
@@ -62109,6 +65562,55 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1395",
+    "name": "Ratlami Sev (Clove, Black Pepper & Carom Spiced Thick Besan Sev)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Gram flour (besan)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Freshly ground cloves, black pepper & ajwain (carom seeds)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Hing (asafoetida), red chilli powder, dry ginger & black salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Hot oil (for moyan & frying)",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead bold clove-and-pepper besan dough",
+        "text": "Combine besan with finely ground cloves, black pepper, ajwain, hing, dry ginger, chilli powder, salt, and 3 tbsp hot oil; knead with warm water into a soft dough.",
+        "minutes": 10
+      },
+      {
+        "section": "Extrude thick strands into hot oil",
+        "text": "Press the dough through a medium-thick sev disc into medium-hot oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until crisp and hollow-crunchy",
+        "text": "Fry until golden and crisp on both sides, drain, and break into bite-sized pieces.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Bold, aromatic Malwa-style thick sev packed with warming clove, ajwain, and black pepper."
   },
   {
     "id": "static-1128",
@@ -62352,6 +65854,60 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1412",
+    "name": "Ribbon Pakoda / Nada Thenkuzhal (Crisp Spiced Rice & Besan Ribbon Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Rice flour",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Gram flour (besan) & roasted chana dal flour",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Melted butter or hot oil & sesame seeds",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garlic paste (strained), red chilli powder, hing & salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead smooth spiced rice-besan dough",
+        "text": "Mix rice flour, besan, roasted gram flour, sesame seeds, chilli powder, hing, salt, strained garlic water, and hot butter into a soft dough.",
+        "minutes": 10
+      },
+      {
+        "section": "Extrude flat ribbons directly into hot oil",
+        "text": "Use the flat ribbon slot attachment in a murukku press to press concentric ribbon coils into medium-hot oil.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until crisp and break into pieces",
+        "text": "Fry on medium flame until crisp and golden-red, drain, and break into bite-sized ribbons.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Crisp, savory rice-and-gram flour ribbon snack flavored with garlic and asafoetida."
+  },
+  {
     "id": "static-0111",
     "name": "Rice Kheer (Homestyle)",
     "category": "Other",
@@ -62512,6 +66068,55 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1416",
+    "name": "Roasted Masala Makhana & Peanut Namkeen (Spiced Ghee-Roasted Fox Nuts)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Fox nuts / lotus seeds (phool makhana)",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts, cashews & pumpkin/melon seeds",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure ghee & fresh curry leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, chaat masala, black salt & roasted cumin",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast makhana until crisp",
+        "text": "Roast fox nuts in a heavy kadai with 1 tsp ghee on low flame for 7–8 minutes until they crush cleanly with a loud crunch.",
+        "minutes": 8
+      },
+      {
+        "section": "Temper peanuts, cashews, and curry leaves in ghee",
+        "text": "In the same pan, heat remaining ghee, fry peanuts, cashews, melon seeds, and curry leaves until golden, then add turmeric, chilli, cumin, black salt, and chaat masala.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss crisp makhana in spiced ghee",
+        "text": "Return the roasted makhana to the pan and toss for 1–2 minutes until evenly coated.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Light, protein-rich crunchy fox-nut and peanut namkeen."
   },
   {
     "id": "static-0095",
@@ -63308,6 +66913,55 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1373",
+    "name": "Roshbora / Rasbora (Bengali Fried Urad Dal Dumplings in Jaggery-Cardamom Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Split skinless black gram (biuli / urad dal), soaked 4 hours",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (mouri), lightly crushed & pinch of salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nolen Gur or sugar & water (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Oil or ghee for deep-frying",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind and aerate urad dal batter",
+        "text": "Grind soaked urad dal into a fluffy paste and beat thoroughly by hand with crushed fennel seeds and a pinch of salt until light and airy.",
+        "minutes": 12
+      },
+      {
+        "section": "Prepare warm Nolen Gur or sugar syrup",
+        "text": "Boil water with Nolen Gur (or sugar) and crushed cardamom for 6 minutes to make a light soaking syrup.",
+        "minutes": 6
+      },
+      {
+        "section": "Fry golden fritters and soak in warm syrup",
+        "text": "Drop spoonfuls of whipped dal batter into medium-hot oil, fry until golden and porous, and transfer immediately into the warm jaggery syrup to soak for 30 minutes.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Spongy, syrup-soaked Bengali lentil dumplings popular in winter across rural West Bengal."
   },
   {
     "id": "static-0068",
@@ -64668,6 +68322,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1352",
+    "name": "Sarpuria / Sorpuria (Krishnanagar-Style Milk Cream, Khoya & Almond Sweet)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Skimmed milk-cream layers (dugdh sor)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh chhena & khoya (kheer)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Blanched almonds & pistachios, finely chopped",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green cardamom powder & ghee",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook chhena and khoya into rich sandesh base",
+        "text": "Cook mashed chhena, khoya, and powdered sugar on low flame in a heavy pan for 10–12 minutes until cohesive yet moist, then stir in cardamom powder and chopped almonds.",
+        "minutes": 15
+      },
+      {
+        "section": "Layer with milk cream (sor) sheets",
+        "text": "Spread half the mixture into a greased tray, layer with delicate sheets of clotted milk cream (sor), top with the remaining mixture and another layer of sor.",
+        "minutes": 15
+      },
+      {
+        "section": "Garnish and chill before slicing",
+        "text": "Garnish with slivered pistachios and almonds, chill for 1 hour to set, and cut into neat rectangular bars.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 30,
+    "servings": 4,
+    "notes": "Twin specialty to Sorbhaja from Krishnanagar, revered for its delicate sheets of slow-simmered milk cream."
   },
   {
     "id": "static-1178",
@@ -66407,6 +70115,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1351",
+    "name": "Sorbhaja / Sarbhaja (Krishnanagar-Style Fried Layered Milk Cream Sweet)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Thick milk skin / clotted cream layers (malai / sor) & khoya",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh chhena & all-purpose flour (maida)",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Sugar & water (for cardamom syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Green cardamom powder & rose water",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure ghee for shallow/deep frying",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stack milk-cream layers into firm slab",
+        "text": "Blend thick milk cream (sor), grated khoya, chhena, and a spoon of maida into sheets, stacking 3–4 thin layers together and chilling for 20 minutes before cutting into diamonds or squares.",
+        "minutes": 25
+      },
+      {
+        "section": "Prepare fragrant cardamom syrup",
+        "text": "Boil sugar and water with cardamom powder and rose water to a medium-consistency syrup.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry in pure ghee and soak",
+        "text": "Fry the layered squares gently in pure ghee until golden-brown and crisp on the outside, then immerse in warm sugar syrup for 25 minutes.",
+        "minutes": 20
+      }
+    ],
+    "prepMinutes": 30,
+    "cookMinutes": 35,
+    "servings": 4,
+    "notes": "Famous heritage milk-cream sweet originating from Krishnanagar, Nadia district in West Bengal."
   },
   {
     "id": "static-0780",
@@ -71121,6 +74883,55 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1370",
+    "name": "Tiler Naru (Bengali White Sesame, Coconut & Jaggery Ladoo)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hulled white sesame seeds (sada til)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated coconut or roasted peanuts (optional)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugarcane or date palm jaggery (gur)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee & crushed cardamom",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast white sesame seeds",
+        "text": "Roast white sesame seeds on low flame for 4–5 minutes until they pop and turn fragrant.",
+        "minutes": 5
+      },
+      {
+        "section": "Caramelize jaggery to soft-ball stage",
+        "text": "Melt jaggery with 2 tbsp water and cook until a drop placed in cold water forms a soft ball.",
+        "minutes": 8
+      },
+      {
+        "section": "Mix sesame and roll quickly with greased palms",
+        "text": "Fold toasted sesame seeds, coconut, and cardamom into the hot jaggery and roll rapidly into round tiler narus before the mixture hardens.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Crunchy, calcium-rich Bengali sesame-jaggery sweet made for Lakshmi Puja and Makar Sankranti."
+  },
+  {
     "id": "static-1002",
     "name": "Tinda Bharta (Apple Gourd / Indian Round Gourd Mash)",
     "category": "Vegetable Bharta",
@@ -71314,6 +75125,60 @@
     "cookMinutes": 3,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1389",
+    "name": "Tok Jhal Mishti Chanachur / Khatta Meetha Bengali Chanachur",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Gram flour (besan) for fine sev, gathiya & boondi",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick flattened rice (chira) & raw peanuts",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Golden raisins (kishmish) & cashews",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Powdered sugar, amchur (dry mango powder) & black salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fennel powder, red chilli powder, turmeric & curry leaves",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crisp sev, gathiya, and chira",
+        "text": "Fry fine besan sev, thick gathiya strips, and puffed chira until golden and drain on paper towels.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry peanuts, cashews, raisins, and curry leaves",
+        "text": "Fry peanuts, cashews, plump raisins, and curry leaves until crisp and aromatic.",
+        "minutes": 8
+      },
+      {
+        "section": "Season with sweet, sour, and spicy masala",
+        "text": "Toss everything while slightly warm with powdered sugar, amchur, black salt, roasted fennel powder, and red chilli powder.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 6,
+    "notes": "Addictive sweet-tangy-spicy Bengali chanachur loaded with raisins, cashews, and peanuts."
   },
   {
     "id": "static-0722",
