@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Check, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
@@ -118,6 +118,16 @@ export default function Expense() {
   const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [deleteId, setDeleteId] = useState(null);
   const [formError, setFormError] = useState("");
+  const [proofInputKey, setProofInputKey] = useState(0);
+  const proofInputRef = useRef(null);
+  const modalProofInputRef = useRef(null);
+
+  const resetProofInput = () => {
+    if (proofInputRef.current) {
+      proofInputRef.current.value = "";
+    }
+    setProofInputKey((current) => current + 1);
+  };
 
   const shareCalculation = useMemo(
     () => resolvedShares(form.totalCost, form.shares),
@@ -190,6 +200,7 @@ export default function Expense() {
     setEditingId(null);
     setDate(prefill.expenseDate || today());
     setForm({ ...emptyForm(prefill.expenseDate || today()), categoryId: String(prefill.categoryId || ""), itemId: prefill.marketingItemIds ? TOTAL_ITEM : String(prefill.itemId || (prefill.itemName ? OTHER_ITEM : TOTAL_ITEM)), otherItem: prefill.marketingItemIds ? "" : (prefill.itemId ? "" : String(prefill.itemName || "")), quantity: prefill.marketingItemIds ? "" : (prefill.quantity ?? ""), unitId: prefill.marketingItemIds ? "" : String(prefill.unitId || ""), comment: String(prefill.comment || "") });
+    resetProofInput();
     if (prefill.categoryId) loadItems(String(prefill.categoryId)).catch(() => {});
   }, [categories, units]);
 
@@ -317,6 +328,7 @@ export default function Expense() {
     setDate(savedDate);
     setPage(1);
     setForm(emptyForm(savedDate));
+    resetProofInput();
 
     await loadExpenses(1, savedDate);
   };
@@ -344,6 +356,8 @@ export default function Expense() {
           }))
         : [],
     });
+
+    resetProofInput();
 
     window.scrollTo({
       top: 0,
@@ -531,6 +545,8 @@ export default function Expense() {
         <label>
           Attach proof (optional)
           <input
+            key={proofInputKey}
+            ref={proofInputRef}
             type="file"
             accept="application/pdf,image/png,image/jpeg"
             onChange={(e) => updateField("proofFile", e.target.files?.[0] || null)}
@@ -679,6 +695,7 @@ export default function Expense() {
               setEditingId(null);
               setForm(emptyForm(date));
               setFormError("");
+              resetProofInput();
             }}
           >
             <RotateCcw size={17} /> Reset
@@ -848,6 +865,8 @@ export default function Expense() {
           <label>
             Proof file
             <input
+              key={proofExpense?.id || "proof-modal-input"}
+              ref={modalProofInputRef}
               required
               type="file"
               accept="application/pdf,image/png,image/jpeg"
