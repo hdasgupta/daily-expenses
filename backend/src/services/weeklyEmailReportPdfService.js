@@ -549,12 +549,19 @@ export function buildWeeklyEmailReportPdfInProcess(
         doc.y,
       );
 
+    const firstWeekStart = report.weeklySummary?.[0]?.weekStart;
+    const lastWeekEnd = report.weeklySummary?.[report.weeklySummary.length - 1]?.weekEnd;
+    const periodSuffix =
+      firstWeekStart && lastWeekEnd
+        ? ` | Period: ${dateLabel(firstWeekStart)} to ${dateLabel(lastWeekEnd)}`
+        : "";
+
     doc
       .fontSize(9)
       .font("Helvetica")
       .fillColor("#555")
       .text(
-        `Generated: ${report.generatedAt}`,
+        `Generated: ${report.generatedAt}${periodSuffix}`,
         left,
         doc.y,
       );

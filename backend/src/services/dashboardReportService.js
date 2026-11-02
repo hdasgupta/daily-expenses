@@ -194,13 +194,12 @@ function rangeFor(unit, count, today = todayIso()) {
   }
 
   if (unit === "week") {
-    const start = shiftDays(weekStart(today), -(count - 1) * 7);
-
-    const end = addDays(weekStart(today), 6);
+    const yesterday = addDays(today, -1);
+    const start = addDays(yesterday, -(count * 7 - 1));
 
     return {
       dateFrom: start,
-      dateTo: end,
+      dateTo: yesterday,
       label: `${count} weeks`,
     };
   }

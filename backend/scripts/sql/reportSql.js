@@ -195,7 +195,7 @@ export const reportSql = {
 
   groupExpr: {
     date: "expense_date",
-    week: "date_trunc('week', expense_date)::date",
+    week: "(((now() AT TIME ZONE 'Asia/Kolkata')::date - 7) - (FLOOR((((now() AT TIME ZONE 'Asia/Kolkata')::date - 1 - expense_date)::numeric) / 7)::int * 7))::date",
     month: "date_trunc('month', expense_date)::date",
     year: "extract(year from expense_date)::int",
     category: "category",

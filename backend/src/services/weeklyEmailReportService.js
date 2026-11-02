@@ -2,7 +2,7 @@ import { q } from "../db/index.js";
 import { userSql } from "../../scripts/sql/userSql.js";
 import { sendWeeklyEmailReport } from "./mailService.js";
 import { buildWeeklyEmailReportPdf } from "./weeklyEmailReportPdfService.js";
-import { nowIso, toIsoDateString } from "../utils/dates.js";
+import { dateMinusDays, nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const WEEKLY_REPORT_SQL = {
@@ -10,8 +10,8 @@ const WEEKLY_REPORT_SQL = {
       SELECT gs::date AS week_start,
              (gs::date + 6) AS week_end
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '27 days')::date,
-        (CURRENT_DATE - INTERVAL '6 days')::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '28 days')::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '7 days')::date,
         INTERVAL '7 days'
       ) AS gs
     )
@@ -29,8 +29,8 @@ const WEEKLY_REPORT_SQL = {
       SELECT gs::date AS week_start,
              (gs::date + 6) AS week_end
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '27 days')::date,
-        (CURRENT_DATE - INTERVAL '6 days')::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '28 days')::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '7 days')::date,
         INTERVAL '7 days'
       ) AS gs
     )
@@ -59,8 +59,8 @@ const WEEKLY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= (CURRENT_DATE - INTERVAL '27 days')::date
-      AND e.expense_date <= CURRENT_DATE::date
+    WHERE e.expense_date >= ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '28 days')::date
+      AND e.expense_date <= ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 
@@ -112,7 +112,9 @@ export async function sendWeeklyEmailReportToManagers() {
   const report = await buildWeeklyEmailReport();
   const pdf = await buildWeeklyEmailReportPdf(report);
   const result = await q(userSql.managers);
-  const reportDate = report.generatedAt.slice(0, 10);
+  const reportDate =
+    report.weeklySummary?.[report.weeklySummary.length - 1]?.weekEnd ||
+    dateMinusDays(1);
   for (const row of result.rows) {
     await sendWeeklyEmailReport(row.email, pdf, reportDate);
   }
