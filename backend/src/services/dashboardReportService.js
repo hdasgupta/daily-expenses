@@ -185,9 +185,10 @@ function weekStart(value) {
 
 function rangeFor(unit, count, today = todayIso()) {
   if (unit === "day") {
+    const yesterday = addDays(today, -1);
     return {
-      dateFrom: addDays(today, -(count - 1)),
-      dateTo: today,
+      dateFrom: addDays(yesterday, -(count - 1)),
+      dateTo: yesterday,
       label: `${count} days`,
     };
   }

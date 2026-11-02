@@ -2,15 +2,15 @@ import { userSql } from "../../scripts/sql/userSql.js";
 import { q } from "../db/index.js";
 import { sendDailyEmailReport } from "./mailService.js";
 import { buildDailyEmailReportPdf } from "./dailyEmailReportPdfService.js";
-import { nowIso, toIsoDateString } from "../utils/dates.js";
+import { dateMinusDays, nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const DAILY_REPORT_SQL = {
   dailySummary: `WITH days AS (
       SELECT gs::date AS day
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '6 days')::date,
-        CURRENT_DATE::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '7 days')::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date,
         INTERVAL '1 day'
       ) AS gs
     )
@@ -25,8 +25,8 @@ const DAILY_REPORT_SQL = {
   survivorSummary: `WITH days AS (
       SELECT gs::date AS day
       FROM generate_series(
-        (CURRENT_DATE - INTERVAL '6 days')::date,
-        CURRENT_DATE::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '7 days')::date,
+        ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date,
         INTERVAL '1 day'
       ) AS gs
     )
@@ -51,8 +51,8 @@ const DAILY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= (CURRENT_DATE - INTERVAL '6 days')::date
-      AND e.expense_date <= CURRENT_DATE::date
+    WHERE e.expense_date >= ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '7 days')::date
+      AND e.expense_date <= ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 
@@ -102,7 +102,9 @@ export async function sendDailyEmailReportToManagers() {
   const report = await buildDailyEmailReport();
   const pdf = await buildDailyEmailReportPdf(report);
   const result = await q(userSql.managers);
-  const reportDate = report.generatedAt.slice(0, 10);
+  const reportDate =
+    report.dailySummary?.[report.dailySummary.length - 1]?.date ||
+    dateMinusDays(1);
   for (const row of result.rows) {
     await sendDailyEmailReport(row.email, pdf, reportDate);
   }

@@ -622,11 +622,18 @@ export function buildDailyEmailReportPdfInProcess(
           doc.y,
         );
 
+      const firstDay = report.dailySummary?.[0]?.date;
+      const lastDay = report.dailySummary?.[report.dailySummary.length - 1]?.date;
+      const periodSuffix =
+        firstDay && lastDay
+          ? ` | Period: ${dateLabel(firstDay)} to ${dateLabel(lastDay)}`
+          : "";
+
       doc
         .fontSize(9)
         .fillColor("#555")
         .text(
-          `Generated: ${report.generatedAt}`,
+          `Generated: ${report.generatedAt}${periodSuffix}`,
           left,
           doc.y,
         );
