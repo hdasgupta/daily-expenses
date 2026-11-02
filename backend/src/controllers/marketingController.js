@@ -409,7 +409,15 @@ export async function updateItem(req, res) {
   if (!String(b.itemName || "").trim() || !b.purchaseDate) {
     return res.status(400).json({ error: "Item name and purchase date are required" });
   }
-  const approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
+  let approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
+  if (!approximateCost && b.autoCalculateCost !== false) {
+    approximateCost = await estimateCostFromLastItem({
+      itemId: b.itemId,
+      itemName: b.itemName,
+      quantity: b.quantity,
+      unitId: b.unitId,
+    });
+  }
   const r = await q(
     `UPDATE public.marketing_list_items SET category_id=NULLIF($2,'')::bigint,item_id=NULLIF($3,'')::bigint,item_name=$4,quantity=NULLIF($5,'')::numeric,unit_id=NULLIF($6,'')::bigint,approximate_cost=NULLIF($7,'')::numeric,purchase_date=$8,location_id=NULLIF($9,'')::bigint,updated_by=$10,updated_at=now() WHERE id=$1 RETURNING *`,
     [

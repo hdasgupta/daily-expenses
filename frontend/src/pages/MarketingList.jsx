@@ -95,6 +95,40 @@ function computeUnitConversionRatio(fromUnitId, fromUnitName, toUnitId, toUnitNa
   return null;
 }
 
+function getRowSavedApproximateCost(row) {
+  if (!row) return null;
+  const linkedCount = Number(row.expense_linked_item_count || 1);
+  const rawCandidates = [
+    row.approximate_cost,
+    row.approximateCost,
+    linkedCount === 1 ? row.expense_price : null,
+    linkedCount === 1 ? row.expense_total_cost : null,
+  ];
+  for (const raw of rawCandidates) {
+    if (raw === null || raw === undefined || String(raw).trim() === "") continue;
+    const cleaned = String(raw).replace(/[^0-9.-]/g, "");
+    const parsed = Number(cleaned);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return Number(parsed.toFixed(2));
+    }
+  }
+  return null;
+}
+
+function formatCostInputValue(value) {
+  if (value === null || value === undefined || String(value).trim() === "") return "";
+  const parsed = Number(String(value).replace(/[^0-9.-]/g, ""));
+  if (!Number.isFinite(parsed) || parsed <= 0) return "";
+  return String(Number(parsed.toFixed(2)));
+}
+
+function formatQuantityInputValue(value) {
+  if (value === null || value === undefined || String(value).trim() === "") return "";
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed <= 0) return String(value);
+  return String(parsed);
+}
+
 function calculateApproximateCostFromHistory(draftForm, allRows, allUnits, editingId = null) {
   const qty = Number(draftForm.quantity);
   const unitId = String(draftForm.unitId || "").trim();
@@ -108,9 +142,11 @@ function calculateApproximateCostFromHistory(draftForm, allRows, allUnits, editi
   const targetUnit = (allUnits || []).find((u) => String(u.id) === unitId);
   const targetUnitName = targetUnit?.name || "";
 
-  const candidates = [];
+  const otherCandidates = [];
+  const selfCandidates = [];
+
   for (const row of allRows || []) {
-    if (editingId && String(row.id) === String(editingId)) continue;
+    const isSelf = Boolean(editingId && String(row.id) === String(editingId));
 
     const rowItemId = String(row.item_id || "").trim();
     const rowItemName = String(row.item_name || "").trim().toLowerCase();
@@ -119,19 +155,10 @@ function calculateApproximateCostFromHistory(draftForm, allRows, allUnits, editi
       (itemName && rowItemName && itemName === rowItemName);
     if (!matchesItem) continue;
 
-    const approxCost = Number(row.approximate_cost);
-    const singleExpenseCost =
-      Number(row.expense_linked_item_count || 1) === 1 && Number(row.expense_price) > 0
-        ? Number(row.expense_price)
-        : 0;
-    const refCost =
-      Number.isFinite(approxCost) && approxCost > 0
-        ? approxCost
-        : singleExpenseCost > 0
-        ? singleExpenseCost
-        : 0;
+    const refCost = getRowSavedApproximateCost(row) || 0;
     if (!(refCost > 0)) continue;
 
+    const approxCost = Number(row.approximate_cost ?? row.approximateCost);
     const usePlanned = Number.isFinite(approxCost) && approxCost > 0 && Number(row.quantity) > 0 && row.unit_id;
     const refQty = usePlanned
       ? Number(row.quantity)
@@ -150,17 +177,24 @@ function calculateApproximateCostFromHistory(draftForm, allRows, allUnits, editi
     const ratio = computeUnitConversionRatio(refUnitId, refUnitName, unitId, targetUnitName);
     if (ratio === null) continue;
 
-    candidates.push({
+    const candidate = {
       row,
       refCost,
       refQty,
       refUnitId,
-      refUnitName,
+      refUnitName: refUnitName || targetUnitName,
       ratio,
       exactUnitMatch: refUnitId === unitId,
-    });
+    };
+
+    if (isSelf) {
+      selfCandidates.push(candidate);
+    } else {
+      otherCandidates.push(candidate);
+    }
   }
 
+  const candidates = otherCandidates.length ? otherCandidates : selfCandidates;
   if (!candidates.length) {
     return { value: "", hint: "" };
   }
@@ -177,6 +211,31 @@ function calculateApproximateCostFromHistory(draftForm, allRows, allUnits, editi
     value: String(rounded),
     hint: `Calculated from last entry (${chosen.refQty} ${chosen.refUnitName} @ ₹${chosen.refCost.toFixed(2)})`,
   };
+}
+
+function getEffectiveRowApproximateCost(row, allRows, allUnits) {
+  const direct = getRowSavedApproximateCost(row);
+  if (direct !== null && direct > 0) {
+    return direct;
+  }
+  if (row && row.status === "pending") {
+    const estimated = calculateApproximateCostFromHistory(
+      {
+        itemId: String(row.item_id || ""),
+        itemName: row.item_name || "",
+        quantity: row.quantity ?? "",
+        unitId: String(row.unit_id || ""),
+      },
+      allRows,
+      allUnits,
+      row.id,
+    );
+    const estNum = Number(estimated.value);
+    if (Number.isFinite(estNum) && estNum > 0) {
+      return estNum;
+    }
+  }
+  return null;
 }
 
 export default function MarketingList({ navigate }) {
@@ -280,7 +339,9 @@ export default function MarketingList({ navigate }) {
   useEffect(() => { load(); }, []);
   useEffect(() => {
     if (!form.categoryId) { setItems([]); return; }
-    api(`/meta/items/${form.categoryId}`).then((result) => setItems(Array.isArray(result) ? result : [])).catch(() => setItems([]));
+    api(`/meta/items/${form.categoryId}`, { silent: true })
+      .then((result) => setItems(Array.isArray(result) ? result : []))
+      .catch(() => setItems([]));
   }, [form.categoryId]);
 
   const handleAutoDetectNearestLocation = async () => {
@@ -432,8 +493,8 @@ export default function MarketingList({ navigate }) {
     let totalCost = 0;
     let costItemCount = 0;
     for (const row of filteredRows) {
-      const approx = Number(row.approximate_cost);
-      if (Number.isFinite(approx) && approx > 0) {
+      const approx = getEffectiveRowApproximateCost(row, rows, units);
+      if (approx !== null && approx > 0) {
         totalCost += approx;
         costItemCount += 1;
       }
@@ -442,7 +503,7 @@ export default function MarketingList({ navigate }) {
       totalCost,
       costItemCount,
     };
-  }, [filteredRows]);
+  }, [filteredRows, rows, units]);
 
   const pageSize = Number(pagination.pageSize) || 10;
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / pageSize));
@@ -481,7 +542,7 @@ export default function MarketingList({ navigate }) {
       return;
     }
 
-    if (key === "itemId" || key === "itemName") {
+    if (key === "itemId") {
       userEditedCostRef.current = false;
     }
 
@@ -496,8 +557,10 @@ export default function MarketingList({ navigate }) {
 
       if (["itemId", "itemName", "quantity", "unitId"].includes(key) && !userEditedCostRef.current) {
         const estimated = calculateApproximateCostFromHistory(next, rows, units, editing);
-        next.approximateCost = estimated.value;
-        setAutoCostHint(estimated.hint);
+        if (estimated.value || !editing) {
+          next.approximateCost = estimated.value;
+          setAutoCostHint(estimated.hint);
+        }
       }
 
       return next;
@@ -530,7 +593,7 @@ export default function MarketingList({ navigate }) {
       const payload = {
         ...form,
         itemName: form.itemName.trim(),
-        approximateCost: hasValidApprox ? String(approxNum) : "",
+        approximateCost: hasValidApprox ? String(Number(approxNum.toFixed(2))) : "",
         autoCalculateCost: !userEditedCostRef.current,
         latitude: coords ? coords.latitude : null,
         longitude: coords ? coords.longitude : null,
@@ -574,31 +637,41 @@ export default function MarketingList({ navigate }) {
     if (row.status !== "pending") return;
     setEditing(row.id);
     userChoseLocationRef.current = true;
-    const approxVal = Number(row.approximate_cost);
-    const hasExistingCost = Number.isFinite(approxVal) && approxVal > 0;
-    userEditedCostRef.current = hasExistingCost;
+    userEditedCostRef.current = false;
+
+    if (row.item_id && row.item_name) {
+      setItems((current) =>
+        current.some((it) => String(it.id) === String(row.item_id))
+          ? current
+          : [...current, { id: row.item_id, name: row.item_name }],
+      );
+    }
+
+    const savedCost = getRowSavedApproximateCost(row);
+    const hasExistingCost = savedCost !== null && savedCost > 0;
 
     const draft = {
       categoryId: String(row.category_id || ""),
       itemId: String(row.item_id || ""),
       itemName: row.item_name || "",
-      quantity: row.quantity ?? "",
+      quantity: formatQuantityInputValue(row.quantity),
       unitId: String(row.unit_id || ""),
-      approximateCost: hasExistingCost ? String(row.approximate_cost) : "",
+      approximateCost: hasExistingCost ? formatCostInputValue(savedCost) : "",
       purchaseDate: String(row.purchase_date).slice(0, 10),
       locationId: String(row.location_id || ""),
     };
 
     if (!hasExistingCost) {
       const estimated = calculateApproximateCostFromHistory(draft, rows, units, row.id);
-      draft.approximateCost = estimated.value;
+      draft.approximateCost = formatCostInputValue(estimated.value);
       setAutoCostHint(estimated.hint);
     } else {
       setAutoCostHint("");
     }
 
     setForm(draft);
-    setError(""); window.scrollTo({ top: 0, behavior: "smooth" });
+    setError("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const buySelected = () => {
@@ -610,8 +683,8 @@ export default function MarketingList({ navigate }) {
     const first = selectedPendingRows[0];
     const comment = selectedPendingRows.map((row) => {
       const quantity = row.quantity === null || row.quantity === undefined || row.quantity === "" ? "" : ` — ${row.quantity}${row.unit_name ? ` ${row.unit_name}` : ""}`;
-      const approx = Number(row.approximate_cost);
-      const approxText = Number.isFinite(approx) && approx > 0 ? ` (Approx. ₹${approx.toFixed(2)})` : "";
+      const approx = getEffectiveRowApproximateCost(row, rows, units);
+      const approxText = approx !== null && approx > 0 ? ` (Approx. ₹${approx.toFixed(2)})` : "";
       return `• ${row.item_name}${quantity}${approxText}`;
     }).join("\n");
     localStorage.setItem("marketing-purchase-prefill", JSON.stringify({
@@ -752,8 +825,8 @@ export default function MarketingList({ navigate }) {
               const status = row.status === "pending" ? "pending" : row.status === "removed" ? "removed" : "purchased";
               const quantity = status === "purchased" ? (row.purchased_quantity ?? row.quantity ?? "—") : (row.quantity ?? "—");
               const unit = status === "purchased" ? (row.purchased_unit_name || row.unit_name || "") : (row.unit_name || "");
-              const approxCost = Number(row.approximate_cost);
-              const hasApproxCost = Number.isFinite(approxCost) && approxCost > 0;
+              const approxCost = getEffectiveRowApproximateCost(row, rows, units);
+              const hasApproxCost = approxCost !== null && approxCost > 0;
               const isSelected = selectedIds.includes(String(row.id));
               return <article className={`marketing-item-card status-${status}${isSelected ? " is-selected" : ""}`} key={row.id}>
                 <div className="marketing-item-card-top">{status === "pending" && canSelectMarketingItems && <label className="marketing-item-checkbox" aria-label={`Select ${row.item_name}`}><input type="checkbox" checked={selectedIds.includes(String(row.id))} onChange={() => toggleOne(row.id)} /><span>Select</span></label>}</div>

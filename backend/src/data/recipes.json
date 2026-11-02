@@ -2915,6 +2915,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1435",
+    "name": "American Chopsuey (Crispy Fried Noodles Topped with Sweet & Tangy Indo-Chinese Vegetable Sauce)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Boiled Hakka noodles, tossed with 2 tbsp cornflour",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Shredded cabbage, julienned carrot, capsicum, onion & pineapple/tomato (optional)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Tomato ketchup, red chilli sauce, white vinegar, soy sauce & 1 tsp sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cornflour slurry (2 tbsp cornflour in 1.5 cups water) & minced garlic",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Oil for deep-frying noodles & optional fried egg on top",
+        "quantity": "2",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Deep-fry cornflour-dusted noodles into a crispy nest",
+        "text": "Spread boiled noodles to air-dry for 10 minutes, toss with cornflour, and deep-fry in hot oil until crisp and golden on both sides; drain on paper towels.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook sweet-and-sour vegetable chopsuey gravy",
+        "text": "Sauté minced garlic in 1 tbsp oil, stir-fry onion, carrot, cabbage, and capsicum for 3 minutes, then add ketchup, chilli sauce, soy sauce, vinegar, sugar, and cornflour slurry; simmer until glossy and thick.",
+        "minutes": 8
+      },
+      {
+        "section": "Assemble just before serving",
+        "text": "Place the crispy fried noodle nest on a platter, pour the hot sweet-and-tangy vegetable gravy over the top, and crown with spring onions (and an optional sunny-side-up fried egg).",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "notes": "Crunchy fried noodle nest smothered in glossy sweet, sour, and spicy Indo-Chinese sauce."
+  },
+  {
     "id": "static-0782",
     "name": "Americano",
     "category": "Coffee",
@@ -6708,6 +6762,65 @@
     "notes": "Crisp scalloped urad-dal cousin of jalebi popular across Bengal during Maha Ashtami andBijoya."
   },
   {
+    "id": "static-1439",
+    "name": "Bengali Biyebari Style Mishti Veg Fried Rice (Bengali Ghee, Cashew, Raisin & Vegetable Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Aged long-grain Basmati rice, soaked 30 minutes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Carrots, French beans & green Capsicum, cut into neat diamonds/juliennes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Green peas, whole cashews (kaju) & golden raisins (kishmish)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure cow ghee & 1 tbsp refined oil",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaves, green cardamoms, cloves, cinnamon & star anise/mace",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar (2.5 tbsp), freshly grated nutmeg-mace powder, white pepper & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil aromatic Basmati rice with whole spices",
+        "text": "Boil soaked Basmati rice in salted water with bay leaves, cardamom, cloves, and cinnamon until 85% cooked; drain in a colander and spread to dry completely.",
+        "minutes": 12
+      },
+      {
+        "section": "Fry cashews, raisins, and vegetables in pure ghee",
+        "text": "Heat pure cow ghee in a heavy kadai, fry cashews and raisins until golden, then stir-fry carrots, French beans, green peas, and capsicum with a pinch of salt for 4 minutes until tender-crisp.",
+        "minutes": 8
+      },
+      {
+        "section": "Layer and toss rice with sugar, pepper, and nutmeg-mace",
+        "text": "Gently fold the cooled Basmati rice into the ghee-fried vegetables and nuts along with sugar, crushed white/black pepper, and a pinch of jayitri-jaiphal (mace-nutmeg) powder; cover on low heat (dum) for 4 minutes.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "notes": "Signature fragrant, lightly sweet Bengali wedding ('biyebari') and festive fried rice served with Kosha Mangsho or Aloor Dom."
+  },
+  {
     "id": "static-1399",
     "name": "Bengali Chira Bhaja Mixture (Crispy Fried Poha with Peanuts, Sev & Curry Leaves)",
     "category": "Snacks",
@@ -6814,6 +6927,65 @@
     "cookMinutes": 25,
     "servings": 4,
     "notes": "Traditional Bengali festive and Bijoya Dashami sweet pastry with a flaky crumb and frosted sugar crust."
+  },
+  {
+    "id": "static-1422",
+    "name": "Bengali Homestyle Aloo Diye Veg Chowmin / Chowmein (Homestyle Noodles with Potato, Beans, Carrot & Peanuts)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes (aloo), cut into thin matchsticks",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Carrots, French beans & capsicum, julienned",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts, sliced onion & slit green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Soy sauce, tomato ketchup, black pepper, turmeric (pinch) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined or mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil chowmin and fry peanuts",
+        "text": "Boil chowmin until just tender, drain, and coat with 1 tsp oil; fry raw peanuts in 2 tbsp oil until golden and set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Crisp the potato matchsticks and veggies",
+        "text": "In the same pan, fry thin potato matchsticks with a tiny pinch of salt and turmeric until golden-crisp, then add onions, green chillies, carrots, beans, and capsicum and stir-fry for 4 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss with noodles, peanuts, and black pepper",
+        "text": "Add boiled chowmin, fried peanuts, a splash of soy sauce, tomato ketchup, and freshly crushed black pepper; toss over medium-high heat for 3 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Nostalgic Bengali household tiffin and evening chowmin featuring golden-fried potato juliennes and crunchy peanuts."
   },
   {
     "id": "static-0634",
@@ -12012,6 +12184,114 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1449",
+    "name": "Burnt Garlic Egg Chicken Fried Rice (Crispy Roasted Garlic, Egg & Chicken Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boneless diced chicken (marinated) & 2 beaten eggs",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped garlic (for crispy burnt garlic & garlic oil)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely diced French beans, carrots, capsicum & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, vinegar, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare crispy golden burnt garlic and sear chicken & egg",
+        "text": "Fry chopped garlic in oil until golden-crisp and reserve half; in the garlic-infused oil, sear marinated diced chicken and scramble the eggs, then set aside.",
+        "minutes": 9
+      },
+      {
+        "section": "Stir-fry finely diced vegetables on high heat",
+        "text": "Sauté spring onion whites, French beans, carrots, and capsicum in the wok on high flame for 3 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss rice, chicken, egg, and burnt garlic",
+        "text": "Add chilled rice, chicken, scrambled egg, soy sauce, vinegar, and black pepper; toss on high heat and garnish with spring onion greens and the crispy burnt garlic.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Smoky garlic-infused chicken and egg fried rice topped with crunchy roasted garlic."
+  },
+  {
+    "id": "static-1448",
+    "name": "Burnt Garlic Veg Fried Rice (Crispy Golden Garlic, French Bean & Spring Onion Fried Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic cloves, finely chopped (divided)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely diced French beans, carrots, sweet corn & capsicum",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Spring onion whites & greens",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Light soy sauce, white vinegar, butter (1 tsp), white pepper & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crispy golden burnt garlic in oil",
+        "text": "Heat 2.5 tbsp oil in a wok over medium-low heat and fry 2.5 tbsp chopped garlic until crisp and golden-brown; remove half the crispy garlic for topping.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry remaining garlic and crunchy vegetables",
+        "text": "Increase heat to high, add remaining fresh garlic, spring onion whites, French beans, carrots, sweet corn, and capsicum, and stir-fry for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss chilled rice and crown with crispy burnt garlic",
+        "text": "Add chilled rice, 1 tsp butter, light soy sauce, vinegar, salt, and white pepper; toss on high flame for 3 minutes and top generously with spring onion greens and crispy burnt garlic.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Aromatic restaurant-style Burnt Garlic Veg Fried Rice with crunchy golden garlic bits in every bite."
+  },
+  {
     "id": "static-1023",
     "name": "Butter Garlic Prawns (Pan-Seared Lemon Herb Butter Prawns)",
     "category": "Prawns",
@@ -12162,6 +12442,60 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1433",
+    "name": "Cantonese Gravy Chowmin / Kolkata Gravy Chowmein (Noodles Topped with Savory Vegetable & Mushroom/Chicken White Sauce)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles, boiled and lightly pan-seared",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Broccoli/cauliflower florets, carrots, baby corn, mushrooms, bok choy/cabbage & capsicum",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Optional shredded chicken or paneer cubes",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Vegetable/chicken stock & cornflour slurry",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced garlic, ginger, white pepper, light soy sauce & sesame oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear boiled noodles until lightly crisp",
+        "text": "Toss boiled noodles in a lightly oiled hot wok with a pinch of salt and white pepper for 3–4 minutes until lightly charred on the edges; arrange on a warm platter.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry vegetables and protein with garlic-ginger",
+        "text": "In the same wok, sauté minced garlic and ginger in 1.5 tbsp oil, then stir-fry carrots, baby corn, mushrooms, capsicum, and optional chicken/paneer for 4 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer glossy Cantonese white gravy and pour over noodles",
+        "text": "Pour in warm stock with light soy sauce, salt, and white pepper, thicken with cornflour slurry until glossy, drizzle sesame oil, and ladle piping hot over the seared noodles.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Classic Kolkata Chinese restaurant Cantonese gravy chowmein."
   },
   {
     "id": "static-0784",
@@ -14171,6 +14505,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1424",
+    "name": "Chicken Chowmin / Chicken Chowmein (Kolkata Street-Style Shredded Chicken Hakka Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Boneless chicken breast/thigh, cut into thin strips",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour, soy sauce, ginger-garlic paste & white pepper (for chicken marinade)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cabbage, carrot, French beans, capsicum & spring onions, julienned",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce, red/green chilli sauce, vinegar & black pepper",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for stir-frying",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Velvet and stir-fry marinated chicken strips",
+        "text": "Marinate chicken strips with ginger-garlic paste, 1 tsp soy sauce, pepper, and 1 tbsp cornflour for 10 minutes, then sear in hot oil for 4–5 minutes until juicy and golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Stir-fry aromatics and julienned vegetables",
+        "text": "In the same wok, sauté chopped garlic, green chillies, and sliced onions on high flame, then toss in carrots, beans, cabbage, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles, chicken, and sauces over high flame",
+        "text": "Add boiled noodles, seared chicken strips, dark soy sauce, chilli sauce, vinegar, and black pepper; toss vigorously for 3 minutes until smoky and glossy.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Classic Kolkata Indo-Chinese chicken chowmin with tender velveted chicken strips and crunchy vegetables."
+  },
+  {
     "id": "static-0739",
     "name": "Chicken Club Sandwich",
     "category": "Sandwich",
@@ -14995,6 +15388,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1441",
+    "name": "Chicken Fried Rice (Indo-Chinese Wok-Tossed Chicken & Vegetable Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Boneless chicken breast/thigh, finely diced",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour, soy sauce, ginger-garlic paste & white pepper (for chicken)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely diced carrots, French beans, capsicum & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, vinegar, green chilli sauce, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear marinated diced chicken",
+        "text": "Toss diced chicken with ginger-garlic, soy sauce, pepper, and cornflour; stir-fry in hot oil for 4–5 minutes until juicy and golden, then set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Wok-fry aromatics and diced vegetables",
+        "text": "Sauté minced garlic and spring onion whites in the hot wok, then stir-fry finely diced carrots, French beans, and capsicum on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with chilled rice and seared chicken",
+        "text": "Add chilled rice, seared chicken pieces, soy sauce, vinegar, and black pepper; toss on high flame for 3 minutes and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Restaurant-style Indo-Chinese chicken fried rice with tender diced chicken and crisp vegetables."
   },
   {
     "id": "static-1269",
@@ -17276,6 +17723,114 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "A beloved Kolkata street fusion combining Tangra-style dry Chilli Chicken with a flaky Kathi Roll."
+  },
+  {
+    "id": "static-1456",
+    "name": "Chilli Garlic Egg Chowmin / Burnt Garlic Egg Chowmein",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, beaten with salt and black pepper",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely minced garlic (divided) & broken dry red chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Julienned cabbage, carrot, French beans, capsicum & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, red chilli sauce, vinegar, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp golden burnt garlic and scramble eggs",
+        "text": "Fry 2 tbsp minced garlic in oil until golden-crisp and reserve half; scramble the beaten eggs in the garlic oil into soft ribbons and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry dry red chillies and vegetables",
+        "text": "Sauté remaining fresh garlic and broken dry red chillies on high flame, then toss in carrots, beans, cabbage, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles, egg, and crispy burnt garlic",
+        "text": "Add boiled chowmin, scrambled eggs, soy sauce, red chilli sauce, vinegar, and black pepper; toss on high flame and top with crispy burnt garlic and spring onions.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Smoky egg chowmin infused with roasted garlic oil and topped with crunchy golden garlic bits."
+  },
+  {
+    "id": "static-1432",
+    "name": "Chilli Garlic Veg Chowmin / Burnt Garlic Noodles (Crispy Golden Garlic & Dry Red Chilli Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Garlic cloves, finely minced (divided for frying & tossing)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dry red chillies (broken) & red chilli flakes",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Julienned carrots, French beans, cabbage, capsicum & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, chilli oil/sauce, vinegar, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crisp golden burnt-garlic bits",
+        "text": "Heat 2.5 tbsp oil in a wok, fry half the minced garlic on medium-low heat until golden and crisp, and scoop out 1 tbsp of crispy garlic for garnish.",
+        "minutes": 4
+      },
+      {
+        "section": "Flash-fry dry red chillies and vegetables",
+        "text": "Increase to high flame, add remaining fresh garlic and broken dry red chillies, and stir-fry carrots, beans, cabbage, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles and crown with crispy burnt garlic",
+        "text": "Add boiled noodles, soy sauce, chilli sauce, vinegar, and black pepper; toss on high heat and finish with spring onion greens and the reserved crispy burnt garlic.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Fragrant Indo-Chinese chowmin infused with garlic oil and topped with crunchy golden burnt garlic."
   },
   {
     "id": "static-1273",
@@ -26134,6 +26689,119 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1425",
+    "name": "Egg Chicken Chowmin / Egg Chicken Chowmein (Kolkata Cabin-Style Double Egg & Chicken Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Boneless chicken strips, marinated with soy, pepper & cornflour",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, lightly beaten",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Julienned cabbage, carrot, capsicum, onion & spring onion",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce, green chilli sauce, tomato ketchup & white vinegar",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, slit green chillies, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear chicken strips and scramble eggs",
+        "text": "Stir-fry marinated chicken strips in hot oil until cooked through, push to one side of the wok, scramble the beaten eggs until fluffy, and remove both to a plate.",
+        "minutes": 8
+      },
+      {
+        "section": "Flash-fry garlic and crunchy vegetables",
+        "text": "Add 1 tbsp oil to the hot wok, fry minced garlic and slit green chillies, and toss onion, carrot, cabbage, and capsicum over high heat for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles with egg, chicken, and sauces",
+        "text": "Add al dente noodles, chicken, scrambled egg, soy sauce, green chilli sauce, ketchup, vinegar, and black pepper; toss on high flame for 3 minutes and garnish with spring onions.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Kolkata's most popular fast-food chowmin combining seared chicken, scrambled egg, and smoky noodles."
+  },
+  {
+    "id": "static-1442",
+    "name": "Egg Chicken Fried Rice (Kolkata Restaurant-Style Double Egg & Chicken Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boneless chicken, finely diced and marinated",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, lightly beaten",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely diced carrots, French beans, capsicum & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, white vinegar, minced garlic, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook diced chicken and scramble eggs",
+        "text": "Stir-fry marinated diced chicken in hot oil for 4 minutes, push to the side, scramble the beaten eggs until fluffy, and transfer both to a plate.",
+        "minutes": 8
+      },
+      {
+        "section": "Stir-fry garlic and crunchy vegetables",
+        "text": "Heat 1 tbsp oil in the wok, sauté minced garlic and spring onion whites, and stir-fry diced carrots, beans, and capsicum on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss rice, chicken, and egg on high heat",
+        "text": "Add chilled rice, cooked chicken, scrambled egg, soy sauce, vinegar, salt, and crushed black pepper; toss on high flame for 3 minutes and top with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Popular Kolkata restaurant Egg Chicken Fried Rice ideal with Chilli Chicken or Manchurian."
+  },
+  {
     "id": "static-1270",
     "name": "Egg Chicken Roll (Kolkata Street-Style Anda Chicken Kathi Roll)",
     "category": "Snacks",
@@ -26186,6 +26854,65 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "The single most ordered kathi roll across Kolkata roll corners from Park Street to Golpark."
+  },
+  {
+    "id": "static-1423",
+    "name": "Egg Chowmin / Egg Chowmein (Homestyle Double-Egg Stir-Fried Hakka Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, beaten with a pinch of salt and black pepper",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Shredded cabbage, julienned carrots, beans & capsicum",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sliced onion, minced garlic, green chillies & spring onions",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Dark soy sauce, green chilli sauce, vinegar & black pepper",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Scramble fluffy seasoned egg ribbons",
+        "text": "Scramble beaten eggs in 1 tbsp hot oil into soft, bite-sized ribbons and transfer to a plate.",
+        "minutes": 4
+      },
+      {
+        "section": "Wok-toss garlic and crunchy vegetables",
+        "text": "Heat remaining oil on high flame, sauté garlic, green chillies, and onion, then toss in carrots, beans, cabbage, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Combine al dente noodles, sauces, and scrambled egg",
+        "text": "Add parboiled chowmin, soy sauce, chilli sauce, vinegar, black pepper, and the scrambled eggs; toss on high heat for 2–3 minutes and finish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Everyday Bengali favorite pairing smoky wok-tossed noodles with generous ribbons of scrambled egg."
   },
   {
     "id": "static-0007",
@@ -26348,6 +27075,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1440",
+    "name": "Egg Fried Rice (Kolkata Tangra-Style Wok-Tossed Double Egg & Spring Onion Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Eggs, beaten with a pinch of salt and white pepper",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely diced carrots, French beans, capsicum & green peas",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Spring onion whites & greens, finely chopped, plus minced garlic",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Light soy sauce, white vinegar, crushed black pepper & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Scramble soft golden egg curds",
+        "text": "Heat 1.5 tbsp oil in a hot wok, pour in the beaten eggs, and scramble into soft golden curds; remove to a bowl.",
+        "minutes": 3
+      },
+      {
+        "section": "Stir-fry garlic and diced vegetables",
+        "text": "Add 1 tbsp oil to the wok, sauté minced garlic and spring onion whites for 30 seconds, then stir-fry diced carrots, beans, peas, and capsicum on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss rice, scrambled egg, and seasoning",
+        "text": "Add chilled rice, scrambled egg curds, soy sauce, vinegar, salt, and crushed black pepper; toss on high flame for 3 minutes and scatter spring onion greens on top.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Fluffy, smoky Kolkata Indo-Chinese egg fried rice."
   },
   {
     "id": "static-0037",
@@ -27055,6 +27836,114 @@
     "cookMinutes": 12,
     "servings": 2,
     "notes": "Hearty Kolkata street favorite pairing a golden egg paratha with chatpata tawa-fried masala aloo."
+  },
+  {
+    "id": "static-1457",
+    "name": "Egg Prawn Chowmin / Anda Chingri Chowmein (Kolkata Style Egg & Shrimp Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Cleaned prawns (200 g) & 2 beaten eggs",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Julienned cabbage, carrots, French beans, capsicum & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce, green chilli sauce, vinegar & tomato ketchup",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, ginger, slit green chillies, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear prawns and scramble eggs",
+        "text": "Toss prawns with salt, pepper, and 1 tsp cornflour, sear in hot oil until golden-pink, scramble the beaten eggs alongside, and set both aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Wok-toss garlic and crunchy vegetables",
+        "text": "Sauté minced garlic, ginger, and green chillies on high heat, then stir-fry carrots, beans, cabbage, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Combine chowmin, prawns, egg, and sauces",
+        "text": "Add boiled chowmin, prawns, scrambled egg, soy sauce, chilli sauce, vinegar, and black pepper; toss on high flame for 3 minutes and garnish with spring onions.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Kolkata street-style egg and prawn chowmin."
+  },
+  {
+    "id": "static-1458",
+    "name": "Egg Prawn Fried Rice / Anda Chingri Fried Rice (Kolkata Tangra-Style Egg & Prawn Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Cleaned small prawns (200 g) & 2 beaten eggs",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Finely diced carrots, French beans, capsicum & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, white vinegar, minced garlic & crushed black pepper",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil & 1 tsp sesame oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear seasoned prawns and scramble eggs",
+        "text": "Stir-fry seasoned prawns in hot oil for 2–3 minutes until pink, scramble the beaten eggs into soft curds, and remove both to a plate.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry garlic and finely diced vegetables",
+        "text": "Sauté minced garlic and spring onion whites on high heat, then stir-fry diced carrots, beans, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss chilled rice with prawns and egg",
+        "text": "Add chilled rice, prawns, scrambled egg, light soy sauce, vinegar, and black pepper; toss on high heat for 3 minutes and finish with sesame oil and spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Fragrant Indo-Chinese fried rice loaded with juicy prawns and fluffy scrambled egg."
   },
   {
     "id": "static-1268",
@@ -33925,6 +34814,114 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1459",
+    "name": "Hong Kong Style Veg Chowmin / Chowmein (Spicy Star-Anise, Chilli & Roasted Cashew Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Roasted cashew nuts & dry red chillies",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Red & yellow bell peppers, broccoli/cabbage, carrots & baby corn",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, Schezwan/red chilli paste, tomato ketchup, vinegar & five-spice/star anise pinch",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, ginger, spring onions & sesame oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry cashews and dry red chillies",
+        "text": "Heat oil in a wok, fry whole dry red chillies and cashew nuts until golden, then add minced garlic and ginger.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry colorful vegetables on high flame",
+        "text": "Add carrots, baby corn, bell peppers, and cabbage and stir-fry on high heat for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles in sweet-spicy Hong Kong glaze",
+        "text": "Add boiled chowmin, soy sauce, chilli paste, ketchup, vinegar, and a tiny pinch of Chinese five-spice; toss on high flame and top with spring onions.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Restaurant-style Hong Kong Veg Chowmin studded with roasted cashews and bell peppers."
+  },
+  {
+    "id": "static-1460",
+    "name": "Hong Kong Style Veg Fried Rice (Spicy Chilli-Garlic, Cashew, Star-Anise & Bell Pepper Fried Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Roasted cashews & whole dry red chillies",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Diced carrots, French beans, baby corn, sweet corn & bell peppers",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, red chilli paste, ketchup, vinegar & pinch of five-spice",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, ginger, spring onions & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast cashews and dry red chillies in garlic oil",
+        "text": "Fry cashews, dry red chillies, minced garlic, and ginger in hot oil for 1 minute until fragrant.",
+        "minutes": 4
+      },
+      {
+        "section": "Wok-fry diced vegetables",
+        "text": "Toss in diced carrots, beans, baby corn, sweet corn, and bell peppers and stir-fry on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat chilled rice in Hong Kong spice glaze",
+        "text": "Add chilled rice, soy sauce, red chilli paste, ketchup, vinegar, and a pinch of five-spice; toss on high heat for 3 minutes and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Vibrant, nutty, and mildly sweet-spicy Hong Kong Style Veg Fried Rice."
   },
   {
     "id": "static-0795",
@@ -49276,6 +50273,119 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1426",
+    "name": "Mixed Chowmin / Mixed Hakka Chowmein (Tangra-Style Egg, Chicken & Prawn Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Boneless chicken strips & cleaned medium prawns (chingri)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, beaten with salt and white pepper",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Shredded cabbage, carrot, French beans, bell peppers & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Light & dark soy sauce, green chilli sauce, vinegar & sesame oil",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped garlic, ginger, green chillies, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear prawns, chicken, and scrambled eggs",
+        "text": "Toss chicken strips and prawns with ginger-garlic, pepper, and cornflour; sear quickly in hot oil until golden, scramble the eggs alongside, and set aside.",
+        "minutes": 10
+      },
+      {
+        "section": "Stir-fry vegetables on smoking-hot wok",
+        "text": "Sauté minced garlic, ginger, and green chillies in hot oil, then stir-fry carrots, beans, cabbage, and bell peppers on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles with meats, prawns, and Tangra sauces",
+        "text": "Add boiled noodles, chicken, prawns, egg, soy sauces, chilli sauce, vinegar, and black pepper; toss on high heat and finish with spring onion greens and a drizzle of sesame oil.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Signature Tangra Chinatown special mixed chowmin loaded with chicken, prawns, and egg."
+  },
+  {
+    "id": "static-1443",
+    "name": "Mixed Fried Rice (Kolkata Tangra-Style Egg, Chicken & Prawn Special Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boneless diced chicken & cleaned small prawns (chingri)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, beaten with a pinch of salt and pepper",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely diced carrots, French beans, bell peppers & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Light soy sauce, vinegar, sesame oil, minced garlic & black pepper",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear chicken, prawns, and scrambled eggs",
+        "text": "Marinate diced chicken and prawns with pepper, soy sauce, and 1 tbsp cornflour; sear in hot oil until golden, scramble the beaten eggs alongside, and set aside.",
+        "minutes": 9
+      },
+      {
+        "section": "Stir-fry garlic and finely diced vegetables",
+        "text": "In the same wok, sauté minced garlic and spring onion whites on high heat, then toss in carrots, beans, and bell peppers for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss chilled rice with chicken, prawns, and egg",
+        "text": "Add chilled rice, seared chicken, prawns, scrambled egg, soy sauce, vinegar, and black pepper; toss over high flame for 3 minutes and finish with sesame oil and spring onion greens.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Showstopping Tangra-style Mixed Fried Rice loaded with prawns, chicken, and egg."
+  },
+  {
     "id": "static-1276",
     "name": "Mixed Vegetable & Mushroom Kathi Roll (Kolkata Street-Style Veg Masala Roll)",
     "category": "Snacks",
@@ -50826,6 +51936,114 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1445",
+    "name": "Mushroom & Baby Corn Fried Rice (Garlic, Button Mushroom & Baby Corn Wok-Tossed Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Button mushrooms (sliced) & baby corn (diced)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely diced carrots, beans, capsicum & spring onions",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic, ginger, soy sauce, vinegar & black pepper",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil & 1 tsp butter",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear mushrooms and baby corn on high heat",
+        "text": "Heat oil and butter in a hot wok, add sliced mushrooms and diced baby corn, and sear on high flame for 4 minutes until golden-brown.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry garlic and diced vegetables",
+        "text": "Add minced garlic, ginger, carrots, beans, and capsicum and stir-fry on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with chilled rice and black pepper",
+        "text": "Add chilled rice, soy sauce, vinegar, salt, and freshly ground black pepper; toss on high heat for 3 minutes and top with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Savory, aromatic vegetarian fried rice highlighting seared button mushrooms and crisp baby corn."
+  },
+  {
+    "id": "static-1429",
+    "name": "Mushroom & Baby Corn Veg Chowmin / Chowmein (Wok-Tossed Mushroom, Baby Corn & Pepper Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Button mushrooms (sliced) & baby corn (cut diagonally)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Shredded cabbage, carrots, capsicum & spring onions",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce, green chilli sauce, vinegar & black pepper",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, ginger, green chillies & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear mushrooms and baby corn on high heat",
+        "text": "Heat 1.5 tbsp oil in a hot wok, add sliced button mushrooms and diagonal baby corn pieces, and sear on high heat for 4 minutes until lightly browned without releasing excess water.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry aromatics and crisp vegetables",
+        "text": "Add minced garlic, ginger, green chillies, carrots, cabbage, and capsicum and toss on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold in noodles and Indo-Chinese sauces",
+        "text": "Add al dente noodles, soy sauce, chilli sauce, vinegar, salt, and black pepper; toss well and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Umami-rich vegetarian chowmin featuring tender button mushrooms and crunchy baby corn."
   },
   {
     "id": "static-0720",
@@ -54791,6 +56009,114 @@
     "notes": "Traditional Bengali Panch-Bhaja (five-vegetable fry) platter served at festive lunches and Pujo bhog."
   },
   {
+    "id": "static-1454",
+    "name": "Paneer & Mushroom Schezwan Chowmin / Chowmein (Spicy Cottage Cheese, Mushroom & Bell Pepper Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Paneer cubes (150 g) & sliced button mushrooms (150 g)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Julienned cabbage, carrots, bell peppers & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, vinegar, minced garlic, cornflour, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear paneer and mushrooms",
+        "text": "Lightly dust paneer cubes with cornflour and pan-fry with sliced button mushrooms in hot oil for 4 minutes until golden; set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry garlic, vegetables, and Schezwan sauce",
+        "text": "Sauté minced garlic on high flame, stir-fry cabbage, carrots, and bell peppers for 3 minutes, and stir in Schezwan sauce and soy sauce.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with boiled noodles, paneer, and mushrooms",
+        "text": "Add al dente chowmin, seared paneer, and mushrooms; toss over high flame for 3 minutes and top with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 3,
+    "notes": "Hearty vegetarian Schezwan chowmin loaded with golden paneer and seared mushrooms."
+  },
+  {
+    "id": "static-1455",
+    "name": "Paneer & Sweet Corn Schezwan Fried Rice (Spicy Paneer, Corn & Capsicum Wok-Tossed Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Paneer cubes (150 g) & boiled sweet corn (0.5 cup)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely diced carrots, French beans, capsicum & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, vinegar, minced garlic, black pepper & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-fry golden paneer cubes",
+        "text": "Pan-fry diced paneer in 1.5 tbsp hot oil until golden on the edges and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry garlic, sweet corn, veggies, and Schezwan sauce",
+        "text": "Sauté minced garlic and spring onion whites, toss in carrots, beans, capsicum, and sweet corn for 3 minutes, then add Schezwan sauce and soy sauce.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold in chilled rice and golden paneer",
+        "text": "Add chilled Basmati rice and fried paneer cubes, toss on high flame for 3 minutes, and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Spicy-sweet contrast of fiery Schezwan sauce, golden paneer, and juicy sweet corn kernels."
+  },
+  {
     "id": "static-0716",
     "name": "Paneer Bhurji Sandwich",
     "category": "Sandwich",
@@ -54845,6 +56171,60 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1428",
+    "name": "Paneer Chowmin / Paneer Chowmein (Crispy Fried Paneer & Bell Pepper Hakka Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Paneer (cottage cheese), cut into thin fingers or cubes",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Red, yellow & green bell peppers, cabbage & carrots, julienned",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Cornflour, soy sauce, red chilli sauce, vinegar & tomato ketchup",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped garlic, ginger, spring onions, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry paneer fingers",
+        "text": "Dust paneer strips lightly with cornflour, salt, and black pepper and shallow-fry in hot oil until golden-crisp on the edges; drain and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry bell peppers and vegetables",
+        "text": "Sauté chopped garlic and ginger on high flame, then stir-fry carrots, cabbage, and tri-color bell peppers for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles with crispy paneer and sauces",
+        "text": "Add boiled noodles, crispy paneer fingers, soy sauce, chilli sauce, ketchup, vinegar, and black pepper; toss on high heat for 2–3 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Rich vegetarian Indo-Chinese chowmin studded with golden-crisp paneer strips."
+  },
+  {
     "id": "static-0760",
     "name": "Paneer Corn Sandwich",
     "category": "Sandwich",
@@ -54897,6 +56277,60 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1444",
+    "name": "Paneer Fried Rice (Golden-Fried Paneer Cubes, Sweet Corn & Bell Pepper Fried Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Paneer (cottage cheese), cut into small 0.5-inch cubes",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Finely diced carrots, French beans, sweet corn & tri-color bell peppers",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Spring onions, minced garlic, ginger & slit green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Light soy sauce, red/green chilli sauce, vinegar, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-fry golden paneer cubes",
+        "text": "Toss paneer cubes with a pinch of salt, pepper, and 1 tsp cornflour, then pan-fry in hot oil until golden on all sides; set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry garlic, sweet corn, and bell peppers",
+        "text": "Sauté minced garlic, ginger, and green chillies on high flame, then stir-fry carrots, beans, sweet corn, and bell peppers for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold in chilled rice and golden paneer",
+        "text": "Add chilled rice, fried paneer cubes, soy sauce, chilli sauce, vinegar, and black pepper; toss gently on high heat for 3 minutes and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Protein-rich vegetarian Indo-Chinese fried rice with golden paneer cubes and crunchy bell peppers."
   },
   {
     "id": "static-1179",
@@ -61254,6 +62688,65 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "A gentle, aromatic Goan curry without red chillies, getting its gentle warmth from green chillies and black pepper."
+  },
+  {
+    "id": "static-1427",
+    "name": "Prawn Chowmin / Chingri Chowmein (Kolkata Style Stir-Fried Prawn & Garlic Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Cleaned & deveined prawns (chingri)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Julienned carrots, beans, cabbage, capsicum & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced garlic, ginger & slit green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Soy sauce, chilli-garlic sauce, vinegar & black pepper",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear seasoned prawns",
+        "text": "Toss prawns with a pinch of salt, black pepper, and cornflour, then sear in hot oil for 2–3 minutes until pink and crisp-tender; set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Stir-fry garlic and crunchy vegetables",
+        "text": "Sauté garlic, ginger, and green chillies in the same wok, then stir-fry carrots, beans, cabbage, and capsicum on high flame for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles, prawns, and sauces",
+        "text": "Add boiled noodles, seared prawns, soy sauce, chilli-garlic sauce, vinegar, and black pepper; toss over high flame for 2–3 minutes and top with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Juicy golden prawns tossed with garlic-scented chowmin and crisp vegetables."
   },
   {
     "id": "static-1075",
@@ -68545,6 +70038,114 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1447",
+    "name": "Schezwan Chicken & Egg Fried Rice (Fiery Indo-Chinese Chicken & Egg Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boneless diced chicken (marinated) & 2 beaten eggs",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely diced carrots, beans, bell peppers & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, vinegar, minced garlic, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear diced chicken and scramble eggs",
+        "text": "Stir-fry marinated diced chicken in hot oil until golden, scramble the beaten eggs alongside, and set both aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Sauté garlic, vegetables, and Schezwan sauce",
+        "text": "Fry minced garlic and spring onion whites in the wok, stir-fry carrots, beans, and bell peppers for 3 minutes, and stir in Schezwan sauce and soy sauce.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with rice, chicken, and egg",
+        "text": "Add chilled rice, chicken, and scrambled egg; toss over high flame for 3 minutes and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Spicy, smoky Tangra-style Schezwan chicken and egg fried rice."
+  },
+  {
+    "id": "static-1431",
+    "name": "Schezwan Egg Chicken Chowmin / Schezwan Chicken Chowmein (Spicy Tangra-Style Chicken & Egg Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Boneless chicken strips (marinated) & 2 beaten eggs",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cabbage, carrots, bell peppers, onion & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, vinegar, chopped garlic, black pepper & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear chicken and scramble eggs",
+        "text": "Stir-fry marinated chicken strips until golden, scramble the beaten eggs in the same wok, and set both aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Sauté garlic, vegetables, and Schezwan sauce",
+        "text": "Fry chopped garlic in hot oil, stir-fry onion, carrots, cabbage, and bell peppers for 3 minutes, then add Schezwan sauce and soy sauce.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with noodles, chicken, and egg",
+        "text": "Add boiled noodles, seared chicken, and scrambled egg; toss over high flame for 3 minutes until evenly coated in the fiery glaze.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Fiery Tangra-style Schezwan chicken and egg chowmin."
+  },
+  {
     "id": "static-1097",
     "name": "Schezwan Prawns (Fiery Indo-Chinese Stir-Fried Prawns)",
     "category": "Prawns",
@@ -68607,6 +70208,114 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Bold, spicy, and garlicky prawn appetizer or main dish."
+  },
+  {
+    "id": "static-1430",
+    "name": "Schezwan Veg Chowmin / Schezwan Veg Chowmein (Fiery Chilli-Garlic Vegetable Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Schezwan chilli-garlic paste / sauce",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Shredded cabbage, carrot, French beans, capsicum & spring onion",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped garlic, ginger & celery (optional)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Soy sauce, vinegar, pinch of sugar, black pepper & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bloom garlic, ginger, and Schezwan paste",
+        "text": "Heat oil in a wok, sauté chopped garlic and ginger for 20 seconds, then stir in Schezwan chilli-garlic sauce until fiery red oil separates.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry crunchy vegetables on high heat",
+        "text": "Toss in carrots, French beans, cabbage, and capsicum and stir-fry on high flame for 3 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Coat noodles in spicy Schezwan glaze",
+        "text": "Add parboiled noodles, soy sauce, vinegar, a pinch of sugar to balance the heat, and black pepper; toss vigorously for 3 minutes and top with spring onions.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Bold, spicy red Schezwan vegetable chowmin bursting with garlic and dry red chilli heat."
+  },
+  {
+    "id": "static-1446",
+    "name": "Schezwan Veg Fried Rice (Fiery Sichuan Chilli-Garlic Vegetable Fried Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce / paste",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely diced carrots, French beans, cabbage, capsicum & sweet corn",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced garlic, ginger & chopped spring onions",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Soy sauce, vinegar, pinch of sugar, black pepper & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté garlic, ginger, and fiery Schezwan paste",
+        "text": "Heat oil in a wok, fry minced garlic and ginger for 20 seconds, and stir in Schezwan sauce for 1 minute until aromatic.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry finely diced vegetables",
+        "text": "Add carrots, French beans, cabbage, sweet corn, and capsicum and stir-fry on high flame for 3 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss rice until coated in vibrant red Schezwan glaze",
+        "text": "Add chilled rice, soy sauce, vinegar, a pinch of sugar, and black pepper; toss on high flame for 3–4 minutes and finish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Bold, spicy Indo-Chinese Schezwan vegetable fried rice."
   },
   {
     "id": "static-0749",
@@ -68877,6 +70586,55 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1461",
+    "name": "Shanghai Fried Rice — Veg / Egg (Combination of Wok-Tossed Rice & Crispy/Soft Noodles)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled Basmati rice (2 cups) & boiled Hakka noodles (1 cup)",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely diced carrots, cabbage, French beans, capsicum & spring onions",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark & light soy sauce, red chilli-garlic sauce & white vinegar",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, ginger, crushed black pepper & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry garlic, ginger, and vegetables",
+        "text": "Heat oil in a smoking-hot wok, sauté minced garlic and ginger for 20 seconds, and stir-fry diced carrots, beans, cabbage, and capsicum for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Add both chilled rice and boiled Hakka noodles",
+        "text": "Add chilled Basmati rice along with short strands of boiled Hakka noodles into the wok.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss with soy, chilli-garlic sauce, and black pepper",
+        "text": "Season with soy sauces, red chilli-garlic sauce, vinegar, salt, and black pepper; toss on high flame for 3 minutes and top with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Indo-Chinese favorite blending fluffy fried rice and smoky chowmin noodles in a single wok."
   },
   {
     "id": "static-0985",
@@ -69187,6 +70945,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1436",
+    "name": "Singapore Style Curry Chowmin / Singapore Noodles (Curry-Spiced Vegetable & Egg Stir-Fried Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Thin chowmin or rice vermicelli noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Madras curry powder & turmeric powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red & green bell peppers, carrots, cabbage, French beans & spring onions",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Eggs (2, scrambled) or paneer/prawns (optional)",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Soy sauce, red chilli sauce, lemon juice/vinegar, garlic & sesame oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare noodles and scramble egg ribbons",
+        "text": "Boil or soak thin noodles until al dente and drain; scramble eggs in a hot wok and set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry vegetables and bloom curry powder",
+        "text": "Sauté minced garlic, ginger, and slit red chillies in hot oil, stir-fry bell peppers, carrots, beans, and cabbage for 3 minutes, then stir in curry powder and turmeric until fragrant.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles with curry aromatics and sauces",
+        "text": "Add noodles, scrambled egg, soy sauce, chilli sauce, and vinegar; toss on high heat until vibrant golden-yellow and finish with sesame oil and spring onions.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Aromatic golden curry-spiced noodles with bell peppers and smoky wok char."
   },
   {
     "id": "static-0079",
@@ -70277,6 +72089,114 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "Warm black pepper and sesame oil complement fish eggs without overpowering them."
+  },
+  {
+    "id": "static-1452",
+    "name": "Soya Chunk Masala Fried Rice (High-Protein Spiced Soya Chunk & Vegetable Fried Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Mini soya chunks (nutrela), boiled, squeezed and halved",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely diced onion, carrots, French beans, capsicum & green chillies",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste, soy sauce, chilli sauce, tomato ketchup & cornflour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper, roasted cumin/garam masala (pinch), salt & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear spiced soya chunks until golden",
+        "text": "Marinate squeezed soya chunks with ginger-garlic paste, 1 tsp soy sauce, pepper, salt, and 1 tsp cornflour, then sear in 1.5 tbsp hot oil for 4 minutes until golden-brown.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry onions and crunchy vegetables",
+        "text": "Add 1 tbsp oil to the wok and stir-fry chopped onion, green chillies, carrots, beans, and capsicum on high flame for 3 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss with chilled rice and sauces",
+        "text": "Add chilled rice, soy sauce, chilli sauce, ketchup, and black pepper; toss on high flame for 3 minutes until smoky and well combined.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Wholesome, protein-rich soya chunk and vegetable fried rice for lunchboxes and quick dinners."
+  },
+  {
+    "id": "static-1437",
+    "name": "Soya Chunk Veg Chowmin / Nutri-Nugget Masala Chowmein (High-Protein Soya & Vegetable Noodles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Mini soya chunks (nutrela), boiled, squeezed and halved",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cabbage, carrot, capsicum, onion & green chillies",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, green chilli sauce, tomato ketchup, ginger-garlic paste & cornflour",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper, garam masala (pinch), salt & oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate and pan-crisp soya chunks",
+        "text": "Toss squeezed soya chunks with ginger-garlic paste, 1 tsp soy sauce, chilli powder, salt, and 1 tbsp cornflour, then pan-fry in 1.5 tbsp hot oil until golden-crisp outside and juicy inside.",
+        "minutes": 6
+      },
+      {
+        "section": "Stir-fry crunchy vegetables",
+        "text": "In the same pan, add 1 tbsp oil and stir-fry sliced onion, green chillies, carrots, cabbage, and capsicum on high heat for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with chowmin and sauces",
+        "text": "Add boiled chowmin, soy sauce, green chilli sauce, ketchup, and black pepper; toss on high flame for 3 minutes.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Wholesome, protein-packed vegetarian chowmin with crispy-edged spiced soya chunks."
   },
   {
     "id": "static-0945",
@@ -73657,6 +75577,60 @@
     "notes": "Tangy, glossy Indo-Chinese prawn dish great with steamed or fried rice."
   },
   {
+    "id": "static-1451",
+    "name": "Sweet Corn & Green Peas Veg Fried Rice (Buttery Sweet Corn, Pea & Carrot Fried Rice)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled sweet corn kernels & tender green peas",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely diced carrots, French beans & spring onions",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter & refined oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Minced garlic, light soy sauce, white pepper & salt",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté garlic and vegetables in butter and oil",
+        "text": "Heat butter and oil in a wide wok, sauté minced garlic and spring onion whites for 30 seconds, then stir-fry diced carrots, beans, sweet corn, and green peas for 3–4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold in chilled Basmati rice",
+        "text": "Add chilled Basmati rice, a splash of light soy sauce, salt, and freshly ground white/black pepper.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss on high flame and garnish",
+        "text": "Toss gently on high heat for 3 minutes until heated through and fragrant, then top with chopped spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Mild, buttery, kid-friendly vegetable fried rice loaded with sweet corn and tender green peas."
+  },
+  {
     "id": "static-0747",
     "name": "Sweet Corn Mayo Sandwich",
     "category": "Sandwich",
@@ -76197,6 +78171,60 @@
     "notes": "Classic Bengali homestyle 3-cornered breakfast paratha served with aloor chokka or Fried Egg."
   },
   {
+    "id": "static-1450",
+    "name": "Triple Schezwan Fried Rice (Indo-Chinese Fried Rice, Hakka Noodles & Manchurian Gravy Combo)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled Basmati rice & boiled Hakka noodles",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Fried crispy noodles (for garnish) & 8 veg Manchurian balls (or paneer/chicken)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Diced carrots, cabbage, French beans, capsicum & spring onions",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Soy sauce, red chilli sauce, ketchup, vinegar, cornflour & garlic",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Wok-toss Schezwan rice-and-noodle base",
+        "text": "Sauté minced garlic and diced vegetables in hot oil with 2 tbsp Schezwan sauce and soy sauce, then toss in both chilled rice and boiled Hakka noodles on high heat for 3 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer spicy Schezwan Manchurian gravy",
+        "text": "In a separate pan, sauté garlic, onion, and capsicum with 2 tbsp Schezwan sauce, soy sauce, ketchup, vinegar, and 1.5 cups water thickened with cornflour slurry; fold in Manchurian balls.",
+        "minutes": 8
+      },
+      {
+        "section": "Layer rice-noodles with hot gravy and crispy noodles",
+        "text": "Mound the Schezwan rice-and-noodles on a platter, ladle the hot Schezwan Manchurian gravy alongside or over the top, and crown with crunchy fried noodles and spring onions.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Complete Indo-Chinese meal-in-a-bowl combining Schezwan fried rice, Hakka noodles, and Manchurian gravy."
+  },
+  {
     "id": "static-0767",
     "name": "Tulsi Tea",
     "category": "Tea",
@@ -77339,6 +79367,237 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1421",
+    "name": "Veg Chowmin / Veg Chowmein (Kolkata Street-Style Vegetable Hakka Noodles)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hakka noodles / chowmin noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Shredded cabbage, julienned carrots, French beans & green capsicum",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sliced onion, spring onion greens, chopped garlic & slit green chillies",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Dark soy sauce, green chilli sauce, tomato ketchup & white vinegar",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed black pepper, salt & refined oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cucumber-onion salad & roasted peanuts (for garnish)",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Parboil noodles al dente and toss with oil",
+        "text": "Boil chowmin noodles in salted water for 4–5 minutes until 90% cooked (al dente), drain immediately, rinse under cold water, and toss with 1 tsp oil so the strands stay separate.",
+        "minutes": 8
+      },
+      {
+        "section": "Stir-fry vegetables on high heat",
+        "text": "Heat oil in a wok or kadai until smoking, sauté chopped garlic, green chillies, and sliced onions for 30 seconds, then stir-fry carrots, beans, cabbage, and capsicum on high flame for 3 minutes so they remain crunchy.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles with sauces and black pepper",
+        "text": "Add boiled noodles, dark soy sauce, green chilli sauce, vinegar, a touch of tomato ketchup, salt, and crushed black pepper; toss vigorously on high heat for 2–3 minutes and serve topped with spring onions and cucumber-onion salad.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "notes": "Iconic Kolkata roadside stall vegetable chowmin served with crunchy cucumber-onion salad and tomato-chilli sauce."
+  },
+  {
+    "id": "static-1438",
+    "name": "Veg Fried Rice (Kolkata Indo-Chinese Wok-Tossed Vegetable Fried Rice)",
+    "category": "Rice",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Long-grain Basmati or Dehradun rice, cooked 90% and chilled",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely diced carrots, French beans, green peas, sweet corn & capsicum",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Spring onion whites & greens, finely chopped",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely minced garlic, ginger & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Light soy sauce, white vinegar, crushed white/black pepper & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Refined oil & 1 tsp sesame oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook and chill long-grain rice so grains stay separate",
+        "text": "Cook soaked long-grain rice in salted water with a drop of oil until 90% done, drain completely, and spread on a tray to cool so every grain is firm and non-sticky.",
+        "minutes": 12
+      },
+      {
+        "section": "Flash-fry aromatics and finely diced vegetables",
+        "text": "Heat oil in a wok until smoking, sauté minced garlic, ginger, green chillies, and spring onion whites for 30 seconds, then stir-fry finely diced carrots, French beans, green peas, and capsicum on high flame for 3–4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss chilled rice over high heat with pepper and soy",
+        "text": "Add chilled rice, light soy sauce, white vinegar, salt, and freshly crushed black/white pepper; toss gently on high heat for 3 minutes and finish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Classic Indo-Chinese vegetable fried rice that pairs with Chilli Chicken, Chilli Paneer, or Veg Manchurian."
+  },
+  {
+    "id": "static-1434",
+    "name": "Veg Manchurian Chowmin / Manchurian Noodles (Street-Style Veg Chowmin Tossed with Crispy Manchurian Balls)",
+    "category": "Snacks",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Hakka / chowmin noodles, boiled al dente",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely grated cabbage, carrot & French beans (for Manchurian balls)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cornflour & maida (for binding balls)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sliced onion, capsicum, cabbage & spring onions (for noodles)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce, red chilli sauce, tomato ketchup, vinegar & garlic",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for frying Manchurian balls and tossing",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape and deep-fry crispy veg Manchurian balls",
+        "text": "Squeeze excess moisture from grated cabbage and carrot, mix with ginger-garlic, pepper, salt, cornflour, and maida, roll into bite-sized balls, and deep-fry until crisp and golden.",
+        "minutes": 12
+      },
+      {
+        "section": "Stir-fry garlic, veggies, and tangy Manchurian glaze",
+        "text": "In a hot wok with 2 tbsp oil, sauté minced garlic, green chillies, onion, capsicum, and cabbage, then stir in soy sauce, red chilli sauce, ketchup, vinegar, and 2 tbsp water.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss noodles and Manchurian balls together",
+        "text": "Add the boiled chowmin and fried Manchurian balls to the wok, toss on high flame for 2–3 minutes so the sauce coats both, and garnish with spring onions.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Popular Indo-Chinese street-food fusion combining wok-tossed chowmin and crispy vegetable Manchurian balls."
+  },
+  {
+    "id": "static-1453",
+    "name": "Veg Manchurian Fried Rice (Wok-Tossed Vegetable Fried Rice with Crispy Manchurian Balls)",
+    "category": "Rice",
+    "region": "Indian",
+    "ingredients": [
+      {
+        "name": "Cooked & chilled long-grain Basmati rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated cabbage, carrot & beans bound with cornflour & maida (for 10 Manchurian balls)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Diced onion, capsicum, carrots, beans & spring onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce, red chilli sauce, tomato ketchup, vinegar & minced garlic",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for frying Manchurian balls and stir-frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Deep-fry crispy vegetable Manchurian balls",
+        "text": "Mix squeezed grated cabbage, carrot, and beans with ginger-garlic, pepper, salt, cornflour, and maida; shape into small balls and deep-fry until golden and crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Stir-fry garlic, veggies, and Manchurian sauce",
+        "text": "In a hot wok with 2 tbsp oil, sauté minced garlic, green chillies, onion, carrots, beans, and capsicum for 3 minutes, then add soy sauce, red chilli sauce, ketchup, and vinegar.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with chilled rice and crispy Manchurian balls",
+        "text": "Add the chilled rice and fried Manchurian balls, toss on high flame for 3 minutes until coated in the savory glaze, and garnish with spring onion greens.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Street-style Indo-Chinese fried rice tossed directly with juicy, crispy vegetable Manchurian balls."
   },
   {
     "id": "static-0381",
