@@ -98,13 +98,207 @@ function loadImageElement(file) {
   });
 }
 
-function buildNormalizedCanvas(img, crop = { x: 0.06, y: 0.1, w: 0.88, h: 0.52 }, targetWidth = 580) {
+function parseStrictCurrencyNumber(rawToken) {
+  if (!rawToken) return null;
+  const trimmed = String(rawToken)
+    .replace(/^[₹$€£?%ftzFrR(]+/i, "")
+    .trim();
+  // Reject tokens that contain trailing letters (e.g. "080s" from bank account "0808")
+  if (/[a-zA-Z]/.test(trimmed)) return null;
+  const cleaned = trimmed.replace(/,/g, "").trim();
+  if (!/^\d+(?:\.\d{1,2})?$/.test(cleaned)) return null;
+  const integerPart = cleaned.split(".")[0];
+  // Bank account masks (e.g. "0808") start with leading '0'; valid rupee amounts >= 1 never start with '0'
+  if (integerPart.length > 1 && integerPart.startsWith("0")) return null;
+  if (integerPart.length >= 8) return null;
+  const val = Number(cleaned);
+  if (!Number.isFinite(val) || val <= 0 || val > 10000000) return null;
+  return val;
+}
+
+/**
+ * Isolates the giant hero amount digits (e.g. "18" in "₹18") directly from the top-center
+ * region of a Google Pay / UPI screenshot and strips the shorter superscript '₹' column
+ * before OCR so '₹' is never misread as '2', '3', or '7' and bank codes like "0808" are excluded.
+ */
+function buildPureHeroDigitsCanvas(img) {
+  const w = img.naturalWidth || img.width;
+  const h = img.naturalHeight || img.height;
+  if (!w || !h) return null;
+
+  const srcCanvas = document.createElement("canvas");
+  srcCanvas.width = w;
+  srcCanvas.height = h;
+  const srcCtx = srcCanvas.getContext("2d");
+  srcCtx.drawImage(img, 0, 0, w, h);
+
+  const imgData = srcCtx.getImageData(0, 0, w, h).data;
+  const lum = new Float32Array(w * h);
+  for (let i = 0, p = 0; i < imgData.length; i += 4, p += 1) {
+    lum[p] = 0.299 * imgData[i] + 0.587 * imgData[i + 1] + 0.114 * imgData[i + 2];
+  }
+
+  // Determine whether screenshot is dark theme or light theme from the upper region
+  const sampleY0 = Math.floor(h * 0.08);
+  const sampleY1 = Math.floor(h * 0.38);
+  const sampleX0 = Math.floor(w * 0.08);
+  const sampleX1 = Math.floor(w * 0.92);
+  let lumSum = 0;
+  let lumCount = 0;
+  for (let y = sampleY0; y < sampleY1; y += 2) {
+    for (let x = sampleX0; x < sampleX1; x += 2) {
+      lumSum += lum[y * w + x];
+      lumCount += 1;
+    }
+  }
+  const isDark = lumSum / Math.max(lumCount, 1) < 125;
+
+  // Foreground intensity (high = text stroke, low = background)
+  const fg = new Float32Array(w * h);
+  for (let p = 0; p < lum.length; p += 1) {
+    fg[p] = isDark ? lum[p] : 255 - lum[p];
+  }
+
+  // Search for the hero amount band in y: 12%..37% (strictly above the bank card)
+  const yStart = Math.floor(h * 0.12);
+  const yEnd = Math.floor(h * 0.37);
+  const xStart = Math.floor(w * 0.12);
+  const xEnd = Math.floor(w * 0.88);
+
+  const runs = [];
+  let inRun = false;
+  let runStart = yStart;
+
+  for (let y = yStart; y < yEnd; y += 1) {
+    let brightCount = 0;
+    for (let x = xStart; x < xEnd; x += 1) {
+      if (fg[y * w + x] > 140) brightCount += 1;
+    }
+    // Exclude solid filled button pills (like the "Pay again" pill) where >26% of the row is bright
+    const active = brightCount >= 2 && brightCount < Math.floor(w * 0.26);
+    if (active && !inRun) {
+      inRun = true;
+      runStart = y;
+    } else if (!active && inRun) {
+      inRun = false;
+      runs.push({ y0: runStart, y1: y - 1, bh: y - runStart });
+    }
+  }
+  if (inRun) {
+    runs.push({ y0: runStart, y1: yEnd - 1, bh: yEnd - runStart });
+  }
+
+  const minHeroHeight = Math.max(16, Math.floor(h * 0.022));
+  const validRuns = runs.filter((r) => r.bh >= minHeroHeight);
+  if (!validRuns.length) return null;
+
+  // Pick the tallest text band in the hero area (the giant ₹ amount)
+  const heroBand = validRuns.reduce((best, cur) => (cur.bh > best.bh ? cur : best), validRuns[0]);
+  const { y0: by0, y1: by1, bh } = heroBand;
+
+  // Find connected character columns inside heroBand
+  const colRuns = [];
+  let inCol = false;
+  let colStart = xStart;
+
+  const pushColRun = (cx0, cx1) => {
+    let minY = bh;
+    let maxY = -1;
+    for (let ry = 0; ry <= by1 - by0; ry += 1) {
+      for (let cx = cx0; cx <= cx1; cx += 1) {
+        if (fg[(by0 + ry) * w + cx] > 130) {
+          if (ry < minY) minY = ry;
+          if (ry > maxY) maxY = ry;
+        }
+      }
+    }
+    if (maxY >= minY) {
+      colRuns.push({
+        x0: cx0,
+        x1: cx1,
+        w: cx1 - cx0 + 1,
+        cy0: minY,
+        cy1: maxY,
+        ch: maxY - minY + 1,
+      });
+    }
+  };
+
+  for (let x = xStart; x < xEnd; x += 1) {
+    let colMax = 0;
+    for (let y = by0; y <= by1; y += 1) {
+      const val = fg[y * w + x];
+      if (val > colMax) colMax = val;
+    }
+    if (colMax > 130 && !inCol) {
+      inCol = true;
+      colStart = x;
+    } else if (colMax <= 130 && inCol) {
+      inCol = false;
+      pushColRun(colStart, x - 1);
+    }
+  }
+  if (inCol) {
+    pushColRun(colStart, xEnd - 1);
+  }
+
+  if (!colRuns.length) return null;
+
+  // Strip the leading superscript ₹ symbol column (which is shorter and raised above the digits' baseline)
+  let digitRuns = colRuns;
+  if (colRuns.length >= 2) {
+    const tallCols = colRuns.slice(1).filter((cr) => cr.ch > bh * 0.5);
+    if (tallCols.length) {
+      const maxCh = Math.max(...tallCols.map((cr) => cr.ch));
+      const maxCy1 = Math.max(...tallCols.map((cr) => cr.cy1));
+      const first = colRuns[0];
+      if (first.ch < maxCh * 0.85 || maxCy1 - first.cy1 > maxCh * 0.12) {
+        digitRuns = colRuns.slice(1);
+      }
+    }
+  }
+
+  const dx0 = Math.max(0, digitRuns[0].x0 - 6);
+  const dx1 = Math.min(w, digitRuns[digitRuns.length - 1].x1 + 7);
+  const dy0 = Math.max(0, by0 - 6);
+  const dy1 = Math.min(h, by1 + 7);
+  const cw = Math.max(1, dx1 - dx0);
+  const ch = Math.max(1, dy1 - dy0);
+
+  const padX = 30;
+  const padY = 20;
+  const outCanvas = document.createElement("canvas");
+  outCanvas.width = cw + padX * 2;
+  outCanvas.height = ch + padY * 2;
+  const outCtx = outCanvas.getContext("2d");
+  outCtx.fillStyle = "#ffffff";
+  outCtx.fillRect(0, 0, outCanvas.width, outCanvas.height);
+
+  const cropImgData = outCtx.createImageData(cw, ch);
+  const dst = cropImgData.data;
+  for (let y = 0; y < ch; y += 1) {
+    for (let x = 0; x < cw; x += 1) {
+      const invVal = 255 - fg[(dy0 + y) * w + (dx0 + x)];
+      const contrasted = Math.max(0, Math.min(255, Math.round((invVal - 128) * 1.4 + 128)));
+      const idx = (y * cw + x) * 4;
+      dst[idx] = contrasted;
+      dst[idx + 1] = contrasted;
+      dst[idx + 2] = contrasted;
+      dst[idx + 3] = 255;
+    }
+  }
+  outCtx.putImageData(cropImgData, padX, padY);
+  return outCanvas;
+}
+
+function buildNormalizedCanvas(img, crop = { x: 0.05, y: 0.08, w: 0.9, h: 0.72 }, targetWidth = 380) {
   const sx = Math.floor(img.naturalWidth * crop.x);
   const sy = Math.floor(img.naturalHeight * crop.y);
   const sw = Math.max(1, Math.floor(img.naturalWidth * crop.w));
   const sh = Math.max(1, Math.floor(img.naturalHeight * crop.h));
 
-  const scale = Math.min(2.0, Math.max(0.75, targetWidth / sw));
+  // Keep width around 360..420px so giant Google Pay numbers stay within Tesseract's line height limit
+  const scale = Math.min(1.25, Math.max(0.6, targetWidth / sw));
   const dw = Math.max(1, Math.round(sw * scale));
   const dh = Math.max(1, Math.round(sh * scale));
 
@@ -123,14 +317,13 @@ function buildNormalizedCanvas(img, crop = { x: 0.06, y: 0.1, w: 0.88, h: 0.52 }
     lumSum += 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
   }
   const avgLum = lumSum / Math.max(pixelCount, 1);
-  const isDarkTheme = avgLum < 122;
+  const isDarkTheme = avgLum < 125;
 
   for (let i = 0; i < data.length; i += 4) {
     let lum = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
     if (isDarkTheme) {
       lum = 255 - lum;
     }
-    // Gentle linear contrast boost while preserving smooth edges for Tesseract's Otsu binarizer
     const enhanced = Math.max(0, Math.min(255, Math.round((lum - 128) * 1.35 + 128)));
     data[i] = enhanced;
     data[i + 1] = enhanced;
@@ -142,267 +335,110 @@ function buildNormalizedCanvas(img, crop = { x: 0.06, y: 0.1, w: 0.88, h: 0.52 }
   return canvas;
 }
 
-function stripSuperscriptRupeeFromWord(wordObj) {
-  const rawText = String(wordObj?.text || "").trim();
-  if (!rawText) return { text: "", strippedRupee: false };
+function extractAmountFromFullText(rawText) {
+  if (!rawText) return null;
+  const lines = String(rawText)
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
 
-  const symbols = Array.isArray(wordObj?.symbols) ? wordObj.symbols : [];
-  if (symbols.length >= 2) {
-    const first = symbols[0];
-    const rest = symbols.slice(1);
-    const digitSymbols = rest.filter((s) => /[0-9]/.test(String(s?.text || "")));
-
-    if (digitSymbols.length >= 1) {
-      const firstChar = String(first?.text || "");
-      if (/^[₹$€£?ftzFrR(]$/.test(firstChar)) {
-        return { text: rest.map((s) => s.text).join(""), strippedRupee: true };
-      }
-      // Google Pay draws ₹ as a smaller superscript glyph to the top-left of the amount digits;
-      // Tesseract 'eng' often misreads that superscript ₹ as '2', '3', or '7'.
-      if (/^[237]$/.test(firstChar) && first?.bbox) {
-        const h0 = Math.max(1, (first.bbox.y1 || 0) - (first.bbox.y0 || 0));
-        const avgH =
-          digitSymbols.reduce(
-            (sum, s) => sum + Math.max(1, (s.bbox?.y1 || 0) - (s.bbox?.y0 || 0)),
-            0,
-          ) / digitSymbols.length;
-        const maxY1 = Math.max(...digitSymbols.map((s) => s.bbox?.y1 || 0));
-        const baselineGap = maxY1 - (first.bbox.y1 || 0);
-        const avgConf =
-          digitSymbols.reduce((sum, s) => sum + Number(s.confidence ?? 90), 0) /
-          digitSymbols.length;
-        const firstConf = Number(first.confidence ?? 90);
-
-        if (
-          h0 < avgH * 0.85 ||
-          baselineGap > avgH * 0.12 ||
-          (firstConf < 76 && avgConf - firstConf > 10)
-        ) {
-          return { text: rest.map((s) => s.text).join(""), strippedRupee: true };
-        }
-      }
-    }
-  }
-
-  if (/^[₹$€£?ftzFrR]\d/.test(rawText)) {
-    return { text: rawText.slice(1), strippedRupee: true };
-  }
-
-  return { text: rawText, strippedRupee: false };
-}
-
-function parseCandidateNumber(rawToken) {
-  if (!rawToken) return null;
-  const cleaned = String(rawToken)
-    .replace(/^[₹$€£?ftzFrR(]+/i, "")
-    .replace(/[^0-9.,]/g, "")
-    .replace(/,/g, "")
-    .trim();
-  if (!/^\d+(?:\.\d{1,2})?$/.test(cleaned)) return null;
-  const integerPart = cleaned.split(".")[0];
-  if (integerPart.length >= 8) return null;
-  const val = Number(cleaned);
-  if (!Number.isFinite(val) || val <= 0 || val > 10000000) return null;
-  return val;
-}
-
-function extractBestAmountFromOcrResult(ocrData, isHeroCrop = false) {
-  const candidates = [];
-  const lines = Array.isArray(ocrData?.lines) ? ocrData.lines : [];
-
-  const ignoreLinePattern =
-    /(?:upi\s*transaction\s*id|google\s*transaction\s*id|transaction\s*id|utr|ref\s*no|kb\/s|volte|battery|\d{1,2}:\d{2}\s*(?:am|pm)|\d{10,12})/i;
-
-  // Find maximum word height across the crop so we can identify the giant hero amount font
-  let maxWordHeightOnScreen = 1;
+  // 1. Check explicit Google Pay confirmation sentence: "Payment of ₹18 completed"
+  // Note: Tesseract 'eng' may read '₹' in "Payment of ₹18 completed" as '%', '2', '3', or '7'
+  let paymentOfRaw = null;
   for (const line of lines) {
-    for (const w of line?.words || []) {
-      const h = (w?.bbox?.y1 || 0) - (w?.bbox?.y0 || 0);
-      if (h > maxWordHeightOnScreen) maxWordHeightOnScreen = h;
+    const m = line.match(/payment\s+of\s+([₹$%?ftzFrR]?\s*[0-9][0-9,.]*)\s+completed/i);
+    if (m) {
+      paymentOfRaw = m[1].replace(/[^0-9.]/g, "");
+      break;
     }
   }
 
-  lines.forEach((line, lineIdx) => {
-    const rawLineText = String(line?.text || "").trim();
-    if (!rawLineText) return;
-    if (ignoreLinePattern.test(rawLineText) && !/[₹]|(?:rs\.?|inr)\s*\d/i.test(rawLineText)) {
-      return;
-    }
-
-    const words = Array.isArray(line?.words) ? line.words : [];
-    const processedWords = words.map(stripSuperscriptRupeeFromWord);
-
-    const lineHeight =
-      words.reduce(
-        (maxH, w) => Math.max(maxH, (w?.bbox?.y1 || 0) - (w?.bbox?.y0 || 0)),
-        0,
-      ) || 0;
-
-    // 1. Explicit ₹ / Rs / INR match
-    const currencyRegex =
-      /(?:₹|rs\.?|inr)\s*([0-9]{1,3}(?:,[0-9]{2,3})+(?:\.[0-9]{1,2})?|[0-9]+(?:\.[0-9]{1,2})?)/gi;
-    let match;
-    while ((match = currencyRegex.exec(rawLineText)) !== null) {
-      const val = parseCandidateNumber(match[1]);
-      if (val !== null) {
-        candidates.push({
-          value: val,
-          score: (isHeroCrop ? 160 : 120) + (lineHeight / maxWordHeightOnScreen) * 60,
-        });
+  // 2. Check standalone numeric line between "To <Name>" and "Completed" / "Pay again"
+  let heroRaw = null;
+  const toIdx = lines.findIndex((l) => /^to\s+/i.test(l));
+  const completedIdx = lines.findIndex((l) => /\b(?:completed|pay\s*again)\b/i.test(l));
+  if (toIdx !== -1 && completedIdx !== -1 && completedIdx > toIdx) {
+    for (let i = toIdx + 1; i < completedIdx; i += 1) {
+      const m = lines[i].match(/^[₹$%?ftzFrR]?\s*([0-9][0-9,.]*)$/);
+      if (m) {
+        heroRaw = m[1].replace(/,/g, "");
+        break;
       }
     }
+  }
 
-    // 2. Inspect words on the line (handling both single-word and two-word superscript ₹ + digits)
-    for (let wIdx = 0; wIdx < processedWords.length; wIdx += 1) {
-      const { text: wText, strippedRupee } = processedWords[wIdx];
-      const wBox = words[wIdx]?.bbox;
-      const wHeight = wBox ? Math.max(1, (wBox.y1 || 0) - (wBox.y0 || 0)) : lineHeight;
-
-      // Check if previous word on the same line was a standalone superscript ₹ misread ('2', '7', 'z', 'R', '₹')
-      let prevWordIsSuperscriptRupee = false;
-      if (wIdx > 0) {
-        const prevRaw = String(words[wIdx - 1]?.text || "").trim();
-        const prevBox = words[wIdx - 1]?.bbox;
-        const prevH = prevBox ? Math.max(1, (prevBox.y1 || 0) - (prevBox.y0 || 0)) : wHeight;
-        if (
-          /^(?:₹|rs\.?|inr|[237?ftzFrR$])$/i.test(prevRaw) &&
-          (prevH < wHeight * 0.88 || /^(?:₹|rs\.?|inr|[?ftzFrR$])$/i.test(prevRaw))
-        ) {
-          prevWordIsSuperscriptRupee = true;
-        }
-      }
-
-      const val = parseCandidateNumber(wText);
-      if (val === null) continue;
-
-      // Skip standalone single-digit '2'/'3'/'7' if the very next word is the larger main amount
-      if (
-        wIdx + 1 < processedWords.length &&
-        /^[237]$/.test(wText) &&
-        parseCandidateNumber(processedWords[wIdx + 1].text) !== null
-      ) {
-        const nextBox = words[wIdx + 1]?.bbox;
-        const nextH = nextBox ? Math.max(1, (nextBox.y1 || 0) - (nextBox.y0 || 0)) : wHeight;
-        if (wHeight < nextH * 0.9) {
-          continue;
-        }
-      }
-
-      // Skip calendar years (2020..2035) when on a date line
-      if (
-        val >= 2020 &&
-        val <= 2035 &&
-        /(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|pm|am)/i.test(rawLineText)
-      ) {
-        continue;
-      }
-
-      const prevLineText = String(lines[lineIdx - 1]?.text || "");
-      const prevPrevLineText = String(lines[lineIdx - 2]?.text || "");
-      const nextLineText = String(lines[lineIdx + 1]?.text || "");
-      const nextNextLineText = String(lines[lineIdx + 2]?.text || "");
-
-      const nearGPayAnchors =
-        /(?:to|paid\s*to|from|banking\s*name)/i.test(`${prevLineText} ${prevPrevLineText}`) ||
-        /(?:pay\s*again|completed|split\s*with|paid|success|share)/i.test(
-          `${nextLineText} ${nextNextLineText}`,
-        );
-
-      const heightRatio = wHeight / Math.max(maxWordHeightOnScreen, 1);
-      const isTallestHeroText = heightRatio >= 0.72;
-      const isShortNumericLine = processedWords.length <= 3;
-
-      let score = 0;
-      if (strippedRupee || prevWordIsSuperscriptRupee) score += 100;
-      if (nearGPayAnchors) score += 85;
-      if (isTallestHeroText) score += 90;
-      if (isHeroCrop && isShortNumericLine) score += 65;
-      score += Math.round(heightRatio * 60);
-
-      if (score >= 65) {
-        candidates.push({ value: val, score });
-      }
+  // If both heroRaw and paymentOfRaw exist and start with '2', '3', or '7' due to '₹' misread,
+  // or if one is the suffix of the other without the leading '2'/'3'/'7', reconcile them
+  if (heroRaw && paymentOfRaw) {
+    if (heroRaw.length === paymentOfRaw.length - 1 && paymentOfRaw.endsWith(heroRaw)) {
+      return parseStrictCurrencyNumber(heroRaw);
     }
-  });
+    if (paymentOfRaw.length === heroRaw.length - 1 && heroRaw.endsWith(paymentOfRaw)) {
+      return parseStrictCurrencyNumber(paymentOfRaw);
+    }
+  }
 
-  if (!candidates.length) return null;
-  candidates.sort((a, b) => b.score - a.score);
-  return candidates[0].value;
+  // 3. Explicit ₹ / Rs / INR amount on non-bank lines
+  const bankOrMetaPattern =
+    /\b(?:bank|a\/c|account|upi\s*transaction|google\s*transaction|transaction\s*id|@|phonepe|okicici|oksbi|okaxis|okhdfcbank)\b/i;
+
+  for (const line of lines) {
+    if (bankOrMetaPattern.test(line)) continue;
+    const m = line.match(/(?:₹|rs\.?|inr)\s*([0-9]{1,3}(?:,[0-9]{2,3})+(?:\.[0-9]{1,2})?|[1-9][0-9]*(?:\.[0-9]{1,2})?)/i);
+    if (m) {
+      const val = parseStrictCurrencyNumber(m[1]);
+      if (val !== null) return val;
+    }
+  }
+
+  if (heroRaw) {
+    return parseStrictCurrencyNumber(heroRaw);
+  }
+  if (paymentOfRaw) {
+    return parseStrictCurrencyNumber(paymentOfRaw);
+  }
+
+  return null;
 }
 
 async function detectAmountFromScreenshot(file) {
   const img = await loadImageElement(file);
 
-  // 1. Instant native TextDetector pass (<80ms on supported Android Chrome/WebView)
-  if (typeof window !== "undefined" && "TextDetector" in window) {
-    try {
-      const detector = new window.TextDetector();
-      const blocks = await detector.detect(img);
-      if (Array.isArray(blocks) && blocks.length) {
-        const imgH = img.naturalHeight || 1;
-        let maxBoxH = 1;
-        for (const b of blocks) {
-          const bh = b?.boundingBox?.height || 0;
-          if (bh > maxBoxH) maxBoxH = bh;
+  // Step 1: Isolate the pure hero digits canvas (with the shorter superscript '₹' column removed!)
+  const pureDigitsCanvas = buildPureHeroDigitsCanvas(img);
+  if (pureDigitsCanvas) {
+    if (typeof window !== "undefined" && "TextDetector" in window) {
+      try {
+        const detector = new window.TextDetector();
+        const blocks = await detector.detect(pureDigitsCanvas);
+        for (const b of blocks || []) {
+          const val = parseStrictCurrencyNumber(b?.rawValue);
+          if (val !== null) return val;
         }
-        const nativeCandidates = [];
-        for (const block of blocks) {
-          const text = String(block.rawValue || "").trim();
-          const box = block.boundingBox || {};
-          const relY = (box.y || 0) / imgH;
-          if (relY < 0.05 || relY > 0.85) continue;
-
-          const rupeeMatch = text.match(
-            /(?:₹|rs\.?|inr)\s*([0-9]{1,3}(?:,[0-9]{2,3})+(?:\.[0-9]{1,2})?|[0-9]+(?:\.[0-9]{1,2})?)/i,
-          );
-          if (rupeeMatch) {
-            const val = parseCandidateNumber(rupeeMatch[1]);
-            if (val !== null) {
-              nativeCandidates.push({
-                value: val,
-                score: 180 + ((box.height || 0) / maxBoxH) * 80 + (relY >= 0.1 && relY <= 0.6 ? 50 : 0),
-              });
-            }
-          } else if (relY >= 0.1 && relY <= 0.6 && /^[^\w]*\d[\d,.]*$/.test(text)) {
-            const val = parseCandidateNumber(text);
-            if (val !== null) {
-              nativeCandidates.push({
-                value: val,
-                score: 100 + ((box.height || 0) / maxBoxH) * 90,
-              });
-            }
-          }
-        }
-        if (nativeCandidates.length) {
-          nativeCandidates.sort((a, b) => b.score - a.score);
-          return nativeCandidates[0].value;
-        }
+      } catch {
+        // Continue to Tesseract worker
       }
-    } catch {
-      // Fall through to pre-warmed Tesseract worker
+    }
+
+    const pureResult = await recognizeCanvasFast(pureDigitsCanvas);
+    const pureText = String(pureResult?.data?.text || "").trim();
+    const tokenMatch = pureText.match(/([1-9][0-9,]*(?:\.[0-9]{1,2})?)/);
+    if (tokenMatch) {
+      const val = parseStrictCurrencyNumber(tokenMatch[1]);
+      if (val !== null) {
+        return val;
+      }
     }
   }
 
-  // 2. Fast pre-warmed Tesseract worker pass on compact 560px hero crop
-  const heroCanvas = buildNormalizedCanvas(
+  // Step 2: Fallback full-receipt OCR if the screenshot is a non-standard layout
+  const fallbackCanvas = buildNormalizedCanvas(
     img,
-    { x: 0.06, y: 0.1, w: 0.88, h: 0.52 },
-    560,
+    { x: 0.05, y: 0.08, w: 0.9, h: 0.72 },
+    380,
   );
-  const heroResult = await recognizeCanvasFast(heroCanvas);
-  const heroAmount = extractBestAmountFromOcrResult(heroResult?.data, true);
-  if (heroAmount !== null) {
-    return heroAmount;
-  }
-
-  // 3. Fallback full-screen pass if the amount was outside the hero crop
-  const fullCanvas = buildNormalizedCanvas(
-    img,
-    { x: 0.04, y: 0.05, w: 0.92, h: 0.88 },
-    640,
-  );
-  const fullResult = await recognizeCanvasFast(fullCanvas);
-  return extractBestAmountFromOcrResult(fullResult?.data, false);
+  const fullResult = await recognizeCanvasFast(fallbackCanvas);
+  return extractAmountFromFullText(fullResult?.data?.text || "");
 }
 
 function formatExpenseDate(value) {
