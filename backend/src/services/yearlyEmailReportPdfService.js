@@ -656,12 +656,19 @@ export function buildYearlyEmailReportPdfInProcess(
           doc.y,
         );
 
+      const firstYearStart = report.yearlySummary?.[0]?.yearStart;
+      const lastYearEnd = report.yearlySummary?.[report.yearlySummary.length - 1]?.yearEnd;
+      const periodSuffix =
+        firstYearStart && lastYearEnd
+          ? ` | Period: ${dateLabel(firstYearStart)} to ${dateLabel(lastYearEnd)}`
+          : "";
+
       doc
         .fontSize(9)
         .font("Helvetica")
         .fillColor("#555")
         .text(
-          `Generated: ${report.generatedAt}`,
+          `Generated: ${report.generatedAt}${periodSuffix}`,
           left,
           doc.y,
         );

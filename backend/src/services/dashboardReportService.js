@@ -215,11 +215,12 @@ function rangeFor(unit, count, today = todayIso()) {
     };
   }
 
-  const current = `${today.slice(0, 4)}-01-01`;
+  const yesterday = addDays(today, -1);
+  const current = `${yesterday.slice(0, 4)}-01-01`;
 
   return {
     dateFrom: shiftYearStart(current, -(count - 1)),
-    dateTo: yearEnd(current),
+    dateTo: yesterday,
     label: `${count} years`,
   };
 }
