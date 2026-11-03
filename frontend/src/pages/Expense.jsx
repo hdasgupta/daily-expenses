@@ -134,13 +134,18 @@ function buildPureHeroDigitsCanvas(img) {
 
   const imgData = srcCtx.getImageData(0, 0, w, h).data;
   const lum = new Float32Array(w * h);
+  const chroma = new Float32Array(w * h);
   for (let i = 0, p = 0; i < imgData.length; i += 4, p += 1) {
-    lum[p] = 0.299 * imgData[i] + 0.587 * imgData[i + 1] + 0.114 * imgData[i + 2];
+    const r = imgData[i];
+    const g = imgData[i + 1];
+    const b = imgData[i + 2];
+    lum[p] = 0.299 * r + 0.587 * g + 0.114 * b;
+    chroma[p] = Math.max(r, g, b) - Math.min(r, g, b);
   }
 
-  // Determine whether screenshot is dark theme or light theme from the upper region
+  // Determine whether screenshot is dark theme or light theme across y: 8%..55%
   const sampleY0 = Math.floor(h * 0.08);
-  const sampleY1 = Math.floor(h * 0.38);
+  const sampleY1 = Math.floor(h * 0.55);
   const sampleX0 = Math.floor(w * 0.08);
   const sampleX1 = Math.floor(w * 0.92);
   let lumSum = 0;
@@ -153,15 +158,19 @@ function buildPureHeroDigitsCanvas(img) {
   }
   const isDark = lumSum / Math.max(lumCount, 1) < 125;
 
-  // Foreground intensity (high = text stroke, low = background)
+  // Neutral foreground intensity: zero out saturated colored pixels (blue checkmark circle, purple avatar, green tick)
   const fg = new Float32Array(w * h);
   for (let p = 0; p < lum.length; p += 1) {
-    fg[p] = isDark ? lum[p] : 255 - lum[p];
+    if (chroma[p] >= 48) {
+      fg[p] = 0;
+    } else {
+      fg[p] = isDark ? lum[p] : 255 - lum[p];
+    }
   }
 
-  // Search for the hero amount band in y: 12%..37% (strictly above the bank card)
-  const yStart = Math.floor(h * 0.12);
-  const yEnd = Math.floor(h * 0.37);
+  // Search for hero amount bands across y: 10%..55% (covers both GPay receipt screen and GPay blue-tick "Paid to" screen)
+  const yStart = Math.floor(h * 0.1);
+  const yEnd = Math.floor(h * 0.55);
   const xStart = Math.floor(w * 0.12);
   const xEnd = Math.floor(w * 0.88);
 
@@ -172,9 +181,8 @@ function buildPureHeroDigitsCanvas(img) {
   for (let y = yStart; y < yEnd; y += 1) {
     let brightCount = 0;
     for (let x = xStart; x < xEnd; x += 1) {
-      if (fg[y * w + x] > 140) brightCount += 1;
+      if (fg[y * w + x] > 135) brightCount += 1;
     }
-    // Exclude solid filled button pills (like the "Pay again" pill) where >26% of the row is bright
     const active = brightCount >= 2 && brightCount < Math.floor(w * 0.26);
     if (active && !inRun) {
       inRun = true;
@@ -188,75 +196,85 @@ function buildPureHeroDigitsCanvas(img) {
     runs.push({ y0: runStart, y1: yEnd - 1, bh: yEnd - runStart });
   }
 
-  const minHeroHeight = Math.max(16, Math.floor(h * 0.022));
-  const validRuns = runs.filter((r) => r.bh >= minHeroHeight);
-  if (!validRuns.length) return null;
+  const minHeroHeight = Math.max(16, Math.floor(h * 0.024));
+  const candidates = [];
 
-  // Pick the tallest text band in the hero area (the giant ₹ amount)
-  const heroBand = validRuns.reduce((best, cur) => (cur.bh > best.bh ? cur : best), validRuns[0]);
-  const { y0: by0, y1: by1, bh } = heroBand;
+  for (const band of runs) {
+    if (band.bh < minHeroHeight) continue;
+    const { y0: by0, y1: by1, bh } = band;
 
-  // Find connected character columns inside heroBand
-  const colRuns = [];
-  let inCol = false;
-  let colStart = xStart;
+    const colRuns = [];
+    let inCol = false;
+    let colStart = xStart;
 
-  const pushColRun = (cx0, cx1) => {
-    let minY = bh;
-    let maxY = -1;
-    for (let ry = 0; ry <= by1 - by0; ry += 1) {
-      for (let cx = cx0; cx <= cx1; cx += 1) {
-        if (fg[(by0 + ry) * w + cx] > 130) {
-          if (ry < minY) minY = ry;
-          if (ry > maxY) maxY = ry;
+    const pushColRun = (cx0, cx1) => {
+      let minY = bh;
+      let maxY = -1;
+      for (let ry = 0; ry <= by1 - by0; ry += 1) {
+        for (let cx = cx0; cx <= cx1; cx += 1) {
+          if (fg[(by0 + ry) * w + cx] > 130) {
+            if (ry < minY) minY = ry;
+            if (ry > maxY) maxY = ry;
+          }
         }
       }
-    }
-    if (maxY >= minY) {
-      colRuns.push({
-        x0: cx0,
-        x1: cx1,
-        w: cx1 - cx0 + 1,
-        cy0: minY,
-        cy1: maxY,
-        ch: maxY - minY + 1,
-      });
-    }
-  };
+      if (maxY >= minY) {
+        colRuns.push({
+          x0: cx0,
+          x1: cx1,
+          w: cx1 - cx0 + 1,
+          cy0: minY,
+          cy1: maxY,
+          ch: maxY - minY + 1,
+        });
+      }
+    };
 
-  for (let x = xStart; x < xEnd; x += 1) {
-    let colMax = 0;
-    for (let y = by0; y <= by1; y += 1) {
-      const val = fg[y * w + x];
-      if (val > colMax) colMax = val;
-    }
-    if (colMax > 130 && !inCol) {
-      inCol = true;
-      colStart = x;
-    } else if (colMax <= 130 && inCol) {
-      inCol = false;
-      pushColRun(colStart, x - 1);
-    }
-  }
-  if (inCol) {
-    pushColRun(colStart, xEnd - 1);
-  }
-
-  if (!colRuns.length) return null;
-
-  // Strip the leading superscript ₹ symbol column (which is shorter and raised above the digits' baseline)
-  let digitRuns = colRuns;
-  if (colRuns.length >= 2) {
-    const tallCols = colRuns.slice(1).filter((cr) => cr.ch > bh * 0.5);
-    if (tallCols.length) {
-      const maxCh = Math.max(...tallCols.map((cr) => cr.ch));
-      const maxCy1 = Math.max(...tallCols.map((cr) => cr.cy1));
-      const first = colRuns[0];
-      if (first.ch < maxCh * 0.85 || maxCy1 - first.cy1 > maxCh * 0.12) {
-        digitRuns = colRuns.slice(1);
+    for (let x = xStart; x < xEnd; x += 1) {
+      let colMax = 0;
+      for (let y = by0; y <= by1; y += 1) {
+        const val = fg[y * w + x];
+        if (val > colMax) colMax = val;
+      }
+      if (colMax > 130 && !inCol) {
+        inCol = true;
+        colStart = x;
+      } else if (colMax <= 130 && inCol) {
+        inCol = false;
+        pushColRun(colStart, x - 1);
       }
     }
+    if (inCol) {
+      pushColRun(colStart, xEnd - 1);
+    }
+
+    // A hero rupee amount ("₹" + 1..9 digit/comma columns) has between 2 and 10 character columns
+    if (colRuns.length < 2 || colRuns.length > 10) continue;
+
+    const tallCols = colRuns.slice(1).filter((cr) => cr.ch > bh * 0.5);
+    if (!tallCols.length) continue;
+
+    const maxCh = Math.max(...tallCols.map((cr) => cr.ch));
+    const maxCy1 = Math.max(...tallCols.map((cr) => cr.cy1));
+    const first = colRuns[0];
+    const hasSuperscriptRupee =
+      first.ch < maxCh * 0.85 || maxCy1 - first.cy1 > maxCh * 0.12;
+
+    candidates.push({
+      by0,
+      by1,
+      bh,
+      colRuns,
+      hasSuperscriptRupee,
+      digitRuns: hasSuperscriptRupee ? colRuns.slice(1) : colRuns,
+      score: bh * 2 + (hasSuperscriptRupee ? 120 : 0),
+    });
   }
+
+  if (!candidates.length) return null;
+  candidates.sort((a, b) => b.score - a.score);
+  const chosen = candidates[0];
+  const { by0, by1, digitRuns } = chosen;
 
   const dx0 = Math.max(0, digitRuns[0].x0 - 6);
   const dx1 = Math.min(w, digitRuns[digitRuns.length - 1].x1 + 7);
@@ -291,13 +309,12 @@ function buildPureHeroDigitsCanvas(img) {
   return outCanvas;
 }
 
-function buildNormalizedCanvas(img, crop = { x: 0.05, y: 0.08, w: 0.9, h: 0.72 }, targetWidth = 380) {
+function buildNormalizedCanvas(img, crop = { x: 0.05, y: 0.08, w: 0.9, h: 0.75 }, targetWidth = 380) {
   const sx = Math.floor(img.naturalWidth * crop.x);
   const sy = Math.floor(img.naturalHeight * crop.y);
   const sw = Math.max(1, Math.floor(img.naturalWidth * crop.w));
   const sh = Math.max(1, Math.floor(img.naturalHeight * crop.h));
 
-  // Keep width around 360..420px so giant Google Pay numbers stay within Tesseract's line height limit
   const scale = Math.min(1.25, Math.max(0.6, targetWidth / sw));
   const dw = Math.max(1, Math.round(sw * scale));
   const dh = Math.max(1, Math.round(sh * scale));
@@ -343,7 +360,6 @@ function extractAmountFromFullText(rawText) {
     .filter(Boolean);
 
   // 1. Check explicit Google Pay confirmation sentence: "Payment of ₹18 completed"
-  // Note: Tesseract 'eng' may read '₹' in "Payment of ₹18 completed" as '%', '2', '3', or '7'
   let paymentOfRaw = null;
   for (const line of lines) {
     const m = line.match(/payment\s+of\s+([₹$%?ftzFrR]?\s*[0-9][0-9,.]*)\s+completed/i);
@@ -353,7 +369,8 @@ function extractAmountFromFullText(rawText) {
     }
   }
 
-  // 2. Check standalone numeric line between "To <Name>" and "Completed" / "Pay again"
+  // 2. Check standalone numeric line between "To <Name>" and "Completed" / "Pay again",
+  //    OR immediately above "Paid to" (for Google Pay's blue-checkmark confirmation screen)
   let heroRaw = null;
   const toIdx = lines.findIndex((l) => /^to\s+/i.test(l));
   const completedIdx = lines.findIndex((l) => /\b(?:completed|pay\s*again)\b/i.test(l));
@@ -367,8 +384,19 @@ function extractAmountFromFullText(rawText) {
     }
   }
 
-  // If both heroRaw and paymentOfRaw exist and start with '2', '3', or '7' due to '₹' misread,
-  // or if one is the suffix of the other without the leading '2'/'3'/'7', reconcile them
+  if (!heroRaw) {
+    const paidToIdx = lines.findIndex((l) => /^paid\s+to\b/i.test(l));
+    if (paidToIdx > 0) {
+      for (let i = paidToIdx - 1; i >= 0; i -= 1) {
+        const m = lines[i].match(/^[₹$%?ftzFrR]?\s*([0-9][0-9,.]*)$/);
+        if (m) {
+          heroRaw = m[1].replace(/,/g, "");
+          break;
+        }
+      }
+    }
+  }
+
   if (heroRaw && paymentOfRaw) {
     if (heroRaw.length === paymentOfRaw.length - 1 && paymentOfRaw.endsWith(heroRaw)) {
       return parseStrictCurrencyNumber(heroRaw);
@@ -378,9 +406,8 @@ function extractAmountFromFullText(rawText) {
     }
   }
 
-  // 3. Explicit ₹ / Rs / INR amount on non-bank lines
   const bankOrMetaPattern =
-    /\b(?:bank|a\/c|account|upi\s*transaction|google\s*transaction|transaction\s*id|@|phonepe|okicici|oksbi|okaxis|okhdfcbank)\b/i;
+    /\b(?:bank|banking\s*name|a\/c|account|upi\s*transaction|google\s*transaction|transaction\s*id|@|phonepe|okicici|oksbi|okaxis|okhdfcbank)\b/i;
 
   for (const line of lines) {
     if (bankOrMetaPattern.test(line)) continue;
