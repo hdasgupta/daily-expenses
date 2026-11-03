@@ -205,13 +205,12 @@ function rangeFor(unit, count, today = todayIso()) {
   }
 
   if (unit === "month") {
-    const end = monthEnd(`${today.slice(0, 7)}-01`);
-
-    const start = shiftMonthStart(`${today.slice(0, 7)}-01`, -(count - 1));
+    const yesterday = addDays(today, -1);
+    const start = shiftMonthStart(`${yesterday.slice(0, 7)}-01`, -(count - 1));
 
     return {
       dateFrom: start,
-      dateTo: end,
+      dateTo: yesterday,
       label: `${count} months`,
     };
   }

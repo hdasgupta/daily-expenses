@@ -730,12 +730,19 @@ export function buildMonthlyEmailReportPdfInProcess(
           doc.y,
         );
 
+      const firstMonthStart = report.monthlySummary?.[0]?.monthStart;
+      const lastMonthEnd = report.monthlySummary?.[report.monthlySummary.length - 1]?.monthEnd;
+      const periodSuffix =
+        firstMonthStart && lastMonthEnd
+          ? ` | Period: ${dateLabel(firstMonthStart)} to ${dateLabel(lastMonthEnd)}`
+          : "";
+
       doc
         .fontSize(9)
         .font("Helvetica")
         .fillColor("#555")
         .text(
-          `Generated: ${report.generatedAt}`,
+          `Generated: ${report.generatedAt}${periodSuffix}`,
           left,
           doc.y,
         );

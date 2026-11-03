@@ -2,16 +2,19 @@ import { q } from "../db/index.js";
 import { userSql } from "../../scripts/sql/userSql.js";
 import { sendMonthlyEmailReport } from "./mailService.js";
 import { buildMonthlyEmailReportPdf } from "./monthlyEmailReportPdfService.js";
-import { nowIso, toIsoDateString } from "../utils/dates.js";
+import { dateMinusDays, nowIso, toIsoDateString } from "../utils/dates.js";
 import { signedObjectUrl } from "./storageService.js";
 
 const MONTHLY_REPORT_SQL = {
   monthlySummary: `WITH months AS (
       SELECT gs::date AS month_start,
-             (gs::date + INTERVAL '1 month - 1 day')::date AS month_end
+             LEAST(
+               (gs::date + INTERVAL '1 month - 1 day')::date,
+               ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date
+             ) AS month_end
       FROM generate_series(
-        (date_trunc('month', CURRENT_DATE) - INTERVAL '2 months')::date,
-        date_trunc('month', CURRENT_DATE)::date,
+        (date_trunc('month', ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date) - INTERVAL '2 months')::date,
+        date_trunc('month', ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date)::date,
         INTERVAL '1 month'
       ) AS gs
     )
@@ -27,10 +30,13 @@ const MONTHLY_REPORT_SQL = {
 
   survivorSummary: `WITH months AS (
       SELECT gs::date AS month_start,
-             (gs::date + INTERVAL '1 month - 1 day')::date AS month_end
+             LEAST(
+               (gs::date + INTERVAL '1 month - 1 day')::date,
+               ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date
+             ) AS month_end
       FROM generate_series(
-        (date_trunc('month', CURRENT_DATE) - INTERVAL '2 months')::date,
-        date_trunc('month', CURRENT_DATE)::date,
+        (date_trunc('month', ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date) - INTERVAL '2 months')::date,
+        date_trunc('month', ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date)::date,
         INTERVAL '1 month'
       ) AS gs
     )
@@ -59,8 +65,8 @@ const MONTHLY_REPORT_SQL = {
     LEFT JOIN public.items i ON i.id = e.item_id
     LEFT JOIN public.expense_shares es ON es.expense_id = e.id
     LEFT JOIN public.survivors s ON s.id = es.survivor_id
-    WHERE e.expense_date >= (date_trunc('month', CURRENT_DATE) - INTERVAL '2 months')::date
-      AND e.expense_date <= (date_trunc('month', CURRENT_DATE) + INTERVAL '1 month - 1 day')::date
+    WHERE e.expense_date >= (date_trunc('month', ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date) - INTERVAL '2 months')::date
+      AND e.expense_date <= ((now() AT TIME ZONE 'Asia/Kolkata')::date - INTERVAL '1 day')::date
     ORDER BY e.expense_date, e.id, s.full_name`,
 };
 
@@ -112,7 +118,9 @@ export async function sendMonthlyEmailReportToManagers() {
   const report = await buildMonthlyEmailReport();
   const pdf = await buildMonthlyEmailReportPdf(report);
   const result = await q(userSql.managers);
-  const reportDate = report.generatedAt.slice(0, 10);
+  const reportDate =
+    report.monthlySummary?.[report.monthlySummary.length - 1]?.monthEnd ||
+    dateMinusDays(1);
   for (const row of result.rows) {
     await sendMonthlyEmailReport(row.email, pdf, reportDate);
   }
