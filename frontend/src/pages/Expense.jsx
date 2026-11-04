@@ -1300,7 +1300,18 @@ export default function Expense() {
                 </span>
               ) : null}
 
-              <span>{row.comment || "No comment"}</span>
+              <span style={{ whiteSpace: "pre-line" }}>
+                {row.comment
+                  ? String(row.comment)
+                      .split(/\r?\n/)
+                      .map((line, idx, arr) => (
+                        <span key={idx}>
+                          {line}
+                          {idx < arr.length - 1 ? <br /> : null}
+                        </span>
+                      ))
+                  : "No comment"}
+              </span>
 
               <span>
                 Shares:{" "}
