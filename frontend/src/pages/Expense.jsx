@@ -1044,6 +1044,31 @@ export default function Expense() {
         </label>
 
         <label>
+          Attach proof (optional — choosing a Google Pay / UPI screenshot auto-fills Total cost & Online mode)
+          <input
+            key={proofInputKey}
+            ref={proofInputRef}
+            type="file"
+            accept="application/pdf,image/png,image/jpeg"
+            onChange={(e) => handleProofFileChange(e.target.files?.[0] || null)}
+          />
+          {scanFeedback ? (
+            <small
+              className="field-note"
+              style={{
+                color: scanningProof ? "#2563eb" : "#15803d",
+                fontWeight: 600,
+              }}
+            >
+              {scanFeedback}
+            </small>
+          ) : null}
+          <small className="field-note">
+            Images are converted to PDF before S3-compatible storage upload.
+          </small>
+        </label>
+
+        <label>
           Total cost
           <input
             required
@@ -1074,31 +1099,6 @@ export default function Expense() {
             value={form.comment}
             onChange={(e) => updateField("comment", e.target.value)}
           />
-        </label>
-
-        <label>
-          Attach proof (optional — choosing a Google Pay / UPI screenshot auto-fills Total cost & Online mode)
-          <input
-            key={proofInputKey}
-            ref={proofInputRef}
-            type="file"
-            accept="application/pdf,image/png,image/jpeg"
-            onChange={(e) => handleProofFileChange(e.target.files?.[0] || null)}
-          />
-          {scanFeedback ? (
-            <small
-              className="field-note"
-              style={{
-                color: scanningProof ? "#2563eb" : "#15803d",
-                fontWeight: 600,
-              }}
-            >
-              {scanFeedback}
-            </small>
-          ) : null}
-          <small className="field-note">
-            Images are converted to PDF before S3-compatible storage upload.
-          </small>
         </label>
 
         <div className="shares-panel">
