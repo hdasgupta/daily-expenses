@@ -888,6 +888,25 @@ export default function Reports({ user }) {
       );
     }
 
+    if (column === "comment") {
+      const value = row[column];
+      if (value === null || value === undefined || value === "") {
+        return "—";
+      }
+      return (
+        <span style={{ whiteSpace: "pre-line" }}>
+          {String(value)
+            .split(/\r?\n/)
+            .map((line, idx, arr) => (
+              <span key={idx}>
+                {line}
+                {idx < arr.length - 1 ? <br /> : null}
+              </span>
+            ))}
+        </span>
+      );
+    }
+
     return formatCell(row[column], column);
   };
 
