@@ -2728,6 +2728,60 @@
     "notes": "Classic Bengali first-course lunch accompaniment eaten with plain hot rice and ghee."
   },
   {
+    "id": "static-1492",
+    "name": "Aloor Bora / Potato Bajji (Crispy Spiced Besan Batter-Fried Potato Round Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes (aloo), peeled and sliced into thin 1/8-inch rounds",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & carom seeds (ajwain)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli powder, ginger paste & pinch of baking soda",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak and dry thin potato discs",
+        "text": "Slice potatoes evenly into thin discs, rinse in cold water to remove surface starch, and pat dry on a cloth.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip in aerated spiced besan batter and fry",
+        "text": "Whisk besan, rice flour, kalo jeere, ajwain, ginger paste, turmeric, chilli powder, salt, baking soda, and water into a smooth batter; dip potato slices and fry in medium-hot oil until puffed like pooris.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Quick, crowd-pleasing evening snack served with muri (puffed rice) or masala chai."
+  },
+  {
     "id": "static-1207",
     "name": "Aloor Chokka (Bengali Spiced Potato & Black Chickpea Curry)",
     "category": "Vegetable",
@@ -4207,6 +4261,65 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1466",
+    "name": "Baigan Pakora / Begun Bora (Spiced Gram-Flour Coated Brinjal / Eggplant Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / North Indian",
+    "ingredients": [
+      {
+        "name": "Purple brinjal / eggplant (baigan / begun), sliced into thin rounds or wedges",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli powder, roasted cumin & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1",
+        "unit": "pinch"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season eggplant slices and whisk spiced besan batter",
+        "text": "Dust brinjal slices lightly with salt and turmeric; whisk besan, rice flour, ajwain, kalo jeere, chilli powder, roasted cumin, salt, baking soda, and 1 tbsp hot oil with water into a smooth coating batter.",
+        "minutes": 6
+      },
+      {
+        "section": "Deep-fry until puffed and crisp",
+        "text": "Dip each baigan slice in the batter, let excess drip off, and deep-fry in hot mustard oil over medium heat until puffed and golden brown; sprinkle chaat masala before serving.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Delicious with puffed rice (muri), green chutney, or alongside khichuri on rainy days."
+  },
+  {
     "id": "static-0004",
     "name": "Baingan Bharta",
     "category": "Vegetable",
@@ -5065,6 +5178,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1475",
+    "name": "Bandhakopir Bora / Cabbage Pakora (Crispy Shredded Cabbage & Onion Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Cabbage (bandhakopi), finely shredded",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion, thinly sliced (optional for niramish)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, grated ginger, fresh coriander & kalo jeere",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & roasted garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Massage shredded cabbage with salt and spices",
+        "text": "Toss shredded cabbage (and sliced onion if using) with salt, turmeric, green chillies, ginger, coriander leaves, and kalo jeere; rest for 5 minutes so the cabbage releases moisture.",
+        "minutes": 6
+      },
+      {
+        "section": "Bind with besan and rice flour and fry crisp clusters",
+        "text": "Add besan and rice flour to bind into a stiff, shaggy mixture without extra water; drop rough clusters into hot mustard oil and fry until dark golden and crunchy.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Holding back water when mixing the batter ensures the cabbage strands fry up ultra-crispy."
   },
   {
     "id": "static-1313",
@@ -10403,6 +10575,60 @@
     "notes": "A quick weekday homestyle side dish combining tender okra with savory prawns."
   },
   {
+    "id": "static-1495",
+    "name": "Bhuttar Bora / Crispy Sweet Corn Fritters (Spiced Corn Kernel Pakora)",
+    "category": "Fritters",
+    "region": "Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Sweet corn kernels (bhutta), boiled and coarsely pulsed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped onion, green chillies, ginger & fresh coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted cumin powder, fennel seeds (mouri), turmeric & red chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for frying) & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coarsely pulse corn kernels and mix with spices",
+        "text": "Pulse three-quarters of the sweet corn in a mixer for 2 seconds into a coarse mash, combine with the remaining whole kernels, onion, ginger, green chillies, coriander, fennel, cumin, besan, and rice flour.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry crisp golden corn fritters",
+        "text": "Drop spoonfuls or flattened patties into medium-hot oil and fry until crisp and golden brown on the outside while sweet and juicy inside.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Pulsing most of the corn prevents the kernels from popping in hot oil while locking in natural sweetness."
+  },
+  {
     "id": "static-1392",
     "name": "Bikaneri Bhujia (Crispy Moth Dal & Besan Spiced Fine Noodle Namkeen)",
     "category": "Snacks",
@@ -10950,6 +11176,60 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1470",
+    "name": "Bokphuler Bora /Agati Flower Fritters (Crispy Hummingbird Tree Blossom Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh white or red bokphul (Sesbania grandiflora / agati flowers)",
+        "quantity": "15",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder & pinch of baking soda",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Remove bitter pistil from bokphul",
+        "text": "Gently open each bokphul, snap off the long curved inner stamen/pistil (which tastes bitter), wash lightly, and drain well.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip in airy rice-besan batter and fry",
+        "text": "Dip each blossom in a smooth batter of besan, rice flour, posto, kalo jeere, turmeric, chilli powder, and salt, then fry in medium-hot mustard oil until crisp and golden.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "An iconic Bengali autumn-winter telebhaja served with afternoon muri or hot dal-rice."
   },
   {
     "id": "static-0712",
@@ -13067,6 +13347,55 @@
     "notes": "Delicate summer Bengali Chalkumro Bhaja."
   },
   {
+    "id": "static-1472",
+    "name": "Chalkumror Bora / Ash Gourd Fritters (Mustard-Poppy Stuffed or Batter-Fried Chalkumro Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Ash gourd (chalkumro), peeled and cut into thin pocket slices",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow mustard & poppy seed paste (shorshe-posto bata) with grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour (chaler guro) & besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), turmeric & green chilli paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Salt-drain chalkumro pockets and stuff",
+        "text": "Cut peeled ash gourd into twin-layered pocket slices, rub with salt for 10 minutes to release excess moisture, squeeze gently, and spread spiced mustard-poppy-coconut paste inside.",
+        "minutes": 8
+      },
+      {
+        "section": "Coat in crisp rice-besan batter and fry",
+        "text": "Dip the stuffed ash gourd pockets in a thick rice-flour and besan batter seasoned with kalo jeere and turmeric, and fry in hot mustard oil until golden and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "The juicy, translucent ash gourd center paired with pungent mustard-poppy stuffing is a classic Bengali niramish delicacy."
+  },
+  {
     "id": "static-0836",
     "name": "Cham Cham",
     "category": "Sweets",
@@ -14267,6 +14596,60 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "A homestyle Bengali monsoon vegetable fry."
+  },
+  {
+    "id": "static-1498",
+    "name": "Chichingar Bora / Snake Gourd Fritters (Crispy Batter-Fried Snake Gourd Ring Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender snake gourd (chichinga), scraped and sliced into 1/4-inch diagonal ovals",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & green chilli paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slice snake gourd and season",
+        "text": "Scrape the thin white skin off the snake gourd, slice into diagonal ovals (removing any large seeds), and toss with a pinch of salt and turmeric.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat in crisp rice-besan batter and fry",
+        "text": "Dip each slice into a thick batter of besan, rice flour, poppy seeds, kalo jeere, and green chilli paste, and fry in hot mustard oil until golden and crunchy.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Pairs beautifully with warm steamed rice and biulir dal."
   },
   {
     "id": "static-0089",
@@ -24911,6 +25294,60 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1467",
+    "name": "Dhakai Beguni (Flaky Layered Bengali Eggplant Fritters with Posto & Kalo Jeere)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Large purple eggplant (begun), sliced paper-thin lengthwise",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder & pinch of baking soda",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whip aerated besan-posto batter",
+        "text": "Whisk besan, rice flour, turmeric, red chilli powder, salt, and water vigorously for 4-5 minutes until light and airy, then fold in kalo jeere, white poppy seeds, and a teaspoon of hot oil.",
+        "minutes": 6
+      },
+      {
+        "section": "Coat thin lengthwise begun slices and fry",
+        "text": "Coat each thin lengthwise eggplant slice in the aerated batter and slide into hot mustard oil, basting the top with hot oil so it puffs like a pillow.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Traditional Dhaka-style beguni prized for its paper-thin crisp shell and nutty poppy seed crust."
+  },
+  {
     "id": "static-1174",
     "name": "Dhakai Porota (Bengali Multi-Layered Flaky Fried Paratha)",
     "category": "Bread",
@@ -25176,6 +25613,60 @@
     "notes": "Fresh mustard paste adds sharp Bengali pungency."
   },
   {
+    "id": "static-1489",
+    "name": "Dherosher Bora / Bhindi Pakora (Crispy Batter-Fried Slit Okra Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Tender okra / ladies finger (dherosh / bhindi), slit lengthwise in quarters leaving crown intact",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour & cornflour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), roasted cumin, coriander powder & amchur (dry mango powder)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric & Kashmiri red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stuff or dust slit okra with tangy dry masala",
+        "text": "Wash and dry okra completely, slit lengthwise into 4 connected strips, and rub with amchur, roasted cumin, coriander, chilli powder, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip in crisp rice-besan batter and deep-fry",
+        "text": "Dip the spiced okra fans into a light besan and rice-flour batter seasoned with ajwain and deep-fry in hot oil until crisp and golden.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Keeping the crown intact fans the okra out like a crispy flower when fried."
+  },
+  {
     "id": "static-0317",
     "name": "Dhokla (Classic)",
     "category": "Snacks",
@@ -25292,6 +25783,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1480",
+    "name": "Dhonepatar Bora (Crispy Fresh Coriander Leaf Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh coriander leaves and tender stems (dhonepata), finely chopped",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & white poppy seeds (posto)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped green chillies & turmeric powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bind chopped coriander with rice flour and besan",
+        "text": "Combine finely chopped fresh coriander leaves, green chillies, kalo jeere, poppy seeds, turmeric, salt, besan, and rice flour with minimal water to form a tight herbal dough.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry small flattened fritters in mustard oil",
+        "text": "Shape into bite-sized flat discs and fry in medium-hot mustard oil until crisp and aromatic.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "A fragrant winter Bengali starter when local desi dhonepata is in peak season."
   },
   {
     "id": "static-1000",
@@ -36235,6 +36780,60 @@
     "notes": "Light, cooling Bengali summer stir-fry."
   },
   {
+    "id": "static-1477",
+    "name": "Jhinger Bora / Jhinge Fritters (Crispy Ridge Gourd Fritters in Poppy-Rice Batter)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender ridge gourd (jhinge), ridges scraped and cut into thin lengthwise slabs",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & green chilli paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slice tender jhinge and pat dry",
+        "text": "Scrape the sharp ridges off the ridge gourd, slice into thin 3-inch planks, and pat dry; salt only right before dipping so the gourd does not get watery.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip in thick posto-rice batter and fry",
+        "text": "Coat each slice in a thick batter of besan, rice flour, poppy seeds, kalo jeere, turmeric, and green chilli paste, and fry immediately in hot mustard oil until golden and crisp.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Known as Janhi Bara in Odisha and Jhinger Bora in Bengal; best eaten fresh off the kadai."
+  },
+  {
     "id": "static-1213",
     "name": "Jhuri Aloo Bhaja (Bengali Crispy Matchstick Fried Potatoes with Peanuts)",
     "category": "Vegetable",
@@ -36287,6 +36886,60 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Do not salt the potatoes before frying so they turn out ultra-crispy."
+  },
+  {
+    "id": "static-1493",
+    "name": "Jhuri Aloor Bora / Crispy Shredded Potato Laccha Pakora (Spiced Potato Nest Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / North Indian",
+    "ingredients": [
+      {
+        "name": "Potatoes, peeled and coarsely grated into long strands",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Cornflour or rice flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, grated ginger, curry/coriander leaves & kalo jeere",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chilli flakes, turmeric & chaat masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard or vegetable oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rinse potato strands and bind lightly with flour",
+        "text": "Rinse grated potato strands twice in cold water, squeeze dry in a towel, and toss with green chillies, ginger, coriander, kalo jeere, chilli flakes, salt, besan, and cornflour/rice flour without adding water.",
+        "minutes": 5
+      },
+      {
+        "section": "Drop loose lacy clusters into hot oil",
+        "text": "Drop loose bird's-nest clusters into hot oil without compacting them and fry on medium flame until every potato strand is golden and ultra-crunchy.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Minimal flour and zero added water create a lacy, crackly potato texture."
   },
   {
     "id": "static-1362",
@@ -37075,6 +37728,60 @@
     "notes": "Always mash raw bananas while still hot, as they firm up quickly on cooling."
   },
   {
+    "id": "static-1497",
+    "name": "Kacha Peper Bora / Raw Papaya Fritters (Crispy Grated Green Papaya & Coconut Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Raw green papaya (kacha pepe), peeled and grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour) or soaked cholar dal paste",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & white poppy seeds (posto)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies, kalo jeere & turmeric",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze grated raw papaya and bind with coconut and flours",
+        "text": "Salt the grated raw papaya lightly for 5 minutes, squeeze out excess moisture, and mix with besan/dal paste, rice flour, grated coconut, poppy seeds, kalo jeere, ginger, and green chillies.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry golden patties in mustard oil",
+        "text": "Shape into small flat medallions and shallow-fry in hot mustard oil over medium heat until golden and crisp.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Turns humble everyday green papaya into a nutty, coconut-scented Bengali starter."
+  },
+  {
     "id": "static-0992",
     "name": "Kacha Tomato Bharta (Green Tomato Mash)",
     "category": "Vegetable Bharta",
@@ -37461,6 +38168,60 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Classic monsoon Bengali Kakrol Fry—pairs wonderfully with masoor dal and steamed rice."
+  },
+  {
+    "id": "static-1464",
+    "name": "Kakroler Bora / Kakrol Fritters (Crispy Batter-Fried Spiny Gourd / Teasle Gourd Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Spiny gourd (kakrol / kantola), cut into 1/4-inch round discs",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": " tbsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder & green chilli paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Par-steam or salt-soften kakrol rounds",
+        "text": "Lightly scrape the spiny outer skin of the kakrol, slice into even rounds, rub with salt and turmeric, and rest for 8 minutes (or steam for 2 minutes) so the interior cooks evenly.",
+        "minutes": 6
+      },
+      {
+        "section": "Dip in posto-studded batter and fry",
+        "text": "Whisk besan, rice flour, poppy seeds, kalo jeere, green chilli paste, turmeric, and water into a thick batter; coat each kakrol slice and deep-fry in mustard oil until nutty and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "The poppy seeds in the batter toast in the hot mustard oil, giving Kakroler Bora an unmistakable crunch."
   },
   {
     "id": "static-0555",
@@ -38144,6 +38905,60 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "Rich in iron and fibre; a staple Bengali comfort dish."
+  },
+  {
+    "id": "static-1476",
+    "name": "Kanchkolar Bora / Raw Banana Fritters (Crispy Plantain Slices & Spiced Mashed Plantain Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Raw green bananas (kanchkola), peeled and sliced thin lengthwise or diagonal",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & carom seeds (ajwain)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder & black pepper powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak peeled raw banana slices in turmeric water",
+        "text": "Slice peeled green plantains into thin lengthwise planks or diagonal ovals, soak in turmeric-salted water for 5 minutes to prevent darkening, and pat dry.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat in spiced besan-rice batter and fry",
+        "text": "Dip each slice into a smooth batter of besan, rice flour, kalo jeere, ajwain, turmeric, red chilli, black pepper, and salt, and deep-fry in hot oil until puffed and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Also known as Vazhakkai Bajji in South India and Kanchkolar Beguni in Bengali homes."
   },
   {
     "id": "static-1380",
@@ -40431,6 +41246,60 @@
     "notes": "Authentic Kolkata street-corner kochuri and petai porota accompaniment."
   },
   {
+    "id": "static-1483",
+    "name": "Kochu Patar Bora (Steamed & Pan-Fried Spiced Taro / Colocasia Leaf Rolls)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Tender colocasia / taro leaves (kochu pata), thick veins shaved",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Tamarind pulp or lemon juice (to neutralize itchiness)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Yellow mustard-poppy paste or roasted cumin-coriander spice mix",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White sesame seeds (til) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, turmeric, green chilli paste & salt",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Layer taro leaves with tangy spiced paste and steam",
+        "text": "Spread a thick paste of besan, rice flour, tamarind pulp, mustard-poppy paste, green chilli, turmeric, and salt over taro leaves, roll into a tight log, and steam for 12 minutes.",
+        "minutes": 14
+      },
+      {
+        "section": "Slice and shallow-fry with sesame and kalo jeere",
+        "text": "Cool the steamed roll, slice into 1/2-inch pinwheels, and shallow-fry in hot mustard oil tempered with sesame and kalo jeere until crisp on both faces.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Tamarind or lemon is essential when cooking kochu pata to neutralize calcium oxalate crystals."
+  },
+  {
     "id": "static-1051",
     "name": "Kochu Shak Chingri (Colocasia Stems & Greens with Prawns)",
     "category": "Prawns",
@@ -42382,6 +43251,60 @@
     "notes": "Delicate, shatteringly crisp Bengali pumpkin flower fry."
   },
   {
+    "id": "static-1469",
+    "name": "Kumro Phooler Bora (Bengali Crispy Pumpkin Blossom Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh pumpkin blossoms (kumro phool), stems and pistils removed",
+        "quantity": "12",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rice flour (chaler guro) or soaked ground gobindobhog rice paste",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, green chilli paste & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil (for shallow/deep frying)",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Clean and dry pumpkin flowers gently",
+        "text": "Snip off the spiky green calyx and inner stamen from each pumpkin blossom, rinse gently in cold water, and pat dry on a kitchen towel.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat in crisp rice-posto batter and fry",
+        "text": "Fold each blossom flat, dip into a batter of rice flour, besan, poppy seeds, kalo jeere, turmeric, green chilli paste, and salt, and fry in hot mustard oil until lace-crisp.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Using half rice flour and half besan keeps the delicate pumpkin blossoms crisp for longer."
+  },
+  {
     "id": "static-0523",
     "name": "Kumro Posto",
     "category": "Vegetable",
@@ -42559,6 +43482,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1468",
+    "name": "Kumror Bora / Mishti Kumro Fritters (Crispy Sweet Red Pumpkin Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Sweet red pumpkin (mishti kumro), peeled and cut into thin 1/4-inch wedges",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & white poppy seeds (posto)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder & pinch of sugar",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slice pumpkin thin and season",
+        "text": "Cut peeled sweet pumpkin into thin uniform slices and toss with a pinch of salt and turmeric.",
+        "minutes": 4
+      },
+      {
+        "section": "Dip in rice-besan batter and fry",
+        "text": "Whisk besan, rice flour, kalo jeere, posto, turmeric, chilli powder, a pinch of sugar, and water into a smooth batter; dip pumpkin slices and fry in medium-hot oil until tender inside and crisp outside.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "The sweet, creamy pumpkin interior contrasts beautifully with the savory kalo-jeere crust."
+  },
+  {
     "id": "static-1003",
     "name": "Kundru Bharta (Ivy Gourd / Tendli / Telakucha Mash)",
     "category": "Vegetable Bharta",
@@ -42660,6 +43637,60 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Slicing kundru thin and cooking uncovered keeps it crisp rather than soggy."
+  },
+  {
+    "id": "static-1496",
+    "name": "Kundrur Bora / Tendli Pakora (Crispy Batter-Fried Ivy Gourd Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Tender ivy gourd (kundru / kudri / tendli), sliced lengthwise into thin strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour & white sesame / poppy seeds",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli powder, roasted cumin & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-garlic or ginger-green chilli paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss lengthwise kundru strips with spices and flours",
+        "text": "Toss sliced ivy gourd with ginger-chilli paste, turmeric, Kashmiri red chilli, cumin, salt, besan, rice flour, and sesame/poppy seeds, sprinkling a little water so the dry batter coats each strip.",
+        "minutes": 5
+      },
+      {
+        "section": "Deep-fry until crisp and blistered",
+        "text": "Scatter the coated kundru strips into hot oil and fry over medium-high flame until crisp; toss with chaat masala before serving.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Makes an addictive crunchy side dish for dal-chawal or khichdi."
   },
   {
     "id": "static-1215",
@@ -43820,6 +44851,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1473",
+    "name": "Lauer Bora / Lau Khoshar Bora (Crispy Bottle Gourd & Bottle Gourd Peel Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Grated bottle gourd (lau) or julienned tender bottle gourd peel (lau khosha)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, turmeric & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil (for frying)",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze excess moisture and bind with flours",
+        "text": "Salt the grated bottle gourd (or finely shredded bottle gourd peel) for 5 minutes, squeeze out excess water, and mix with besan, rice flour, poppy seeds, kalo jeere, green chillies, and turmeric without adding extra water.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-fry or deep-fry crisp patties",
+        "text": "Shape into small flat discs and shallow-fry in hot mustard oil over medium heat until both sides are deep golden and crunchy.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Zero-waste Bengali home cooking that turns tender bottle gourd or its peel into a crunchy meal starter."
   },
   {
     "id": "static-1353",
@@ -50533,6 +51618,60 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1484",
+    "name": "Mochar Bora (Crispy Banana Blossom & Spiced Lentil Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Banana blossom florets (mocha), cleaned, boiled with turmeric and finely minced",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soaked cholar dal / motor dal paste (or besan)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & chopped green chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated ginger, roasted cumin powder & Bengali gorom moshla",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, sugar (pinch) & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix minced boiled mocha with lentil paste and coconut",
+        "text": "Squeeze excess water from boiled minced banana blossom and knead with coarse yellow split-pea paste (or besan), rice flour, grated coconut, ginger, green chillies, roasted cumin, and gorom moshla.",
+        "minutes": 10
+      },
+      {
+        "section": "Shape and fry until dark golden and crisp",
+        "text": "Shape into small oval or flat patties and shallow-fry in hot mustard oil until richly browned and crisp on the outside.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Unlike breadcrumb-coated Mochar Chop, Mochar Bora is bound with dal paste and rice flour for a rustic crunch."
+  },
+  {
     "id": "static-1061",
     "name": "Mochar Chingri (Banana Blossom with Prawns)",
     "category": "Prawns",
@@ -51892,6 +53031,60 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Earthy, aromatic winter Bengali Mulo Bhaja."
+  },
+  {
+    "id": "static-1490",
+    "name": "Mulor Bora / Radish Fritters (Crispy Grated Winter White Radish & Rice Flour Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "White radish (mulo), peeled and coarsely grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour) or soaked masoor dal paste",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & white poppy seeds (posto)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, fresh coriander leaves & grated ginger",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Salt-drain grated radish and mix with herbs",
+        "text": "Toss grated radish with ½ tsp salt, rest for 8 minutes, squeeze out excess liquid thoroughly, and mix with rice flour, besan, kalo jeere, poppy seeds, ginger, green chillies, and coriander.",
+        "minutes": 6
+      },
+      {
+        "section": "Flatten and shallow-fry in mustard oil",
+        "text": "Shape into small flat patties and fry in hot mustard oil over medium heat until deeply browned and crisp.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Squeezing the radish dry turns its sharp bite sweet and earthy once fried in mustard oil."
   },
   {
     "id": "static-0915",
@@ -53468,6 +54661,60 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Boiling with lemon juice removes any acridity and makes Ol Fry tender and delicious."
+  },
+  {
+    "id": "static-1491",
+    "name": "Oler Bora / Elephant Foot Yam Fritters (Crispy Spiced Suran & Coconut Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Elephant foot yam (ol / suran), boiled until tender and mashed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow mustard paste (shorshe bata) & grated coconut",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice (to remove acridity)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, grated ginger & kalo jeere",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, turmeric & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine mashed boiled yam with mustard, coconut and lemon",
+        "text": "Mash boiled ol with lemon juice, mustard paste, grated coconut, green chillies, ginger, kalo jeere, turmeric, salt, besan, and rice flour into a firm mixture.",
+        "minutes": 7
+      },
+      {
+        "section": "Shape and fry until crisp and golden",
+        "text": "Form into flat round cakes, dust lightly with rice flour or poppy seeds, and shallow-fry in hot mustard oil until both sides are crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "A traditional Bengali autumn specialty served with steaming rice and ghee."
   },
   {
     "id": "static-0226",
@@ -55881,6 +57128,60 @@
     "notes": "Adding 2 tbsp fine semolina keeps Palak Puris puffed and crisp for longer."
   },
   {
+    "id": "static-1479",
+    "name": "Palong Shaker Bora / Palak Pakora (Crispy Spinach Leaf Fritters)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Fresh spinach leaves (palong shak), whole tender leaves or roughly chopped",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & carom seeds (ajwain)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chopped green chillies, turmeric & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Wash and dry spinach leaves",
+        "text": "Wash tender spinach leaves thoroughly, drain off all excess moisture, and either keep whole leaves (for Palak Patta Chaat/Fritters) or chop coarsely.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat in spiced besan-rice batter and fry",
+        "text": "Dip whole leaves in a thin rice-besan batter (or bind chopped spinach with dry flours, kalo jeere, green chillies, and salt) and fry in hot mustard oil until emerald-green and shatteringly crisp.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Pairs wonderfully with hot masoor dal and steamed rice on winter afternoons."
+  },
+  {
     "id": "static-1212",
     "name": "Panch Phoron Aloor Torkari (Bengali Five-Spice Homestyle Potato Curry)",
     "category": "Vegetable",
@@ -55948,6 +57249,60 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "Simple, fragrant 5-spice Bengali potato curry that requires zero spice grinding."
+  },
+  {
+    "id": "static-1499",
+    "name": "Panchmishali Sabjir Bora / Mixed Vegetable Pakora (Crispy Five-Vegetable Bengali Telebhaja)",
+    "category": "Fritters",
+    "region": "Bengali / Indian",
+    "ingredients": [
+      {
+        "name": "Finely julienned potato, potol (pointed gourd), begun (eggplant), gajar (carrot) & cabbage",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, grated ginger, fresh coriander & roasted bhaja moshla",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, turmeric & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss julienned mixed vegetables with salt and aromatics",
+        "text": "Combine thin matchsticks of potato, potol, brinjal, carrot, and cabbage with salt, ginger, green chillies, coriander, kalo jeere, poppy seeds, and bhaja moshla; rest for 5 minutes.",
+        "minutes": 7
+      },
+      {
+        "section": "Bind with besan and rice flour and deep-fry",
+        "text": "Fold in besan and rice flour so the vegetables are lightly bound by their own moisture, then drop jagged clusters into medium-hot mustard oil and fry until golden and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "A classic Bengali rainy-evening telebhaja served with jhalmuri, kasundi, and adrak wali cha."
   },
   {
     "id": "static-1325",
@@ -57699,6 +59054,55 @@
     "notes": "Also known as Potol Bharta in West Bengal and Parwal Chokha in Bihar and eastern UP."
   },
   {
+    "id": "static-1481",
+    "name": "Patshaker Bora (Crispy Jute Leaf Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh tender jute leaves (pat shak), washed and pat-dried",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour) or soaked masoor dal paste",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), chopped green chillies & turmeric",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bundle or chop tender jute leaves",
+        "text": "Either stack 3-4 whole jute leaves into neat folded packets or chop the leaves coarsely and mix with green chillies, kalo jeere, turmeric, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat in crisp rice-flour batter and shallow-fry",
+        "text": "Dip leaf packets (or bind chopped leaves) in rice flour and besan batter and shallow-fry in hot mustard oil until crisp outside without turning mucilaginous.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Using a higher ratio of rice flour keeps jute leaf fritters extra crunchy."
+  },
+  {
     "id": "static-0899",
     "name": "Payasam (Ada Pradhaman)",
     "category": "Sweets",
@@ -58945,6 +60349,60 @@
     "notes": "Quick winter stir-fry pairing sweet onion stalks with savory scrambled fish roe."
   },
   {
+    "id": "static-1487",
+    "name": "Peyajkolir Bora / Spring Onion Stalk Fritters (Crispy Bengali Peyajkoli Pakora)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender green onion flower stalks (peyajkoli), cut into 1.5-inch pieces",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, turmeric & Kashmiri red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss peyajkoli sticks in spiced rice-besan batter",
+        "text": "Combine cut peyajkoli stalks with besan, rice flour, poppy seeds, kalo jeere, green chillies, turmeric, red chilli powder, salt, and a splash of water so a thick batter clings to the stalks.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry crisp bundles in hot mustard oil",
+        "text": "Drop small clusters of batter-coated peyajkoli into hot mustard oil and fry until the stalks are sweet-tender and the crust is golden and crunchy.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Sweet winter peyajkoli (onion scapes) make one of the crunchiest Bengali fritters."
+  },
+  {
     "id": "static-0755",
     "name": "Philly-Style Mushroom Sandwich",
     "category": "Sandwich",
@@ -59913,6 +61371,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1474",
+    "name": "Phulkopir Bora / Fulkopir Pakora (Bengali Crispy Batter-Fried Cauliflower Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower (phulkopi), cut into bite-sized florets",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour or cornflour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-green chilli paste, turmeric & roasted cumin-coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1",
+        "unit": "pinch"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch florets and season",
+        "text": "Blanch cauliflower florets in salted boiling water for 2 minutes, drain thoroughly, and toss with ginger-green chilli paste and roasted cumin powder.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip in posto-besan batter and deep-fry",
+        "text": "Whisk besan, rice flour, kalo jeere, poppy seeds, turmeric, salt, baking soda, and water into a thick batter; coat florets and fry in medium-hot mustard oil until crisp and golden.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "A beloved winter evening snack across Kolkata, served piping hot with kasundi and black salt."
+  },
+  {
     "id": "static-0812",
     "name": "Pineapple Juice",
     "category": "Beverage",
@@ -60839,6 +62356,60 @@
     "cookMinutes": 12,
     "servings": 3,
     "notes": "Nutty toasted poppy seeds give this Bengali potol fry a wonderful crunch."
+  },
+  {
+    "id": "static-1494",
+    "name": "Postor Bora (Authentic Bengali Crispy White Poppy Seed Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "White poppy seeds (posto), soaked for 30 minutes",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion (optional for niramish) & grated coconut",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies (2 ground with posto, 2 finely chopped)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rice flour (chaler guro) for binding",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & turmeric (optional)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind soaked poppy seeds into a coarse paste",
+        "text": "Grind soaked poppy seeds with 2 green chillies and minimal water on a shil-nora or mixer into a thick, slightly coarse paste; reserve 1 tbsp whole dry posto for crusting.",
+        "minutes": 6
+      },
+      {
+        "section": "Fold in aromatics and shallow-fry in mustard oil",
+        "text": "Mix the posto paste with chopped onion (or grated coconut for niramish), chopped green chillies, kalo jeere, rice flour, and salt; pat into small flat discs, coat with reserved whole posto, and shallow-fry in mustard oil until golden.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "One of the crown jewels of Rarh Bengal (Bankura-Birbhum-Burdwan) cuisine, eaten with hot steamed rice."
   },
   {
     "id": "static-0465",
@@ -62166,6 +63737,70 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1462",
+    "name": "Potoler Bora / Potol Fritters (Crispy Besan-Rice Flour Batter-Fried Pointed Gourd Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol / parwal), scraped in stripes and sliced lengthwise or butterflied",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & poppy seeds (posto)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil (for deep/shallow frying)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare and butterfly the potol",
+        "text": "Scrape the pointed gourds in alternating stripes, halve lengthwise, and make thin vertical fan cuts leaving one end intact (or slice into thin lengthwise slabs); rub with a pinch of salt and turmeric.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk crisp poppy-nigella batter",
+        "text": "Whisk besan, rice flour, kalo jeere, white poppy seeds, turmeric, red chilli powder, salt, and cold water into a smooth, medium-thick coating batter.",
+        "minutes": 4
+      },
+      {
+        "section": "Dip and fry until golden and crisp",
+        "text": "Dip each potol piece in the batter and fry in medium-hot mustard oil for 3-4 minutes per side until puffed, golden brown, and shatteringly crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Fan-cutting the potol (Potol Pata Bora style) creates lacy crispy edges that pair wonderfully with dal-bhat or evening cha."
   },
   {
     "id": "static-1068",
@@ -64778,6 +66413,60 @@
     "notes": "Refreshing mint-scented multi-layered paratha."
   },
   {
+    "id": "static-1482",
+    "name": "Pui Patar Bora (Crispy Malabar Spinach Leaf Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Large tender Malabar spinach leaves (pui pata), washed and dried",
+        "quantity": "15",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour) or soaked red lentil (masoor dal) paste",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chilli-ginger paste & turmeric powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fold pui leaves and whisk batter",
+        "text": "Whisk besan (or ground masoor dal), rice flour, poppy seeds, kalo jeere, green chilli-ginger paste, turmeric, and salt into a thick batter; coat and fold each fleshy pui leaf in half.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry in mustard oil until blistered and crisp",
+        "text": "Fry the coated Malabar spinach leaves in medium-hot mustard oil for 3 minutes per side until the outer crust is golden and crisp and the fleshy leaf inside is tender.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "The succulent texture of pui pata inside a crisp rice-posto crust is a classic rural Bengal favorite."
+  },
+  {
     "id": "static-1163",
     "name": "Pui Shak Diye Macher Dimer Chorchori (Malabar Spinach, Pumpkin & Fish Egg Medley)",
     "category": "Fish Roe",
@@ -65164,6 +66853,114 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "A traditional Bengali bhoj-style stuffed spiny gourd delicacy."
+  },
+  {
+    "id": "static-1465",
+    "name": "Pur Bhora Kakroler Bora (Mustard-Coconut Stuffed Spiny Gourd Batter Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Medium spiny gourds (kakrol), halved lengthwise and parboiled",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Yellow & black mustard paste (shorshe bata)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & poppy seed paste",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies & mustard oil (for stuffing)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour & besan batter with kalo jeere",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard oil (for frying) & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Hollow parboiled kakrol and fill with shorshe-narkel pur",
+        "text": "Boil halved kakrol in salted water for 4 minutes, scoop out the seeds, mash the soft pulp with mustard paste, poppy paste, grated coconut, green chillies, and salt, and pack back into the shells.",
+        "minutes": 10
+      },
+      {
+        "section": "Enrobe in crisp rice-besan batter and fry",
+        "text": "Dip each stuffed kakrol half in a thick rice-flour and besan batter and fry in hot mustard oil until the shell is golden and crisp.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "One of Bengal's most prized monsoon lunch accompaniments with plain rice and masoor dal."
+  },
+  {
+    "id": "static-1463",
+    "name": "Pur Bhora Potoler Bora (Spiced Mustard-Poppy Stuffed Pointed Gourd Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pointed gourd (potol), halved lengthwise and deseeded",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seed & yellow mustard paste (posto-shorshe bata)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated coconut & finely chopped green chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour (for batter)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), turmeric & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare the spiced posto-coconut stuffing",
+        "text": "Scoop out the tender seeds of halved potol, grind or mash them with poppy-mustard paste, grated coconut, green chillies, salt, and a drizzle of raw mustard oil, then stuff into the potol boats.",
+        "minutes": 8
+      },
+      {
+        "section": "Coat in seasoned rice-besan batter and fry",
+        "text": "Dip the stuffed potol halves (or sandwich two halves together) into a thick besan, rice flour, and kalo jeere batter and fry in medium-hot mustard oil until crisp and golden.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "A traditional Bengali Thakurbarir-style delicacy served with hot steamed rice and Gondhoraj lebu."
   },
   {
     "id": "static-0895",
@@ -69503,6 +71300,60 @@
     "notes": "Seasonal early-spring Bengali specialty combining nutrient-rich moringa flowers with fish roe."
   },
   {
+    "id": "static-1471",
+    "name": "Sajne Phooler Bora (Crispy Drumstick / Moringa Blossom Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh drumstick blossoms (sajne phool), cleaned and rinsed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped green chillies & grated ginger",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder, mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss blossoms with flour, posto and spices",
+        "text": "Drain the cleaned moringa flowers well and mix with besan, rice flour, poppy seeds, kalo jeere, chopped green chillies, ginger, turmeric, and salt, sprinkling just enough water to bind into tight clusters.",
+        "minutes": 6
+      },
+      {
+        "section": "Flatten and shallow-fry until crunchy",
+        "text": "Shape into small flat medallions and shallow-fry in hot mustard oil over medium-low heat until nutty, golden brown, and crisp.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Prepared in late winter and spring across West Bengal during seasonal transition (ritu paribartan)."
+  },
+  {
     "id": "static-0803",
     "name": "Salted Lassi",
     "category": "Beverage",
@@ -70637,6 +72488,60 @@
     "notes": "Indo-Chinese favorite blending fluffy fried rice and smoky chowmin noodles in a single wok."
   },
   {
+    "id": "static-1486",
+    "name": "Shaplar Bora / Water Lily Stem Fritters (Crispy Bengali Shapla & Posto Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Water lily stems (shapla), peeled, cut into 2-inch sticks or finely chopped",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour) or soaked masoor dal paste",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "White poppy seeds (posto) & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chilli paste, grated coconut & turmeric powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Salt-squeeze shapla stems to remove excess water",
+        "text": "Peel the fibrous outer skin off the water lily stems, chop finely (or bundle 3-inch sticks into rafts with toothpicks), salt for 10 minutes, and squeeze out excess water.",
+        "minutes": 8
+      },
+      {
+        "section": "Bind with rice flour, posto and coconut and fry",
+        "text": "Mix with rice flour, besan/dal paste, poppy seeds, kalo jeere, grated coconut, green chilli paste, and turmeric, and shallow-fry in hot mustard oil until crisp.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "A monsoon specialty from Bengal's wetlands when fresh pink and white shapla stems flood local markets."
+  },
+  {
     "id": "static-0985",
     "name": "Shim Bharta (Flat Beans Mash)",
     "category": "Vegetable Bharta",
@@ -70945,6 +72850,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1488",
+    "name": "Simer Bora / Pur Bhora Sheem Fritters (Mustard-Poppy Stuffed Winter Flat Bean Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Broad winter flat beans (sheem / sim), strings removed and slit along one seam",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow mustard & poppy seed paste (shorshe-posto bata) with green chillies",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated coconut & chopped coriander leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour) & rice flour",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), turmeric & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil (for frying)",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch flat beans lightly and stuff with shorshe-posto",
+        "text": "Steam or blanch destringed whole sheem in salted water for 2 minutes, slit open one side like a pocket, and fill with mustard-poppy paste, grated coconut, green chilli, and coriander.",
+        "minutes": 8
+      },
+      {
+        "section": "Dip in kalo-jeere rice-besan batter and fry",
+        "text": "Dip each stuffed flat bean in a smooth batter of besan, rice flour, kalo jeere, turmeric, and salt, and fry in hot mustard oil until golden and crisp.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "A beloved winter delicacy in Bengali households when fleshy broad sheem arrives in the market."
   },
   {
     "id": "static-1436",
@@ -76818,6 +78777,60 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1485",
+    "name": "Thorer Bora (Crispy Banana Stem, Posto & Grated Coconut Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender inner banana stem (thor), peeled, de-fibered and finely minced",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soaked motor dal / masoor dal paste or besan",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White poppy seeds (posto) & grated coconut",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped green chillies, grated ginger, kalo jeere & turmeric",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "0.75",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "De-fiber banana stem and mix with posto and dal paste",
+        "text": "Slice banana stem rings, wind away the loose fibers around your finger, mince finely, squeeze dry with salt, and combine with dal paste/besan, rice flour, posto, coconut, ginger, and green chillies.",
+        "minutes": 10
+      },
+      {
+        "section": "Shallow-fry crisp golden patties",
+        "text": "Flatten into small medallions and shallow-fry in hot mustard oil over medium heat until golden brown on both sides.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Fiber-rich and crunchy, Thorer Bora is a traditional Bengali niramish starter before dal and shukto."
+  },
+  {
     "id": "static-0861",
     "name": "Til Ladoo",
     "category": "Sweets",
@@ -78542,6 +80555,60 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "Traditional Bengali lunch opener balancing bitter ucche with rich fish roe."
+  },
+  {
+    "id": "static-1478",
+    "name": "Uchhe / Korolar Bora (Crispy Batter-Fried Bitter Gourd Ring Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Bitter gourd (korola / uchhe), sliced into thin rings and deseeded",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fennel-nigella seeds (mouri-kalo jeere) & white sesame or poppy seeds",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli powder & amchur (dry mango powder)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Salt-cure bitter gourd rings to mellow bitterness",
+        "text": "Rub thin korola rings with salt and turmeric, rest for 12 minutes, squeeze out the bitter juice, and pat dry.",
+        "minutes": 8
+      },
+      {
+        "section": "Toss in spiced rice-besan batter and fry crisp",
+        "text": "Coat the rings in a thick batter of besan, rice flour, kalo jeere, poppy/sesame seeds, red chilli powder, and amchur, and fry in medium-hot mustard oil until crunchy like chips.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Served as the traditional shukto/teto (bitter) first course in a Bengali lunch."
   },
   {
     "id": "static-1303",
