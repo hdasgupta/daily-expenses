@@ -1976,6 +1976,60 @@
     "notes": "Winter staple in Bengali homes."
   },
   {
+    "id": "static-1513",
+    "name": "Aloo Phulkopi Bori Jhol (Winter Cauliflower, New Potato & Fried Bori Light Cumin-Ginger Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Cauliflower florets (phulkopi) & quartered new potatoes (notun aloo)",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori or motor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whole cumin, bay leaf, grated ginger & slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tomato, quartered & fresh coriander leaves",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Turmeric, cumin powder, coriander powder & ghee (1 tsp)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and golden-roast cauliflower florets",
+        "text": "Fry the bori in mustard oil until golden and set aside; pan-roast cauliflower florets and potato wedges with a pinch of turmeric and salt until lightly browned.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer in ginger-cumin gravy with fried bori",
+        "text": "Temper oil with cumin and bay leaf, cook ginger paste, tomato, cumin-coriander powder, and turmeric, add 1.5 cups warm water, potatoes, cauliflower, and fried bori, and simmer until tender; finish with coriander and ghee.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "A classic winter Bengali household curry that pairs with both steamed rice and hot rotis."
+  },
+  {
     "id": "static-1220",
     "name": "Aloo Phulkopi Dalna (Bengali Roasted Cauliflower & Potato Curry)",
     "category": "Vegetable",
@@ -12048,6 +12102,325 @@
     "notes": "Can also be made with regular French beans (Beans Bharta)."
   },
   {
+    "id": "static-1504",
+    "name": "Bori Begun Shorshe Jhal (Eggplant & Fried Lentil Dumplings in Pungent Mustard Gravy)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Eggplant (begun), cut into long wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Yellow & black mustard seeds ground with 1 tsp posto & 2 green chillies",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and begun wedges separately",
+        "text": "Fry the bori in hot mustard oil until golden and set aside; rub eggplant wedges with salt and turmeric and pan-fry in the same oil until golden on both sides.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer in strained mustard gravy",
+        "text": "Temper oil with kalo jeere, add turmeric, red chilli, and mustard-poppy paste diluted with ¾ cup warm water; bring to a boil, add fried bori and eggplant for 3 minutes, and drizzle raw mustard oil on top.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "The spongy fried bori absorb the sharp mustard gravy just like fish pieces in a classic Bengali jhal."
+  },
+  {
+    "id": "static-1500",
+    "name": "Bori Bhaja (Crispy Mustard-Oil Fried Sun-Dried Lentil Dumplings & Crushed Bori Bhaja)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Biulir daler bori or motor daler bori (sun-dried urad or yellow pea dumplings)",
+        "quantity": "15",
+        "unit": "pcs"
+      },
+      {
+        "name": "White poppy seeds (posto) or nigella seeds (kalo jeere)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dry red chilli & green chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry sun-dried bori in smoking mustard oil",
+        "text": "Heat mustard oil in a kadai until lightly smoking, reduce flame to low, and fry the sun-dried lentil dumplings (bori) turning constantly for 2-3 minutes until evenly golden-red and nutty without burning.",
+        "minutes": 4
+      },
+      {
+        "section": "Toast posto and serve whole or coarsely crushed",
+        "text": "In the remaining oil, crackle a dry red chilli and 1 tsp poppy seeds, toss the fried bori in the seasoned oil with a pinch of salt, and serve either whole and crunchy or lightly crushed over hot ghee-bhat and dal.",
+        "minutes": 2
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 6,
+    "servings": 4,
+    "notes": "Because sun-dried bori are porous and airy, always fry them on low-to-medium heat as they brown in seconds."
+  },
+  {
+    "id": "static-1503",
+    "name": "Bori Bharta / Bori Bata (Crushed Fried Lentil Dumpling Mash with Mustard Oil, Onion & Green Chilli)",
+    "category": "Vegetable Bharta",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Masoor daler bori or biulir daler bori",
+        "quantity": "15",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, finely chopped (or 4 cloves garlic for garlic-style)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Dry red chillies (2) & fresh green chillies (2)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh coriander leaves, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pungent mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and dry red chillies",
+        "text": "Fry the sun-dried bori and whole dry red chillies in mustard oil over low flame until crisp and deep golden; let cool slightly.",
+        "minutes": 5
+      },
+      {
+        "section": "Crush coarsely and toss with onion, coriander and raw mustard oil",
+        "text": "Crush the fried bori and roasted dry chillies with salt by hand or mortar into a coarse, crumbly mash, then fold in finely chopped raw onion, green chillies, coriander leaves, and 1 tbsp raw mustard oil.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 5,
+    "cookMinutes": 8,
+    "servings": 4,
+    "notes": "Mix right before serving with hot steamed rice so the crushed bori stays irresistibly crunchy."
+  },
+  {
+    "id": "static-1524",
+    "name": "Bori Diye Masoor Dal (Bengali Red Lentil Dal Tempered with Panch Phoron & Fried Masoor Bori)",
+    "category": "Dal",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Red lentils (masoor dal), washed",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Masoor daler bori or biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron (or kalo jeere), dry red chilli & bay leaf",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tomato (1 small, quartered), slit green chillies & fresh coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil masoor dal and fry bori golden",
+        "text": "Boil washed masoor dal with turmeric and salt until smooth and whisk lightly; in a separate pan, fry the bori in mustard oil until golden-red and remove.",
+        "minutes": 12
+      },
+      {
+        "section": "Temper dal with panch phoron and simmer with fried bori",
+        "text": "Crackle dry red chilli, bay leaf, and panch phoron in the hot oil, sauté tomato quarters and green chillies for 2 minutes, pour in the boiled dal and fried bori, simmer 3 minutes, and garnish with coriander.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Small nutty Masoor Daler Bori floating in light red lentil dal make a complete Bengali comfort meal."
+  },
+  {
+    "id": "static-1525",
+    "name": "Bori Diye Tetor Dal / Uchhe Bori Moong Dal (Roasted Moong Dal with Bitter Gourd & Fried Bori)",
+    "category": "Dal",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Yellow moong dal (sona moong dal)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Bitter gourd (uchhe), cut into thin rounds",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Radhuni (0.5 tsp), panch phoron (0.5 tsp), bay leaf & dry red chilli",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger, turmeric & ghee (1 tsp)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast and boil moong dal; fry bori and uchhe",
+        "text": "Dry-roast sona moong dal until fragrant and boil with turmeric and salt; separately fry the bori and bitter gourd rings in mustard oil until golden and set aside.",
+        "minutes": 14
+      },
+      {
+        "section": "Temper with radhuni and ginger and simmer with bori",
+        "text": "Temper oil with bay leaf, dry red chilli, radhuni, panch phoron, and grated ginger, pour in the boiled moong dal, add fried bori and bitter gourd, simmer 3 minutes, and finish with 1 tsp ghee.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "A traditional summer Bengali lunch dal where fried bori balances the gentle bitterness of uchhe."
+  },
+  {
+    "id": "static-1502",
+    "name": "Bori Posto (Bengali Fried Lentil Dumplings & Potato in Creamy Poppy Seed Paste)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Biulir daler bori (sun-dried urad dal dumplings)",
+        "quantity": "12",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes, peeled and cut into medium cubes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground with 2 green chillies",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori golden and sauté potato cubes",
+        "text": "Fry the bori in 2 tbsp mustard oil until golden-brown and remove; temper the same oil with kalo jeere and fry potato cubes with a pinch of salt until 80% tender.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer with posto bata and fold in fried bori",
+        "text": "Add freshly ground poppy-green chilli paste and ½ cup warm water, cook until the potatoes are soft, fold in the fried bori (crushing 2-3 for texture) for the final 2 minutes, and finish with 1 tbsp raw mustard oil.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Adding the fried bori near the end lets them soak up the creamy posto gravy while retaining a slight bite in the center."
+  },
+  {
     "id": "static-1387",
     "name": "Boro Nimki / Konakriti Flaky Layered Triangular Bengali Nimki",
     "category": "Snacks",
@@ -13232,6 +13605,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1511",
+    "name": "Chalkumro Bori Ghonto (Ash Gourd & Crushed Fried Lentil Dumplings with Grated Coconut)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Ash gourd (chalkumro), peeled and finely grated or julienned",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori or motor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh grated coconut",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole cumin, bay leaf, ginger paste & slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder, rice flour (1 tsp), ghee (1 tsp), sugar & salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and temper cumin and bay leaf",
+        "text": "Fry the bori in mustard oil until golden-brown, set aside, and crush half of them; temper the oil with bay leaf and whole cumin seeds.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook ash gourd with coconut and finish with bori",
+        "text": "Add julienned ash gourd, ginger paste, turmeric, cumin powder, grated coconut, and salt; cook covered until soft, stir in 1 tsp rice-flour slurry, sugar, ghee, and the whole and crushed fried bori.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Grated coconut and nutty fried bori transform mild ash gourd into a rich niramish dish."
   },
   {
     "id": "static-1024",
@@ -33844,6 +34271,45 @@
     "notes": "Signature Andhra delicacy pairing the natural tang of sorrel leaves with sweet, juicy prawns."
   },
   {
+    "id": "static-1501",
+    "name": "Goyna Bori Bhaja (Crispy Fried Medinipur Ornamental Filigree Lentil Dumplings with Poppy Seeds)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Medinipur Goyna Bori / Nakshi Bori (ornamental poppy-crusted urad dal dumplings)",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil or ghee-mustard oil blend",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt (optional)",
+        "quantity": "1",
+        "unit": "pinch"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Heat oil to medium-low",
+        "text": "Heat mustard oil (or half mustard oil and half gama/cow ghee) in a flat pan until hot, then lower the flame so the delicate filigree patterns do not scorch.",
+        "minutes": 2
+      },
+      {
+        "section": "Baste and fry Goyna Bori gently",
+        "text": "Slide 2-3 Goyna Bori in at a time, spoon warm oil over the top, and flip gently after 45 seconds until pale golden and crisp; drain on paper towels.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 2,
+    "cookMinutes": 5,
+    "servings": 4,
+    "notes": "A GI-tagged culinary art form from Purba and Paschim Medinipur, shaped like traditional Bengali jewelry and eaten whole as a crunchy accompaniment to steamed rice and dal."
+  },
+  {
     "id": "static-0936",
     "name": "Green Chilli Omelette",
     "category": "Breakfast",
@@ -35832,6 +36298,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1527",
+    "name": "Ilish Begun Bori Jhol (Hilsa Fish, Eggplant & Fried Lentil Dumpling Kalo-Jeere Light Broth)",
+    "category": "Fish",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Hilsa fish (ilish mach) steaks, rubbed with salt and turmeric",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Eggplant (begun), cut into long wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, eggplant and lightly sear Hilsa",
+        "text": "In smoking mustard oil, fry the bori until golden-red and remove; lightly pan-fry the eggplant wedges and lightly sear the Hilsa steaks for 1 minute per side.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer aromatic kalo-jeere broth",
+        "text": "Temper the remaining ilish-scented mustard oil with kalo jeere and slit green chillies, add turmeric, chilli powder, and 1.5 cups warm water; once boiling, add Hilsa, fried bori, and eggplant and simmer 5 minutes.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "No onion, garlic, or heavy spices are used so the delicate aroma of Hilsa and fried bori shines through."
+  },
+  {
     "id": "static-1120",
     "name": "Ilish Macher Dimer Bora (Hilsa Fish Egg Fritters)",
     "category": "Fish Roe",
@@ -36532,6 +37052,60 @@
     "cookMinutes": 20,
     "servings": 6,
     "notes": "Fiery Bengali jhal chanachur ideal for rainy-day chai or mixing into spicy jhalmuri."
+  },
+  {
+    "id": "static-1516",
+    "name": "Jhinge Aloo Bori Posto (Ridge Gourd, Potato & Fried Lentil Dumplings in Poppy Seed Paste)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender ridge gourd (jhinge), peeled in stripes and cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground with 2 green chillies",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté potatoes and jhinge",
+        "text": "Fry the bori in mustard oil until crisp and golden, then remove; temper oil with kalo jeere, fry potato cubes for 4 minutes, then add ridge gourd cubes and cook until softened.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold in posto bata and fried bori",
+        "text": "Stir in freshly ground poppy-green chilli paste, salt, and ¼ cup water, add the fried bori, and simmer for 3-4 minutes until the posto coats the vegetables and bori.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "The fried bori soak up the sweet juices released by the ridge gourd and poppy seed paste."
   },
   {
     "id": "static-1047",
@@ -38797,6 +39371,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1515",
+    "name": "Kanchkola Bori Jhol (Raw Plantain, Potato & Fried Lentil Dumpling Digestive Broth)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Raw green bananas (kanchkola), peeled and cut into wedges",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes, peeled and cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whole cumin, radhuni (0.5 tsp), bay leaf & grated ginger",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder, coriander powder & ghee (1 tsp)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak raw banana in turmeric water and fry bori",
+        "text": "Soak cut kanchkola in turmeric water to prevent blackening; fry the bori in mustard oil until golden and set aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer light cumin-radhuni broth with bori",
+        "text": "Temper oil with cumin, radhuni, and bay leaf, sauté potatoes and kanchkola with ginger, cumin-coriander powder, and turmeric, add 2 cups warm water, and simmer with fried bori until tender; finish with 1 tsp ghee.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Light, wholesome, and soothing on the stomach, ideal for everyday Bengali lunches."
   },
   {
     "id": "static-1309",
@@ -41561,6 +42189,60 @@
     "notes": "Creamy texture that pairs wonderfully with plain masoor or moong dal."
   },
   {
+    "id": "static-1530",
+    "name": "Koi Phulkopi Bori Jhol (Climbing Perch, Winter Cauliflower & Fried Bori Light Curry)",
+    "category": "Fish",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Koi mach (climbing perch), cleaned, scored and rubbed with turmeric & salt",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cauliflower florets (phulkopi) & potato wedges",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whole cumin, bay leaf, ginger paste & slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder & roasted jeere-dhone bhaja moshla",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, cauliflower and koi fish",
+        "text": "Fry the bori in mustard oil until golden and remove; golden-roast the cauliflower florets and potato wedges, then fry the scored koi fish until golden brown.",
+        "minutes": 9
+      },
+      {
+        "section": "Simmer winter jhol and finish with bhaja moshla",
+        "text": "Temper oil with whole cumin and bay leaf, cook ginger paste, turmeric, and cumin powder, add 2 cups warm water, potatoes, cauliflower, koi fish, and fried bori, and simmer until tender; sprinkle roasted cumin-coriander powder.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "One of Bengal's most celebrated winter fish curries combining Koi mach, fresh phulkopi, and bori."
+  },
+  {
     "id": "static-0823",
     "name": "Kokum Sharbat",
     "category": "Beverage",
@@ -43364,6 +44046,114 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1512",
+    "name": "Kumro Pui Shak Bori Chorchori (Malabar Spinach, Sweet Red Pumpkin & Bori Panch-Phoron Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Malabar spinach leaves and tender stems (pui shak), chopped",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Sweet red pumpkin (mishti kumro) & potato, cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori or masoor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron, dry red chilli & bay leaf",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard paste (1 tbsp), ginger paste, turmeric & cumin powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, sugar (0.5 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté pumpkin, potato and pui stems",
+        "text": "Fry the bori in mustard oil until crisp and remove; temper oil with panch phoron, dry red chilli, and bay leaf, then sauté potato, pumpkin, and thick pui stems with ginger, turmeric, and cumin.",
+        "minutes": 9
+      },
+      {
+        "section": "Wilt pui leaves with mustard paste and fold in bori",
+        "text": "Add chopped pui leaves, salt, and 1 tbsp mustard paste, cover until stems are tender, and fold in the fried bori (half whole, half crushed) and a pinch of sugar.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "The sweetness of red pumpkin balances the earthy Malabar spinach and crispy fried lentil dumplings."
+  },
+  {
+    "id": "static-1523",
+    "name": "Kumro Shak Bori Chorchori (Pumpkin Vine Greens, Stems, Potato & Crushed Bori Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender pumpkin vine leaves and stems (kumro shak), strings peeled and chopped",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Sweet pumpkin, potato & brinjal cubes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Biulir daler bori or masoor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron, dry red chilli & mustard-poppy paste (1.5 tbsp)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, slit green chillies, sugar & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté vegetables with panch phoron",
+        "text": "Fry the bori in mustard oil until golden-brown and set aside; temper oil with panch phoron and dry red chilli, and sauté potato, sweet pumpkin, brinjal, and pumpkin stems.",
+        "minutes": 8
+      },
+      {
+        "section": "Braise pumpkin greens with mustard-poppy paste and bori",
+        "text": "Add pumpkin leaves, turmeric, salt, and mustard-poppy paste, cover and cook until tender, and finish with half-crushed fried bori and a pinch of sugar.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Peeling the fibrous outer strings off the pumpkin vine stems ensures a melt-in-the-mouth chorchori."
+  },
+  {
     "id": "static-0532",
     "name": "Kumro Shorshe",
     "category": "Vegetable",
@@ -43894,6 +44684,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1520",
+    "name": "Lal Shak Bori Bhaja (Red Amaranth Greens Stir-Fried with Crushed Crispy Bori & Peanuts)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Red amaranth greens (lal shak), washed thoroughly and finely chopped",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori or masoor daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Raw peanuts (optional) & white poppy seeds (posto)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), dry red chillies & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, sugar (pinch) & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and peanuts and crush bori coarsely",
+        "text": "Fry the bori (and peanuts if using) in mustard oil until crisp and golden, remove, and coarsely crush the fried bori.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry lal shak with kalo jeere and top with crushed bori",
+        "text": "Temper oil with dry red chilli and kalo jeere, add chopped lal shak and salt, cook until wilted and dry, and toss with crushed fried bori and toasted poppy seeds right before serving.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "An everyday Bengali first-course shak dish where crispy crushed bori adds irresistible texture."
+  },
+  {
     "id": "static-0838",
     "name": "Langcha",
     "category": "Sweets",
@@ -44069,6 +44908,65 @@
     "cookMinutes": 20,
     "servings": 2,
     "notes": "Light, cooling, and easy to digest."
+  },
+  {
+    "id": "static-1505",
+    "name": "Lau Bori Ghonto (Bengali Bottle Gourd Mash with Crushed Fried Biulir Daler Bori & Coriander)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender bottle gourd (lau), peeled and finely julienned",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori (sun-dried urad dal dumplings)",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whole cumin seeds, bay leaf & dry red chilli (or radhuni)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger, turmeric & cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves, slit green chillies & 1 tsp ghee/flour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, sugar (0.5 tsp) & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and temper cumin and bay leaf",
+        "text": "Fry the bori in mustard oil until deep golden, remove, and crush half of them coarsely; in the same oil, crackle bay leaf, dry red chilli, and whole cumin seeds.",
+        "minutes": 5
+      },
+      {
+        "section": "Slow-cook julienned bottle gourd in its own juice",
+        "text": "Add finely chopped bottle gourd, grated ginger, turmeric, cumin powder, green chillies, and salt; cover and cook over medium-low heat without adding water until soft and melted.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold in whole and crushed bori with coriander",
+        "text": "Stir in a pinch of sugar, both whole and crushed fried bori, and chopped fresh coriander leaves; simmer 2 minutes until cohesive.",
+        "minutes": 3
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "A cooling, quintessential Bengali summer lunch dish where crushed bori thickens the delicate bottle gourd juices."
   },
   {
     "id": "static-1056",
@@ -44733,6 +45631,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1522",
+    "name": "Lau Shak Bori Chorchori (Bottle Gourd Greens, Stems, Potato & Fried Bori in Poppy-Mustard Paste)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender bottle gourd leaves and stems (lau shak), peeled and chopped",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes & brinjal, cut into lengthwise wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "White poppy seed & mustard paste (posto-shorshe bata)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), dry red chilli, turmeric & green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, sugar (0.5 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté potato, brinjal and lau stems",
+        "text": "Fry the bori in mustard oil until golden and remove; temper oil with kalo jeere and dry red chilli, and fry potato wedges, brinjal, and peeled bottle gourd stems.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer with lau leaves, posto-shorshe and fried bori",
+        "text": "Add chopped bottle gourd leaves, salt, turmeric, and posto-shorshe paste with ¼ cup water; cook covered until soft, then fold in fried bori and a drizzle of raw mustard oil.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Soft bottle gourd greens and crisp-chewy bori in poppy-mustard paste are a staple of Bengali home cooking."
   },
   {
     "id": "static-0423",
@@ -51564,6 +52516,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1518",
+    "name": "Mocha Bori Ghonto (Banana Blossom & Crushed Fried Motor Daler Bori Traditional Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Banana blossom florets (mocha), cleaned, boiled with turmeric and chopped",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Motor daler bori or biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potato, cut into small cubes & fresh grated coconut",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole cumin, bay leaf, ginger paste, turmeric & cumin powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (1 tbsp), Bengali gorom moshla, sugar & salt",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and potato cubes",
+        "text": "Fry the bori in mustard oil until crisp and golden, then crush half into coarse pieces; in the same oil, temper bay leaf and cumin and fry small potato cubes until golden.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook boiled mocha with coconut, spices and bori",
+        "text": "Add ginger paste, turmeric, cumin powder, grated coconut, and boiled chopped mocha; cook until cohesive, then fold in whole and crushed fried bori, sugar, ghee, and gorom moshla.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Crushed Motor Daler Bori adds a nutty crunch that complements the iron-rich banana blossom."
+  },
+  {
     "id": "static-0788",
     "name": "Mocha Coffee",
     "category": "Coffee",
@@ -52984,6 +53990,60 @@
     "notes": "A popular winter Bengali side dish served with steamed rice."
   },
   {
+    "id": "static-1507",
+    "name": "Mulo Bori Begun Jhol (Winter White Radish, Brinjal & Fried Lentil Dumpling Light Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "White radish (mulo), peeled and cut into wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggplant (begun) & potato, cut into lengthwise wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron (or kalo jeere), slit green chillies & grated ginger",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder & fresh coriander leaves",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch radish and fry bori and brinjal",
+        "text": "Parboil radish wedges for 3 minutes and drain; fry the bori and brinjal wedges separately in mustard oil until golden and keep aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer light ginger-cumin broth with bori",
+        "text": "Temper oil with panch phoron, fry potato and blanched radish with ginger, turmeric, and cumin powder, add 1.5 cups warm water, and simmer with fried bori, brinjal, green chillies, and coriander until tender.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Comforting winter afternoon jhol that highlights the earthy sweetness of new-season radish and nutty bori."
+  },
+  {
     "id": "static-1315",
     "name": "Mulo Fry / Mulo Bhaja (Bengali Grated White Radish Stir-Fry)",
     "category": "Vegetable",
@@ -54302,6 +55362,60 @@
     "cookMinutes": 25,
     "servings": 4,
     "notes": "Signature Bengali winter sweet made with aromatic new-season Nolen Gur."
+  },
+  {
+    "id": "static-1521",
+    "name": "Note Shak Bori Chorchori (Green Amaranth Stems, Potato, Pumpkin & Fried Lentil Dumpling Chorchori)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Green amaranth leaves and tender stems (note shak), cut into 2-inch pieces",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, sweet pumpkin & brinjal, cubed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron, dry red chilli & yellow mustard-poppy paste (1.5 tbsp)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, slit green chillies, sugar (0.5 tsp) & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté vegetables and amaranth stems",
+        "text": "Fry the bori in mustard oil until golden and set aside; temper oil with panch phoron and dry red chilli, and sauté potato, pumpkin, brinjal, and tender note shak stems with turmeric and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook with amaranth leaves, mustard-poppy paste and bori",
+        "text": "Add the chopped note shak leaves, mustard-poppy paste, green chillies, and a splash of water; cook covered until tender and fold in the fried bori and a pinch of sugar.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "A rustic Bengali summer chorchori that celebrates tender amaranth stems and sun-dried bori."
   },
   {
     "id": "static-1208",
@@ -56720,6 +57834,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1528",
+    "name": "Pabda Macher Tel Bori Jhol (Pabda Catfish with Fried Bori, Eggplant & Fresh Coriander)",
+    "category": "Fish",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Pabda fish (Indian butter catfish), cleaned and rubbed with salt and turmeric",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Eggplant (begun) wedges & tomato quarters",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, cumin powder & fresh coriander leaves",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, eggplant and pabda fish",
+        "text": "Fry the bori in hot mustard oil until golden and remove; fry eggplant wedges and set aside, then carefully fry pabda fish (covered to prevent spluttering) until lightly golden.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer tel-jhol with kalo jeere, bori and coriander",
+        "text": "Temper oil with kalo jeere and green chillies, sauté tomato quarters with turmeric, cumin, and Kashmiri chilli powder, add 1.25 cups warm water, and simmer pabda fish, fried bori, and brinjal for 4 minutes; top with chopped coriander.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Winter coriander leaves, kalo jeere, and fried bori make Pabda Tel Bori Jhol a Sunday lunch classic."
+  },
+  {
     "id": "static-0434",
     "name": "Pabda Paturi",
     "category": "Fish",
@@ -57126,6 +58294,60 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Adding 2 tbsp fine semolina keeps Palak Puris puffed and crisp for longer."
+  },
+  {
+    "id": "static-1506",
+    "name": "Palong Shak Bori Ghonto (Winter Spinach, Eggplant, Radish & Fried Lentil Dumpling Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh winter spinach (palong shak), washed and chopped",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori or motor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Diced potato, sweet pumpkin (kumro), white radish (mulo), brinjal & flat beans (sheem)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice), bay leaf & dry red chilli",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger, turmeric & roasted cumin-coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, sugar (0.5 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté winter vegetables with panch phoron",
+        "text": "Fry the bori in mustard oil until crisp and golden, then set aside; temper the oil with bay leaf, dry red chilli, and panch phoron, and sauté potato, radish, flat beans, pumpkin, and brinjal with ginger and turmeric.",
+        "minutes": 9
+      },
+      {
+        "section": "Wilt spinach and finish with crushed fried bori",
+        "text": "Add chopped palong shak, salt, and roasted cumin powder, cover until the vegetables are tender in the spinach's moisture, and fold in whole and half-crushed fried bori with a touch of sugar.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Fried bori is the signature finishing touch of a winter Bengali Palong Shaker Ghonto."
   },
   {
     "id": "static-1479",
@@ -59719,6 +60941,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1517",
+    "name": "Pepe Aloo Bori Dalna (Green Papaya, Potato & Fried Lentil Dumpling Homestyle Curry)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Raw green papaya (kacha pepe), peeled and cut into medium cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Biulir daler bori or motor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whole cumin, bay leaf, dry red chilli & ginger paste",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tomato (1), turmeric, cumin-coriander powder, Bengali gorom moshla & ghee",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, sugar (0.5 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sear papaya and potato cubes",
+        "text": "Fry the bori in mustard oil until golden-brown and set aside; temper oil with cumin, bay leaf, and dry red chilli, and fry papaya and potato cubes until lightly golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer spiced dalna and finish with bori, ghee and gorom moshla",
+        "text": "Add ginger paste, chopped tomato, turmeric, and cumin-coriander powder, pour in 1.5 cups warm water, cook covered until papaya is fork-tender, and finish with fried bori, sugar, ghee, and gorom moshla.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Adding fried bori and ghee turns humble green papaya into a comforting Bengali dalna."
   },
   {
     "id": "static-0998",
@@ -70352,6 +71628,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1526",
+    "name": "Rui Macher Jhol Aloo Bori Begun Diye (Rohu Fish, Potato, Brinjal & Bori Homestyle Bengali Jhol)",
+    "category": "Fish",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Rohu fish (rui mach) steaks, rubbed with turmeric and salt",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes & eggplant (begun), cut into lengthwise wedges",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) or whole cumin, bay leaf & slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger paste, cumin powder, coriander powder, turmeric & fresh coriander",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, brinjal and Rohu steaks in mustard oil",
+        "text": "Heat mustard oil until smoking; fry the bori first until golden and remove, fry the eggplant wedges and remove, then fry the Rohu fish steaks until golden on both sides.",
+        "minutes": 9
+      },
+      {
+        "section": "Simmer potato-cumin broth with fish, bori and brinjal",
+        "text": "Temper oil with kalo jeere/cumin and bay leaf, fry potato wedges with ginger, turmeric, and cumin-coriander powder, add 2 cups warm water and cook until potatoes are tender, then add fried fish, bori, and brinjal for 4 minutes.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "An iconic everyday Bengali macher jhol where the fried bori absorbs the savory fish broth."
+  },
+  {
     "id": "static-0710",
     "name": "Sabudana Khichdi (Plain)",
     "category": "Breakfast",
@@ -71116,6 +72446,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1514",
+    "name": "Sajne Data Aloo Bori Jhol (Drumstick, Potato & Sun-Dried Lentil Dumpling Summer Stew)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender drumsticks (sajne data), peeled and cut into 3-inch batons",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into lengthwise wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Yellow mustard & poppy seed paste (1.5 tbsp) + ginger paste (1 tsp)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), turmeric & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté potato and drumstick batons",
+        "text": "Fry the bori in mustard oil until golden-brown and remove; temper oil with kalo jeere and sauté potato wedges and drumsticks with turmeric and ginger paste for 4 minutes.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer with light mustard-poppy broth and fried bori",
+        "text": "Add 1.5 cups warm water, salt, and slit green chillies, simmer until potatoes and drumsticks are tender, stir in mustard-poppy paste and fried bori, and cook 3 more minutes.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Prepared across West Bengal in spring and early summer when fresh drumsticks are in season."
   },
   {
     "id": "static-1096",
@@ -72542,6 +73926,60 @@
     "notes": "A monsoon specialty from Bengal's wetlands when fresh pink and white shapla stems flood local markets."
   },
   {
+    "id": "static-1509",
+    "name": "Sheem Bori Begun Jhal (Winter Flat Beans, Brinjal & Bori in Mustard-Poppy Gravy)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Winter flat broad beans (sheem), strings removed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggplant (begun), cut into wedges",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard & poppy seed paste (shorshe-posto bata) with green chillies",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), turmeric & fresh coriander leaves",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, brinjal and flat beans",
+        "text": "Fry the bori in mustard oil until golden and remove; lightly sear eggplant wedges and flat beans with turmeric and salt.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer with kalo jeere, shorshe-posto and coriander",
+        "text": "Temper with kalo jeere, add mustard-poppy paste and ¾ cup warm water, return the sheem, begun, and fried bori, simmer for 5 minutes until tender, and garnish with chopped coriander and raw mustard oil.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "A vibrant winter lunch favorite across Bengal."
+  },
+  {
     "id": "static-0985",
     "name": "Shim Bharta (Flat Beans Mash)",
     "category": "Vegetable Bharta",
@@ -72604,6 +74042,60 @@
     "cookMinutes": 15,
     "servings": 2,
     "notes": "A beloved winter Bengali delicacy."
+  },
+  {
+    "id": "static-1531",
+    "name": "Shol Macher Mulo Bori Jhol (Striped Snakehead Fish with Winter Radish & Fried Bori)",
+    "category": "Fish",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Shol mach (striped snakehead fish) steaks, rubbed with turmeric & salt",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "White radish (mulo) & potato, cut into lengthwise wedges",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) or cumin, ginger paste & slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder, coriander powder & fresh coriander leaves",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, radish and shol fish steaks",
+        "text": "Fry the bori in mustard oil until crisp and golden and set aside; sear the shol fish steaks until golden, and lightly pan-fry radish and potato wedges.",
+        "minutes": 9
+      },
+      {
+        "section": "Simmer winter radish-bori broth",
+        "text": "Temper oil with kalo jeere and green chillies, add ginger paste, turmeric, and cumin-coriander powder with 2 cups warm water, simmer radish and potatoes until soft, then add fried shol fish, bori, and fresh coriander leaves for 4 minutes.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "A traditional winter Bengali country-style fish curry pairing firm Shol mach with sweet white radish and bori."
   },
   {
     "id": "static-1098",
@@ -72850,6 +74342,65 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1508",
+    "name": "Shukto with Bori (Traditional Bengali Bitter-Sweet Mixed Vegetable Stew with Fried Lentil Dumplings)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Biulir daler bori (sun-dried urad dal dumplings)",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Bitter gourd (uchhe), raw banana (kanchkola), sweet potato, potato, brinjal, drumstick (sajne data) & flat beans",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Yellow mustard & poppy seed paste (shorshe-posto bata) with grated ginger",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Radhuni (wild celery seed), panch phoron & bay leaf",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Warm milk (0.5 cup), ghee (1 tbsp), roasted radhuni-panch phoron powder, sugar & salt",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori, bitter gourd and brinjal first",
+        "text": "Fry the bori in mustard oil until golden-red and remove; separately fry sliced bitter gourd and eggplant batons and set aside.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer root vegetables with ginger, radhuni and posto-shorshe",
+        "text": "Temper oil with bay leaf, radhuni, and panch phoron; sauté potato, sweet potato, raw banana, and drumstick, then add ginger paste, mustard-poppy paste, and warm water to cook until tender.",
+        "minutes": 8
+      },
+      {
+        "section": "Finish with fried bori, milk, ghee and bhaja moshla",
+        "text": "Add fried bori, bitter gourd, brinjal, warm milk, salt, and a pinch of sugar; simmer 3 minutes and finish with 1 tbsp ghee and roasted radhuni-panch phoron powder.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "No traditional Bengali biye-bari (wedding) or festive Shukto is complete without plump, gravy-soaked Biulir Daler Bori."
   },
   {
     "id": "static-1488",
@@ -78076,6 +79627,60 @@
     "notes": "Smoky, succulent North Indian starter that cooks in minutes."
   },
   {
+    "id": "static-1529",
+    "name": "Tangra Macher Aloo Bori Jhol (Tangra Catfish, Potato & Sun-Dried Lentil Dumpling Light Curry)",
+    "category": "Fish",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tangra fish, cleaned and marinated with turmeric and salt",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes & winter flat beans (sheem) or brinjal, cut lengthwise",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), ginger paste & slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder, coriander powder & fresh coriander leaves",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and tangra fish in mustard oil",
+        "text": "Fry the bori in smoking mustard oil until golden and remove; fry the tangra fish until crisp-golden and set aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer potato-cumin broth with tangra and bori",
+        "text": "Temper oil with kalo jeere and green chillies, fry potato wedges (and sheem/brinjal) with ginger, turmeric, and cumin-coriander powder, add 1.5 cups warm water, and simmer with fried tangra and bori until tender; garnish with coriander.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Tangra fish and fried bori enrich the light kalo-jeere broth with deep savory flavor."
+  },
+  {
     "id": "static-0296",
     "name": "Tawa Aloo Paratha",
     "category": "Bread",
@@ -78775,6 +80380,60 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1519",
+    "name": "Thor Bori Ghonto (Tender Banana Stem, Grated Coconut & Crushed Bori Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Tender inner banana stem (thor), peeled, de-fibered and finely chopped",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Biulir daler bori or motor daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potato (1 small, finely diced) & fresh grated coconut (0.33 cup)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Panch phoron, dry red chilli, ginger paste & cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (1 tsp), Bengali gorom moshla, sugar & salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and sauté banana stem with panch phoron",
+        "text": "Fry the bori in mustard oil until golden, remove, and crush coarsely; temper oil with panch phoron and dry red chilli, and sauté diced potato and finely chopped banana stem with ginger and turmeric.",
+        "minutes": 8
+      },
+      {
+        "section": "Stir in grated coconut, crushed bori and ghee",
+        "text": "Cook covered until the banana stem is tender, then stir in grated coconut, cumin powder, sugar, ghee, gorom moshla, and the crunchy crushed bori.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Sprinkling crushed fried bori at the end preserves its crunch against the soft banana stem."
   },
   {
     "id": "static-1485",
@@ -80609,6 +82268,60 @@
     "cookMinutes": 10,
     "servings": 4,
     "notes": "Served as the traditional shukto/teto (bitter) first course in a Bengali lunch."
+  },
+  {
+    "id": "static-1510",
+    "name": "Uchhe Bori Jhol / Teto Bori Jhol (Bitter Gourd, Potato & Bori Light Ginger-Radhuni Broth)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Bitter gourd (uchhe / korola), sliced into rounds or wedges",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into wedges",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Biulir daler bori",
+        "quantity": "10",
+        "unit": "pcs"
+      },
+      {
+        "name": "Radhuni (wild celery seeds) & panch phoron",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh ginger paste & turmeric powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry bori and bitter gourd separately",
+        "text": "Fry the bori in mustard oil until golden-red and remove; fry the bitter gourd pieces with turmeric and salt until lightly browned and set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer potatoes with radhuni and ginger and add bori",
+        "text": "Temper oil with panch phoron and radhuni, sauté potato wedges with ginger paste and turmeric, add 1.5 cups water and cook until tender, then add fried bori and bitter gourd and simmer 3 minutes.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Served as the cooling opening dish of a summer Bengali meal."
   },
   {
     "id": "static-1303",
