@@ -124,13 +124,7 @@ function addFilter(where, params, filters, alias) {
 
 function detailOrderSql(config) {
   const expressions = {
-    date: "expense_date",
-    week: "date_trunc('week', expense_date)::date",
-    month: "date_trunc('month', expense_date)::date",
-    year: "extract(year from expense_date)::int",
-    category: "category",
-    item: "item",
-    survivor: "survivor",
+    ...reportSql.groupExpr,
     price: "report_amount",
   };
 
@@ -155,13 +149,7 @@ function detailOrderSql(config) {
 
 function summaryOrderSql(config) {
   const expressions = {
-    date: "expense_date",
-    week: "date_trunc('week', expense_date)::date",
-    month: "date_trunc('month', expense_date)::date",
-    year: "extract(year from expense_date)::int",
-    category: "category",
-    item: "item",
-    survivor: "survivor",
+    ...reportSql.groupExpr,
     price: "SUM(report_amount)",
   };
 
@@ -232,13 +220,7 @@ function reportRow(row) {
 
 function groupedDetailOrderSql(config) {
   const expressions = {
-    date: "expense_date",
-    week: "date_trunc('week', expense_date)::date",
-    month: "date_trunc('month', expense_date)::date",
-    year: "extract(year from expense_date)::int",
-    category: "category",
-    item: "item",
-    survivor: "survivor",
+    ...reportSql.groupExpr,
     price: "report_amount",
   };
 
