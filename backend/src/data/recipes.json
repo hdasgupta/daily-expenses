@@ -1224,6 +1224,65 @@
     "notes": "Cooking without water keeps the cauliflower florets firm and flavorful."
   },
   {
+    "name": "Aloo Gobi Paratha (Dhaba-Style Spiced Potato & Cauliflower Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Punjabi",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Potatoes, boiled and mashed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cauliflower florets, finely grated and squeezed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, green chillies & fresh coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ajwain, amchur, garam masala & roasted cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or butter (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix combination stuffing",
+        "text": "Combine mashed potato, finely grated cauliflower, ginger, chillies, coriander, ajwain, amchur, garam masala, and salt just before rolling so the stuffing stays dry.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff and roll flatbread",
+        "text": "Enclose a generous ball of filling inside a cup of rolled wheat dough, dust with flour, and roll out gently without bursting.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Roast on a hot tawa with ghee or butter, pressing the edges until blistered and crisp. Serve with curd, butter, and mango pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Quintessential Punjabi highway dhaba breakfast paratha uniting spiced potatoes and cauliflower.",
+    "id": "static-1590"
+  },
+  {
     "id": "static-0045",
     "name": "Aloo Jhol",
     "category": "Vegetable",
@@ -1760,6 +1819,65 @@
     "notes": "Comforting everyday curry for roti, paratha, poori, or jeera rice."
   },
   {
+    "name": "Aloo Matar Paratha (Spiced Potato & Green Peas Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potatoes, peeled and mashed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Green peas, blanched and coarsely crushed",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & fresh cilantro",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat masala, roasted cumin & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or butter (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend spiced potato-pea filling",
+        "text": "Mix mashed potatoes with crushed green peas, grated ginger, chillies, coriander, chaat masala, cumin, crushed kasuri methi, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough balls",
+        "text": "Wrap the potato-pea mixture inside dough portions, pinch to seal, and roll into even round flatbreads.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook on tawa with ghee",
+        "text": "Roast on medium flame with generous ghee until golden brown specks appear on both sides. Serve hot with chilled raita.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A wholesome winter favorite combining soft potatoes with sweet green peas.",
+    "id": "static-1591"
+  },
+  {
     "id": "static-1228",
     "name": "Aloo Methi (Fresh Fenugreek Leaves & Crispy Potato Stir-Fry)",
     "category": "Vegetable",
@@ -1812,6 +1930,65 @@
     "cookMinutes": 16,
     "servings": 3,
     "notes": "Cooking uncovered after adding methi prevents the leaves from turning bitter."
+  },
+  {
+    "name": "Aloo Methi Paratha (Spiced Potato & Fresh Fenugreek Leaves Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Potatoes, boiled and mashed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Fresh fenugreek leaves (methi), finely chopped and sautéed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste & amchur powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or oil (for cooking) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté methi and mix with potato",
+        "text": "Briefly sauté chopped fresh methi leaves in 1 tsp oil to remove raw bitterness, then fold into mashed potatoes with ginger-chilli paste, ajwain, amchur, chilli powder, and salt.",
+        "minutes": 7
+      },
+      {
+        "section": "Fill and roll",
+        "text": "Stuff the fragrant aloo-methi mixture inside whole wheat dough balls and roll into thick round parathas.",
+        "minutes": 8
+      },
+      {
+        "section": "Griddle until crisp",
+        "text": "Cook on a hot tawa with ghee until blistered and crusty on both sides. Serve with plain yogurt or fresh mint chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Combines the earthy bitterness of fresh seasonal fenugreek with comforting spiced potatoes.",
+    "id": "static-1592"
   },
   {
     "id": "static-1229",
@@ -1935,6 +2112,65 @@
     "cookMinutes": 18,
     "servings": 4,
     "notes": "Soaking lightly fried paneer cubes in warm salted water keeps them melt-in-the-mouth soft inside the curry."
+  },
+  {
+    "name": "Aloo Paneer Paratha (Spiced Potato & Grated Cottage Cheese Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Potatoes, boiled and mashed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Paneer (cottage cheese), finely grated",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped green chillies, ginger & coriander",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam masala, amchur & roasted cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or butter (for cooking) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix aloo-paneer stuffing",
+        "text": "Combine mashed potato and grated paneer with green chillies, ginger, fresh coriander, garam masala, amchur, and salt into a smooth, malleable stuffing.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Enclose stuffing balls in whole wheat dough portions, seal tightly, and roll gently on a floured board.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast golden brown",
+        "text": "Cook on a hot tawa with generous butter or ghee until crisp and spotted with golden blisters. Serve with dahi and mixed pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "The ultimate crowd-pleasing combination of creamy paneer and spiced potato.",
+    "id": "static-1593"
   },
   {
     "id": "static-0306",
@@ -2436,6 +2672,65 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "So flavorful they can be eaten on their own with curd, pickle, or chai."
+  },
+  {
+    "name": "Aloo Pyaz Paratha (Dhaba-Style Spiced Potato & Crunchy Onion Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Punjabi",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Potatoes, boiled, peeled and mashed",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onions, finely chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, grated ginger & chopped coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed coriander seeds, ajwain, amchur & red chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or salted butter & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix potato and crunchy onion filling",
+        "text": "Toss mashed potatoes with finely chopped raw onions, chillies, ginger, coriander, crushed coriander seeds, ajwain, amchur, chilli powder, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and roll paratha",
+        "text": "Stuff a large portion of filling into each rolled wheat dough disc, seal the top, and roll into a medium-thick circle.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast crisp on tawa",
+        "text": "Roast on a hot griddle with dollops of ghee or butter until deeply golden and flaky with crunchy onion bits. Serve with white makkhan and spiced boondi raita.",
+        "minutes": 12
+      }
+    ],
+    "notes": "The most ordered paratha at Grand Trunk Road dhabas, celebrated for its crunchy onion texture.",
+    "id": "static-1594"
   },
   {
     "id": "static-1234",
@@ -3011,6 +3306,70 @@
     "cookMinutes": 22,
     "servings": 4,
     "notes": "Classic Bengali winter and festive side dish for luchi, porota, or khichuri."
+  },
+  {
+    "name": "Alu Kochuri (Kolkata Sweet-Shop Spiced Mashed Potato Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Potatoes, boiled and smoothly mashed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-green chilli paste & bhaja masala (roasted cumin-red chilli powder)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Asafoetida (hing) & nigella seeds (kalo jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for moyan) & mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Salt & a pinch of sugar",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spiced potato puran",
+        "text": "Heat mustard oil with hing and kalo jeere. Add ginger-green chilli paste, mashed potatoes, bhaja masala, salt, and sugar. Sauté until completely dry and aromatic; let cool.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff and roll puris",
+        "text": "Rub maida with ghee and salt, knead into a soft pliable dough with warm water, rest 15 minutes, divide into balls, fill each with potato stuffing, and roll out gently.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry until golden",
+        "text": "Fry in medium-hot oil until puffed, crisp, and lightly golden. Serve hot with cholar dal or Kolkata-style aloor torkari.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Classic neighborhood mishtir dokan (sweet-shop) breakfast kochuri of Bengal.",
+    "id": "static-1570"
   },
   {
     "id": "static-0138",
@@ -4860,6 +5219,65 @@
     "notes": "Festive Banarasi banquet potato dish."
   },
   {
+    "name": "Bandel Cheese Paratha (Smoky Bengali Artisanal Bandel Cheese & Black Pepper Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta) & all-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Smoked Bandel cheese, soaked in warm water 30 mins, drained and crumbled",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled potato, mashed (for binding)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Freshly crushed black peppercorns & chopped green chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chopped coriander & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or butter (for roasting)",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare artisanal smoky cheese filling",
+        "text": "Crumble the soaked and drained smoked Bandel cheese, mix with a little mashed potato, crushed black pepper, green chillies, coriander, and roasted cumin (no extra salt needed due to the cured cheese).",
+        "minutes": 7
+      },
+      {
+        "section": "Enclose in dough and roll",
+        "text": "Stuff the cheese filling inside dough balls, dust with flour, and roll into neat circles.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook on tawa with ghee",
+        "text": "Pan-roast on medium heat with ghee until crusty, golden, and deeply aromatic. Serve warm with sweet tomato relish or sour cream.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Artisanal Bengali Portuguese-heritage cheese paratha featuring smoky, dry-cured Bandel cheese.",
+    "id": "static-1595"
+  },
+  {
     "id": "static-0658",
     "name": "Bandhakopi Bhaja",
     "category": "Vegetable",
@@ -5401,6 +5819,65 @@
     "notes": "Holding back water when mixing the batter ensures the cabbage strands fry up ultra-crispy."
   },
   {
+    "name": "Bandhakopir Porota (Bengali Spiced Shredded Cabbage & Ginger Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 16,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Cabbage, finely shredded",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated ginger, green chillies & fresh coriander",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & Bengali garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin powder & amchur",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spiced cabbage filling",
+        "text": "Heat 1 tbsp mustard oil with kalo jeere. Add shredded cabbage, grated ginger, chillies, turmeric, cumin, garam masala, and salt. Sauté on high heat until the cabbage wilts and dries out completely without losing its sweet crunch.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff into dough discs",
+        "text": "Enclose cooled cabbage puran inside wheat dough portions, seal the seams, and roll out with light pressure.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast until golden",
+        "text": "Cook on a hot tawa with ghee until speckled with brown blisters. Serve hot with dimer torkari or aloor dum.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A comforting Bengali winter breakfast paratha using tender, sweet winter cabbage.",
+    "id": "static-1596"
+  },
+  {
     "id": "static-1313",
     "name": "Barbati Fry / Borboti Aloo Bhaja (Crispy Yardlong Beans & Potato Stir-Fry)",
     "category": "Vegetable",
@@ -5875,6 +6352,65 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "name": "Beetroot Paratha (Spiced Grated Beetroot & Ajwain Stuffed Flatbread)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Beetroots, peeled and finely grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated ginger, green chillies & amchur powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Boiled potato, mashed (for binding)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee or oil (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook beetroot stuffing",
+        "text": "Sauté grated beetroot with ginger, green chillies, ajwain, and cumin in 1 tsp oil until tender and dry; fold in mashed potato, amchur, and salt.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff and roll paratha",
+        "text": "Enclose beetroot stuffing inside wheat dough balls and roll gently into circular flatbreads.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Cook on a hot tawa with ghee on both sides until crisp and beautifully speckled. Serve with fresh curd.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A stunning ruby-red stuffed paratha packed with iron, natural sweetness, and tangy spices.",
+    "id": "static-1597"
   },
   {
     "id": "static-1194",
@@ -9537,6 +10073,65 @@
     "notes": "Light, flaky gram-flour ribbon namkeen enjoyed with tea or fried green chillies."
   },
   {
+    "name": "Besan Paratha (Spiced Roasted Gram Flour, Ajwain & Kasuri Methi Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour), dry roasted until nutty",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, ginger & green chillies, finely minced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Kasuri methi, ajwain, amchur & red chilli powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for roasting)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & water",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix spiced besan filling",
+        "text": "Combine dry-roasted besan with minced onion, ginger, chillies, crushed kasuri methi, ajwain, amchur, chilli powder, salt, and 1 tbsp mustard oil with a few drops of water into a crumbly mixture.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into wheat dough",
+        "text": "Pack the seasoned besan mixture into dough balls, seal edges, and roll out into round flatbreads.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook with ghee on tawa",
+        "text": "Roast on medium flame with ghee until crisp and fragrant on both sides. Serve with mango pickle and yogurt.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A protein-rich, travel-friendly North Indian paratha that stays soft for hours.",
+    "id": "static-1598"
+  },
+  {
     "id": "static-1408",
     "name": "Bhakarwadi (Crispy Spiral Namkeen Rolls Stuffed with Coconut, Sesame & Poppy Masala)",
     "category": "Snacks",
@@ -12783,6 +13378,65 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "name": "Broccoli Paratha (Spiced Grated Broccoli, Cumin & Garlic Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Broccoli florets, finely grated (stalks reserved for stock)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced garlic, green chillies & fresh coriander",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, garam masala & chaat masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Boiled potato or paneer, grated (for moisture control)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee or olive oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spiced broccoli",
+        "text": "Briefly sauté minced garlic, chillies, and grated broccoli in 1 tsp ghee for 3 minutes to remove moisture; season with cumin, chaat masala, salt, and fold in grated paneer or potato.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose the emerald broccoli filling into whole wheat dough balls and roll out carefully.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast on griddle",
+        "text": "Cook on a hot tawa with ghee or butter until speckled golden. Serve hot with garlic yogurt or mint dip.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A vibrant, antioxidant-rich modern healthy twist on the classic gobi paratha.",
+    "id": "static-1599"
+  },
+  {
     "id": "static-0233",
     "name": "Brown Rice (Homestyle)",
     "category": "Rice",
@@ -14657,6 +15311,65 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "name": "Cheese Corn Paratha (Sweet Corn & Molten Cheese Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweet corn kernels, steamed and coarsely crushed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Mozzarella & processed cheese, grated",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped capsicum & green chillies",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Italian herbs (oregano, chilli flakes) & black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter or ghee (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare corn and cheese stuffing",
+        "text": "Mix crushed sweet corn, grated cheeses, capsicum, green chillies, black pepper, oregano, chilli flakes, and a touch of salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Stuff and roll flatbread",
+        "text": "Enclose the cheese-corn mixture inside dough balls, dust generously with flour, and roll out gently with even pressure.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook until cheese melts",
+        "text": "Roast on medium-hot tawa with butter until crisp and golden on both sides. Serve hot while the cheese stretches generously.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A massive favorite with kids and youth combining juicy sweet corn with gooey molten cheese.",
+    "id": "static-1600"
+  },
+  {
     "id": "static-1275",
     "name": "Cheese Egg Roll (Kolkata Street-Style Melted Cheese & Double Egg Kathi Roll)",
     "category": "Snacks",
@@ -14802,6 +15515,60 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "name": "Cheese Paratha (Melted Mozzarella & Cheddar Spiced Stuffed Flatbread)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated mozzarella & sharp cheddar cheese",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped green chillies & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, red chilli flakes & chaat masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter (for cooking) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss spiced cheese filling",
+        "text": "Combine grated mozzarella and cheddar with chillies, coriander, cumin, chilli flakes, and chaat masala.",
+        "minutes": 4
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Fill dough discs with the cheese mix, seal tightly to prevent spillage, and roll into a medium-thick flatbread.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast with butter",
+        "text": "Cook on tawa with generous butter until the outer crust turns crunchy and the inside turns molten. Serve immediately with tomato ketchup.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Decadent comfort food with an irresistible gooey cheese pull in every bite.",
+    "id": "static-1601"
   },
   {
     "id": "static-0955",
@@ -15084,6 +15851,70 @@
     "notes": "Iconic Bengali sweet-shop specialty combining the soft richness of pantua with the coiled shape of jalebi."
   },
   {
+    "name": "Chhanar Kochuri (Bengali Spiced Fresh Paneer & Raisin Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh homemade chhena (cottage cheese), crumbled",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Golden raisins (kismis) & cashew nuts, chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger paste, green chillies & roasted cumin-coriander powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green cardamom powder (elachi) & garam masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for moyan & filling) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook rich chhana filling",
+        "text": "Heat 1 tbsp ghee, add ginger paste, green chillies, chopped cashews, and kismis. Add crumbled chhena, roasted spices, cardamom powder, sugar, and salt. Stir gently for 4 minutes until moisture evaporates.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Knead maida with ghee, warm water, and salt into a smooth dough. Enclose small balls of cooled chhana mixture inside dough discs and roll with light pressure.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry until puffed",
+        "text": "Fry in moderately hot oil until evenly puffed, delicate, and golden. Serve with sweet-and-sour aloor dum.",
+        "minutes": 13
+      }
+    ],
+    "notes": "A luxurious niramish (vegetarian) festive kochuri prepared during Durga Puja and Janmashtami.",
+    "id": "static-1571"
+  },
+  {
     "id": "static-1383",
     "name": "Chhanar Malpua (Bengali Soft Cottage Cheese & Fennel Pancakes in Syrup)",
     "category": "Sweets",
@@ -15190,6 +16021,65 @@
     "cookMinutes": 25,
     "servings": 4,
     "notes": "Velvety grain-free Bengali kheer suitable for fasting days (upobash) and festive feasts."
+  },
+  {
+    "name": "Chhanar Porota (Bengali Sweet & Savory Fresh Chhena, Raisin & Cardamom Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta) & maida",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh homemade chhena (cottage cheese), crumbled",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Golden raisins (kismis), chopped cashews & green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cardamom powder & roasted cumin powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for roasting) & sugar",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix aromatic chhena filling",
+        "text": "Combine fresh chhena with chopped kismis, cashews, minced green chillies, cardamom powder, roasted cumin, a spoonful of sugar, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Enclose chhena mixture inside dough cups, seal securely, and roll out with light strokes.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast with desi ghee",
+        "text": "Cook on a hot tawa with desi ghee until crisp and beautifully spotted with golden flecks. Serve with Bengali aloor dum or sweet mango chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Festive Bengali sweet-and-savory breakfast paratha showcasing fresh milk chhena.",
+    "id": "static-1602"
   },
   {
     "id": "static-1001",
@@ -16999,6 +17889,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "name": "Chicken Keema Paratha (Dhaba-Style Spiced Minced Chicken Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Punjabi",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced chicken (keema)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onions, ginger-garlic paste & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Garam masala, coriander powder, cumin & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint & coriander leaves, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or butter (for cooking) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced chicken keema",
+        "text": "Sauté onions and ginger-garlic in 1 tbsp oil, add chicken keema, spices, and salt; cook vigorously on high flame until all juices evaporate and keema is completely dry. Stir in kasuri methi, mint, and coriander; cool.",
+        "minutes": 12
+      },
+      {
+        "section": "Fill dough discs",
+        "text": "Stuff a generous portion of keema into rolled dough cups, seal edges carefully, and roll out without puncturing.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast on tawa with ghee",
+        "text": "Cook on a hot tawa with ghee or butter, pressing the edges until crisp and golden brown. Serve with mint raita and pickled onions.",
+        "minutes": 12
+      }
+    ],
+    "notes": "High-protein North Indian highway dhaba staple packed with juicy minced chicken.",
+    "id": "static-1603"
   },
   {
     "id": "static-0563",
@@ -20232,6 +21181,70 @@
     "notes": "Coastal Bengali monsoon specialty pairing fragrant Gobindobhog khichuri with spiced prawns."
   },
   {
+    "name": "Chingri Kochuri (Bengali Spiced Minced Prawn Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Small prawns (kucho chingri), cleaned, deveined and finely minced",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onion, ginger-garlic paste & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali garam masala, turmeric & Kashmiri red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin-fennel powder & fresh coriander",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook savory prawn filling",
+        "text": "Sauté chopped onion and ginger-garlic paste in mustard oil until golden. Add minced chingri, turmeric, chilli powder, garam masala, salt, and roasted cumin-fennel powder; cook on medium-high until dry and aromatic.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff and roll kochuri discs",
+        "text": "Knead maida with warm ghee and water. Roll into small cups, fill each with a spoonful of cooked prawn puran, seal tightly, and roll evenly without tearing.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry until crisp",
+        "text": "Deep-fry in hot oil until puffed and crisp. Serve hot with kasundi (Bengali mustard) and onion-cucumber salad.",
+        "minutes": 13
+      }
+    ],
+    "notes": "An aristocratic Bengali banquet delicacy featuring sweet kucho chingri.",
+    "id": "static-1572"
+  },
+  {
     "id": "static-1032",
     "name": "Chingri Kosha (Bengali Slow-Cooked Spicy Prawn Masala)",
     "category": "Prawns",
@@ -21507,6 +22520,60 @@
     "notes": "Wilting the banana leaves briefly over an open flame makes them pliable so they fold without tearing."
   },
   {
+    "name": "Chingri Porota (Bengali Spiced Small Prawn & Onion Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta) & maida",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Kucho chingri (small prawns), cleaned and finely minced",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onions, ginger-garlic paste & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali garam masala, turmeric & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté dry prawn filling",
+        "text": "Sauté onions and ginger-garlic in mustard oil, add minced prawns, turmeric, cumin, garam masala, chillies, and salt; stir-fry until thoroughly cooked and completely dry.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff into dough and roll",
+        "text": "Wrap the savory chingri filling in dough balls, seal edges, and roll into flatbreads.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast with ghee on tawa",
+        "text": "Cook on a hot tawa with ghee until blistered and golden. Serve warm with kasundi and cucumber salad.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A coastal and riverine Bengali delicacy celebrating small sweet prawns encased in flaky paratha.",
+    "id": "static-1604"
+  },
+  {
     "id": "static-1036",
     "name": "Chingri Posto (Prawns in Bengali Poppy Seed Paste)",
     "category": "Prawns",
@@ -22465,6 +23532,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "name": "Cholar Daler Kochuri (Bengali Spiced Bengal Gram / Chana Dal Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Chana dal (bengal gram), soaked 2 hours and boiled firm",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted fennel-cumin powder (bhaja mouri-jeere gundo)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Asafoetida (hing) & nigella seeds",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for moyan & sautéing) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind and sauté cholar dal puran",
+        "text": "Pulse boiled chana dal in a grinder to a coarse paste. Sauté in ghee with hing, kalo jeere, ginger-green chilli paste, roasted bhaja masala, salt, and sugar until the paste leaves the pan.",
+        "minutes": 10
+      },
+      {
+        "section": "Fill and roll kochuris",
+        "text": "Knead maida with 2 tbsp ghee and water into a smooth dough. Shape into balls, make an indentation, fill with dal paste, pinch close, and roll into smooth puris.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry golden brown",
+        "text": "Fry in hot oil until fully puffed and golden crisp. Serve warm with hing aloor dum or bandhakopir torkari.",
+        "minutes": 15
+      }
+    ],
+    "notes": "The hearty Bengal gram cousin of Radhaballabhi, popular for Sunday winter breakfasts.",
+    "id": "static-1573"
+  },
+  {
     "id": "static-1279",
     "name": "Churmur (Kolkata Street-Style Crushed Phuchka & Spiced Potato Chaat)",
     "category": "Snacks",
@@ -22968,6 +24099,65 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "name": "Corn Paratha / Makai Paratha (Spiced Sweet Corn & Coriander Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweet corn, coarsely crushed in a blender",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & fresh coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ajwain, chaat masala & amchur powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Gram flour (besan), dry roasted (for binding)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced corn filling",
+        "text": "Sauté crushed sweet corn with ginger, chillies, ajwain, chaat masala, and amchur for 4 minutes; stir in roasted besan and salt until moisture is absorbed.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Place corn filling inside wheat dough rounds, seal neatly, and roll out with even strokes.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Cook on a hot griddle with ghee until crisp and golden brown. Serve with tomato chutney or dahi.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Naturally sweet, juicy, and spiced corn stuffed flatbread loved across Indian homes.",
+    "id": "static-1605"
   },
   {
     "id": "static-1400",
@@ -25878,6 +27068,65 @@
     "notes": "Tangy, peppery Agra-style lentil and sev namkeen."
   },
   {
+    "name": "Dal Paratha (Homestyle Spiced Yellow Moong Dal Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Yellow moong dal, soaked and cooked thick or leftover dry dal",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste & asafoetida (hing)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fennel powder, roasted cumin & amchur",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri methi & fresh coriander",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook thick dal puran",
+        "text": "Sauté hing, ginger-chilli paste, cooked thick moong dal, fennel powder, cumin, amchur, kasuri methi, and salt until it forms a non-sticky paste; let cool.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff and roll parathas",
+        "text": "Pack balls of seasoned dal paste inside wheat dough cups, seal edges, and roll into smooth round discs.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast with ghee",
+        "text": "Griddle on a hot tawa with ghee until puffed and crusty. Serve with tangy pickle and curd.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A wholesome traditional breakfast and excellent nutritious use of cooked yellow lentils.",
+    "id": "static-1606"
+  },
+  {
     "id": "static-1173",
     "name": "Dal Puri (Spiced Chana Dal Stuffed Fried Puri)",
     "category": "Bread",
@@ -26873,6 +28122,70 @@
     "cookMinutes": 12,
     "servings": 4,
     "notes": "Kolkata's beloved Anglo-Bengali take on the Scotch egg, found at every telebhaja and cabin counter."
+  },
+  {
+    "name": "Dimer Kochuri (Bengali Spiced Egg Bhurji Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Eggs, lightly whisked",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped onion, ginger & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh coriander leaves & black pepper powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder & chaat masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for dough) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Scramble dry egg filling",
+        "text": "Heat 1 tbsp oil, sauté onion, ginger, and green chillies until soft. Pour in whisked eggs with black pepper, roasted cumin, and salt, scrambling finely until dry and crumbly; fold in coriander and chaat masala.",
+        "minutes": 6
+      },
+      {
+        "section": "Enclose egg mixture in dough",
+        "text": "Knead maida with ghee, salt, and water. Portion into small dough rounds, stuff each with dry scrambled egg, seal tightly, and roll gently.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until golden",
+        "text": "Fry in hot oil until ballooned and crunchy. Serve with tangy tomato sauce and sliced raw onions.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A popular Kolkata school and office tiffin treat combining spiced egg bhurji and crisp kochuri.",
+    "id": "static-1574"
   },
   {
     "id": "static-1379",
@@ -28101,6 +29414,65 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "name": "Egg Cheese Paratha (Whisked Spiced Egg, Onion & Molten Cheese Layered Paratha)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta) or maida",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Eggs, whisked",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mozzarella or cheddar cheese, grated",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, green chillies & coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Black pepper powder & roasted cumin",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Semi-cook layered paratha",
+        "text": "Roll out dough into a pocket or thin circle and cook on one side on a hot tawa until puffed.",
+        "minutes": 5
+      },
+      {
+        "section": "Pour egg-cheese filling",
+        "text": "Slit or fold the paratha, pour in whisked egg seasoned with onion, chillies, pepper, and salt, then layer with grated cheese and seal the edge.",
+        "minutes": 6
+      },
+      {
+        "section": "Griddle until egg sets and cheese melts",
+        "text": "Cook on medium-low heat with butter, turning gently until the egg is cooked through and the cheese is molten. Serve hot with ketchup.",
+        "minutes": 10
+      }
+    ],
+    "notes": "A satisfying, protein-packed street-food inspired breakfast.",
+    "id": "static-1607"
   },
   {
     "id": "static-1425",
@@ -33337,6 +34709,65 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "name": "Gajar Paratha (Spiced Grated Red Carrot & Green Chilli Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Red Delhi carrots, peeled and finely grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated ginger, green chillies & fresh coriander",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), amchur & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Boiled potato, mashed (for moisture binding)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare carrot filling",
+        "text": "Sauté grated carrots lightly with ginger, chillies, ajwain, and cumin for 3 minutes to remove raw water; mix in mashed potato, amchur, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose carrot mixture in dough balls, seal edges, and roll out with light pressure.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast on tawa with ghee",
+        "text": "Cook on a hot tawa with ghee on both sides until crisp and golden brown. Serve with fresh dahi and pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A delicious winter specialty celebrating sweet seasonal red carrots.",
+    "id": "static-1608"
+  },
+  {
     "id": "static-1010",
     "name": "Gajor Bharta (Spiced Carrot Mash)",
     "category": "Vegetable Bharta",
@@ -35201,6 +36632,65 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "name": "Gur Paratha / Jaggery Paratha (Winter Jaggery, Fennel & Ghee Stuffed Sweet Paratha)",
+    "category": "Bread",
+    "region": "Punjabi",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Organic jaggery (gur), grated or powdered finely",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (saunf), coarsely crushed",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green cardamom powder & roasted sesame seeds (optional)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee (for kneading and roasting)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss jaggery-fennel filling",
+        "text": "Combine grated jaggery with crushed fennel seeds, cardamom powder, and sesame seeds.",
+        "minutes": 4
+      },
+      {
+        "section": "Stuff into dough and seal carefully",
+        "text": "Place jaggery mixture inside a rolled dough circle, pinch all edges tightly so sugar does not leak out, and roll gently.",
+        "minutes": 6
+      },
+      {
+        "section": "Roast with desi ghee on low flame",
+        "text": "Cook on low flame with generous ghee until the paratha puffs and the jaggery inside turns into molten caramel. Serve warm.",
+        "minutes": 10
+      }
+    ],
+    "notes": "A comforting Punjabi winter sweet flatbread that warms the body.",
+    "id": "static-1609"
   },
   {
     "id": "static-1359",
@@ -39962,6 +41452,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "name": "Kalo Jeere O Rosun Kochuri (Bengali Fragrant Garlic & Nigella Seed Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic cloves, very finely minced or crushed",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), slightly bruised",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted besan (gram flour) or sattu",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, finely chopped & lemon juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare aromatic garlic filling",
+        "text": "Warm mustard oil in a pan, toss in kalo jeere and minced garlic, sautéing on low flame until fragrant. Stir in roasted besan, chopped chillies, lemon juice, and salt, creating a damp, flavorful stuffing.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff and roll puris",
+        "text": "Knead maida with ghee, salt, and water. Form lemon-sized balls, stuff with the garlic-kalo jeere mixture, seal securely, and roll out.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry to perfection",
+        "text": "Fry in medium-hot oil until puffed with a delightfully crunchy exterior. Serve with bhanga aloor torkari.",
+        "minutes": 13
+      }
+    ],
+    "notes": "A pungent, immune-boosting traditional winter specialty celebrated for its distinct garlic-nigella aroma.",
+    "id": "static-1575"
+  },
+  {
     "id": "static-1515",
     "name": "Kanchkola Bori Jhol (Raw Plantain, Potato & Fried Lentil Dumpling Digestive Broth)",
     "category": "Vegetable",
@@ -40345,6 +41899,60 @@
     "notes": "Decorative accordion-pleated Bengali/Bihari nimki that stays extra crunchy due to its separated strips."
   },
   {
+    "name": "Karela Paratha (Spiced Sautéed Bitter Gourd & Amchur Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Bitter gourd (karela), scraped, deseeded and finely grated",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onions, ginger & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel powder (saunf), amchur, cumin & turmeric",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spiced karela filling",
+        "text": "Salt grated karela, rest 10 minutes, squeeze out bitter juice. Sauté onions, ginger, and karela in mustard oil with fennel powder, amchur, cumin, and turmeric until dry and caramelized.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Enclose karela stuffing in whole wheat dough balls and roll into even rounds.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Cook on a hot tawa with ghee until crisp and spotted with golden brown blisters. Serve with cool curd.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A therapeutic, tangy-sweet-bitter flatbread beloved in Gujarati and Rajasthani cooking.",
+    "id": "static-1610"
+  },
+  {
     "id": "static-1210",
     "name": "Kasha Aloor Dum (Bengali Spicy Slow-Braised Onion-Garlic Potato Dum)",
     "category": "Vegetable",
@@ -40697,6 +42305,65 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "name": "Kasundi Paratha (Bengali Pungent Mustard Paste & Herb Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Kasundi (Bengali fermented mustard relish)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Boiled potato, mashed (for base)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere), green chillies & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder & chaat masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or ghee (for roasting) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix pungent kasundi-potato filling",
+        "text": "Combine mashed potato with kasundi mustard paste, kalo jeere, chopped chillies, fresh coriander, roasted cumin, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Stuff and roll parathas",
+        "text": "Fill wheat dough balls with the tangy mustard stuffing and roll into medium circles.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on hot tawa",
+        "text": "Cook with mustard oil or ghee on high heat until blistered and crunchy. Serve with tea or plain yogurt.",
+        "minutes": 12
+      }
+    ],
+    "notes": "An exhilaratingly pungent Bengali paratha featuring traditional Queen of Mustards, Kasundi.",
+    "id": "static-1611"
   },
   {
     "id": "static-0215",
@@ -42463,6 +44130,65 @@
     "notes": "Authentic Kolkata street-corner kochuri and petai porota accompaniment."
   },
   {
+    "name": "Khoya Paratha / Mawa Paratha (Sweet Mawa, Cardamom & Nut Stuffed Rich Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta) & maida",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Khoya (mawa), crumbled and roasted",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Powdered sugar or jaggery",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed almonds, pistachios & cardamom powder",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nutmeg powder (jaiphal)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee (for roasting)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast nut-studded mawa",
+        "text": "Roast mawa on low flame for 4 minutes until warm, mix with powdered sugar, cardamom, nutmeg, and crushed nuts; let cool.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Place portions of mawa stuffing inside dough balls, seal edges securely, and roll gently.",
+        "minutes": 7
+      },
+      {
+        "section": "Pan-fry with desi ghee",
+        "text": "Cook on a hot tawa with generous ghee on low-medium flame until golden, crisp, and fragrant. Serve as a dessert or festive treat.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A royal North Indian festive delicacy reminiscent of stuffed sweet peda in paratha form.",
+    "id": "static-1612"
+  },
+  {
     "id": "static-1483",
     "name": "Kochu Patar Bora (Steamed & Pan-Fried Spiced Taro / Colocasia Leaf Rolls)",
     "category": "Fritters",
@@ -43112,6 +44838,70 @@
     "notes": "The unmistakable aroma of raw mustard oil and roasted bhaja masala defines authentic Kolkata Jhalmuri."
   },
   {
+    "name": "Kolkata Mutton Mughlai Paratha (Crispy Golden Deep-Fried Paratha Stuffed with Spiced Mutton Mince & Egg)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Mutton keema (minced goat meat), cooked spicy and dry",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, beaten",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped onion, ginger, garlic & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed toast crumbs / biscuit powder & Bengali garam masala",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & black pepper",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for shallow frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix egg and mutton keema filling",
+        "text": "Beat eggs with chopped onion, green chillies, ginger, cooked dry mutton keema, biscuit crumbs, garam masala, black pepper, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Stretch thin and fold envelope parcel",
+        "text": "Roll maida dough into a large thin translucent square on an oiled board, pour the egg-mutton filling in the center, and fold all four edges to make a neat rectangular envelope.",
+        "minutes": 7
+      },
+      {
+        "section": "Shallow fry until crisp",
+        "text": "Gently slide into hot oil and fry slowly for 5-6 minutes on each side until puffed, flaky, and golden brown. Cut into squares and serve with aloor dum, salad, and mustard.",
+        "minutes": 14
+      }
+    ],
+    "notes": "The crowning glory of Kolkata cabin dining (such as Mitra Cafe and Anadi Cabin).",
+    "id": "static-1613"
+  },
+  {
     "id": "static-1277",
     "name": "Kolkata Phuchka (Crisp Semolina Shells with SpicedAloo & Tangy Tetul Jol)",
     "category": "Snacks",
@@ -43174,6 +44964,70 @@
     "cookMinutes": 10,
     "servings": 4,
     "notes": "Unlike pani puri elsewhere, authentic Kolkata Phuchka uses zero sweet chutney and relies on smoky bhaja masala, kala chana, bitnoon, and Gondhoraj-scented tetul jol."
+  },
+  {
+    "name": "Kolkata Special Egg Chicken Mughlai Paratha (Double Egg & Spiced Minced Chicken Stuffed Crispy Fried Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Chicken keema, cooked spicy and dry",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Eggs, beaten",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped onion, green chillies & fresh coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed biscuit powder & roasted cumin-coriander powder",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for shallow frying",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare double egg chicken mixture",
+        "text": "Whisk eggs with cooked minced chicken, chopped onion, chillies, biscuit powder, roasted spices, pepper, and salt.",
+        "minutes": 7
+      },
+      {
+        "section": "Envelop in thin dough sheet",
+        "text": "Roll dough very thin, spread chicken-egg filling, fold into a rectangular packet, and seal edges with light pressing.",
+        "minutes": 7
+      },
+      {
+        "section": "Shallow fry to golden crispness",
+        "text": "Shallow fry on medium heat until the envelope is delightfully crisp outside and thoroughly cooked inside. Serve with spicy potato curry.",
+        "minutes": 14
+      }
+    ],
+    "notes": "The ubiquitous Kolkata street-side mughlai paratha stuffed with spicy chicken and whipped eggs.",
+    "id": "static-1614"
   },
   {
     "id": "static-1285",
@@ -46448,6 +48302,65 @@
     "notes": "Zero-waste Bengali home cooking that turns tender bottle gourd or its peel into a crunchy meal starter."
   },
   {
+    "name": "Lauki Paratha / Doodhi Paratha (Spiced Grated Bottle Gourd Stuffed Whole Wheat Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Bottle gourd (lauki/doodhi), peeled and finely grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated ginger, green chillies & fresh coriander",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), amchur & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted besan (gram flour, to absorb juices)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze and season lauki",
+        "text": "Salt grated bottle gourd, squeeze out excess juice completely (use juice to knead dough!), and toss with ginger, chillies, ajwain, amchur, cumin, and roasted besan.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff and roll flatbread",
+        "text": "Pack lauki mixture inside dough portions, dust with flour, and roll out gently.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on hot tawa",
+        "text": "Cook on griddle with ghee until speckled with golden blisters. Serve warm with homemade raita.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A light, gut-friendly Ayurvedic stuffed flatbread celebrated for its cooling properties.",
+    "id": "static-1615"
+  },
+  {
     "id": "static-1353",
     "name": "Ledikeni / Ladykini (Bengali Fried Chhena & Semolina Sweet in Rose-Cardamom Syrup)",
     "category": "Sweets",
@@ -46873,6 +48786,70 @@
     "cookMinutes": 5,
     "servings": 2,
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "name": "Lilva Kachori (Crispy Fresh Tuvar / Green Pigeon Pea Stuffed Kachori)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh green pigeon peas (tuvar lilva), coarsely crushed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated fresh coconut & white sesame seeds (til)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-green chilli paste & garam masala",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & a pinch of asafoetida (hing)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for moyan) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced lilva filling",
+        "text": "Heat oil with hing and sesame seeds. Add crushed green tuvar, ginger-chilli paste, coconut, garam masala, salt, and sugar. Sauté on low flame until cooked through and moisture dries, then finish with lemon juice.",
+        "minutes": 10
+      },
+      {
+        "section": "Shape potli kachoris",
+        "text": "Knead maida with warm ghee and water. Roll small rounds, place a spoonful of lilva mixture in center, pleat the edges to form a sealed round kachori or potli.",
+        "minutes": 10
+      },
+      {
+        "section": "Slow fry until crisp",
+        "text": "Fry on low-medium heat until the crust becomes golden, blister-free, and crispy. Serve with green coriander chutney and sweet tamarind sonth.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Famous Gujarati and West Indian winter harvest delicacy made when fresh green tuvar is in season.",
+    "id": "static-1576"
   },
   {
     "id": "static-0919",
@@ -48119,6 +50096,139 @@
     "notes": ""
   },
   {
+    "name": "Macher Kochuri (Bengali Spiced Fish Keema Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Boneless fish fillets (Bhetki or Rohu/Katla, boiled and flaked)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled potato, mashed (for binding)",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Finely chopped onion, ginger-garlic paste & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali garam masala, turmeric & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Golden raisins (kismis) & chopped fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare flavorful fish puran",
+        "text": "Sauté onions and ginger-garlic in mustard oil until caramelized. Add flaked fish, mashed potato, turmeric, cumin, garam masala, kismis, chillies, and salt. Cook until dry and fragrant; mix in chopped coriander.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff and roll puris",
+        "text": "Knead maida with ghee, salt, and water. Divide into balls, hollow into cups, pack with fish stuffing, seal edges completely, and roll into rounds with gentle strokes.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry golden brown",
+        "text": "Deep-fry in hot oil until puffed, crisp, and pale gold. Serve with kasundi mustard sauce and thinly sliced onions.",
+        "minutes": 14
+      }
+    ],
+    "notes": "An heirloom zamindari recipe from colonial Bengal celebrating freshwater fish.",
+    "id": "static-1577"
+  },
+  {
+    "name": "Makai Kochuri (Spiced Sweet Corn & Coriander Stuffed Kachori)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweet corn kernels, coarsely crushed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour), roasted",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-green chilli paste & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, chaat masala, amchur & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for moyan) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Salt & sugar",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook sweet corn filling",
+        "text": "Heat 1 tbsp oil, add hing and cumin seeds. Stir in ginger-chilli paste and crushed sweet corn. Cook for 5 minutes, then add roasted besan, chaat masala, amchur, salt, sugar, and coriander until thick and dry.",
+        "minutes": 8
+      },
+      {
+        "section": "Fill dough discs",
+        "text": "Knead flour with ghee, salt, and water into a smooth pliable dough. Place portions of corn filling inside dough balls, seal neatly, and roll out.",
+        "minutes": 9
+      },
+      {
+        "section": "Fry until crisp",
+        "text": "Fry in medium-hot oil until uniformly puffed and golden. Serve with spicy mint dip.",
+        "minutes": 13
+      }
+    ],
+    "notes": "Sweet and savory modern festive kochuri popular across North and West India.",
+    "id": "static-1578"
+  },
+  {
     "id": "static-1190",
     "name": "Malabar Parotta (Kerala Flaky Layered Coin Parotta)",
     "category": "Bread",
@@ -48873,6 +50983,70 @@
     "cookMinutes": 30,
     "servings": 4,
     "notes": "Iconic Kolkata Dacres Lane & cabin-style Mangsher Ghugni—delicious on its own or with luchi/paratha."
+  },
+  {
+    "name": "Mangshor Keema Kochuri (Kolkata Heritage Mutton Keema Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 35,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced mutton (mutton keema), fine grind",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely minced onion, ginger & garlic paste",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Bengali shahi garam masala (cardamom, cinnamon, clove, mace)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, roasted cumin & coriander powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-braise spiced mutton keema",
+        "text": "Sauté minced onions, ginger, and garlic in mustard oil until deep golden brown. Add minced mutton, spices, and salt; bhunno on medium heat until the meat releases moisture and cooks thoroughly to a completely dry texture.",
+        "minutes": 16
+      },
+      {
+        "section": "Enclose meat in flaky dough",
+        "text": "Knead maida with ghee, salt, and warm water. Rest for 20 minutes. Fill dough balls with cooled mutton keema, seal firmly, and roll with light pressure.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep-fry to a crisp golden hue",
+        "text": "Fry in medium-hot oil until puffed, crisp, and deep golden. Serve with aloor dom and pickled green chillies.",
+        "minutes": 14
+      }
+    ],
+    "notes": "The holy grail of North Kolkata cabin snacks, popular at tea shops and evening gatherings.",
+    "id": "static-1579"
   },
   {
     "id": "static-0286",
@@ -52178,6 +54352,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "name": "Mawa Kachori / Khoya Kochuri (Jodhpur Royal Sweet Khoya & Saffron-Cardamom Stuffed Crisp Kachori in Sugar Syrup)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 30,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Mawa (khoya), crumbled and lightly roasted",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Pistachios, almonds & cashews, slivered",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cardamom powder & saffron strands (kesar)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar & water (for 1-string saffron syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee (for moyan and frying)",
+        "quantity": "300",
+        "unit": "ml"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare nut-studded mawa stuffing & sugar syrup",
+        "text": "Roast crumbled mawa with cardamom and chopped dry fruits until aromatic; let cool. Separately, boil sugar and water with crushed saffron to make a warm one-string syrup.",
+        "minutes": 12
+      },
+      {
+        "section": "Stuff and flatten kachoris",
+        "text": "Knead maida with generous melted ghee and iced water into a firm dough. Enclose mawa stuffing inside thick dough circles and flatten with palm edges.",
+        "minutes": 10
+      },
+      {
+        "section": "Slow fry and steep in syrup",
+        "text": "Slow-fry on low flame in ghee until completely crisp and blister-free (about 15 minutes). Poke a hole in the crust, spoon in warm saffron syrup, and garnish with pistachios.",
+        "minutes": 18
+      }
+    ],
+    "notes": "The legendary royal sweet kachori invented in Jodhpur, Rajasthan.",
+    "id": "static-1580"
+  },
+  {
     "id": "static-1553",
     "name": "Methi Malai Paneer (Cottage Cheese in Fragrant Fenugreek Leaf & Cream Gravy)",
     "category": "Paneer",
@@ -52230,6 +54468,65 @@
     "cookMinutes": 15,
     "servings": 4,
     "notes": "Sautéing fresh methi leaves in ghee removes any harsh bitterness and leaves a warm herbal aroma."
+  },
+  {
+    "name": "Methi Matar Paratha (Fresh Fenugreek & Crushed Peas Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh methi leaves, finely chopped and sautéed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green peas, coarsely crushed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste, amchur & roasted cumin",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & garam masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté methi and matar puran",
+        "text": "Heat 1 tsp oil, add ajwain, ginger-chilli paste, chopped methi, and crushed green peas. Sauté until tender and completely dry; season with amchur, garam masala, and salt.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Place the cooled green stuffing inside dough cups, seal tightly, and roll into flat circles.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook on griddle",
+        "text": "Roast on tawa with ghee on both sides until crispy and fragrant. Serve with curd and garlic pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A harmonious blend of sweet winter peas and pleasantly bitter fresh fenugreek.",
+    "id": "static-1616"
   },
   {
     "id": "static-0426",
@@ -54259,6 +56556,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "name": "Moong Dal Kochuri (Bengali Homestyle Soft Fennel & Yellow Lentil Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Yellow moong dal, soaked 2 hours and ground with minimal water",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (mouri), lightly crushed",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-green chilli paste & asafoetida (hing)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin-coriander powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for moyan) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook fennel-scented moong dal paste",
+        "text": "Heat 1 tbsp oil, temper with crushed fennel seeds and hing. Add ground moong dal paste, ginger-chilli paste, cumin-coriander powder, salt, and a pinch of sugar; sauté until it forms a non-sticky soft dough.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Knead maida with ghee, salt, and water. Divide into balls, flatten, place a ball of dal filling inside, seal the mouth, and roll into round puris.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry until puffed",
+        "text": "Drop in hot oil and gently press with a slotted ladle until it puffs into a soft, fragrant sphere. Serve hot with cholar dal.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A softer, aromatic homestyle Bengali counterpart to Rajasthani khasta kachori.",
+    "id": "static-1581"
+  },
+  {
     "id": "static-0170",
     "name": "Moong Dal Punjabi Style",
     "category": "Side Dish",
@@ -54662,6 +57023,70 @@
     "notes": "Ideal for winter nights with koraishutir kochuri or hot phulkas."
   },
   {
+    "name": "Motorshuti O Cheese Kochuri (Bengali Fusion Green Peas & Molten Cheese Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh green peas, blanched and mashed coarsely",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated mozzarella & cheddar cheese",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger paste, green chillies & roasted cumin powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper & oregano flakes",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for moyan) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix green pea & cheese puran",
+        "text": "Sauté mashed peas with ginger, green chillies, and roasted cumin until dry. Allow to cool completely, then mix with grated mozzarella, cheddar, black pepper, and oregano.",
+        "minutes": 7
+      },
+      {
+        "section": "Enclose filling in dough",
+        "text": "Knead maida with ghee and salt into a soft dough. Enclose the cheese-pea filling in dough balls, seal carefully to prevent leakage, and roll into medium discs.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until golden and molten",
+        "text": "Deep-fry in hot oil until puffed and crisp. Serve immediately while the cheese inside is delightfully gooey and melted.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A popular modern Kolkata cafe fusion marrying traditional koraishuti pur with stringy cheese.",
+    "id": "static-1582"
+  },
+  {
     "id": "static-1355",
     "name": "Mouchak (Bengali Honeycomb-Layered Khoya, Chhena & Boondi Sweet)",
     "category": "Sweets",
@@ -54996,6 +57421,70 @@
     "notes": "Squeezing the radish dry turns its sharp bite sweet and earthy once fried in mustard oil."
   },
   {
+    "name": "Murgir Keema Kochuri (Kolkata Cabin-Style Spiced Minced Chicken Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced chicken breast (chicken keema)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onion, ginger-garlic paste & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Garam masala, turmeric, cumin powder & Kashmiri red chilli",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint & coriander leaves, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté dry spiced chicken keema",
+        "text": "Sauté chopped onion and ginger-garlic paste in mustard oil until browned. Add minced chicken, turmeric, cumin, chilli, and salt; stir vigorously on high heat until the juices evaporate and the mince is dry and tender. Fold in garam masala, mint, and coriander.",
+        "minutes": 12
+      },
+      {
+        "section": "Fill dough discs",
+        "text": "Knead maida with ghee, salt, and warm water. Divide into balls, place chicken stuffing in each, seal securely, and roll out gently with oiled rolling pin.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until crispy",
+        "text": "Slide into hot oil and fry until fully puffed, crunchy, and golden brown. Serve hot with salad and kasundi.",
+        "minutes": 13
+      }
+    ],
+    "notes": "Classic evening snack served across heritage tea stalls and cabins in Shyambazar and College Street.",
+    "id": "static-1583"
+  },
+  {
     "id": "static-0915",
     "name": "Murir Moa",
     "category": "Sweets",
@@ -55251,6 +57740,65 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "name": "Mushroom Paratha (Spiced Sautéed Mushroom, Onion & Pepper Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Button mushrooms, washed, dried and finely minced",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onions, garlic & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Freshly cracked black pepper, garam masala & cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves & butter (for roasting)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté dry mushroom filling",
+        "text": "Heat 1 tbsp butter, sauté onions and garlic until aromatic. Add minced mushrooms, green chillies, black pepper, garam masala, and salt; cook on high heat until the water evaporates and the mixture is dry.",
+        "minutes": 7
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose cooled mushroom filling inside whole wheat dough balls and roll gently.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast with butter",
+        "text": "Cook on a hot tawa with butter until crisp and golden brown. Serve with spicy mint chutney or curd.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Earthy, umami-rich stuffed paratha combining sautéed garlic mushrooms and black pepper.",
+    "id": "static-1617"
+  },
+  {
     "id": "static-1271",
     "name": "Mutton Kathi Roll (Kolkata Street-Style Spiced Mutton Kabab Roll)",
     "category": "Snacks",
@@ -55308,6 +57856,65 @@
     "cookMinutes": 20,
     "servings": 2,
     "notes": "Classic Old Kolkata style mutton kathi roll with aromatic mace and nutmeg notes."
+  },
+  {
+    "name": "Mutton Keema Paratha (Rich Mughlai Spiced Minced Mutton Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Mughlai-inspired",
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced mutton (keema), fine grind",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onions, ginger-garlic paste & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Shahi garam masala, coriander, cumin & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kasuri methi, chopped mint & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for cooking) & salt",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bhunno spiced mutton keema",
+        "text": "Sauté onions and ginger-garlic paste in 1 tbsp ghee until deeply browned. Add mutton keema, spices, and salt; bhunno on medium heat until tender and thoroughly dry. Stir in mint, coriander, and kasuri methi; cool.",
+        "minutes": 15
+      },
+      {
+        "section": "Stuff into dough and roll",
+        "text": "Pack keema filling into dough balls, seal neatly, and roll out with light pressure.",
+        "minutes": 8
+      },
+      {
+        "section": "Roast on tawa with ghee",
+        "text": "Roast on a medium-hot tawa with ghee until deeply golden, crisp on the edges, and fragrant. Serve with cucumber raita and pickled onions.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A regal Mughlai stuffed flatbread made with robustly spiced slow-cooked mutton mince.",
+    "id": "static-1618"
   },
   {
     "id": "static-0877",
@@ -55889,6 +58496,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "name": "Narkel Porota (Bengali Sweet Grated Coconut & Jaggery Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta) & maida",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Freshly grated coconut (narkel kora)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Date palm jaggery (nolen gur) or grated sugarcane jaggery",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder (elachi gundo)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for moyan and roasting)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook sweet coconut-gur puran",
+        "text": "Cook grated coconut and jaggery in a pan on medium-low flame with 1 tsp ghee and cardamom powder until sticky and caramelized (like narkel naru puran); let cool.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Enclose coconut puran inside dough balls, seal edges securely, and roll into round flatbreads.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast with desi ghee",
+        "text": "Cook on tawa with desi ghee on both sides until golden and caramelized. Serve warm as a sweet winter evening treat.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A nostalgic Bengali pithe-style sweet paratha stuffed with caramel-sweet coconut and nolen gur.",
+    "id": "static-1619"
+  },
+  {
     "id": "static-1417",
     "name": "Navratan Mixture (Nine-Gem Lentil, Potato Lachha, Nut & Raisin Namkeen)",
     "category": "Snacks",
@@ -56329,6 +58995,60 @@
     "cookMinutes": 25,
     "servings": 4,
     "notes": "Essential companion to Koraishutir Kochuri at every Bengali winter picnic and feast."
+  },
+  {
+    "name": "Oats Paratha (Spiced Rolled Oats & Vegetable Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Rolled oats, lightly toasted and pulsed coarsely",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated carrots, finely chopped capsicum & onions",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste, cumin & chaat masala",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté oats and vegetable filling",
+        "text": "Sauté ginger, chillies, onions, carrots, and capsicum in 1 tsp oil, add toasted oats, cumin, chaat masala, salt, and 2 tbsp water to moisten slightly; cool.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Pack the oats-vegetable mixture into dough balls, seal, and roll into circles.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on griddle",
+        "text": "Cook on hot tawa with ghee or oil until crisp and nicely browned. Serve with spiced curd.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A high-fiber, heart-healthy modern breakfast flatbread.",
+    "id": "static-1620"
   },
   {
     "id": "static-1130",
@@ -58973,6 +61693,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "name": "Palak Corn Paratha (Spiced Spinach & Sweet Corn Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh spinach, blanched and finely chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sweet corn kernels, steamed and lightly crushed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic, green chillies & roasted cumin",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat masala, amchur & butter (for roasting)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spinach and corn stuffing",
+        "text": "Sauté garlic and chillies in butter, add chopped spinach and crushed corn; cook on high heat until dry, then season with chaat masala, amchur, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose filling in whole wheat dough portions and roll out into neat discs.",
+        "minutes": 7
+      },
+      {
+        "section": "Griddle on tawa",
+        "text": "Cook on a hot tawa with butter or ghee until crisp with golden blisters. Serve with yogurt or pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A delicious pairing of sweet golden corn and tender green spinach.",
+    "id": "static-1621"
+  },
+  {
     "id": "static-1546",
     "name": "Palak Paneer (Cottage Cheese Cubes in Velvety Spiced Spinach Puree)",
     "category": "Paneer",
@@ -59025,6 +61804,65 @@
     "cookMinutes": 15,
     "servings": 4,
     "notes": "Shocking blanched spinach in ice water keeps Palak Paneer vibrant emerald green."
+  },
+  {
+    "name": "Palak Paneer Paratha (Spiced Spinach & Cottage Cheese Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Spinach leaves, blanched, squeezed dry and finely minced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Paneer (cottage cheese), crumbled or finely grated",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic, green chillies & fresh ginger",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam masala, roasted cumin & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or butter & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix palak-paneer stuffing",
+        "text": "Combine squeezed chopped spinach with crumbled paneer, garlic, ginger, green chillies, garam masala, cumin, kasuri methi, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Place filling inside rolled dough rounds, pinch to seal, and roll out with light pressure.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa with ghee",
+        "text": "Cook on griddle with ghee until speckled with golden spots. Serve with curd and pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Brings the classic restaurant curry flavors of Palak Paneer inside a crisp stuffed whole wheat paratha.",
+    "id": "static-1622"
   },
   {
     "id": "static-1184",
@@ -59197,6 +62035,70 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Adding 2 tbsp fine semolina keeps Palak Puris puffed and crisp for longer."
+  },
+  {
+    "name": "Palang Shaker Kochuri (Bengali Spiced Spinach & Hing Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh spinach leaves (palang shaak), blanched and pureed thick",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-green chilli paste & asafoetida (hing)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin-fennel powder & amchur powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted besan (gram flour, for thickening)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for dough) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook thick spinach puran",
+        "text": "Heat 1 tbsp oil, add hing, ginger-chilli paste, and thick spinach puree. Cook on medium heat with roasted cumin-fennel powder, salt, and sugar. Stir in roasted besan until it forms a cohesive dough-like filling; cool.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff and roll puris",
+        "text": "Knead maida with ghee, salt, and water. Shape into cups, fill with emerald spinach paste, seal tightly, and roll gently.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until puffed",
+        "text": "Fry in medium-hot oil until puffed and crisp. Serve with dum aloo or chana masala.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Vibrant emerald winter kochuri scented with asafoetida and dry-roasted spices.",
+    "id": "static-1584"
   },
   {
     "id": "static-1506",
@@ -59703,6 +62605,65 @@
     "cookMinutes": 10,
     "servings": 4,
     "notes": "Adding 2 tablespoons of milk keeps Paneer Bhurji soft and creamy rather than dry and crumbly."
+  },
+  {
+    "name": "Paneer Bhurji Paratha (Spicy Scrambled Cottage Cheese & Green Chilli Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Punjabi",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Paneer, crumbled coarsely",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onion, tomato, ginger & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, red chilli powder, pav bhaji masala & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & butter (for cooking)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spicy paneer bhurji",
+        "text": "Sauté onion, ginger, and green chillies in 1 tbsp butter, add tomatoes, turmeric, chilli powder, pav bhaji masala, and salt. Cook until mushy, stir in crumbled paneer and kasuri methi, and cook until dry; let cool.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Pack paneer bhurji inside wheat dough portions, seal tightly, and roll out gently.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast crisp on tawa",
+        "text": "Roast on a hot griddle with butter until golden and crisp. Serve with spiced raita and green chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Street-style spiced tawa paneer bhurji stuffed into a buttery, flaky paratha.",
+    "id": "static-1623"
   },
   {
     "id": "static-0716",
@@ -60662,6 +63623,65 @@
     "notes": "Fluffy, aromatic one-pot meal that pairs effortlessly with raita, dal makhani, or Aloo Dum."
   },
   {
+    "name": "Paneer Pyaz Paratha (Spiced Cottage Cheese & Onion Stuffed Paratha)",
+    "category": "Bread",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Paneer, grated finely",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, grated ginger & chopped coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ajwain, amchur, cumin powder & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or butter (for cooking) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix paneer and crunchy onion filling",
+        "text": "Toss grated paneer with chopped raw onion, chillies, ginger, coriander, ajwain, amchur, cumin, garam masala, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose stuffing inside dough discs, seal the top, and roll into flat circles.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa with ghee",
+        "text": "Cook on hot tawa with generous ghee or butter until crispy and golden brown. Serve hot with pickle and curd.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A Punjabi breakfast favorite featuring creamy paneer complemented by the sweet crunch of fresh onions.",
+    "id": "static-1624"
+  },
+  {
     "id": "static-1537",
     "name": "Paneer Rezala (Kolkata Nawabi White Yogurt, Cashew & Kewra Gravy with Paneer)",
     "category": "Paneer",
@@ -61033,6 +64053,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "name": "Papad Paratha (Spiced Crushed Roasted Papad & Coriander Stuffed Crunchy Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Urad dal papad (plain or black pepper), roasted crisp",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped onion, green chillies & fresh coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Chaat masala, roasted cumin & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or oil & a pinch of salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crush papad stuffing",
+        "text": "Crush roasted papads into coarse bits. Mix with chopped onion, chillies, coriander, chaat masala, cumin, chilli powder, and 1 tsp ghee.",
+        "minutes": 4
+      },
+      {
+        "section": "Stuff into dough and roll",
+        "text": "Enclose papad mixture inside dough balls and roll out carefully with light pressure.",
+        "minutes": 6
+      },
+      {
+        "section": "Roast on griddle",
+        "text": "Cook on tawa with ghee until crisp on both sides. Serve immediately with curd or pickle.",
+        "minutes": 10
+      }
+    ],
+    "notes": "A quick, crunchy Rajasthani-inspired paratha that turns simple roasted papad into an exciting meal.",
+    "id": "static-1625"
   },
   {
     "id": "static-0246",
@@ -63244,6 +66318,70 @@
     "notes": "Sweet caramelized onions balance the bitter gourd beautifully."
   },
   {
+    "name": "Peyaj Kochuri (Kolkata Sweet-Shop Flaky Spiced Onion Kachori / Bengali Pyaaz Kochuri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Onions, sliced very thin",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potato, mashed (for binding)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Coarsely crushed coriander seeds, fennel seeds & cumin seeds",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-green chilli paste, amchur, garam masala & hing",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for flaky moyan) & oil for frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Salt & sugar",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize spiced onion filling",
+        "text": "Heat 2 tbsp oil with crushed coriander, fennel, cumin, and hing. Sauté sliced onions until golden brown. Add ginger-chilli paste, mashed potato, amchur, garam masala, salt, and sugar; cook until completely dry.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff flaky dough",
+        "text": "Rub generous ghee into maida until it holds shape when pressed. Knead with cold water, divide into balls, fill with the spiced onion mixture, and flatten gently.",
+        "minutes": 10
+      },
+      {
+        "section": "Slow fry until khasta",
+        "text": "Fry on low-to-medium heat for 12-14 minutes until the shell turns exceptionally flaky, crisp, and golden. Serve with tamarind chutney.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Kolkata sweet-shop take on the North Indian pyaaz kachori, featuring caramelized onions and whole crushed spices.",
+    "id": "static-1585"
+  },
+  {
     "id": "static-1065",
     "name": "Peyajkoli Chingri Bhaja (Spring Onion Stalks Stir-Fried with Prawns)",
     "category": "Prawns",
@@ -64556,6 +67694,70 @@
     "notes": "A beloved winter evening snack across Kolkata, served piping hot with kasundi and black salt."
   },
   {
+    "name": "Phulkopir Kochuri (Bengali Spiced Cauliflower Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Cauliflower florets (phulkopi), finely grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger paste & chopped green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin-coriander powder & Bengali garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (hing) & nigella seeds",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté grated cauliflower filling",
+        "text": "Heat mustard oil with hing and kalo jeere. Add ginger paste, green chillies, and grated cauliflower. Sauté on medium flame with cumin, coriander, garam masala, salt, and a pinch of sugar until dry and tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Enclose stuffing in dough",
+        "text": "Knead maida with ghee and water into a smooth dough. Shape into cups, fill generously with cooled cauliflower mixture, pinch shut, and roll carefully.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry until golden",
+        "text": "Fry in moderately hot oil until fully puffed and crisp. Serve hot with Bengali aloor dum.",
+        "minutes": 14
+      }
+    ],
+    "notes": "A coveted winter morning breakfast delicacy across Bengali households when fresh seasonal cauliflower arrives.",
+    "id": "static-1586"
+  },
+  {
     "id": "static-0812",
     "name": "Pineapple Juice",
     "category": "Beverage",
@@ -65086,6 +68288,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "name": "Poha Paratha (Spiced Softened Flattened Rice, Potato & Herb Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick poha (flattened rice), washed, drained and softened",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potato, mashed",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Finely chopped onion, ginger-green chilli paste & coriander",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard seeds, turmeric, lemon juice & sugar",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare tempered poha filling",
+        "text": "Temper mustard seeds in 1 tsp oil, add onion and ginger-chilli paste. Mix with softened poha, mashed potato, turmeric, lemon juice, sugar, salt, and coriander.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff into dough",
+        "text": "Pack poha filling into wheat dough portions, seal edges, and roll into flat rounds.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Cook on a hot tawa with ghee on both sides until golden brown. Serve with mint chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "An innovative breakfast creation combining the flavors of Kanda Poha inside a stuffed paratha.",
+    "id": "static-1626"
+  },
+  {
     "id": "static-1321",
     "name": "Pointed Gourd & Potato Fry (Aloo Potol Fry / Aloo Potol Bhaja)",
     "category": "Vegetable",
@@ -65536,6 +68797,65 @@
     "cookMinutes": 10,
     "servings": 4,
     "notes": "One of the crown jewels of Rarh Bengal (Bankura-Birbhum-Burdwan) cuisine, eaten with hot steamed rice."
+  },
+  {
+    "name": "Postor Kochuri (Bengali Royal Poppy Seed / Khus-Khus Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground thick with green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & ginger paste",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying",
+        "quantity": "250",
+        "unit": "ml"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bhunno rich posto paste",
+        "text": "Heat mustard oil with kalo jeere, add ginger paste and thick poppy seed paste. Sauté continuously with salt and a hint of sugar on low heat until the water completely evaporates and the paste leaves the pan.",
+        "minutes": 8
+      },
+      {
+        "section": "Fill and roll kochuris",
+        "text": "Knead maida with warm ghee and water. Roll into small cups, fill with the nutty posto paste, seal tightly, and roll gently.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until puffed",
+        "text": "Deep-fry in hot oil until inflated and delicately crisp. Serve with light potato curry or sweet tomato chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A royal Bankura and Rarh Bengal delicacy celebrated for the velvety texture and nutty flavor of posto.",
+    "id": "static-1587"
   },
   {
     "id": "static-0465",
@@ -74956,6 +78276,70 @@
     "notes": "Twin specialty to Sorbhaja from Krishnanagar, revered for its delicate sheets of slow-simmered milk cream."
   },
   {
+    "name": "Sattu Kochuri (Bengali-Bihari Spiced Roasted Gram Flour Stuffed Kochuri)",
+    "category": "Bread",
+    "region": "Bengali / Bihari / Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Chana sattu (roasted Bengal gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic, ginger & green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), nigella seeds (kalonji) & amchur",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & mango pickle masala",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & chopped coriander",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare zesty sattu mixture",
+        "text": "Mix sattu with minced garlic, ginger, chillies, ajwain, kalonji, mustard oil, pickle masala, lemon juice, salt, and chopped coriander with a few drops of water until crumbly yet cohesive.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff dough balls",
+        "text": "Knead maida with ghee, salt, and water. Form dough cups, pack with sattu filling, seal the edges, and roll into smooth round discs.",
+        "minutes": 10
+      },
+      {
+        "section": "Deep fry until golden crisp",
+        "text": "Deep-fry in hot oil until puffed, crunchy, and richly browned. Serve with spicy chokha or ghugni.",
+        "minutes": 13
+      }
+    ],
+    "notes": "Pungent and protein-packed street food staple in Kolkata, Howrah, and across the Bengal-Bihar border.",
+    "id": "static-1588"
+  },
+  {
     "id": "static-1178",
     "name": "Sattu Paratha (Bihari Spiced Roasted Gram Flour Stuffed Paratha)",
     "category": "Bread",
@@ -75781,6 +79165,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "name": "Shakarkandi Paratha / Sweet Potato Paratha (Spiced Mashed Sweet Potato & Ginger Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweet potatoes (shakarkandi), boiled or roasted and mashed",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated ginger, green chillies & fresh coriander",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), amchur, cumin & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (for cooking) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season sweet potato filling",
+        "text": "Mash boiled sweet potatoes with ginger, green chillies, coriander, ajwain, amchur, cumin, garam masala, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose stuffing balls inside wheat dough cups, seal neatly, and roll out with even strokes.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa with ghee",
+        "text": "Cook on a hot tawa with ghee until blistered and crusty on both sides. Serve hot with green chutney or raita.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A naturally sweet and savory winter flatbread packed with complex carbs and fiber.",
+    "id": "static-1627"
+  },
+  {
     "id": "static-1461",
     "name": "Shanghai Fried Rice — Veg / Egg (Combination of Wok-Tossed Rice & Crispy/Soft Noodles)",
     "category": "Rice",
@@ -75936,6 +79374,65 @@
     "cookMinutes": 15,
     "servings": 4,
     "notes": "A vibrant winter lunch favorite across Bengal."
+  },
+  {
+    "name": "Sheem Kochuri (Bengali Spiced Broad Bean & Mustard-Poppy Stuffed Puri)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Flat green broad beans (sheem), strings removed and boiled",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Mustard paste & poppy seed paste (shorshe-posto bata)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-green chilli paste & nigella seeds (kalo jeere)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & ghee (for dough)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare sheem-shorshe puran",
+        "text": "Grind boiled broad beans with green chillies into a thick paste. Sauté in mustard oil with kalo jeere, ginger paste, and shorshe-posto bata until dry and aromatic; let cool.",
+        "minutes": 9
+      },
+      {
+        "section": "Fill and roll kochuris",
+        "text": "Knead maida with ghee and water into a smooth dough. Enclose a portion of sheem paste inside each dough ball and roll with light, even strokes.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until crisp",
+        "text": "Fry in medium-hot oil until puffed, crisp, and golden. Serve with notun aloor torkari.",
+        "minutes": 13
+      }
+    ],
+    "notes": "An heirloom winter village delicacy showcasing the earthy flavor of fresh winter flat beans and pungent mustard.",
+    "id": "static-1589"
   },
   {
     "id": "static-0985",
@@ -77719,6 +81216,65 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Wholesome, protein-packed vegetarian chowmin with crispy-edged spiced soya chunks."
+  },
+  {
+    "name": "Soya Keema Paratha (Spiced Nutrela Soya Granules Stuffed High-Protein Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Soya granules, boiled, squeezed dry and pulsed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onions, ginger-garlic paste & green chillies",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Garam masala, cumin, coriander & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander & kasuri methi",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced soya keema",
+        "text": "Sauté onions and ginger-garlic paste in 1 tbsp oil, add squeezed soya granules, spices, and salt; stir-fry until completely dry and flavorful. Finish with kasuri methi and coriander; let cool.",
+        "minutes": 9
+      },
+      {
+        "section": "Stuff into dough discs",
+        "text": "Pack the seasoned soya keema into dough balls, seal edges, and roll into circles.",
+        "minutes": 7
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Cook on a hot griddle with ghee on both sides until golden brown and crisp. Serve with chilled dahi.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A vegetarian protein powerhouse mimicking the savory mouthfeel of classic keema paratha.",
+    "id": "static-1628"
   },
   {
     "id": "static-0945",
@@ -82783,6 +86339,65 @@
     "cookMinutes": 3,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "name": "Tofu Paratha (Spiced Crumbled Tofu & Cumin Vegan Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Firm tofu, pressed and crumbled finely",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onion, ginger & green chillies",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, roasted cumin, amchur & garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander & mustard oil or plant butter (for cooking)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season crumbled tofu",
+        "text": "Mix crumbled tofu with chopped onion, ginger, chillies, turmeric, cumin, amchur, garam masala, salt, and fresh coriander.",
+        "minutes": 5
+      },
+      {
+        "section": "Stuff and roll",
+        "text": "Enclose tofu mixture in dough cups, seal securely, and roll out with gentle pressure.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook on tawa",
+        "text": "Roast on a hot griddle with oil or plant butter until golden and crisp. Serve with green chutney or pickle.",
+        "minutes": 12
+      }
+    ],
+    "notes": "A 100% plant-based, dairy-free high-protein alternative to traditional paneer paratha.",
+    "id": "static-1629"
   },
   {
     "id": "static-1389",
