@@ -216,6 +216,55 @@
     "notes": "Bold, tangy pickle-spiced flaky mathri pinwheels."
   },
   {
+    "id": "static-1554",
+    "name": "Achari Paneer Masala (Tangy Five-Spice Pickling Masala Paneer Curry)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Achari spice mix: fennel (mouri), mustard seeds, nigella (kalo jeere), cumin & fenugreek (methi)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onions (2 finely chopped), tomato puree (0.75 cup) & whisked yogurt (0.33 cup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste, turmeric, Kashmiri red chilli & amchur (dry mango powder)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, whole dry red chillies, fresh coriander & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coarsely crush roasted achari spices and temper in mustard oil",
+        "text": "Coarsely crush half the fennel, mustard, cumin, and fenugreek seeds; heat mustard oil until smoking, crackle the remaining whole achari seeds and dry red chillies, and sauté chopped onions and ginger-garlic paste.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer tangy tomato-yogurt gravy with paneer",
+        "text": "Cook tomato puree, whisked yogurt, turmeric, Kashmiri chilli, and the crushed achari masala until oil separates; add warm water and seared paneer cubes, simmer 4 minutes, and garnish with coriander.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "notes": "Pungent mustard oil and freshly crushed panch-phoron/achari spices give this curry a bold pickle-like tang."
+  },
+  {
     "id": "static-1189",
     "name": "Ajwain Paratha (Carom Seed Layered Flaky Paratha)",
     "category": "Bread",
@@ -1827,6 +1876,65 @@
     "cookMinutes": 18,
     "servings": 3,
     "notes": "Nutritious spinach and potato curry great with phulkas or steamed rice."
+  },
+  {
+    "id": "static-1533",
+    "name": "Aloo Paneer Dalna (Bengali Homestyle Niramish Paneer & Potato Curry with Cumin & Gorom Moshla)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer (cottage cheese), cut into cubes",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Cashew & melon seed paste (kaju-char magaj bata)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole cumin, bay leaf, green cardamom, cinnamon & cloves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger paste, chopped tomato, turmeric, cumin powder & Kashmiri chilli powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (1 tbsp), Bengali gorom moshla, sugar (0.5 tsp), oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Golden-fry paneer cubes and soak in warm salted water",
+        "text": "Lightly fry paneer cubes in oil with a pinch of turmeric until pale golden, then soak immediately in warm salted water for 5 minutes so the paneer stays pillowy soft.",
+        "minutes": 6
+      },
+      {
+        "section": "Sauté potatoes and cook ginger-cashew-tomato masala",
+        "text": "Fry potato cubes until golden; temper oil with bay leaf, whole cumin, and whole garam masala, cook ginger paste, tomato, cumin powder, and cashew-melon seed paste until oil separates.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer with drained paneer and finish with ghee",
+        "text": "Add 1.25 cups warm water and potatoes, simmer until tender, fold in the soaked paneer cubes, sugar, ghee, and gorom moshla, and simmer 3 minutes.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Soaking lightly fried paneer cubes in warm salted water keeps them melt-in-the-mouth soft inside the curry."
   },
   {
     "id": "static-0306",
@@ -14078,6 +14186,173 @@
     "notes": "Iconic street-side crunchy flattened kala-chana snack enjoyed standalone or with chopped onion and lemon."
   },
   {
+    "id": "static-1565",
+    "name": "Chanar Chop / Paneer Cutlet (Kolkata Crumbed & Deep-Fried Spiced Cottage Cheese Croquettes)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Grated paneer or drained fresh chhena (250g) + boiled mashed potato (1 medium)",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Raisins, chopped roasted peanuts / cashews & fresh coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & Bengali bhaja moshla (roasted cumin-coriander-chilli)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali gorom moshla, turmeric, sugar (0.5 tsp) & salt",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cornflour/maida slurry & dry breadcrumbs / biscuit crumbs",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spiced chhena-potato mixture and shape croquettes",
+        "text": "Sauté ginger and green chillies in 1 tbsp oil, add grated paneer/chhena and mashed potato with turmeric, bhaja moshla, gorom moshla, raisins, peanuts/cashews, sugar, and salt; cook 4 minutes until firm, cool, and shape into cylindrical chops.",
+        "minutes": 10
+      },
+      {
+        "section": "Double-crumb and deep-fry until golden brown",
+        "text": "Dip each chop in cornflour slurry and coat twice in fine breadcrumbs; deep-fry in hot oil until crisp and deep golden brown.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "A beloved Kolkata niramish telebhaja/cutlet served with kasundi (mustard sauce) and cucumber-onion salad."
+  },
+  {
+    "id": "static-1532",
+    "name": "Chanar Dalna / Bengali Paneer & Potato Dalna (Cottage Cheese Koftas & Potato in Cumin-Ghee Gravy)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh chhena or grated soft paneer",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into medium cubes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Maida / all-purpose flour & semolina (suji) for binding",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole cumin, bay leaf, dry red chilli & grated ginger",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tomato puree (0.5 cup), cumin powder, coriander powder, turmeric & Kashmiri chilli",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (1 tbsp), Bengali gorom moshla, sugar (0.5 tsp), mustard oil & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead chhena/paneer into smooth kofta balls and fry",
+        "text": "Knead fresh chhena (or grated paneer) with 1 tbsp maida, 1 tsp suji, a pinch of salt, sugar, and ghee until smooth, shape into balls or flat discs, and fry in oil until golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry potatoes and simmer aromatic cumin-ginger gravy",
+        "text": "Fry potato cubes until golden; temper oil with cumin, bay leaf, and dry red chilli, cook ginger paste, tomato puree, turmeric, and cumin-coriander powder, then add 1.5 cups warm water and simmer potatoes until tender.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold in fried chanar balls, ghee and gorom moshla",
+        "text": "Slide the fried chhena/paneer balls into the simmering gravy for 2 minutes so they turn soft and juicy, and finish with ghee and Bengali gorom moshla.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "A timeless Bengali niramish (no onion, no garlic) centerpiece served on Puja days with luchi, pulao, or steamed rice."
+  },
+  {
+    "id": "static-1538",
+    "name": "Chanar Kalia (Festive Bengali Cottage Cheese Medallions in Rich Ginger-Tomato Gravy)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh chhena or crumbled paneer kneaded with 1 tbsp maida & 1 tsp suji",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Raisins & chopped cashews (for stuffing inside koftas)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated ginger, tomato puree & whisked yogurt (2 tbsp)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashew-char magaj paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole cumin, bay leaf, cardamom, cinnamon, cloves, Kashmiri chilli & cumin powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee, Bengali gorom moshla, sugar & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape raisin-stuffed chanar medallions and fry",
+        "text": "Knead chhena/paneer until smooth, stuff each portion with a raisin and cashew piece, flatten into medallions, and shallow-fry in oil-ghee until golden.",
+        "minutes": 9
+      },
+      {
+        "section": "Prepare rich crimson kalia gravy and simmer",
+        "text": "Temper oil with whole garam masala and cumin, cook ginger paste, tomato puree, Kashmiri red chilli, cumin powder, yogurt, and cashew-melon seed paste until glossy; add warm water, simmer 4 minutes, and add the fried medallions with ghee and gorom moshla.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "A celebratory Bengali vegetarian dish served at weddings and Upanayana feasts."
+  },
+  {
     "id": "static-0916",
     "name": "Chandrapuli",
     "category": "Sweets",
@@ -18641,6 +18916,114 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Fragrant Indo-Chinese chowmin infused with garlic oil and topped with crunchy golden burnt garlic."
+  },
+  {
+    "id": "static-1559",
+    "name": "Chilli Paneer Dry (Kolkata Tangra-Style Crispy Batter-Fried Paneer with Green Chillies & Bell Peppers)",
+    "category": "Paneer",
+    "region": "Indo-Chinese / Kolkata",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour (3 tbsp) & all-purpose flour / maida (2 tbsp)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Diced onion petals, green/red bell peppers & spring onion greens",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped garlic (1.5 tbsp), ginger (1 tbsp) & slit green chillies (5)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dark soy sauce (1 tbsp), green/red chilli sauce (1.5 tbsp), tomato ketchup (1 tbsp) & vinegar (1 tsp)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper powder, cornflour slurry (1 tsp), oil & salt",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Batter-fry spiced paneer cubes until crisp",
+        "text": "Toss paneer cubes with cornflour, maida, black pepper, 1 tsp soy sauce, ginger-garlic paste, salt, and a splash of water; fry in hot oil until crisp and golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Wok-toss on high flame with garlic, chillies and sauces",
+        "text": "In a smoking wok, stir-fry chopped garlic, ginger, and slit green chillies for 30 seconds, toss in onion petals and bell peppers for 1 minute, add soy sauce, chilli sauce, ketchup, vinegar, and 2 tbsp cornflour slurry, then toss in crispy paneer and spring onions.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Kolkata Tangra-style Chilli Paneer relies on generous chopped garlic and slit green chillies for its signature punch."
+  },
+  {
+    "id": "static-1560",
+    "name": "Chilli Paneer Gravy (Indo-Chinese Fried Paneer Cubes in Spicy Soy-Garlic-Chilli Sauce)",
+    "category": "Paneer",
+    "region": "Indo-Chinese / Kolkata",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour (4 tbsp total: 2.5 tbsp for batter + 1.5 tbsp for gravy slurry) & maida (2 tbsp)",
+        "quantity": "6",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cubed onion petals, green capsicum & chopped spring onion",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced garlic (1.5 tbsp), ginger (1 tbsp) & slit green chillies (4)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dark soy sauce (1.5 tbsp), red/green chilli sauce (2 tbsp), tomato ketchup (1.5 tbsp) & vinegar (1.5 tsp)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper powder, vegetable stock / water (1.25 cups), oil & salt",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crispy coated paneer cubes",
+        "text": "Coat paneer cubes in a seasoned batter of cornflour, maida, pepper, and salt, and fry in hot oil until golden and crisp.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer glossy soy-chilli-garlic gravy and fold in paneer",
+        "text": "Stir-fry garlic, ginger, green chillies, onion petals, and capsicum on high flame, add sauces and 1.25 cups water/stock, thicken with cornflour slurry until glossy, and fold in the fried paneer and spring onion greens.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 4,
+    "notes": "The quintessential Kolkata companion to Veg Chowmin or Egg/Veg Fried Rice."
   },
   {
     "id": "static-1273",
@@ -26613,6 +26996,65 @@
     "cookMinutes": 20,
     "servings": 3,
     "notes": "Tangy, creamy yogurt gravy softens the crisp fish egg fritters into melt-in-the-mouth dumplings."
+  },
+  {
+    "id": "static-1534",
+    "name": "Doi Paneer (Bengali Yogurt, Cashew & Char Magaj White Gravy Paneer)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into large cubes or triangles",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Whisked tok doi (sour curd / yogurt)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Soaked cashews (10) & char magaj (melon seeds, 1.5 tbsp) ground to a smooth paste",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green cardamoms, cloves, cinnamon stick, bay leaf & dry white/red chilli",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger paste, slit green chillies & white pepper / Kashmiri chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee (1.5 tbsp), white oil (1.5 tbsp), sugar (1 tsp) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sear paneer lightly and soak in warm water",
+        "text": "Pan-sear paneer cubes in ghee and white oil for 1 minute per side until lightly golden, then place in warm salted water.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook cashew-melon seed and yogurt base",
+        "text": "Temper oil-ghee with bay leaf, cardamom, cinnamon, and cloves; sauté ginger paste and cashew-char magaj paste on low heat, then whisk in beaten yogurt with a pinch of sugar so it does not curdle.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer paneer in velvety doi gravy",
+        "text": "Add ½ cup warm water, salt, slit green chillies, and drained paneer cubes; simmer gently for 4 minutes and finish with a pinch of garam masala.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "A mild, creamy, fragrant Bengali niramish dish that pairs wonderfully with basanti pulao or luchi."
   },
   {
     "id": "static-1278",
@@ -34898,6 +35340,55 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1566",
+    "name": "Hariyali Paneer Tikka (Mint, Coriander & Hung-Curd Marinated Grilled Paneer Skewers)",
+    "category": "Starters",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into 1.5-inch thick cubes, with capsicum & onion squares",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh mint leaves (0.5 cup), coriander leaves (1 cup) & green chillies (3) ground to a paste",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Hung curd / thick Greek yogurt (0.5 cup) & roasted besan (1 tbsp)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste, roasted cumin, chaat masala, black salt, lemon juice & mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter (for basting) & salt",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate paneer and vegetables in mint-coriander hung curd",
+        "text": "Whisk hung curd, roasted besan, mint-coriander-green chilli paste, ginger-garlic paste, roasted cumin, chaat masala, black salt, lemon juice, and 1 tbsp smoky mustard oil; coat paneer, capsicum, and onions and rest 15 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Skewer and char-roast on tawa or oven",
+        "text": "Thread onto skewers and grill in a hot oven or sear on a cast-iron tawa basting with butter until charred spots appear; dust with chaat masala and lemon juice.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Fresh mint, coriander, and black salt give Hariyali Paneer Tikka a zesty herbal punch."
+  },
+  {
     "id": "static-0942",
     "name": "Herb Omelette",
     "category": "Breakfast",
@@ -36090,6 +36581,55 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1558",
+    "name": "Hyderabadi Paneer (Cottage Cheese in Tangy Mint, Coriander, Fried Onion & Yogurt Green Gravy)",
+    "category": "Paneer",
+    "region": "South Indian / Hyderabadi",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into long fingers or cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Crispy fried onions (birista, 0.75 cup), fresh coriander (1 cup) & mint leaves (0.5 cup)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Whisked yogurt (0.5 cup) & soaked cashews (8)",
+        "quantity": "0.6",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies (3), ginger-garlic paste, whole garam masala & shahi jeera",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, cumin-coriander powder, garam masala, kasuri methi, oil/ghee & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend birista, mint, coriander, cashews and yogurt into green paste",
+        "text": "Sear paneer pieces until golden; blend crispy fried onions, fresh coriander, mint leaves, green chillies, soaked cashews, and yogurt into a smooth emerald-green paste.",
+        "minutes": 7
+      },
+      {
+        "section": "Braise green masala with whole spices and add paneer",
+        "text": "Temper oil-ghee with shahi jeera, cardamom, cloves, and cinnamon, sauté ginger-garlic paste, add the green birista-herb-yogurt paste and spices, cook until oil separates, and simmer with paneer for 4 minutes.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Caramelized fried onions blended with fresh mint and coriander create a uniquely rich, tangy green gravy."
   },
   {
     "id": "static-0790",
@@ -38462,6 +39002,55 @@
     "cookMinutes": 14,
     "servings": 3,
     "notes": "Crispy outside and creamy inside—finish with a squeeze of lemon juice."
+  },
+  {
+    "id": "static-1545",
+    "name": "Kadai Paneer (Wok-Tossed Paneer & Bell Peppers in Freshly Pounded Coriander-Chilli Kadai Masala)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Green capsicum (bell pepper) & onion petals, cut into 1-inch squares",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whole coriander seeds (1.5 tbsp), cumin seeds (1 tsp), peppercorns (8) & dry red chillies (4)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped onions (1 cup), tomato puree (1 cup) & ginger juliennes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Kasuri methi, cream (1 tbsp), oil/butter & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast and coarsely pound Kadai Masala",
+        "text": "Dry-roast whole coriander seeds, cumin, black peppercorns, and dry red chillies until aromatic, then crush coarsely in a mortar and pestle; toss paneer, capsicum, and onion petals on high heat for 2 minutes and set aside.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook onion-tomato masala and toss with paneer and capsicum",
+        "text": "Sauté finely chopped onions, ginger-garlic paste, and tomato puree until thick, stir in two-thirds of the pounded kadai masala, fold in the seared paneer, capsicum, and onion petals, and top with ginger juliennes, kasuri methi, and remaining kadai masala.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Freshly pounded coriander seeds and dry red chillies give Kadai Paneer its signature smoky crunch."
   },
   {
     "id": "static-1048",
@@ -47692,6 +48281,104 @@
     "notes": "Festive lacy honeycomb pastry topped with creamy rabri and nuts."
   },
   {
+    "id": "static-1550",
+    "name": "Malai Kofta (Melt-in-Mouth Paneer & Potato Dumplings in Creamy Cashew-Saffron Gravy)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Grated paneer (150g) & boiled mashed potato (100g)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour / maida (2 tbsp) & chopped cashews-raisins (for stuffing)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onions (2), tomatoes (3) & soaked cashews (15), cooked and pureed",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh cream (3 tbsp), butter (2 tbsp) & cardamom powder (0.5 tsp)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste, Kashmiri chilli, kasuri methi, garam masala, oil (for frying) & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roll nut-stuffed paneer-potato koftas and deep-fry",
+        "text": "Mix grated paneer, dry-mashed boiled potato, cornflour, cardamom, and salt into a smooth dough, stuff with chopped cashews and raisins, roll into smooth balls, and deep-fry until golden brown.",
+        "minutes": 10
+      },
+      {
+        "section": "Prepare velvety makhani-cashew gravy and pour over koftas",
+        "text": "Cook the strained onion-tomato-cashew puree in butter with Kashmiri chilli, garam masala, kasuri methi, and cream until silky; spoon the hot gravy over the fried koftas right before serving so they don't break.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Always pour the hot gravy over the fragile Malai Koftas at serving time rather than boiling them in the pot."
+  },
+  {
+    "id": "static-1567",
+    "name": "Malai Paneer Tikka (Creamy Cheese, Cardamom & White Pepper Marinated Roasted Paneer)",
+    "category": "Starters",
+    "region": "North Indian / Mughlai",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thick cubes, with bell pepper & onion squares",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Hung curd (3 tbsp), fresh cream / malai (3 tbsp) & grated processed/cheddar cheese (2 tbsp)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashew paste (1.5 tbsp) & cornflour (1 tbsp)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green cardamom powder, white pepper powder, ginger-garlic paste, kasuri methi & lemon juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter (for basting) & salt",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat paneer in creamy cashew-cheese-cardamom marinade",
+        "text": "Whisk hung curd, fresh cream, grated cheese, cashew paste, cornflour, ginger-garlic paste, white pepper, cardamom powder, crushed kasuri methi, lemon juice, and salt; coat paneer and bell peppers and marinate 15 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Pan-grill with butter until blistered and golden",
+        "text": "Sear on a hot buttered grill pan or cast-iron tawa turning gently until golden blisters form on all sides.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Mild, melt-in-the-mouth creamy starter scented with green cardamom and white pepper."
+  },
+  {
     "id": "static-0709",
     "name": "Malpua (Traditional)",
     "category": "Other",
@@ -51216,6 +51903,60 @@
     "notes": "Fresh winter green peas make a vibrant, naturally sweet and spicy bharta."
   },
   {
+    "id": "static-1547",
+    "name": "Matar Paneer (Homestyle North Indian Green Peas & Cottage Cheese Tomato-Onion Curry)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh or frozen green peas (matar)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onions (2 medium) & tomatoes (2 large), pureed or grated",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste & soaked cashews (6, ground with tomato)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole cumin, turmeric, Kashmiri red chilli, coriander powder, garam masala & kasuri methi",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil, ghee (1 tbsp), fresh coriander & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Lightly sear paneer and cook onion-tomato-cashew base",
+        "text": "Pan-sear paneer cubes until lightly golden and soak in warm water; temper oil with cumin seeds, sauté onion paste and ginger-garlic paste until golden, then cook tomato-cashew puree with turmeric, chilli, and coriander powder until oil separates.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer green peas and paneer in gravy",
+        "text": "Add green peas and 1.25 cups warm water, simmer covered for 5 minutes until peas are tender, then fold in paneer cubes, kasuri methi, garam masala, and fresh coriander.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "An everyday Indian household favorite that goes equally well with jeera rice, chapati, or poori."
+  },
+  {
     "id": "static-1183",
     "name": "Matar Paratha (Spiced Green Peas Stuffed Paratha)",
     "category": "Bread",
@@ -51435,6 +52176,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1553",
+    "name": "Methi Malai Paneer (Cottage Cheese in Fragrant Fenugreek Leaf & Cream Gravy)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh fenugreek leaves (methi shak), finely chopped (or 3 tbsp kasuri methi)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled onion-cashew-melon seed paste",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh cream / malai (0.33 cup) & whisked yogurt (2 tbsp)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste, white pepper, garam masala & whole cumin/cardamom",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee, butter, sugar (0.5 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté chopped methi leaves in ghee to mellow bitterness",
+        "text": "Sauté finely chopped fresh methi leaves in 1 tsp ghee for 3 minutes until wilted and aromatic; set aside.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer creamy onion-cashew gravy with methi and paneer",
+        "text": "Temper ghee with cumin and green cardamom, cook ginger-green chilli paste and boiled onion-cashew paste, stir in yogurt, cream, white pepper, sautéed methi leaves, and soft paneer cubes, and simmer 4 minutes.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Sautéing fresh methi leaves in ghee removes any harsh bitterness and leaves a warm herbal aroma."
   },
   {
     "id": "static-0426",
@@ -53811,6 +54606,60 @@
     "cookMinutes": 30,
     "servings": 2,
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1539",
+    "name": "Motor Paneer Bengali Niramish Style (Green Peas, Potato & Golden Paneer Curry without Onion-Garlic)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into cubes",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh or frozen green peas (koraishuti / motor)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Potato, peeled and diced (optional)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato-ginger-green chilli-cashew paste",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole cumin, bay leaf, asafoetida (hing, 1 pinch), turmeric, cumin-coriander powder & kasuri methi",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee, oil, Bengali gorom moshla, sugar & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-fry paneer and diced potatoes",
+        "text": "Lightly fry paneer cubes in oil-ghee until golden and soak in warm salted water; fry diced potatoes until golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer tomato-ginger-cashew gravy with green peas and paneer",
+        "text": "Temper oil with cumin, bay leaf, and hing, cook the tomato-ginger-cashew paste with turmeric and cumin-coriander powder, add green peas, potatoes, and warm water, then fold in paneer, crushed kasuri methi, ghee, and gorom moshla.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Ideal for winter nights with koraishutir kochuri or hot phulkas."
   },
   {
     "id": "static-1355",
@@ -58124,6 +58973,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1546",
+    "name": "Palak Paneer (Cottage Cheese Cubes in Velvety Spiced Spinach Puree)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer (cottage cheese), cubed",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh spinach leaves (palak / palong shak), washed",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Onion (1 medium, finely chopped), tomato (1 small) & chopped garlic (1 tbsp)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies (2), grated ginger (1 tsp) & whole cumin (1 tsp)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam masala, kasuri methi & fresh cream / butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil, ghee & salt",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch spinach in boiling water and shock in ice water",
+        "text": "Blanch spinach leaves with green chillies in boiling water for 2 minutes, transfer immediately to ice-cold water to lock in bright green color, and blend into a smooth puree.",
+        "minutes": 6
+      },
+      {
+        "section": "Sauté garlic-onion tadka and simmer with spinach and paneer",
+        "text": "Heat ghee and oil, crackle cumin seeds and chopped garlic, sauté chopped onion, ginger, and tomato with cumin-coriander powder, stir in the spinach puree and soft paneer cubes, simmer 4 minutes, and finish with kasuri methi, garam masala, and cream.",
+        "minutes": 9
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "Shocking blanched spinach in ice water keeps Palak Paneer vibrant emerald green."
+  },
+  {
     "id": "static-1184",
     "name": "Palak Paratha (Spiced Spinach Whole Wheat Paratha)",
     "category": "Bread",
@@ -58694,6 +59597,114 @@
     "notes": "Spicy-sweet contrast of fiery Schezwan sauce, golden paneer, and juicy sweet corn kernels."
   },
   {
+    "id": "static-1563",
+    "name": "Paneer 65 (South Indian Style Crispy Spiced Yogurt & Curry Leaf Fried Paneer Starter)",
+    "category": "Fritters",
+    "region": "South Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into bite-sized cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Rice flour (3 tbsp) & cornflour (2 tbsp)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Thick yogurt / curd",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh curry leaves (2 sprigs), slit green chillies (4) & minced garlic (1 tbsp)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder, roasted cumin, garam masala, turmeric & lemon juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil (for frying & tempering) & salt",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate paneer in spiced yogurt-rice flour batter and deep-fry",
+        "text": "Coat paneer cubes in thick yogurt, rice flour, cornflour, ginger-garlic paste, Kashmiri red chilli, cumin, garam masala, lemon juice, and salt; deep-fry in hot oil until crunchy and crimson.",
+        "minutes": 7
+      },
+      {
+        "section": "Toss in tempered curry-leaf and garlic yogurt glaze",
+        "text": "In 1 tbsp oil, crackle mustard seeds, minced garlic, slit green chillies, and curry leaves, stir in 1 tbsp spiced yogurt and chilli powder, and toss the crispy fried paneer on high heat until coated.",
+        "minutes": 5
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Crispy curry leaves and rice-flour batter give Paneer 65 an addictive crunch."
+  },
+  {
+    "id": "static-1552",
+    "name": "Paneer Bhurji (Spiced Scrambled Cottage Cheese with Onion, Tomato, Ginger & Coriander)",
+    "category": "Paneer",
+    "region": "North Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Fresh paneer, crumbled by hand",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion (1 large, finely chopped) & tomato (1 large, finely chopped)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Green bell pepper / capsicum, finely diced (optional)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped green chillies, grated ginger & whole cumin seeds",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, pav bhaji / garam masala & kasuri methi",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter (1 tbsp), oil (1 tbsp), splash of milk, fresh coriander & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté onion, ginger, green chillies and tomato in butter",
+        "text": "Heat oil and butter, crackle cumin seeds, sauté chopped onion, ginger, green chillies, and capsicum until soft, then cook chopped tomatoes with turmeric, chilli powder, and garam masala/pav bhaji masala.",
+        "minutes": 6
+      },
+      {
+        "section": "Fold in crumbled paneer with a splash of milk",
+        "text": "Add hand-crumbled paneer and 2 tbsp milk (to keep the scramble moist and creamy), toss on medium flame for 2-3 minutes without overcooking, and finish with kasuri methi and fresh coriander.",
+        "minutes": 4
+      }
+    ],
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Adding 2 tablespoons of milk keeps Paneer Bhurji soft and creamy rather than dry and crumbly."
+  },
+  {
     "id": "static-0716",
     "name": "Paneer Bhurji Sandwich",
     "category": "Sandwich",
@@ -58746,6 +59757,60 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1543",
+    "name": "Paneer Butter Masala (Creamy Tomato, Cashew & Butter Gravy with Soft Paneer Cubes)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer (cottage cheese), cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Ripe red tomatoes (4 medium) & onions (1 medium, optional)",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Raw cashews, soaked",
+        "quantity": "18",
+        "unit": "pcs"
+      },
+      {
+        "name": "Salted butter (3 tbsp) & fresh cream (3 tbsp)",
+        "quantity": "6",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste, Kashmiri red chilli powder, coriander powder & garam masala",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kasuri methi (roasted & crushed), cardamoms, bay leaf, honey/sugar (1 tsp) & salt",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer and puree tomatoes, cashews and aromatics",
+        "text": "Simmer roughly chopped tomatoes, soaked cashews, ginger, garlic, green cardamom, and Kashmiri red chilli powder with 1 cup water for 10 minutes; cool and blend into a silky-smooth puree, then strain.",
+        "minutes": 12
+      },
+      {
+        "section": "Cook strained makhani gravy in butter and add paneer",
+        "text": "Melt 2 tbsp butter in a pan, add the strained tomato-cashew puree, coriander powder, salt, and 1 tsp sugar/honey; simmer 5 minutes, fold in soft paneer cubes, crushed kasuri methi, garam masala, and fresh cream.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Straining the tomato-cashew puree gives restaurant-style velvety smoothness."
   },
   {
     "id": "static-1428",
@@ -58856,6 +59921,55 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1551",
+    "name": "Paneer Do Pyaza (Cottage Cheese Cooked with Caramelized & Crunchy Onion Petals)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions (2 finely chopped + 2 separated into crisp petals)",
+        "quantity": "4",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomatoes (2 chopped) & whisked yogurt (2 tbsp)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole coriander seeds (crushed), cumin seeds, fennel seeds (saunf) & dry red chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste, turmeric, Kashmiri chilli, garam masala, kasuri methi, oil/ghee & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear paneer cubes and onion petals",
+        "text": "Sear paneer cubes and crisp onion petals in 1 tbsp ghee with a pinch of turmeric and crushed coriander seeds for 2 minutes; remove and set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook spiced onion-tomato-yogurt masala and combine",
+        "text": "Temper oil with cumin, fennel, and dry red chillies, sauté finely chopped onions until golden, cook ginger-garlic, tomatoes, and whisked yogurt with spices, and fold in the seared paneer and onion petals.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "'Do Pyaza' uses onions at two stages—slow-caramelized in the base and crisp-seared petals at the end."
+  },
+  {
     "id": "static-1444",
     "name": "Paneer Fried Rice (Golden-Fried Paneer Cubes, Sweet Corn & Bell Pepper Fried Rice)",
     "category": "Rice",
@@ -58908,6 +60022,320 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Protein-rich vegetarian Indo-Chinese fried rice with golden paneer cubes and crunchy bell peppers."
+  },
+  {
+    "id": "static-1556",
+    "name": "Paneer Jalfrezi (Stir-Fried Paneer Batons, Bell Peppers, Baby Corn & Tangy Tomato Glaze)",
+    "category": "Paneer",
+    "region": "Indo-Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thick finger batons",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Red, yellow & green bell peppers, onion & tomato (deseeded), cut into juliennes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Baby corn or carrot juliennes, blanched",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato puree (0.5 cup) + tomato ketchup (1 tbsp) + vinegar/lemon juice (1 tsp)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole cumin, ginger juliennes, green chillies, Kashmiri chilli, roasted cumin & garam masala",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil, butter (1 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry paneer batons and crunchy vegetables on high heat",
+        "text": "Lightly sear paneer batons in oil and remove; in the same hot wok/kadai, crackle cumin seeds and stir-fry ginger juliennes, onions, bell peppers, and baby corn on high flame for 3 minutes so they stay crisp-tender.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss in tangy spiced tomato glaze",
+        "text": "Add tomato puree, Kashmiri chilli, roasted cumin, garam masala, ketchup, vinegar, and salt; cook 2 minutes, toss in the paneer batons and tomato juliennes, and serve hot.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Originating in colonial Bengal ('Jhal' + 'Frezi'), this colorful semi-dry stir-fry is ideal with parathas or rotis."
+  },
+  {
+    "id": "static-1557",
+    "name": "Paneer Kolhapuri (Fiery Roasted Coconut, Sesame & Red Chilli Maharashtrian Paneer Curry)",
+    "category": "Paneer",
+    "region": "West Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Dry grated coconut (3 tbsp), white sesame seeds (1 tbsp) & poppy seeds (1 tsp)",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole coriander seeds, cumin, black pepper, cloves, cinnamon, star anise & 5 dry Kashmiri/Byadgi chillies",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onions (2 finely chopped), tomatoes (2 pureed) & ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Oil, fresh coriander & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast and grind Kolhapuri coconut-sesame masala",
+        "text": "Dry-roast whole spices, red chillies, sesame seeds, poppy seeds, and grated coconut until golden brown, then grind into a smooth paste with a splash of water.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook spicy gravy and simmer with paneer",
+        "text": "Sauté finely chopped onions and ginger-garlic paste in oil, add tomato puree and the ground Kolhapuri masala, cook until oil floats on top, add warm water and seared paneer cubes, and simmer 4 minutes.",
+        "minutes": 11
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Bold, smoky, and deeply spiced with toasted coconut and sesame."
+  },
+  {
+    "id": "static-1541",
+    "name": "Paneer Kosha (Spicy Slow-Braised Bengali Onion-Ginger-Garlic Paneer Curry)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thick cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely sliced (2 medium) & ginger-garlic-green chilli paste (1.5 tbsp)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Tomatoes (chopped) & whisked yogurt (2 tbsp)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashew paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, whole garam masala, turmeric, Kashmiri red chilli, cumin & coriander powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil, ghee (1 tsp), sugar & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize onions and braise kosha masala",
+        "text": "Lightly sear paneer cubes and soak in warm water; in smoking mustard oil tempered with sugar and whole garam masala, fry sliced onions until deep brown, then slow-braise (kosha) with ginger-garlic paste, tomatoes, yogurt, and spices.",
+        "minutes": 14
+      },
+      {
+        "section": "Fold in cashew paste and paneer cubes",
+        "text": "Stir in cashew paste and ½ cup warm water, add the soft paneer cubes, simmer for 4 minutes until coated in thick dark-glossy masala, and finish with ghee and gorom moshla.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Cooked in the style of Bengali Kosha Mangsho for a bold, rich accompaniment to luchi, paratha, or pulao."
+  },
+  {
+    "id": "static-1548",
+    "name": "Paneer Lababdar (Rich Tomato-Cashew Gravy with Grated & Cubed Paneer)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer (250g cubed + 50g coarsely grated)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped onion (1) & finely diced capsicum (0.25 cup)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomatoes (3 large) & cashews (15) + melon seeds (1 tbsp), boiled and pureed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste, Kashmiri red chilli, coriander powder, turmeric & garam masala",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter (2 tbsp), fresh cream (2 tbsp), kasuri methi, sugar (0.5 tsp) & salt",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare chunky onion-capsicum and smooth tomato-cashew base",
+        "text": "Sauté finely chopped onion, ginger-garlic paste, and diced capsicum in butter with whole spices, then add the smooth boiled tomato-cashew-melon seed puree and cook with Kashmiri chilli and coriander powder.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold in grated paneer and paneer cubes",
+        "text": "Stir in 50g grated paneer to thicken the gravy into a luscious texture, add the lightly seared paneer cubes, kasuri methi, garam masala, and cream, and simmer 3 minutes.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Adding grated paneer directly into the tomato-cashew gravy is what gives Paneer Lababdar its signature thick, textured body."
+  },
+  {
+    "id": "static-1562",
+    "name": "Paneer Manchurian (Crispy Paneer Fritters in Savory Ginger-Garlic-Coriander Manchurian Sauce)",
+    "category": "Paneer",
+    "region": "Indo-Chinese",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour (3.5 tbsp) & maida (2 tbsp)",
+        "quantity": "5.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely minced garlic (1.5 tbsp), ginger (1 tbsp), green chillies (3) & finely chopped onion (0.5 cup)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh coriander stems/leaves & chopped spring onions",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Dark soy sauce (1.5 tbsp), chilli sauce (1 tbsp), tomato ketchup (1 tbsp) & rice vinegar (1 tsp)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White/black pepper powder, oil & salt",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Batter-fry golden paneer cubes",
+        "text": "Dip paneer cubes in a smooth batter of cornflour, maida, ginger-garlic paste, pepper, and salt, and deep-fry until crisp and golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer aromatic ginger-coriander Manchurian sauce",
+        "text": "Sauté finely minced garlic, ginger, green chillies, chopped onion, and coriander stems in hot oil, add soy sauce, chilli sauce, ketchup, vinegar, and ¾ cup water thickened with 1 tbsp cornflour slurry, then toss in fried paneer and spring onions.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 4,
+    "notes": "Finely chopped coriander stems and garlic give Manchurian sauce its unmistakable savory depth."
+  },
+  {
+    "id": "static-1564",
+    "name": "Paneer Pakora (Crispy Ajwain-Spiced Gram Flour Batter-Fried Cottage Cheese Fritters)",
+    "category": "Fritters",
+    "region": "North Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thick rectangles or sandwiched with green mint chutney",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (chaler guro)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green mint-coriander chutney or chaat masala (for dusting/stuffing)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), turmeric, Kashmiri red chilli, ginger-chilli paste & kasuri methi",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard or vegetable oil & salt",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season paneer pieces and whisk spiced besan batter",
+        "text": "Sprinkle paneer slabs with chaat masala (or sandwich green chutney between two thin slices); whisk besan, rice flour, ajwain, kasuri methi, ginger-chilli paste, turmeric, chilli powder, salt, and water into a thick coating batter.",
+        "minutes": 6
+      },
+      {
+        "section": "Dip and deep-fry until golden and crisp",
+        "text": "Dip each spiced paneer piece in the batter and fry in medium-hot oil until golden brown and crisp outside while warm and soft inside.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 4,
+    "notes": "Serve hot with coriander-mint chutney, tomato ketchup, and evening masala chai."
   },
   {
     "id": "static-1179",
@@ -58967,6 +60395,325 @@
     "cookMinutes": 15,
     "servings": 3,
     "notes": "Protein-rich Punjabi breakfast paratha."
+  },
+  {
+    "id": "static-1569",
+    "name": "Paneer Paratha Roll / Tawa Paneer Masala Kathi Wrap (Spiced Tawa Paneer & Pickled Onion Paratha Wrap)",
+    "category": "Snacks",
+    "region": "Indian / Kolkata",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thin strips",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Flaky wheat or maida laccha parathas",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Sliced onion, green/red capsicum strips & shredded cabbage",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste, Kashmiri chilli, cumin, coriander, garam masala & chaat masala",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green mint-coriander chutney, tomato ketchup & lemon juice",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil, butter & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss spiced tawa paneer strips with capsicum",
+        "text": "Sauté ginger-garlic paste, onion, and capsicum strips on a hot tawa, add paneer strips, Kashmiri chilli, cumin, coriander, garam masala, and salt, and toss on high flame for 4 minutes until charred at the edges.",
+        "minutes": 8
+      },
+      {
+        "section": "Assemble in hot flaky parathas",
+        "text": "Spread mint chutney over warm crisp parathas, pile on the smoky tawa paneer filling, top with lemon-pickled onion rings, chaat masala, and a drizzle of ketchup, and roll tightly in paper.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "A quick, protein-packed meal or tiffin wrap."
+  },
+  {
+    "id": "static-1555",
+    "name": "Paneer Pasanda (Stuffed Paneer Sandwiches in Rich Almond-Cashew Cream Gravy)",
+    "category": "Paneer",
+    "region": "North Indian / Mughlai",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thin triangle slices (plus 50g crumbled for stuffing)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Finely chopped cashews, almonds, pistachios, raisins, mint & green chilli (for stuffing)",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Cornflour slurry (2 tbsp cornflour + 3 tbsp water) for sealing",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onions (2), tomatoes (2), cashews (12) & melon seeds (1 tbsp) pureed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cream (3 tbsp), butter, ginger-garlic paste, turmeric, Kashmiri chilli, garam masala & salt",
+        "quantity": "4",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stuff paneer triangles, dip in cornflour slurry and shallow-fry",
+        "text": "Mix crumbled paneer with chopped nuts, raisins, mint, green chilli, and salt; sandwich between two thin paneer triangles, dip the edges in cornflour slurry, and shallow-fry until golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer rich nut-tomato gravy and arrange stuffed triangles",
+        "text": "Cook the smooth onion-tomato-cashew-melon seed paste in butter with spices and fresh cream until velvety; pour the hot gravy around the halved stuffed paneer triangles.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "A showstopping festive paneer dish with jewel-toned nut-and-mint filling inside every slice."
+  },
+  {
+    "id": "static-1542",
+    "name": "Paneer Paturi (Mustard-Poppy Coated Paneer Steamed in Banana Leaf Parcels)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into 4 flat rectangular slabs (1/2-inch thick)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow & black mustard paste (2 tbsp) + poppy seed paste (1.5 tbsp)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & green chilli paste",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Banana leaves, cut into rectangles and lightly wilted over flame",
+        "quantity": "4",
+        "unit": "sheets"
+      },
+      {
+        "name": "Slit green chillies",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil, turmeric & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat paneer slabs in thick mustard-poppy-coconut paste and wrap",
+        "text": "Mix mustard paste, poppy paste, grated coconut, green chilli paste, turmeric, salt, and 2 tbsp mustard oil; spread a thick layer on each wilted banana leaf, place a paneer slab and a slit green chilli, coat the top, and tie into neat parcels with cotton thread.",
+        "minutes": 10
+      },
+      {
+        "section": "Pan-roast banana leaf parcels on a tawa",
+        "text": "Brush a hot tawa with mustard oil, arrange the banana leaf parcels, cover, and cook on low heat for 6-7 minutes per side until the leaves are charred and aromatic.",
+        "minutes": 14
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 14,
+    "servings": 4,
+    "notes": "Charred banana leaves infuse the mustard-coated paneer with an unmistakable smoky aroma."
+  },
+  {
+    "id": "static-1535",
+    "name": "Paneer Posto (Bengali Cottage Cheese Cubes in Creamy Poppy Seed & Green Chilli Paste)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer (cottage cheese), cut into cubes",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "White poppy seeds (posto), soaked and ground with 6 cashews & 3 green chillies",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere) & whole dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric (optional pinch) & slit green chillies",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & pinch of sugar",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Lightly pan-fry paneer cubes in mustard oil",
+        "text": "Heat mustard oil in a pan and lightly sear the paneer cubes with a pinch of salt for 2 minutes until pale golden; remove and keep aside.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer posto-kaju paste with kalo jeere and paneer",
+        "text": "Temper the remaining oil with kalo jeere and a dry red chilli, add the ground poppy-cashew-green chilli paste with ½ cup warm water, bring to a gentle simmer, fold in the paneer cubes for 3 minutes, and drizzle 1 tsp raw mustard oil on top.",
+        "minutes": 7
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Rich, nutty, and quick to prepare for a comforting Bengali lunch with steamed rice."
+  },
+  {
+    "id": "static-1568",
+    "name": "Paneer Pulao / Peas Paneer Pulao (Fragrant Basmati Rice Cooked with Golden Paneer, Peas & Whole Spices)",
+    "category": "Rice",
+    "region": "Indian / Bengali",
+    "ingredients": [
+      {
+        "name": "Aged Basmati or Gobindobhog rice, washed and soaked 20 minutes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Paneer, cut into small cubes",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Green peas (0.5 cup), cashews (12) & raisins (2 tbsp)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Bay leaf, green cardamom, cloves, cinnamon stick, mace, star anise & shahi jeera",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sliced onion (optional), grated ginger, slit green chillies & warm milk with saffron",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee (2.5 tbsp), sugar (1 tsp) & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry paneer cubes, cashews and raisins in ghee",
+        "text": "Heat ghee in a heavy pot, fry cashews and raisins until plump and remove, then fry paneer cubes until golden and soak in warm salted water.",
+        "minutes": 6
+      },
+      {
+        "section": "Sauté soaked rice with whole spices and simmer on dum",
+        "text": "Temper the ghee with shahi jeera and whole garam masala, sauté ginger, green chillies, green peas, and drained rice for 2 minutes, add 2.75 cups hot water, salt, and 1 tsp sugar; when 80% cooked, fold in drained paneer, fried cashews, raisins, and saffron milk, and steam on low heat for 5 minutes.",
+        "minutes": 14
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Fluffy, aromatic one-pot meal that pairs effortlessly with raita, dal makhani, or Aloo Dum."
+  },
+  {
+    "id": "static-1537",
+    "name": "Paneer Rezala (Kolkata Nawabi White Yogurt, Cashew & Kewra Gravy with Paneer)",
+    "category": "Paneer",
+    "region": "Bengali / Mughlai",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into large cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled onion paste (for non-niramish) or melon-seed paste (for niramish)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashew & poppy seed paste (kaju-posto bata)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whisked yogurt (tok doi) & fresh cream / milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole white peppercorns, green cardamom, cloves, cinnamon, mace (javitri) & dry red chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste, white pepper powder, kewra water (2 drops), ghee & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper whole spices and dry red chillies in ghee",
+        "text": "Heat ghee and white oil, lightly sear the paneer cubes and set aside; temper the fat with bay leaf, whole dry red chillies, green cardamom, cloves, cinnamon, mace, and peppercorns.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer creamy white cashew-yogurt gravy",
+        "text": "Cook boiled onion paste and ginger-garlic paste, stir in whisked yogurt and cashew-poppy paste with white pepper powder, sugar, and warm water; simmer with paneer for 4 minutes and finish with kewra water and ghee.",
+        "minutes": 12
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Kolkata-style Rezala is famous for its ivory-white silky gravy scented with mace and kewra."
   },
   {
     "id": "static-1263",
@@ -59119,6 +60866,55 @@
     "cookMinutes": 10,
     "servings": 2,
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1549",
+    "name": "Paneer Tikka Masala (Charred Marinated Paneer & Capsicum in Smoky Spiced Gravy)",
+    "category": "Paneer",
+    "region": "North Indian",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into thick squares, with cubed capsicum & onion petals",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Hung curd / thick yogurt (0.5 cup) & roasted besan (1 tbsp) for marinade",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tandoori masala, Kashmiri red chilli, ajwain, ginger-garlic paste, lemon juice & mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped onions (2), tomato-cashew puree (1 cup), butter & cream",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Kasuri methi, garam masala, coriander powder & salt",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate and char-grill paneer tikka on tawa or grill",
+        "text": "Marinate paneer, capsicum, and onion petals in hung curd, roasted besan, mustard oil, lemon juice, ginger-garlic paste, and tandoori spices for 15 minutes; sear on a smoking cast-iron tawa until charred at the edges.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer smoky onion-tomato masala and fold in tikka",
+        "text": "Sauté chopped onions and ginger-garlic paste in butter, add tomato-cashew puree and spices, simmer until thick, and fold in the charred paneer tikka, kasuri methi, and cream.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "notes": "Charring the yogurt-marinated paneer on high heat before adding it to the gravy imparts restaurant-style tandoori smokiness."
   },
   {
     "id": "static-0715",
@@ -62468,6 +64264,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1540",
+    "name": "Phulkopi Paneer Dalna (Winter Cauliflower, Potato & Fried Paneer Bengali Curry)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Paneer, cubed",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Cauliflower florets (phulkopi) & potato wedges",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole cumin, bay leaf, ginger paste & chopped tomato",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, cumin powder, coriander powder, Kashmiri chilli & Bengali gorom moshla",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil, ghee (1 tsp), sugar & salt",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast cauliflower, potato and paneer cubes",
+        "text": "Lightly fry paneer cubes and soak in warm water; golden-roast cauliflower florets and potato wedges in mustard oil with a pinch of turmeric.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer in ginger-tomato-cumin gravy",
+        "text": "Temper oil with cumin and bay leaf, cook ginger, tomato, and dry spices, add warm water, potatoes, cauliflower, and green peas until tender, then fold in paneer, ghee, and gorom moshla.",
+        "minutes": 10
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Combines winter cauliflower and soft paneer in a fragrant Bengali dalna."
   },
   {
     "id": "static-0622",
@@ -73381,6 +75231,60 @@
     "notes": "Fiery Tangra-style Schezwan chicken and egg chowmin."
   },
   {
+    "id": "static-1561",
+    "name": "Schezwan Paneer Dry (Wok-Tossed Crispy Paneer in Fiery Homemade Schezwan Pepper Sauce)",
+    "category": "Paneer",
+    "region": "Indo-Chinese",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into cubes or fingers",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Cornflour (3 tbsp) & maida (2 tbsp)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Schezwan chilli-garlic sauce",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Diced red/green bell peppers, onion petals & spring onions",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Minced garlic (1.5 tbsp), ginger (1 tsp), soy sauce (1 tsp), ketchup (1 tbsp) & vinegar (1 tsp)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed black/Sichuan pepper, oil & salt",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry cornflour-coated paneer",
+        "text": "Dust paneer cubes in cornflour, maida, salt, and pepper with a splash of water, and fry in hot oil until crunchy outside and soft inside.",
+        "minutes": 6
+      },
+      {
+        "section": "Glaze in fiery Schezwan sauce on high heat",
+        "text": "Stir-fry minced garlic, ginger, onion petals, and bell peppers in a hot wok, add Schezwan sauce, soy sauce, ketchup, and vinegar with 2 tbsp water, then toss in the crispy paneer and spring onion greens.",
+        "minutes": 6
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "notes": "Fiery, garlicky, and glossy—great as an appetizer or side dish with Schezwan Fried Rice."
+  },
+  {
     "id": "static-1097",
     "name": "Schezwan Prawns (Fiery Indo-Chinese Stir-Fried Prawns)",
     "category": "Prawns",
@@ -73762,6 +75666,60 @@
     "cookMinutes": 25,
     "servings": 2,
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1544",
+    "name": "Shahi Paneer (Royal Mughlai Cashew, Almond, Saffron & Cream Paneer Curry)",
+    "category": "Paneer",
+    "region": "North Indian / Mughlai",
+    "ingredients": [
+      {
+        "name": "Paneer, cut into triangles or cubes",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Soaked cashews (12) & blanched almonds (8), ground to a fine paste",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Boiled onion paste & whisked yogurt (0.33 cup)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Warm milk with a pinch of saffron strands & fresh cream",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder, white pepper, ginger-garlic paste & shahi garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee, sugar (0.5 tsp) & salt",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté boiled onion paste and nut paste in ghee",
+        "text": "Heat ghee with whole green cardamoms and cloves, cook boiled onion paste and ginger-garlic paste until fragrant, then stir in the smooth cashew-almond paste and whisked yogurt over low heat.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer with saffron milk, cream and paneer",
+        "text": "Pour in saffron-infused milk, white pepper, cardamom powder, and salt; add paneer triangles, simmer gently for 4 minutes, and finish with fresh cream.",
+        "minutes": 8
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "notes": "Delicately spiced with green cardamom and saffron, best served with butter naan or jeera rice."
   },
   {
     "id": "static-0881",
@@ -74288,6 +76246,60 @@
     "cookMinutes": 16,
     "servings": 3,
     "notes": "Quick 25-minute Bengali mustard fish roe curry."
+  },
+  {
+    "id": "static-1536",
+    "name": "Shorshe Paneer Bhapa (Steamed Cottage Cheese in Pungent Mustard, Poppy & Coconut Paste)",
+    "category": "Paneer",
+    "region": "Bengali",
+    "ingredients": [
+      {
+        "name": "Soft paneer, cut into thick rectangular slabs",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow & black mustard seeds (2 tbsp) + poppy seeds (1 tbsp) soaked and ground",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & whisked yogurt (2 tbsp)",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies (2 ground, 3 slit for garnish) & turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pungent mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & pinch of sugar",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate paneer slabs in shorshe-posto-narkel paste",
+        "text": "Whisk together ground mustard-poppy paste, grated coconut, beaten yogurt, turmeric, salt, a pinch of sugar, and 2 tbsp raw mustard oil inside a steel tiffin box; gently coat the paneer slabs in the marinade.",
+        "minutes": 5
+      },
+      {
+        "section": "Steam in a covered tiffin box",
+        "text": "Top with slit green chillies and 1 tbsp raw mustard oil, close the tiffin box lid tightly, and steam in a water bath over medium-low heat for 12-15 minutes.",
+        "minutes": 15
+      }
+    ],
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "notes": "The vegetarian counterpart to Bhapa Ilish—steaming makes the paneer ultra-silky."
   },
   {
     "id": "static-0867",
