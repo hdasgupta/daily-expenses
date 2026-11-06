@@ -535,6 +535,62 @@ export async function markPurchasedBulk(req, res) {
   });
 }
 
+export async function removeItemsBulk(req, res) {
+  const b = req.body || {};
+  const ids = [
+    ...new Set(
+      (Array.isArray(b.itemIds) ? b.itemIds : [])
+        .map((id) => String(id))
+        .filter((id) => /^\d+$/.test(id)),
+    ),
+  ];
+  if (!ids.length) {
+    return res.status(400).json({ error: "Item IDs are required" });
+  }
+  const result = await q(
+    `DELETE FROM public.marketing_list_items
+     WHERE id = ANY($1::bigint[]) AND status='pending'
+     RETURNING id`,
+    [ids],
+  );
+  res.json({
+    ok: true,
+    deleted: true,
+    deletedCount: result.rowCount,
+    itemIds: result.rows.map((row) => row.id),
+  });
+}
+
+export async function changeDateBulk(req, res) {
+  const b = req.body || {};
+  const ids = [
+    ...new Set(
+      (Array.isArray(b.itemIds) ? b.itemIds : [])
+        .map((id) => String(id))
+        .filter((id) => /^\d+$/.test(id)),
+    ),
+  ];
+  const purchaseDate = String(b.purchaseDate || "").slice(0, 10);
+  if (!ids.length || !/^\d{4}-\d{2}-\d{2}$/.test(purchaseDate)) {
+    return res.status(400).json({ error: "Valid item IDs and purchase date are required" });
+  }
+  const result = await q(
+    `UPDATE public.marketing_list_items
+        SET purchase_date = $2,
+            updated_by = $3,
+            updated_at = now()
+      WHERE id = ANY($1::bigint[]) AND status='pending'
+      RETURNING id, purchase_date`,
+    [ids, purchaseDate, req.user?.id || null],
+  );
+  res.json({
+    ok: true,
+    updatedCount: result.rowCount,
+    purchaseDate,
+    itemIds: result.rows.map((row) => row.id),
+  });
+}
+
 export async function listLocations(req, res) {
   await ensureLocationGpsSchema();
   const callerCoords = parseValidCoordinates(

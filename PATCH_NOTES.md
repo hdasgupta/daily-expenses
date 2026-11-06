@@ -31,3 +31,15 @@
    - Allowed current-minute scheduling (`timestamp >= Date.now() - 60_000`) and immediately `await`ed execution when due.
 5. **Triggering Across All Pages & Vercel Cron (`backend/src/routes/index.js`, `backend/src/controllers/jobStatusController.js`, `backend/src/services/jobStatusService.js`, `backend/vercel.json`, `frontend/src/App.jsx`, `frontend/src/lib/api.js`, `frontend/src/pages/JobStatus.jsx`)**
    - Added `GET`/`POST /api/scheduler/tick` (`runSchedulerTick`), `backend/vercel.json` (`maxDuration: 60` + cron), truly silent background requests in `frontend/src/lib/api.js`, a 20-second silent background heartbeat in `frontend/src/App.jsx` across all authenticated pages, and an exact due-timestamp trigger in `JobStatus.jsx`.
+
+
+## 4. Marketing List Bulk Selection Actions ("Remove All" & "Change Date")
+- **Bulk Item Action Controls (`frontend/src/pages/MarketingList.jsx`, `frontend/src/pages/marketing.css`)**:
+  - Unlocked selection for all pending marketing items on the page (no longer requires both category and location filters to be active).
+  - Added **Remove All** button (`marketing-bulk-remove-btn`) that appears when items are selected, opening a confirmation modal displaying the selected item names and permanently deleting all selected pending items.
+  - Added **Change Date** button (`marketing-bulk-date-btn`) that appears when items are selected, opening a modal dialog with a date picker to move all selected items to another date.
+  - Styled selection toolbars (top & bottom), action buttons, and responsive modal dialogs in `frontend/src/pages/marketing.css`.
+- **Backend Bulk Marketing Routes & Controllers (`backend/src/controllers/marketingController.js`, `backend/src/routes/index.js`)**:
+  - `POST /api/marketing-list/remove-bulk`: Atomically deletes all pending items matching the provided `itemIds`.
+  - `POST /api/marketing-list/change-date-bulk`: Atomically updates `purchase_date` for all pending items matching the provided `itemIds`.
+  - Frontend includes automatic fallback to individual item calls if communicating with an older deployment.

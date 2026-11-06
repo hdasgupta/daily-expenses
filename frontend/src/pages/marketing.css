@@ -437,3 +437,162 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+
+/* Bulk selection toolbar & bulk action buttons */
+.marketing-list-page .marketing-bulk-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card, var(--surface, #fff));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+}
+.marketing-list-page .marketing-bulk-toolbar-bottom {
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+.marketing-list-page .marketing-select-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+.marketing-list-page .marketing-select-all input {
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--primary, #2563eb);
+}
+.marketing-list-page .marketing-selection-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary, #2563eb) 12%, transparent);
+  color: var(--primary, #2563eb);
+  font-size: 12px;
+  font-weight: 700;
+}
+.marketing-list-page .marketing-selection-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+.marketing-list-page .marketing-bulk-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 7px 13px;
+  border: 1px solid color-mix(in srgb, var(--danger, #dc2626) 35%, var(--line));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--danger, #dc2626) 8%, var(--card, var(--surface, #fff)));
+  color: var(--danger, #dc2626);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.marketing-list-page .marketing-bulk-remove-btn:hover {
+  background: var(--danger, #dc2626);
+  color: #fff;
+  border-color: var(--danger, #dc2626);
+}
+.marketing-list-page .marketing-bulk-date-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 7px 13px;
+  border: 1px solid color-mix(in srgb, var(--primary, #2563eb) 35%, var(--line));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--primary, #2563eb) 8%, var(--card, var(--surface, #fff)));
+  color: var(--primary, #2563eb);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.marketing-list-page .marketing-bulk-date-btn:hover {
+  background: var(--primary, #2563eb);
+  color: #fff;
+  border-color: var(--primary, #2563eb);
+}
+.marketing-list-page .marketing-selection-hint {
+  font-size: 12px;
+  color: var(--muted);
+  width: 100%;
+}
+.marketing-list-page .marketing-change-date-icon {
+  color: var(--primary, #2563eb);
+  background: color-mix(in srgb, var(--primary, #2563eb) 12%, transparent);
+}
+.marketing-list-page .marketing-change-date-items-preview {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--soft, #f8fafc);
+  border: 1px solid var(--line);
+  font-size: 12.5px;
+  max-height: 90px;
+  overflow-y: auto;
+  line-height: 1.45;
+}
+.marketing-list-page .marketing-preview-label {
+  display: block;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.marketing-list-page .marketing-preview-list {
+  color: var(--text);
+  word-break: break-word;
+}
+.marketing-list-page .marketing-change-date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.marketing-list-page .marketing-change-date-field span {
+  font-weight: 600;
+  color: var(--text);
+}
+.marketing-list-page .marketing-change-date-field input[type="date"] {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card, var(--surface, #fff));
+  color: var(--text);
+  font-size: 14px;
+}
+@media (max-width: 640px) {
+  .marketing-list-page .marketing-bulk-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .marketing-list-page .marketing-selection-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+  .marketing-list-page .marketing-selection-actions button {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

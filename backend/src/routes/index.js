@@ -95,6 +95,8 @@ export function createRouter(maxUploadBytes) {
   router.delete("/marketing-list/:id", auth, marketingController.removeItem);
   router.post("/marketing-list/:id/purchased", auth, marketingController.markPurchased);
   router.post("/marketing-list/purchased-bulk", auth, marketingController.markPurchasedBulk);
+  router.post("/marketing-list/remove-bulk", auth, marketingController.removeItemsBulk);
+  router.post("/marketing-list/change-date-bulk", auth, marketingController.changeDateBulk);
   router.get("/marketing-locations", auth, marketingController.listLocations);
   router.post("/marketing-locations", auth, marketingController.createLocation);
   router.post("/marketing-locations/track-selection", auth, marketingController.trackLocationSelection);

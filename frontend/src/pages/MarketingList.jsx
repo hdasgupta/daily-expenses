@@ -1,6 +1,6 @@
 import "./marketing.css";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { CheckCircle2, Clock3, Eye, FileText, LocateFixed, Pencil, ShoppingBasket, Trash2, Wallet, X } from "lucide-react";
+import { Calendar, CheckCircle2, Clock3, Eye, FileText, LocateFixed, Pencil, ShoppingBasket, Trash2, Wallet, X } from "lucide-react";
 import { api, showToast } from "../lib/api";
 import {
   describeAutoMatchReason,
@@ -260,6 +260,11 @@ export default function MarketingList({ navigate }) {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [pendingBulkRemoval, setPendingBulkRemoval] = useState(false);
+  const [removingBulk, setRemovingBulk] = useState(false);
+  const [changeDateModalOpen, setChangeDateModalOpen] = useState(false);
+  const [targetDate, setTargetDate] = useState("");
+  const [changingDate, setChangingDate] = useState(false);
   const userChoseLocationRef = useRef(false);
   const userEditedCostRef = useRef(false);
   const pagination = usePagination("marketing-list", "id");
@@ -696,30 +701,158 @@ export default function MarketingList({ navigate }) {
     navigate("/add-expense");
   };
 
+  const confirmBulkRemove = async () => {
+    if (!selectedPendingRows.length || removingBulk) return;
+    setRemovingBulk(true);
+    setError("");
+    const targetRows = [...selectedPendingRows];
+    const targetIds = targetRows.map((r) => String(r.id));
+    try {
+      try {
+        await api("/marketing-list/remove-bulk", {
+          method: "POST",
+          body: JSON.stringify({ itemIds: targetIds }),
+        });
+      } catch (endpointError) {
+        await Promise.all(
+          targetIds.map((id) => api(`/marketing-list/${id}`, { method: "DELETE" }))
+        );
+      }
+      if (editing && targetIds.includes(String(editing))) {
+        resetForm();
+      }
+      setSelectedIds((current) => current.filter((id) => !targetIds.includes(id)));
+      setPendingBulkRemoval(false);
+      showToast(
+        "success",
+        `Removed ${targetIds.length} ${targetIds.length === 1 ? "item" : "items"}.`
+      );
+      await load();
+    } catch (e) {
+      setError(e.message || "Unable to permanently delete selected items");
+    } finally {
+      setRemovingBulk(false);
+    }
+  };
+
+  const openChangeDateModal = () => {
+    if (!selectedPendingRows.length) return;
+    setTargetDate(String(form.purchaseDate || todayKolkata()).slice(0, 10));
+    setChangeDateModalOpen(true);
+  };
+
+  const confirmChangeDate = async () => {
+    const newDate = String(targetDate || "").slice(0, 10);
+    if (!selectedPendingRows.length || changingDate || !newDate) return;
+    setChangingDate(true);
+    setError("");
+    const targetRows = [...selectedPendingRows];
+    const targetIds = targetRows.map((r) => String(r.id));
+    try {
+      try {
+        await api("/marketing-list/change-date-bulk", {
+          method: "POST",
+          body: JSON.stringify({ itemIds: targetIds, purchaseDate: newDate }),
+        });
+      } catch (endpointError) {
+        await Promise.all(
+          targetRows.map((row) =>
+            api(`/marketing-list/${row.id}`, {
+              method: "PUT",
+              body: JSON.stringify({
+                categoryId: row.category_id || "",
+                itemId: row.item_id || "",
+                itemName: row.item_name,
+                quantity: row.quantity ?? "",
+                unitId: row.unit_id || "",
+                approximateCost: row.approximate_cost ?? "",
+                autoCalculateCost: false,
+                purchaseDate: newDate,
+                locationId: row.location_id || "",
+              }),
+            })
+          )
+        );
+      }
+      setSelectedIds((current) => current.filter((id) => !targetIds.includes(id)));
+      setChangeDateModalOpen(false);
+      showToast(
+        "success",
+        `Moved ${targetIds.length} ${targetIds.length === 1 ? "item" : "items"} to ${displayDate(newDate)}.`
+      );
+      await load();
+    } catch (e) {
+      setError(e.message || "Unable to change date for selected items");
+    } finally {
+      setChangingDate(false);
+    }
+  };
+
   const canAddExpenseForSelectedDate = String(form.purchaseDate || "").slice(0, 10) <= todayKolkata();
 
-  const canSelectMarketingItems = Boolean(form.categoryId && form.locationId);
+  const canSelectMarketingItems = true;
 
-  const canShowSelectionControls = canSelectMarketingItems && pendingFilteredRows.length > 0;
+  const canShowSelectionControls = pendingFilteredRows.length > 0;
 
   const selectionControls = (position) => canShowSelectionControls ? (
     <div className={`marketing-bulk-toolbar marketing-bulk-toolbar-${position}`}>
       <label className="marketing-select-all">
-        <input type="checkbox" checked={allFilteredSelected} onChange={toggleAll} disabled={!pendingFilteredRows.length} />
+        <input
+          type="checkbox"
+          checked={allFilteredSelected}
+          onChange={toggleAll}
+          disabled={!pendingFilteredRows.length}
+        />
         <span>{allFilteredSelected ? "Deselect all" : "Select all pending items"}</span>
       </label>
-      <div className="marketing-selection-count">{selectedPendingRows.length} selected</div>
-      {canAddExpenseForSelectedDate ? (
-        <div className="marketing-selection-action">
-          <button type="button" className="primary" onClick={buySelected} disabled={!selectedPendingRows.length || !selectedCategoryCompatible}>
-            <CheckCircle2 size={15} /> Purchased all / Add expense
-          </button>
+      {selectedPendingRows.length > 0 && (
+        <div className="marketing-selection-count">
+          {selectedPendingRows.length} selected
         </div>
-      ) : (
-        <div className="marketing-selection-hint" role="status">You can add to expense in future</div>
       )}
-      {selectedPendingRows.length > 0 && !selectedCategoryCompatible && (
-        <div className="marketing-selection-hint">Select items from one category at a time.</div>
+      {selectedPendingRows.length > 0 && (
+        <div className="marketing-selection-actions">
+          <button
+            type="button"
+            className="marketing-bulk-remove-btn"
+            onClick={() => setPendingBulkRemoval(true)}
+            title="Remove all selected items"
+          >
+            <Trash2 size={15} /> Remove All
+          </button>
+          <button
+            type="button"
+            className="marketing-bulk-date-btn"
+            onClick={openChangeDateModal}
+            title="Move all selected items to another date"
+          >
+            <Calendar size={15} /> Change Date
+          </button>
+          {canAddExpenseForSelectedDate ? (
+            <button
+              type="button"
+              className="primary"
+              onClick={buySelected}
+              disabled={!selectedCategoryCompatible}
+              title={
+                !selectedCategoryCompatible
+                  ? "Select items from one category at a time to record expense"
+                  : "Add expense for selected items"
+              }
+            >
+              <CheckCircle2 size={15} /> Purchased all / Add expense
+            </button>
+          ) : (
+            <span className="marketing-selection-hint" role="status">
+              You can add to expense in future
+            </span>
+          )}
+        </div>
+      )}
+      {selectedPendingRows.length > 0 && !selectedCategoryCompatible && canAddExpenseForSelectedDate && (
+        <div className="marketing-selection-hint">
+          Select items from one category at a time to record as an expense.
+        </div>
       )}
     </div>
   ) : null;
@@ -1073,6 +1206,117 @@ export default function MarketingList({ navigate }) {
             <div className="marketing-confirm-actions">
               <button type="button" onClick={() => setPendingRemoval(null)} disabled={removing}>Cancel</button>
               <button type="button" className="marketing-confirm-delete" onClick={remove} disabled={removing}>{removing ? "Deleting…" : "Confirm delete"}</button>
+            </div>
+          </div>
+        </div>
+      )}
+            {pendingBulkRemoval && (
+        <div
+          className="marketing-confirm-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget && !removingBulk) {
+              setPendingBulkRemoval(false);
+            }
+          }}
+        >
+          <div
+            className="marketing-confirm-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="marketing-bulk-remove-title"
+            aria-describedby="marketing-bulk-remove-description"
+          >
+            <div className="marketing-confirm-icon">
+              <Trash2 size={22} />
+            </div>
+            <h2 id="marketing-bulk-remove-title">Remove all selected items?</h2>
+            <p id="marketing-bulk-remove-description">
+              Are you sure you want to permanently delete <strong>{selectedPendingRows.length}</strong> selected {selectedPendingRows.length === 1 ? "item" : "items"} from the marketing list? This cannot be undone.
+            </p>
+            {selectedPendingRows.length > 0 && (
+              <div className="marketing-change-date-items-preview">
+                <span className="marketing-preview-label">Selected items:</span>
+                <span className="marketing-preview-list">
+                  {selectedPendingRows.map((r) => r.item_name).join(", ")}
+                </span>
+              </div>
+            )}
+            <div className="marketing-confirm-actions">
+              <button
+                type="button"
+                onClick={() => setPendingBulkRemoval(false)}
+                disabled={removingBulk}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="marketing-confirm-delete"
+                onClick={confirmBulkRemove}
+                disabled={removingBulk}
+              >
+                {removingBulk ? "Removing…" : "Remove All"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {changeDateModalOpen && (
+        <div
+          className="marketing-confirm-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget && !changingDate) {
+              setChangeDateModalOpen(false);
+            }
+          }}
+        >
+          <div
+            className="marketing-confirm-dialog marketing-change-date-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="marketing-change-date-title"
+          >
+            <div className="marketing-confirm-icon marketing-change-date-icon">
+              <Calendar size={22} />
+            </div>
+            <h2 id="marketing-change-date-title">Change Purchase Date</h2>
+            <p>
+              Move <strong>{selectedPendingRows.length}</strong> selected {selectedPendingRows.length === 1 ? "item" : "items"} to another date.
+            </p>
+            {selectedPendingRows.length > 0 && (
+              <div className="marketing-change-date-items-preview">
+                <span className="marketing-preview-label">Selected items:</span>
+                <span className="marketing-preview-list">
+                  {selectedPendingRows.map((r) => r.item_name).join(", ")}
+                </span>
+              </div>
+            )}
+            <label className="marketing-change-date-field">
+              <span>Select new date</span>
+              <input
+                type="date"
+                required
+                value={targetDate}
+                onChange={(e) => setTargetDate(e.target.value)}
+                disabled={changingDate}
+              />
+            </label>
+            <div className="marketing-confirm-actions">
+              <button
+                type="button"
+                onClick={() => setChangeDateModalOpen(false)}
+                disabled={changingDate}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="primary"
+                onClick={confirmChangeDate}
+                disabled={changingDate || !targetDate}
+              >
+                {changingDate ? "Moving items…" : "Change Date"}
+              </button>
             </div>
           </div>
         </div>
