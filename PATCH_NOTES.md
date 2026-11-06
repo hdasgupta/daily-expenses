@@ -65,3 +65,7 @@
   - The `add()` function validates client-side before dispatching, displaying immediate warning messages and toast notifications.
 - **Frontend Recipe Master Validation (`frontend/src/pages/RecipeMaster.jsx`)**:
   - Connected `AddToFoodChartModal` to catch and display backend conflict messages inline, alerting the user and keeping the modal open so they can choose a different meal timing or date.
+
+- **Fixed `invalid input syntax for type bigint` in Food Chart duplicate check (`backend/src/controllers/dietChartController.js`)**:
+  - Replaced unsafe `recipe_id = NULLIF($4, '')::bigint` with string comparison against `recipe_snapshot->>'id'` and `recipe_snapshot->>'name'`, only casting to bigint if the recipe ID is numeric (`/^\d+$/`).
+  - Added numeric sanitization for `locationId` so non-numeric values gracefully default to empty/null.

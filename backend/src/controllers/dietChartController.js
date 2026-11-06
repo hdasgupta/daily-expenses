@@ -172,7 +172,7 @@ export async function addFoodChartEntry(req, res) {
   const b = req.body || {};
   const date = String(b.date || "").slice(0, 10);
   const meal = String(b.meal || "");
-  const locationId = String(b.locationId || "").trim();
+  const locationId = /^\d+$/.test(String(b.locationId || "").trim()) ? String(b.locationId).trim() : "";
   if (
     !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
     !["Breakfast", "Lunch", "Evening Snacks", "Dinner"].includes(meal) ||
@@ -186,6 +186,7 @@ export async function addFoodChartEntry(req, res) {
   }
 
   // Validate that no duplicate recipe is entered for the same date, meal timing, and location
+  const numericRecipeId = /^\d+$/.test(String(b.recipeId || "").trim()) ? String(b.recipeId).trim() : null;
   const duplicateCheck = await q(
     `SELECT id, recipe_snapshot->>'name' AS name
        FROM public.food_chart_entries
@@ -195,10 +196,10 @@ export async function addFoodChartEntry(req, res) {
         AND (
           recipe_snapshot->>'id' = $4
           OR LOWER(TRIM(recipe_snapshot->>'name')) = LOWER(TRIM($5))
-          OR recipe_id = NULLIF($4, '')::bigint
+          OR ($6::bigint IS NOT NULL AND recipe_id = $6::bigint)
         )
       LIMIT 1`,
-    [date, meal, locationId, String(snapshot.id), String(snapshot.name)],
+    [date, meal, locationId, String(snapshot.id), String(snapshot.name), numericRecipeId],
   );
 
   if (duplicateCheck.rowCount > 0) {
