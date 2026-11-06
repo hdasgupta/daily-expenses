@@ -43,3 +43,12 @@
   - `POST /api/marketing-list/remove-bulk`: Atomically deletes all pending items matching the provided `itemIds`.
   - `POST /api/marketing-list/change-date-bulk`: Atomically updates `purchase_date` for all pending items matching the provided `itemIds`.
   - Frontend includes automatic fallback to individual item calls if communicating with an older deployment.
+
+## 5. Recipe Master "Add to Food Chart" Modal & Quick-Action Button
+- **Recipe Row Action & Details Modal Integration (`frontend/src/pages/RecipeMaster.jsx`, `frontend/src/pages/dietChart.css`)**:
+  - Added a dedicated **Add to Food Chart** button (`<CalendarClock size={18} />`) on every recipe row in Recipe Master as well as inside the full recipe details viewer.
+  - Clicking the button opens the **Add recipe to Food Chart** pop-up modal (`AddToFoodChartModal`).
+  - **Date**: Defaults to today (IST, via `todayKolkata()`).
+  - **Location**: Pre-selects the nearest/most frequently visited GPS-enabled location automatically, showing the auto-mapped match badge, and loads all available marketing locations.
+  - **Food Taking Time (Meal Time)**: Provides a dropdown with standard meal slots (*Breakfast (Morning)*, *Lunch (Noon)*, *Evening Snacks (Afternoon / Evening)*, and *Dinner (Night)*), defaulting intelligently based on the current hour of the day.
+  - **Submission**: Clicking "Add to Food Chart" posts to `/api/food-chart`, updates local usage metrics, records GPS location tracking, and presents a confirmation toast message.

@@ -20,3 +20,32 @@
 .diet-modal.diet-picker>header,.diet-modal.diet-picker>label,.diet-modal.diet-picker>.diet-search{flex-shrink:0}
 .diet-picker-list{flex:1 1 auto;min-height:220px;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--diet-border);border-radius:10px}
 .diet-picker-more{display:flex;justify-content:center;padding:12px}
+
+
+/* Add to Food Chart modal & button on Recipe Master */
+.diet-add-chart-btn {
+  color: var(--primary, #2563eb);
+}
+.diet-add-chart-btn:hover {
+  background: var(--diet-soft, rgba(37, 99, 235, 0.08));
+  border-color: var(--diet-border);
+}
+.diet-modal.diet-add-chart-modal {
+  width: min(100%, 520px);
+}
+.diet-modal.diet-add-chart-modal > header {
+  align-items: flex-start;
+}
+.diet-modal.diet-add-chart-modal > header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.diet-modal.diet-add-chart-modal label > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.diet-modal.diet-add-chart-modal footer {
+  margin-top: 4px;
+}
