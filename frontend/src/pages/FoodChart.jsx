@@ -501,6 +501,29 @@ export default function FoodChart() {
     [recipes]
   );
 
+  const isRecipeAlreadyInMeal = useCallback(
+    (recipe, targetMeal = meal) => {
+      if (!recipe) return false;
+      const targetId = String(recipe.id || "").trim();
+      const targetName = String(recipe.name || "").trim().toLowerCase();
+      const effectiveLoc = locationId ? String(locationId).trim() : "";
+      return entries.some((entry) => {
+        if (entry.meal !== targetMeal) return false;
+        if (effectiveLoc) {
+          const entryLoc = entry.locationId != null ? String(entry.locationId).trim() : "";
+          if (entryLoc && entryLoc !== effectiveLoc) return false;
+        }
+        const resolved = resolveEntryRecipe(entry, recipesMap);
+        const entryId = String(entry.recipeId ?? entry.recipe_id ?? resolved?.id ?? entry.recipe?.id ?? "").trim();
+        const entryName = String(resolved?.name || entry.recipe?.name || "").trim().toLowerCase();
+        if (targetId && entryId && targetId === entryId) return true;
+        if (targetName && entryName && targetName === entryName) return true;
+        return false;
+      });
+    },
+    [entries, meal, locationId, recipesMap]
+  );
+
   const getRecipeUsageCount = useCallback(
     (recipe) => {
       const serverUsage = Number(recipe?.usageCount ?? recipe?.usage_count ?? 0);
@@ -536,7 +559,14 @@ export default function FoodChart() {
   );
 
   const add = async (recipe) => {
+    if (isRecipeAlreadyInMeal(recipe, meal)) {
+      const msg = `"${recipe.name}" is already planned for ${meal} on this date and location. Duplicate entries are not allowed for the same timing.`;
+      setError(msg);
+      showToast("warning", msg);
+      return;
+    }
     setSaving(true);
+    setError("");
     try {
       const coords = isValidCoordinates(currentCoords)
         ? currentCoords
@@ -851,17 +881,37 @@ export default function FoodChart() {
                 <>
                   {visiblePickerRecipes.map((r) => {
                     const usageCount = getRecipeUsageCount(r);
+                    const isDuplicate = isRecipeAlreadyInMeal(r, meal);
                     return (
-                      <div className="diet-picker-item" key={r.id}>
+                      <div
+                        className={`diet-picker-item${isDuplicate ? " is-duplicate-item" : ""}`}
+                        key={r.id}
+                      >
                         <div>
-                          <strong>{r.name}</strong>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                            <strong>{r.name}</strong>
+                            {isDuplicate && (
+                              <span className="diet-duplicate-badge">
+                                Already planned for {meal}
+                              </span>
+                            )}
+                          </div>
                           <span>
                             {r.category} · {r.region} · {r.ingredients?.length || 0} ingredients
                             {usageCount > 0 ? ` · Used ${usageCount}x` : ""}
                           </span>
                         </div>
-                        <button className="diet-primary" disabled={saving} onClick={() => add(r)}>
-                          {saving ? "Adding…" : "Add"}
+                        <button
+                          className={isDuplicate ? "diet-secondary" : "diet-primary"}
+                          disabled={saving || isDuplicate}
+                          title={
+                            isDuplicate
+                              ? `"${r.name}" is already planned for ${meal} on this date and location`
+                              : `Add ${r.name} to ${meal}`
+                          }
+                          onClick={() => add(r)}
+                        >
+                          {saving ? "Adding…" : isDuplicate ? "Added" : "Add"}
                         </button>
                       </div>
                     );

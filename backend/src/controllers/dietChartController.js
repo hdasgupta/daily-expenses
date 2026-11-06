@@ -184,6 +184,29 @@ export async function addFoodChartEntry(req, res) {
   if (!snapshot) {
     return res.status(404).json({ error: "Recipe not found in the static catalogue" });
   }
+
+  // Validate that no duplicate recipe is entered for the same date, meal timing, and location
+  const duplicateCheck = await q(
+    `SELECT id, recipe_snapshot->>'name' AS name
+       FROM public.food_chart_entries
+      WHERE chart_date = $1::date
+        AND meal = $2
+        AND location_id IS NOT DISTINCT FROM NULLIF($3, '')::bigint
+        AND (
+          recipe_snapshot->>'id' = $4
+          OR LOWER(TRIM(recipe_snapshot->>'name')) = LOWER(TRIM($5))
+          OR recipe_id = NULLIF($4, '')::bigint
+        )
+      LIMIT 1`,
+    [date, meal, locationId, String(snapshot.id), String(snapshot.name)],
+  );
+
+  if (duplicateCheck.rowCount > 0) {
+    return res.status(409).json({
+      error: `"${snapshot.name}" is already scheduled for ${meal} on this date and location. Duplicate recipes are not allowed for the same timing.`,
+    });
+  }
+
   const servings = Math.max(0.25, Number(b.servings) || Number(snapshot.servings) || 2);
   const order = await q(
     "SELECT COALESCE(MAX(sort_order),-1)+1 AS n FROM public.food_chart_entries WHERE chart_date=$1::date AND meal=$2",

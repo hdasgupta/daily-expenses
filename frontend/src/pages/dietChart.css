@@ -49,3 +49,20 @@
 .diet-modal.diet-add-chart-modal footer {
   margin-top: 4px;
 }
+
+
+/* Duplicate recipe indicator in recipe picker */
+.diet-picker-item.is-duplicate-item {
+  background: var(--diet-soft, rgba(0, 0, 0, 0.03));
+}
+.diet-duplicate-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--diet-muted, #70757a);
+  background: color-mix(in srgb, var(--diet-muted, #70757a) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--diet-muted, #70757a) 25%, transparent);
+}

@@ -260,7 +260,7 @@ function AddIngredientToMarketing({ ingredient, categories, locations, units, on
   );
 }
 
-function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving }) {
+function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, error }) {
   const [form, setForm] = useState({
     date: todayKolkata(),
     locationId: "",
@@ -335,6 +335,8 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving }) {
             <X size={18} />
           </button>
         </header>
+
+        {error && <div className="diet-error" style={{ margin: "0 0 10px" }}>{error}</div>}
 
         <label>
           <span>
@@ -439,6 +441,7 @@ export default function RecipeMaster() {
   const [addingToMarketing, setAddingToMarketing] = useState(false);
   const [chartRecipe, setChartRecipe] = useState(null);
   const [addingToChart, setAddingToChart] = useState(false);
+  const [chartError, setChartError] = useState("");
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
@@ -572,6 +575,7 @@ export default function RecipeMaster() {
     if (recipe?.id) {
       setLocalUsage(incrementLocalRecipeUsage(recipe.id));
     }
+    setChartError("");
     setChartRecipe(recipe);
     if (!locations.length) {
       try {
@@ -599,6 +603,7 @@ export default function RecipeMaster() {
       return;
     }
     setAddingToChart(true);
+    setChartError("");
     try {
       const coords = isValidCoordinates(currentCoords)
         ? currentCoords
@@ -620,9 +625,12 @@ export default function RecipeMaster() {
       });
       void recordLocationSelection(locationId, { coords, source: "recipe_master_chart_add" });
       showToast("success", `${chartRecipe.name} added to ${meal} on ${formatDateKolkata(date)}.`);
+      setChartError("");
       setChartRecipe(null);
     } catch (e) {
-      showToast("error", e.message || `Unable to add ${chartRecipe.name} to the food chart.`);
+      const msg = e.message || `Unable to add ${chartRecipe.name} to the food chart.`;
+      setChartError(msg);
+      showToast("error", msg);
     } finally {
       setAddingToChart(false);
     }
@@ -707,9 +715,13 @@ export default function RecipeMaster() {
       <AddToFoodChartModal
         recipe={chartRecipe}
         locations={locations.length ? locations : marketingLocations}
-        onClose={() => setChartRecipe(null)}
+        onClose={() => {
+          setChartRecipe(null);
+          setChartError("");
+        }}
         onSubmit={addRecipeToFoodChart}
         saving={addingToChart}
+        error={chartError}
       />
     </main>
   );

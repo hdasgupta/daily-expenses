@@ -52,3 +52,16 @@
   - **Location**: Pre-selects the nearest/most frequently visited GPS-enabled location automatically, showing the auto-mapped match badge, and loads all available marketing locations.
   - **Food Taking Time (Meal Time)**: Provides a dropdown with standard meal slots (*Breakfast (Morning)*, *Lunch (Noon)*, *Evening Snacks (Afternoon / Evening)*, and *Dinner (Night)*), defaulting intelligently based on the current hour of the day.
   - **Submission**: Clicking "Add to Food Chart" posts to `/api/food-chart`, updates local usage metrics, records GPS location tracking, and presents a confirmation toast message.
+
+## 6. Food Chart Duplicate Recipe Entry Prevention & Validation
+- **Backend Duplicate Recipe Enforcement (`backend/src/controllers/dietChartController.js`)**:
+  - Added strict database validation in `addFoodChartEntry` (`POST /api/food-chart`) to prevent duplicate recipe entries for the same date, meal slot timing (*Breakfast*, *Lunch*, *Evening Snacks*, *Dinner*), and location (using null-safe `location_id IS NOT DISTINCT FROM NULLIF($3, '')::bigint`).
+  - Identifies duplicate entries across both recipe ID (`recipe_id` or `recipe_snapshot->>'id'`) and case-insensitive trimmed recipe name (`LOWER(TRIM(recipe_snapshot->>'name'))`).
+  - Rejects duplicate attempts with HTTP 409 Conflict: `"<Recipe Name>" is already scheduled for <Meal> on this date and location. Duplicate entries are not allowed for the same timing.`
+- **Frontend Food Chart Validation (`frontend/src/pages/FoodChart.jsx`, `frontend/src/pages/dietChart.css`)**:
+  - Implemented `isRecipeAlreadyInMeal(recipe, meal)` to detect in real-time whether a recipe is already planned for the active meal timing, date, and location.
+  - In the recipe picker modal, recipes already planned for the selected meal timing dynamically display an `Already planned for <Meal>` badge, and their button is disabled as "Added" to prevent duplicate selection.
+  - Changing the meal slot dropdown inside the picker modal immediately re-evaluates duplicate states for all recipes.
+  - The `add()` function validates client-side before dispatching, displaying immediate warning messages and toast notifications.
+- **Frontend Recipe Master Validation (`frontend/src/pages/RecipeMaster.jsx`)**:
+  - Connected `AddToFoodChartModal` to catch and display backend conflict messages inline, alerting the user and keeping the modal open so they can choose a different meal timing or date.
