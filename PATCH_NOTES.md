@@ -75,3 +75,15 @@
   - Disables meal time options (*Breakfast*, *Lunch*, *Evening Snacks*, *Dinner*) where the recipe is already scheduled, appending an "— Already scheduled" badge to the option label.
   - Automatically shifts selection to the first available non-scheduled meal time.
   - Displays unavailable meal slots and disables the submission button if all meal times on that date and location already contain the recipe.
+
+- **Smart Three-Segment Pagination Component (`frontend/src/components/Pagination.jsx`, `frontend/src/styles.css`)**:
+  - When the total page count exceeds the visible threshold, the pagination bar displays:
+    - Few starting pages (default 2)
+    - Ellipsis separator (`…`)
+    - Few middle pages (default 3)
+    - Ellipsis separator (`…`)
+    - Few ending pages (default 2)
+  - If the active page is already among the visible starting or ending pages, the middle section shows pages in the natural center of the page range.
+  - If the active page is in between, the middle section dynamically shifts to center around and cover the current page.
+  - Adjacent page numbers merge cleanly without redundant ellipsis.
+  - Added `.page-ellipsis` styling in `frontend/src/styles.css` matching `.page-button` alignment and typography.

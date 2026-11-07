@@ -560,6 +560,17 @@ textarea:focus {
 .page-button:disabled {
   opacity: 0.45;
 }
+.page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 33px;
+  min-width: 28px;
+  padding: 0 4px;
+  color: var(--muted);
+  font-weight: 700;
+  user-select: none;
+}
 
 .shares-panel {
   border: 1px solid var(--line);

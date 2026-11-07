@@ -13,15 +13,87 @@ export default function Pagination({
   sortDirection,
   setSort,
   sortOptions = [],
+  startCount = 2,
+  endCount = 2,
+  midCount = 3,
 }) {
   const pages = Math.max(1, Math.ceil(total / pageSize));
   const current = Math.min(Math.max(1, page), pages);
-  const pageNumbers = Array.from({ length: Math.min(pages, 7) }, (_, index) => {
-    if (pages <= 7) return index + 1;
-    if (current <= 4) return index + 1;
-    if (current >= pages - 3) return pages - 6 + index;
-    return current - 3 + index;
-  });
+
+  // Generates starting pages, middle pages (covering current or center), and ending pages
+  const getPageItems = () => {
+    const maxVisibleThreshold = startCount + midCount + endCount + 2;
+
+    // If total pages is small enough to fit all pages without ellipsis
+    if (pages <= maxVisibleThreshold) {
+      return Array.from({ length: pages }, (_, i) => i + 1);
+    }
+
+    const startPages = Array.from({ length: startCount }, (_, i) => i + 1);
+    const endPages = Array.from({ length: endCount }, (_, i) => pages - endCount + 1 + i);
+
+    let midPages = [];
+    // If current page is among visible starting or ending pages, middle pages sit at the natural center
+    if (startPages.includes(current) || endPages.includes(current)) {
+      const mid = Math.floor((1 + pages) / 2);
+      const halfMid = Math.floor(midCount / 2);
+      const midStart = mid - halfMid;
+      midPages = Array.from({ length: midCount }, (_, i) => midStart + i);
+    } else {
+      // Otherwise choose middle pages so that current page is covered
+      const halfMid = Math.floor(midCount / 2);
+      let midStart = current - halfMid;
+      midPages = Array.from({ length: midCount }, (_, i) => midStart + i);
+
+      // Keep middle pages within bounds between startPages and endPages
+      if (midPages[0] <= startPages[startPages.length - 1]) {
+        const shift = startPages[startPages.length - 1] + 1 - midPages[0];
+        midPages = midPages.map((p) => p + shift);
+      }
+      if (midPages[midPages.length - 1] >= endPages[0]) {
+        const shift = midPages[midPages.length - 1] - (endPages[0] - 1);
+        midPages = midPages.map((p) => p - shift);
+      }
+    }
+
+    const items = [];
+
+    // 1. Few starting pages
+    items.push(...startPages);
+
+    // 2. Gap between start pages and middle pages
+    if (midPages[0] > startPages[startPages.length - 1] + 1) {
+      if (midPages[0] === startPages[startPages.length - 1] + 2) {
+        items.push(startPages[startPages.length - 1] + 1);
+      } else {
+        items.push({ type: "ellipsis", key: "start-ellipsis" });
+      }
+    }
+
+    // 3. Few middle pages
+    for (const p of midPages) {
+      if (p > startPages[startPages.length - 1] && p < endPages[0]) {
+        items.push(p);
+      }
+    }
+
+    // 4. Gap between middle pages and end pages
+    const lastMid = midPages[midPages.length - 1];
+    if (endPages[0] > lastMid + 1) {
+      if (endPages[0] === lastMid + 2) {
+        items.push(lastMid + 1);
+      } else {
+        items.push({ type: "ellipsis", key: "end-ellipsis" });
+      }
+    }
+
+    // 5. Few ending pages
+    items.push(...endPages);
+
+    return items;
+  };
+
+  const pageItems = getPageItems();
 
   return (
     <div className="pagination">
@@ -34,15 +106,29 @@ export default function Pagination({
         >
           <ChevronLeft size={16} /> Prev
         </button>
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            className={`page-button ${number === current ? "active" : ""}`}
-            onClick={() => setPage(number)}
-          >
-            {number}
-          </button>
-        ))}
+        {pageItems.map((item, index) => {
+          if (typeof item === "object" && item?.type === "ellipsis") {
+            return (
+              <span
+                key={item.key || `ellipsis-${index}`}
+                className="page-ellipsis"
+                aria-hidden="true"
+              >
+                …
+              </span>
+            );
+          }
+          return (
+            <button
+              key={item}
+              className={`page-button ${item === current ? "active" : ""}`}
+              onClick={() => setPage(item)}
+              aria-current={item === current ? "page" : undefined}
+            >
+              {item}
+            </button>
+          );
+        })}
         <button
           className="page-button"
           disabled={current >= pages}
