@@ -260,6 +260,13 @@ function AddIngredientToMarketing({ ingredient, categories, locations, units, on
   );
 }
 
+const MEAL_OPTIONS = [
+  { value: "Breakfast", label: "Breakfast (Morning)" },
+  { value: "Lunch", label: "Lunch (Noon)" },
+  { value: "Evening Snacks", label: "Evening Snacks (Afternoon / Evening)" },
+  { value: "Dinner", label: "Dinner (Night)" },
+];
+
 function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, error }) {
   const [form, setForm] = useState({
     date: todayKolkata(),
@@ -268,6 +275,8 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
     servings: recipe?.servings || 2,
   });
   const [autoHint, setAutoHint] = useState("");
+  const [scheduledMeals, setScheduledMeals] = useState(new Set());
+  const [checkingMeals, setCheckingMeals] = useState(false);
 
   useEffect(() => {
     if (!recipe) return;
@@ -303,6 +312,55 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
       servings: Number(recipe.servings) || 2,
     });
   }, [recipe, locations]);
+
+  // Check food times where this recipe is already scheduled for the selected date & location
+  useEffect(() => {
+    if (!recipe || !form.date) return;
+    let active = true;
+    setCheckingMeals(true);
+    const dateQuery = encodeURIComponent(String(form.date).slice(0, 10));
+    const locQuery = form.locationId ? `&locationId=${encodeURIComponent(form.locationId)}&strictLocation=true` : "";
+    api(`/food-chart?date=${dateQuery}${locQuery}`, { silent: true })
+      .then((rows) => {
+        if (!active) return;
+        const busy = new Set();
+        const targetId = String(recipe.id || "").trim();
+        const targetName = String(recipe.name || "").trim().toLowerCase();
+        for (const row of Array.isArray(rows) ? rows : []) {
+          const rowRecipe = row.recipe || row.recipe_snapshot || {};
+          const rowRecipeId = String(row.recipeId || rowRecipe.id || "").trim();
+          const rowRecipeName = String(rowRecipe.name || "").trim().toLowerCase();
+          if (
+            (targetId && rowRecipeId && targetId === rowRecipeId) ||
+            (targetName && rowRecipeName && targetName === rowRecipeName)
+          ) {
+            if (row.meal) busy.add(row.meal);
+          }
+        }
+        setScheduledMeals(busy);
+
+        // If currently selected meal is already scheduled, automatically switch to first available
+        setForm((current) => {
+          if (busy.has(current.meal)) {
+            const firstAvailable = MEAL_OPTIONS.find((opt) => !busy.has(opt.value));
+            if (firstAvailable) {
+              return { ...current, meal: firstAvailable.value };
+            }
+          }
+          return current;
+        });
+      })
+      .catch(() => {
+        if (active) setScheduledMeals(new Set());
+      })
+      .finally(() => {
+        if (active) setCheckingMeals(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [recipe, form.date, form.locationId]);
 
   if (!recipe) return null;
 
@@ -377,18 +435,37 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
         <label>
           <span>
             <Clock3 size={15} /> Food taking time
+            {checkingMeals && <small className="diet-muted"> (checking availability…)</small>}
           </span>
           <select
             required
             value={form.meal}
             onChange={(e) => setForm((f) => ({ ...f, meal: e.target.value }))}
-            disabled={saving}
+            disabled={saving || scheduledMeals.size >= MEAL_OPTIONS.length}
           >
-            <option value="Breakfast">Breakfast (Morning)</option>
-            <option value="Lunch">Lunch (Noon)</option>
-            <option value="Evening Snacks">Evening Snacks (Afternoon / Evening)</option>
-            <option value="Dinner">Dinner (Night)</option>
+            {MEAL_OPTIONS.map((opt) => {
+              const isScheduled = scheduledMeals.has(opt.value);
+              return (
+                <option
+                  key={opt.value}
+                  value={opt.value}
+                  disabled={isScheduled}
+                >
+                  {opt.label}{isScheduled ? " — Already scheduled" : ""}
+                </option>
+              );
+            })}
           </select>
+          {scheduledMeals.size >= MEAL_OPTIONS.length && (
+            <small className="diet-auto-location-hint" style={{ color: "var(--danger, #dc2626)" }}>
+              {recipe.name} is already scheduled for all meal times on {form.date}. Choose another date.
+            </small>
+          )}
+          {scheduledMeals.size > 0 && scheduledMeals.size < MEAL_OPTIONS.length && (
+            <small className="diet-muted">
+              Unavailable for: {[...scheduledMeals].join(", ")} (already scheduled).
+            </small>
+          )}
         </label>
 
         <label>
@@ -415,7 +492,14 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
           <button
             type="submit"
             className="diet-primary"
-            disabled={saving || !form.date || !form.locationId || !form.meal}
+            disabled={
+              saving ||
+              !form.date ||
+              !form.locationId ||
+              !form.meal ||
+              scheduledMeals.has(form.meal) ||
+              scheduledMeals.size >= MEAL_OPTIONS.length
+            }
           >
             <CalendarClock size={16} />
             {saving ? "Adding to food chart…" : "Add to Food Chart"}

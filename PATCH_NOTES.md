@@ -69,3 +69,9 @@
 - **Fixed `invalid input syntax for type bigint` in Food Chart duplicate check (`backend/src/controllers/dietChartController.js`)**:
   - Replaced unsafe `recipe_id = NULLIF($4, '')::bigint` with string comparison against `recipe_snapshot->>'id'` and `recipe_snapshot->>'name'`, only casting to bigint if the recipe ID is numeric (`/^\d+$/`).
   - Added numeric sanitization for `locationId` so non-numeric values gracefully default to empty/null.
+
+- **Disabled Already Scheduled Food Times in Recipe Master Modal (`frontend/src/pages/RecipeMaster.jsx`)**:
+  - `AddToFoodChartModal` dynamically checks planned entries for the selected date and location via `/api/food-chart`.
+  - Disables meal time options (*Breakfast*, *Lunch*, *Evening Snacks*, *Dinner*) where the recipe is already scheduled, appending an "— Already scheduled" badge to the option label.
+  - Automatically shifts selection to the first available non-scheduled meal time.
+  - Displays unavailable meal slots and disables the submission button if all meal times on that date and location already contain the recipe.
