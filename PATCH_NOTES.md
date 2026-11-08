@@ -117,3 +117,32 @@
   - Eliminated synthetic prefix duplicates (*Festive ...*, *Quick ...*, *Saffron ...*, *Bengali Style ...*, *Crispy ...*, *Soft ...*) for *Gajar Halwa*, *Moong Dal Halwa*, *Payesh*, *Rasgulla*, *Rice Kheer*, *Sandesh*, *Seviyan Kheer*, *Suji Halwa*, *Cham Cham*, *Mishti Doi*, *Narkel Naru*, and *Patishapta*.
   - Removed outdated starter placeholders including *Double Ka Meetha*, *Malpua (Traditional)*, *Malpua with Rabri*, *Puran Poli (Sweet)*, and old generic placeholders for *Shahi Tukda*, *Lobongo Lotika*, and *Mawa Gujiya*.
 - **Alphabetical Sorting**: Sorted all **1,530** recipes strictly alphabetically by name from A to Z with zero duplicate IDs or duplicate names.
+
+
+## 9. Diverse Pudding Desserts Expansion & Placeholder Deduplication
+- **Added 20 Authentic Pudding Dessert Recipes** (`static-1670`–`static-1689`):
+  1. *Avocado Chocolate Pudding (Silky Dark Cacao & Ripe Avocado Chilled Vegan Pudding)* (`static-1670`)
+  2. *Banana Custard Pudding (Layered Vanilla Custard, Sliced Bananas & Marie Biscuit Pudding)* (`static-1671`)
+  3. *Butterscotch Pudding with Praline Crunch (Brown Sugar, Butter & Vanilla Custard with Cashew Praline)* (`static-1672`)
+  4. *Chia Seed Pudding (Vanilla Coconut Milk & Chia Seed Parfait with Fresh Fruit Compote)* (`static-1673`)
+  5. *Classic Chocolate Pudding (Silky Dark Chocolate Stovetop Custard Pudding)* (`static-1674`)
+  6. *Coffee Caramel Pudding / Espresso Caramel Custard (Rich Coffee-Infused Steamed Caramel Pudding)* (`static-1675`)
+  7. *Creamy Rice Pudding / Sutliya (Slow-Simmered Fragrant Basmati Rice & Saffron Milk Pudding)* (`static-1676`)
+  8. *Custard Apple Pudding / Sitaphal Pudding (Chilled Sitaphal Cream & Condensed Milk Pudding)* (`static-1677`)
+  9. *Eggless Fruit Custard Trifle Pudding (Layered Vanilla Custard, Eggless Sponge Cake, Jelly & Fresh Fruits)* (`static-1678`)
+  10. *Lauki / Doodhi Milk Pudding (Sweet Cardamom Bottle Gourd Pudding)* (`static-1679`)
+  11. *Lychee Coconut Jelly Pudding (Fragrant Lychee Pulp & Coconut Milk Layered Agar Pudding)* (`static-1680`)
+  12. *Mango Pudding (Eggless Mango Custard Pudding with Agar Agar / China Grass)* (`static-1681`)
+  13. *Old-Fashioned Baked Bread and Butter Pudding (Golden Raisin & Nutmeg Baked Custard Pudding)* (`static-1682`)
+  14. *Orange Citrus Custard Pudding (Fresh Orange Zest & Juice Infused Silky Custard Pudding)* (`static-1683`)
+  15. *Pista Phirni Pudding (Chilled Kashmiri Ground Basmati Rice & Pistachio Pudding)* (`static-1684`)
+  16. *Rose Falooda Pudding (Basil Seed / Sabja & Saffron Rose Milk Agar Pudding)* (`static-1685`)
+  17. *Sago Coconut Pudding / Sabudana Pudding (Translucent Tapioca Pearls with Coconut Milk & Palm Jaggery)* (`static-1686`)
+  18. *Sweet Potato Pudding / Shakarkandi Pudding (Spiced Roasted Sweet Potato & Condensed Milk Pudding)* (`static-1687`)
+  19. *Tender Coconut Pudding (Elaneer Coconut Milk Pudding with Agar Agar)* (`static-1688`)
+  20. *Vanilla Caramel Custard / Crème Caramel (Steamed Golden Caramel Milk Flan)* (`static-1689`)
+- **Removed 4 Outdated Starter Outline Placeholders**:
+  - Eliminated boilerplate outline placeholders *Chocolate Pudding* (`static-0904`), *Caramel Custard* (`static-0905`), *Rice Pudding* (`static-0906`), and *Bread Pudding* (`static-0907`), replacing them with fully detailed, authentic culinary entries.
+- **Catalogue Verification & Alphabetical Sorting**:
+  - Sorted all **1,546** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
+  - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.

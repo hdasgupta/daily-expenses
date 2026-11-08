@@ -4532,6 +4532,65 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1670",
+    "name": "Avocado Chocolate Pudding (Silky Dark Cacao & Ripe Avocado Chilled Vegan Pudding)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Ripe avocados, pitted and scooped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Dutch-processed cocoa powder or raw cacao",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure maple syrup or wild honey",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Almond milk or oat milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "0.125",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dark chocolate shavings and fresh raspberries for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend ingredients smooth",
+        "text": "Add ripe avocado flesh, cocoa powder, maple syrup, vanilla extract, almond milk, and a pinch of sea salt into a blender. Blend on high for 2-3 minutes until completely glossy, thick, and velvet-smooth.",
+        "minutes": 5
+      },
+      {
+        "section": "Chill and serve",
+        "text": "Spoon the pudding into serving ramekins or glasses and refrigerate for at least 30 minutes to set. Garnish with dark chocolate shavings and fresh raspberries before serving.",
+        "minutes": 5
+      }
+    ],
+    "notes": "A luxurious dairy-free and eggless vegan pudding where ripe avocado provides incredible richness without any avocado flavor once paired with dark cocoa."
+  },
+  {
     "id": "static-0746",
     "name": "Avocado Toast Sandwich",
     "category": "Sandwich",
@@ -4908,6 +4967,70 @@
       }
     ],
     "notes": "Crisp outside and flaky-juicy inside — a festive favorite across Bengal, Bihar, and North India."
+  },
+  {
+    "id": "static-1671",
+    "name": "Banana Custard Pudding (Layered Vanilla Custard, Sliced Bananas & Marie Biscuit Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Full-cream milk",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Vanilla custard powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Ripe sweet bananas, thinly sliced",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Marie biscuits or vanilla wafers, lightly crushed",
+        "quantity": "12",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh whipping cream or malai",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Toasted sliced almonds and pistachios",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook vanilla custard",
+        "text": "Dissolve custard powder in 0.5 cup cold milk. Bring remaining milk and sugar to a gentle boil, slowly whisk in the custard slurry, and cook on low heat for 3-4 minutes until thick and glossy. Let cool completely to room temperature.",
+        "minutes": 10
+      },
+      {
+        "section": "Assemble layers",
+        "text": "In a clear glass dessert dish or glasses, create a bottom layer of crushed Marie biscuits, arrange a layer of sliced ripe bananas, and pour over a generous layer of cooled vanilla custard. Repeat for a second layer.",
+        "minutes": 10
+      },
+      {
+        "section": "Chill and garnish",
+        "text": "Top with a dollop of whipped cream and toasted sliced almonds and pistachios. Chill in the refrigerator for 2 hours so the biscuits soften into a cake-like pudding texture.",
+        "minutes": 5
+      }
+    ],
+    "notes": "A timeless comfort dessert beloved at Indian dinner parties; chilling allows the biscuit layers to absorb the vanilla custard and banana aromas."
   },
   {
     "id": "static-0909",
@@ -12839,65 +12962,6 @@
     "notes": "An ingenious instant take on traditional malpua, producing melt-in-mouth soft centers with crispy lacy edges."
   },
   {
-    "id": "static-0907",
-    "name": "Bread Pudding",
-    "category": "Sweets",
-    "region": "International",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "bread",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
-      },
-      {
-        "name": "eggs",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "raisins",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "cinnamon",
-        "quantity": "1 cup",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
-  },
-  {
     "id": "static-1651",
     "name": "Bread Rasmalai (Instant Soft Bread Discs in Saffron Cardamom Rabdi)",
     "category": "Sweets",
@@ -13340,6 +13404,70 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1672",
+    "name": "Butterscotch Pudding with Praline Crunch (Brown Sugar, Butter & Vanilla Custard with Cashew Praline)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Dark brown sugar",
+        "quantity": "0.66",
+        "unit": "cup"
+      },
+      {
+        "name": "Salted cultured butter",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cornflour (cornstarch)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh heavy cream",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cashew praline (caramelized sugar and toasted crushed cashews)",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize brown sugar and butter",
+        "text": "Melt salted butter in a heavy saucepan over medium heat, add dark brown sugar, and cook stirring continuously for 3-4 minutes until the sugar melts and bubbles into a rich, fragrant butterscotch base.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk milk and thicken",
+        "text": "Slowly whisk in 2 cups of milk into the bubbling butterscotch. Dissolve cornflour in the remaining 0.5 cup milk and heavy cream, pour into the pan, and whisk vigorously over medium-low heat until thick and bubbling gently. Remove from heat and stir in vanilla extract.",
+        "minutes": 10
+      },
+      {
+        "section": "Chill and top with praline",
+        "text": "Pour pudding into dessert cups and place cling wrap directly on the surface to prevent skin formation. Chill for 2 hours. Top generously with crunchy crushed cashew praline right before serving.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Real butterscotch made from scratch by caramelizing butter with dark brown sugar, contrasted with a crunchy nutty cashew praline."
+  },
+  {
     "id": "static-0785",
     "name": "Cafe Latte",
     "category": "Coffee",
@@ -13583,55 +13711,6 @@
       }
     ],
     "notes": "Eggless, silky-smooth dessert with a stunning glossy golden caramel top."
-  },
-  {
-    "id": "static-0905",
-    "name": "Caramel Custard",
-    "category": "Sweets",
-    "region": "International",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
-      },
-      {
-        "name": "eggs",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "vanilla",
-        "quantity": "1 cup",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
     "id": "static-0766",
@@ -15758,6 +15837,65 @@
       }
     ],
     "notes": "Classic Bengal sweet shop delicacy with a soft, succulent interior and fragrant rose-cardamom syrup."
+  },
+  {
+    "id": "static-1673",
+    "name": "Chia Seed Pudding (Vanilla Coconut Milk & Chia Seed Parfait with Fresh Fruit Compote)",
+    "category": "Sweets",
+    "region": "Continental / Fusion",
+    "prepMinutes": 10,
+    "cookMinutes": 5,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Black or white chia seeds",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick coconut milk or almond milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure honey or maple syrup",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ground green cardamom",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh seasonal berries, pomegranate arils, and diced mango",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk chia pudding base",
+        "text": "In a bowl, whisk together coconut milk, chia seeds, maple syrup or honey, vanilla extract, and a pinch of cardamom. Let rest for 10 minutes, then whisk vigorously again to break up any clumps.",
+        "minutes": 5
+      },
+      {
+        "section": "Chill to set",
+        "text": "Cover and refrigerate for at least 4 hours (or overnight) until the chia seeds absorb the milk and swell into a thick, tapioca-like creamy pudding.",
+        "minutes": 5
+      },
+      {
+        "section": "Layer and serve",
+        "text": "Spoon chilled chia pudding into glasses, alternating with fresh mango cubes, berries, and pomegranate arils. Serve chilled.",
+        "minutes": 5
+      }
+    ],
+    "notes": "A healthy, naturally gluten-free and fiber-rich chilled pudding perfect as an after-meal dessert or refreshing breakfast treat."
   },
   {
     "id": "static-1001",
@@ -22704,60 +22842,6 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
-    "id": "static-0904",
-    "name": "Chocolate Pudding",
-    "category": "Sweets",
-    "region": "International",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
-      },
-      {
-        "name": "cocoa",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "cornflour",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "vanilla",
-        "quantity": "1 cup",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
-  },
-  {
     "id": "static-0239",
     "name": "Cholar Dal Bengali Style",
     "category": "Side Dish",
@@ -23348,6 +23432,75 @@
     "notes": "No Kolkata phuchka outing is complete without a bowl of tangy, crunchy Churmur served in a sal-leaf bowl."
   },
   {
+    "id": "static-1674",
+    "name": "Classic Chocolate Pudding (Silky Dark Chocolate Stovetop Custard Pudding)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Whole milk",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark chocolate (60-70% cocoa), finely chopped",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Dutch-processed unsweetened cocoa powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cornflour (cornstarch)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk dry ingredients with milk",
+        "text": "In a heavy saucepan, whisk together sugar, sifted cocoa powder, cornflour, and salt. Gradually whisk in cold whole milk until smooth with no lumps.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook custard",
+        "text": "Heat saucepan over medium heat, stirring constantly with a silicone spatula or whisk, scraping bottom and corners. Bring to a gentle boil and simmer for 2 minutes as it thickens into a glossy, velvety custard.",
+        "minutes": 8
+      },
+      {
+        "section": "Melt chocolate and finish",
+        "text": "Remove from heat, immediately add chopped dark chocolate, butter, and vanilla extract. Whisk vigorously until the chocolate melts completely and the pudding is mirror-glossy. Pour into dessert bowls and chill for at least 2 hours.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Real stovetop custard pudding with deep cocoa depth, velvety texture, and no artificial pudding mixes."
+  },
+  {
     "id": "static-0762",
     "name": "Classic Milk Tea",
     "category": "Tea",
@@ -23640,6 +23793,75 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1675",
+    "name": "Coffee Caramel Pudding / Espresso Caramel Custard (Rich Coffee-Infused Steamed Caramel Pudding)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sugar for caramel",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Water for caramel",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Instant espresso powder or strong dark roast decoction",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Custard powder or cornflour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh dairy cream",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare espresso caramel base",
+        "text": "In a small pan, heat sugar and water on medium heat until golden amber. Swirl without stirring, then pour immediately into a 6-inch pudding tin, coating the base evenly. Let set firm.",
+        "minutes": 6
+      },
+      {
+        "section": "Whisk coffee milk custard",
+        "text": "Dissolve espresso powder and custard powder in 0.5 cup milk. Heat remaining milk, condensed milk, and fresh cream in a saucepan. Whisk in the coffee custard slurry and simmer on low heat for 3 minutes until thickened and silky smooth.",
+        "minutes": 8
+      },
+      {
+        "section": "Steam and chill",
+        "text": "Pour warm coffee custard into the caramel-lined tin. Cover tightly with aluminium foil and steam in a steamer for 25 minutes. Cool, refrigerate for 3 hours, then invert onto a serving platter so the glossy dark coffee caramel pools over the pudding.",
+        "minutes": 25
+      }
+    ],
+    "notes": "An irresistible dessert for coffee lovers combining the bittersweet notes of espresso with rich golden caramel and velvety milk custard."
   },
   {
     "id": "static-0789",
@@ -24500,6 +24722,75 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1676",
+    "name": "Creamy Rice Pudding / Sutliya (Slow-Simmered Fragrant Basmati Rice & Saffron Milk Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 40,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Aromatic basmati or Gobindobhog rice, washed and soaked 20 mins",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Full-cream whole milk",
+        "quantity": "5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.66",
+        "unit": "cup"
+      },
+      {
+        "name": "Saffron strands steeped in 2 tbsp warm milk",
+        "quantity": "1",
+        "unit": "pinch"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Slivered almonds, pistachios, and golden raisins",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rose water or kewra water",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute soaked rice",
+        "text": "Drain soaked rice and lightly crush between fingers. Heat ghee in a heavy-bottomed pot, add crushed rice, and saute for 1-2 minutes until aromatic and coated with ghee.",
+        "minutes": 5
+      },
+      {
+        "section": "Slow-simmer with milk",
+        "text": "Pour in 5 cups of whole milk and bring to a boil. Lower flame to minimum and simmer for 30-35 minutes, stirring frequently and scraping dried milk solids from the pot sides back into the milk, until rice is melt-in-mouth soft and milk thickens to half.",
+        "minutes": 35
+      },
+      {
+        "section": "Sweeten and infuse aromatics",
+        "text": "Add sugar, steeped saffron milk, cardamom powder, slivered almonds, pistachios, and raisins. Cook for another 5 minutes until sugar dissolves and pudding turns rich and creamy. Stir in rose water, remove from heat, and serve warm or chilled.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Royal North Indian slow-cooked rice pudding (Sutliya) enriched by reducing full-cream milk until naturally sweet and fragrant."
   },
   {
     "id": "static-0625",
@@ -26297,6 +26588,70 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1677",
+    "name": "Custard Apple Pudding / Sitaphal Pudding (Chilled Sitaphal Cream & Condensed Milk Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 5,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh custard apple (sitaphal) pulp, deseeded",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick full-cream milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh dairy whipping cream or malai",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Agar agar powder (china grass)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Crushed pistachios for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Deseed sitaphal and prepare pulp",
+        "text": "Remove seeds from ripe custard apples to yield fresh fragrant pulp. Reserve half of the pulp chunky and blend the rest smooth with 2 tbsp milk.",
+        "minutes": 15
+      },
+      {
+        "section": "Heat milk and setting agent",
+        "text": "Dissolve agar agar in 0.25 cup warm water. In a pan, warm milk and condensed milk. Add dissolved agar agar and simmer for 2-3 minutes. Cool the mixture to lukewarm.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold pulp, cream and chill",
+        "text": "Whisk fresh cream until soft peaks form. Gently fold sitaphal pulp, cardamom powder, and whipped cream into the lukewarm milk mixture. Pour into dessert bowls and chill for at least 3 hours until gently set. Garnish with crushed pistachios.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Celebrates the luscious natural perfume and creamy texture of fresh autumn sitaphal; never boil the fresh pulp directly to preserve its delicate flavor."
   },
   {
     "id": "static-0661",
@@ -30654,6 +31009,75 @@
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1678",
+    "name": "Eggless Fruit Custard Trifle Pudding (Layered Vanilla Custard, Eggless Sponge Cake, Jelly & Fresh Fruits)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 25,
+    "cookMinutes": 10,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Full-cream milk",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Vanilla custard powder",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.66",
+        "unit": "cup"
+      },
+      {
+        "name": "Eggless vanilla sponge cake cubes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Strawberry or raspberry vegetarian jelly, set and cubed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Mixed fresh fruits (pomegranate arils, seedless grapes, diced apple, mango)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweetened whipped cream",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Glace cherries and roasted almond slivers for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook thick vanilla custard",
+        "text": "Whisk custard powder with 0.5 cup cold milk. Bring remaining milk and sugar to a boil, whisk in slurry, and simmer for 3 minutes until thick. Cover surface with parchment and cool completely in refrigerator.",
+        "minutes": 10
+      },
+      {
+        "section": "Layer sponge cake and jelly",
+        "text": "In a large glass trifle bowl, place a bottom layer of soft sponge cake cubes. Drizzle with a spoonful of fruit juice, then spread chilled strawberry jelly cubes evenly over the cake.",
+        "minutes": 10
+      },
+      {
+        "section": "Add fruits and custard",
+        "text": "Spread mixed diced fresh fruits over jelly, pour over the velvety chilled vanilla custard, top with a generous cloud of whipped cream, and decorate with glace cherries, pomegranate arils, and roasted almonds. Chill 2 hours before scooping.",
+        "minutes": 15
+      }
+    ],
+    "notes": "The ultimate centerpiece party dessert in Indian households, offering vibrant colors, textures, and luscious fruit flavors."
   },
   {
     "id": "static-1323",
@@ -46966,6 +47390,70 @@
     "notes": "Zero-waste Bengali home cooking that turns tender bottle gourd or its peel into a crunchy meal starter."
   },
   {
+    "id": "static-1679",
+    "name": "Lauki / Doodhi Milk Pudding (Sweet Cardamom Bottle Gourd Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Tender young bottle gourd (lauki/doodhi), peeled, deseeded and finely grated",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Full-cream whole milk",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cashews and golden raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "1",
+        "unit": "pinch"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute grated lauki in ghee",
+        "text": "Heat desi ghee in a heavy pan, fry cashews and raisins until golden and set aside. In the same ghee, add grated bottle gourd and saute on medium flame for 6-8 minutes until moisture evaporates and raw scent disappears.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer with whole milk",
+        "text": "Pour 4 cups full-cream milk into the pan. Stir well and bring to a boil. Simmer on medium-low flame for 15 minutes, stirring often, until the lauki becomes tender and translucent and the milk reduces to a thick creamy consistency.",
+        "minutes": 15
+      },
+      {
+        "section": "Sweeten and finish",
+        "text": "Add sugar, cardamom powder, saffron, and fried dry fruits. Simmer for another 4-5 minutes until rich and thick. Serve warm in winter or chilled during summer months.",
+        "minutes": 7
+      }
+    ],
+    "notes": "A nutritious, melt-in-the-mouth traditional dessert that turns humble bottle gourd into a royal milk pudding."
+  },
+  {
     "id": "static-1615",
     "name": "Lauki Paratha / Doodhi Paratha (Spiced Grated Bottle Gourd Stuffed Whole Wheat Paratha)",
     "category": "Bread",
@@ -47602,6 +48090,65 @@
       }
     ],
     "notes": "Famous highway delicacy of Shaktigarh in Purba Bardhaman, West Bengal."
+  },
+  {
+    "id": "static-1680",
+    "name": "Lychee Coconut Jelly Pudding (Fragrant Lychee Pulp & Coconut Milk Layered Agar Pudding)",
+    "category": "Sweets",
+    "region": "Asian Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh or canned lychees, drained and chopped",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Lychee juice or syrup",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick coconut milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Agar agar powder (china grass)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make coconut bottom layer",
+        "text": "In a saucepan, whisk 1.25 tsp agar agar with 0.5 cup water, sugar, and coconut milk. Simmer for 3 minutes until agar dissolves completely. Pour into transparent dessert cups or a square mould until half-filled. Chill for 15 minutes until just firm on the surface.",
+        "minutes": 10
+      },
+      {
+        "section": "Make lychee top layer",
+        "text": "In another pan, dissolve remaining 1.25 tsp agar agar in 0.5 cup water and lychee juice. Simmer for 3 minutes. Remove from heat and gently stir in chopped lychees.",
+        "minutes": 8
+      },
+      {
+        "section": "Combine and set",
+        "text": "Gently ladle the warm lychee mixture over the set coconut layer so the layers do not mix. Refrigerate for 2 hours until fully set. Unmould or serve chilled in cups.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Beautiful translucent dual-layer dessert pairing tropical fragrant lychee with creamy, velvety coconut milk."
   },
   {
     "id": "static-0787",
@@ -49279,6 +49826,70 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1681",
+    "name": "Mango Pudding (Eggless Mango Custard Pudding with Agar Agar / China Grass)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sweet ripe mango pulp (Alphonso or Kesar)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Whole milk or coconut milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh dairy cream",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Agar agar powder (china grass)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Warm water",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely diced fresh mango and mint leaves for garnish",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dissolve agar agar",
+        "text": "Stir agar agar powder into 0.5 cup warm water in a small pan. Heat on low stirring continuously for 3-4 minutes until agar agar completely dissolves into a clear liquid.",
+        "minutes": 5
+      },
+      {
+        "section": "Warm milk and blend mango",
+        "text": "In a saucepan, warm milk, fresh cream, and sugar until sugar dissolves (do not boil). Puree fresh mango pulp until completely smooth. Stir dissolved hot agar agar into the warm milk mixture, then whisk in the smooth mango pulp until thoroughly combined.",
+        "minutes": 8
+      },
+      {
+        "section": "Pour and chill",
+        "text": "Strain mixture through a fine sieve into individual pudding moulds or ramekins for a silky finish. Refrigerate for at least 2-3 hours until set firm. Unmould onto plates, top with fresh mango cubes and mint sprigs.",
+        "minutes": 10
+      }
+    ],
+    "notes": "The king of summer puddings; using sweet Alphonso or Kesar pulp yields a vibrant natural golden color and heavenly aroma without any artificial colors."
   },
   {
     "id": "static-0903",
@@ -57373,6 +57984,85 @@
     "notes": "Boiling with lemon juice removes any acridity and makes Ol Fry tender and delicious."
   },
   {
+    "id": "static-1682",
+    "name": "Old-Fashioned Baked Bread and Butter Pudding (Golden Raisin & Nutmeg Baked Custard Pudding)",
+    "category": "Sweets",
+    "region": "Continental / Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Soft white bread or brioche slices",
+        "quantity": "8",
+        "unit": "slices"
+      },
+      {
+        "name": "Salted butter, softened at room temperature",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Golden raisins / sultanas",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Freshly grated nutmeg and cinnamon powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Demerara sugar for crunchy topping",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Butter bread and layer",
+        "text": "Generously butter each bread slice on one side, cut diagonally into triangles. Arrange buttered side up in an overlapping pattern in a greased baking dish, scattering golden raisins between layers.",
+        "minutes": 10
+      },
+      {
+        "section": "Whisk custard",
+        "text": "Whisk together milk, heavy cream, eggs, caster sugar, vanilla extract, cinnamon, and freshly grated nutmeg until smooth and sugar dissolves. Pour custard evenly over the bread triangles and let soak for 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Bake to golden perfection",
+        "text": "Sprinkle Demerara sugar on top for crunch. Bake in a preheated oven at 180°C (350°F) for 35-40 minutes until custard is gently set in the center and bread tops are crisp and golden brown. Serve warm with cream.",
+        "minutes": 35
+      }
+    ],
+    "notes": "Classic heritage dessert turning humble bread into a comforting, fragrant baked custard with crispy golden peaks and custardy soft center."
+  },
+  {
     "id": "static-1491",
     "name": "Oler Bora / Elephant Foot Yam Fritters (Crispy Spiced Suran & Coconut Fritters)",
     "category": "Fritters",
@@ -58745,6 +59435,70 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1683",
+    "name": "Orange Citrus Custard Pudding (Fresh Orange Zest & Juice Infused Silky Custard Pudding)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Freshly squeezed orange juice, strained",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh orange zest, finely grated",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cornflour (cornstarch)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh orange segments, membrane removed, for topping",
+        "quantity": "1",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare orange reduction",
+        "text": "In a saucepan, simmer 1 cup of orange juice with 2 tbsp sugar for 5 minutes until slightly reduced and flavors intensify. Let cool.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook citrus milk custard",
+        "text": "Whisk cornflour into 0.5 cup cold milk. Heat remaining milk, orange zest, remaining sugar, and remaining orange juice. Whisk in the cornflour slurry and cook on medium-low flame, whisking continuously for 4-5 minutes until thick, glossy, and bubble bursts appear. Whisk in butter.",
+        "minutes": 10
+      },
+      {
+        "section": "Assemble and chill",
+        "text": "Spoon custard into serving coupes. Chill in the refrigerator for 2 hours. Top with fresh juicy orange segments and a spoonful of the orange reduction before serving.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Bright and invigorating dessert balancing sweet creamy milk custard with the zesty, floral acidity of freshly picked oranges."
   },
   {
     "id": "static-0801",
@@ -65459,6 +66213,75 @@
       }
     ],
     "notes": "Fiery, numbing, and nutty street-style potato snack served with beaten rice or sel roti."
+  },
+  {
+    "id": "static-1684",
+    "name": "Pista Phirni Pudding (Chilled Kashmiri Ground Basmati Rice & Pistachio Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Basmati rice, soaked and coarsely ground like semolina",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Full-cream buffalo or whole milk",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Unsalted raw pistachios, blanched and finely ground",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "1",
+        "unit": "pinch"
+      },
+      {
+        "name": "Kewra water or rose water",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slivered pistachios and edible rose petals for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak and coarsely grind rice",
+        "text": "Soak basmati rice for 30 minutes, drain completely on a clean kitchen towel, then pulse in a dry grinder until it resembles coarse semolina (suji) granules (do not make a fine powder).",
+        "minutes": 10
+      },
+      {
+        "section": "Slow-cook in reduced milk",
+        "text": "Bring full-cream milk to a rolling boil in a heavy pot. Slowly rain in the ground rice while whisking continuously to prevent lumps. Simmer on low heat for 18-20 minutes, stirring frequently, until rice is completely cooked and the pudding thickens.",
+        "minutes": 20
+      },
+      {
+        "section": "Infuse pistachios and chill in earthen pots",
+        "text": "Add ground pistachios, sugar, saffron, and cardamom. Cook for another 4 minutes until thick and glossy. Stir in kewra water, ladle into traditional unglazed terracotta bowls (sakoras), and chill for 4 hours until firmly set.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Royal North Indian chilled ground rice pudding; serving in earthen sakoras absorbs excess moisture, creating an intensely creamy, thick texture with delicate pistachio aroma."
   },
   {
     "id": "static-1168",
@@ -72346,60 +73169,6 @@
     "notes": "Crisp, savory rice-and-gram flour ribbon snack flavored with garlic and asafoetida."
   },
   {
-    "id": "static-0906",
-    "name": "Rice Pudding",
-    "category": "Sweets",
-    "region": "International",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "rice",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "cinnamon",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "vanilla",
-        "quantity": "1 cup",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
-  },
-  {
     "id": "static-1416",
     "name": "Roasted Masala Makhana & Peanut Namkeen (Spiced Ghee-Roasted Fox Nuts)",
     "category": "Snacks",
@@ -73157,6 +73926,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1685",
+    "name": "Rose Falooda Pudding (Basil Seed / Sabja & Saffron Rose Milk Agar Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sweet basil seeds (sabja seeds), soaked in water for 15 mins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Rose syrup (damask rose syrup)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Agar agar powder (china grass)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Warm water",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed roasted pistachios and dried edible rose petals",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bloom sabja seeds and dissolve agar agar",
+        "text": "Soak sabja seeds in 0.5 cup water until plump and gelatinous. In a small pan, dissolve agar agar powder in 0.5 cup warm water and simmer for 3 minutes until clear.",
+        "minutes": 5
+      },
+      {
+        "section": "Prepare fragrant rose milk",
+        "text": "Warm milk and condensed milk in a pot, stir in rose syrup until beautifully pink and fragrant. Whisk in the hot dissolved agar agar liquid and simmer gently for 2 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Mix seeds and set",
+        "text": "Let rose milk cool slightly for 3 minutes, then gently fold in the drained bloomed sabja seeds so they disperse evenly throughout the pudding rather than sinking. Pour into silicone moulds or dessert glasses and chill for 2 hours until set. Garnish with pistachios and dried rose petals.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Translates the beloved street-style Mumbai/Kolkata Falooda drink into a stunning, cooling set jelly-pudding dessert."
+  },
+  {
     "id": "static-0805",
     "name": "Rose Lassi",
     "category": "Beverage",
@@ -73513,6 +74346,70 @@
       }
     ],
     "notes": "Signature Bengali no-turmeric, no-onion-garlic white potato curry classically paired with hot phulko luchi or trikon porota for breakfast."
+  },
+  {
+    "id": "static-1686",
+    "name": "Sago Coconut Pudding / Sabudana Pudding (Translucent Tapioca Pearls with Coconut Milk & Palm Jaggery)",
+    "category": "Sweets",
+    "region": "South Indian / Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Medium sago pearls (sabudana), rinsed",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Water for boiling sago",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick fresh coconut milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Date palm jaggery (nolen gur) or palm sugar, grated",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Water for jaggery syrup",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toasted coconut flakes and fresh mango slices for serving",
+        "quantity": "0.25",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook translucent sago pearls",
+        "text": "Bring 4 cups water to a rolling boil in a pot. Add rinsed sago pearls and cook on medium flame for 12-15 minutes, stirring occasionally, until pearls turn completely transparent without any white center. Drain and rinse under cold water to remove excess starch.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare palm jaggery syrup",
+        "text": "Melt grated date palm jaggery or palm sugar in 0.25 cup water in a pan. Simmer for 3 minutes until syrupy and strain to remove any impurities.",
+        "minutes": 5
+      },
+      {
+        "section": "Combine with coconut milk",
+        "text": "In serving bowls or glasses, combine the cooked chewy translucent sago pearls with warm or chilled coconut milk, drizzle generously with aromatic palm jaggery syrup, and sprinkle cardamom powder. Garnish with toasted coconut flakes and fresh mango slices.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Irresistible Southeast Asian and coastal Indian dessert featuring tender, chewy pearls bathed in velvety coconut cream and smoky caramel-like palm jaggery."
   },
   {
     "id": "static-1514",
@@ -80223,6 +81120,70 @@
     "notes": "Lemon juice and chilli balance the natural sweetness of the sweet potato."
   },
   {
+    "id": "static-1687",
+    "name": "Sweet Potato Pudding / Shakarkandi Pudding (Spiced Roasted Sweet Potato & Condensed Milk Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sweet potatoes (shakarkandi), roasted or boiled and mashed smooth",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sweetened condensed milk or jaggery powder",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toasted chopped walnuts and cashews",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast mashed sweet potatoes in ghee",
+        "text": "Heat pure desi ghee in a heavy-bottomed kadai, add smooth mashed sweet potato, and roast on medium flame for 7-8 minutes until glossy and fragrant.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook with milk and spices",
+        "text": "Pour in 3 cups of full-cream milk, whisking thoroughly to ensure no lumps. Simmer on medium-low flame for 12-15 minutes, stirring frequently, until the mixture thickens into a rich, luscious pudding consistency.",
+        "minutes": 15
+      },
+      {
+        "section": "Sweeten and garnish",
+        "text": "Stir in condensed milk, ground cardamom, and freshly grated nutmeg. Cook for 2-3 minutes until aromatic. Fold in toasted chopped walnuts and cashews and serve warm in winter or chilled.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Wholesome traditional Indian winter pudding naturally sweet and creamy, elevated with the nutty warmth of nutmeg and toasted walnuts."
+  },
+  {
     "id": "static-1203",
     "name": "Taler Luchi (Bengali Sugar Palm Pulp Sweet Poori)",
     "category": "Bread",
@@ -81197,6 +82158,70 @@
       }
     ],
     "notes": "Natural, eggless artisanal ice cream bursting with the delicate sweetness of fresh tender coconut."
+  },
+  {
+    "id": "static-1688",
+    "name": "Tender Coconut Pudding (Elaneer Coconut Milk Pudding with Agar Agar)",
+    "category": "Sweets",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Fresh tender coconut pulp (malai), soft and translucent",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh tender coconut water",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick coconut milk (first extract) or whole milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Agar agar powder (china grass)",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped tender coconut bits for garnish",
+        "quantity": "0.25",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend tender coconut",
+        "text": "Blend 1 cup of soft tender coconut pulp with 0.5 cup coconut water into a silky smooth puree. Finely chop the remaining 0.5 cup pulp into tiny bites for textural contrast.",
+        "minutes": 5
+      },
+      {
+        "section": "Dissolve agar agar and heat milk",
+        "text": "In a small pan, simmer agar agar with 0.5 cup water for 3 minutes until completely clear and dissolved. In another pot, gently warm thick coconut milk, condensed milk, and remaining 0.5 cup coconut water (do not boil). Pour hot agar agar into the warm milk, stirring continuously.",
+        "minutes": 6
+      },
+      {
+        "section": "Combine, set and chill",
+        "text": "Remove from heat, let cool for 2 minutes, then whisk in the blended tender coconut puree and chopped tender coconut bits. Pour into pudding bowls or moulds. Refrigerate for at least 3 hours until set. Serve cold.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Famous Kerala coastal delicacy; intensely refreshing, creamy, and delicate, highlighting the natural sweet nectar of fresh tender coconuts."
   },
   {
     "id": "static-0778",
@@ -83866,6 +84891,70 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1689",
+    "name": "Vanilla Caramel Custard / Crème Caramel (Steamed Golden Caramel Milk Flan)",
+    "category": "Sweets",
+    "region": "Continental / Indo-Western",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sugar for caramel",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Water for caramel",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Large eggs or custard powder (for eggless)",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Condensed milk or caster sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure vanilla bean paste or vanilla extract",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.125",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make amber caramel syrup",
+        "text": "In a small heavy saucepan, cook 0.5 cup sugar with 2 tbsp water over medium heat without stirring until it turns a rich golden amber color. Immediately pour into the base of a 6-inch round cake or pudding mould, swirling to coat the bottom. Let cool and harden.",
+        "minutes": 6
+      },
+      {
+        "section": "Prepare smooth custard",
+        "text": "Whisk eggs gently with condensed milk, vanilla extract, and pinch of salt (avoid beating too vigorously to prevent excess air bubbles). Heat milk until lukewarm and slowly pour into the egg mixture while gently whisking. Strain through a fine-mesh sieve for ultra-smooth texture.",
+        "minutes": 8
+      },
+      {
+        "section": "Steam and unmould",
+        "text": "Pour strained custard over the hardened caramel. Cover mould tightly with foil. Place in a steamer or pot with 1.5 inches boiling water on a stand, cover with a tight lid, and steam on medium-low for 25 minutes until the center is set with a slight gentle wobble. Chill for 4 hours, run a thin knife around edge, and invert onto a rimmed platter.",
+        "minutes": 25
+      }
+    ],
+    "notes": "The quintessential classic custard dessert; straining the custard and slow steaming yields a silky, mirror-smooth texture beneath a shimmering pool of liquid amber caramel."
   },
   {
     "id": "static-0797",
