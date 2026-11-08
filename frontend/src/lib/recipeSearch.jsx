@@ -52,14 +52,14 @@ export function extractCategories(recipes = []) {
 
 /**
  * Searches and ranks recipes with multi-token matching, relevance scoring,
- * category filtering, and sorting.
+ * category filtering, and sorting (default: most used recipes on top).
  *
  * @param {Array} indexedRecipes 
  * @param {Object} options
  * @param {string} options.query - search text
  * @param {string} options.category - active category filter ("All" or specific category)
- * @param {string} options.sortColumn - column to sort by ("name", "totalTime", "ingredientCount", "usageCount")
- * @param {string} options.sortDirection - "asc" or "desc"
+ * @param {string} options.sortColumn - column to sort by ("usageCount", "name", "totalTime", "ingredientCount")
+ * @param {string} options.sortDirection - "desc" (most used on top) or "asc"
  * @param {Function} options.getUsageCount - function(recipe) returning total usage count
  * @returns {Array} filtered and sorted recipes
  */
@@ -67,8 +67,8 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
   const {
     query = "",
     category = "All",
-    sortColumn = null,
-    sortDirection = "asc",
+    sortColumn = "usageCount",
+    sortDirection = "desc",
     getUsageCount = null,
   } = options;
 
@@ -156,11 +156,27 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
   const dirMultiplier = sortDirection === "desc" ? -1 : 1;
 
   matches.sort((a, b) => {
-    // If a search query is active and no explicit manual sort column is specified,
-    // relevance score is the primary sorting criteria!
-    if (tokens.length > 0 && !sortColumn) {
+    // If a search query is active and user has not explicitly requested a non-default sort,
+    // match relevance score is primary!
+    if (tokens.length > 0 && (!sortColumn || sortColumn === "usageCount")) {
       const scoreDiff = b.score - a.score;
       if (scoreDiff !== 0) return scoreDiff;
+    }
+
+    // Usage-based sorting (default or explicit: most used on top)
+    if (!sortColumn || sortColumn === "usageCount") {
+      const aUsage = getUsageCount ? getUsageCount(a.recipe) : Number(a.recipe.usageCount || 0);
+      const bUsage = getUsageCount ? getUsageCount(b.recipe) : Number(b.recipe.usageCount || 0);
+      const usageDiff = bUsage - aUsage; // Most used on top when descending
+      const effectiveDiff = sortDirection === "asc" ? -usageDiff : usageDiff;
+      if (effectiveDiff !== 0) return effectiveDiff;
+
+      // Secondary tie-break: personal user usage count
+      const aUser = Number(a.recipe.userUsageCount || 0);
+      const bUser = Number(b.recipe.userUsageCount || 0);
+      const userDiff = bUser - aUser;
+      const effectiveUserDiff = sortDirection === "asc" ? -userDiff : userDiff;
+      if (effectiveUserDiff !== 0) return effectiveUserDiff;
     }
 
     // Explicit column sorting
@@ -175,25 +191,8 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
       const countDiff = a.recipe._ingredientCount - b.recipe._ingredientCount;
       if (countDiff !== 0) return dirMultiplier * countDiff;
     }
-    if (sortColumn === "usageCount") {
-      const aUsage = getUsageCount ? getUsageCount(a.recipe) : 0;
-      const bUsage = getUsageCount ? getUsageCount(b.recipe) : 0;
-      const usageDiff = bUsage - aUsage;
-      if (usageDiff !== 0) return dirMultiplier * usageDiff;
-    }
 
-    // Default sorting when no explicit sort column or when scores tie:
-    if (getUsageCount) {
-      const aUsage = getUsageCount(a.recipe);
-      const bUsage = getUsageCount(b.recipe);
-      const usageDiff = bUsage - aUsage;
-      if (usageDiff !== 0) return usageDiff;
-
-      const userDiff = Number(b.recipe.userUsageCount || 0) - Number(a.recipe.userUsageCount || 0);
-      if (userDiff !== 0) return userDiff;
-    }
-
-    // Final fallback: alphabetical by name
+    // Default tie-breaker when usage is equal: alphabetical by name
     return String(a.recipe.name || "").localeCompare(String(b.recipe.name || ""));
   });
 

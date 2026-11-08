@@ -155,3 +155,15 @@
 .diet-clear-filters-btn:hover {
   text-decoration: underline;
 }
+
+.diet-usage-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary, #2563eb);
+  background: var(--diet-soft, #eef6fc);
+  border: 1px solid color-mix(in srgb, var(--primary, #2563eb) 25%, transparent);
+}

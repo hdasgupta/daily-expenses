@@ -542,6 +542,8 @@ export default function FoodChart() {
     return searchAndRankRecipes(indexedRecipes, {
       query,
       category: pickerCategory,
+      sortColumn: "usageCount",
+      sortDirection: "desc",
       getUsageCount,
     });
   }, [indexedRecipes, query, pickerCategory, getUsageCount]);
@@ -945,7 +947,11 @@ export default function FoodChart() {
                           </div>
                           <span>
                             {r.category} · {r.region} · {r.ingredients?.length || 0} ingredients
-                            {usageCount > 0 ? ` · Used ${usageCount}x` : ""}
+                            {usageCount > 0 && (
+                              <span className="diet-usage-badge" style={{ marginLeft: 6 }}>
+                                Used {usageCount}x
+                              </span>
+                            )}
                           </span>
                         </div>
                         <button

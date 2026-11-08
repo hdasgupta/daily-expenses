@@ -3,8 +3,12 @@ import { api } from "../lib/api";
 
 const defaultState = { pageSize: 10, search: "", sortColumn: null, sortDirection: "asc" };
 
-export function usePagination(module, defaultSort = null) {
-  const [state, setState] = useState({ ...defaultState, sortColumn: defaultSort });
+export function usePagination(module, defaultSort = null, defaultDirection = "asc") {
+  const [state, setState] = useState({
+    ...defaultState,
+    sortColumn: defaultSort,
+    sortDirection: defaultDirection,
+  });
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -15,12 +19,12 @@ export function usePagination(module, defaultSort = null) {
       .then((saved) => {
         if (!active) return;
         setState({
-          pageSize: [5, 10, 20, 50].includes(Number(saved.page_size))
+          pageSize: [5, 10, 20, 50, 100].includes(Number(saved.page_size))
             ? Number(saved.page_size)
-            : 10,
+            : 20,
           search: saved.search_text || "",
           sortColumn: saved.sort_column || defaultSort,
-          sortDirection: saved.sort_direction === "desc" ? "desc" : "asc",
+          sortDirection: saved.sort_direction ? saved.sort_direction : defaultDirection,
         });
       })
       .catch(() => {})
@@ -30,7 +34,7 @@ export function usePagination(module, defaultSort = null) {
     return () => {
       active = false;
     };
-  }, [module, defaultSort]);
+  }, [module, defaultSort, defaultDirection]);
 
   const setPageSize = useCallback((pageSize) => {
     setState((current) => ({ ...current, pageSize: Number(pageSize) }));

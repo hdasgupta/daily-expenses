@@ -258,3 +258,17 @@
   - Added `-Pkotlin_version="2.0.21"` and `-PkotlinVersion="2.0.21"` to `./gradlew assembleRelease` in the workflow to override any plugin-level default properties at runtime.
 - **Extended HTTP Socket Timeouts (`frontend/android/gradle.properties`)**:
   - Configured `systemProp.http.socketTimeout=120000`, `systemProp.https.socketTimeout=120000`, and `kotlin.version=2.0.21`.
+
+## 15. Usage-First Sorting (Recipe Master & Food Chart)
+- **Usage-Based Default Sorting (`frontend/src/lib/recipeSearch.js`)**:
+  - Configured default sort column to `usageCount` with descending direction (`desc`) across all recipe listings.
+  - High-frequency and frequently planned recipes are prioritized at the top of the list (`bUsage - aUsage`), followed by personal user frequency (`bUserUsage - aUserUsage`), with alphabetical A–Z tie-breaking for unused items.
+- **Recipe Master Page Ordering (`frontend/src/pages/RecipeMaster.jsx`)**:
+  - Initialized pagination with `usePagination("recipe-master", "usageCount", "desc")`, defaulting the catalogue view to show the user's most frequently planned and used recipes on page 1.
+  - Placed *"Most Used"* at the top of the sort options dropdown.
+  - Added a distinct `.diet-usage-badge` indicator (*"Used Xx"*) next to each recipe's metadata to clearly highlight usage frequency.
+- **Food Chart Add Recipe Modal Ordering (`frontend/src/pages/FoodChart.jsx`)**:
+  - Configured the recipe picker modal to always present the most frequently scheduled recipes at the top of the list for quick 1-tap meal planning.
+  - Highlighted usage count on modal items with `.diet-usage-badge`.
+- **Pagination Hook Default Direction Support (`frontend/src/hooks/usePagination.js`)**:
+  - Added `defaultDirection = "asc"` parameter to `usePagination` so modules can default to descending order (e.g. `usageCount: desc`).

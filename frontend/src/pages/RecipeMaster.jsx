@@ -533,7 +533,7 @@ export default function RecipeMaster() {
   const [chartError, setChartError] = useState("");
   const [locations, setLocations] = useState([]);
 
-  const pagination = usePagination("recipe-master", "name");
+  const pagination = usePagination("recipe-master", "usageCount", "desc");
 
   useEffect(() => {
     let active = true;
@@ -819,7 +819,11 @@ export default function RecipeMaster() {
                   <strong>{recipe.name}</strong>
                   <span>
                     {recipe.category} · {recipe.region} · {recipe.ingredients?.length || 0} ingredients · {Number(recipe.prepMinutes || 0) + Number(recipe.cookMinutes || 0)} min
-                    {usageCount > 0 ? ` · Used ${usageCount}x` : ""}
+                    {usageCount > 0 && (
+                      <span className="diet-usage-badge" style={{ marginLeft: 6 }}>
+                        Used {usageCount}x
+                      </span>
+                    )}
                   </span>
                 </div>
                 <div className="diet-actions">
