@@ -888,7 +888,7 @@ export default function FoodChart() {
                 {filteredRecipes.length} {filteredRecipes.length === 1 ? "match" : "matches"}
               </span>
             </label>
-            <div className="diet-category-chips" style={{ marginBottom: 10 }}>
+            <div className="diet-category-chips diet-picker-chips">
               {pickerCategories.map((cat) => (
                 <button
                   type="button"

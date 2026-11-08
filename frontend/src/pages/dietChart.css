@@ -17,7 +17,7 @@
 
 /* Android WebView modal & recipe picker flex-height stability */
 .diet-modal.diet-picker{overflow:hidden;max-height:min(90dvh,90vh,860px)}
-.diet-modal.diet-picker>header,.diet-modal.diet-picker>label,.diet-modal.diet-picker>.diet-search{flex-shrink:0}
+.diet-modal.diet-picker>header,.diet-modal.diet-picker>label,.diet-modal.diet-picker>.diet-search,.diet-modal.diet-picker>.diet-category-chips,.diet-modal.diet-picker>.diet-search-meta{flex-shrink:0}
 .diet-picker-list{flex:1 1 auto;min-height:220px;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--diet-border);border-radius:10px}
 .diet-picker-more{display:flex;justify-content:center;padding:12px}
 
@@ -166,4 +166,39 @@
   color: var(--primary, #2563eb);
   background: var(--diet-soft, #eef6fc);
   border: 1px solid color-mix(in srgb, var(--primary, #2563eb) 25%, transparent);
+}
+
+/* Ensure recipe category tags inside Add Recipe modal are completely visible and wrap cleanly */
+.diet-modal.diet-picker {
+  width: min(100%, 660px);
+}
+.diet-modal.diet-picker .diet-category-chips.diet-picker-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 112px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 4px;
+  margin: -4px 0 6px;
+  flex-shrink: 0;
+  min-height: 40px;
+}
+.diet-modal.diet-picker .diet-category-chip {
+  flex-shrink: 0;
+  padding: 5px 11px;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+.diet-picker-item span .diet-usage-badge,
+.diet-picker-item .diet-duplicate-badge {
+  color: var(--primary, #2563eb);
+  flex-shrink: 0;
+}
+.diet-picker-item .diet-duplicate-badge {
+  color: var(--diet-muted, #70757a);
+}
+
+.diet-recipe-main > span .diet-usage-badge {
+  color: var(--primary, #2563eb);
 }

@@ -279,3 +279,11 @@
   - Corrected the property shorthand typo in `filteredRecipes` useMemo hook from `getUsageCount` to `getUsageCount: getRecipeUsageCount`.
   - Updated the hook dependency array to `[indexedRecipes, query, pickerCategory, getRecipeUsageCount]`.
   - Resolves `ReferenceError: getUsageCount is not defined` when opening the Food Chart page or Add Recipe picker modal.
+
+
+## 17. Fix Clipped Recipe Category Tags & Badges in Add Recipe Modal (Food Chart)
+- **Prevented Flex Crushing of Category Tags (`frontend/src/pages/dietChart.css`, `frontend/src/pages/FoodChart.jsx`)**:
+  - Added `.diet-modal.diet-picker > .diet-category-chips` and `.diet-modal.diet-picker > .diet-search-meta` to the `flex-shrink: 0` rule so the modal flex layout never squashes or clips the category tag row vertically.
+  - Configured `.diet-category-chips.diet-picker-chips` inside the Add Recipe modal with `flex-wrap: wrap`, `min-height: 40px`, `max-height: 112px`, and smooth `overflow-y: auto` so all 27 recipe category tags wrap into clean, completely visible multi-line rows without horizontal clipping.
+- **Restored Badge Contrast & Visibility (`frontend/src/pages/dietChart.css`)**:
+  - Fixed CSS specificity where `.diet-picker-item span { color: var(--diet-muted) }` was overriding `.diet-usage-badge` text color inside modal items.
