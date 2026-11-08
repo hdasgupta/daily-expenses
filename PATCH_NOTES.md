@@ -239,10 +239,10 @@
 
 
 ## 13. Gradle Wrapper Distribution & Android APK CI Build Fix
-- **Switched to Stable Gradle 8.13 Distribution (`frontend/android/gradle/wrapper/gradle-wrapper.properties`)**:
-  - Replaced `gradle-8.14.3` with the official stable `gradle-8.13-bin.zip` recommended for Android Gradle Plugin 8.13 (`com.android.tools.build:gradle:8.13.0`), resolving the GitHub Releases CDN 504 Gateway Timeout on `v8.14.3`.
-  - Configured `distributionUrl=https://services.gradle.org/distributions/gradle-8.13-bin.zip` and increased `networkTimeout` to 60,000 ms (60 seconds) to protect against network latency.
-- **GitHub Actions Managed Gradle Setup (`.github/workflows/android-apk.yml`)**:
-  - Integrated `gradle/actions/setup-gradle@v4` with explicit `gradle-version: "8.13"` immediately following `actions/setup-java@v4`.
-  - Pre-provisions and caches the Gradle 8.13 distribution directly on the GitHub Actions runner, eliminating flaky wrapper downloads during `./gradlew assembleRelease`.
-  - Added `--no-daemon --stacktrace` flags to `assembleRelease` for deterministic and robust APK generation.
+- **Direct CloudFront CDN Distribution (`frontend/android/gradle/wrapper/gradle-wrapper.properties`)**:
+  - Pointed `distributionUrl` directly to Gradle's CloudFront CDN (`https://downloads.gradle-dn.com/distributions/gradle-8.13-bin.zip`), completely bypassing the failing `services.gradle.org` gateway.
+  - Set `networkTimeout=60000` (60 seconds) and `validateDistributionUrl=false` to prevent wrapper verification errors during offline or mirror builds.
+- **Resilient Multi-Mirror Pre-Fetch Step (`.github/workflows/android-apk.yml`)**:
+  - Replaced `gradle/actions/setup-gradle@v4` (which crashed with 504 trying to query `services.gradle.org/versions/all`) with a multi-mirror `curl` pre-fetch step.
+  - The step attempts 4 reliable mirrors (`downloads.gradle-dn.com`, Tencent Cloud, Alibaba Cloud, and `services.gradle.org`) with retries, saves the zip locally into `frontend/android/gradle/wrapper/`, and switches `distributionUrl` to a local relative path `gradle-8.13-bin.zip`.
+  - Ensures `./gradlew assembleRelease` runs completely offline regarding the Gradle distribution, preventing all 504 timeouts.

@@ -42,10 +42,38 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "8.13"
+      - name: Ensure Gradle distribution is available
+        run: |
+          mkdir -p frontend/android/gradle/wrapper
+          
+          # List of direct CDN endpoints and mirrors for Gradle 8.13
+          URLS=(
+            "https://downloads.gradle-dn.com/distributions/gradle-8.13-bin.zip"
+            "https://mirrors.cloud.tencent.com/gradle/gradle-8.13-bin.zip"
+            "https://mirrors.aliyun.com/macports/distfiles/gradle/gradle-8.13-bin.zip"
+            "https://services.gradle.org/distributions/gradle-8.13-bin.zip"
+          )
+          
+          DOWNLOADED=false
+          for url in "${URLS[@]}"; do
+            echo "Attempting to download Gradle from $url..."
+            if curl -fSL --connect-timeout 20 --max-time 300 --retry 3 --retry-delay 3 "$url" -o frontend/android/gradle/wrapper/gradle-8.13-bin.zip; then
+              echo "Successfully downloaded Gradle 8.13 from $url"
+              DOWNLOADED=true
+              break
+            else
+              echo "Download from $url failed or timed out, trying next mirror..."
+            fi
+          done
+
+          if [ "$DOWNLOADED" = "true" ] && [ -s frontend/android/gradle/wrapper/gradle-8.13-bin.zip ]; then
+            echo "Setting distributionUrl to local wrapper zip..."
+            sed -i 's|distributionUrl=.*|distributionUrl=gradle-8.13-bin.zip|' frontend/android/gradle/wrapper/gradle-wrapper.properties
+            sed -i 's|validateDistributionUrl=.*|validateDistributionUrl=false|' frontend/android/gradle/wrapper/gradle-wrapper.properties
+          else
+            echo "Could not download from mirrors; falling back to direct CDN in gradle-wrapper.properties"
+          fi
+          cat frontend/android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Sync Capacitor Android
         working-directory: frontend
