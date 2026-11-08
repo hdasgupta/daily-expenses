@@ -195,3 +195,18 @@
 - **Catalogue Verification & Alphabetical Sorting**:
   - Sorted all **1,583** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
   - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.
+
+
+## 11. Systematic Catalogue Deduplication & Naming Variety Normalization
+- **Removed 115 Redundant Synthetic Clone Duplicates**:
+  - **Snacks Clones (48)**: Eliminated artificial prefix copies (*Crispy ...*, *Spicy ...*, *Bengali Style ...*, *Street Style ...*) across *Aloo Tikki*, *Alur Chop*, *Beguni*, *Cutlet*, *Dhokla*, *Khandvi*, *Mochar Chop*, *Pakora*, *Piyaji*, *Samosa*, *Singara*, and *Vegetable Chop*.
+  - **Breakfast Clones (43)**: Removed redundant synthetic copies (*Crispy ...*, *Soft ...*, *Masala ...*, *Vegetable ...*) across *Appam*, *Besan Chilla*, *Chirer Polao*, *Dosa*, *Idli*, *Moong Dal Chilla*, *Pesarattu*, *Poha*, *Puttu*, *Upma*, and *Uttapam*.
+  - **Rice Clones (12)**: Removed redundant *Bengali Style ...* clones for *Basmati Rice*, *Brown Rice*, *Curd Rice*, *Gobindobhog Rice*, *Jeera Rice*, *Kashmiri Pulao*, *Lemon Rice*, *Peas Pulao*, *Steamed Rice*, *Tamarind Rice*, *Tomato Rice*, and *Vegetable Pulao*.
+  - **Duplicate Pulse Entries (8)**: Removed identical *Toor Dal ...* duplicates (*Toor Dal Bengali Style*, *Toor Dal Curry*, *Toor Dal Fry*, *Toor Dal Punjabi Style*, *Toor Dal Tadka*, *Toor Dal with Coconut*, *Toor Dal with Spinach*, *Toor Dal with Tomato*) that mirrored *Arhar Dal*.
+  - **Toast & Sandwich Duplicates (4)**: Removed redundant entries *Crispy Potato Sandwich*, *Bread Butter Jam*, *Toast with Butter*, and *Toast with Jam*.
+- **Normalized Naming Variety**:
+  - Restored canonical culinary dish names by removing artificial `(Homestyle)` and `(Classic)` qualifiers across 34 staple breakfast, snack, bread, and rice dishes (e.g. *Alur Chop*, *Dhokla*, *Beguni*, *Idli*, *Dosa*, *Upma*, *Poha*, *Basmati Rice*, *Jeera Rice*, *Aloo Paratha*, *Chapati*).
+- **Catalogue Verification & Alphabetical Sorting**:
+  - Verified 0 duplicate IDs and 0 duplicate names across the remaining **1,468** unique, authentic recipes.
+  - Sorted all entries strictly alphabetically from A to Z (`Aam Panna` through `Wai Wai Sadeko`).
+  - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.
