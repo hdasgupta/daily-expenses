@@ -3485,6 +3485,60 @@
     "notes": "Laminating the dough with butter gives Amritsari Kulcha its signature flaky crunch."
   },
   {
+    "id": "static-1663",
+    "name": "Anarsa (Traditional Crispy Rice Flour & Jaggery Pastry Crusted with White Sesame Seeds)",
+    "category": "Sweets",
+    "region": "Maharashtrian",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Raw rice, soaked 3 days (water changed daily), air-dried and ground to fine flour",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Powdered jaggery (gul)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "White sesame seeds (til)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Desi ghee (for frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ripe banana or milk (1-2 tsp, if needed to bind dough)",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare fermented rice-jaggery dough",
+        "text": "Combine fine moist rice flour with powdered jaggery, knead firmly into balls using natural moisture, and let rest in an airtight jar for 2 days to ferment naturally.",
+        "minutes": 15
+      },
+      {
+        "section": "Shape sesame-coated discs",
+        "text": "Knead the rested dough soft with a few drops of milk, shape into small balls, flatten on a bed of white sesame seeds so one side is generously coated.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry on low heat",
+        "text": "Slide sesame-side-up into warm ghee on low heat; spoon hot ghee continuously over the top without flipping until it turns golden brown with a characteristic netted, porous texture.",
+        "minutes": 12
+      }
+    ],
+    "notes": "An ancient festive Diwali delicacy with a shatteringly crisp sesame crust and soft caramelized interior."
+  },
+  {
     "id": "static-1631",
     "name": "Anda Sadeko (Nepali Spiced Hard-Boiled Egg Salad with Onion & Lime)",
     "category": "Snacks",
@@ -5991,6 +6045,65 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1664",
+    "name": "Bebinca (Traditional Goan 7-Layered Coconut Milk & Nutmeg Steamed Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 45,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Thick fresh coconut milk (first extract)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee (melted, for brushing layers)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Freshly grated nutmeg powder & cardamom",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk coconut-egg batter",
+        "text": "Whisk egg yolks and sugar until pale and creamy. Add thick coconut milk, nutmeg, and cardamom, then gently fold in sifted maida to create a smooth, velvety batter.",
+        "minutes": 10
+      },
+      {
+        "section": "Bake layer by layer under broiler",
+        "text": "Grease an oven-safe tin with 1 tbsp ghee, pour a thin layer (0.5 cup) of batter, and bake under the top oven grill/broiler for 5-6 minutes until firm and golden brown.",
+        "minutes": 6
+      },
+      {
+        "section": "Repeat for 7 layers",
+        "text": "Brush the baked layer with ghee, pour the next layer of batter, and bake. Repeat process until all 7 distinct caramelized layers are formed. Cool completely and slice into wedges.",
+        "minutes": 35
+      }
+    ],
+    "notes": "The Queen of Goan desserts: a rich Indo-Portuguese layered coconut cake celebrating coconut milk and nutmeg."
+  },
+  {
     "id": "static-1197",
     "name": "Bedmi Puri (Old Delhi Spiced Urad Dal & Semolina Poori)",
     "category": "Bread",
@@ -7824,60 +7937,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0510",
-    "name": "Bengali Style Cham Cham",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0630",
     "name": "Bengali Style Curd Rice",
     "category": "Rice",
@@ -8045,60 +8104,6 @@
         "section": "Cook until crisp",
         "text": "Shallow-fry, deep-fry or bake until golden and cooked through. Drain and serve hot.",
         "minutes": 10
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0270",
-    "name": "Bengali Style Gajar Halwa",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -8379,60 +8384,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0565",
-    "name": "Bengali Style Mishti Doi",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0228",
     "name": "Bengali Style Mochar Chop",
     "category": "Snacks",
@@ -8492,114 +8443,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0330",
-    "name": "Bengali Style Moong Dal Halwa",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0619",
-    "name": "Bengali Style Narkel Naru",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0467",
     "name": "Bengali Style Pakora",
     "category": "Snacks",
@@ -8654,114 +8497,6 @@
         "section": "Cook until crisp",
         "text": "Shallow-fry, deep-fry or bake until golden and cooked through. Drain and serve hot.",
         "minutes": 10
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0673",
-    "name": "Bengali Style Patishapta",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0042",
-    "name": "Bengali Style Payesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -8880,114 +8615,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0390",
-    "name": "Bengali Style Rasgulla",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0101",
-    "name": "Bengali Style Rice Kheer",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0049",
     "name": "Bengali Style Samosa",
     "category": "Snacks",
@@ -9042,114 +8669,6 @@
         "section": "Cook until crisp",
         "text": "Shallow-fry, deep-fry or bake until golden and cooked through. Drain and serve hot.",
         "minutes": 10
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0450",
-    "name": "Bengali Style Sandesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0161",
-    "name": "Bengali Style Seviyan Kheer",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -9263,60 +8782,6 @@
         "section": "Cook rice",
         "text": "Add rice and measured water, cover and cook until tender. Rest briefly before serving.",
         "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0221",
-    "name": "Bengali Style Suji Halwa",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Bengali / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -13079,6 +12544,301 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1646",
+    "name": "Bread Cham Cham (Sweet Mawa & Coconut Stuffed Rolled Bread Sweet)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 5,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White sandwich bread slices, crusts trimmed",
+        "quantity": "8",
+        "unit": "slices"
+      },
+      {
+        "name": "Mawa (khoya), crumbled and lightly roasted",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Powdered sugar & green cardamom powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chopped pistachios and almonds",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Warm milk with saffron strands (for dipping)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Desiccated dry coconut powder (for rolling)",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare mawa filling",
+        "text": "Mix roasted mawa with powdered sugar, cardamom powder, and chopped nuts until a smooth, malleable stuffing forms.",
+        "minutes": 4
+      },
+      {
+        "section": "Roll and stuff bread",
+        "text": "Flatten each crustless bread slice gently with a rolling pin. Dip lightly into saffron milk, squeeze gently between palms, place a log of mawa stuffing in the center, and roll tightly into a cylinder.",
+        "minutes": 6
+      },
+      {
+        "section": "Coat in coconut",
+        "text": "Roll each stuffed bread cham cham into desiccated coconut until evenly coated, garnish with saffron and slivered pistachios, and chill before serving.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Instant, elegant party sweet mimicking traditional cham cham using milk-bread and rich khoya."
+  },
+  {
+    "id": "static-1647",
+    "name": "Bread Gulab Jamun (Instant Melt-in-Mouth Bread & Khoya Jamuns in Cardamom Syrup)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White bread slices, crusts removed and torn into bits",
+        "quantity": "8",
+        "unit": "slices"
+      },
+      {
+        "name": "Milk powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Warm milk (to knead soft dough)",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee (for kneading and deep frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar, water & crushed green cardamom (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Rose water",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil aromatic sugar syrup",
+        "text": "Boil sugar, water, and crushed cardamom for 6 minutes until sticky and fragrant (no string consistency needed); stir in rose water and keep warm.",
+        "minutes": 6
+      },
+      {
+        "section": "Knead bread dough and shape jamuns",
+        "text": "Pulse bread into fine crumbs, combine with milk powder and 1 tsp ghee, and knead into a crack-free soft dough with warm milk. Roll into smooth, small marble-sized balls.",
+        "minutes": 8
+      },
+      {
+        "section": "Slow fry and soak",
+        "text": "Deep-fry on medium-low flame in ghee until evenly dark golden brown, drain, and immediately steep in warm sugar syrup for at least 30 minutes.",
+        "minutes": 16
+      }
+    ],
+    "notes": "Incredibly soft, spongy instant gulab jamuns that taste just like traditional mawa jamuns."
+  },
+  {
+    "id": "static-1648",
+    "name": "Bread Halwa (Caramelized Ghee-Roasted Bread Pudding with Cashews & Raisins)",
+    "category": "Sweets",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White bread slices, crusts trimmed and cut into small squares",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashew nuts & golden raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Ghee-roast bread cubes",
+        "text": "Heat ghee in a heavy pan, fry cashews and raisins until golden and set aside. In the same ghee, fry bread cubes on medium flame until deep golden brown and crunchy.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer in milk",
+        "text": "Pour in warm full-cream milk; the bread will quickly absorb the milk and soften into a thick mash. Stir continuously on low heat.",
+        "minutes": 4
+      },
+      {
+        "section": "Sweeten and finish with ghee",
+        "text": "Stir in sugar and cardamom powder; cook for 4 minutes until the halwa turns glossy and leaves the sides of the pan. Fold in fried cashews and raisins.",
+        "minutes": 4
+      }
+    ],
+    "notes": "A celebrated South Indian wedding feast dessert with a rich, caramelized nutty flavor."
+  },
+  {
+    "id": "static-1649",
+    "name": "Bread Kheer (Creamy Roasted Bread & Cardamom Milk Pudding)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White or milk bread, cut into small cubes",
+        "quantity": "4",
+        "unit": "slices"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "1",
+        "unit": "litre"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar or condensed milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cardamom powder & saffron strands",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slivered almonds & pistachios",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Reduce flavored milk",
+        "text": "Simmer milk in a wide pot with crushed saffron and cardamom on medium flame until reduced by one-third and creamy.",
+        "minutes": 10
+      },
+      {
+        "section": "Roast bread cubes",
+        "text": "Pan-fry bread cubes in 2 tbsp ghee until crispy and golden brown.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer bread in kheer",
+        "text": "Add sugar to the reduced milk, stir until dissolved, then drop in the toasted bread cubes and simmer for 2 minutes until tender. Garnish with nuts and serve warm or chilled.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Quick comfort dessert made when unexpected guests arrive, delivering rich rabdi texture in under 20 minutes."
+  },
+  {
+    "id": "static-1650",
+    "name": "Bread Malpua (Instant Crispy-Edged Sweet Bread Pancakes in Cardamom Syrup)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White bread slices, crusts removed",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "Fine semolina (sooji) & milk powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Warm milk",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (saunf), lightly crushed",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar, water & green cardamom (for syrup)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee for shallow frying",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend instant malpua batter",
+        "text": "Tear bread into warm milk, add semolina, milk powder, and crushed fennel seeds; whisk into a smooth, pourable pancake batter and rest 10 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Boil fragrant syrup",
+        "text": "Boil sugar, water, and cardamom pods for 5 minutes until sticky and keep warm.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow fry and syrup soak",
+        "text": "Pour small ladlefuls of batter into shallow hot ghee, fry until golden with crisp lacy edges, drain, and immerse in warm syrup for 4 minutes.",
+        "minutes": 10
+      }
+    ],
+    "notes": "An ingenious instant take on traditional malpua, producing melt-in-mouth soft centers with crispy lacy edges."
+  },
+  {
     "id": "static-0907",
     "name": "Bread Pudding",
     "category": "Sweets",
@@ -13136,6 +12896,60 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1651",
+    "name": "Bread Rasmalai (Instant Soft Bread Discs in Saffron Cardamom Rabdi)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh soft white bread slices",
+        "quantity": "8",
+        "unit": "slices"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "1",
+        "unit": "litre"
+      },
+      {
+        "name": "Sugar or sweetened condensed milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Saffron strands (kesar) & cardamom powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slivered pistachios and almonds",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare saffron rabdi",
+        "text": "Simmer milk in a wide pan with saffron and cardamom on medium heat, stirring regularly until reduced to half its volume and lightly thickened. Stir in sugar and chill completely.",
+        "minutes": 15
+      },
+      {
+        "section": "Cut bread discs",
+        "text": "Using a round cookie cutter or bottle lid, cut out neat circular discs from soft white bread slices.",
+        "minutes": 3
+      },
+      {
+        "section": "Assemble and serve",
+        "text": "Arrange the bread discs in a serving dish, pour the chilled saffron rabdi generously over them right before serving, and garnish with sliced pistachios and almonds.",
+        "minutes": 2
+      }
+    ],
+    "notes": "A 15-minute dessert marvel that perfectly replicates authentic royal rasmalai without curdling chhena."
   },
   {
     "id": "static-1599",
@@ -13715,6 +13529,60 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1652",
+    "name": "Caramel Bread Pudding (Steamed Golden Caramel Custard Bread Pudding)",
+    "category": "Sweets",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White sandwich bread slices, crusts trimmed",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "Full-cream milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Custard powder (vanilla flavor) or cornflour",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar (divided: 4 tbsp for caramel, 4 tbsp for pudding)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Water (for caramel)",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make golden caramel",
+        "text": "Heat 4 tbsp sugar with 2 tbsp water in a pan without stirring until it melts into a deep golden amber caramel. Pour immediately into a heat-safe pudding mould and swirl to coat the base.",
+        "minutes": 6
+      },
+      {
+        "section": "Prepare bread-custard batter",
+        "text": "Blend trimmed bread slices into fine crumbs. Dissolve custard powder in 0.5 cup cold milk. Heat remaining milk with sugar until boiling, stir in custard slurry until thick, then blend in the bread crumbs until smooth.",
+        "minutes": 7
+      },
+      {
+        "section": "Steam and invert",
+        "text": "Pour the batter into the caramel-coated mould, cover with foil, and steam in a steamer or pressure cooker (without whistle) for 25 minutes. Chill for 2 hours, run a knife around edges, and invert onto a plate.",
+        "minutes": 25
+      }
+    ],
+    "notes": "Eggless, silky-smooth dessert with a stunning glossy golden caramel top."
   },
   {
     "id": "static-0905",
@@ -14743,6 +14611,65 @@
     "notes": "A celebratory Bengali vegetarian dish served at weddings and Upanayana feasts."
   },
   {
+    "id": "static-1654",
+    "name": "Chandrakala (Crispy Flaky Maida Pastry Stuffed with Sweet Mawa, Dry Fruits & Dipped in Sugar Syrup)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Desi ghee (for moyan shortening & deep frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Mawa (khoya), crumbled and roasted",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Powdered sugar, cardamom powder & nutmeg",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped almonds, cashews & pistachios",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar, water & saffron strands (for 1-string syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead flaky maida dough and prepare mawa filling",
+        "text": "Rub 4 tbsp melted ghee into maida until crumbly, knead with cold water into a firm dough and rest 20 mins. Roast mawa on low heat until golden, let cool, and toss with powdered sugar, cardamom, and chopped nuts.",
+        "minutes": 15
+      },
+      {
+        "section": "Shape pleated half-moon crescents",
+        "text": "Roll dough into small circles, fold over a spoonful of mawa filling into a crescent, and pleat the edge tightly in a braided rope pattern (chandrakala fold).",
+        "minutes": 12
+      },
+      {
+        "section": "Slow fry and glaze in syrup",
+        "text": "Slow-fry in medium-low ghee until golden and crispy (12-14 mins). Dip immediately into warm 1-string saffron sugar syrup for 3 minutes, then drain on a rack.",
+        "minutes": 15
+      }
+    ],
+    "notes": "A prestigious festive North Indian sweet featuring flaky layered maida pastry and rich mawa center."
+  },
+  {
     "id": "static-0916",
     "name": "Chandrapuli",
     "category": "Sweets",
@@ -15767,6 +15694,70 @@
       }
     ],
     "notes": "Festive Bengali sweet-and-savory breakfast paratha showcasing fresh milk chhena."
+  },
+  {
+    "id": "static-1655",
+    "name": "Chhena Jilapi / Paneer Jalebi (Spirals of Fresh Chhena & Maida in Saffron-Rose Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh homemade chhena (cottage cheese), drained well",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mawa (khoya) & fine semolina (sooji)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Baking powder & cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Milk (to knead smooth pipeable dough)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ghee or oil for frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar, water, rose water & saffron (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead velvety chhena-maida dough",
+        "text": "Knead chhena with palm heel until completely smooth and oil releases. Blend in maida, khoya, sooji, baking powder, cardamom, and a splash of milk into a smooth, pliable dough.",
+        "minutes": 10
+      },
+      {
+        "section": "Pipe spiral coils",
+        "text": "Roll dough into smooth ropes or pipe through a wide star nozzle, curling into concentric spiral coils (jilapi shape).",
+        "minutes": 6
+      },
+      {
+        "section": "Fry golden brown and steep in syrup",
+        "text": "Fry in medium-hot ghee until evenly browned and slightly puffed, then transfer directly into warm saffron-rose sugar syrup for 1 hour to absorb.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Classic Bengal sweet shop delicacy with a soft, succulent interior and fragrant rose-cardamom syrup."
   },
   {
     "id": "static-1001",
@@ -25896,60 +25887,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0575",
-    "name": "Crispy Suji Halwa",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Crispy / main ingredient",
-        "quantity": "1",
-        "unit": "cup"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0102",
     "name": "Crispy Upma",
     "category": "Breakfast",
@@ -28114,65 +28051,6 @@
       }
     ],
     "notes": "Extra-fluffy, protein-packed Kolkata double egg kathi roll."
-  },
-  {
-    "id": "static-0882",
-    "name": "Double Ka Meetha",
-    "category": "Sweets",
-    "region": "Hyderabadi",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "bread",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "saffron",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "nuts",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
     "id": "static-1409",
@@ -31146,6 +31024,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1665",
+    "name": "Elaneer Payasam / Tender Coconut Kheer (Creamy Tender Coconut Pulp & Coconut Milk Pudding)",
+    "category": "Sweets",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Tender coconut flesh (malai), finely chopped and partly pureed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh tender coconut water",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick fresh coconut milk",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sweetened condensed milk or sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer sweetened milk",
+        "text": "Boil full-fat milk with condensed milk and cardamom on medium flame for 8 minutes until slightly thickened; remove from heat and let cool completely to room temperature.",
+        "minutes": 8
+      },
+      {
+        "section": "Blend tender coconut",
+        "text": "Puree half of the tender coconut pulp with coconut water until creamy, keeping the other half as small tender bites for texture.",
+        "minutes": 3
+      },
+      {
+        "section": "Combine and chill",
+        "text": "Whisk thick coconut milk, pureed coconut pulp, and chopped coconut bites into the cooled milk. Chill for at least 2 hours and serve cold.",
+        "minutes": 4
+      }
+    ],
+    "notes": "A heavenly, refreshing South Indian coastal dessert made with pure tender coconut and aromatic cardamom."
+  },
+  {
     "id": "static-1364",
     "name": "Elo Jhelo / Elojhelo (Bengali Ribbon-Twisted Crispy Sweet Pastry in Syrup)",
     "category": "Sweets",
@@ -31340,654 +31277,6 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
-  },
-  {
-    "id": "static-0500",
-    "name": "Festive Cham Cham",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0260",
-    "name": "Festive Gajar Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0556",
-    "name": "Festive Mishti Doi",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0320",
-    "name": "Festive Moong Dal Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0610",
-    "name": "Festive Narkel Naru",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0664",
-    "name": "Festive Patishapta",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0032",
-    "name": "Festive Payesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0380",
-    "name": "Festive Rasgulla",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0091",
-    "name": "Festive Rice Kheer",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0440",
-    "name": "Festive Sandesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0151",
-    "name": "Festive Seviyan Kheer",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0211",
-    "name": "Festive Suji Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Festive / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
     "id": "static-0779",
@@ -34043,60 +33332,6 @@
     "notes": "Colorful, nutritious everyday vegetable fry."
   },
   {
-    "id": "static-0280",
-    "name": "Gajar Halwa (Homestyle)",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Gajar / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0873",
     "name": "Gajar Ka Halwa",
     "category": "Sweets",
@@ -35919,6 +35154,65 @@
     "notes": "Iconic crunchy gram-flour strips traditionally paired with hot jalebi and fried green chillies."
   },
   {
+    "id": "static-1656",
+    "name": "Gujiya / Mawa Karanji (Crispy Flaky Maida Dumplings Stuffed with Roasted Khoya, Coconut & Nuts)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Desi ghee (for moyan shortening and deep frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Khoya (mawa), crumbled and roasted",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Desiccated coconut, lightly toasted",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Powdered sugar or boora",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Chironji, raisins, crushed cashews & cardamom powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix rich khoya-coconut puran",
+        "text": "Roast mawa until fragrant and lightly pink. Cool completely, then blend with toasted coconut, powdered sugar, chironji, chopped cashews, raisins, and cardamom powder.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff and pleat gujiyas",
+        "text": "Rub 4 tbsp ghee into maida until it holds shape, knead with cold water into a stiff dough. Roll into small discs, place stuffing in center, moisten edges with water, fold into half-moons, and flute the edges with a gujiya mould or fork.",
+        "minutes": 15
+      },
+      {
+        "section": "Deep fry to golden crispness",
+        "text": "Slide into medium-hot ghee and fry on low flame for 10-12 minutes until blister-free, crisp, and pale golden.",
+        "minutes": 15
+      }
+    ],
+    "notes": "The quintessential festive Holi and Diwali sweet dumpling celebrated across North India and Maharashtra."
+  },
+  {
     "id": "static-0850",
     "name": "Gulab Jamun",
     "category": "Sweets",
@@ -35976,6 +35270,65 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1666",
+    "name": "Gulgule / Pua (Traditional Soft Sweet Jaggery & Fennel Fritters)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated jaggery (gur)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Warm water (to dissolve jaggery)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (saunf), lightly bruised",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cardamom powder & black pepper (pinch)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee for deep frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dissolve jaggery and whisk batter",
+        "text": "Melt jaggery in warm water and strain out impurities. Whisk the jaggery syrup into whole wheat flour with crushed fennel seeds and cardamom into a thick, dropping-consistency batter; rest 15 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Drop dollops into hot oil",
+        "text": "Heat oil on medium flame. Scoop spoonfuls or hand dollops of batter into the hot oil; they will puff up into round balls.",
+        "minutes": 4
+      },
+      {
+        "section": "Fry until deep golden brown",
+        "text": "Fry gently, turning regularly until the exterior is crisp and dark caramel brown and the interior is soft and spongy. Drain and serve warm.",
+        "minutes": 8
+      }
+    ],
+    "notes": "A nostalgic rainy-day and festive North Indian sweet fritter with rich jaggery-fennel flavor."
   },
   {
     "id": "static-1638",
@@ -43048,6 +42401,60 @@
     "notes": "Frying on low heat is the secret to a crisp, blister-free khasta kachori."
   },
   {
+    "id": "static-1657",
+    "name": "Khasta Goja / Bengali Belgrami (Crispy Multi-Layered Deep-Fried Maida Pastry in Sugar Glaze)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee (for moyan) & oil for frying",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Baking soda & pinch of salt",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar & water (for crystallized sugar coating)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cardamom pods, crushed",
+        "quantity": "3",
+        "unit": "pcs"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Layer flaky maida dough",
+        "text": "Rub ghee into maida with baking soda and salt until crumbly. Add cold water to gently bring dough together without over-kneading. Roll into a thick sheet, cut in half, stack on top, and roll again (repeat 4 times to build flaky layers).",
+        "minutes": 12
+      },
+      {
+        "section": "Cut into rectangles and slow-fry",
+        "text": "Cut the layered dough into 2-inch rectangular blocks. Slide into medium-low heat oil and fry slowly for 15 minutes until puffed and thoroughly crisp.",
+        "minutes": 18
+      },
+      {
+        "section": "Toss in thick sugar syrup",
+        "text": "Boil sugar and water to a heavy 2-string syrup with cardamom. Toss the hot fried gojas in the syrup off heat until a frosted white sugar crust crystallizes on the surface.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Classic Bengali sweet-shop dry pastry celebrated for its flaky interior and crunchy frosted sugar shell."
+  },
+  {
     "id": "static-0879",
     "name": "Kheer (Vermicelli)",
     "category": "Sweets",
@@ -46271,6 +45678,70 @@
     "notes": "Ultra-crunchy restaurant-style Kurkuri Bhindi Fry."
   },
   {
+    "id": "static-1658",
+    "name": "Labanga Latika / Lavang Latika (Traditional Bengali Clove-Sealed Crisp Mawa Pastry in Sugar Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Mawa (khoya), crumbled and roasted",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated fresh coconut & powdered sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cardamom powder & chopped cashews",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole aromatic cloves (labanga)",
+        "quantity": "12",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ghee (for moyan & frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar and water (for 1-string syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook mawa-coconut stuffing",
+        "text": "Roast mawa with grated coconut, powdered sugar, cardamom powder, and chopped cashews until fragrant and thick; let cool completely.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold pastry parcels and pin with whole clove",
+        "text": "Knead maida with melted ghee and cold water into a smooth dough. Roll into small thin squares, place stuffing in center, fold all 4 corners like an envelope, and pierce through the center with a whole clove to lock the parcel.",
+        "minutes": 14
+      },
+      {
+        "section": "Deep fry and soak in syrup",
+        "text": "Fry in medium-low ghee for 10-12 minutes until golden brown and flaky. Drop immediately into warm 1-string cardamom sugar syrup for 5 minutes.",
+        "minutes": 14
+      }
+    ],
+    "notes": "An iconic heirloom Bengali pastry where the whole clove infuses an intoxicating spicy aroma into the sweet mawa parcel."
+  },
+  {
     "id": "static-0486",
     "name": "Lachha Paratha (Homestyle)",
     "category": "Bread",
@@ -47991,60 +47462,6 @@
     "notes": "Famous Gujarati and West Indian winter harvest delicacy made when fresh green tuvar is in season."
   },
   {
-    "id": "static-0919",
-    "name": "Lobongo Lotika",
-    "category": "Sweets",
-    "region": "Bengali",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "flour",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "khoya",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "cloves",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
-  },
-  {
     "id": "static-1302",
     "name": "Lomba Begun Fry / Begun Sundori (Bengali Boat-Cut Long Brinjal Fry)",
     "category": "Vegetable",
@@ -49206,6 +48623,60 @@
     "notes": "An heirloom zamindari recipe from colonial Bengal celebrating freshwater fish."
   },
   {
+    "id": "static-1659",
+    "name": "Madatha Kaja / Tapeswaram Kaja (Andhra Crispy Multi-Layered Flaky Ribbon Pastry in Sugar Syrup)",
+    "category": "Sweets",
+    "region": "South Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Ghee (for moyan & layering paste)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (mixed with ghee for lamination)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil for deep frying",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar, water, cardamom & lemon juice (for 1-string syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Laminate maida dough layers",
+        "text": "Knead maida with ghee and water into a soft dough. Roll into a very thin rectangular sheet, brush generously with ghee-rice flour paste, roll tightly into a swiss roll log, and slice diagonally into 1-inch diamond ribbons.",
+        "minutes": 15
+      },
+      {
+        "section": "Flatten gently and slow fry",
+        "text": "Gently press each diamond in the center with your thumb. Fry in low-medium oil for 12-15 minutes; the multiple concentric ribbon layers will separate and blossom into a flaky golden pastry.",
+        "minutes": 16
+      },
+      {
+        "section": "Steep in cardamom syrup",
+        "text": "Drop directly into warm one-string sugar syrup with cardamom and lemon juice for 10 minutes until the layers soak up the syrup.",
+        "minutes": 8
+      }
+    ],
+    "notes": "The famous Andhra delicacy from Tapeswaram: shatteringly crisp pastry layers that gush with sweet syrup with every bite."
+  },
+  {
     "id": "static-1578",
     "name": "Makai Kochuri (Spiced Sweet Corn & Coriander Stuffed Kachori)",
     "category": "Bread",
@@ -49528,119 +48999,6 @@
       }
     ],
     "notes": "Mild, melt-in-the-mouth creamy starter scented with green cardamom and white pepper."
-  },
-  {
-    "id": "static-0709",
-    "name": "Malpua (Traditional)",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Malpua / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0848",
-    "name": "Malpua with Rabri",
-    "category": "Sweets",
-    "region": "Indian",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "flour",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
-      },
-      {
-        "name": "fennel",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "rabri",
-        "quantity": "1 cup",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
     "id": "static-1058",
@@ -52219,60 +51577,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0566",
-    "name": "Masala Suji Halwa",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Masala / main ingredient",
-        "quantity": "1",
-        "unit": "cup"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0558",
     "name": "Masala Tamarind Rice",
     "category": "Rice",
@@ -53310,65 +52614,6 @@
       },
       {
         "name": "cardamom",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
-      }
-    ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
-  },
-  {
-    "id": "static-0885",
-    "name": "Mawa Gujiya",
-    "category": "Sweets",
-    "region": "North Indian",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "flour",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "khoya",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "coconut",
-        "quantity": "1 cup",
-        "unit": ""
-      },
-      {
-        "name": "nuts",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "ghee",
         "quantity": "to taste",
         "unit": ""
       }
@@ -54878,6 +54123,65 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1667",
+    "name": "Mohanthal (Traditional Gujarati Melt-in-Mouth Roasted Besan, Khoya & Saffron Fudge)",
+    "category": "Sweets",
+    "region": "West Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Coarse gram flour (besan)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk (for dhaabo granulating & soaking)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Mawa (khoya), crumbled",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar, water & saffron strands (for 1.5-string syrup)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Cardamom powder, nutmeg & slivered almonds/pistachios",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Create dhaabo granules and roast besan",
+        "text": "Rub 3 tbsp hot ghee and 3 tbsp warm milk into besan with fingers, rest 15 mins, and pass through a sieve to create uniform granules. Roast the granulated besan in 1 cup ghee on low heat for 18 minutes until nutty and golden.",
+        "minutes": 20
+      },
+      {
+        "section": "Incorporate mawa and saffron syrup",
+        "text": "Stir crumbled mawa into the hot roasted besan until melted. Separately boil sugar, water, and saffron to 1.5 string consistency, pour into the besan mixture, and stir continuously until thick and fudge-like.",
+        "minutes": 8
+      },
+      {
+        "section": "Set and cut into squares",
+        "text": "Pour into a greased tray, sprinkle with cardamom, nutmeg, and slivered nuts, press gently, cool until set, and slice into diamond pieces.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Lord Krishna's favorite bhog: an exquisite, crumbly Gujarati and Rajasthani sweet fudge."
   },
   {
     "id": "static-1181",
@@ -71494,58 +70798,63 @@
     "notes": "A traditional Bengali Thakurbarir-style delicacy served with hot steamed rice and Gondhoraj lebu."
   },
   {
-    "id": "static-0895",
-    "name": "Puran Poli (Sweet)",
+    "id": "static-1660",
+    "name": "Puran Poli (Maharashtrian Sweet Chana Dal & Jaggery Stuffed Thin Maida Flatbread)",
     "category": "Sweets",
     "region": "Maharashtrian",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 4,
     "ingredients": [
       {
-        "name": "wheat flour",
-        "quantity": "1 cup",
-        "unit": ""
+        "name": "All-purpose flour (maida) & whole wheat flour (atta)",
+        "quantity": "2",
+        "unit": "cups"
       },
       {
-        "name": "chana dal",
-        "quantity": "1 cup",
-        "unit": ""
+        "name": "Chana dal (bengal gram), boiled soft and drained",
+        "quantity": "1.5",
+        "unit": "cups"
       },
       {
-        "name": "jaggery",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Grated jaggery (gul)",
+        "quantity": "1.5",
+        "unit": "cups"
       },
       {
-        "name": "cardamom",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Cardamom powder & freshly grated nutmeg (jaiphal)",
+        "quantity": "1",
+        "unit": "tsp"
       },
       {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Pure desi ghee (for kneading and roasting)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pinch of turmeric and salt",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
+        "section": "Cook sweet chana dal puran",
+        "text": "Mash boiled chana dal and cook with grated jaggery on medium-low heat until thick and sticky. Flavor with cardamom and nutmeg, then pass through a sieve (puran yantra) for a velvety smooth stuffing.",
+        "minutes": 15
+      },
+      {
+        "section": "Knead soft pliable dough",
+        "text": "Knead maida and atta with turmeric, salt, 2 tbsp oil, and water into an ultra-soft, elastic dough. Rest covered with oil for 30 minutes.",
         "minutes": 10
       },
       {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
+        "section": "Stuff, roll thin and roast with ghee",
+        "text": "Enclose a generous ball of puran inside dough, dust with flour, roll paper-thin on a board, and roast on a hot griddle with dollops of pure ghee until puffed with golden blisters.",
+        "minutes": 12
       }
     ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+    "notes": "The festive soul of Maharashtra and Gujarat, served with warm milk or katachi amti on Gudi Padwa and Holi."
   },
   {
     "id": "static-1224",
@@ -71725,652 +71034,63 @@
     "notes": "Adding 1 tbsp roasted besan prevents the onions from releasing water while rolling."
   },
   {
-    "id": "static-0529",
-    "name": "Quick Cham Cham",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
+    "id": "static-1661",
+    "name": "Rabdi Malpua (Crispy-Edged Spiced Maida & Fennel Pancakes Soaked in Saffron Syrup)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
     "ingredients": [
       {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
+        "name": "All-purpose flour (maida)",
         "quantity": "1",
-        "unit": "tbsp"
+        "unit": "cup"
+      },
+      {
+        "name": "Mawa (khoya), grated or milk powder",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Full-cream milk & crushed fennel seeds (saunf)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar, water & saffron strands (for syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee (for shallow frying)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick sweetened rabdi & pistachios (for serving)",
+        "quantity": "1",
+        "unit": "cup"
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
+        "section": "Whisk rich malpua batter",
+        "text": "Whisk maida, grated khoya, crushed fennel seeds, and warm milk into a lump-free pourable batter; rest for 20 minutes to develop texture.",
+        "minutes": 10
       },
       {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
+        "section": "Boil saffron sugar syrup",
+        "text": "Boil sugar, water, and saffron for 6 minutes into a sticky syrup; keep warm on low heat.",
+        "minutes": 6
       },
       {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
+        "section": "Fry in desi ghee and serve with rabdi",
+        "text": "Ladle batter into shallow hot ghee in a wide flat pan, fry until lacy and crisp on the edges and soft in the middle. Dip in warm syrup for 2 minutes, then top lavishly with thick rabdi and pistachios.",
+        "minutes": 14
       }
     ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0290",
-    "name": "Quick Gajar Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0583",
-    "name": "Quick Mishti Doi",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0350",
-    "name": "Quick Moong Dal Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0637",
-    "name": "Quick Narkel Naru",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0691",
-    "name": "Quick Patishapta",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0062",
-    "name": "Quick Payesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0410",
-    "name": "Quick Rasgulla",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0121",
-    "name": "Quick Rice Kheer",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0470",
-    "name": "Quick Sandesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0181",
-    "name": "Quick Seviyan Kheer",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0231",
-    "name": "Quick Suji Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Quick / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+    "notes": "Pushkar and Varanasi pilgrim specialty: rich, aromatic pancakes crowned with creamy reduced milk rabdi."
   },
   {
     "id": "static-0869",
@@ -73115,6 +71835,65 @@
     "notes": "Traditional Bengali winter sweet transforming earthy sweet potatoes into melt-in-the-mouth pantuas."
   },
   {
+    "id": "static-1668",
+    "name": "Rasbari (Delicate Nepali Spongy Cottage Cheese Balls in Cardamom Syrup)",
+    "category": "Sweets",
+    "region": "Nepali",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh homemade chhena (from whole cow milk), drained completely",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Fine semolina (suji) or maida",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Water",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Green cardamom pods, cracked",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Rose water",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead chhena until velvety smooth",
+        "text": "Knead fresh, dry chhena on a clean board with your palm heel for 6-8 minutes until completely smooth, soft, and no graininess remains. Mix in 1 tsp suji and shape into smooth crack-free small spheres.",
+        "minutes": 10
+      },
+      {
+        "section": "Boil in light syrup under high pressure",
+        "text": "Bring sugar, water, and cracked cardamom to a rolling boil in a wide deep pot. Drop in the chhena balls, cover tightly, and boil on high heat for 15 minutes without opening.",
+        "minutes": 16
+      },
+      {
+        "section": "Cool and infuse with rose water",
+        "text": "The rasbari will expand to twice their size into airy, spongy spheres. Remove from heat, stir in rose water, and let cool completely in the syrup before serving.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Nepal's iconic national sweet, revered across Kathmandu and Pokhara for its airy, cloud-like spongy texture."
+  },
+  {
     "id": "static-0830",
     "name": "Rasgulla",
     "category": "Sweets",
@@ -73565,60 +72344,6 @@
       }
     ],
     "notes": "Crisp, savory rice-and-gram flour ribbon snack flavored with garlic and asafoetida."
-  },
-  {
-    "id": "static-0111",
-    "name": "Rice Kheer (Homestyle)",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Rice / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
     "id": "static-0906",
@@ -74790,654 +73515,6 @@
     "notes": "Signature Bengali no-turmeric, no-onion-garlic white potato curry classically paired with hot phulko luchi or trikon porota for breakfast."
   },
   {
-    "id": "static-0538",
-    "name": "Saffron Cham Cham",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0300",
-    "name": "Saffron Gajar Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0592",
-    "name": "Saffron Mishti Doi",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0360",
-    "name": "Saffron Moong Dal Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0646",
-    "name": "Saffron Narkel Naru",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0700",
-    "name": "Saffron Patishapta",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0072",
-    "name": "Saffron Payesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0420",
-    "name": "Saffron Rasgulla",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0131",
-    "name": "Saffron Rice Kheer",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0480",
-    "name": "Saffron Sandesh",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0191",
-    "name": "Saffron Seviyan Kheer",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0240",
-    "name": "Saffron Suji Halwa",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Saffron / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-1514",
     "name": "Sajne Data Aloo Bori Jhol (Drumstick, Potato & Sun-Dried Lentil Dumpling Summer Stew)",
     "category": "Vegetable",
@@ -75831,60 +73908,6 @@
         "section": "Cook until crisp",
         "text": "Shallow-fry, deep-fry or bake until golden and cooked through. Drain and serve hot.",
         "minutes": 10
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0460",
-    "name": "Sandesh (Homestyle)",
-    "category": "Other",
-    "region": "Bengali",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Sandesh / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -76651,60 +74674,6 @@
     "notes": "A beloved Bengali winter lunch side dish."
   },
   {
-    "id": "static-0171",
-    "name": "Seviyan Kheer (Homestyle)",
-    "category": "Other",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Seviyan / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Milk or water",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Sugar or jaggery",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Cardamom",
-        "quantity": "2",
-        "unit": "pods"
-      },
-      {
-        "name": "Ghee or nuts",
-        "quantity": "1",
-        "unit": "tbsp"
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Measure and prepare the main ingredient; roast or rinse it if the recipe calls for it.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook slowly",
-        "text": "Cook with milk or water over low to medium heat, stirring regularly until soft and thick.",
-        "minutes": 20
-      },
-      {
-        "section": "Sweeten and finish",
-        "text": "Add sugar or jaggery, cardamom and optional ghee or nuts. Serve warm or chilled.",
-        "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-1544",
     "name": "Shahi Paneer (Royal Mughlai Cashew, Almond, Saffron & Cream Paneer Curry)",
     "category": "Paneer",
@@ -76759,63 +74728,63 @@
     "notes": "Delicately spiced with green cardamom and saffron, best served with butter naan or jeera rice."
   },
   {
-    "id": "static-0881",
-    "name": "Shahi Tukda",
+    "id": "static-1653",
+    "name": "Shahi Tukda (Royal Mughlai Saffron Rabdi & Ghee-Crisped Bread Pudding)",
     "category": "Sweets",
     "region": "Mughlai-inspired",
     "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
+    "cookMinutes": 20,
+    "servings": 4,
     "ingredients": [
       {
-        "name": "bread",
-        "quantity": "1 cup",
-        "unit": ""
+        "name": "White bread slices, crusts removed and cut diagonally into triangles",
+        "quantity": "6",
+        "unit": "slices"
       },
       {
-        "name": "milk",
-        "quantity": "500 ml",
-        "unit": ""
+        "name": "Pure desi ghee (for deep frying)",
+        "quantity": "1",
+        "unit": "cup"
       },
       {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Sugar, water & rose water (for syrup)",
+        "quantity": "1",
+        "unit": "cup"
       },
       {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Full-fat milk (for thick rabdi)",
+        "quantity": "1",
+        "unit": "litre"
       },
       {
-        "name": "saffron",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Saffron strands (kesar), cardamom powder & condensed milk",
+        "quantity": "1.5",
+        "unit": "tbsp"
       },
       {
-        "name": "cardamom",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Slivered pistachios, almonds & edible silver vark (for garnish)",
+        "quantity": "2",
+        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
-        "minutes": 10
+        "section": "Reduce creamy saffron rabdi",
+        "text": "Boil 1 litre full-fat milk with saffron and cardamom on low heat, reducing until thick, luscious, and reduced to one-third (rabdi consistency). Sweeten with 3 tbsp condensed milk and chill.",
+        "minutes": 18
       },
       {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
+        "section": "Fry bread triangles in desi ghee",
+        "text": "Deep-fry bread triangles in hot desi ghee on medium heat until shatteringly crisp and deep golden brown. Boil sugar and water for 5 minutes into a sticky syrup with rose water, and dip the fried bread for 30 seconds.",
+        "minutes": 8
       },
       {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
+        "section": "Assemble royal platter",
+        "text": "Arrange the syrup-soaked crisp bread on a platter, ladle the rich saffron rabdi lavishly over the top, and crown with silver vark, pistachios, and almonds.",
+        "minutes": 4
       }
     ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+    "notes": "The undisputed crown jewel of royal Mughlai and Awadhi sweet banquets."
   },
   {
     "id": "static-1627",
@@ -78274,60 +76243,6 @@
   {
     "id": "static-0471",
     "name": "Soft Puttu",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Soft / main ingredient",
-        "quantity": "1",
-        "unit": "cup"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
-    "id": "static-0584",
-    "name": "Soft Suji Halwa",
     "category": "Breakfast",
     "region": "Indian",
     "prepMinutes": 10,
@@ -81915,58 +79830,63 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
-    "id": "static-0593",
-    "name": "Suji Halwa (Homestyle)",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
+    "id": "static-1662",
+    "name": "Suryakala (Traditional Sun-Shaped Flaky Maida Sweet Stuffed with Khoya & Cardamom)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 4,
     "ingredients": [
       {
-        "name": "Suji / main ingredient",
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Desi ghee (for moyan shortening & frying)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Mawa (khoya), roasted golden",
         "quantity": "1",
         "unit": "cup"
       },
       {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
+        "name": "Powdered sugar, cardamom powder & grated nutmeg",
+        "quantity": "0.5",
         "unit": "cup"
       },
       {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Chopped pistachios, cashews & almonds",
+        "quantity": "3",
+        "unit": "tbsp"
       },
       {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Sugar, water & saffron strands (for 1-string syrup)",
+        "quantity": "1.5",
+        "unit": "cups"
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
+        "section": "Prepare mawa filling and dough",
+        "text": "Rub 4 tbsp melted ghee into maida until crumbly, knead with cold water into a firm dough and rest 20 mins. Mix roasted mawa with powdered sugar, cardamom, nutmeg, and chopped nuts.",
+        "minutes": 15
       },
       {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
+        "section": "Shape sun discs with circular pleats",
+        "text": "Roll two small equal circles. Place stuffing in the center of one, cover with the second disc, seal the edges with water, and pinch-and-fold all around in a circular sunburst pattern.",
+        "minutes": 14
       },
       {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
+        "section": "Slow fry and soak in syrup",
+        "text": "Fry in medium-low ghee until golden and flaky on both sides (12-14 mins). Soak in warm saffron-cardamom sugar syrup for 3 minutes, then drain.",
         "minutes": 15
       }
     ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+    "notes": "The circular sun companion to half-moon Chandrakala, renowned for its intricate pleated edges and royal mawa filling."
   },
   {
     "id": "static-1099",
@@ -83223,6 +81143,60 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1669",
+    "name": "Tender Coconut Ice Cream / Elaneer Ice Cream (Natural Creamy Fresh Coconut Pulp Ice Cream)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh tender coconut flesh (malai), soft and jelly-like",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Tender coconut water",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Chilled whipping cream or heavy cream",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Puree tender coconut pulp",
+        "text": "Blend tender coconut malai with coconut water until thick and smooth, reserving 3 tbsp of finely chopped tender bits for texture.",
+        "minutes": 4
+      },
+      {
+        "section": "Whip cream and fold ingredients",
+        "text": "Whip chilled heavy cream until soft peaks form. Gently fold in sweetened condensed milk, pureed coconut pulp, and chopped coconut bites with a spatula.",
+        "minutes": 6
+      },
+      {
+        "section": "Freeze until firm",
+        "text": "Pour into a loaf pan or freezer container, press parchment paper onto the surface, cover with lid, and freeze for 6-8 hours until set. Scoop and serve.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Natural, eggless artisanal ice cream bursting with the delicate sweetness of fresh tender coconut."
   },
   {
     "id": "static-0778",
@@ -86903,60 +84877,6 @@
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
-  },
-  {
-    "id": "static-0557",
-    "name": "Vegetable Suji Halwa",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Vegetable / main ingredient",
-        "quantity": "1",
-        "unit": "cup"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
     "id": "static-0083",

@@ -107,3 +107,13 @@
   15. *Piro Aloo (Nepali Spicy Sesame & Timur Boiled Potato Salad)* (`static-1644`)
   16. *Wai Wai Sadeko (Nepali Street-Style Instant Noodle Salad with Fresh Herbs)* (`static-1645`)
 - Assigned sequential IDs (`static-1630`–`static-1645`), verified 0 duplicate names or IDs, and sorted all **1,570** recipes alphabetically.
+
+## 8. Dessert Catalogue Expansion (Bread, Maida & Traditional Specialties) & Deduplication
+- **Added 24 Authentic Dessert Recipes** across Bread, Maida, and other traditional ingredients:
+  - **Bread Desserts (8)**: *Bread Cham Cham* (`static-1646`), *Bread Gulab Jamun* (`static-1647`), *Bread Halwa* (`static-1648`), *Bread Kheer* (`static-1649`), *Bread Malpua* (`static-1650`), *Bread Rasmalai* (`static-1651`), *Caramel Bread Pudding* (`static-1653`), and *Shahi Tukda (Royal Mughlai Saffron Rabdi & Ghee-Crisped Bread Pudding)* (`static-1667`).
+  - **Maida Desserts (9)**: *Chandrakala* (`static-1654`), *Chhena Jilapi / Paneer Jalebi* (`static-1655`), *Gujiya / Mawa Karanji* (`static-1658`), *Khasta Goja / Bengali Belgrami* (`static-1660`), *Labanga Latika / Lavang Latika* (`static-1661`), *Madatha Kaja / Tapeswaram Kaja* (`static-1662`), *Puran Poli (Maharashtrian Sweet Chana Dal & Jaggery Stuffed Thin Maida Flatbread)* (`static-1664`), *Rabdi Malpua* (`static-1665`), and *Suryakala* (`static-1668`).
+  - **Other Desserts (7)**: *Anarsa* (`static-1652`), *Bebinca* (`static-1647`), *Elaneer Payasam / Tender Coconut Kheer* (`static-1656`), *Gulgule / Pua* (`static-1659`), *Mohanthal* (`static-1663`), *Rasbari (Delicate Nepali Spongy Cottage Cheese Balls in Cardamom Syrup)* (`static-1666`), and *Tender Coconut Ice Cream / Elaneer Ice Cream* (`static-1669`).
+- **Removed 64 Redundant & Synthetic Prefix Duplicate Sweets**:
+  - Eliminated synthetic prefix duplicates (*Festive ...*, *Quick ...*, *Saffron ...*, *Bengali Style ...*, *Crispy ...*, *Soft ...*) for *Gajar Halwa*, *Moong Dal Halwa*, *Payesh*, *Rasgulla*, *Rice Kheer*, *Sandesh*, *Seviyan Kheer*, *Suji Halwa*, *Cham Cham*, *Mishti Doi*, *Narkel Naru*, and *Patishapta*.
+  - Removed outdated starter placeholders including *Double Ka Meetha*, *Malpua (Traditional)*, *Malpua with Rabri*, *Puran Poli (Sweet)*, and old generic placeholders for *Shahi Tukda*, *Lobongo Lotika*, and *Mawa Gujiya*.
+- **Alphabetical Sorting**: Sorted all **1,530** recipes strictly alphabetically by name from A to Z with zero duplicate IDs or duplicate names.
