@@ -110,6 +110,8 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           ./gradlew assembleRelease --no-daemon --stacktrace \
+            -Pkotlin_version="2.0.21" \
+            -PkotlinVersion="2.0.21" \
             -PAPP_VERSION_CODE="$VERSION_CODE" \
             -PAPP_VERSION_NAME="$VERSION_NAME" \
             -Pandroid.injected.signing.store.file="$GITHUB_WORKSPACE/frontend/android/app/release.keystore" \

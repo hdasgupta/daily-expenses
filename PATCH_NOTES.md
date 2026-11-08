@@ -247,11 +247,14 @@
   - The step attempts 4 reliable mirrors (`downloads.gradle-dn.com`, Tencent Cloud, Alibaba Cloud, and `services.gradle.org`) with retries, saves the zip locally into `frontend/android/gradle/wrapper/`, and switches `distributionUrl` to a local relative path `gradle-8.13-bin.zip`.
   - Ensures `./gradlew assembleRelease` runs completely offline regarding the Gradle distribution, preventing all 504 timeouts.
 
-## 14. Kotlin Gradle Plugin & Maven Central Mirror Fix for Android Build
-- **Stable Kotlin Gradle Plugin Version (`frontend/android/build.gradle`)**:
-  - Replaced `org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0` with stable `2.0.21`, resolving the `:capacitor-filesystem:compileReleaseKotlin` failure where `kotlin-compiler-embeddable-2.3.0.jar` timed out on `https://github.com/JetBrains/kotlin/releases/download/v2.3.0/`.
-- **Google Cloud Storage Maven Central Mirror (`frontend/android/build.gradle`)**:
-  - Added `maven { url "https://maven-central.storage-download.googleapis.com/repos/central/data/" }` and `maven { url "https://plugins.gradle.org/m2/" }` to `buildscript.repositories` and `allprojects.repositories`.
-  - Downloads Kotlin compiler artifacts and plugins directly from Google Cloud CDN without redirecting to GitHub Releases.
-- **Extended HTTP Socket & Connection Timeouts (`frontend/android/gradle.properties`)**:
-  - Configured `systemProp.http.socketTimeout=120000`, `systemProp.https.socketTimeout=120000`, and `org.gradle.internal.http.socketTimeout=120000` to prevent socket timeouts on dependency resolution.
+## 14. Kotlin Gradle Plugin & Subproject Dependency Resolution Fix
+- **Explicit `kotlin_version` in Android Variables (`frontend/android/variables.gradle`)**:
+  - Added `kotlin_version = '2.0.21'` and `kotlinVersion = '2.0.21'` to `ext` in `variables.gradle`.
+  - Previously, subprojects like `:capacitor-filesystem` evaluated `project.hasProperty('kotlin_version')` and fell back to internal default `2.3.0`, causing `:capacitor-filesystem:compileReleaseKotlin` to request `kotlin-compiler-embeddable-2.3.0.jar` from failing GitHub Releases endpoints.
+- **Forced Resolution Strategy (`frontend/android/build.gradle`)**:
+  - Added global `configurations.all.resolutionStrategy` forcing `kotlin-compiler-embeddable`, `kotlin-stdlib`, and `kotlin-reflect` to `2.0.21` across all project and subproject compilation configurations.
+  - Placed Google Cloud Storage Maven Central mirror (`https://maven-central.storage-download.googleapis.com/repos/central/data/`) at the top of all repository blocks to serve Kotlin compiler JARs directly from Google Cloud CDN.
+- **Passed Gradle Project Properties (`.github/workflows/android-apk.yml`)**:
+  - Added `-Pkotlin_version="2.0.21"` and `-PkotlinVersion="2.0.21"` to `./gradlew assembleRelease` in the workflow to override any plugin-level default properties at runtime.
+- **Extended HTTP Socket Timeouts (`frontend/android/gradle.properties`)**:
+  - Configured `systemProp.http.socketTimeout=120000`, `systemProp.https.socketTimeout=120000`, and `kotlin.version=2.0.21`.
