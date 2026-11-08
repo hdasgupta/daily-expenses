@@ -297,3 +297,36 @@
   - Automatically resets `visibleCount` back to `30` whenever the user changes the search query, category chip, or sort order.
 - **Inline Sort & Status Toolbar (`frontend/src/pages/RecipeMaster.jsx`)**:
   - Added an inline status bar showing *"Showing X of Y recipes"* alongside a compact Sort selector (*Most Used in Food Chart*, *Recipe Name (A–Z)*, *Cook + Prep Time*, *Ingredient Count*) and an Ascending/Descending toggle button (`↑ Asc` / `↓ Desc`).
+
+
+## 19. Diverse Khichuri & Khichdi Catalogue Expansion
+- **Added 24 Authentic Khichuri & Khichdi Recipes** (`static-1728`–`static-1751`):
+  1. *Aar Macher Khichuri (Bengali River Catfish & Roasted Moong Dal Khichuri)* (`static-1728`)
+  2. *Achari Khichdi (Tangy Pickled-Spice Moong & Chana Dal Khichdi)* (`static-1729`)
+  3. *Bajra Khichdi (Rajasthani Winter Pearl Millet & Moong Dal Khichdi)* (`static-1730`)
+  4. *Bengali Bhoger Khichuri (Thakurbarir Niramish Gobindobhog Rice & Roasted Moong Dal Khichuri)* (`static-1731`)
+  5. *Bengali Bhuni Khichuri / Jhura Khichuri (Dry-Roasted Moong Dal & Fragrant Gobindobhog Pilaf-Style Khichuri)* (`static-1732`)
+  6. *Bengali Masoor Daler Khichuri (Monsoon Red Lentil, Onion & Mustard Oil Homestyle Khichuri)* (`static-1733`)
+  7. *Bisi Bele Bath (Karnataka Spiced Toor Dal, Tamarind & Vegetable Rice Khichdi)* (`static-1734`)
+  8. *Bokul Phuler Khichuri / Keema Khichuri (Mughlai-Bengali Spiced Mutton Mince & Basmati Khichuri)* (`static-1735`)
+  9. *Chicken Khichuri / Murgir Mangshor Khichuri (Homestyle Spiced Chicken, Potato & Moong-Masoor Dal Khichuri)* (`static-1736`)
+  10. *Dal Khichdi (Restaurant-Style Dhaba Tadka Yellow Dal & Jeera Rice Khichdi)* (`static-1737`)
+  11. *Dimer Khichuri / Egg Khichuri (Bengali Spiced Scrambled & Boiled Egg Masala Khichuri)* (`static-1738`)
+  12. *Gujarati Vaghareli Khichdi (Spiced Tuvar-Moong Dal Khichdi with Garlic-Curry Leaf Tempering)* (`static-1739`)
+  13. *Harey Chane O Palang Shaker Khichuri / Palak Dal Khichdi (Spinach, Green Chickpea & Garlic-Ghee Khichdi)* (`static-1740`)
+  14. *Hyderabadi Khatti Dal Khichdi / Keema Khichdi (Nizami Saffron, Mint & Chana-Masoor Dal Pilaf Khichdi)* (`static-1741`)
+  15. *Ilish Macher Khichuri (Bengali Monsoon Hilsa Fish & Mustard Oil Khichuri)* (`static-1742`)
+  16. *Ilish Macher Matha Diye Khichuri (Bengali Hilsa Fish Head & Roasted Moong Dal Khichuri)* (`static-1743`)
+  17. *Millet Khichdi / Foxtail & Little Millet Vegetable Khichdi (High-Fiber Siridhanya Millet & Moong Dal Khichdi)* (`static-1744`)
+  18. *Mutton Khichuri / Mangshor Khichuri (Rich Bengali Slow-Cooked Mutton & Gobindobhog Rice Khichuri)* (`static-1745`)
+  19. *Oats Vegetable Khichdi (Savory Rolled Oats, Yellow Moong Dal & Garden Vegetable Khichdi)* (`static-1746`)
+  20. *Panchmel Dal Khichdi / Satpadi Khichdi (Rajasthani Five-Lentil & Spiced Ghee Khichdi)* (`static-1747`)
+  21. *Quinoa Vegetable Khichdi (High-Protein Tri-Color Quinoa, Yellow Moong Dal & Ghee Tadka Khichdi)* (`static-1748`)
+  22. *Sabudana Khichdi (Maharashtrian Upvas Sago Pearl, Crushed Peanut & Cumin Khichdi)* (`static-1749`)
+  23. *Sama Chawal Khichdi / Vrat ki Mordhan Khichdi (Fasting Barnyard Millet, Potato & Peanut Khichdi)* (`static-1750`)
+  24. *Winter Vegetable & Cauliflower Masala Khichuri / Shiter Sobji Khichuri (Bengali Winter Harvest Vegetable Khichuri)* (`static-1751`)
+- **Removed Outdated Starter Outline Placeholder**:
+  - Eliminated boilerplate outline *Sabudana Khichdi (Plain)* (`static-0710`), replaced with authentic *Sabudana Khichdi (Maharashtrian Upvas Sago Pearl, Crushed Peanut & Cumin Khichdi)*.
+- **Catalogue Verification & Alphabetical Sorting**:
+  - Sorted all **1,491** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
+  - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.

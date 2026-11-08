@@ -54,6 +54,80 @@ const definitions = [
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1728",
+    "name": "Aar Macher Khichuri (Bengali River Catfish & Roasted Moong Dal Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Gobindobhog rice, washed and drained",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sonamung dal (yellow moong dal), dry-roasted",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Aar fish steaks, lightly fried with turmeric and salt",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes, halved and fried golden",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, finely sliced",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, cumin, and Kashmiri red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil and pure desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali garam masala powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry fish and aromatics",
+        "text": "Marinate Aar fish pieces with salt and turmeric, sear lightly in hot mustard oil, and set aside. In the same oil, fry halved potatoes, then saute sliced onions and ginger-garlic-chilli paste with ground spices.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer rice and roasted dal",
+        "text": "Add dry-roasted moong dal, washed Gobindobhog rice, and fried potatoes to the pot. Pour 4.5 cups of hot water, cover, and simmer on medium-low heat for 18-20 minutes until rice and dal are soft and creamy.",
+        "minutes": 20
+      },
+      {
+        "section": "Nestle fish and finish with ghee",
+        "text": "Gently tuck the fried Aar fish steaks into the simmering khichuri, drizzle desi ghee and Bengali garam masala, cover for 5 minutes on low heat to infuse fish flavor, and serve hot.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Rich, savory Bengali river fish khichuri where meaty Aar steaks infuse the spiced rice-lentil pot."
+  },
+  {
     "id": "static-1357",
     "name": "Abar Khabo Sandesh (Stuffed Pistachio-Khoya & Rose Chhena Sandesh)",
     "category": "Sweets",
@@ -160,6 +234,75 @@ const definitions = [
       }
     ],
     "notes": "Bold, tangy pickle-spiced potatoes great with poori, paratha, or dal-chawal."
+  },
+  {
+    "id": "static-1729",
+    "name": "Achari Khichdi (Tangy Pickled-Spice Moong & Chana Dal Khichdi)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or short-grain rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow moong dal and chana dal (mixed)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Panch phoron / Achari spices (fennel, mustard, nigella, fenugreek, cumin)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mango pickle masala and oil (achari masala)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole dry red chillies and asafoetida (hing)",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger juliennes and chopped garlic",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil and desi ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pressure-cook rice and lentils",
+        "text": "Wash rice, moong dal, and chana dal after soaking for 15 minutes. Pressure-cook with 4 cups water, turmeric, and salt for 3 whistles until soft and porridge-like.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare pungent achari tempering",
+        "text": "Heat mustard oil and ghee in a small pan until smoking, crackle fennel, mustard, nigella, fenugreek, cumin seeds, hing, dry red chillies, and garlic until golden.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold pickle masala and serve",
+        "text": "Stir tangy mango pickle masala into the tempering, pour over the hot khichdi, mix gently, and garnish with fresh coriander leaves.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Elevated everyday khichdi infused with aromatic five-spice pickle tempering and tangy mango pickle oil."
   },
   {
     "id": "static-1407",
@@ -4861,6 +5004,65 @@ const definitions = [
     "notes": ""
   },
   {
+    "id": "static-1730",
+    "name": "Bajra Khichdi (Rajasthani Winter Pearl Millet & Moong Dal Khichdi)",
+    "category": "Rice",
+    "region": "Rajasthani",
+    "prepMinutes": 30,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Whole pearl millet (bajra), pounded lightly and husked",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow split moong dal",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds (jeera) and asafoetida (hing)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger and green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder and rock salt",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sprinkle water and pound bajra",
+        "text": "Sprinkle a little water over bajra grains, rest for 15 minutes, then pulse coarsely in a mortar or mixer to loosen the outer husk. Winnow or rinse to remove husks.",
+        "minutes": 10
+      },
+      {
+        "section": "Slow-cook millet and moong dal",
+        "text": "Combine cleaned bajra, washed moong dal, 4.5 cups water, turmeric, and salt in a heavy pressure cooker. Cook on low heat for 4-5 whistles until creamy and thoroughly cooked.",
+        "minutes": 20
+      },
+      {
+        "section": "Temper with hing-jeera ghee",
+        "text": "Heat generous desi ghee, crackle cumin seeds, hing, ginger, and green chillies, and pour over the steaming bajra khichdi. Serve hot with jaggery and a dollop of white butter.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Traditional Marwari winter superfood prized for its earthy warmth, nutty texture, and high iron content."
+  },
+  {
     "id": "static-1348",
     "name": "Baked Rosogolla / Baked Rasgulla (Caramelized Kheer & Khoya Baked Sponge Rasgulla)",
     "category": "Sweets",
@@ -7618,6 +7820,154 @@ const definitions = [
     "notes": "Crisp scalloped urad-dal cousin of jalebi popular across Bengal during Maha Ashtami andBijoya."
   },
   {
+    "id": "static-1731",
+    "name": "Bengali Bhoger Khichuri (Thakurbarir Niramish Gobindobhog Rice & Roasted Moong Dal Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Fragrant Gobindobhog rice, washed and air-dried",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sonamung dal (golden yellow moong dal)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cauliflower florets and potato halves, lightly fried",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Green peas and diced tomatoes",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh ginger paste and slit green chillies",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, turmeric, and Kashmiri chilli powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Whole spices (bay leaves, dry red chillies, cinnamon, cardamom, cloves, cumin)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fried cashews and golden raisins",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure cow's milk desi ghee and mustard oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar or jaggery and salt",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast sonamung dal and fry vegetables",
+        "text": "Dry-roast sonamung dal in a heavy pan on low heat until golden and nutty, then rinse. Fry cauliflower florets and potato halves in mustard oil with a pinch of turmeric and set aside.",
+        "minutes": 10
+      },
+      {
+        "section": "Temper whole spices and ginger masala",
+        "text": "Heat ghee and mustard oil in a large handi, temper bay leaves, dry chillies, cumin seeds, and whole garam masala. Saute ginger paste, tomatoes, turmeric, and roasted cumin powder until oil separates.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer with Gobindobhog rice, cashews, and ghee",
+        "text": "Add roasted dal, Gobindobhog rice, fried potatoes, and 6 cups boiling water. Simmer covered for 15 minutes, then gently fold in fried cauliflower, green peas, cashews, raisins, sugar, and slit chillies. Finish with a generous spoonful of desi ghee and Bengali garam masala.",
+        "minutes": 17
+      }
+    ],
+    "notes": "Sacred Durga Puja and Saraswati Puja temple offering (Bhog) made strictly without onion or garlic, celebrated for its velvety texture and heavenly aroma of Gobindobhog rice and ghee."
+  },
+  {
+    "id": "static-1732",
+    "name": "Bengali Bhuni Khichuri / Jhura Khichuri (Dry-Roasted Moong Dal & Fragrant Gobindobhog Pilaf-Style Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Gobindobhog or Kalijeera rice, washed and dried",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sonamung dal (small yellow moong dal)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala (cinnamon, green cardamom, cloves, bay leaves)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds and whole dry red chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Finely grated ginger and green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fried potato cubes, cashews, and raisins",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, roasted cumin powder, sugar, and salt",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast dal and soak briefly",
+        "text": "Dry-roast moong dal until fragrant and golden-pink, then wash and drain completely alongside the Gobindobhog rice.",
+        "minutes": 8
+      },
+      {
+        "section": "Saute grains in aromatic ghee",
+        "text": "Heat ghee in a heavy pot, temper bay leaves, dry chillies, cumin, and whole garam masala. Add grated ginger, drained rice, and roasted dal, frying for 5-6 minutes until every grain glistens.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook in measured boiling water",
+        "text": "Pour exactly 3.5 cups of boiling water (double the volume of rice + dal), add salt, sugar, turmeric, and fried potatoes/nuts. Cover tightly and cook on lowest flame for 14 minutes until grains are fluffy, separate, and tender.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Unlike wet porridge-like khichuri, Bhuni Khichuri is cooked pilaf-style with exact water ratios so every grain of rice and dal remains separate and fluffy."
+  },
+  {
     "id": "static-1439",
     "name": "Bengali Biyebari Style Mishti Veg Fried Rice (Bengali Ghee, Cashew, Raisin & Vegetable Fried Rice)",
     "category": "Rice",
@@ -7842,6 +8192,75 @@ const definitions = [
       }
     ],
     "notes": "Nostalgic Bengali household tiffin and evening chowmin featuring golden-fried potato juliennes and crunchy peanuts."
+  },
+  {
+    "id": "static-1733",
+    "name": "Bengali Masoor Daler Khichuri (Monsoon Red Lentil, Onion & Mustard Oil Homestyle Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Parboiled or Gobindobhog rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Red masoor dal (split red lentils)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Potatoes, cut into halves",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Garlic cloves, crushed, and ginger paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron (Bengali five-spice blend) and bay leaf",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pungent kacha shorsher tel (mustard oil)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder, red chilli powder, and green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper panch phoron and fry onions",
+        "text": "Heat mustard oil in a deep pot until smoking. Temper bay leaf, dry red chillies, and panch phoron. Add sliced onions and crushed garlic, frying until golden brown.",
+        "minutes": 7
+      },
+      {
+        "section": "Saute rice, masoor dal, and potatoes",
+        "text": "Add washed rice, red masoor dal, potato halves, ginger paste, turmeric, and chilli powder. Stir-fry for 4 minutes on medium flame.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer until creamy",
+        "text": "Pour in 4.5 cups of warm water and salt. Cover and simmer on medium-low heat for 15 minutes until the potatoes are tender and the masoor dal melts into a comforting gravy. Drizzle raw mustard oil before serving with dim bhaja (fried eggs).",
+        "minutes": 15
+      }
+    ],
+    "notes": "The quintessential everyday rainy-day Bengali household comfort meal, typically paired with crispy fried omelette or begun bhaja."
   },
   {
     "id": "static-0647",
@@ -9432,6 +9851,75 @@ const definitions = [
     "notes": "Authentic Rajasthani moth-bean bhujia with signature warming clove and black-pepper notes."
   },
   {
+    "id": "static-1734",
+    "name": "Bisi Bele Bath (Karnataka Spiced Toor Dal, Tamarind & Vegetable Rice Khichdi)",
+    "category": "Rice",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sona Masoori or short-grain rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Toor dal (pigeon pea lentils)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Mixed vegetables (carrots, beans, peas, drumstick, shallots)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Tamarind pulp extract",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Freshly ground Bisi Bele Bath masala powder",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Jaggery powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, curry leaves, hing, and cashews",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook rice, toor dal, and vegetables",
+        "text": "Pressure-cook washed rice and toor dal with 4 cups water and turmeric until soft. In a separate pan, boil drumsticks, carrots, beans, and shallots in 1.5 cups water until tender.",
+        "minutes": 15
+      },
+      {
+        "section": "Simmer with tamarind and spice blend",
+        "text": "Add tamarind extract, jaggery, salt, and Bisi Bele Bath masala mixed with a little water to the cooked vegetables. Simmer for 5 minutes, then fold in the cooked rice-dal mixture.",
+        "minutes": 10
+      },
+      {
+        "section": "Temper with cashews and curry leaves in ghee",
+        "text": "Heat 3 tbsp desi ghee, fry cashews until golden, and crackle mustard seeds, hing, dry red chillies, and curry leaves. Pour over the hot Bisi Bele Bath and serve with crispy Kara Boondi.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Literally meaning 'hot lentil rice' in Kannada, balancing roasted spice warmth, tangy tamarind, and sweet jaggery."
+  },
+  {
     "id": "static-0763",
     "name": "Black Tea",
     "category": "Tea",
@@ -10048,6 +10536,80 @@ const definitions = [
       }
     ],
     "notes": "An iconic Bengali autumn-winter telebhaja served with afternoon muri or hot dal-rice."
+  },
+  {
+    "id": "static-1735",
+    "name": "Bokul Phuler Khichuri / Keema Khichuri (Mughlai-Bengali Spiced Mutton Mince & Basmati Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 40,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Gobindobhog or Basmati rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow moong dal and masoor dal (mixed)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Spiced minced mutton (keema)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onions, finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Yogurt, whisked",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, bay leaf, and shahi jeera",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee and mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam masala powder and fried onions (birista)",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced mutton keema",
+        "text": "Heat oil and ghee, temper whole spices, and fry chopped onions until golden. Add ginger-garlic paste, mutton keema, yogurt, and ground spices, cooking for 15 minutes until the keema is tender and oil separates.",
+        "minutes": 18
+      },
+      {
+        "section": "Simmer with rice and lentils",
+        "text": "Add roasted moong dal, masoor dal, and washed rice into the spiced keema pot. Stir-fry for 3 minutes, then add 4 cups hot water and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Dum cook with birista and ghee",
+        "text": "Cover and cook on low heat for 15-18 minutes until grains and keema meld into a rich, savory feast. Garnish with crispy fried onions (birista) and ghee.",
+        "minutes": 17
+      }
+    ],
+    "notes": "Royal zamindari monsoon delicacy where spiced minced mutton is cooked directly inside the fragrant rice and lentil pot."
   },
   {
     "id": "static-0712",
@@ -16906,6 +17468,80 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1736",
+    "name": "Chicken Khichuri / Murgir Mangshor Khichuri (Homestyle Spiced Chicken, Potato & Moong-Masoor Dal Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Gobindobhog or Basmati rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Moong dal and masoor dal (equal parts)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Bone-in or boneless chicken pieces",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Potatoes, cubed and fried golden",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onions, sliced, and tomato, chopped",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, cumin, coriander, and chilli powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil and desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam masala powder and green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Kosha (braise) the spiced chicken",
+        "text": "Heat mustard oil, temper bay leaf and whole garam masala, and fry sliced onions until golden. Add ginger-garlic paste, tomatoes, ground spices, and chicken pieces. Braise on medium heat for 10 minutes until chicken is half-cooked.",
+        "minutes": 12
+      },
+      {
+        "section": "Add rice, lentils, and fried potatoes",
+        "text": "Stir in washed rice, roasted moong and masoor dal, and golden fried potatoes. Toss with the chicken masala for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer into hearty one-pot meal",
+        "text": "Pour in 4.5 cups of hot water, season with salt, cover, and cook on low flame for 18 minutes until chicken is succulent and khichuri is rich and creamy. Finish with ghee and garam masala.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Complete one-pot comfort meal combining Bengali chicken kosha with velvety spiced khichuri."
   },
   {
     "id": "static-0040",
@@ -25195,6 +25831,85 @@ const definitions = [
     "notes": "Quick 20-minute comfort curry when you have no tomatoes or onions on hand."
   },
   {
+    "id": "static-1737",
+    "name": "Dal Khichdi (Restaurant-Style Dhaba Tadka Yellow Dal & Jeera Rice Khichdi)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow moong dal, toor dal, and masoor dal (mixed)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion and ripe tomato, finely chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, finely chopped",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds, and asafoetida (hing)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Whole dry red chillies and curry leaves",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Kasuri methi (dried fenugreek leaves) and garam masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder and turmeric",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pressure-cook rice and mixed dals",
+        "text": "Wash and soak rice and mixed lentils for 15 minutes. Pressure-cook with 4.5 cups water, turmeric, and salt for 3 whistles until mushy and smooth.",
+        "minutes": 12
+      },
+      {
+        "section": "Cook onion-tomato masala base",
+        "text": "Heat 2 tbsp ghee in a kadai, crackle cumin and mustard seeds, then saute chopped onions, ginger, and tomatoes with garam masala and kasuri methi. Fold in the cooked rice-dal with 0.5 cup hot water and simmer.",
+        "minutes": 8
+      },
+      {
+        "section": "Double burnt-garlic & Kashmiri chilli tadka",
+        "text": "Heat 1.5 tbsp pure ghee in a tadka ladle, fry chopped garlic until golden brown, add hing, dry red chillies, curry leaves, and Kashmiri chilli powder off heat, and pour sizzling over the Dal Khichdi.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Signature highway dhaba and restaurant favorite featuring a smoky double-ghee burnt garlic tempering."
+  },
+  {
     "id": "static-1403",
     "name": "Dal Moth / Masoor & Chana Dal Namkeen Mixture",
     "category": "Snacks",
@@ -26274,6 +26989,80 @@ const definitions = [
       }
     ],
     "notes": "Kolkata's beloved Anglo-Bengali take on the Scotch egg, found at every telebhaja and cabin counter."
+  },
+  {
+    "id": "static-1738",
+    "name": "Dimer Khichuri / Egg Khichuri (Bengali Spiced Scrambled & Boiled Egg Masala Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Gobindobhog or short-grain rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted yellow moong dal and red masoor dal",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Hard-boiled eggs, scored and fried golden",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Eggs, whisked for scrambling (optional)",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion, sliced, and tomato, chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste and green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Potatoes, halved and fried",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Mustard oil and ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, cumin powder, and garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry boiled eggs and potatoes",
+        "text": "Rub hard-boiled eggs and potato halves with turmeric and salt, fry in hot mustard oil until blistered golden, and set aside. Optionally scramble 2 eggs into soft curds.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook spiced rice and lentil pot",
+        "text": "In the same oil, temper bay leaf, dry chilli, and cumin. Saute onions, ginger-garlic paste, tomatoes, and spices. Add washed rice, dals, fried potatoes, and 4.5 cups warm water. Simmer covered for 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Fold in eggs and finish",
+        "text": "Gently fold the fried boiled eggs (and scrambled egg curds) into the bubbling khichuri, drizzle 1 tbsp ghee and garam masala, and rest covered for 4 minutes before serving.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Hearty, protein-packed hostel and household favorite that pairs blistered मसाला eggs with creamy khichuri."
   },
   {
     "id": "static-1574",
@@ -34085,6 +34874,75 @@ const definitions = [
     "notes": "Iconic crunchy gram-flour strips traditionally paired with hot jalebi and fried green chillies."
   },
   {
+    "id": "static-1739",
+    "name": "Gujarati Vaghareli Khichdi (Spiced Tuvar-Moong Dal Khichdi with Garlic-Curry Leaf Tempering)",
+    "category": "Rice",
+    "region": "Gujarati",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Short-grain rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Tuvar dal (toor dal) and yellow moong dal",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Diced potatoes, green peas, and carrots",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed garlic with red chilli powder (lasan ni chutney paste)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds, hing, and curry leaves",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cinnamon stick, cloves, and bay leaf",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, coriander-cumin powder (dhana jeeru)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Peanut oil and pure desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spicy Gujarati vaghar (tempering)",
+        "text": "Heat peanut oil and ghee in a pressure cooker. Crackle mustard and cumin seeds, hing, curry leaves, cinnamon, and cloves. Add crushed chilli-garlic paste and saute for 30 seconds until aromatic.",
+        "minutes": 5
+      },
+      {
+        "section": "Saute vegetables, rice, and dal",
+        "text": "Add diced potatoes, carrots, green peas, turmeric, and dhana jeeru. Stir in washed rice and dals, coating well in the spiced oil.",
+        "minutes": 5
+      },
+      {
+        "section": "Pressure-cook and serve with kadhi",
+        "text": "Add 4 cups warm water and salt. Pressure-cook for 3 whistles until soft and comforting. Top with fresh coriander and a dollop of ghee; serve with Gujarati Kadhi.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Kathiawadi evening staple renowned for its fiery garlic-chilli vaghar (tempering) and pairing with sweet-tangy Gujarati kadhi."
+  },
+  {
     "id": "static-1656",
     "name": "Gujiya / Mawa Karanji (Crispy Flaky Maida Dumplings Stuffed with Roasted Khoya, Coconut & Nuts)",
     "category": "Sweets",
@@ -34530,6 +35388,80 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1740",
+    "name": "Harey Chane O Palang Shaker Khichuri / Palak Dal Khichdi (Spinach, Green Chickpea & Garlic-Ghee Khichdi)",
+    "category": "Rice",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or Gobindobhog rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow moong dal",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh spinach leaves (palak), blanched and pureed",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Green peas or tender green chickpeas (hara chana)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, finely sliced",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Onion and tomato, finely chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin seeds, dry red chillies, and hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam masala and lemon juice",
+        "quantity": "1.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pressure-cook rice, moong dal, and green peas",
+        "text": "Wash rice and moong dal, then pressure-cook with green peas/hara chana, 4 cups water, turmeric, and salt for 3 whistles until soft.",
+        "minutes": 12
+      },
+      {
+        "section": "Saute aromatics and fold spinach puree",
+        "text": "Heat 1.5 tbsp ghee in a pan, saute chopped onions, ginger, and tomatoes until soft. Add vibrant blanched spinach puree and cook for 3 minutes, then fold in the cooked khichdi and garam masala.",
+        "minutes": 8
+      },
+      {
+        "section": "Finish with crispy burnt-garlic ghee",
+        "text": "Heat remaining 1.5 tbsp ghee, fry sliced garlic, cumin seeds, hing, and whole dry red chillies until crisp and golden, and pour over the emerald-green Palak Khichdi.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Iron-rich, vibrant emerald-green spinach khichdi elevated with smoky browned garlic flakes."
   },
   {
     "id": "static-1566",
@@ -35775,6 +36707,75 @@ const definitions = [
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1741",
+    "name": "Hyderabadi Khatti Dal Khichdi / Keema Khichdi (Nizami Saffron, Mint & Chana-Masoor Dal Pilaf Khichdi)",
+    "category": "Rice",
+    "region": "Hyderabadi",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Long-grain Basmati rice, soaked 20 mins",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red masoor dal and chana dal",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint leaves and coriander leaves, chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole spices (shahi jeera, cinnamon, cardamom, cloves, bay leaf)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric powder and slit green chillies",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry birista onions and whole spices",
+        "text": "Heat ghee in a heavy pot, temper shahi jeera, cinnamon, cardamom, cloves, and bay leaf. Add sliced onions and fry until deep golden brown.",
+        "minutes": 8
+      },
+      {
+        "section": "Saute herbs, rice, and lentils",
+        "text": "Stir in ginger-garlic paste, turmeric, slit green chillies, fresh mint, and coriander. Add drained Basmati rice and soaked lentils, sauteing gently for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Dum cook until fluffy",
+        "text": "Add 3.5 cups hot water and salt. Bring to a boil, then cover tightly and cook on low dum heat for 12 minutes. Traditionally served with tangy tamarind Khatta or Til ka Khatta.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Classic Hyderabadi breakfast and brunch specialty scented with mint, shahi jeera, and caramelized onions."
+  },
+  {
     "id": "static-1558",
     "name": "Hyderabadi Paneer (Cottage Cheese in Tangy Mint, Coriander, Fried Onion & Yogurt Green Gravy)",
     "category": "Paneer",
@@ -36215,6 +37216,139 @@ const definitions = [
       }
     ],
     "notes": "Traditional East Bengali (Bangal) heirloom recipe pairing rich Hilsa roe with tangy tamarind."
+  },
+  {
+    "id": "static-1742",
+    "name": "Ilish Macher Khichuri (Bengali Monsoon Hilsa Fish & Mustard Oil Khichuri)",
+    "category": "Fish",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Hilsa (Ilish) fish steaks, cleaned",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Gobindobhog or Kalijeera rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Masoor dal and roasted moong dal (mixed)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Kalo jeere (nigella seeds) and slit green chillies",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pungent mustard oil (plus oil from frying Ilish)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Onion, finely sliced (optional) and ginger paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric and Kashmiri red chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Lightly sear Ilish in mustard oil",
+        "text": "Rub Hilsa steaks with salt and turmeric. Sear very lightly (60 seconds per side) in smoking mustard oil to release the prized Ilish tel (aromatic Hilsa oil), then remove fish carefully.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook khichuri in Hilsa-infused oil",
+        "text": "In the remaining Hilsa mustard oil, temper kalo jeere (nigella seeds) and green chillies. Add ginger paste, turmeric, washed Gobindobhog rice, and lentils. Stir-fry for 3 minutes, add 4 cups hot water, and simmer covered for 15 minutes.",
+        "minutes": 18
+      },
+      {
+        "section": "Steam Hilsa steaks on top",
+        "text": "Gently place the seared Hilsa steaks and any reserved fish oil on top of the nearly-cooked khichuri, add whole slit green chillies, cover tightly, and steam on low heat for 6-7 minutes.",
+        "minutes": 7
+      }
+    ],
+    "notes": "The ultimate Bengali monsoon celebration: fragrant Gobindobhog khichuri infused with pungent mustard oil and delicate Hilsa roe/steaks."
+  },
+  {
+    "id": "static-1743",
+    "name": "Ilish Macher Matha Diye Khichuri (Bengali Hilsa Fish Head & Roasted Moong Dal Khichuri)",
+    "category": "Fish",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Hilsa (Ilish) fish heads, halved and cleaned",
+        "quantity": "2",
+        "unit": "heads"
+      },
+      {
+        "name": "Gobindobhog rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sonamung dal (yellow moong dal), dry-roasted",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Potatoes and pumpkin cubes, fried",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger paste, cumin powder, and turmeric",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron, bay leaves, and dry red chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Slit green chillies",
+        "quantity": "5",
+        "unit": "pcs"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry Hilsa heads",
+        "text": "Coat Hilsa fish heads with turmeric and salt, fry in hot mustard oil until crisp and golden brown, and crush them lightly with a spatula into savory chunks.",
+        "minutes": 8
+      },
+      {
+        "section": "Temper spices and cook rice-dal",
+        "text": "In the same aromatic fish oil, temper bay leaves, dry red chillies, and panch phoron. Add ginger paste, cumin, turmeric, roasted moong dal, and Gobindobhog rice. Pour 4.5 cups hot water and simmer.",
+        "minutes": 17
+      },
+      {
+        "section": "Fold crushed fish heads and vegetables",
+        "text": "Add the crushed fried Hilsa heads, fried potato and pumpkin cubes, and slit green chillies. Simmer covered for 10 minutes until the fish head flavors permeate every spoonful.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Nothing goes to waste in a Bengali kitchen; crispy Hilsa heads impart deep coastal umami to roasted moong dal khichuri."
   },
   {
     "id": "static-0853",
@@ -51865,6 +52999,75 @@ const definitions = [
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1744",
+    "name": "Millet Khichdi / Foxtail & Little Millet Vegetable Khichdi (High-Fiber Siridhanya Millet & Moong Dal Khichdi)",
+    "category": "Rice",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Foxtail millet (kangni) or Kodo/Little millet, soaked 30 mins",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow split moong dal",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Mixed seasonal vegetables (carrots, beans, peas, bottle gourd)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion and tomato, chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger, garlic, and green chillies, minced",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds, curry leaves, and hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric and black pepper powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cold-pressed groundnut oil or desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak millets and saute vegetables",
+        "text": "Rinse and soak millet for 30 minutes to ensure digestibility and fluffy cooking. Heat ghee in a cooker, temper cumin, mustard, curry leaves, and hing, and saute onions, ginger-garlic, and mixed vegetables.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer soaked millet and moong dal",
+        "text": "Add drained millet, washed moong dal, turmeric, crushed black pepper, salt, and 4 cups water. Pressure-cook on medium-low heat for 2 whistles.",
+        "minutes": 15
+      },
+      {
+        "section": "Rest and fluff",
+        "text": "Let pressure release naturally, open lid, drizzle 1 tsp ghee and fresh coriander leaves, and serve warm with curd.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Diabetic-friendly, low-glycemic, gluten-free khichdi packed with dietary fiber and plant protein."
+  },
+  {
     "id": "static-1410",
     "name": "Mini Dry Namkeen Samosa / Farsan Cocktail Samosa",
     "category": "Snacks",
@@ -54817,6 +56020,75 @@ const definitions = [
     "notes": "A regal Mughlai stuffed flatbread made with robustly spiced slow-cooked mutton mince."
   },
   {
+    "id": "static-1745",
+    "name": "Mutton Khichuri / Mangshor Khichuri (Rich Bengali Slow-Cooked Mutton & Gobindobhog Rice Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 55,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Bone-in tender goat mutton pieces",
+        "quantity": "500",
+        "unit": "g"
+      },
+      {
+        "name": "Gobindobhog rice",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Roasted sonamung dal and masoor dal",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Large potatoes, halved and fried golden",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger paste, garlic paste, and sour curd",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil and pure desi ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole garam masala, bay leaves, and Bengali gorom moshla powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-braise mutton kosha",
+        "text": "Marinate mutton with yogurt, ginger-garlic paste, turmeric, chilli powder, and mustard oil. Sear in a heavy pot with whole spices and sliced onions, then pressure-cook for 4 whistles until 85% tender.",
+        "minutes": 30
+      },
+      {
+        "section": "Combine with roasted dal and Gobindobhog rice",
+        "text": "In a large handi, combine the cooked mutton along with its rich gravy, washed Gobindobhog rice, roasted dals, fried potato halves, and 5.5 cups hot water.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer and finish with ghee",
+        "text": "Cook covered on low flame for 15-18 minutes until rice and dal are velvety and infused with mutton juices. Stir in pure desi ghee, Bengali gorom moshla, and green chillies.",
+        "minutes": 15
+      }
+    ],
+    "notes": "A legendary Nabami or rainy Sunday feast where rich Mutton Kosha and Gobindobhog Khichuri unite in a single pot."
+  },
+  {
     "id": "static-1719",
     "name": "Mutton Paya Shorba / Lamb Trotter Broth (Slow-Simmered Spiced Bone Marrow Broth)",
     "category": "Soup",
@@ -55940,6 +57212,70 @@ const definitions = [
       }
     ],
     "notes": "A high-fiber, heart-healthy modern breakfast flatbread."
+  },
+  {
+    "id": "static-1746",
+    "name": "Oats Vegetable Khichdi (Savory Rolled Oats, Yellow Moong Dal & Garden Vegetable Khichdi)",
+    "category": "Breakfast",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Old-fashioned rolled oats",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow split moong dal, soaked 15 mins",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely diced carrots, French beans, peas, and tomatoes",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion, finely chopped, and grated ginger",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds, hing, and curry leaves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, black pepper, and garam masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook moong dal and vegetables",
+        "text": "Heat ghee in a pan or cooker, crackle cumin, mustard, curry leaves, and hing. Saute onions, ginger, tomatoes, carrots, beans, and soaked moong dal with 2.5 cups water until dal is soft.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold in rolled oats",
+        "text": "Add dry-toasted rolled oats, turmeric, pepper, and salt plus 1 cup hot water. Simmer on low heat for 4-5 minutes until creamy and porridge-like.",
+        "minutes": 5
+      },
+      {
+        "section": "Garnish and serve",
+        "text": "Finish with fresh coriander leaves and lemon juice; serve hot as a light dinner or wholesome breakfast.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Quick, heart-healthy beta-glucan rich khichdi ready in 20 minutes without rice."
   },
   {
     "id": "static-1130",
@@ -59320,6 +60656,70 @@ const definitions = [
       }
     ],
     "notes": "Simple, fragrant 5-spice Bengali potato curry that requires zero spice grinding."
+  },
+  {
+    "id": "static-1747",
+    "name": "Panchmel Dal Khichdi / Satpadi Khichdi (Rajasthani Five-Lentil & Spiced Ghee Khichdi)",
+    "category": "Rice",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or short-grain rice",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Five-lentil blend (moong, masoor, chana, toor, and urad dal)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, cloves, bay leaf, and black peppercorns",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (hing) and whole dry red chillies",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger-green chilli paste and chopped tomatoes",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, coriander powder, amchur, and garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak and boil rice with five lentils",
+        "text": "Wash and soak the five-lentil blend and rice for 20 minutes. Pressure-cook with 4.5 cups water, turmeric, bay leaf, cloves, and salt for 3-4 whistles until rich and creamy.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare Marwari spice tempering",
+        "text": "Heat desi ghee in a pan, crackle cumin seeds, hing, and dry red chillies. Saute ginger-chilli paste, tomatoes, coriander powder, amchur, and garam masala until oil separates.",
+        "minutes": 7
+      },
+      {
+        "section": "Combine and simmer",
+        "text": "Fold the cooked five-lentil khichdi into the tempering, simmer for 3 minutes, and garnish with fresh coriander and extra ghee.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Combines the distinct textures and amino-acid profiles of five traditional Indian dals in one nourishing pot."
   },
   {
     "id": "static-1499",
@@ -70455,6 +71855,70 @@ const definitions = [
     "notes": "Adding 1 tbsp roasted besan prevents the onions from releasing water while rolling."
   },
   {
+    "id": "static-1748",
+    "name": "Quinoa Vegetable Khichdi (High-Protein Tri-Color Quinoa, Yellow Moong Dal & Ghee Tadka Khichdi)",
+    "category": "Rice",
+    "region": "Fusion",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "White or tri-color quinoa, thoroughly rinsed in a fine sieve",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow split moong dal",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Diced carrots, green peas, French beans, and bell peppers",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cumin seeds, hing, ginger, and green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, roasted cumin powder, and black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or olive oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice and cilantro",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rinse quinoa to remove saponins",
+        "text": "Rub and rinse quinoa thoroughly under cold running water in a fine mesh strainer for 1 minute to remove any natural bitterness.",
+        "minutes": 3
+      },
+      {
+        "section": "Saute aromatics and vegetables",
+        "text": "Heat ghee in a pressure cooker, crackle cumin seeds and hing, and saute ginger, green chillies, and mixed vegetables for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Pressure-cook with moong dal",
+        "text": "Add rinsed quinoa, washed moong dal, turmeric, salt, and 3.5 cups water. Pressure-cook for 2 whistles on medium flame. Fluff with a fork and finish with lemon juice and cilantro.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Complete-protein modern twist on classic khichdi with nutty quinoa pearls and creamy yellow lentils."
+  },
+  {
     "id": "static-1661",
     "name": "Rabdi Malpua (Crispy-Edged Spiced Maida & Fennel Pancakes Soaked in Saffron Syrup)",
     "category": "Sweets",
@@ -72902,58 +74366,73 @@ const definitions = [
     "notes": "An iconic everyday Bengali macher jhol where the fried bori absorbs the savory fish broth."
   },
   {
-    "id": "static-0710",
-    "name": "Sabudana Khichdi (Plain)",
+    "id": "static-1749",
+    "name": "Sabudana Khichdi (Maharashtrian Upvas Sago Pearl, Crushed Peanut & Cumin Khichdi)",
     "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
     "ingredients": [
       {
-        "name": "Sabudana / main ingredient",
-        "quantity": "1",
+        "name": "Sabudana (medium tapioca pearls), washed and soaked 4-5 hours",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw peanuts, dry-roasted and coarsely crushed",
+        "quantity": "0.5",
         "unit": "cup"
       },
       {
-        "name": "Onion",
+        "name": "Boiled potato, peeled and cut into small cubes",
         "quantity": "1",
-        "unit": "small"
+        "unit": "medium"
       },
       {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
+        "name": "Cumin seeds (jeera) and curry leaves",
+        "quantity": "1.5",
+        "unit": "tsp"
       },
       {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Green chillies, finely chopped, and grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Pure desi ghee or peanut oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sendha namak (rock salt), sugar, and fresh lemon juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves and grated fresh coconut",
+        "quantity": "3",
+        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
+        "section": "Toss soaked sabudana with peanut powder",
+        "text": "Drain sabudana completely so zero excess water remains; pearls should mash easily between fingers. Toss the pearls in a bowl with coarsely crushed roasted peanuts, rock salt, and 1 tsp sugar (peanut powder absorbs surface moisture to prevent sticking).",
         "minutes": 5
       },
       {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
+        "section": "Saute cumin, chillies, and potatoes in ghee",
+        "text": "Heat pure ghee in a non-stick or cast-iron kadai. Crackle cumin seeds, curry leaves, chopped green chillies, and ginger. Add boiled potato cubes and fry for 2 minutes until lightly crisp.",
+        "minutes": 4
+      },
+      {
+        "section": "Steam until pearls turn translucent",
+        "text": "Add the peanut-coated sabudana, toss gently on low heat, cover with a lid for 3-4 minutes until the pearls turn glassy and translucent. Squeeze fresh lemon juice and garnish with coriander and fresh coconut.",
+        "minutes": 6
       }
     ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+    "notes": "Coating soaked sabudana with coarse roasted peanut powder before cooking is the secret to non-sticky, pearly Sabudana Khichdi."
   },
   {
     "id": "static-1204",
@@ -73421,6 +74900,70 @@ const definitions = [
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1750",
+    "name": "Sama Chawal Khichdi / Vrat ki Mordhan Khichdi (Fasting Barnyard Millet, Potato & Peanut Khichdi)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Sama ke chawal / Bhagar (barnyard millet), washed",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Raw peanuts, roasted",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Potato, peeled and finely cubed",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Cumin seeds, grated ginger, and slit green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sendha namak (fasting rock salt) and crushed black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves and lemon juice",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast peanuts and fry potato cubes",
+        "text": "Heat desi ghee in a saucepan, roast peanuts until crunchy, then crackle cumin seeds, ginger, and green chillies. Add finely cubed potatoes and saute for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer barnyard millet",
+        "text": "Add washed Sama ke chawal, sendha namak, black pepper, and 3 cups warm water. Bring to a boil, cover, and simmer on low heat for 10-12 minutes until soft and creamy.",
+        "minutes": 12
+      },
+      {
+        "section": "Finish with lemon and coriander",
+        "text": "Stir in fresh lemon juice and chopped coriander leaves. Serve warm with fasting curd or peanut chutney.",
+        "minutes": 1
+      }
+    ],
+    "notes": "Light, digestible Navratri and Ekadashi fasting khichdi made with nutrient-rich barnyard millet."
   },
   {
     "id": "static-0019",
@@ -83195,6 +84738,80 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1751",
+    "name": "Winter Vegetable & Cauliflower Masala Khichuri / Shiter Sobji Khichuri (Bengali Winter Harvest Vegetable Khichuri)",
+    "category": "Rice",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 30,
+    "servings": 5,
+    "ingredients": [
+      {
+        "name": "Gobindobhog rice",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Roasted sonamung dal",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Winter vegetables (cauliflower, new potatoes, carrots, flat beans/sheem, green peas)",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh coriander leaves and tomato, chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger paste and green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Panch phoron, bay leaves, and dry red chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin-coriander powder and turmeric",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil and new winter nolen gur / sugar",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry winter vegetables",
+        "text": "Heat mustard oil in a kadai and lightly fry cauliflower florets, new baby potato halves, carrot batons, and flat beans (sheem) with a pinch of salt and turmeric.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook rice and roasted moong dal",
+        "text": "Temper panch phoron, bay leaves, and dry chillies in oil. Saute ginger paste, tomatoes, and ground spices, then add washed Gobindobhog rice, roasted moong dal, and 5.5 cups hot water.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold vegetables, peas, and fresh coriander",
+        "text": "When rice and dal are three-quarters cooked, fold in the fried winter vegetables and fresh green peas. Simmer for 8 minutes, finish with desi ghee and a handful of winter coriander leaves.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Celebrates Bengal's winter harvest (notun alur, phulkopi, sheem, motorshuti, and dhonepata) in a fragrant golden pot."
   }
 ];
 
