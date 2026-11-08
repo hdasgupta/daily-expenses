@@ -4915,6 +4915,75 @@
     "notes": "Contemporary Kolkata winter favorite served warm straight from the oven."
   },
   {
+    "id": "static-1690",
+    "name": "Baked Ziti / Pasta al Forno (Four-Cheese Baked Ziti with Rich Tomato Sauce)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Ziti or penne rigate pasta",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Marinara or crushed plum tomato sauce",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Whole milk ricotta cheese",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated Parmesan / Pecorino Romano cheese",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Fresh basil leaves and dried oregano",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil pasta al dente",
+        "text": "Cook ziti in heavily salted boiling water for 8 minutes until slightly firmer than al dente. Drain and toss with 1 tbsp olive oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Mix pasta and cheeses",
+        "text": "In a large bowl, fold together cooked ziti, ricotta, 1 cup of mozzarella, half the Parmesan, minced garlic, dried oregano, and 2 cups of marinara sauce.",
+        "minutes": 7
+      },
+      {
+        "section": "Assemble and bake",
+        "text": "Transfer into a greased baking dish, top with remaining marinara sauce, mozzarella, and Parmesan. Bake at 190°C (375°F) for 25-30 minutes until bubbling and golden brown on top.",
+        "minutes": 30
+      }
+    ],
+    "notes": "Classic Italian-American comfort baked pasta; letting it rest for 10 minutes after baking allows the layers to set cleanly for slicing."
+  },
+  {
     "id": "static-1375",
     "name": "Balushahi / Badusha (Flaky Ghee-Shortened Glazed Sweet Doughnuts)",
     "category": "Sweets",
@@ -13016,6 +13085,80 @@
     "notes": "A 15-minute dessert marvel that perfectly replicates authentic royal rasmalai without curdling chhena."
   },
   {
+    "id": "static-1708",
+    "name": "Broccoli & Toasted Almond Soup (Nutrient-Dense Silky Green Broccoli & Almond Broth)",
+    "category": "Soup",
+    "region": "Continental",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh broccoli florets and tender stalks, chopped",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Raw almonds, soaked, peeled and lightly toasted",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Vegetable stock or water",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion, chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3",
+        "unit": "cloves"
+      },
+      {
+        "name": "Olive oil or butter",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh dairy cream or almond milk",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Toasted almond flakes for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper and nutmeg",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute aromatics and simmer broccoli",
+        "text": "Heat butter in a saucepan, saute onion and garlic until fragrant. Add chopped broccoli and stock. Simmer for 8-10 minutes until broccoli is bright green and fork-tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Blend with almonds",
+        "text": "Add soaked toasted almonds into the warm soup. Blend using an immersion or jug blender until completely velvet-smooth and vibrant green.",
+        "minutes": 4
+      },
+      {
+        "section": "Season and garnish",
+        "text": "Return soup to gentle simmer, stir in cream, cracked black pepper, and a pinch of nutmeg. Ladle into bowls and top with crunchy toasted almond slivers.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Almonds provide natural thickening and velvety creaminess, eliminating the need for heavy cornflour or excess cream."
+  },
+  {
     "id": "static-1599",
     "name": "Broccoli Paratha (Spiced Grated Broccoli, Cumin & Garlic Stuffed Paratha)",
     "category": "Bread",
@@ -13466,6 +13609,60 @@
       }
     ],
     "notes": "Real butterscotch made from scratch by caramelizing butter with dark brown sugar, contrasted with a crunchy nutty cashew praline."
+  },
+  {
+    "id": "static-1691",
+    "name": "Cacio e Pepe (Classic Roman Spaghetti with Pecorino Romano & Toasted Black Pepper)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Bronze-die spaghetti or bucatini",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Finely grated Pecorino Romano cheese",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whole black peppercorns, coarsely cracked",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Starchy pasta cooking water",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sea salt for boiling water",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil pasta in shallow water",
+        "text": "Boil spaghetti in a wide skillet with just enough salted water to cover, creating concentrated starch-rich pasta water. Cook until 2 minutes shy of al dente.",
+        "minutes": 8
+      },
+      {
+        "section": "Toast cracked peppercorns",
+        "text": "In a large pan, dry-toast freshly crushed black peppercorns on medium-low heat for 1-2 minutes until fragrant. Ladle in 0.5 cup of boiling pasta water to release pepper oils.",
+        "minutes": 3
+      },
+      {
+        "section": "Emulsify glossy cheese sauce",
+        "text": "Mix grated Pecorino with a ladle of warm pasta water in a bowl into a smooth paste. Transfer pasta to the pepper pan, take off heat, add the cheese paste, and toss vigorously until a velvety cream coats every strand.",
+        "minutes": 4
+      }
+    ],
+    "notes": "One of Rome's four iconic pastas; emulsifying off the heat is critical so the Pecorino melts into a silky sauce rather than clumping."
   },
   {
     "id": "static-0785",
@@ -17309,6 +17506,90 @@
     "notes": "Restaurant-style Indo-Chinese chicken fried rice with tender diced chicken and crisp vegetables."
   },
   {
+    "id": "static-1709",
+    "name": "Chicken Hot and Sour Soup (Tangy Peppery Indo-Chinese Shredded Chicken Soup)",
+    "category": "Soup",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boneless chicken breast, boiled and finely shredded",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Button mushrooms, thinly sliced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Carrots and cabbage, finely shredded",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White vinegar or rice vinegar",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cracked black or white pepper powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Egg, lightly beaten",
+        "quantity": "1",
+        "unit": "pc"
+      },
+      {
+        "name": "Cornflour dissolved in 3 tbsp water",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chilli sauce and sesame oil",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Spring onion greens",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil stock with chicken and vegetables",
+        "text": "Bring chicken stock to a boil. Add shredded chicken, mushrooms, carrots, cabbage, ginger, and garlic. Simmer for 5 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Season and thicken",
+        "text": "Add soy sauce, vinegar, chilli sauce, white pepper, and salt. Pour in cornflour slurry while stirring continuously until soup turns glossy and thickens.",
+        "minutes": 5
+      },
+      {
+        "section": "Drop egg ribbons",
+        "text": "Slowly drizzle beaten egg from a height in a thin stream while gently swirling soup with a ladle to create fine, silky egg ribbons. Finish with sesame oil and spring onions.",
+        "minutes": 4
+      }
+    ],
+    "notes": "The authentic punch comes from balancing high-acidity vinegar against the pungent kick of freshly ground white pepper."
+  },
+  {
     "id": "static-1269",
     "name": "Chicken Kathi Roll (Kolkata Nizam's-Style Skewer-Roasted Chicken Roll)",
     "category": "Snacks",
@@ -18956,6 +19237,80 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1710",
+    "name": "Chicken Sweet Corn Soup (Velvety Shredded Chicken & Egg Drop Sweet Corn Broth)",
+    "category": "Soup",
+    "region": "Indo-Chinese",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Cream-style sweet corn (canned or fresh pureed)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whole sweet corn kernels",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooked shredded chicken breast",
+        "quantity": "120",
+        "unit": "g"
+      },
+      {
+        "name": "Rich chicken stock",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg, beaten",
+        "quantity": "1",
+        "unit": "pc"
+      },
+      {
+        "name": "Cornflour dissolved in 3 tbsp cold water",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar and white pepper powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chopped spring onions",
+        "quantity": "0.25",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer corn and chicken in stock",
+        "text": "Combine chicken stock, cream-style corn, and sweet corn kernels in a pot. Bring to a boil, skim any foam, and simmer for 6 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Add chicken and thicken",
+        "text": "Add cooked shredded chicken, sugar, white pepper, and salt. Stir in cornflour slurry and simmer for 3 minutes until thickened and translucent.",
+        "minutes": 4
+      },
+      {
+        "section": "Swirl egg ribbons and garnish",
+        "text": "Take soup to a low simmer, swirl in beaten egg to form delicate ribbons. Drizzle sesame oil and garnish with chopped spring onions.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Beloved staple across Indo-Chinese restaurants; gentle, sweet, and comforting on chilly evenings."
+  },
+  {
     "id": "static-0737",
     "name": "Chicken Tikka Sandwich",
     "category": "Sandwich",
@@ -19647,6 +20002,75 @@
       }
     ],
     "notes": "A beloved Kolkata street fusion combining Tangra-style dry Chilli Chicken with a flaky Kathi Roll."
+  },
+  {
+    "id": "static-1692",
+    "name": "Chilli Garlic Butter Noodles / Spaghetti (Fiery Indo-Western Garlic Butter Pasta)",
+    "category": "Pasta",
+    "region": "Fusion",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Spaghetti or egg noodles",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Salted butter",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garlic cloves, finely chopped",
+        "quantity": "8",
+        "unit": "cloves"
+      },
+      {
+        "name": "Red chilli flakes or crushed Sichuan chilli",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Spring onion greens, chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil spaghetti",
+        "text": "Cook spaghetti in boiling salted water until al dente. Reserve 0.33 cup pasta water and drain.",
+        "minutes": 8
+      },
+      {
+        "section": "Saute chilli garlic butter",
+        "text": "Melt butter with 1 tbsp oil in a wok on low heat. Add finely chopped garlic and saute for 2 minutes until light golden and aromatic, then add chilli flakes and soy sauces.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss and finish",
+        "text": "Add drained spaghetti and reserved pasta water to the sizzling garlic butter. Toss vigorously on high heat for 1 minute until glazed, finish with spring onion greens and sesame seeds.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Bold, addictive late-night fusion pasta balancing nutty caramelized garlic, rich butter, and fiery red chilli heat."
   },
   {
     "id": "static-1456",
@@ -23432,6 +23856,80 @@
     "notes": "No Kolkata phuchka outing is complete without a bowl of tangy, crunchy Churmur served in a sal-leaf bowl."
   },
   {
+    "id": "static-1693",
+    "name": "Classic Baked Macaroni and Cheese (Creamy Cheddar & Crispy Breadcrumb Mac & Cheese)",
+    "category": "Pasta",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Elbow macaroni pasta",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Sharp yellow cheddar cheese, freshly shredded",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Gruyere or Mozzarella cheese, shredded",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Butter",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dijon mustard or mustard powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Panko breadcrumbs toasted in 1 tbsp butter",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Nutmeg powder and black pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil macaroni",
+        "text": "Cook macaroni in boiling salted water for 6 minutes until al dente. Drain and rinse briefly under warm water.",
+        "minutes": 6
+      },
+      {
+        "section": "Make mornay cheese sauce",
+        "text": "Melt butter in a saucepan, whisk in flour and cook roux for 1 minute. Slowly whisk in warm milk, simmering until thickened. Stir in mustard, nutmeg, pepper, and remove from heat before melting in shredded cheeses.",
+        "minutes": 8
+      },
+      {
+        "section": "Bake with crispy panko",
+        "text": "Fold boiled macaroni into the velvety cheese sauce. Pour into a buttered baking dish, scatter buttered panko breadcrumbs on top, and bake at 190°C (375°F) for 20 minutes until golden and bubbling.",
+        "minutes": 20
+      }
+    ],
+    "notes": "Always shred cheese from blocks; pre-shredded cheeses contain anti-caking starches that prevent a silky, smooth melt."
+  },
+  {
     "id": "static-1674",
     "name": "Classic Chocolate Pudding (Silky Dark Chocolate Stovetop Custard Pudding)",
     "category": "Sweets",
@@ -23501,6 +23999,80 @@
     "notes": "Real stovetop custard pudding with deep cocoa depth, velvety texture, and no artificial pudding mixes."
   },
   {
+    "id": "static-1711",
+    "name": "Classic Italian Minestrone Soup (Hearty Bean, Ditalini, Zucchini & Tomato Broth with Pesto)",
+    "category": "Soup",
+    "region": "Italian",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Cooked cannellini or kidney beans",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Small pasta (ditalini or shells)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Carrots, celery, and onion, diced",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Zucchini, diced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Crushed plum tomatoes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Rich vegetable broth",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh green beans, cut into 1-inch pieces",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Shredded kale or savoy cabbage",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Extra virgin olive oil and Basil Pesto for serving",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sweat aromatic base",
+        "text": "Heat olive oil in a soup pot, saute onions, carrots, and celery for 6 minutes. Add garlic, green beans, and zucchini, cooking for 3 minutes.",
+        "minutes": 9
+      },
+      {
+        "section": "Simmer vegetables and beans",
+        "text": "Add crushed tomatoes, vegetable broth, bay leaf, and oregano. Bring to a boil, lower heat, and simmer covered for 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Cook pasta and finish",
+        "text": "Stir in cannellini beans, kale, and ditalini pasta. Simmer for 8 minutes until pasta is tender. Ladle into bowls and crown with a dollop of fresh basil pesto and grated Parmesan.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Topping each warm bowl with a spoonful of fresh Genovese basil pesto elevates the broth with herbal brightness."
+  },
+  {
     "id": "static-0762",
     "name": "Classic Milk Tea",
     "category": "Tea",
@@ -23548,6 +24120,213 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1694",
+    "name": "Classic Minestrone Pasta (Hearty Ditalini Pasta with White Beans & Vegetables)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Ditalini or small shell pasta",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Cannellini white beans, boiled or canned",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Zucchini, diced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Carrots and celery stalks, finely diced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed canned tomatoes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh spinach leaves or kale, shredded",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Parmesan cheese rind and grated Parmesan for serving",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute soffritto base",
+        "text": "Heat olive oil in a heavy Dutch oven, saute onions, carrots, and celery for 5 minutes until softened. Add garlic and diced zucchini, cooking for 2 more minutes.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer broth and beans",
+        "text": "Add crushed tomatoes, vegetable broth, cannellini beans, and Parmesan rind. Simmer on medium heat for 12 minutes to develop deep flavors.",
+        "minutes": 12
+      },
+      {
+        "section": "Cook ditalini and greens",
+        "text": "Stir in ditalini pasta and cook directly in the simmering broth for 8 minutes until al dente. Fold in spinach until wilted, remove cheese rind, and serve with grated Parmesan and a drizzle of olive oil.",
+        "minutes": 8
+      }
+    ],
+    "notes": "A rustic Italian pasta-stew; cooking the small ditalini directly in the rich tomato-bean broth yields concentrated, heartwarming flavor."
+  },
+  {
+    "id": "static-1695",
+    "name": "Classic Spaghetti Aglio e Olio (Garlic, Olive Oil & Red Pepper Flakes Spaghetti)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Spaghetti pasta",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Extra virgin olive oil (high quality)",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh garlic cloves, thinly sliced",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Dried red pepper flakes (peperoncino)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, finely chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated Parmesan cheese (optional)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Salt for pasta water",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil spaghetti al dente",
+        "text": "Drop spaghetti into a pot of rapidly boiling salted water and cook for 8-9 minutes until firm to the bite. Reserve 0.5 cup of starchy pasta water before draining.",
+        "minutes": 9
+      },
+      {
+        "section": "Infuse garlic and chilli oil",
+        "text": "In a wide skillet, warm olive oil over gentle medium-low heat. Add sliced garlic and cook slowly for 2-3 minutes until pale straw golden (never burnt). Add red pepper flakes and remove briefly from heat.",
+        "minutes": 3
+      },
+      {
+        "section": "Toss and emulsify",
+        "text": "Add drained spaghetti, reserved pasta water, and chopped fresh parsley to the pan. Toss vigorously over medium heat for 1 minute until a glistening, emulsified sauce coats the pasta. Serve immediately.",
+        "minutes": 2
+      }
+    ],
+    "notes": "The pure essence of Neapolitan cuisine; the slow infusion of garlic without browning preserves its sweet, fragrant aroma."
+  },
+  {
+    "id": "static-1712",
+    "name": "Clear Vegetable Wonton Soup (Delicate Sesame Ginger Broth with Steamed Vegetable Dumplings)",
+    "category": "Soup",
+    "region": "Asian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Vegetable wontons (cabbage, carrot, mushroom filling)",
+        "quantity": "12",
+        "unit": "pcs"
+      },
+      {
+        "name": "Clear vegetable broth",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Bok choy or Chinese greens, halved",
+        "quantity": "2",
+        "unit": "heads"
+      },
+      {
+        "name": "Fresh ginger slices and minced garlic",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Spring onions, thinly sliced",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "White pepper powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Infuse aromatic broth",
+        "text": "In a pot, simmer vegetable broth with sliced ginger, crushed garlic, and white pepper for 10 minutes to extract aromatic oils. Strain out ginger slices.",
+        "minutes": 10
+      },
+      {
+        "section": "Poach wontons and greens",
+        "text": "Bring seasoned broth to a gentle simmer with soy sauce. Drop in vegetable wontons and simmer for 4 minutes until they float. Add bok choy for 1 minute until crisp-tender.",
+        "minutes": 5
+      },
+      {
+        "section": "Garnish and serve",
+        "text": "Ladle wontons, greens, and clear steaming broth into deep bowls. Finish with toasted sesame oil and scattered spring onions.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Light, clean, and restorative broth showcasing plump, delicate dumplings in steaming herbal broth."
   },
   {
     "id": "static-0724",
@@ -24724,6 +25503,149 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1713",
+    "name": "Cream of Mushroom Soup (Earthy Sliced Cremini & Thyme Pureed Cream Soup)",
+    "category": "Soup",
+    "region": "Continental",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Cremini or button mushrooms, sliced",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Yellow onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3",
+        "unit": "cloves"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "All-purpose flour (maida)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cracked black pepper and sea salt",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize mushrooms",
+        "text": "Melt butter in a soup pot over high heat. Add sliced mushrooms and cook for 7-8 minutes until deeply browned and caramelized. Reserve 3 tbsp sauteed mushrooms for garnish.",
+        "minutes": 8
+      },
+      {
+        "section": "Build veloute base",
+        "text": "Add chopped onions, garlic, and fresh thyme, cooking for 3 minutes. Sprinkle flour and cook the roux for 1 minute, then gradually whisk in warm broth, simmering for 10 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Puree and enrich with cream",
+        "text": "Puree soup using an immersion blender until velvety smooth. Stir in heavy cream and cracked black pepper, simmer for 2 minutes, and serve topped with reserved browned mushrooms.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Deeply browning mushrooms before adding liquid creates profound natural umami without relying on artificial bouillon cubes."
+  },
+  {
+    "id": "static-1696",
+    "name": "Creamy Mushroom & Spinach Fettuccine (Garlic Herb Cream Sauce with Sliced Cremini)",
+    "category": "Pasta",
+    "region": "Continental",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Fettuccine or tagliatelle pasta",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh button or cremini mushrooms, sliced",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Baby spinach leaves",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Heavy dairy cream",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Freshly grated Parmesan cheese",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Dried thyme and cracked black pepper",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil fettuccine",
+        "text": "Cook fettuccine in boiling salted water for 9 minutes until al dente. Reserve 0.5 cup pasta water and drain.",
+        "minutes": 9
+      },
+      {
+        "section": "Caramelize mushrooms",
+        "text": "Melt butter in a skillet over high heat. Add sliced mushrooms and sear without crowding for 5 minutes until deep golden brown. Stir in minced garlic and dried thyme for 1 minute.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer cream sauce and wilt spinach",
+        "text": "Pour in heavy cream, bring to a gentle simmer for 2 minutes. Stir in baby spinach until wilted, then toss in cooked fettuccine, Parmesan, and a splash of pasta water until luxuriantly creamy.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Searing mushrooms on high heat without moving them initially gives concentrated savoriness (umami) that balances the rich cream."
+  },
+  {
     "id": "static-1676",
     "name": "Creamy Rice Pudding / Sutliya (Slow-Simmered Fragrant Basmati Rice & Saffron Milk Pudding)",
     "category": "Sweets",
@@ -24791,6 +25713,223 @@
       }
     ],
     "notes": "Royal North Indian slow-cooked rice pudding (Sutliya) enriched by reducing full-cream milk until naturally sweet and fragrant."
+  },
+  {
+    "id": "static-1714",
+    "name": "Creamy Roasted Tomato Basil Soup / Classic Tomato Soup (Slow-Roasted Plum Tomatoes & Fresh Basil)",
+    "category": "Soup",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Ripe plum or Roma tomatoes, halved",
+        "quantity": "1",
+        "unit": "kg"
+      },
+      {
+        "name": "Garlic cloves, skin on",
+        "quantity": "6",
+        "unit": "cloves"
+      },
+      {
+        "name": "Yellow onion, quartered",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh dairy cream",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Balsamic vinegar or brown sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Freshly cracked black pepper and sea salt",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast tomatoes and aromatics",
+        "text": "Arrange halved tomatoes, quartered onions, and garlic on a baking tray. Drizzle with olive oil, salt, and pepper. Roast at 200°C (400°F) for 30 minutes until edges are charred and caramelized.",
+        "minutes": 30
+      },
+      {
+        "section": "Blend smooth with basil",
+        "text": "Squeeze roasted garlic from skins. Transfer roasted tomatoes, onions, pan juices, vegetable broth, and fresh basil leaves into a blender. Blend until silky and smooth.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer and swirl cream",
+        "text": "Pour pureed soup into a pot, add balsamic vinegar or pinch of sugar to balance acidity, and bring to a gentle simmer. Swirl in fresh cream and serve with crusty garlic bread.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Roasting caramelizes the natural sugars in plum tomatoes, producing infinitely deeper, sweeter flavor than boiling raw tomatoes."
+  },
+  {
+    "id": "static-1697",
+    "name": "Creamy Sun-Dried Tomato & Basil Penne (Tuscan Herb Cream Sauce)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Penne rigate pasta",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil, julienned",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Heavy cream or cashew cream",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Baby spinach",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sun-dried tomato oil from jar",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil penne",
+        "text": "Boil penne in salted water until al dente, about 10 minutes. Drain, saving 0.5 cup cooking water.",
+        "minutes": 10
+      },
+      {
+        "section": "Saute sun-dried tomatoes",
+        "text": "Heat sun-dried tomato oil in a skillet, add minced garlic and sliced sun-dried tomatoes, sauteing on medium heat for 2 minutes until intensely fragrant.",
+        "minutes": 3
+      },
+      {
+        "section": "Simmer sauce and combine",
+        "text": "Pour in heavy cream, simmer for 3 minutes until thickened. Fold in spinach and basil until wilted, stir in Parmesan, and toss with warm penne until every tube is coated.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Using the herb-infused oil from the sun-dried tomato jar infuses Tuscan warmth into the cream sauce."
+  },
+  {
+    "id": "static-1698",
+    "name": "Creamy Tomato Basil Pasta / Penne alla Vodka (Velvety Pink Sauce Pasta)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Penne rigate pasta",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Crushed San Marzano tomatoes or marinara sauce",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Yellow onion, finely minced",
+        "quantity": "0.5",
+        "unit": "medium"
+      },
+      {
+        "name": "Red chilli flakes",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh basil leaves, chiffonade",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil penne",
+        "text": "Cook penne in boiling salted water for 10 minutes until al dente. Reserve 0.5 cup pasta water and drain.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer tomato reduction",
+        "text": "Melt butter with 1 tbsp olive oil in a pan, cook onions and garlic until translucent. Add crushed tomatoes, chilli flakes, salt, and simmer on medium heat for 10 minutes until thick and reduced.",
+        "minutes": 10
+      },
+      {
+        "section": "Swirl cream and toss",
+        "text": "Lower heat to minimum, stir in heavy cream to create a rich sunset-pink sauce. Simmer for 2 minutes, toss in penne, fresh basil, and Parmesan until glossy and rich.",
+        "minutes": 4
+      }
+    ],
+    "notes": "The delicate balance of tangy sweet tomato acid with rich velvet cream makes pink sauce one of the world's most sought-after pasta preparations."
   },
   {
     "id": "static-0625",
@@ -27237,6 +28376,90 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1699",
+    "name": "Desi Masala Pasta (Indian Street-Style Spiced Masala Penne with Capsicum & Corn)",
+    "category": "Pasta",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Penne or macaroni pasta",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ripe tomatoes, pureed or finely chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Green capsicum (bell pepper), diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sweet corn kernels",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pav bhaji masala or garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder and turmeric",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Tomato ketchup",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter or cooking oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated processed cheese and fresh coriander for topping",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil pasta",
+        "text": "Boil penne in salted water with 1 tsp oil until tender (about 9 minutes). Drain and rinse with cool water.",
+        "minutes": 9
+      },
+      {
+        "section": "Saute spiced masala base",
+        "text": "Heat butter in a pan, saute chopped onions and ginger-garlic paste until golden. Add tomato puree, red chilli powder, turmeric, and pav bhaji masala. Cook until ghee separates from masala.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss vegetables and pasta",
+        "text": "Add crunchy diced capsicum, sweet corn, and tomato ketchup. Toss boiled pasta into the masala with 2-3 tbsp water, cooking on high for 2 minutes. Garnish with grated cheese and fresh coriander.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Beloved Indian canteen and street-style snack; adding a hint of pav bhaji masala gives signature Mumbai roadside flair."
   },
   {
     "id": "static-1467",
@@ -31703,6 +32926,65 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1700",
+    "name": "Fettuccine Alfredo (Rich Butter & Parmesan Cream Sauce Pasta)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Fettuccine pasta",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Unsalted high-fat European butter",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Heavy dairy cream (or classic butter-water emulsion)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese, freshly finely grated",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Freshly cracked black pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil fettuccine",
+        "text": "Boil fettuccine in salted water until perfectly al dente (about 8-9 minutes). Reserve 0.5 cup hot pasta water.",
+        "minutes": 9
+      },
+      {
+        "section": "Melt butter and warm cream",
+        "text": "In a wide deep pan, melt butter gently over medium-low heat. Pour in heavy cream and nutmeg, bringing to a gentle simmer for 1-2 minutes.",
+        "minutes": 3
+      },
+      {
+        "section": "Toss with Parmigiano-Reggiano",
+        "text": "Transfer hot fettuccine into the pan, turn off heat, and add freshly grated Parmigiano-Reggiano in two additions with splashes of pasta water. Toss rapidly until the cheese melts into a luxurious, clingy glaze.",
+        "minutes": 3
+      }
+    ],
+    "notes": "True Alfredo is an emulsion of rich cultured butter and aged Parmigiano-Reggiano with starchy pasta water coating broad fettuccine ribbons."
+  },
+  {
     "id": "static-0779",
     "name": "Filter Coffee",
     "category": "Coffee",
@@ -32414,6 +33696,75 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1715",
+    "name": "French Onion Soup (Rich Caramelized Onion & Herb Broth with Crusty Cheesy Baguette)",
+    "category": "Soup",
+    "region": "French",
+    "prepMinutes": 15,
+    "cookMinutes": 45,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "1",
+        "unit": "kg"
+      },
+      {
+        "name": "Butter",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rich beef or dark vegetable broth",
+        "quantity": "5",
+        "unit": "cups"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Dry white wine or apple cider vinegar",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh thyme and bay leaf",
+        "quantity": "1",
+        "unit": "sprig"
+      },
+      {
+        "name": "French baguette slices, toasted",
+        "quantity": "8",
+        "unit": "slices"
+      },
+      {
+        "name": "Gruyere or Swiss cheese, shredded",
+        "quantity": "1.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-caramelize onions",
+        "text": "Melt butter in a heavy Dutch oven. Add sliced onions with a pinch of salt and cook on medium-low heat for 35-40 minutes, stirring occasionally, until deeply golden brown and sweet.",
+        "minutes": 38
+      },
+      {
+        "section": "Deglaze and simmer broth",
+        "text": "Dust onions with flour and cook for 1 minute. Deglaze pot with white wine or vinegar, scraping browned bits. Add broth, thyme, and bay leaf. Simmer for 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Broil cheesy baguette crust",
+        "text": "Ladle hot soup into oven-safe crocks. Place toasted baguette slices on top, smother generously with Gruyere cheese, and broil in the oven for 3-4 minutes until bubbling and blistered brown.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Patience is key; slowly cooking onions over low heat until natural sugars caramelize produces the unmistakable rich amber broth."
   },
   {
     "id": "static-0731",
@@ -47685,6 +49036,80 @@
     "notes": "Light, immunity-boosting soup rich in Vitamin C and lean protein."
   },
   {
+    "id": "static-1716",
+    "name": "Lemon Coriander Soup (Immunity-Boosting Clear Vegetable Broth with Fresh Lemon & Cilantro)",
+    "category": "Soup",
+    "region": "Indo-Chinese / Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh coriander stems and leaves, finely chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Freshly squeezed lemon juice",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Vegetable stock or water",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Carrots, cabbage, and sweet corn, finely minced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger and garlic, finely minced",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cornflour dissolved in 2 tbsp water",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black pepper powder and salt",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute aromatics and coriander stems",
+        "text": "Heat oil in a wok, saute minced ginger, garlic, green chillies, and finely chopped coriander stems for 2 minutes to extract essential citrusy oils.",
+        "minutes": 3
+      },
+      {
+        "section": "Simmer crunchy vegetables",
+        "text": "Add minced carrots, cabbage, and sweet corn. Pour in vegetable stock, season with salt and black pepper, and boil for 5 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Add lemon and fresh coriander",
+        "text": "Stir in cornflour slurry to give light body. Turn off heat, immediately stir in fresh lemon juice and chopped coriander leaves to preserve freshness and vitamin C.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Always add lemon juice after turning off heat; boiling citrus juice can turn the soup bitter."
+  },
+  {
     "id": "static-0769",
     "name": "Lemon Green Tea",
     "category": "Tea",
@@ -53598,6 +55023,80 @@
     "notes": "Kneading with yogurt gives Methi Thepla a multi-day shelf life—ideal for travel and tiffins."
   },
   {
+    "id": "static-1717",
+    "name": "Mexican Tortilla Soup (Spiced Black Bean, Roasted Corn & Tomato Broth with Crispy Tortilla Strips)",
+    "category": "Soup",
+    "region": "Mexican",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Corn tortillas, cut into thin strips and baked/fried",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Black beans, cooked and drained",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fire-roasted sweet corn kernels",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fire-roasted crushed tomatoes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion and bell pepper, diced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ground cumin, smoked paprika, and chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Avocado cubes, cilantro, and crumbled queso fresco / cotija",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute spiced tomato broth",
+        "text": "Heat oil in a pot, cook onions, peppers, and garlic with cumin, smoked paprika, and chilli powder until fragrant. Add fire-roasted tomatoes and broth, simmering for 15 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Add beans and corn",
+        "text": "Stir in black beans, roasted sweet corn, and fresh lime juice. Simmer for 5 minutes to meld flavors.",
+        "minutes": 5
+      },
+      {
+        "section": "Assemble with crispy tortillas",
+        "text": "Ladle piping hot soup into bowls. Top generously with crispy golden tortilla strips, avocado cubes, fresh cilantro, and crumbled cheese.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Crisp tortilla strips provide the signature crunch that transforms this spiced smoky soup into a complete meal."
+  },
+  {
     "id": "static-0840",
     "name": "Mihidana",
     "category": "Sweets",
@@ -55921,6 +57420,80 @@
     "notes": "Crisp, pungent instant radish pickle eaten across every Nepali household alongside dal-bhat-tarkari."
   },
   {
+    "id": "static-1718",
+    "name": "Mulligatawny Soup (Anglo-Indian Curried Lentil, Apple & Rice Soup with Coconut Milk)",
+    "category": "Soup",
+    "region": "Anglo-Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Yellow moong dal or red masoor dal, rinsed",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooked basmati rice",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tart green apple (Granny Smith), peeled and diced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Carrots and celery, diced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick coconut milk",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Vegetable or chicken stock",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Madras curry powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee or coconut oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice and cilantro",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute curry base and aromatics",
+        "text": "Heat ghee in a pot, cook onions, ginger, garlic, carrots, and celery for 5 minutes. Stir in Madras curry powder and diced green apple for 2 minutes.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook lentils in broth",
+        "text": "Add rinsed dal and stock. Bring to a boil and simmer on low heat for 18-20 minutes until lentils are completely soft. Puree half the soup for silky body.",
+        "minutes": 20
+      },
+      {
+        "section": "Enrich with coconut milk and rice",
+        "text": "Stir in thick coconut milk, cooked basmati rice, and fresh lemon juice. Simmer for 3 minutes, garnish with fresh cilantro, and serve warm.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Originating from Tamil 'Milagu-tannir' (pepper water); Anglo-Indian tradition enriched the spiced broth with tart apples, lentils, and coconut milk."
+  },
+  {
     "id": "static-0983",
     "name": "Mulo Bharta (Radish Mash)",
     "category": "Vegetable Bharta",
@@ -56631,6 +58204,75 @@
       }
     ],
     "notes": "A regal Mughlai stuffed flatbread made with robustly spiced slow-cooked mutton mince."
+  },
+  {
+    "id": "static-1719",
+    "name": "Mutton Paya Shorba / Lamb Trotter Broth (Slow-Simmered Spiced Bone Marrow Broth)",
+    "category": "Soup",
+    "region": "Mughlai / Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 60,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Mutton or lamb trotters (paya), cleaned thoroughly",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Water",
+        "quantity": "6",
+        "unit": "cups"
+      },
+      {
+        "name": "Onions, sliced",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole whole spices (black cardamom, cinnamon, cloves, bay leaf)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, coriander, and black pepper powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon wedges, ginger juliennes, and fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pressure-cook paya broth",
+        "text": "Add cleaned paya into a pressure cooker with 6 cups water, half the sliced onions, 1 tbsp ginger-garlic paste, turmeric, whole spices, and salt. Cook on medium-low for 45-50 minutes (8-10 whistles) until gelatinous and fall-apart tender.",
+        "minutes": 50
+      },
+      {
+        "section": "Prepare aromatic ghee tadka",
+        "text": "Heat ghee in a pot, fry remaining onions until golden brown. Add remaining ginger-garlic paste, coriander powder, and black pepper, cooking for 3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer broth and serve",
+        "text": "Strain or pour the tender paya and bone-marrow rich broth into the tadka. Simmer together for 10 minutes until deeply flavorful. Serve hot with ginger juliennes and lemon wedges.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Slow-simmering extracts rich collagen and bone marrow, yielding a deeply restorative, therapeutic winter shorba."
   },
   {
     "id": "static-0877",
@@ -60759,6 +62401,75 @@
     "notes": "Adding 2 tbsp fine semolina keeps Palak Puris puffed and crisp for longer."
   },
   {
+    "id": "static-1720",
+    "name": "Palak Shorba / Cream of Spinach Soup (Spiced Velvety Spinach & Cardamom Green Soup)",
+    "category": "Soup",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh tender spinach (palak), washed",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Potato, peeled and diced (for natural velvet body)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion and garlic cloves, chopped",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom and cumin seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Vegetable broth or water",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Desi ghee or butter",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh dairy cream",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder and black salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch palak in ice bath",
+        "text": "Blanch washed spinach leaves in boiling water for 1.5 minutes, then plunge immediately into iced water to preserve its vivid emerald green hue.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook potato aromatics",
+        "text": "Heat ghee, temper with cumin seeds and green cardamom. Saute onions, garlic, and diced potato in broth for 10 minutes until potato is tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Blend and season",
+        "text": "Blend cooked potato broth with the blanched spinach until silky smooth. Warm gently, swirl in fresh cream, roasted cumin, and black salt.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Ice-shocking preserves chlorophyll, giving the shorba an irresistible bright emerald color."
+  },
+  {
     "id": "static-1584",
     "name": "Palang Shaker Kochuri (Bengali Spiced Spinach & Hing Stuffed Puri)",
     "category": "Bread",
@@ -63588,6 +65299,154 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1701",
+    "name": "Pasta e Fagioli (Rustic Italian Ditalini Pasta & Borlotti Bean Stew)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Ditalini or elbow pasta",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Borlotti or cannellini beans, cooked",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Crushed plum tomatoes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Celery, carrot, and onion, finely minced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3",
+        "unit": "cloves"
+      },
+      {
+        "name": "Fresh rosemary sprig and bay leaf",
+        "quantity": "1",
+        "unit": "sprig"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated Pecorino or Parmesan cheese",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute soffritto and puree half beans",
+        "text": "Heat olive oil in a pot, cook onions, celery, carrots, and garlic until tender. Puree 1 cup of beans with 0.5 cup broth until smooth (to naturally thicken the stew), reserving remaining beans whole.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer stew base",
+        "text": "Add crushed tomatoes, bean puree, remaining whole beans, broth, rosemary, and bay leaf. Simmer on medium heat for 15 minutes until fragrant and comforting.",
+        "minutes": 15
+      },
+      {
+        "section": "Cook pasta and finish",
+        "text": "Add ditalini pasta directly into the pot, simmering for 8 minutes until tender. Discard rosemary sprig, ladle into wide bowls, and top with olive oil, black pepper, and grated cheese.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Classic Italian country dish; pureeing half the beans creates a velvety body without needing heavy cream or flour."
+  },
+  {
+    "id": "static-1702",
+    "name": "Pasta Primavera (Vibrant Garden Vegetables & Herb Garlic Penne)",
+    "category": "Pasta",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Penne or farfalle (bow-tie) pasta",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Broccoli florets, bite-sized",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Zucchini, sliced into half-moons",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Red and yellow bell peppers, sliced",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice and zest",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh basil leaves and grated Parmesan",
+        "quantity": "0.5",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blanch pasta and broccoli",
+        "text": "Cook pasta in boiling salted water for 8 minutes; in the last 2 minutes, drop in broccoli florets. Drain and reserve 0.5 cup pasta water.",
+        "minutes": 8
+      },
+      {
+        "section": "Flash-saute crisp vegetables",
+        "text": "Heat olive oil in a wide skillet, saute bell peppers, zucchini, and garlic on medium-high heat for 3-4 minutes until tender-crisp. Add halved cherry tomatoes for 1 minute.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with lemon and herbs",
+        "text": "Toss cooked pasta and broccoli into the skillet. Drizzle fresh lemon juice, zest, torn basil leaves, and Parmesan, tossing with pasta water until glossy and vibrant.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Celebration of spring vegetables; keeping the vegetables crisp with bright lemon juice keeps the pasta light and refreshing."
+  },
+  {
     "id": "static-0844",
     "name": "Patishapta",
     "category": "Sweets",
@@ -64216,6 +66075,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1703",
+    "name": "Penne Arrabbiata (Spicy Garlic & Crushed Tomato Sauce Penne)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Penne rigate pasta",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Crushed peeled San Marzano tomatoes",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh garlic cloves, finely sliced",
+        "quantity": "5",
+        "unit": "cloves"
+      },
+      {
+        "name": "Dried red chilli flakes or fresh red bird's eye chillies",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated Pecorino Romano or Parmesan",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil penne al dente",
+        "text": "Boil penne in generous salted water for 9-10 minutes until al dente. Reserve 0.5 cup pasta water.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer fiery arrabbiata sauce",
+        "text": "Warm olive oil in a skillet, add sliced garlic and chilli flakes, cooking gently until garlic is fragrant and translucent. Add crushed tomatoes, salt, and simmer over medium heat for 10-12 minutes until reduced and rich red.",
+        "minutes": 12
+      },
+      {
+        "section": "Coat penne",
+        "text": "Transfer drained penne directly into the simmering spicy sauce. Toss vigorously over medium heat for 1 minute with parsley and a splash of cooking water. Serve with grated Pecorino.",
+        "minutes": 2
+      }
+    ],
+    "notes": "'Arrabbiata' translates to 'angry' in Italian, describing the assertive heat of chillies infused into rich sweet garlic tomato sauce."
+  },
+  {
     "id": "static-1517",
     "name": "Pepe Aloo Bori Dalna (Green Papaya, Potato & Fried Lentil Dumpling Homestyle Curry)",
     "category": "Vegetable",
@@ -64464,6 +66387,70 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1704",
+    "name": "Pesto Genovese Pasta (Fresh Basil, Pine Nut, Garlic & Parmesan Fusilli)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Fusilli, trofie, or penne pasta",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Fresh sweet basil leaves, washed and dried",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Pine nuts or blanched walnuts, lightly toasted",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "2",
+        "unit": "cloves"
+      },
+      {
+        "name": "Parmigiano-Reggiano and Pecorino, finely grated",
+        "quantity": "0.66",
+        "unit": "cup"
+      },
+      {
+        "name": "Extra virgin olive oil (fruity, cold-pressed)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pound or blend vibrant pesto",
+        "text": "Pulse pine nuts and garlic in a mortar or food processor. Add fresh basil leaves and a pinch of coarse salt, pulsing in short bursts while slowly drizzling cold olive oil until smooth. Stir in grated cheeses by hand (never heat pesto).",
+        "minutes": 10
+      },
+      {
+        "section": "Boil fusilli",
+        "text": "Cook fusilli in heavily salted boiling water until al dente. Reserve 0.5 cup pasta water and drain.",
+        "minutes": 9
+      },
+      {
+        "section": "Toss off heat",
+        "text": "In a warm serving bowl, toss the drained hot pasta with fresh pesto and 2-3 tbsp pasta water until a creamy emerald green coating covers every spiral. Serve immediately.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Never cook pesto over direct flame as heat turns delicate fresh basil dark and bitter; emulsify strictly using the heat of freshly boiled pasta."
   },
   {
     "id": "static-0752",
@@ -73169,6 +75156,80 @@
     "notes": "Crisp, savory rice-and-gram flour ribbon snack flavored with garlic and asafoetida."
   },
   {
+    "id": "static-1721",
+    "name": "Roasted Butternut Squash & Sage Soup (Velvety Spiced Pumpkin / Butternut Squash Cream Soup)",
+    "category": "Soup",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Butternut squash or sweet pumpkin, peeled and cubed",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic cloves, whole",
+        "quantity": "5",
+        "unit": "cloves"
+      },
+      {
+        "name": "Yellow onion, chopped",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "8",
+        "unit": "leaves"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Heavy cream or coconut cream",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Ground nutmeg and ginger",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toasted pumpkin seeds (pepitas) for garnish",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast squash with garlic and sage",
+        "text": "Toss butternut squash cubes, whole garlic cloves, and fresh sage leaves with olive oil, salt, and pepper. Roast at 200°C (400°F) for 30 minutes until squash is caramelized and tender.",
+        "minutes": 30
+      },
+      {
+        "section": "Blend silky smooth",
+        "text": "Transfer roasted squash, soft garlic, and crispy sage into a blender with warm vegetable broth. Puree until completely velvety and golden.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer and garnish",
+        "text": "Pour pureed soup into a pot, stir in ground nutmeg, ginger, and cream. Simmer for 3 minutes, ladle into bowls, and scatter toasted pumpkin seeds on top.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Roasting squash with fresh sage caramelizes natural sweetness while imparting an earthy, herbaceous depth."
+  },
+  {
     "id": "static-1416",
     "name": "Roasted Masala Makhana & Peanut Namkeen (Spiced Ghee-Roasted Fox Nuts)",
     "category": "Snacks",
@@ -77683,6 +79744,80 @@
     "notes": "A vegetarian protein powerhouse mimicking the savory mouthfeel of classic keema paratha."
   },
   {
+    "id": "static-1705",
+    "name": "Spaghetti Marinara with Herb Meatballs (Slow-Simmered Tomato Sauce)",
+    "category": "Pasta",
+    "region": "Italian-American",
+    "prepMinutes": 20,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Spaghetti pasta",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Crushed whole plum tomatoes",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Ground minced meat (chicken, lamb, or soya)",
+        "quantity": "400",
+        "unit": "g"
+      },
+      {
+        "name": "Breadcrumbs soaked in 2 tbsp milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Egg, lightly beaten",
+        "quantity": "1",
+        "unit": "pc"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "5",
+        "unit": "cloves"
+      },
+      {
+        "name": "Fresh parsley, basil, and dried oregano",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape and sear meatballs",
+        "text": "Combine minced meat, soaked breadcrumbs, egg, half the garlic, herbs, Parmesan, and salt. Shape into walnut-sized balls. Sear in olive oil for 5 minutes until browned on all sides.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer in marinara",
+        "text": "Pour crushed tomatoes, remaining garlic, oregano, and basil into the pan with meatballs. Simmer gently on low heat for 20 minutes until meatballs are tender and sauce is rich.",
+        "minutes": 20
+      },
+      {
+        "section": "Cook spaghetti and serve",
+        "text": "Cook spaghetti until al dente, drain, and plate topped with hot slow-simmered marinara sauce, tender meatballs, and fresh Parmesan shavings.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Soaking breadcrumbs in milk (panade) ensures tender, melt-in-the-mouth meatballs that remain juicy throughout simmering."
+  },
+  {
     "id": "static-0945",
     "name": "Spanish Potato Omelette",
     "category": "Breakfast",
@@ -79145,6 +81280,70 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1706",
+    "name": "Spinach & Ricotta Ravioli with Sage Butter Sauce (Handmade Stuffed Pasta)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 25,
+    "cookMinutes": 10,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Fresh or dried ravioli stuffed with spinach and ricotta",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Salted cultured butter",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "12",
+        "unit": "leaves"
+      },
+      {
+        "name": "Garlic clove, lightly crushed",
+        "quantity": "1",
+        "unit": "clove"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese, grated",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nutmeg powder and cracked black pepper",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil ravioli gently",
+        "text": "Drop stuffed ravioli into gently simmering salted water. Cook for 3-4 minutes (or package directions) until they float to the top. Lift out with a slotted spoon.",
+        "minutes": 4
+      },
+      {
+        "section": "Brown sage butter (Burro e Salvia)",
+        "text": "Melt butter in a wide skillet over medium heat with crushed garlic and whole fresh sage leaves. Cook until butter bubbles, foams, and begins turning golden nutty brown with crisp sage.",
+        "minutes": 4
+      },
+      {
+        "section": "Glaze and plate",
+        "text": "Discard garlic clove, add 2 tbsp pasta water and lemon juice to emulsify the brown butter. Gently slide in ravioli, tossing to coat. Serve sprinkled with grated Parmigiano-Reggiano.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Classic Northern Italian preparation where nutty browned butter and crisp sage amplify the delicate sweet spinach-ricotta filling."
   },
   {
     "id": "static-0719",
@@ -80953,6 +83152,75 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1722",
+    "name": "Sweet Corn Vegetable Soup (Silky Indo-Chinese Corn Chowder with Diced Vegetables)",
+    "category": "Soup",
+    "region": "Indo-Chinese",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Cream-style sweet corn (or fresh sweet corn pureed smooth)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whole sweet corn kernels",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Carrots, green beans, and cabbage, finely minced",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Vegetable stock or water",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Cornflour dissolved in 3 tbsp cold water",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar and white pepper powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Finely chopped spring onion greens",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil stock and corn",
+        "text": "In a pot, bring vegetable stock, cream-style corn, and whole sweet corn kernels to a rolling boil. Skim any froth from the surface.",
+        "minutes": 6
+      },
+      {
+        "section": "Add minced vegetables and thicken",
+        "text": "Add finely minced carrots, beans, and cabbage. Season with salt, sugar, and white pepper. Pour in cornflour slurry, stirring continuously until the soup thickens and turns glossy.",
+        "minutes": 5
+      },
+      {
+        "section": "Garnish with sesame and spring onions",
+        "text": "Simmer for 2 minutes to cook out starch. Remove from heat, drizzle toasted sesame oil, and garnish with spring onion greens. Serve hot.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Classic Indian Chinese family favorite; using a blend of pureed cream corn and whole kernels creates both luscious body and sweet pops of crunch."
+  },
+  {
     "id": "static-0802",
     "name": "Sweet Lassi",
     "category": "Beverage",
@@ -82381,6 +84649,85 @@
     "notes": "Fiber-rich and crunchy, Thorer Bora is a traditional Bengali niramish starter before dal and shukto."
   },
   {
+    "id": "static-1723",
+    "name": "Tibetan Vegetable Thukpa (Himalayan Warming Noodle & Mixed Vegetable Spiced Soup)",
+    "category": "Soup",
+    "region": "Tibetan",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Wheat noodles or egg noodles, boiled",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Shredded cabbage, carrots, bell peppers, and mushrooms",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "4.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Onion, sliced",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomatoes, chopped",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger and garlic, minced",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Tibetan spice blend (cumin, coriander, turmeric, timur / Sichuan pepper)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dark soy sauce and lemon juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil or sesame oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander and green chillies for garnish",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute spiced tomato base",
+        "text": "Heat mustard oil in a pot, cook onions, ginger, and garlic until golden. Add chopped tomatoes, ground spices, and cook until tomatoes soften into a fragrant masala.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer vegetable broth",
+        "text": "Pour in vegetable broth and soy sauce. Add crunchy shredded cabbage, carrots, bell peppers, and mushrooms, simmering for 6-8 minutes so vegetables retain gentle bite.",
+        "minutes": 8
+      },
+      {
+        "section": "Assemble over noodles",
+        "text": "Place boiled noodles in deep bowls. Ladle piping hot spiced vegetable broth over the noodles, squeeze fresh lemon juice, and garnish with chopped fresh coriander and green chillies.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Traditional Himalayan comfort food eaten throughout Ladakh, Tibet, Nepal, and Sikkim to beat freezing mountain chills."
+  },
+  {
     "id": "static-0861",
     "name": "Til Ladoo",
     "category": "Sweets",
@@ -82777,6 +85124,169 @@
     "notes": "Addictive sweet-tangy-spicy Bengali chanachur loaded with raisins, cashews, and peanuts."
   },
   {
+    "id": "static-1724",
+    "name": "Tom Kha Gai / Tom Kha Veg (Creamy Coconut Galangal Thai Soup with Straw Mushrooms)",
+    "category": "Soup",
+    "region": "Thai",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Thick coconut milk",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Vegetable or chicken stock",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh galangal, sliced into coins",
+        "quantity": "8",
+        "unit": "coins"
+      },
+      {
+        "name": "Lemongrass stalks, bruised and cut in 2-inch pieces",
+        "quantity": "2",
+        "unit": "stalks"
+      },
+      {
+        "name": "Kaffir lime leaves, torn",
+        "quantity": "5",
+        "unit": "leaves"
+      },
+      {
+        "name": "Oyster or straw mushrooms, halved",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thai bird's eye chillies, lightly crushed",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh lime juice and soy sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh cilantro leaves for garnish",
+        "quantity": "0.25",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Infuse herbs in broth and coconut milk",
+        "text": "In a pot, bring stock and coconut milk to a gentle simmer. Add galangal coins, bruised lemongrass, torn kaffir lime leaves, and crushed chillies. Simmer gently for 8 minutes to infuse aromatics without boiling violently.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook mushrooms and season",
+        "text": "Add mushrooms and simmer for 4 minutes until tender. Stir in soy sauce and palm sugar, turning off the heat.",
+        "minutes": 4
+      },
+      {
+        "section": "Balance with lime and garnish",
+        "text": "Stir in fresh lime juice to taste, ladle into bowls (leaving herb pieces as aromatic garnish), and scatter fresh cilantro on top.",
+        "minutes": 2
+      }
+    ],
+    "notes": "The hallmark of Tom Kha is creamy coconut milk scented with citrusy galangal, balanced with sour lime and fiery chillies."
+  },
+  {
+    "id": "static-1725",
+    "name": "Tom Yum Soup (Aromatic Thai Lemongrass, Kaffir Lime, Galangal & Mushroom Hot-Sour Soup)",
+    "category": "Soup",
+    "region": "Thai",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Clear vegetable or chicken broth",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Lemongrass stalks, bruised and cut into 2-inch batons",
+        "quantity": "3",
+        "unit": "stalks"
+      },
+      {
+        "name": "Fresh galangal root, sliced thin",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "Kaffir lime leaves, torn to release oil",
+        "quantity": "6",
+        "unit": "leaves"
+      },
+      {
+        "name": "Button or straw mushrooms, halved",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thai roasted chilli paste (Nam Prik Pao)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Soy sauce or fish sauce",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Thai bird's eye chillies, bruised",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh cilantro (coriander) sprigs",
+        "quantity": "0.25",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Infuse Thai herbal trio",
+        "text": "Bring broth to a boil. Add bruised lemongrass, galangal, kaffir lime leaves, and crushed chillies. Simmer for 6 minutes until intensely fragrant.",
+        "minutes": 6
+      },
+      {
+        "section": "Add vegetables and chilli paste",
+        "text": "Stir in Thai chilli paste, halved mushrooms, and cherry tomatoes. Simmer for 4 minutes until mushrooms are tender.",
+        "minutes": 4
+      },
+      {
+        "section": "Season with lime off heat",
+        "text": "Turn off heat, stir in soy sauce and fresh lime juice to achieve the signature zesty hot-and-sour profile. Garnish with fresh cilantro sprigs.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Thailand's national soup; always bruise the lemongrass and tear kaffir leaves with your fingers to burst their aromatic oil glands."
+  },
+  {
     "id": "static-0722",
     "name": "Tomato Basil Sandwich",
     "category": "Sandwich",
@@ -83169,50 +85679,6 @@
         "section": "Assemble",
         "text": "Spread butter or condiment on bread, add filling and season lightly. Serve fresh or grill until crisp.",
         "minutes": 5
-      }
-    ],
-    "notes": "Starter recipe: adjust seasoning and quantities to taste."
-  },
-  {
-    "id": "static-0926",
-    "name": "Tomato Soup",
-    "category": "Starters",
-    "region": "Indian / International",
-    "prepMinutes": 5,
-    "cookMinutes": 10,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Main ingredient",
-        "quantity": "ripe tomatoes",
-        "unit": "2 cups"
-      },
-      {
-        "name": "Onion or mixed vegetables",
-        "quantity": "as needed",
-        "unit": "1/2 cup"
-      },
-      {
-        "name": "Spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil or yogurt/breadcrumbs as needed",
-        "quantity": "as needed",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare",
-        "text": "Wash, chop or mash ingredients and mix with seasoning.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook or assemble",
-        "text": "Simmer tomatoes with onion and stock, blend smooth and season before serving.",
-        "minutes": 10
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
@@ -85551,6 +88017,85 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1726",
+    "name": "Vegetable Hot and Sour Soup (Fiery Tangy Indo-Chinese Broth with Shredded Veg & Tofu)",
+    "category": "Soup",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Firm tofu or paneer, cut into matchsticks",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Button mushrooms or wood ear mushrooms, thinly sliced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Carrots, cabbage, and bamboo shoots, finely shredded",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White vinegar or rice vinegar",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed black pepper or white pepper powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli paste or sriracha",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cornflour dissolved in 3 tbsp cold water",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sesame oil and chopped spring onions",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute aromatics and simmer vegetables",
+        "text": "Heat oil in a wok, saute minced ginger, garlic, and sliced mushrooms for 2 minutes. Add shredded carrots, cabbage, and pour in vegetable broth, bringing to a boil.",
+        "minutes": 6
+      },
+      {
+        "section": "Season with sour and spicy sauces",
+        "text": "Add dark soy sauce, vinegar, chilli paste, white pepper, and tofu matchsticks. Simmer for 3 minutes to allow tofu to absorb the tangy broth.",
+        "minutes": 4
+      },
+      {
+        "section": "Thicken and garnish",
+        "text": "Whisk in cornflour slurry, simmering for 2 minutes until soup is glossy and velvet-thick. Drizzle toasted sesame oil and sprinkle spring onions.",
+        "minutes": 3
+      }
+    ],
+    "notes": "The quintessential Sichuan-inspired winter warmer balancing sour vinegar and pungent peppery spice."
+  },
+  {
     "id": "static-0142",
     "name": "Vegetable Idli",
     "category": "Breakfast",
@@ -85603,6 +88148,159 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1707",
+    "name": "Vegetable Lasagna (Layered Ricotta, Mozzarella, Roasted Vegetables & Marinara Sauce)",
+    "category": "Pasta",
+    "region": "Italian",
+    "prepMinutes": 25,
+    "cookMinutes": 40,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Lasagna pasta sheets (boiled or oven-ready)",
+        "quantity": "12",
+        "unit": "sheets"
+      },
+      {
+        "name": "Marinara tomato sauce",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ricotta cheese mixed with 1 egg and herbs",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Zucchini, bell peppers, and mushrooms, roasted or sauteed",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Baby spinach",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Olive oil, dried oregano, and basil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep filling and sauce",
+        "text": "Saute diced zucchini, bell peppers, mushrooms, and spinach with olive oil and oregano until moisture evaporates. Mix ricotta with herbs, salt, and half the Parmesan.",
+        "minutes": 10
+      },
+      {
+        "section": "Layer lasagna",
+        "text": "Spread a thin layer of marinara in a baking dish. Place 3 lasagna sheets, spread seasoned ricotta, roasted vegetables, marinara sauce, and mozzarella. Repeat for 3 layers, finishing with lasagna sheets topped with marinara and generous mozzarella/Parmesan.",
+        "minutes": 15
+      },
+      {
+        "section": "Bake until bubbling",
+        "text": "Cover loosely with foil and bake at 190°C (375°F) for 25 minutes. Remove foil and bake an additional 15 minutes until top is golden and bubbling. Let rest 15 minutes before cutting.",
+        "minutes": 40
+      }
+    ],
+    "notes": "Resting before slicing allows the layered cheeses and pasta sheets to bind cleanly into distinct structural portions."
+  },
+  {
+    "id": "static-1727",
+    "name": "Vegetable Manchow Soup (Spicy Indo-Chinese Coriander Garlic Broth with Crispy Fried Noodles)",
+    "category": "Soup",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Crispy deep-fried hakka noodles (for topping)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Carrots, French beans, and cabbage, finely minced",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Button mushrooms, finely diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Garlic, finely minced",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger and green chillies, finely minced",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander stems, finely chopped",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red chilli sauce and vinegar",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "4",
+        "unit": "cups"
+      },
+      {
+        "name": "Cornflour dissolved in 3 tbsp cold water",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Spring onion greens",
+        "quantity": "0.33",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute fragrant garlic and coriander stems",
+        "text": "Heat oil in a hot wok, sizzle generous minced garlic, ginger, green chillies, and coriander stems for 2 minutes until golden and intensely aromatic.",
+        "minutes": 3
+      },
+      {
+        "section": "Toss minced vegetables and add broth",
+        "text": "Add minced carrots, beans, cabbage, and mushrooms. Stir-fry on high heat for 2 minutes. Pour in vegetable broth, soy sauce, chilli sauce, vinegar, and salt. Bring to a rolling boil.",
+        "minutes": 6
+      },
+      {
+        "section": "Thicken and serve with crispy noodles",
+        "text": "Whisk in cornflour slurry, cooking for 2 minutes until glossy and thick. Ladle steaming hot soup into bowls and serve immediately crowned with a mound of crunchy fried noodles.",
+        "minutes": 4
+      }
+    ],
+    "notes": "High garlic content and crunchy golden fried noodles served on top are the hallmark signatures of street-style Manchow soup."
   },
   {
     "id": "static-0665",

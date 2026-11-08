@@ -146,3 +146,52 @@
 - **Catalogue Verification & Alphabetical Sorting**:
   - Sorted all **1,546** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
   - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.
+
+
+## 10. Diverse Pasta & Soup Catalogue Expansion & Placeholder Deduplication
+- **Added 38 Authentic Pasta & Soup Recipes** (`static-1690`–`static-1727`):
+  - **Pasta Recipes (18)**:
+    1. *Baked Ziti / Pasta al Forno (Four-Cheese Baked Ziti with Rich Tomato Sauce)* (`static-1690`)
+    2. *Cacio e Pepe (Classic Roman Spaghetti with Pecorino Romano & Toasted Black Pepper)* (`static-1691`)
+    3. *Chilli Garlic Butter Noodles / Spaghetti (Fiery Indo-Western Garlic Butter Pasta)* (`static-1692`)
+    4. *Classic Baked Macaroni and Cheese (Creamy Cheddar & Crispy Breadcrumb Mac & Cheese)* (`static-1693`)
+    5. *Classic Minestrone Pasta (Hearty Ditalini Pasta with White Beans & Vegetables)* (`static-1694`)
+    6. *Classic Spaghetti Aglio e Olio (Garlic, Olive Oil & Red Pepper Flakes Spaghetti)* (`static-1695`)
+    7. *Creamy Mushroom & Spinach Fettuccine (Garlic Herb Cream Sauce with Sliced Cremini)* (`static-1696`)
+    8. *Creamy Sun-Dried Tomato & Basil Penne (Tuscan Herb Cream Sauce)* (`static-1697`)
+    9. *Creamy Tomato Basil Pasta / Penne alla Vodka (Velvety Pink Sauce Pasta)* (`static-1698`)
+    10. *Desi Masala Pasta (Indian Street-Style Spiced Masala Penne with Capsicum & Corn)* (`static-1699`)
+    11. *Fettuccine Alfredo (Rich Butter & Parmesan Cream Sauce Pasta)* (`static-1700`)
+    12. *Pasta e Fagioli (Rustic Italian Ditalini Pasta & Borlotti Bean Stew)* (`static-1701`)
+    13. *Pasta Primavera (Vibrant Garden Vegetables & Herb Garlic Penne)* (`static-1702`)
+    14. *Penne Arrabbiata (Spicy Garlic & Crushed Tomato Sauce Penne)* (`static-1703`)
+    15. *Pesto Genovese Pasta (Fresh Basil, Pine Nut, Garlic & Parmesan Fusilli)* (`static-1704`)
+    16. *Spaghetti Marinara with Herb Meatballs (Slow-Simmered Tomato Sauce)* (`static-1705`)
+    17. *Spinach & Ricotta Ravioli with Sage Butter Sauce (Handmade Stuffed Pasta)* (`static-1706`)
+    18. *Vegetable Lasagna (Layered Ricotta, Mozzarella, Roasted Vegetables & Marinara Sauce)* (`static-1707`)
+  - **Soup Recipes (20)**:
+    19. *Broccoli & Toasted Almond Soup (Nutrient-Dense Silky Green Broccoli & Almond Broth)* (`static-1708`)
+    20. *Chicken Hot and Sour Soup (Tangy Peppery Indo-Chinese Shredded Chicken Soup)* (`static-1709`)
+    21. *Chicken Sweet Corn Soup (Velvety Shredded Chicken & Egg Drop Sweet Corn Broth)* (`static-1710`)
+    22. *Classic Italian Minestrone Soup (Hearty Bean, Ditalini, Zucchini & Tomato Broth with Pesto)* (`static-1711`)
+    23. *Clear Vegetable Wonton Soup (Delicate Sesame Ginger Broth with Steamed Vegetable Dumplings)* (`static-1712`)
+    24. *Cream of Mushroom Soup (Earthy Sliced Cremini & Thyme Pureed Cream Soup)* (`static-1713`)
+    25. *Creamy Roasted Tomato Basil Soup / Classic Tomato Soup (Slow-Roasted Plum Tomatoes & Fresh Basil)* (`static-1714`)
+    26. *French Onion Soup (Rich Caramelized Onion & Herb Broth with Crusty Cheesy Baguette)* (`static-1715`)
+    27. *Lemon Coriander Soup (Immunity-Boosting Clear Vegetable Broth with Fresh Lemon & Cilantro)* (`static-1716`)
+    28. *Mexican Tortilla Soup (Spiced Black Bean, Roasted Corn & Tomato Broth with Crispy Tortilla Strips)* (`static-1717`)
+    29. *Mulligatawny Soup (Anglo-Indian Curried Lentil, Apple & Rice Soup with Coconut Milk)* (`static-1718`)
+    30. *Mutton Paya Shorba / Lamb Trotter Broth (Slow-Simmered Spiced Bone Marrow Broth)* (`static-1719`)
+    31. *Palak Shorba / Cream of Spinach Soup (Spiced Velvety Spinach & Cardamom Green Soup)* (`static-1720`)
+    32. *Roasted Butternut Squash & Sage Soup (Velvety Spiced Pumpkin / Butternut Squash Cream Soup)* (`static-1721`)
+    33. *Sweet Corn Vegetable Soup (Silky Indo-Chinese Corn Chowder with Diced Vegetables)* (`static-1722`)
+    34. *Tibetan Vegetable Thukpa (Himalayan Warming Noodle & Mixed Vegetable Spiced Soup)* (`static-1723`)
+    35. *Tom Kha Gai / Tom Kha Veg (Creamy Coconut Galangal Thai Soup with Straw Mushrooms)* (`static-1724`)
+    36. *Tom Yum Soup (Aromatic Thai Lemongrass, Kaffir Lime, Galangal & Mushroom Hot-Sour Soup)* (`static-1725`)
+    37. *Vegetable Hot and Sour Soup (Fiery Tangy Indo-Chinese Broth with Shredded Veg & Tofu)* (`static-1726`)
+    38. *Vegetable Manchow Soup (Spicy Indo-Chinese Coriander Garlic Broth with Crispy Fried Noodles)* (`static-1727`)
+- **Removed Outdated Starter Outline Placeholder**:
+  - Eliminated generic outline *Tomato Soup* (`static-0926`), replaced with authentic *Creamy Roasted Tomato Basil Soup / Classic Tomato Soup*.
+- **Catalogue Verification & Alphabetical Sorting**:
+  - Sorted all **1,583** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
+  - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.
