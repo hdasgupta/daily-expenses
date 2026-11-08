@@ -11,6 +11,7 @@ import {
   recordLocationSelection,
 } from "../lib/locationTracker";
 import { todayKolkata } from "../utils/dates.js";
+import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import "./dietChart.css";
 
 const meals = ["Breakfast", "Lunch", "Evening Snacks", "Dinner"];
@@ -339,6 +340,7 @@ export default function FoodChart() {
   const [pickerLimit, setPickerLimit] = useState(INITIAL_PICKER_LIMIT);
   const [meal, setMeal] = useState("Breakfast");
   const [query, setQuery] = useState("");
+  const [pickerCategory, setPickerCategory] = useState("All");
   const [viewer, setViewer] = useState(null);
   const [saving, setSaving] = useState(false);
   const [marketingCategories, setMarketingCategories] = useState([]);
@@ -533,25 +535,16 @@ export default function FoodChart() {
     [localUsage]
   );
 
-  const filteredRecipes = useMemo(() => {
-    const qText = query.trim().toLowerCase();
-    const matching = qText
-      ? recipes.filter((r) =>
-          [r.name, r.category, r.region, ...(r.ingredients || []).map((i) => i.name)]
-            .join(" ")
-            .toLowerCase()
-            .includes(qText)
-        )
-      : recipes;
+  const indexedRecipes = useMemo(() => indexRecipes(recipes), [recipes]);
+  const pickerCategories = useMemo(() => extractCategories(recipes), [recipes]);
 
-    return [...matching].sort((a, b) => {
-      const usageDiff = getRecipeUsageCount(b) - getRecipeUsageCount(a);
-      if (usageDiff !== 0) return usageDiff;
-      const userDiff = Number(b.userUsageCount || 0) - Number(a.userUsageCount || 0);
-      if (userDiff !== 0) return userDiff;
-      return String(a.name || "").localeCompare(String(b.name || ""));
+  const filteredRecipes = useMemo(() => {
+    return searchAndRankRecipes(indexedRecipes, {
+      query,
+      category: pickerCategory,
+      getUsageCount,
     });
-  }, [recipes, query, getRecipeUsageCount]);
+  }, [indexedRecipes, query, pickerCategory, getUsageCount]);
 
   const visiblePickerRecipes = useMemo(
     () => filteredRecipes.slice(0, pickerLimit),
@@ -708,6 +701,7 @@ export default function FoodChart() {
           onClick={() => {
             setMeal("Breakfast");
             setPickerLimit(INITIAL_PICKER_LIMIT);
+            setPickerCategory("All");
             setAdding(true);
           }}
         >
@@ -784,6 +778,7 @@ export default function FoodChart() {
                     onClick={() => {
                       setMeal(m);
                       setPickerLimit(INITIAL_PICKER_LIMIT);
+                      setPickerCategory("All");
                       setAdding(true);
                       setQuery("");
                     }}
@@ -873,7 +868,59 @@ export default function FoodChart() {
                 }}
                 placeholder="Search recipe, ingredient, category or region…"
               />
+              {query && (
+                <button
+                  type="button"
+                  className="diet-search-clear"
+                  onClick={() => {
+                    setQuery("");
+                    setPickerLimit(INITIAL_PICKER_LIMIT);
+                  }}
+                  aria-label="Clear search"
+                  title="Clear search"
+                >
+                  <X size={15} />
+                </button>
+              )}
+              <span className="diet-search-badge">
+                {filteredRecipes.length} {filteredRecipes.length === 1 ? "match" : "matches"}
+              </span>
             </label>
+            <div className="diet-category-chips" style={{ marginBottom: 10 }}>
+              {pickerCategories.map((cat) => (
+                <button
+                  type="button"
+                  key={cat}
+                  className={`diet-category-chip${pickerCategory === cat ? " active" : ""}`}
+                  onClick={() => {
+                    setPickerCategory(cat);
+                    setPickerLimit(INITIAL_PICKER_LIMIT);
+                  }}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            {(query || pickerCategory !== "All") && (
+              <div className="diet-search-meta" style={{ margin: "-2px 0 10px" }}>
+                <span>
+                  Showing {filteredRecipes.length} {filteredRecipes.length === 1 ? "match" : "matches"}
+                  {pickerCategory !== "All" ? ` in ${pickerCategory}` : ""}
+                  {query ? ` for "${query}"` : ""}
+                </span>
+                <button
+                  type="button"
+                  className="diet-clear-filters-btn"
+                  onClick={() => {
+                    setQuery("");
+                    setPickerCategory("All");
+                    setPickerLimit(INITIAL_PICKER_LIMIT);
+                  }}
+                >
+                  Clear filters
+                </button>
+              </div>
+            )}
             <div className="diet-picker-list">
               {recipesLoading && !recipes.length ? (
                 <p className="diet-empty">Loading recipes…</p>

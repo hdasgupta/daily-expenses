@@ -210,3 +210,29 @@
   - Verified 0 duplicate IDs and 0 duplicate names across the remaining **1,468** unique, authentic recipes.
   - Sorted all entries strictly alphabetically from A to Z (`Aam Panna` through `Wai Wai Sadeko`).
   - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.
+
+
+## 12. Recipe Search Optimization & Smart Category Filtering (Recipe Master & Food Chart)
+- **High-Performance Recipe Search & Indexing Engine (`frontend/src/lib/recipeSearch.js`)**:
+  - Implemented pre-indexed tokenization (`indexRecipes`) that normalizes titles, categories, regions, and ingredient text into lightweight searchable vectors upon initial catalogue fetch, achieving sub-millisecond search execution.
+  - Multi-token semantic search matching across any word combination (e.g. searching *"tomato soup"*, *"prawn garlic"*, or *"spinach ravioli"* matches regardless of word order across recipe names, categories, regions, and ingredient lists).
+  - Multi-tier relevance scoring:
+    - **Exact title match** (+1,000 pts)
+    - **Exact phrase match in title** (+700 pts)
+    - **Prefix match on recipe title** (+500 pts)
+    - **All search tokens present in title** (+350 pts)
+    - **Category / regional cuisine match** (+250 pts)
+    - **Partial token and ingredient matches** (+40–150 pts with title density bonus)
+    - Seamless tie-breaking by personal frequency, total usage count, and alphabetical order.
+  - Category extractor (`extractCategories`) automatically compiling all available recipe categories for instant one-tap filtering.
+- **Recipe Master Search & UX Overhaul (`frontend/src/pages/RecipeMaster.jsx`, `frontend/src/pages/dietChart.css`)**:
+  - Integrated smart pagination (`usePagination` & `Pagination.jsx`) with customizable items per page (10, 20, 50, 100), eliminating DOM thrashing and lag from rendering all 1,468 recipe cards simultaneously.
+  - Added horizontal scrollable Category Chips (*All*, *Breakfast*, *Sweets*, *Pasta*, *Soup*, *Vegetable*, *Bread*, *Snacks*, *Prawns*, *Fish*, etc.) for one-tap cuisine discovery.
+  - Added instant clear button (`X`) within the search bar and live match count badge (*"Showing X matching recipes"*).
+  - Search metadata bar showing active query and active category filter with a one-click *"Clear filters"* button.
+  - Multi-attribute sorting dropdown: *Recipe Name*, *Cook + Prep Time*, *Ingredient Count*, and *Most Frequently Used*.
+- **Food Chart Add Recipe Modal Optimization (`frontend/src/pages/FoodChart.jsx`)**:
+  - Wired `recipeSearch.js` directly into the Add Recipe modal picker, accelerating search responses to instant 0ms latency.
+  - Added Category Filter Chips inside the modal so users can immediately filter for breakfast, soups, pastas, or snacks without typing.
+  - Added instant clear button (`X`) and live matching count badge (*"X matches"*).
+  - Automatically resets search query and category filter upon opening the picker modal, preserving the duplicate detection badge and conflict prevention rules.

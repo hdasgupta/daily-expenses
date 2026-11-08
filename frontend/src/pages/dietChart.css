@@ -66,3 +66,92 @@
   background: color-mix(in srgb, var(--diet-muted, #70757a) 15%, transparent);
   border: 1px solid color-mix(in srgb, var(--diet-muted, #70757a) 25%, transparent);
 }
+
+/* Optimized Search & Category Filtering */
+.diet-search-container {
+  margin-bottom: 14px;
+}
+.diet-search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 3px;
+  color: var(--diet-muted, #70757a);
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.diet-search-clear:hover {
+  color: var(--text, #202124);
+  background: var(--hover, rgba(127, 127, 127, 0.12));
+}
+.diet-search-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary, #2563eb);
+  background: var(--diet-soft, #eef6fc);
+  border: 1px solid color-mix(in srgb, var(--primary, #2563eb) 20%, transparent);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.diet-category-chips {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  margin: 0 0 10px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.diet-category-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid var(--diet-border, #d9dde3);
+  background: var(--diet-surface, #fff);
+  color: var(--text, #202124);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+.diet-category-chip:hover {
+  background: var(--hover, rgba(127, 127, 127, 0.08));
+  border-color: var(--primary, #2563eb);
+}
+.diet-category-chip.active {
+  background: var(--primary, #2563eb);
+  color: #fff;
+  border-color: var(--primary, #2563eb);
+  font-weight: 600;
+}
+.diet-search-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  color: var(--diet-muted, #70757a);
+}
+.diet-clear-filters-btn {
+  background: transparent;
+  border: 0;
+  color: var(--primary, #2563eb);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.diet-clear-filters-btn:hover {
+  text-decoration: underline;
+}

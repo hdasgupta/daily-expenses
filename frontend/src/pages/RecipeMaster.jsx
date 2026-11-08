@@ -1,4 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import Pagination from "../components/Pagination";
+import { usePagination } from "../hooks/usePagination";
+import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import { BookOpen, CalendarClock, CalendarDays, Clock3, MapPin, Plus, Search, ShoppingBasket, X } from "lucide-react";
 import { api, showToast } from "../lib/api";
 import {
@@ -516,6 +519,8 @@ export default function RecipeMaster() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("All");
+  const [page, setPage] = useState(1);
   const [viewer, setViewer] = useState(null);
   const [currentCoords, setCurrentCoords] = useState(null);
   const [marketingCategories, setMarketingCategories] = useState([]);
@@ -527,6 +532,8 @@ export default function RecipeMaster() {
   const [addingToChart, setAddingToChart] = useState(false);
   const [chartError, setChartError] = useState("");
   const [locations, setLocations] = useState([]);
+
+  const pagination = usePagination("recipe-master", "name");
 
   useEffect(() => {
     let active = true;
@@ -559,33 +566,56 @@ export default function RecipeMaster() {
     };
   }, []);
 
-  const getRecipeUsageCount = (recipe) => {
-    const serverUsage = Number(recipe?.usageCount ?? recipe?.usage_count ?? 0);
-    const clientUsage = Number(localUsage[String(recipe?.id)] || 0);
-    return serverUsage + clientUsage;
-  };
+  const indexedRecipes = useMemo(() => indexRecipes(recipes), [recipes]);
+  const categoryList = useMemo(() => extractCategories(recipes), [recipes]);
+
+  const getRecipeUsageCount = useCallback(
+    (recipe) => {
+      const serverUsage = Number(recipe?.usageCount ?? recipe?.usage_count ?? 0);
+      const clientUsage = Number(localUsage[String(recipe?.id)] || 0);
+      return serverUsage + clientUsage;
+    },
+    [localUsage]
+  );
 
   const filtered = useMemo(() => {
-    const matching = recipes.filter((recipe) =>
-      [
-        recipe.name,
-        recipe.category,
-        recipe.region,
-        ...(recipe.ingredients || []).map((ingredient) => ingredient.name),
-      ]
-        .join(" ")
-        .toLowerCase()
-        .includes(query.toLowerCase())
-    );
-
-    return [...matching].sort((a, b) => {
-      const usageDiff = getRecipeUsageCount(b) - getRecipeUsageCount(a);
-      if (usageDiff !== 0) return usageDiff;
-      const userDiff = Number(b.userUsageCount || 0) - Number(a.userUsageCount || 0);
-      if (userDiff !== 0) return userDiff;
-      return String(a.name || "").localeCompare(String(b.name || ""));
+    return searchAndRankRecipes(indexedRecipes, {
+      query,
+      category,
+      sortColumn: pagination.sortColumn,
+      sortDirection: pagination.sortDirection,
+      getUsageCount: getRecipeUsageCount,
     });
-  }, [recipes, query, localUsage]);
+  }, [indexedRecipes, query, category, pagination.sortColumn, pagination.sortDirection, getRecipeUsageCount]);
+
+  const pageSize = Number(pagination.pageSize) || 20;
+  const paginated = useMemo(() => {
+    const start = (page - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [filtered, page, pageSize]);
+
+  const handleQueryChange = (val) => {
+    setQuery(val);
+    setPage(1);
+  };
+
+  const handleCategoryChange = (cat) => {
+    setCategory(cat);
+    setPage(1);
+  };
+
+  const handleClearFilters = () => {
+    setQuery("");
+    setCategory("All");
+    setPage(1);
+  };
+
+  const sortOptions = [
+    { value: "name", label: "Recipe Name" },
+    { value: "totalTime", label: "Cook + Prep Time" },
+    { value: "ingredientCount", label: "Ingredient Count" },
+    { value: "usageCount", label: "Most Frequently Used" },
+  ];
 
   const handleViewRecipe = (recipe) => {
     if (recipe?.id) {
@@ -728,19 +758,60 @@ export default function RecipeMaster() {
         </div>
       </div>
       {error && <div className="diet-error">{error}</div>}
-      <label className="diet-search">
-        <Search size={17} />
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search recipe, ingredient, category or region…"
-        />
-      </label>
+      <div className="diet-search-container">
+        <label className="diet-search">
+          <Search size={17} />
+          <input
+            value={query}
+            onChange={(e) => handleQueryChange(e.target.value)}
+            placeholder="Search recipe, ingredient, category or region…"
+          />
+          {query && (
+            <button
+              type="button"
+              className="diet-search-clear"
+              onClick={() => handleQueryChange("")}
+              aria-label="Clear search"
+              title="Clear search"
+            >
+              <X size={16} />
+            </button>
+          )}
+          <span className="diet-search-badge">
+            {filtered.length} {filtered.length === 1 ? "recipe" : "recipes"}
+          </span>
+        </label>
+        <div className="diet-category-chips">
+          {categoryList.map((cat) => (
+            <button
+              type="button"
+              key={cat}
+              className={`diet-category-chip${category === cat ? " active" : ""}`}
+              onClick={() => handleCategoryChange(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        {(query || category !== "All") && (
+          <div className="diet-search-meta">
+            <span>
+              Showing {filtered.length} matching {filtered.length === 1 ? "recipe" : "recipes"}
+              {category !== "All" ? ` in ${category}` : ""}
+              {query ? ` for "${query}"` : ""}
+            </span>
+            <button type="button" className="diet-clear-filters-btn" onClick={handleClearFilters}>
+              Clear filters
+            </button>
+          </div>
+        )}
+      </div>
       {loading ? (
         <p>Loading recipes…</p>
       ) : (
-        <div className="diet-recipe-list">
-          {filtered.map((recipe) => {
+        <>
+          <div className="diet-recipe-list">
+            {paginated.map((recipe) => {
             const usageCount = getRecipeUsageCount(recipe);
             return (
               <article className="diet-recipe-row" key={recipe.id}>
@@ -774,12 +845,24 @@ export default function RecipeMaster() {
               </article>
             );
           })}
-          {!filtered.length && (
-            <div className="diet-empty">
-              {query ? "No recipes match your search." : "No recipes found in the static catalogue."}
+            {!filtered.length && (
+              <div className="diet-empty">
+                {query || category !== "All" ? "No recipes match your search criteria." : "No recipes found in the static catalogue."}
+              </div>
+            )}
+          </div>
+          {filtered.length > 0 && (
+            <div style={{ marginTop: 14 }}>
+              <Pagination
+                page={page}
+                setPage={setPage}
+                total={filtered.length}
+                {...pagination}
+                sortOptions={sortOptions}
+              />
             </div>
           )}
-        </div>
+        </>
       )}
       <RecipeDetails
         recipe={viewer}
