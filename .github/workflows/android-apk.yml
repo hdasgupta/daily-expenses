@@ -42,6 +42,11 @@ jobs:
           distribution: temurin
           java-version: "21"
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: wrapper
+
       - name: Sync Capacitor Android
         working-directory: frontend
         run: npx cap sync android
@@ -76,7 +81,7 @@ jobs:
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          ./gradlew assembleRelease \
+          ./gradlew assembleRelease --no-daemon --stacktrace \
             -PAPP_VERSION_CODE="$VERSION_CODE" \
             -PAPP_VERSION_NAME="$VERSION_NAME" \
             -Pandroid.injected.signing.store.file="$GITHUB_WORKSPACE/frontend/android/app/release.keystore" \
