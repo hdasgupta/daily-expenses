@@ -236,3 +236,13 @@
   - Added Category Filter Chips inside the modal so users can immediately filter for breakfast, soups, pastas, or snacks without typing.
   - Added instant clear button (`X`) and live matching count badge (*"X matches"*).
   - Automatically resets search query and category filter upon opening the picker modal, preserving the duplicate detection badge and conflict prevention rules.
+
+
+## 13. Gradle Wrapper Download & Android APK CI Build Fix
+- **Gradle Wrapper Distribution Optimization (`frontend/android/gradle/wrapper/gradle-wrapper.properties`)**:
+  - Replaced the bulky `gradle-8.14.3-all.zip` (~250 MB containing all sources and documentation) with the lean `gradle-8.14.3-bin.zip` (~120 MB binary-only distribution), preventing GitHub Releases CDN 504 Gateway Timeout errors.
+  - Increased `networkTimeout` from 10,000 ms (10 seconds) to 60,000 ms (60 seconds) to ensure reliable distribution downloads under variable runner network conditions.
+- **GitHub Actions Workflow Resilience (`.github/workflows/android-apk.yml`)**:
+  - Integrated the official `gradle/actions/setup-gradle@v4` action immediately following `actions/setup-java@v4`.
+  - Configured Gradle user home caching and automatic retry mechanisms for distribution downloads, eliminating wrapper network drops.
+  - Added `--no-daemon --stacktrace` flags to `assembleRelease` for reproducible, isolated CI builds.
