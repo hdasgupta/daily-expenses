@@ -87,3 +87,23 @@
   - If the active page is in between, the middle section dynamically shifts to center around and cover the current page.
   - Adjacent page numbers merge cleanly without redundant ellipsis.
   - Added `.page-ellipsis` styling in `frontend/src/styles.css` matching `.page-button` alignment and typography.
+
+## 7. Nepali Chaukani & Quick Readymade Cooking Recipes Expansion
+- Added **16** authentic Nepali readymade cooking recipes (ready in 5–15 minutes from pre-boiled or roasted staples with quick tempering/mixing) to `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`:
+  1. *Nepali Chaukani / Chukauni (Palpali Spiced Potato Yogurt Salad)* (`static-1643`)
+  2. *Chicken Chaukani / Chicken Chukauni (Nepali Spiced Chicken & Yogurt Salad)* (`static-1636`)
+  3. *Chana Chaukani / Chickpea Chukauni (Nepali Spiced Boiled Chickpea & Curd Salad)* (`static-1635`)
+  4. *Egg Chaukani / Anda Chukauni (Nepali Spiced Boiled Egg & Yogurt Salad)* (`static-1637`)
+  5. *Kakro Chaukani / Cucumber Chukauni (Refreshing Nepali Cucumber & Spiced Yogurt Salad)* (`static-1639`)
+  6. *Mula Chaukani / Radish Chukauni (Pungent Nepali White Radish & Yogurt Salad)* (`static-1641`)
+  7. *Aloo Sadeko (Nepali Spiced Boiled Potato Salad with Timur & Mustard Oil)* (`static-1630`)
+  8. *Anda Sadeko (Nepali Spiced Hard-Boiled Egg Salad with Onion & Lime)* (`static-1631`)
+  9. *Bhatmas Sadeko (Nepali Spiced Crunchy Roasted Soybean Salad)* (`static-1632`)
+  10. *Bodi ko Achar / Bodi Sadeko (Nepali Spiced Black-Eyed Pea Salad)* (`static-1633`)
+  11. *Chana Chatpate / Chana Sadeko (Nepali Street-Style Spiced Chickpea & Puffed Rice Snack)* (`static-1634`)
+  12. *Gundruk Sadeko (Nepali Fermented Leaf & Mustard Oil Salad)* (`static-1638`)
+  13. *Kakro ko Achar (Nepali Spiced Cucumber & Roasted Sesame Salad)* (`static-1640`)
+  14. *Mula ko Achar (Instant Nepali Spiced Radish & Mustard Seed Salad)* (`static-1642`)
+  15. *Piro Aloo (Nepali Spicy Sesame & Timur Boiled Potato Salad)* (`static-1644`)
+  16. *Wai Wai Sadeko (Nepali Street-Style Instant Noodle Salad with Fresh Herbs)* (`static-1645`)
+- Assigned sequential IDs (`static-1630`–`static-1645`), verified 0 duplicate names or IDs, and sorted all **1,570** recipes alphabetically.

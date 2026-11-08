@@ -2684,6 +2684,75 @@
     "notes": "The most ordered paratha at Grand Trunk Road dhabas, celebrated for its crunchy onion texture."
   },
   {
+    "id": "static-1630",
+    "name": "Aloo Sadeko (Nepali Spiced Boiled Potato Salad with Timur & Mustard Oil)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 10,
+    "cookMinutes": 5,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled potatoes, peeled and cubed",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Red onion, finely sliced or chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, slit or chopped",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh coriander leaves, chopped",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Timur (Nepali Sichuan pepper) & roasted cumin powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine base salad",
+        "text": "Place diced boiled potatoes in a mixing bowl with sliced onion, green chillies, fresh coriander, timur, roasted cumin powder, and salt.",
+        "minutes": 4
+      },
+      {
+        "section": "Sizzle mustard oil tempering",
+        "text": "Heat mustard oil in a small pan until smoking. Add fenugreek seeds and fry until dark brown and aromatic. Stir in turmeric powder and immediately pour the sizzling oil over the potatoes.",
+        "minutes": 2
+      },
+      {
+        "section": "Toss and finish",
+        "text": "Drizzle with fresh lemon juice, toss thoroughly to coat every potato cube in the fragrant spiced oil, and rest for 5 minutes before serving.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Classic Nepali potato salad renowned for the tingling citrus aroma of Himalayan timur and smoky fenugreek-mustard oil."
+  },
+  {
     "id": "static-1234",
     "name": "Aloo Shimla Mirch (Potato & Capsicum Stir-Fry)",
     "category": "Vegetable",
@@ -3414,6 +3483,70 @@
       }
     ],
     "notes": "Laminating the dough with butter gives Amritsari Kulcha its signature flaky crunch."
+  },
+  {
+    "id": "static-1631",
+    "name": "Anda Sadeko (Nepali Spiced Hard-Boiled Egg Salad with Onion & Lime)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 10,
+    "cookMinutes": 2,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Hard-boiled eggs, peeled and quartered",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Red onion, finely chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato, finely diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, chaat masala & timur",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Raw mustard oil & fresh lime juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black salt & regular salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix zesty seasoning",
+        "text": "In a mixing bowl, toss chopped onions, tomatoes, green chillies, coriander, roasted cumin, chaat masala, timur, salt, black salt, raw mustard oil, and lime juice.",
+        "minutes": 4
+      },
+      {
+        "section": "Gently fold eggs",
+        "text": "Add the quartered boiled eggs and gently toss with your hands or a rubber spatula so the yolks remain intact while absorbing the spicy dressing.",
+        "minutes": 2
+      },
+      {
+        "section": "Serve immediately",
+        "text": "Serve fresh as a high-protein Nepali khaja snack with beaten rice (chiura).",
+        "minutes": 1
+      }
+    ],
+    "notes": "Popular quick protein street snack served across Kathmandu cafes and local bhattis."
   },
   {
     "id": "static-1018",
@@ -9882,6 +10015,75 @@
     "notes": "Traditional Bengali steamed delicacy; grind mustard with a pinch of salt and green chilli to prevent bitterness."
   },
   {
+    "id": "static-1632",
+    "name": "Bhatmas Sadeko (Nepali Spiced Crunchy Roasted Soybean Salad)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 4,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Dry roasted crunchy soybeans (bhatmas)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato, deseeded and finely diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated fresh ginger & chopped green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves, chopped",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, Kashmiri red chilli & timur",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Raw mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lime juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast soybeans",
+        "text": "Dry-roast soybeans in a heavy skillet on medium-low heat for 4-5 minutes until crisp, nutty, and lightly blistered (or use store-bought roasted bhatmas).",
+        "minutes": 4
+      },
+      {
+        "section": "Assemble crunchy salad",
+        "text": "In a bowl, combine roasted soybeans with chopped onion, tomato, ginger, green chillies, and fresh coriander.",
+        "minutes": 3
+      },
+      {
+        "section": "Dress with mustard oil and lime",
+        "text": "Drizzle with pungent raw mustard oil, lime juice, roasted cumin, timur, and salt; toss vigorously and serve immediately while crunch is at its peak.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Quintessential Newari and Nepali khaja snack packed with plant-based protein and addictive crunch."
+  },
+  {
     "id": "static-1198",
     "name": "Bhatura (Fluffy Punjabi Leavened Fried Bread)",
     "category": "Bread",
@@ -11015,6 +11217,70 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1633",
+    "name": "Bodi ko Achar / Bodi Sadeko (Nepali Spiced Black-Eyed Pea Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 4,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Black-eyed peas (bodi), boiled tender and drained",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely sliced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted white sesame seeds (til), ground into powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, minced ginger & chopped cilantro",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi), turmeric & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix cooked peas and aromatics",
+        "text": "Combine boiled black-eyed peas in a bowl with sliced onion, sesame powder, ginger, green chillies, cilantro, salt, and lemon juice.",
+        "minutes": 4
+      },
+      {
+        "section": "Sizzle fragrant tempering",
+        "text": "Heat mustard oil in a small ladle, fry fenugreek seeds until dark brown, stir in turmeric and chilli powder, and pour sizzling over the peas.",
+        "minutes": 2
+      },
+      {
+        "section": "Toss and marinate",
+        "text": "Toss well so the nutty sesame paste and pungent oil coat the peas. Let rest 5 minutes for flavors to deepen.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Traditional festive salad served during Dashain and Tihar feasts alongside beaten rice and sel roti."
   },
   {
     "id": "static-0931",
@@ -14123,6 +14389,144 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1634",
+    "name": "Chana Chatpate / Chana Sadeko (Nepali Street-Style Spiced Chickpea & Puffed Rice Snack)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 2,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Boiled brown chickpeas (kala chana) or white chickpeas",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Crisp puffed rice (muri / bhuja)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potato, diced small",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Red onion, cucumber & tomato, finely diced",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chatpate masala (chaat masala, roasted cumin, black salt & timur)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & tangy lemon juice",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed dry instant noodles or sev (for crunch)",
+        "quantity": "0.25",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss veggies and chickpeas",
+        "text": "In a large bowl or jar, mix boiled chickpeas, diced potato, onion, cucumber, tomato, green chillies, coriander, chatpate spices, and salt.",
+        "minutes": 4
+      },
+      {
+        "section": "Dress with oil and citrus",
+        "text": "Add pungent mustard oil and fresh lemon juice; stir vigorously to create a tangy, spicy emulsion.",
+        "minutes": 2
+      },
+      {
+        "section": "Fold puffed rice and serve instantly",
+        "text": "Add puffed rice and crushed noodles, toss briskly, and serve immediately in paper cones before the puffed rice softens.",
+        "minutes": 2
+      }
+    ],
+    "notes": "The reigning king of Kathmandu street food: spicy, sour, pungent, and intensely flavorful."
+  },
+  {
+    "id": "static-1635",
+    "name": "Chana Chaukani / Chickpea Chukauni (Nepali Spiced Boiled Chickpea & Curd Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 3,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled chickpeas (kabuli chana), drained",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick curd/yogurt (dahi), whisked smooth",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely sliced or chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, slit & chopped fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin powder & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fold chickpeas into whisked yogurt",
+        "text": "In a bowl, mix whisked thick yogurt with boiled chickpeas, sliced onion, green chillies, roasted cumin, coriander, salt, and lemon juice.",
+        "minutes": 4
+      },
+      {
+        "section": "Temper with sizzling fenugreek oil",
+        "text": "Heat mustard oil in a ladle until smoking. Add fenugreek seeds and crackle until dark. Take off heat, add turmeric and red chilli powder, and pour sizzling tadka into the yogurt.",
+        "minutes": 2
+      },
+      {
+        "section": "Combine and chill",
+        "text": "Stir well to swirl the golden spiced oil throughout the creamy yogurt. Serve cool as a refreshing high-protein side dish.",
+        "minutes": 2
+      }
+    ],
+    "notes": "A wholesome protein-rich variation of Palpali Chukauni pairing nutty chickpeas with tangy tempered curd."
+  },
+  {
     "id": "static-1404",
     "name": "Chana Jor Garam (Spiced Flattened Black Chickpea Namkeen)",
     "category": "Snacks",
@@ -15761,6 +16165,80 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1636",
+    "name": "Chicken Chaukani / Chicken Chukauni (Nepali Spiced Chicken & Yogurt Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 10,
+    "cookMinutes": 4,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast, shredded or diced",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled potato, diced (optional traditional addition)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick plain yogurt (dahi), whisked smooth",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely sliced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander, finely chopped",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & turmeric powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin-coriander powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Assemble chicken and yogurt base",
+        "text": "Gently fold shredded cooked chicken, diced potato, sliced onion, green chillies, and fresh coriander into whisked creamy yogurt with roasted spices, salt, and lemon juice.",
+        "minutes": 5
+      },
+      {
+        "section": "Infuse with fenugreek tadka",
+        "text": "Heat mustard oil until smoking, drop in fenugreek seeds and brown them dark. Add turmeric and red chilli powder, then immediately pour over the chicken-yogurt salad.",
+        "minutes": 2
+      },
+      {
+        "section": "Mix and rest",
+        "text": "Mix well to distribute the aromatic golden oil. Rest for 5-10 minutes in the refrigerator before serving with flatbreads or rice.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Luxurious Palpali fusion combining succulent shredded chicken with the iconic mustard-fenugreek spiced curd dressing."
   },
   {
     "id": "static-1424",
@@ -28365,6 +28843,80 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1637",
+    "name": "Egg Chaukani / Anda Chukauni (Nepali Spiced Boiled Egg & Yogurt Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 3,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Hard-boiled eggs, sliced or quartered",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Boiled potato, cubed (optional)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick curd/yogurt, whisked until velvety",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh cilantro, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & turmeric",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin powder & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk spiced yogurt base",
+        "text": "Whisk thick curd with diced onion, green chillies, fresh cilantro, cumin, salt, and a splash of lemon juice in a shallow serving dish.",
+        "minutes": 4
+      },
+      {
+        "section": "Sizzle mustard oil tempering",
+        "text": "Heat mustard oil in a ladle, sizzle fenugreek seeds until dark, take off flame and whisk in turmeric and red chilli powder. Drizzle over the yogurt base.",
+        "minutes": 2
+      },
+      {
+        "section": "Arrange sliced eggs and serve",
+        "text": "Nestle the sliced hard-boiled eggs into the tempered yogurt, spooning some spiced curd over top. Serve chilled or at room temperature.",
+        "minutes": 2
+      }
+    ],
+    "notes": "A quick, creamy egg salad bursting with warm Himalayan spices and the pungent aroma of mustard oil."
+  },
+  {
     "id": "static-1607",
     "name": "Egg Cheese Paratha (Whisked Spiced Egg, Onion & Molten Cheese Layered Paratha)",
     "category": "Bread",
@@ -35426,6 +35978,80 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1638",
+    "name": "Gundruk Sadeko (Nepali Fermented Leaf & Mustard Oil Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 10,
+    "cookMinutes": 3,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Gundruk (dried fermented leafy greens), soaked in warm water 10 mins and squeezed",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic cloves, crushed or sliced thin",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh ginger, minced",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red onion, finely sliced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomatoes, roasted or diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh cilantro",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder & timur (Sichuan pepper)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Raw pungent mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rehydrate gundruk",
+        "text": "Soak dried gundruk in warm water for 10 minutes until soft, drain and squeeze out all excess moisture thoroughly, and chop coarsely.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with aromatics and spices",
+        "text": "In a bowl, mix squeezed gundruk with sliced onion, tomato, crushed garlic, minced ginger, green chillies, cilantro, roasted cumin, timur, and salt.",
+        "minutes": 3
+      },
+      {
+        "section": "Dress with mustard oil",
+        "text": "Drizzle generously with raw mustard oil and lemon juice, massage gently with hands to infuse flavors, and serve as an earthy, tangy side dish with dal-bhat.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Nepal's national dish ingredient: naturally sour fermented greens tossed with raw mustard oil and pungent Himalayan timur."
+  },
+  {
     "id": "static-1609",
     "name": "Gur Paratha / Jaggery Paratha (Winter Jaggery, Fennel & Ghee Stuffed Sweet Paratha)",
     "category": "Bread",
@@ -39392,6 +40018,144 @@
       }
     ],
     "notes": "Showstopping Diwali and festive confection pairing smooth cashew katli with vibrant pistachio filling."
+  },
+  {
+    "id": "static-1639",
+    "name": "Kakro Chaukani / Cucumber Chukauni (Refreshing Nepali Cucumber & Spiced Yogurt Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 2,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Crisp cucumber (kakro), peeled, deseeded and diced small",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potato, diced small",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick curd/yogurt, whisked smooth",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, slit & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & turmeric",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin powder & red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss cucumber and yogurt",
+        "text": "Fold diced cucumber, boiled potato, onion, green chillies, and coriander into whisked thick curd; season with roasted cumin, salt, and lemon juice.",
+        "minutes": 4
+      },
+      {
+        "section": "Sizzle mustard-fenugreek tadka",
+        "text": "Heat mustard oil in a ladle, brown fenugreek seeds until dark, stir in turmeric and red chilli powder, and immediately pour sizzling over the yogurt salad.",
+        "minutes": 2
+      },
+      {
+        "section": "Stir and serve cool",
+        "text": "Mix well so the golden oil streaks through the cool yogurt. Serve chilled as a refreshing summer lunch accompaniment.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Cooling, crunchy cucumber variation of traditional Chukauni, perfect for warm weather meals."
+  },
+  {
+    "id": "static-1640",
+    "name": "Kakro ko Achar (Nepali Spiced Cucumber & Roasted Sesame Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 10,
+    "cookMinutes": 2,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "English or garden cucumbers, peeled and diced into 1-inch cubes",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "White sesame seeds (til), dry roasted and ground to a coarse powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, slit lengthwise",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & ground turmeric",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon or lime juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season cucumber cubes",
+        "text": "Place diced cucumber in a bowl with ground roasted sesame powder, green chillies, salt, and fresh lemon juice.",
+        "minutes": 4
+      },
+      {
+        "section": "Temper with smoking mustard oil",
+        "text": "Heat mustard oil until smoking, add fenugreek seeds and fry until dark brown. Take off heat, add turmeric powder, and pour sizzling over the cucumbers.",
+        "minutes": 2
+      },
+      {
+        "section": "Toss and serve fresh",
+        "text": "Toss thoroughly to coat every cucumber piece in the nutty sesame dressing. Serve fresh with dal-bhat or sel roti.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Beloved Nepali quick instant pickle salad showcasing the rich, nutty aroma of roasted sesame paste and crunchy cucumbers."
   },
   {
     "id": "static-0978",
@@ -55104,6 +55868,144 @@
     "notes": "Iconic Kolkata cabin-restaurant delicacy."
   },
   {
+    "id": "static-1641",
+    "name": "Mula Chaukani / Radish Chukauni (Pungent Nepali White Radish & Yogurt Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 3,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White radish (mula), grated coarsely and squeezed dry",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled potato, diced small",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick curd/yogurt, whisked smooth",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely sliced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & turmeric",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin powder & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze radish and fold in curd",
+        "text": "Lightly salt grated radish, rest 5 minutes, squeeze out excess liquid, and fold into whisked thick curd with diced potato, onion, chillies, cumin, and salt.",
+        "minutes": 4
+      },
+      {
+        "section": "Temper with fenugreek oil",
+        "text": "Heat mustard oil, crackle fenugreek seeds until dark, add turmeric and red chilli powder, and pour sizzling over the radish-curd mixture.",
+        "minutes": 2
+      },
+      {
+        "section": "Toss and serve",
+        "text": "Mix well, finish with lemon juice and coriander, and serve chilled with steamed rice.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Pungent, digestive, and crunchy radish variation of Chukauni popular during Himalayan winters."
+  },
+  {
+    "id": "static-1642",
+    "name": "Mula ko Achar (Instant Nepali Spiced Radish & Mustard Seed Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 10,
+    "cookMinutes": 2,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "White radish (mula), peeled and cut into 1.5-inch finger batons",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Yellow mustard seeds (sarson), coarsely ground",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chillies, slit lengthwise",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fenugreek seeds (methi) & ground turmeric",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli powder & timur (optional)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss radish with mustard powder",
+        "text": "In a bowl, toss crunchy radish batons with freshly ground mustard powder, red chilli powder, slit green chillies, salt, and lemon juice.",
+        "minutes": 4
+      },
+      {
+        "section": "Sizzle fenugreek tempering",
+        "text": "Heat mustard oil in a ladle until smoking, brown the fenugreek seeds, take off heat, add turmeric powder, and pour sizzling over the radish.",
+        "minutes": 2
+      },
+      {
+        "section": "Mix and infuse",
+        "text": "Toss vigorously until the yellow mustard seeds coat the radish sticks. Ready to eat immediately or sun-warm for 1 hour for deeper fermentation.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Crisp, pungent instant radish pickle eaten across every Nepali household alongside dal-bhat-tarkari."
+  },
+  {
     "id": "static-0983",
     "name": "Mulo Bharta (Radish Mash)",
     "category": "Vegetable Bharta",
@@ -56349,6 +57251,85 @@
       }
     ],
     "notes": "Classic nine-ingredient ('Navratan') festive namkeen blending crunchy lentils, potato sticks, and dry fruits."
+  },
+  {
+    "id": "static-1643",
+    "name": "Nepali Chaukani / Chukauni (Palpali Spiced Potato Yogurt Salad)",
+    "category": "Side Dish",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 3,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled potatoes, peeled and cut into bite-sized cubes",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick curd/yogurt (dahi), whisked smooth",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Red onion, finely sliced or chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, slit or finely chopped",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh coriander leaves, finely chopped",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ground turmeric & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted cumin powder & amchur or lemon juice",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix potato and yogurt base",
+        "text": "In a mixing bowl, combine diced boiled potatoes with whisked yogurt, sliced red onion, green chillies, roasted cumin powder, salt, and lemon juice or amchur.",
+        "minutes": 4
+      },
+      {
+        "section": "Prepare sizzling methi tadka",
+        "text": "Heat mustard oil in a small pan until smoking hot. Add fenugreek seeds and cook until dark brown and aromatic. Turn off heat, quickly stir in turmeric and red chilli powder, and immediately pour the sizzling oil over the potato-yogurt mixture.",
+        "minutes": 2
+      },
+      {
+        "section": "Fold and garnish",
+        "text": "Gently fold the golden oil into the creamy yogurt salad, garnish with fresh chopped coriander leaves, and serve warm or chilled.",
+        "minutes": 2
+      }
+    ],
+    "notes": "The authentic Palpa district specialty: a creamy, tangy, and aromatic spiced potato yogurt salad ready in minutes."
   },
   {
     "id": "static-1346",
@@ -65110,6 +66091,70 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1644",
+    "name": "Piro Aloo (Nepali Spicy Sesame & Timur Boiled Potato Salad)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 8,
+    "cookMinutes": 4,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled baby potatoes, halved or cubed",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Roasted white sesame seeds, ground into powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red chilli paste or Kashmiri chilli powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Timur (Nepali Sichuan pepper), ground",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garlic paste & grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté spicy paste",
+        "text": "Warm mustard oil in a pan, add garlic, ginger, red chilli paste, timur, and salt; sauté on low flame for 2 minutes until fragrant.",
+        "minutes": 2
+      },
+      {
+        "section": "Coat potatoes",
+        "text": "Tumble in boiled potatoes and ground roasted sesame powder; toss vigorously on medium-high heat until every piece is richly coated.",
+        "minutes": 3
+      },
+      {
+        "section": "Finish with citrus",
+        "text": "Remove from heat, squeeze fresh lemon juice, toss with cilantro, and serve warm or at room temperature.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Fiery, numbing, and nutty street-style potato snack served with beaten rice or sel roti."
   },
   {
     "id": "static-1168",
@@ -86172,6 +87217,75 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1645",
+    "name": "Wai Wai Sadeko (Nepali Street-Style Instant Noodle Salad with Fresh Herbs)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 5,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Wai Wai ready-to-eat instant noodles (raw, crushed inside packet)",
+        "quantity": "2",
+        "unit": "packets"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & fresh coriander, finely chopped",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Boiled potato, diced small (optional)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Noodle tastemaker seasoning powder & onion oil (from packet)",
+        "quantity": "2",
+        "unit": "packets"
+      },
+      {
+        "name": "Fresh lemon juice & a dash of mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat masala or timur",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crush noodles and mix veggies",
+        "text": "Crush the raw noodles inside the packets into small bite-sized pieces and pour into a mixing bowl. Add chopped onion, tomato, green chillies, coriander, and boiled potato.",
+        "minutes": 2
+      },
+      {
+        "section": "Add seasoning and oils",
+        "text": "Empty the tastemaker seasoning powder, chilli powder, and flavored onion oil from the packets over the mixture; add a drizzle of mustard oil, chaat masala, and fresh lemon juice.",
+        "minutes": 2
+      },
+      {
+        "section": "Toss and serve instantly",
+        "text": "Toss vigorously with a spoon or your hands until thoroughly combined, and serve immediately while the noodles are crackling crisp.",
+        "minutes": 1
+      }
+    ],
+    "notes": "The legendary 5-minute raw instant noodle snack made famous by Nepali college students and street food vendors."
   },
   {
     "id": "static-0811",
