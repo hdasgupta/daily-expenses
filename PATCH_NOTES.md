@@ -272,3 +272,10 @@
   - Highlighted usage count on modal items with `.diet-usage-badge`.
 - **Pagination Hook Default Direction Support (`frontend/src/hooks/usePagination.js`)**:
   - Added `defaultDirection = "asc"` parameter to `usePagination` so modules can default to descending order (e.g. `usageCount: desc`).
+
+
+## 16. Fix `getUsageCount is not defined` in Food Chart
+- **Fixed Identifier Reference in Food Chart (`frontend/src/pages/FoodChart.jsx`)**:
+  - Corrected the property shorthand typo in `filteredRecipes` useMemo hook from `getUsageCount` to `getUsageCount: getRecipeUsageCount`.
+  - Updated the hook dependency array to `[indexedRecipes, query, pickerCategory, getRecipeUsageCount]`.
+  - Resolves `ReferenceError: getUsageCount is not defined` when opening the Food Chart page or Add Recipe picker modal.

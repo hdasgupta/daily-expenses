@@ -544,9 +544,9 @@ export default function FoodChart() {
       category: pickerCategory,
       sortColumn: "usageCount",
       sortDirection: "desc",
-      getUsageCount,
+      getUsageCount: getRecipeUsageCount,
     });
-  }, [indexedRecipes, query, pickerCategory, getUsageCount]);
+  }, [indexedRecipes, query, pickerCategory, getRecipeUsageCount]);
 
   const visiblePickerRecipes = useMemo(
     () => filteredRecipes.slice(0, pickerLimit),
