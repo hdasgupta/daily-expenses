@@ -238,11 +238,11 @@
   - Automatically resets search query and category filter upon opening the picker modal, preserving the duplicate detection badge and conflict prevention rules.
 
 
-## 13. Gradle Wrapper Download & Android APK CI Build Fix
-- **Gradle Wrapper Distribution Optimization (`frontend/android/gradle/wrapper/gradle-wrapper.properties`)**:
-  - Replaced the bulky `gradle-8.14.3-all.zip` (~250 MB containing all sources and documentation) with the lean `gradle-8.14.3-bin.zip` (~120 MB binary-only distribution), preventing GitHub Releases CDN 504 Gateway Timeout errors.
-  - Increased `networkTimeout` from 10,000 ms (10 seconds) to 60,000 ms (60 seconds) to ensure reliable distribution downloads under variable runner network conditions.
-- **GitHub Actions Workflow Resilience (`.github/workflows/android-apk.yml`)**:
-  - Integrated the official `gradle/actions/setup-gradle@v4` action immediately following `actions/setup-java@v4`.
-  - Configured Gradle user home caching and automatic retry mechanisms for distribution downloads, eliminating wrapper network drops.
-  - Added `--no-daemon --stacktrace` flags to `assembleRelease` for reproducible, isolated CI builds.
+## 13. Gradle Wrapper Distribution & Android APK CI Build Fix
+- **Switched to Stable Gradle 8.13 Distribution (`frontend/android/gradle/wrapper/gradle-wrapper.properties`)**:
+  - Replaced `gradle-8.14.3` with the official stable `gradle-8.13-bin.zip` recommended for Android Gradle Plugin 8.13 (`com.android.tools.build:gradle:8.13.0`), resolving the GitHub Releases CDN 504 Gateway Timeout on `v8.14.3`.
+  - Configured `distributionUrl=https://services.gradle.org/distributions/gradle-8.13-bin.zip` and increased `networkTimeout` to 60,000 ms (60 seconds) to protect against network latency.
+- **GitHub Actions Managed Gradle Setup (`.github/workflows/android-apk.yml`)**:
+  - Integrated `gradle/actions/setup-gradle@v4` with explicit `gradle-version: "8.13"` immediately following `actions/setup-java@v4`.
+  - Pre-provisions and caches the Gradle 8.13 distribution directly on the GitHub Actions runner, eliminating flaky wrapper downloads during `./gradlew assembleRelease`.
+  - Added `--no-daemon --stacktrace` flags to `assembleRelease` for deterministic and robust APK generation.
