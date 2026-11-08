@@ -1,6 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Pagination from "../components/Pagination";
-import { usePagination } from "../hooks/usePagination";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import { BookOpen, CalendarClock, CalendarDays, Clock3, MapPin, Plus, Search, ShoppingBasket, X } from "lucide-react";
 import { api, showToast } from "../lib/api";
@@ -520,7 +518,9 @@ export default function RecipeMaster() {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
-  const [page, setPage] = useState(1);
+  const [sortColumn, setSortColumn] = useState("usageCount");
+  const [sortDirection, setSortDirection] = useState("desc");
+  const [visibleCount, setVisibleCount] = useState(30);
   const [viewer, setViewer] = useState(null);
   const [currentCoords, setCurrentCoords] = useState(null);
   const [marketingCategories, setMarketingCategories] = useState([]);
@@ -532,8 +532,7 @@ export default function RecipeMaster() {
   const [addingToChart, setAddingToChart] = useState(false);
   const [chartError, setChartError] = useState("");
   const [locations, setLocations] = useState([]);
-
-  const pagination = usePagination("recipe-master", "usageCount", "desc");
+  const sentinelRef = useRef(null);
 
   useEffect(() => {
     let active = true;
@@ -582,39 +581,59 @@ export default function RecipeMaster() {
     return searchAndRankRecipes(indexedRecipes, {
       query,
       category,
-      sortColumn: pagination.sortColumn,
-      sortDirection: pagination.sortDirection,
+      sortColumn,
+      sortDirection,
       getUsageCount: getRecipeUsageCount,
     });
-  }, [indexedRecipes, query, category, pagination.sortColumn, pagination.sortDirection, getRecipeUsageCount]);
+  }, [indexedRecipes, query, category, sortColumn, sortDirection, getRecipeUsageCount]);
 
-  const pageSize = Number(pagination.pageSize) || 20;
-  const paginated = useMemo(() => {
-    const start = (page - 1) * pageSize;
-    return filtered.slice(start, start + pageSize);
-  }, [filtered, page, pageSize]);
+  const visibleRecipes = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount]
+  );
+
+  const hasMore = visibleCount < filtered.length;
+
+  // Smart loading on scroll via IntersectionObserver + scroll fallback
+  useEffect(() => {
+    if (!hasMore || loading) return undefined;
+    const node = sentinelRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + 30, filtered.length));
+        }
+      },
+      { root: null, rootMargin: "320px 0px", threshold: 0.01 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasMore, loading, filtered.length, visibleCount]);
 
   const handleQueryChange = (val) => {
     setQuery(val);
-    setPage(1);
+    setVisibleCount(30);
   };
 
   const handleCategoryChange = (cat) => {
     setCategory(cat);
-    setPage(1);
+    setVisibleCount(30);
   };
 
   const handleClearFilters = () => {
     setQuery("");
     setCategory("All");
-    setPage(1);
+    setVisibleCount(30);
   };
 
   const sortOptions = [
-    { value: "name", label: "Recipe Name" },
+    { value: "usageCount", label: "Most Used in Food Chart" },
+    { value: "name", label: "Recipe Name (A–Z)" },
     { value: "totalTime", label: "Cook + Prep Time" },
     { value: "ingredientCount", label: "Ingredient Count" },
-    { value: "usageCount", label: "Most Frequently Used" },
   ];
 
   const handleViewRecipe = (recipe) => {
@@ -793,25 +812,56 @@ export default function RecipeMaster() {
             </button>
           ))}
         </div>
-        {(query || category !== "All") && (
-          <div className="diet-search-meta">
-            <span>
-              Showing {filtered.length} matching {filtered.length === 1 ? "recipe" : "recipes"}
-              {category !== "All" ? ` in ${category}` : ""}
-              {query ? ` for "${query}"` : ""}
-            </span>
-            <button type="button" className="diet-clear-filters-btn" onClick={handleClearFilters}>
-              Clear filters
+        <div className="diet-search-meta">
+          <span>
+            Showing <strong>{visibleRecipes.length}</strong> of <strong>{filtered.length}</strong> {filtered.length === 1 ? "recipe" : "recipes"}
+            {category !== "All" ? ` in ${category}` : ""}
+            {query ? ` matching "${query}"` : ""}
+          </span>
+          <div className="diet-sort-bar">
+            {(query || category !== "All") && (
+              <button type="button" className="diet-clear-filters-btn" onClick={handleClearFilters}>
+                Clear filters
+              </button>
+            )}
+            <label className="diet-sort-label">
+              <span>Sort:</span>
+              <select
+                value={sortColumn}
+                onChange={(e) => {
+                  const col = e.target.value;
+                  setSortColumn(col);
+                  setSortDirection(col === "usageCount" ? "desc" : "asc");
+                  setVisibleCount(30);
+                }}
+              >
+                {sortOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button
+              type="button"
+              className="diet-secondary diet-sort-dir-btn"
+              title={sortDirection === "asc" ? "Ascending order" : "Descending order"}
+              onClick={() => {
+                setSortDirection((d) => (d === "asc" ? "desc" : "asc"));
+                setVisibleCount(30);
+              }}
+            >
+              {sortDirection === "asc" ? "↑ Asc" : "↓ Desc"}
             </button>
           </div>
-        )}
+        </div>
       </div>
       {loading ? (
         <p>Loading recipes…</p>
       ) : (
         <>
           <div className="diet-recipe-list">
-            {paginated.map((recipe) => {
+            {visibleRecipes.map((recipe) => {
             const usageCount = getRecipeUsageCount(recipe);
             return (
               <article className="diet-recipe-row" key={recipe.id}>
@@ -855,15 +905,23 @@ export default function RecipeMaster() {
               </div>
             )}
           </div>
-          {filtered.length > 0 && (
-            <div style={{ marginTop: 14 }}>
-              <Pagination
-                page={page}
-                setPage={setPage}
-                total={filtered.length}
-                {...pagination}
-                sortOptions={sortOptions}
-              />
+          {hasMore && (
+            <div ref={sentinelRef} className="diet-scroll-sentinel">
+              <span className="diet-scroll-loader">
+                Loading more recipes ({visibleRecipes.length} of {filtered.length})…
+              </span>
+              <button
+                type="button"
+                className="diet-secondary"
+                onClick={() => setVisibleCount((prev) => Math.min(prev + 30, filtered.length))}
+              >
+                Load more ({filtered.length - visibleRecipes.length} remaining)
+              </button>
+            </div>
+          )}
+          {!hasMore && filtered.length > 30 && (
+            <div className="diet-scroll-end">
+              All {filtered.length} recipes loaded
             </div>
           )}
         </>

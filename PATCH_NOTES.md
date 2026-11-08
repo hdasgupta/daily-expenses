@@ -287,3 +287,13 @@
   - Configured `.diet-category-chips.diet-picker-chips` inside the Add Recipe modal with `flex-wrap: wrap`, `min-height: 40px`, `max-height: 112px`, and smooth `overflow-y: auto` so all 27 recipe category tags wrap into clean, completely visible multi-line rows without horizontal clipping.
 - **Restored Badge Contrast & Visibility (`frontend/src/pages/dietChart.css`)**:
   - Fixed CSS specificity where `.diet-picker-item span { color: var(--diet-muted) }` was overriding `.diet-usage-badge` text color inside modal items.
+
+
+## 18. Smart Loading on Scroll in Recipe Master Page
+- **Progressive Infinite Scroll via `IntersectionObserver` (`frontend/src/pages/RecipeMaster.jsx`, `frontend/src/pages/dietChart.css`)**:
+  - Replaced page-number buttons on Recipe Master with smart progressive scroll loading.
+  - Renders the first **30** recipes immediately on initial render for instant load speed, and observes a bottom sentinel element (`sentinelRef`) with a `320px` rootMargin lookahead.
+  - Automatically appends the next **30** recipes seamlessly as the user scrolls near the bottom of the list, plus provides a fallback *"Load more (X remaining)"* button and an *"All X recipes loaded"* completion footer.
+  - Automatically resets `visibleCount` back to `30` whenever the user changes the search query, category chip, or sort order.
+- **Inline Sort & Status Toolbar (`frontend/src/pages/RecipeMaster.jsx`)**:
+  - Added an inline status bar showing *"Showing X of Y recipes"* alongside a compact Sort selector (*Most Used in Food Chart*, *Recipe Name (A–Z)*, *Cook + Prep Time*, *Ingredient Count*) and an Ascending/Descending toggle button (`↑ Asc` / `↓ Desc`).
