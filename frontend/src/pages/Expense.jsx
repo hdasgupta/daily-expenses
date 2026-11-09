@@ -531,8 +531,32 @@ function resolvedShares(totalCost, shares) {
   const fixed = fixedShares.reduce((sum, share) => sum + Number(share.amount || 0), 0);
 
   const average = shares.filter((share) => share.shareType === "average");
+  const remainingList = shares.filter((share) => share.shareType === "remaining");
+  const remaining = remainingList[0];
 
-  const remaining = shares.find((share) => share.shareType === "remaining");
+  if (average.length === 1) {
+    return {
+      values: {},
+      valid: false,
+      reason: "Average amount requires at least 2 survivors",
+    };
+  }
+
+  if (remainingList.length > 1) {
+    return {
+      values: {},
+      valid: false,
+      reason: "Only one remaining share is allowed",
+    };
+  }
+
+  if (average.length && remainingList.length) {
+    return {
+      values: {},
+      valid: false,
+      reason: "Use average shares or one remaining share, not both",
+    };
+  }
 
   let left = Math.round((total - fixed) * 100) / 100;
 
@@ -825,10 +849,13 @@ export default function Expense() {
     );
 
   const removeShare = (index) =>
-    updateField(
-      "shares",
-      form.shares.filter((_, currentIndex) => currentIndex !== index),
-    );
+    setForm((current) => {
+      const nextShares = current.shares.filter((_, currentIndex) => currentIndex !== index);
+      if (nextShares.length === 1 && nextShares[0].shareType === "average") {
+        nextShares[0] = { ...nextShares[0], shareType: "fixed" };
+      }
+      return { ...current, shares: nextShares };
+    });
 
   const submit = async (event) => {
     event.preventDefault();
@@ -1186,12 +1213,19 @@ export default function Expense() {
                     ["remaining", "Remaining amount"],
                   ].map(([value, label]) => {
                     const selected = share.shareType === value;
+                    const isAverageDisabled = value === "average" && form.shares.length < 2;
 
                     return (
                       <button
                         key={value}
                         type="button"
                         aria-pressed={selected}
+                        disabled={isAverageDisabled}
+                        title={
+                          isAverageDisabled
+                            ? "Add at least 2 survivors to use Average amount"
+                            : label
+                        }
                         className={selected ? "primary" : "secondary"}
                         onClick={() => editShare(index, "shareType", value)}
                         style={{

@@ -47,6 +47,9 @@ function normalizeShares(totalCost, inputShares) {
     .reduce((sum, share) => sum + Number(share.amount || 0), 0);
   const averageShares = shares.filter((share) => share.shareType === "average");
   const remainingShares = shares.filter((share) => share.shareType === "remaining");
+  if (averageShares.length === 1) {
+    throw new Error("Average amount requires at least 2 survivors");
+  }
   if (averageShares.length && remainingShares.length)
     throw new Error("Use average shares or one remaining share, not both");
   let remaining = Math.round((Number(totalCost) - fixed) * 100) / 100;

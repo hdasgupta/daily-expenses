@@ -342,3 +342,11 @@
   - Renders the live validation indicator immediately whenever fixed share validation fails.
 - **Backend Enforcement (`backend/src/services/expenseService.js`)**:
   - Updated `normalizeShares` to reject blank or zero/negative fixed share amounts with descriptive errors (`"Fixed amount of a survivor cannot be blank"` / `"Fixed amount of a survivor must be greater than zero"`).
+
+
+## 21. Minimum 2 Survivors Validation for Average Amount Share (Add Expenses Page & Backend)
+- **Frontend Validation in Add Expenses (`frontend/src/pages/Expense.jsx`)**:
+  - Updated `resolvedShares` to verify that if `"Average amount"` (`shareType === "average"`) is selected, at least **2** survivors must have `"Average amount"` selected (`average.length === 1` is rejected with *"Average amount requires at least 2 survivors"*).
+  - Also added explicit real-time frontend checks for multiple `"Remaining amount"` rows (*"Only one remaining share is allowed"*) and mixing `"Average amount"` with `"Remaining amount"` (*"Use average shares or one remaining share, not both"*).
+- **Backend Enforcement (`backend/src/services/expenseService.js`)**:
+  - Added server-side validation in `normalizeShares` throwing `"Average amount requires at least 2 survivors"` if `averageShares.length === 1`.
