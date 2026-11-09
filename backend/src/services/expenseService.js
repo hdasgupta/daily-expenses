@@ -15,11 +15,24 @@ function normalizeShares(totalCost, inputShares) {
     throw new Error("At least one survivor share is required");
   }
 
-  const shares = inputShares.map((share) => ({
-    survivorId: requiredText(share.survivorId, "Survivor"),
-    shareType: ["fixed", "average", "remaining"].includes(share.shareType) ? share.shareType : null,
-    amount: share.shareType === "fixed" ? positiveOrZero(share.amount, "Fixed share amount") : null,
-  }));
+  const shares = inputShares.map((share) => {
+    const shareType = ["fixed", "average", "remaining"].includes(share.shareType) ? share.shareType : null;
+    let amount = null;
+    if (shareType === "fixed") {
+      const raw = String(share.amount ?? "").trim();
+      if (!raw) throw new Error("Fixed amount of a survivor cannot be blank");
+      const num = Number(raw);
+      if (!Number.isFinite(num) || num <= 0) {
+        throw new Error("Fixed amount of a survivor must be greater than zero");
+      }
+      amount = num;
+    }
+    return {
+      survivorId: requiredText(share.survivorId, "Survivor"),
+      shareType,
+      amount,
+    };
+  });
 
   if (shares.some((share) => !share.shareType)) throw new Error("Invalid survivor share type");
   if (new Set(shares.map((share) => String(share.survivorId))).size !== shares.length) {

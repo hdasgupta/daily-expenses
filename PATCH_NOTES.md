@@ -330,3 +330,15 @@
 - **Catalogue Verification & Alphabetical Sorting**:
   - Sorted all **1,491** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
   - Synchronized `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`.
+
+
+## 20. Fixed Survivor Share Amount Validation (Add Expenses Page & Backend)
+- **Frontend Validation in Add Expenses (`frontend/src/pages/Expense.jsx`)**:
+  - Updated `resolvedShares` to verify that every survivor share with `shareType === "fixed"` is neither blank nor `<= 0`.
+  - Displays clear real-time validation messages:
+    - *"Fixed amount of a survivor cannot be blank"* when a fixed share input is empty.
+    - *"Fixed amount of a survivor must be greater than zero"* when `0` or a negative value is entered.
+  - Set `min="0.01"` and `required={true}` on the Share price input when `"Fixed amount"` is selected, and auto-displays the calculated share amount for `"Average amount"` and `"Remaining amount"` rows.
+  - Renders the live validation indicator immediately whenever fixed share validation fails.
+- **Backend Enforcement (`backend/src/services/expenseService.js`)**:
+  - Updated `normalizeShares` to reject blank or zero/negative fixed share amounts with descriptive errors (`"Fixed amount of a survivor cannot be blank"` / `"Fixed amount of a survivor must be greater than zero"`).

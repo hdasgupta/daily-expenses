@@ -499,10 +499,36 @@ function emptyForm(date = today()) {
 }
 
 function resolvedShares(totalCost, shares) {
+  if (!Array.isArray(shares) || shares.length === 0) {
+    return {
+      values: {},
+      valid: false,
+      reason: "Add at least one survivor share",
+    };
+  }
+
+  const fixedShares = shares.filter((share) => share.shareType === "fixed");
+  for (const share of fixedShares) {
+    const raw = String(share.amount ?? "").trim();
+    if (raw === "") {
+      return {
+        values: {},
+        valid: false,
+        reason: "Fixed amount of a survivor cannot be blank",
+      };
+    }
+    const num = Number(raw);
+    if (!Number.isFinite(num) || num <= 0) {
+      return {
+        values: {},
+        valid: false,
+        reason: "Fixed amount of a survivor must be greater than zero",
+      };
+    }
+  }
+
   const total = Number(totalCost || 0);
-  const fixed = shares
-    .filter((share) => share.shareType === "fixed")
-    .reduce((sum, share) => sum + Number(share.amount || 0), 0);
+  const fixed = fixedShares.reduce((sum, share) => sum + Number(share.amount || 0), 0);
 
   const average = shares.filter((share) => share.shareType === "average");
 
@@ -1184,9 +1210,17 @@ export default function Expense() {
                 Share price
                 <input
                   type="number"
-                  min="0"
+                  min={share.shareType === "fixed" ? "0.01" : "0"}
                   step="0.01"
-                  value={share.amount}
+                  required={share.shareType === "fixed"}
+                  placeholder={share.shareType === "fixed" ? "Enter amount (> 0)" : "Auto-calculated"}
+                  value={
+                    share.shareType === "fixed"
+                      ? share.amount
+                      : shareCalculation.values[share.survivorId] !== undefined && form.totalCost
+                        ? shareCalculation.values[share.survivorId]
+                        : ""
+                  }
                   onChange={(e) => editShare(index, "amount", e.target.value)}
                   readOnly={share.shareType === "average" || share.shareType === "remaining"}
                 />
@@ -1209,7 +1243,7 @@ export default function Expense() {
             </div>
           ) : null}
 
-          {form.shares.length && form.totalCost ? (
+          {form.shares.length && (form.totalCost || !shareCalculation.valid) ? (
             <div className={`share-result ${shareCalculation.valid ? "valid" : "invalid"}`}>
               <span>{shareCalculation.valid ? <Check size={16} /> : <X size={16} />}</span>
 
