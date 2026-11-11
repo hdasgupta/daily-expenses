@@ -342,7 +342,7 @@ function uiShareDumpRows(rows) {
                 total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : ""
               }`,
           )
-          .join(", ")
+          .join("\n")
       : "No survivor share recorded";
 
     return {

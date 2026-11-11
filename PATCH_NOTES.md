@@ -350,3 +350,12 @@
   - Also added explicit real-time frontend checks for multiple `"Remaining amount"` rows (*"Only one remaining share is allowed"*) and mixing `"Average amount"` with `"Remaining amount"` (*"Use average shares or one remaining share, not both"*).
 - **Backend Enforcement (`backend/src/services/expenseService.js`)**:
   - Added server-side validation in `normalizeShares` throwing `"Average amount requires at least 2 survivors"` if `averageShares.length === 1`.
+
+
+## 22. Multi-Line Survivor Share Formatting Across All HTML Views & PDF Reports
+- **Frontend HTML Views (`frontend/src/pages/Expense.jsx`, `frontend/src/pages/Reports.jsx`, `frontend/src/pages/DashboardDrilldown.jsx`)**:
+  - Updated the expense card list on **Add Expenses** (`Expense.jsx`) to render each survivor's share information (`<Survivor Name> ₹<Amount> (<Share Type>)`) on its own new line (`<br />` with `whiteSpace: "pre-line"`) instead of joining shares inline with `" · "`.
+  - Updated `buildUiShareRows` and `renderCell` in **Reports** (`Reports.jsx`) as well as **Dashboard Drilldown** (`DashboardDrilldown.jsx`) to separate each survivor's share entry with a newline (`\n` / `<br />`) inside a `white-space: pre-line` container.
+- **Backend PDF Report Generators (`backend/src/services/dailyEmailReportPdfService.js`, `backend/src/services/weeklyEmailReportPdfService.js`, `backend/src/services/monthlyEmailReportPdfService.js`, `backend/src/services/yearlyEmailReportPdfService.js`, `backend/src/services/scheduledReportPdfService.js`, `backend/src/services/reportPdfService.js`)**:
+  - Changed survivor share concatenation in `uiShareDumpRows`, `normaliseRawRows`, `buildUiShareRows`, and `formatCell` from `.join(", ")` to `.join("\n")` across all PDF services.
+  - Combined with PDFKit's dynamic `heightOfString` row-height calculation and `lineBreak: true` cell rendering, each survivor's share information (`<Survivor Name>: ₹<Amount> (<Percentage>%)`) is printed on a dedicated new line in every generated PDF report.

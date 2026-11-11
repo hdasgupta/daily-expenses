@@ -41,6 +41,9 @@ function formatCell(value, column) {
   if (column === "expense_date") return formatDate(value);
   if (["date", "week", "month"].includes(column)) return formatDimensionDate(value);
   if (column === "year") return String(value);
+  if (column === "share") {
+    return String(value).replace(/,\s*(?=[^,\n]+:\s*₹)/g, "\n");
+  }
 
   return String(value);
 }
@@ -158,7 +161,7 @@ function buildUiShareRows(rows) {
     if (row.survivor && row.survivor !== "—") {
       target.survivorShares.push({
         name: row.survivor,
-        amount: Number(row.share_price || 0),
+        amount: Number(row.share_price ?? row.expense_amount ?? row.report_amount ?? 0),
       });
     }
 
@@ -181,7 +184,7 @@ function buildUiShareRows(rows) {
             const percentage = total ? ` (${((item.amount / total) * 100).toFixed(2)}%)` : "";
             return `${item.name}: ${money(item.amount)}${percentage}`;
           })
-          .join(", ")
+          .join("\n")
       : "No survivor share recorded";
 
     const { survivorShares, survivor, ...clean } = row;

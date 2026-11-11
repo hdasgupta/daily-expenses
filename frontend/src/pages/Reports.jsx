@@ -219,7 +219,7 @@ function buildUiShareRows(rows) {
             const percentage = total > 0 ? ` (${((amount / total) * 100).toFixed(2)}%)` : "";
             return `${item.name}: ₹${amount.toFixed(2)}${percentage}`;
           })
-          .join(", ")
+          .join("\n")
       : "No survivor share recorded";
 
     const { survivorShares, _shareNames, survivor, ...clean } = row;
@@ -949,21 +949,26 @@ export default function Reports({ user }) {
       );
     }
 
-    if (column === "comment") {
+    if (column === "comment" || column === "share") {
       const value = row[column];
       if (value === null || value === undefined || value === "") {
         return "—";
       }
+      const lines =
+        column === "share"
+          ? String(value)
+              .replace(/,\s*(?=[^,\n]+:\s*₹)/g, "\n")
+              .split(/\r?\n/)
+              .filter(Boolean)
+          : String(value).split(/\r?\n/);
       return (
         <span style={{ whiteSpace: "pre-line" }}>
-          {String(value)
-            .split(/\r?\n/)
-            .map((line, idx, arr) => (
-              <span key={idx}>
-                {line}
-                {idx < arr.length - 1 ? <br /> : null}
-              </span>
-            ))}
+          {lines.map((line, idx, arr) => (
+            <span key={idx}>
+              {line}
+              {idx < arr.length - 1 ? <br /> : null}
+            </span>
+          ))}
         </span>
       );
     }

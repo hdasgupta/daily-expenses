@@ -367,7 +367,7 @@ function uiShareDumpRows(rows) {
 
             return `${shareItem.name}: ${money(shareItem.amount)} (${percentage}%)`;
           })
-          .join(", ")
+          .join("\n")
       : "No survivor share recorded";
 
     return {

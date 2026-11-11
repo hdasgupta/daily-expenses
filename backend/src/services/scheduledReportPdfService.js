@@ -527,7 +527,7 @@ function normaliseRawRows(rows) {
             (share) =>
               `${share.name}: ${money(share.amount)}${row.totalCost ? ` (${((share.amount / row.totalCost) * 100).toFixed(2)}%)` : ""}`,
           )
-          .join(", ")
+          .join("\n")
       : "No survivor share recorded",
     total: money(row.totalCost),
     comment: row.comment,

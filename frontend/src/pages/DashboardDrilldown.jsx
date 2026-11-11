@@ -211,11 +211,34 @@ export default function DashboardDrilldown({ navigate }) {
 
                       <td className="number-cell">{money(row.total_cost)}</td>
 
-                      <td className="number-cell">
-                        {row.share_price == null ? "—" : money(row.share_price)}
+                      <td className="number-cell" style={{ whiteSpace: "pre-line" }}>
+                        {row.share_price != null
+                          ? money(row.share_price)
+                          : row.share
+                            ? String(row.share)
+                                .replace(/,\s*(?=[^,\n]+:\s*₹)/g, "\n")
+                                .split(/\r?\n/)
+                                .map((line, idx, arr) => (
+                                  <span key={idx}>
+                                    {line}
+                                    {idx < arr.length - 1 ? <br /> : null}
+                                  </span>
+                                ))
+                            : "—"}
                       </td>
 
-                      <td>{row.comment || "—"}</td>
+                      <td style={{ whiteSpace: "pre-line" }}>
+                        {row.comment
+                          ? String(row.comment)
+                              .split(/\r?\n/)
+                              .map((line, idx, arr) => (
+                                <span key={idx}>
+                                  {line}
+                                  {idx < arr.length - 1 ? <br /> : null}
+                                </span>
+                              ))
+                          : "—"}
+                      </td>
 
                       <td>
                         {row.proof_url ? (

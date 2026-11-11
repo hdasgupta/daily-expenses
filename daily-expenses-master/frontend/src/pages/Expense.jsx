@@ -827,13 +827,13 @@ export default function Expense() {
                   <td>₹{Number(row.total_cost).toFixed(2)}</td>
                   <td>{row.expense_type || "cash"}</td>
                   <td>{renderMultilineComment(row.comment)}</td>
-                  <td>
-                    {(row.shares || [])
-                      .map(
-                        (share) =>
-                          `${share.survivorName} ₹${Number(share.amount).toFixed(2)}`,
-                      )
-                      .join(", ")}
+                  <td style={{ whiteSpace: "pre-line" }}>
+                    {(row.shares || []).map((share, idx, arr) => (
+                      <span key={share.survivorId || idx}>
+                        {`${share.survivorName} ₹${Number(share.amount).toFixed(2)}`}
+                        {idx < arr.length - 1 ? <br /> : null}
+                      </span>
+                    ))}
                   </td>
                   <td>
                     <div className="row-actions">
@@ -893,13 +893,13 @@ export default function Expense() {
                   {renderMultilineComment(row.comment)}
                 </div>
               ) : null}
-              <div className="mobile-card-shares">
-                {(row.shares || [])
-                  .map(
-                    (share) =>
-                      `${share.survivorName} ₹${Number(share.amount).toFixed(2)}`,
-                  )
-                  .join(", ")}
+              <div className="mobile-card-shares" style={{ whiteSpace: "pre-line" }}>
+                {(row.shares || []).map((share, idx, arr) => (
+                  <span key={share.survivorId || idx}>
+                    {`${share.survivorName} ₹${Number(share.amount).toFixed(2)}`}
+                    {idx < arr.length - 1 ? <br /> : null}
+                  </span>
+                ))}
               </div>
               <div className="row-actions">
                 {row.proof_path ? (

@@ -1421,16 +1421,18 @@ export default function Expense() {
                   : "No comment"}
               </span>
 
-              <span>
-                Shares:{" "}
-                {(Array.isArray(row.shares) ? row.shares : [])
-                  .map(
-                    (share) =>
-                      `${share.survivorName} ₹${Number(share.amount).toFixed(
-                        2,
-                      )} (${share.shareType})`,
-                  )
-                  .join(" · ")}
+              <span style={{ whiteSpace: "pre-line" }}>
+                Shares:
+                {(Array.isArray(row.shares) ? row.shares : []).length
+                  ? (Array.isArray(row.shares) ? row.shares : []).map((share, idx) => (
+                      <span key={share.survivorId || idx}>
+                        <br />
+                        {`${share.survivorName} ₹${Number(share.amount).toFixed(
+                          2,
+                        )} (${share.shareType})`}
+                      </span>
+                    ))
+                  : " —"}
               </span>
             </div>
 
