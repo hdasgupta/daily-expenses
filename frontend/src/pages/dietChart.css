@@ -712,21 +712,24 @@
   border: 1px solid color-mix(in srgb, var(--primary, #2563eb) 25%, transparent);
 }
 
-/* Ensure recipe category tags inside Add Recipe modal are completely visible and wrap cleanly */
+/* Keep recipe category tags inside Add Recipe modal on one line with horizontal scrolling */
 .diet-modal.diet-picker {
   width: min(100%, 660px);
 }
 .diet-modal.diet-picker .diet-category-chips.diet-picker-chips {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
   gap: 6px;
-  max-height: 112px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 6px 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 2px 8px;
   margin: -4px 0 6px;
   flex-shrink: 0;
   min-height: 40px;
+  max-width: 100%;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 .diet-modal.diet-picker .diet-category-chip {
   flex-shrink: 0;

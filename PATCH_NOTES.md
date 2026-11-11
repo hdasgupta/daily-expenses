@@ -359,3 +359,8 @@
 - **Backend PDF Report Generators (`backend/src/services/dailyEmailReportPdfService.js`, `backend/src/services/weeklyEmailReportPdfService.js`, `backend/src/services/monthlyEmailReportPdfService.js`, `backend/src/services/yearlyEmailReportPdfService.js`, `backend/src/services/scheduledReportPdfService.js`, `backend/src/services/reportPdfService.js`)**:
   - Changed survivor share concatenation in `uiShareDumpRows`, `normaliseRawRows`, `buildUiShareRows`, and `formatCell` from `.join(", ")` to `.join("\n")` across all PDF services.
   - Combined with PDFKit's dynamic `heightOfString` row-height calculation and `lineBreak: true` cell rendering, each survivor's share information (`<Survivor Name>: ₹<Amount> (<Percentage>%)`) is printed on a dedicated new line in every generated PDF report.
+
+
+## 23. Single-Line Horizontal Scrolling for Recipe Category Tags in Food Chart Add Recipe Modal
+- **Add Recipe Picker Category Chips (`frontend/src/pages/dietChart.css`)**:
+  - Updated `.diet-modal.diet-picker .diet-category-chips.diet-picker-chips` to use `flex-wrap: nowrap`, `overflow-x: auto`, `overflow-y: hidden`, `scrollbar-width: thin`, and `-webkit-overflow-scrolling: touch` while maintaining `flex-shrink: 0` and `min-height: 40px` so all recipe category tags stay on a single line with smooth horizontal scrolling.
