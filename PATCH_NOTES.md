@@ -370,3 +370,18 @@
 - **Default Survivor Share Type (`frontend/src/pages/Expense.jsx`)**:
   - Updated `addShare` so clicking **Add survivor** initializes the new survivor row with `shareType: "remaining"` ("Remaining amount") by default instead of `"fixed"`.
   - Updated single-survivor fallback in `removeShare` to also default to `"remaining"` when a second `"average"` survivor row is removed.
+
+
+## 25. Comprehensive Besan (Gram Flour) Recipe Catalogue Expansion (Gatta, Pitor, Chilla, Kadhi, Zunka, Pithla, Sabzis, Snacks & Sweets)
+- **Added 44 Authentic Besan Recipes** (`static-1752`–`static-1795`) across `backend/src/data/recipes.json` and `backend/src/data/expandedStarterRecipes.js`:
+  - **Gatta Curries, Sabzis & Pulao (7)**: *Rajasthani Gatte ki Sabzi* (`static-1752`), *Shahi Govind Gatta Curry* (`static-1753`), *Masala Gatta Fry / Sukhe Gatte ki Sabzi* (`static-1754`), *Palak Gatta Curry* (`static-1755`), *Methi Gatta ki Sabzi* (`static-1756`), *Rajasthani Gatta Pulao / Gatte ke Chawal* (`static-1757`), and *Gatte ki Kadhi* (`static-1758`).
+  - **Pitor / Pitod / Patod & Set Besan Cake Curries (5)**: *Rajasthani Pitod ki Sabzi / Pitor Curry* (`static-1759`), *Tawa Masala Pitor Fry / Crispy Patod Tikka* (`static-1760`), *Bihari Besan ki Sabzi / Besan Katli Curry* (`static-1761`), *Patoli / Maharashtrian Patodi Rassa* (`static-1762`), and *UP-Style Karara / Besan ki Meendhi Sabzi* (`static-1763`).
+  - **Besan Chilla & Savory Gram Flour Breakfasts (8)**: *Besan Chilla / Besan ka Puda* (`static-1764`), *Paneer Bhurji Stuffed Besan Chilla* (`static-1765`), *Vegetable Masala Besan Chilla* (`static-1766`), *Oats & Besan Chilla* (`static-1767`), *Palak Besan Chilla* (`static-1768`), *Methi Besan Chilla* (`static-1769`), *Besan Toast / Savory Besan French Toast* (`static-1770`), and *Besan Omelette / Vegetarian Tomato-Besan Omelette* (`static-1771`).
+  - **Kadhi, Pithla & Zunka Gravies (6)**: *Punjabi Kadhi Pakora* (`static-1772`), *Rajasthani Marwari Kadhi* (`static-1773`), *Gujarati Kadhi* (`static-1774`), *Sindhi Kadhi* (`static-1775`), *Maharashtrian Zunka* (`static-1776`), and *Maharashtrian Pithla* (`static-1777`).
+  - **Besan-Coated & Stuffed Vegetable Sabzis (6)**: *Kurkuri Besan Bhindi / Rajasthani Besan Wali Bhindi* (`static-1778`), *Besan Shimla Mirch / Besan Wali Capsicum* (`static-1779`), *Rajasthani Besan Pyaz ki Sabzi* (`static-1780`), *Bharwa Besan Mirch / Rajasthani Besan Stuffed Moti Hari Mirch* (`static-1781`), *Besan Arbi Fry* (`static-1782`), and *Besan Karele ki Sabzi* (`static-1783`).
+  - **Steamed & Fried Besan Snacks (7)**: *Khaman Dhokla / Nylon Khaman* (`static-1784`), *Gujarati Khandvi / Dahivadi / Suralichi Vadi* (`static-1785`), *Kothimbir Vadi* (`static-1786`), *Alu Vadi / Gujarati Patra* (`static-1787`), *Methi Besan Muthiya* (`static-1788`), *Mirchi Vada / Jodhpuri Mirchi Bada* (`static-1789`), and *Batata Vada / Mumbai Aloo Bonda* (`static-1790`).
+  - **Traditional Besan Sweets & Halwas (5)**: *Besan Ladoo / Danedar Besan ke Laddu* (`static-1791`), *Besan ki Barfi / Besan Chakki* (`static-1792`), *Besan ka Halwa / Besan Sheera* (`static-1793`), *Mysore Pak* (`static-1794`), and *Besan Doodh Barfi / Besan Milk Cake* (`static-1795`).
+- **Removed 7 Outdated Generic Starter Placeholders**:
+  - Replaced boilerplate outline entries (`static-0647` *Besan Chilla*, `static-0620` *Masala Besan Chilla*, `static-0611` *Vegetable Besan Chilla*, `static-0317` *Dhokla*, `static-0377` *Khandvi*, `static-0855` *Besan Ladoo*, and `static-0877` *Mysore Pak*) with detailed, authentic culinary recipes.
+- **Catalogue Verification & Alphabetical Sorting**:
+  - Sorted all **1,528** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.

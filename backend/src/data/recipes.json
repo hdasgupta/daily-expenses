@@ -3417,6 +3417,80 @@
     "notes": "Classic neighborhood mishtir dokan (sweet-shop) breakfast kochuri of Bengal."
   },
   {
+    "id": "static-1787",
+    "name": "Alu Vadi / Gujarati Patra (Spiced Tamarind-Jaggery Besan Coated Colocasia Leaf Pinwheel Rolls)",
+    "category": "Snacks",
+    "region": "Maharashtrian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Tender colocasia / taro leaves (arbi ke patte, veins trimmed)",
+        "quantity": "8",
+        "unit": "leaves"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Thick tamarind pulp & grated jaggery",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli, coriander-cumin & goda/garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "White sesame seeds, mustard seeds, curry leaves & hing",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil (for pan-searing)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Layer colocasia leaves with tangy besan paste",
+        "text": "Whisk besan, rice flour, tamarind pulp, jaggery, ginger-garlic-chilli paste, spices, sesame seeds, and water into a thick spreadable paste. Lay a large colocasia leaf vein-side up, smear paste evenly, layer 3–4 more coated leaves in alternating directions, fold sides in, and roll into a tight cylinder.",
+        "minutes": 15
+      },
+      {
+        "section": "Steam rolls until cooked through",
+        "text": "Place the leaf logs in a greased steamer and steam for 18–20 minutes until firm. Cool completely and slice into 1/2-inch pinwheels.",
+        "minutes": 20
+      },
+      {
+        "section": "Sear with sesame-mustard tempering",
+        "text": "Heat oil in a wide pan, crackle mustard seeds, sesame seeds, hing, and curry leaves, sear the pinwheels until crisp on both sides, and garnish with fresh grated coconut.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Tamarind plays an essential culinary role by neutralizing the natural calcium oxalate itchiness of colocasia leaves."
+  },
+  {
     "id": "static-0138",
     "name": "Alur Chop",
     "category": "Snacks",
@@ -6385,6 +6459,80 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1790",
+    "name": "Batata Vada / Mumbai Aloo Bonda (Garlic-Mustard Tempered Mashed Potato Spheres in Golden Besan Batter)",
+    "category": "Snacks",
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled & mashed potatoes",
+        "quantity": "4",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour (for crisp shell)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coarsely pounded garlic, ginger & green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, curry leaves, turmeric & hing",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & pinch of baking soda",
+        "quantity": "3/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves & lemon juice",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Groundnut oil (for tempering & frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper mashed potatoes and shape spheres",
+        "text": "Heat 1 tbsp oil, crackle mustard seeds, hing, and curry leaves, saute pounded garlic-ginger-green chillies and turmeric for 1 minute, and mix into mashed potatoes with lemon juice, coriander, and salt. Roll into 8 lemon-sized balls.",
+        "minutes": 10
+      },
+      {
+        "section": "Prepare crisp besan-rice flour batter",
+        "text": "Whisk besan, rice flour, ajwain, turmeric, salt, a pinch of baking soda, and water into a smooth medium-thick batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat and deep-fry",
+        "text": "Coat each potato ball in the besan batter and fry in medium-hot oil until evenly golden and crisp. Serve hot with dry red garlic chutney, fried green chillies, or inside ladi pav as Vada Pav.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Adding 1.5 tbsp rice flour to the besan batter keeps the outer shell crisp long after frying."
+  },
+  {
     "id": "static-0743",
     "name": "BBQ Paneer Sandwich",
     "category": "Sandwich",
@@ -8263,112 +8411,531 @@
     "notes": "The quintessential everyday rainy-day Bengali household comfort meal, typically paired with crispy fried omelette or begun bhaja."
   },
   {
-    "id": "static-0647",
-    "name": "Besan Chilla",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
+    "id": "static-1782",
+    "name": "Besan Arbi Fry (Crispy Carom & Gram Flour Coated Taro Root Stir-Fry)",
+    "category": "Vegetable",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
     "ingredients": [
       {
-        "name": "Besan / main ingredient",
+        "name": "Arbi (taro root / colocasia, boiled 80%, peeled & sliced)",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Roasted besan (gram flour)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & asafoetida (hing)",
+        "quantity": "1.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) & roasted cumin powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat parboiled arbi in spiced besan",
+        "text": "Toss parboiled and cooled arbi rounds with turmeric, red chilli, coriander powder, amchur, salt, and roasted besan so each slice is evenly coated.",
+        "minutes": 5
+      },
+      {
+        "section": "Crisp-fry with ajwain tempering",
+        "text": "Heat smoking mustard oil in a heavy pan, crackle ajwain and hing, and roast the coated arbi on medium flame for 10–12 minutes until a golden, crunchy besan crust forms on all sides.",
+        "minutes": 12
+      },
+      {
+        "section": "Garnish and serve",
+        "text": "Finish with roasted cumin powder and fresh coriander; serve hot with pooris or parathas.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Carom seeds (ajwain) are the classic digestive pairing for both taro root (arbi) and gram flour (besan)."
+  },
+  {
+    "id": "static-1764",
+    "name": "Besan Chilla / Besan ka Puda (Classic Spiced Gram Flour, Onion, Tomato & Coriander Savory Crepes)",
+    "category": "Breakfast",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Fine besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onion",
         "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Finely deseeded & chopped tomato",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Finely chopped green chillies & grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves (finely chopped)",
+        "quantity": "1/3",
         "unit": "cup"
       },
       {
-        "name": "Onion",
+        "name": "Carom seeds (ajwain) & cumin seeds",
         "quantity": "1",
-        "unit": "small"
+        "unit": "tsp"
       },
       {
-        "name": "Mixed vegetables",
+        "name": "Turmeric, red chilli powder & black pepper",
+        "quantity": "1.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or oil (for pan-roasting)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Water & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk smooth besan batter and rest",
+        "text": "Sift besan into a bowl, add ajwain (crushed between palms), turmeric, red chilli powder, salt, and water gradually while whisking into a smooth, pourable, lump-free batter. Rest for 10 minutes so the gram flour hydrates.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold in aromatics and vegetables",
+        "text": "Stir finely chopped onion, tomato, grated ginger, green chillies, and fresh coriander leaves into the rested batter.",
+        "minutes": 3
+      },
+      {
+        "section": "Spread and roast golden on hot tawa",
+        "text": "Heat a seasoned cast-iron or non-stick tawa over medium flame, brush lightly with ghee/oil, pour a ladleful of batter, and spread gently in concentric circles. Drizzle a few drops of ghee around the edges and cook 2–3 minutes per side until golden-brown and crisp. Serve hot with mint-coriander chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Resting the batter for 10 minutes before cooking prevents cracking and makes the chilla lacy and pliable."
+  },
+  {
+    "id": "static-1795",
+    "name": "Besan Doodh Barfi / Besan Milk Cake (Caramelized Milk-Soaked Gram Flour & Khoya Fudge)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Full-cream milk (for soaking besan)",
         "quantity": "1/2",
         "unit": "cup"
       },
       {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Pure desi ghee (3 tbsp for moiyan + 1/2 cup for roasting)",
+        "quantity": "2/3",
+        "unit": "cup"
       },
       {
-        "name": "Oil, spices and salt",
+        "name": "Crumbled khoya (mawa) or milk powder",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder & saffron",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slivered pistachios & almonds",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dhabba (milk-ghee rub) and sieve besan",
+        "text": "Rub besan with 3 tbsp melted ghee and 4 tbsp warm milk until crumbly like wet sand, cover for 15 minutes, then pass through a coarse sieve or pulse briefly in a mixer to form fine granules.",
+        "minutes": 12
+      },
+      {
+        "section": "Roast granulated besan and fold in khoya",
+        "text": "Roast the granulated besan in 1/2 cup ghee on low flame for 15 minutes until deep golden, then stir in crumbled khoya and roast 3 more minutes.",
+        "minutes": 18
+      },
+      {
+        "section": "Bind with sugar syrup and set",
+        "text": "Stir in warm 1-string sugar syrup flavored with cardamom and saffron, transfer to a greased tray, top with pistachio and almond slivers, and cut into rich barfi squares.",
+        "minutes": 5
+      }
+    ],
+    "notes": "The traditional halwai 'dhabba' technique of rubbing milk and ghee into raw besan before roasting gives this barfi a rich, grainy milk-cake texture."
+  },
+  {
+    "id": "static-1793",
+    "name": "Besan ka Halwa / Besan Sheera (Rich Slow-Roasted Gram Flour, Ghee, Milk & Saffron Pudding with Almonds)",
+    "category": "Sweets",
+    "region": "Punjabi",
+    "prepMinutes": 5,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fine suji (semolina)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Warm full-cream milk + water",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sugar (or jaggery powder)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Saffron strands & green cardamom powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sliced almonds, cashews & pistachios",
+        "quantity": "1/3",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast besan and suji in desi ghee",
+        "text": "Heat ghee in a heavy pan, lightly fry nuts, then roast besan and suji over low flame for 12–15 minutes until deep golden brown and nutty.",
+        "minutes": 14
+      },
+      {
+        "section": "Stir in warm saffron milk and sugar",
+        "text": "Carefully pour in warm saffron-infused milk and water in a steady stream while stirring continuously so no lumps form. Add sugar and cardamom powder.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer until glossy and ghee separates",
+        "text": "Cook for 3–4 minutes until the halwa absorbs the liquid, pulls away from the pan in a glossy mass, and releases ghee around the edges. Garnish with roasted nuts and serve piping hot.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Also cherished in winter as a warming, soothing household remedy for colds when served hot."
+  },
+  {
+    "id": "static-1783",
+    "name": "Besan Karele ki Sabzi (Spiced Roasted Gram Flour, Fennel & Raw Mango Stuffed Bitter Gourd)",
+    "category": "Vegetable",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Bitter gourds (karela, scraped & salted 15 mins)",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely grated onion & raw mango (or amchur)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Coarsely crushed fennel (saunf), coriander & kalonji",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Jaggery powder (optional, to balance bitterness)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
         "quantity": "to taste",
         "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
+        "section": "Prep karela and roast besan-onion masala",
+        "text": "Squeeze salted karelas to remove excess bitter juice. In 1 tbsp mustard oil, saute grated onion, crushed fennel, kalonji, and besan on low flame until golden and aromatic; mix in raw mango/amchur, spices, jaggery, and salt.",
         "minutes": 10
       },
       {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
+        "section": "Stuff or toss and pan-roast",
+        "text": "Stuff the slit karelas (or toss thick karela rings) with the roasted besan masala and shallow-fry in mustard oil under a lid on low heat for 12–15 minutes until tender and caramelized.",
+        "minutes": 15
+      },
+      {
+        "section": "Serve warm",
+        "text": "Serve hot with dal-roti; stays fresh for 2–3 days.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Nutty roasted besan and tangy amchur mellow the bitterness of karela while creating a rich, crumbly filling."
+  },
+  {
+    "id": "static-1792",
+    "name": "Besan ki Barfi / Besan Chakki (Rajasthani Ghee-Roasted Gram Flour, Cardamom & Pistachio Fudge Squares)",
+    "category": "Sweets",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fine semolina (suji/rava)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Water (for 1-string syrup)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder & saffron strands",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sliced pistachios & almonds",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast besan and suji in ghee",
+        "text": "Heat desi ghee in a heavy kadai and slow-roast besan and suji over low heat for 15–18 minutes until fragrant, frothy, and golden-amber.",
+        "minutes": 18
+      },
+      {
+        "section": "Prepare 1-string saffron sugar syrup",
+        "text": "Boil sugar and 1/2 cup water with saffron strands and cardamom powder for 4–5 minutes until it reaches a single-thread (ek-taar) consistency.",
         "minutes": 5
       },
       {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
+        "section": "Combine, set, and slice into diamonds",
+        "text": "Pour the warm sugar syrup into the roasted besan off the heat, stir vigorously until it thickens and leaves the sides of the pan, spread into a greased tray, scatter sliced pistachios and almonds, and cut into neat barfi squares while warm.",
+        "minutes": 5
       }
     ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+    "notes": "A festive North Indian and Rajasthani winter sweet with a melt-in-the-mouth fudge texture."
   },
   {
-    "id": "static-0855",
-    "name": "Besan Ladoo",
+    "id": "static-1791",
+    "name": "Besan Ladoo / Danedar Besan ke Laddu (Slow-Roasted Coarse Gram Flour, Ghee, Cardamom & Cashew Ladoo)",
     "category": "Sweets",
-    "region": "Indian",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Coarse besan (laddoo besan, or regular besan + 2 tbsp fine suji)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Tagar / Boora (or powdered sugar)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder & nutmeg powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chopped cashews, almonds & pistachios",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Melon seeds (magaz, toasted)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast besan in desi ghee on low flame",
+        "text": "Melt ghee in a heavy-bottomed kadai, add coarse besan (and suji if using fine besan), and roast patiently over the lowest flame for 18–22 minutes, stirring constantly until it loosens, turns deep golden-hazel, and fills the kitchen with a nutty aroma.",
+        "minutes": 20
+      },
+      {
+        "section": "Splash water for signature danedar grain",
+        "text": "Sprinkle 1 tbsp water over the hot roasted besan so it foams up and creates fine granules (danedar texture); stir 2 more minutes until moisture evaporates, fold in chopped nuts and toasted melon seeds, and transfer to a wide plate to cool until lukewarm.",
+        "minutes": 5
+      },
+      {
+        "section": "Mix boora and roll into glossy ladoos",
+        "text": "Once lukewarm (never hot, or the sugar will melt), mix in boora/powdered sugar, cardamom, and nutmeg powder, and roll firmly between palms into smooth, glossy spheres garnished with pistachio slivers.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Waiting until the roasted besan cools to lukewarm before adding boora/sugar ensures firm, round ladoos that never turn runny."
+  },
+  {
+    "id": "static-1771",
+    "name": "Besan Omelette / Vegetarian Tomato-Besan Omelette (Fluffy Whisked Gram Flour, Tomato & Herb Savory Omelette)",
+    "category": "Breakfast",
+    "region": "Maharashtrian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "besan",
-        "quantity": "1 cup",
-        "unit": ""
+        "name": "Fine besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
       },
       {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Ripe tomatoes (finely chopped & juicy)",
+        "quantity": "2",
+        "unit": "medium"
       },
       {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Finely chopped onion, green chillies & fresh coriander",
+        "quantity": "3/4",
+        "unit": "cup"
       },
       {
-        "name": "cardamom",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tsp"
       },
       {
-        "name": "nuts",
+        "name": "Turmeric, red chilli powder & hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fruit salt (Eno) or baking soda (for fluffy omelette texture)",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter or oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
         "quantity": "to taste",
         "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
+        "section": "Aerate besan-tomato batter",
+        "text": "Whisk besan vigorously with water, turmeric, red chilli powder, hing, ginger-garlic paste, and salt for 2 minutes to incorporate air. Fold in juicy chopped tomatoes, onion, green chillies, coriander, and a pinch of fruit salt/soda right before cooking.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook fluffy omelette with butter",
+        "text": "Melt butter in a small skillet, pour a thick ladle of frothy batter, cover for 2 minutes on medium-low flame until puffy, then flip and sear until golden brown.",
         "minutes": 10
       },
       {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
-      },
-      {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
+        "section": "Serve with toasted pav or bread",
+        "text": "Serve hot with buttered pav, bread toast, and green chutney.",
+        "minutes": 2
       }
     ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+    "notes": "Famous across Mumbai and Pune Irani cafes and street stalls as 'Tomato Omelette'—completely eggless yet remarkably fluffy."
   },
   {
     "id": "static-1397",
@@ -8477,6 +9044,144 @@
       }
     ],
     "notes": "A protein-rich, travel-friendly North Indian paratha that stays soft for hours."
+  },
+  {
+    "id": "static-1779",
+    "name": "Besan Shimla Mirch / Besan Wali Capsicum (Dry Roasted Gram Flour, Amchur & Fennel Tossed Bell Peppers)",
+    "category": "Vegetable",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Green bell peppers (capsicum, cubed into 1-inch pieces)",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds & fennel seeds (saunf)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (hing) & grated ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) & garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry-roast besan until fragrant",
+        "text": "Dry-roast 4 tbsp besan in a pan over low heat for 3–4 minutes until nutty and lightly golden; transfer to a bowl.",
+        "minutes": 4
+      },
+      {
+        "section": "Stir-fry capsicum with whole spices",
+        "text": "Heat mustard oil, crackle cumin, mustard, fennel seeds, and hing, then toss in cubed capsicum, ginger, turmeric, and salt. Stir-fry for 4–5 minutes so the peppers stay vibrant and slightly crisp.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat with roasted besan and amchur",
+        "text": "Add coriander powder, Kashmiri chilli, amchur, garam masala, and the roasted besan. Toss on low heat for 3–4 minutes with a tiny splash of water so the spiced besan hugs every capsicum piece.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Quick no-onion, no-garlic Rajasthani tiffin sabzi where sweet crunch of capsicum meets nutty roasted gram flour."
+  },
+  {
+    "id": "static-1770",
+    "name": "Besan Toast / Savory Besan French Toast (Crispy Spiced Gram Flour, Onion & Green Chilli Coated Bread Toast)",
+    "category": "Breakfast",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Bread slices (white, brown or multigrain)",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crisp crust)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped onion, tomato & capsicum",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped green chillies & coriander leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), turmeric, red chilli & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter or oil (for toasting)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk thick vegetable-besan coating batter",
+        "text": "Mix besan, rice flour, ajwain, turmeric, red chilli powder, salt, and water into a coating-consistency batter. Fold in finely chopped onion, tomato, capsicum, green chillies, and coriander.",
+        "minutes": 7
+      },
+      {
+        "section": "Dip bread and pan-toast in butter",
+        "text": "Dip each bread slice into the spiced besan batter, spooning extra chopped vegetables onto the top surface. Place on a hot buttered tawa and toast on medium flame for 2–3 minutes per side until crisp and golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Sprinkle chaat masala and slice",
+        "text": "Dust with chaat masala, cut diagonally into triangles, and serve hot with tomato ketchup or mint chutney.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Quick 15-minute vegetarian street-style savory French toast loved for breakfast or tiffin boxes."
   },
   {
     "id": "static-1408",
@@ -8733,6 +9438,75 @@
       }
     ],
     "notes": "Traditional Bengali steamed delicacy; grind mustard with a pinch of salt and green chilli to prevent bitterness."
+  },
+  {
+    "id": "static-1781",
+    "name": "Bharwa Besan Mirch / Rajasthani Besan Stuffed Moti Hari Mirch (Tangy Spiced Roasted Besan Stuffed Mild Green Peppers)",
+    "category": "Side Dish",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Large mild green chillies (Bhavnagari / Achari mirch)",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Coarsely ground fennel seeds & coriander seeds",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, carom seeds (ajwain) & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) & lemon juice",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & black salt",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast tangy besan-saunf stuffing",
+        "text": "Heat 1 tbsp mustard oil, temper cumin, ajwain, and hing, and roast besan on low flame for 5 minutes until nutty and golden. Cool and mix with coarse fennel, coriander powder, turmeric, Kashmiri chilli, amchur, black salt, regular salt, and lemon juice with a few drops of oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Slit and stuff green peppers",
+        "text": "Wash and dry the large mild chillies, make a lengthwise slit (removing seeds if desired), and pack generously with the spiced roasted besan masala.",
+        "minutes": 5
+      },
+      {
+        "section": "Pan-sear until blistered and tender",
+        "text": "Heat remaining 2 tbsp mustard oil in a wide pan, arrange the stuffed chillies, cover and cook on medium-low flame for 6–8 minutes, turning gently until the skins are lightly blistered and tender. Sprinkle any leftover besan masala on top.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Elevates any Indian thali, dal-chawal, or khichdi meal with its tangy, nutty, and mildly spiced flavor."
   },
   {
     "id": "static-1632",
@@ -9800,6 +10574,80 @@
       }
     ],
     "notes": "Pulsing most of the corn prevents the kernels from popping in hot oil while locking in natural sweetness."
+  },
+  {
+    "id": "static-1761",
+    "name": "Bihari Besan ki Sabzi / Besan Katli Curry (Mustard-Garlic Gravy with Pan-Seared Gram Flour Cakes)",
+    "category": "Curry",
+    "region": "Bihari",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow mustard seeds & black mustard seeds (ground with garlic)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ripe tomatoes (finely chopped or pureed)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Panch phoron & methi dana (fenugreek seeds)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) or tangy mustard paste",
+        "quantity": "1/2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kachi ghani mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare and shallow-fry besan katli / cheela rolls",
+        "text": "Whisk besan with water, turmeric, red chilli, garlic paste, and salt; either cook into a thick pitor slab and cut into diamond katlis, or spread as thick cheelas on a tawa, fold into flat logs, and slice into 2-inch pieces. Shallow-fry in mustard oil until golden.",
+        "minutes": 15
+      },
+      {
+        "section": "Bhuno pungent Bihari sarson-lahsun masala",
+        "text": "Heat smoking mustard oil, temper methi dana and panch phoron, then fry the ground yellow mustard-garlic paste with turmeric, coriander, and chilli powder until oil separates. Add chopped tomatoes and cook until pulpy.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer besan katlis in mustard gravy",
+        "text": "Pour 2 cups hot water, bring the gravy to a rolling boil for 5 minutes, gently drop in the fried besan katlis, simmer 3 minutes, and garnish with fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Authentic Bihari and Eastern UP homestyle specialty—often called 'vegetarian fish curry' because the mustard-garlic gravy mirrors classic machhli jhol."
   },
   {
     "id": "static-1392",
@@ -26706,65 +27554,6 @@
     "notes": "Keeping the crown intact fans the okra out like a crispy flower when fried."
   },
   {
-    "id": "static-0317",
-    "name": "Dhokla",
-    "category": "Snacks",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Dhokla / main ingredient",
-        "quantity": "2",
-        "unit": "cups"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Green chilli",
-        "quantity": "1",
-        "unit": "pc"
-      },
-      {
-        "name": "Besan or breadcrumbs",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil",
-        "quantity": "for cooking/frying",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare mixture",
-        "text": "Chop or mash the main ingredients and combine with onion, chilli, spices and binder.",
-        "minutes": 10
-      },
-      {
-        "section": "Shape or coat",
-        "text": "Shape into portions or coat in batter or breadcrumbs as appropriate.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook until crisp",
-        "text": "Shallow-fry, deep-fry or bake until golden and cooked through. Drain and serve hot.",
-        "minutes": 10
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-1480",
     "name": "Dhonepatar Bora (Crispy Fresh Coriander Leaf Fritters)",
     "category": "Fritters",
@@ -33671,6 +34460,75 @@
     "notes": "Pairs wonderfully with vegetable or egg fried rice and hakka noodles."
   },
   {
+    "id": "static-1758",
+    "name": "Gatte ki Kadhi (Marwari Spiced Buttermilk Gravy with Soft Gram Flour Dumplings)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (1 cup for gattas + 3 tbsp for kadhi)",
+        "quantity": "1.2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sour buttermilk (chaas) or whisked curd",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Carom seeds (ajwain) & fenugreek seeds (methi dana)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds & hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dried red chillies & curry leaves",
+        "quantity": "1",
+        "unit": "sprig"
+      },
+      {
+        "name": "Turmeric, red chilli & coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Poach and slice soft besan gattas",
+        "text": "Knead 1 cup besan with 1 tbsp ghee, 2 tbsp curd, ajwain, turmeric, chilli powder, and salt into logs. Boil in water for 10 minutes, drain (saving the water), and slice into rounds.",
+        "minutes": 13
+      },
+      {
+        "section": "Simmer Marwari besan-buttermilk kadhi",
+        "text": "Whisk 3 tbsp besan smoothly into sour buttermilk with turmeric, salt, and reserved poaching water. Simmer on medium-low heat for 12–15 minutes while stirring until creamy and raw besan aroma disappears.",
+        "minutes": 13
+      },
+      {
+        "section": "Add gattas and pour smoky ghee tadka",
+        "text": "Simmer the sliced gattas in the kadhi for 4 minutes, then pour a sizzling ghee tempering of mustard, cumin, methi dana, hing, curry leaves, and Kashmiri red chilli over the top.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Combines the tangy comfort of Rajasthani kadhi with tender poached besan gattas."
+  },
+  {
     "id": "static-1284",
     "name": "Ghoti Gorom (Kolkata Street-Style Warm Spiced Chanachur & Raw Mango Mix)",
     "category": "Snacks",
@@ -34872,6 +35730,149 @@
       }
     ],
     "notes": "Iconic crunchy gram-flour strips traditionally paired with hot jalebi and fried green chillies."
+  },
+  {
+    "id": "static-1774",
+    "name": "Gujarati Kadhi (Sweet-Tangy Ginger, Green Chilli & Curry Leaf Tempered Buttermilk-Besan Gravy)",
+    "category": "Curry",
+    "region": "Gujarati",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sour curd (dahi) or buttermilk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Jaggery (gud) or sugar",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chilli-ginger paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds & fenugreek seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cloves, cinnamon stick & dried red chillies",
+        "quantity": "5",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fresh curry leaves & asafoetida (hing)",
+        "quantity": "1",
+        "unit": "sprig"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend silky curd-besan base",
+        "text": "Blend sour curd, besan, ginger-green chilli paste, jaggery, salt, and 2.5 cups water using a hand churner (mathani) until completely smooth.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer until glossy",
+        "text": "Bring the mixture to a gentle boil over medium heat while stirring so it does not curdle, then simmer for 12–15 minutes until lightly thickened and glossy.",
+        "minutes": 14
+      },
+      {
+        "section": "Temper with aromatic ghee vaghar",
+        "text": "Heat ghee in a tadka pan, crackle mustard, cumin, fenugreek seeds, cloves, cinnamon, dried red chillies, curry leaves, and hing. Pour into the simmering kadhi and garnish with fresh coriander.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Traditionally kept pale ivory-white (without turmeric) to showcase the delicate balance of sour curd, sweet jaggery, and green chilli heat."
+  },
+  {
+    "id": "static-1785",
+    "name": "Gujarati Khandvi / Dahivadi / Suralichi Vadi (Silky Rolled Gram Flour & Buttermilk Pinwheels with Coconut & Mustard Tadka)",
+    "category": "Snacks",
+    "region": "Gujarati",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fine besan (gram flour, sifted)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sour curd (1 cup) whisked with water (2 cups)",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Fine ginger-green chilli paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & asafoetida (hing)",
+        "quantity": "3/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, white sesame seeds & curry leaves",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut & finely chopped coriander",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Groundnut oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk and slow-cook smooth besan-buttermilk paste",
+        "text": "Whisk sifted besan with sour buttermilk, ginger-chilli paste, turmeric, hing, and salt, then strain into a heavy non-stick pan. Cook over medium-low heat while stirring continuously for 10–12 minutes until thick, glossy, and a small dab spread on a plate peels off cleanly when cool.",
+        "minutes": 14
+      },
+      {
+        "section": "Spread paper-thin and roll into pinwheels",
+        "text": "Working quickly while hot, spread the cooked paste in paper-thin layers across the back of greased steel thalis or a marble slab using a flat spatula. Cool 5 minutes, sprinkle a little coconut and coriander, slice into 2-inch ribbons, and roll each strip into tight, delicate cylinders.",
+        "minutes": 10
+      },
+      {
+        "section": "Crown with crackling mustard-sesame tadka",
+        "text": "Heat oil, crackle mustard seeds, white sesame seeds, curry leaves, and slit green chillies, and spoon over the arranged khandvi rolls. Garnish with fresh grated coconut and coriander.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Maintaining a strict 1:3 ratio of besan to sour buttermilk liquid guarantees melt-in-the-mouth rolls that peel effortlessly."
   },
   {
     "id": "static-1739",
@@ -42240,63 +43241,78 @@
     "notes": "Iconic multi-layered sweet pastry beloved in coastal Bengal (Digha) and Puri Jagannath Dham."
   },
   {
-    "id": "static-0377",
-    "name": "Khandvi",
+    "id": "static-1784",
+    "name": "Khaman Dhokla / Nylon Khaman (Fluffy Steamed Gram Flour Sponge Cake with Mustard, Sesame & Green Chilli Tempering)",
     "category": "Snacks",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
+    "region": "Gujarati",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
     "ingredients": [
       {
-        "name": "Khandvi / main ingredient",
-        "quantity": "2",
+        "name": "Fine besan (gram flour, sifted)",
+        "quantity": "1.5",
         "unit": "cups"
       },
       {
-        "name": "Onion",
+        "name": "Fine semolina (suji/rava)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Citric acid (nimbu phool) or fresh lemon juice",
         "quantity": "1",
-        "unit": "small"
+        "unit": "tbsp"
       },
       {
-        "name": "Green chilli",
-        "quantity": "1",
-        "unit": "pc"
+        "name": "Sugar",
+        "quantity": "2.5",
+        "unit": "tbsp"
       },
       {
-        "name": "Besan or breadcrumbs",
-        "quantity": "1/2",
-        "unit": "cup"
+        "name": "Ginger-green chilli paste & turmeric",
+        "quantity": "1.25",
+        "unit": "tsp"
       },
       {
-        "name": "Spices and salt",
+        "name": "Fruit salt (Eno) or baking soda",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Groundnut oil (2 tbsp for batter + 1.5 tbsp for tempering)",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, white sesame seeds, curry leaves & slit green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut, chopped coriander & salt",
         "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil",
-        "quantity": "for cooking/frying",
         "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Prepare mixture",
-        "text": "Chop or mash the main ingredients and combine with onion, chilli, spices and binder.",
+        "section": "Whisk aerated besan batter",
+        "text": "Dissolve sugar, salt, citric acid/lemon juice, ginger-chilli paste, turmeric, and 2 tbsp oil in 1 cup water. Whisk in sifted besan and suji for 4–5 minutes until silky and ribbon-like; rest 10 minutes.",
         "minutes": 10
       },
       {
-        "section": "Shape or coat",
-        "text": "Shape into portions or coat in batter or breadcrumbs as appropriate.",
+        "section": "Activate with fruit salt and steam",
+        "text": "Bring a steamer to a rolling boil. Whisk fruit salt with 1 tbsp water into the batter until frothy, pour immediately into a greased thali, and steam on high heat for 15 minutes until a toothpick comes out clean.",
+        "minutes": 15
+      },
+      {
+        "section": "Soak in sweet-savory tempering syrup",
+        "text": "Heat 1.5 tbsp oil, crackle mustard seeds, sesame seeds, hing, curry leaves, and slit green chillies, then add 1/2 cup water and 1 tbsp sugar and boil 1 minute. Cut the warm khaman into squares, spoon the warm tempering syrup evenly so the sponge turns juicy, and garnish with fresh coconut and coriander.",
         "minutes": 5
-      },
-      {
-        "section": "Cook until crisp",
-        "text": "Shallow-fry, deep-fry or bake until golden and cooked through. Drain and serve hot.",
-        "minutes": 10
       }
     ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+    "notes": "Keep turmeric to a tiny pinch (1/4 tsp) so it never reacts with the leavening agent to form red spots."
   },
   {
     "id": "static-1413",
@@ -44137,6 +45153,80 @@
     "notes": "The quintessential Bengali winter breakfast and feast delicacy."
   },
   {
+    "id": "static-1786",
+    "name": "Kothimbir Vadi (Maharashtrian Crispy Steamed & Pan-Fried Fresh Coriander, Peanut & Besan Fritter Squares)",
+    "category": "Snacks",
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fresh coriander leaves (washed, dried & finely chopped)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crispness)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coarsely crushed roasted peanuts",
+        "quantity": "1/4",
+        "unit": "cup"
+      },
+      {
+        "name": "White sesame seeds (til) & carom seeds (ajwain)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green chilli-garlic-ginger thecha paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli, coriander-cumin powder & hing",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Groundnut oil (for steaming & shallow-frying)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix coriander-rich besan dough and steam",
+        "text": "Combine finely chopped coriander leaves, besan, rice flour, crushed peanuts, sesame seeds, ajwain, green chilli-garlic paste, spices, lemon juice, 1 tbsp oil, and minimal water into a thick dough/batter. Pat into a greased tray, top with sesame seeds, and steam on medium-high heat for 15 minutes until firm.",
+        "minutes": 18
+      },
+      {
+        "section": "Cool and slice into squares",
+        "text": "Let the steamed cake cool completely, then slice into neat squares or rectangles.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry until golden and crunchy",
+        "text": "Shallow-fry the squares in hot groundnut oil with mustard seeds and curry leaves until crisp and golden brown on both sides. Serve with green chutney.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Uses twice the volume of fresh coriander leaves to gram flour so every bite bursts with herbaceous aroma and peanut crunch."
+  },
+  {
     "id": "static-0898",
     "name": "Kozhukattai (Sweet)",
     "category": "Sweets",
@@ -45633,6 +46723,75 @@
       }
     ],
     "notes": "Toasted poppy seeds form a crunchy, nutty crust around the fried potatoes."
+  },
+  {
+    "id": "static-1778",
+    "name": "Kurkuri Besan Bhindi / Rajasthani Besan Wali Bhindi (Crispy Gram Flour & Fennel-Spiced Okra Stir-Fry)",
+    "category": "Vegetable",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Tender okra (bhindi, washed, wiped dry & slit lengthwise)",
+        "quantity": "350",
+        "unit": "g"
+      },
+      {
+        "name": "Roasted besan (gram flour)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour (for extra crunch)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed fennel seeds (saunf) & carom seeds (ajwain)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, coriander & turmeric powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) & chaat masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss dry slit okra with spices and lemon",
+        "text": "Toss julienned/slit okra with turmeric, red chilli, coriander powder, crushed fennel, amchur, lemon juice, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat with besan and rice flour",
+        "text": "Sprinkle roasted besan and rice flour over the spiced okra and toss gently so a light, even crust adheres to every piece.",
+        "minutes": 3
+      },
+      {
+        "section": "Crisp-roast in mustard oil",
+        "text": "Heat mustard oil in a wide cast-iron kadai, temper ajwain and hing, and sear the besan-coated bhindi in batches over medium-high flame for 10–12 minutes until golden and crunchy.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Wiping the okra completely dry before slicing and adding salt just before pan-roasting keeps the bhindi super crisp and non-sticky."
   },
   {
     "id": "static-1306",
@@ -48880,6 +50039,149 @@
     "notes": "The famous Andhra delicacy from Tapeswaram: shatteringly crisp pastry layers that gush with sweet syrup with every bite."
   },
   {
+    "id": "static-1777",
+    "name": "Maharashtrian Pithla (Comforting Creamy Tempered Gram Flour, Garlic & Green Chilli Curry for Bhakri)",
+    "category": "Curry",
+    "region": "Maharashtrian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Water",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Coarsely pounded garlic & green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds & asafoetida (hing)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh curry leaves & chopped coriander",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "3/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Groundnut oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk lump-free besan slurry",
+        "text": "Whisk besan with 2.5 cups water and a pinch of salt until completely smooth.",
+        "minutes": 3
+      },
+      {
+        "section": "Prepare garlic, green chilli, and onion phodni",
+        "text": "Heat oil in a heavy pan, crackle mustard seeds, cumin, hing, and curry leaves. Saute pounded garlic-green chillies and chopped onion with turmeric until golden.",
+        "minutes": 5
+      },
+      {
+        "section": "Cook creamy pithla on low heat",
+        "text": "Lower flame, pour in the besan slurry while whisking continuously so no lumps form, then cover and simmer for 6–8 minutes until thick, glossy, and creamy. Top with fresh coriander and a drizzle of raw groundnut oil.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Softer and creamier than dry Zunka; pairs effortlessly with hot jowar/bajra bhakri or steamed rice and ghee."
+  },
+  {
+    "id": "static-1776",
+    "name": "Maharashtrian Zunka (Dry Spiced Gram Flour, Onion, Garlic & Mustard-Curry Leaf Crumble)",
+    "category": "Vegetable",
+    "region": "Maharashtrian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Crushed garlic & green chillies (thecha)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh curry leaves & chopped coriander",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric & Kanda Lasun masala / red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Groundnut oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Warm water & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute onions and garlic-chilli thecha",
+        "text": "Heat groundnut oil in a kadai, crackle mustard seeds, cumin, hing, and curry leaves. Add crushed garlic-green chilli paste and finely chopped onions; saute until translucent and fragrant.",
+        "minutes": 6
+      },
+      {
+        "section": "Roast dry besan with aromatics",
+        "text": "Add turmeric, red chilli powder, salt, and dry besan directly into the onion mixture. Roast on low heat for 4 minutes until the gram flour turns aromatic.",
+        "minutes": 4
+      },
+      {
+        "section": "Steam-sprinkle water for crumbly zunka",
+        "text": "Sprinkle 1/2 to 3/4 cup warm water in small splashes while stirring, cover with a lid for 4–5 minutes on low steam until cooked into a soft, moist crumble, and finish with generous fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Maharashtra's iconic rural comfort food ('Zunka Bhakar'), traditionally served with hot jowar bhakri and raw onion."
+  },
+  {
     "id": "static-1578",
     "name": "Makai Kochuri (Spiced Sweet Corn & Coriander Stuffed Kachori)",
     "category": "Bread",
@@ -49872,60 +51174,6 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
-    "id": "static-0620",
-    "name": "Masala Besan Chilla",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Masala / main ingredient",
-        "quantity": "1",
-        "unit": "cup"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0203",
     "name": "Masala Brown Rice",
     "category": "Rice",
@@ -50199,6 +51447,80 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1754",
+    "name": "Masala Gatta Fry / Sukhe Gatte ki Sabzi (Dry Spiced Gram Flour Dumplings with Fennel & Coriander)",
+    "category": "Vegetable",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Curd (for dough & masala coating)",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed coriander seeds & fennel seeds",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & cumin seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, sesame seeds & curry leaves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) & Kashmiri chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slit green chillies & julienned ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil or ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil and slice spiced besan logs",
+        "text": "Knead besan with oil, curd, ajwain, crushed fennel, red chilli powder, turmeric, and salt into a firm yet pliable dough. Shape into logs, boil for 10 minutes until cooked through, cool slightly, and cut into bite-sized coins.",
+        "minutes": 14
+      },
+      {
+        "section": "Toss in crackling dry spice tempering",
+        "text": "Heat oil in a wide pan, crackle cumin, mustard, sesame seeds, hing, crushed coriander-fennel, and slit green chillies. Add the gatta coins and roast on medium heat for 4 minutes until crisp-edged.",
+        "minutes": 5
+      },
+      {
+        "section": "Finish with amchur and herbs",
+        "text": "Sprinkle amchur powder, Kashmiri chilli powder, a splash of 2 tbsp curd or poaching water to glaze the spices onto the gattas, and toss with fresh coriander.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Ideal travel-friendly dry Rajasthani sabzi that pairs with hot phulkas, thepla, or dal-chawal."
   },
   {
     "id": "static-0346",
@@ -52483,6 +53805,223 @@
     "notes": "The legendary royal sweet kachori invented in Jodhpur, Rajasthan."
   },
   {
+    "id": "static-1769",
+    "name": "Methi Besan Chilla (Fresh Fenugreek Leaves, Garlic & Gram Flour Winter Savory Crepes)",
+    "category": "Breakfast",
+    "region": "Gujarati",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped fresh methi (fenugreek leaves)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whisked curd (dahi)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed garlic, ginger & green chilli",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & white sesame seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, red chilli & coriander powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare methi-besan batter",
+        "text": "Whisk besan with curd, crushed garlic-ginger-chilli, ajwain, sesame seeds, spices, salt, and water. Fold in washed, finely chopped fresh methi leaves and rest 10 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook thin golden pudla on griddle",
+        "text": "Pour a ladleful onto a hot greased tawa, spread evenly, and cook on medium heat with a drizzle of oil until both sides are freckled golden brown.",
+        "minutes": 12
+      },
+      {
+        "section": "Serve hot",
+        "text": "Serve piping hot with green coriander-peanut chutney and masala chai.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Also known as Methi na Pudla in Gujarat; a spoonful of curd balances the earthy bitterness of fresh fenugreek."
+  },
+  {
+    "id": "static-1788",
+    "name": "Methi Besan Muthiya (Gujarati Steamed & Sesame-Tempered Fenugreek & Gram Flour Dumplings)",
+    "category": "Snacks",
+    "region": "Gujarati",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Coarse whole wheat flour / suji",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped fresh methi (fenugreek) leaves",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sour curd & sugar",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-green chilli-garlic paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli, coriander powder & pinch of baking soda",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, white sesame seeds, curry leaves & hing",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Groundnut oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape and steam methi-besan logs",
+        "text": "Combine chopped methi leaves with besan, coarse wheat/suji, curd, sugar, ginger-chilli paste, spices, baking soda, 1 tbsp oil, and salt into cylindrical fist-shaped logs (muthiyas). Steam in a greased steamer for 15–18 minutes until cooked through, then cool and slice into rounds.",
+        "minutes": 22
+      },
+      {
+        "section": "Toss in crispy sesame-mustard tempering",
+        "text": "Heat 2 tbsp oil in a pan, crackle mustard seeds, sesame seeds, curry leaves, and hing, add the sliced muthiyas, and pan-roast for 4–5 minutes until crisp and golden around the edges.",
+        "minutes": 6
+      },
+      {
+        "section": "Garnish and serve",
+        "text": "Squeeze fresh lemon juice and garnish with coriander; serve hot with green chutney or chai.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Wholesome steamed Gujarati snack that uses very little oil while packing fresh greens and gram flour."
+  },
+  {
+    "id": "static-1756",
+    "name": "Methi Gatta ki Sabzi (Fresh Fenugreek & Besan Dumplings in Spiced Marwari Gravy)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped fresh methi (fenugreek) leaves",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whisked sour yogurt (dahi)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed fennel & coriander seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & sesame seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & pinch of jaggery",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare and poach methi gattas",
+        "text": "Saute chopped methi leaves in 1 tsp oil for 1 minute to mellow bitterness, then knead with besan, sesame seeds, ajwain, spice powders, 1 tbsp oil, and curd into logs. Boil for 10 minutes and cut into discs.",
+        "minutes": 14
+      },
+      {
+        "section": "Cook spiced yogurt gravy",
+        "text": "Temper cumin, fennel, hing, and ginger-garlic paste in hot ghee. Stir in spiced whisked curd, bring to a boil with poaching stock, and fold in the methi gattas.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer and finish",
+        "text": "Simmer on low flame for 6 minutes until the gravy coats the methi dumplings. Serve hot with bajra roti or chapati.",
+        "minutes": 6
+      }
+    ],
+    "notes": "A classic winter Rajasthani household curry combining earthy fenugreek greens with roasted gram flour notes."
+  },
+  {
     "id": "static-1553",
     "name": "Methi Malai Paneer (Cottage Cheese in Fragrant Fenugreek Leaf & Cream Gravy)",
     "category": "Paneer",
@@ -53208,6 +54747,75 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1789",
+    "name": "Mirchi Vada / Jodhpuri Mirchi Bada (Potato-Stuffed Large Green Chillies in Crisp Ajwain-Besan Batter)",
+    "category": "Snacks",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Large Bhavnagari green chillies (slit & deseeded)",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour, for coating batter)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled & mashed potatoes (for stuffing)",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Crushed fennel, coriander seeds, cumin & hing",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder), red chilli, garam masala & mint",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & pinch of baking soda",
+        "quantity": "3/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt & fresh coriander",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare tangy Jodhpuri aloo masala and stuff chillies",
+        "text": "Saute cumin, crushed fennel, coriander seeds, hing, and ginger in 1 tbsp oil, then mash in boiled potatoes, red chilli, turmeric, amchur, garam masala, mint, coriander, and salt. Stuff inside AND coat a thin layer around the slit green chillies.",
+        "minutes": 10
+      },
+      {
+        "section": "Whisk thick ajwain-besan batter",
+        "text": "Whisk besan with ajwain, turmeric, salt, a pinch of baking soda, 1 tsp hot oil, and water into a thick, ribbon-consistency batter that clings to the stuffed chillies without dripping.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry golden and serve",
+        "text": "Dip each stuffed chilli in the besan batter and fry in medium-hot oil until golden and crisp. Cut diagonally and serve with tamarind and mint chutneys.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Jodhpur's iconic street food where tangy amchur-spiced potato filling and crisp besan batter wrap mild green peppers."
   },
   {
     "id": "static-1365",
@@ -56158,48 +57766,58 @@
     "notes": "Slow-simmering extracts rich collagen and bone marrow, yielding a deeply restorative, therapeutic winter shorba."
   },
   {
-    "id": "static-0877",
-    "name": "Mysore Pak",
+    "id": "static-1794",
+    "name": "Mysore Pak (Royal Karnataka Ghee-Aerated Gram Flour & Sugar Syrup Melt-in-Mouth Fudge)",
     "category": "Sweets",
     "region": "Karnataka",
-    "prepMinutes": 15,
-    "cookMinutes": 30,
-    "servings": 2,
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 6,
     "ingredients": [
       {
-        "name": "besan",
-        "quantity": "1 cup",
-        "unit": ""
+        "name": "Fine besan (gram flour, lightly dry-roasted & sifted)",
+        "quantity": "1",
+        "unit": "cup"
       },
       {
-        "name": "ghee",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Pure melted desi ghee (kept hot)",
+        "quantity": "1.5",
+        "unit": "cups"
       },
       {
-        "name": "sugar",
-        "quantity": "to taste",
-        "unit": ""
+        "name": "Sugar",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Water",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Green cardamom powder",
+        "quantity": "1/2",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Prepare ingredients",
-        "text": "Measure ingredients. Soak, grate, grind or knead the ingredients as needed for the sweet; prepare any filling before cooking.",
+        "section": "Prepare 1-string sugar syrup and add sifted besan",
+        "text": "Boil sugar and water until a 1-string consistency is reached. Lower heat and gradually whisk in sifted besan (or a smooth slurry of besan and 1/2 cup warm ghee) so zero lumps form.",
         "minutes": 10
       },
       {
-        "section": "Cook the sweet",
-        "text": "Cook the mixture over medium-low heat, stirring regularly to prevent sticking. For fried sweets, shape carefully and cook until done before soaking in syrup if applicable.",
-        "minutes": 20
+        "section": "Ladle in piping hot ghee in stages",
+        "text": "Keep the remaining 1 cup ghee smoking hot on a side burner. Pour a ladleful of hot ghee at a time into the simmering besan-sugar mixture, stirring continuously as it froths, sizzles, and absorbs each addition.",
+        "minutes": 12
       },
       {
-        "section": "Cool and finish",
-        "text": "Add the listed flavourings and garnish. Cool or chill until set when required, then serve.",
-        "minutes": 10
+        "section": "Pour into deep tray for porous honeycomb center",
+        "text": "When the mixture turns frothy, porous, and stops absorbing ghee, stir in cardamom powder and immediately pour into a tall greased tin without pressing down tightly. Score into rectangular bars after 10 minutes and unmold when cool.",
+        "minutes": 5
       }
     ],
-    "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+    "notes": "Created in the royal kitchens of Mysore Palace; pouring smoking-hot ghee in batches creates the signature honeycomb lattice."
   },
   {
     "id": "static-0651",
@@ -57158,6 +58776,75 @@
       }
     ],
     "notes": "Essential companion to Koraishutir Kochuri at every Bengali winter picnic and feast."
+  },
+  {
+    "id": "static-1767",
+    "name": "Oats & Besan Chilla (High-Protein Rolled Oats, Gram Flour & Herb Breakfast Crepes)",
+    "category": "Breakfast",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Powdered rolled oats",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Whisked curd (dahi)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped onion, grated carrot & tomato",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, chopped green chilli & coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), roasted cumin & turmeric",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cold-pressed oil or ghee",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Hydrate oats and besan batter",
+        "text": "Whisk powdered oats, besan, curd, spices, salt, and 1.25 cups water into a smooth batter. Let rest for 10 minutes so the oats soften.",
+        "minutes": 10
+      },
+      {
+        "section": "Stir in vegetables and cook crepes",
+        "text": "Fold in onion, grated carrot, tomato, ginger, green chilli, and coriander. Spread on a hot greased tawa and cook on medium flame for 2.5 minutes per side until golden brown.",
+        "minutes": 12
+      },
+      {
+        "section": "Serve warm",
+        "text": "Serve hot with mint-curd chutney or plain yogurt.",
+        "minutes": 2
+      }
+    ],
+    "notes": "High-fiber, low-glycemic breakfast combining soluble beta-glucan fiber from oats with plant protein from besan."
   },
   {
     "id": "static-1620",
@@ -60004,6 +61691,75 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1768",
+    "name": "Palak Besan Chilla (Iron-Rich Fresh Spinach Puree & Carom-Spiced Gram Flour Pancakes)",
+    "category": "Breakfast",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh spinach (palak, blanched & pureed or finely shredded)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onion & garlic",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies & ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), cumin & white sesame seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric & crushed black pepper",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Blend spinach-ginger-chilli base",
+        "text": "Blend blanched spinach leaves with ginger and green chillies into a vibrant green puree, or finely shred fresh baby spinach.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk emerald besan batter",
+        "text": "Mix besan, spinach puree, finely chopped onion, ajwain, sesame seeds, turmeric, black pepper, salt, and water into a smooth pouring batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Roast on tawa",
+        "text": "Spread ladlefuls onto a hot greased tawa, sprinkle a few sesame seeds on top, and roast with a little ghee on both sides until crisp-edged and cooked through.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Vibrant green savory crepes that pair wonderfully with garlic-tempered curd or tomato chutney."
+  },
+  {
     "id": "static-1621",
     "name": "Palak Corn Paratha (Spiced Spinach & Sweet Corn Stuffed Paratha)",
     "category": "Bread",
@@ -60061,6 +61817,80 @@
       }
     ],
     "notes": "A delicious pairing of sweet golden corn and tender green spinach."
+  },
+  {
+    "id": "static-1755",
+    "name": "Palak Gatta Curry (Spinach & Gram Flour Dumplings in Garlic-Tempered Yogurt Curry)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped fresh spinach (palak)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whisked curd (dahi)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic & ginger-green chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & cumin seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander, turmeric & red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Asafoetida (hing) & kasuri methi",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape and steam/boil palak gattas",
+        "text": "Combine besan, finely chopped spinach, 1 tbsp oil, ajwain, ginger-chilli paste, turmeric, and salt. Knead into cylindrical logs (the moisture from spinach requires very little water) and boil in simmering water for 10 minutes. Slice into emerald-flecked medallions.",
+        "minutes": 14
+      },
+      {
+        "section": "Simmer garlic-tempered yogurt gravy",
+        "text": "Heat ghee, temper cumin, hing, and golden minced garlic. Whisk curd with coriander, turmeric, and red chilli powder, pour into the pan on low heat while stirring, and bring to a gentle boil with reserved poaching water.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold in palak gattas",
+        "text": "Add the sliced spinach gattas into the simmering curry and cook for 5–6 minutes until the dumplings absorb the tangy garlic-yogurt flavors.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Fresh spinach leaves folded into the besan dough keep the gattas naturally moist, vibrant, and iron-rich."
   },
   {
     "id": "static-1546",
@@ -61162,6 +62992,75 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1765",
+    "name": "Paneer Bhurji Stuffed Besan Chilla (Street-Style Spiced Cottage Cheese Stuffed Gram Flour Pancake)",
+    "category": "Breakfast",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Grated or crumbled fresh paneer",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, capsicum & carrot",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), turmeric & red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat masala & roasted cumin powder (for stuffing)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter or desi ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced paneer-vegetable filling",
+        "text": "Toss crumbled paneer with finely diced onion, capsicum, grated carrot, green chillies, fresh coriander, chaat masala, roasted cumin powder, black pepper, and a pinch of salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Spread crisp golden besan chilla",
+        "text": "Whisk besan with water, ajwain, turmeric, ginger paste, and salt into a smooth pouring batter. Pour onto a hot greased tawa and spread into a thin, even round. Cook with butter/ghee until the underside is crisp and golden, flipping briefly for 30 seconds.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff, roll, and slice",
+        "text": "Spread a generous line of seasoned paneer stuffing down the center of the chilla, fold both sides into a roll, slice in half diagonally, and serve immediately with green chutney and sweet tamarind chutney.",
+        "minutes": 4
+      }
+    ],
+    "notes": "A North Indian street-food and wedding live-counter favorite packed with protein from both gram flour and cottage cheese."
   },
   {
     "id": "static-1543",
@@ -63579,6 +65478,75 @@
       }
     ],
     "notes": "Also known as Potol Bharta in West Bengal and Parwal Chokha in Bihar and eastern UP."
+  },
+  {
+    "id": "static-1762",
+    "name": "Patoli / Maharashtrian Patodi Rassa (Vidarbha-Style Spiced Besan Rolls in Saoji Coconut-Onion Gravy)",
+    "category": "Curry",
+    "region": "Maharashtrian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted dry coconut, poppy seeds & sesame (for stuffing & masala)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Sliced onions (roasted golden)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste & fresh coriander",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Kala masala / Goda masala & red chilli powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, cumin & mustard seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Groundnut oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook besan sheet and roll with coconut-coriander stuffing",
+        "text": "Cook spiced besan and water paste over low heat until thick and spreadable. Spread thinly onto a greased surface, sprinkle toasted grated coconut, sesame, poppy seeds, and fresh coriander, roll tightly like a Swiss roll, and slice into pinwheel patodis.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare fiery roasted onion-coconut rassa",
+        "text": "Grind roasted onions, dry coconut, ginger, garlic, and coriander into a smooth paste. Saute in hot oil with mustard, curry leaves, kala masala, and red chilli powder until oil floats on top, then add water and simmer.",
+        "minutes": 12
+      },
+      {
+        "section": "Serve patodi with hot rassa",
+        "text": "Arrange the stuffed besan patodi slices in shallow bowls and ladle the piping hot Vidarbha rassa over them just before serving.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Nagpur and Vidarbha classic; keeping a few crispy patodi slices aside as a starter while dunking the rest in rassa gives the best texture contrast."
   },
   {
     "id": "static-1481",
@@ -71354,6 +73322,85 @@
     "notes": "Fragrant panch-phoron tempered Aloo Kumro Fry."
   },
   {
+    "id": "static-1772",
+    "name": "Punjabi Kadhi Pakora (Tangy Slow-Simmered Yogurt-Besan Curry with Soft Onion-Gram Flour Fritters & Ghee Tadka)",
+    "category": "Curry",
+    "region": "Punjabi",
+    "prepMinutes": 20,
+    "cookMinutes": 35,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (1 cup for pakoras + 1/2 cup for kadhi)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sour curd (dahi, whisked smooth)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions & chopped spinach (for pakoras)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Carom seeds (ajwain) & crushed coriander seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fenugreek seeds (methi dana), cumin & mustard seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Dried whole red chillies, curry leaves & hing",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil (for frying) & desi ghee (for tadka)",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kasuri methi, fresh coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry airy onion-besan pakoras",
+        "text": "Whisk 1 cup besan with ajwain, crushed coriander seeds, red chilli, salt, a pinch of baking soda, and water into a thick batter; fold in sliced onions and coriander. Fry spoonfuls in medium-hot mustard oil until golden and porous; set aside.",
+        "minutes": 12
+      },
+      {
+        "section": "Slow-simmer tangy yogurt-besan kadhi",
+        "text": "Whisk sour curd with 1/2 cup besan, turmeric, red chilli powder, and 5 cups water until lump-free. Temper methi dana, cumin, hing, and ginger-garlic paste in 1 tbsp oil, pour in the yogurt-besan mixture, bring to a boil while stirring, then simmer on low heat for 20–25 minutes until velvety.",
+        "minutes": 22
+      },
+      {
+        "section": "Soak pakoras and crown with Kashmiri chilli ghee tadka",
+        "text": "Add the pakoras and crushed kasuri methi to the simmering kadhi for 5 minutes so they turn pillow-soft. Pour a sizzling desi ghee tadka of cumin, whole dried red chillies, curry leaves, and Kashmiri chilli powder on top.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Slow-cooking the kadhi for at least 20 minutes develops its signature rich, silky dhaba flavor."
+  },
+  {
     "id": "static-1406",
     "name": "Punjabi Methi Mathri (Flaky Kasuri Methi & Black Pepper Whole-Wheat Biscuits)",
     "category": "Snacks",
@@ -72138,6 +74185,376 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1780",
+    "name": "Rajasthani Besan Pyaz ki Sabzi (Spring Onion / Sliced Onion & Roasted Gram Flour Masala Sabzi)",
+    "category": "Vegetable",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Thickly sliced onions (or chopped spring onions with greens)",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Whisked sour curd (dahi) or amchur powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, fennel seeds (saunf) & kalonji",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Crushed coriander seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute onions with Marwari panch-masala",
+        "text": "Heat mustard oil, crackle cumin, fennel, kalonji, crushed coriander seeds, and hing. Add thickly sliced onions and saute for 4 minutes until just softened yet still retaining bite.",
+        "minutes": 5
+      },
+      {
+        "section": "Roast besan and spices with onions",
+        "text": "Sprinkle turmeric, red chilli, coriander powder, salt, and besan over the onions; roast on low flame for 5 minutes until the besan turns golden and fragrant.",
+        "minutes": 5
+      },
+      {
+        "section": "Steam with curd splash",
+        "text": "Sprinkle whisked sour curd (or warm water with amchur), cover for 3–4 minutes on low heat until the besan forms a soft, savory coating around the sweet onions, and finish with fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "notes": "A beloved Jodhpur and Shekhawati household dish that turns humble onions and gram flour into a deeply flavorful accompaniment for rotis."
+  },
+  {
+    "id": "static-1757",
+    "name": "Rajasthani Gatta Pulao / Gatte ke Chawal (Fragrant Basmati Rice Pilaf with Fried Besan Dumplings & Whole Spices)",
+    "category": "Rice",
+    "region": "Rajasthani",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Long-grain basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour, for gattas)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd, ajwain, fennel & red chilli (for gattas)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Thinly sliced onions",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Bay leaf, cloves, green cardamom, cinnamon & cumin",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cashews & golden raisins",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint, coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil and crisp-fry gatta coins",
+        "text": "Knead besan with curd, 1 tbsp ghee, ajwain, fennel, chilli powder, and salt into logs. Boil for 10 minutes, slice into coins, and shallow-fry in ghee until golden and crisp on the outside.",
+        "minutes": 15
+      },
+      {
+        "section": "Cook spiced basmati rice",
+        "text": "Boil soaked basmati rice with salt and a drop of ghee until 90% done; drain and fluff gently.",
+        "minutes": 10
+      },
+      {
+        "section": "Layer and toss with caramelized onions, nuts, and gattas",
+        "text": "Heat ghee in a heavy kadai, fry cashews, raisins, and whole spices, then caramelize sliced onions with turmeric, Kashmiri chilli, and garam masala. Gently fold in the fried gattas, cooked basmati rice, mint, and coriander, cover on low dum for 4 minutes, and serve with boondi raita or kadhi.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Festive Marwari rice dish where crisp golden besan dumplings stud aromatic saffron-and-ghee spiced rice."
+  },
+  {
+    "id": "static-1752",
+    "name": "Rajasthani Gatte ki Sabzi (Marwari Spiced Gram Flour Dumplings in Tangy Yogurt Gravy)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whisked sour curd (dahi)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Crushed coriander seeds & fennel seeds (saunf)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom seeds (ajwain)",
+        "quantity": "1/2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri methi (dried fenugreek leaves)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Desi ghee & mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds & asafoetida (hing)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric & coriander powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead and boil gatta cylinders",
+        "text": "Rub besan with 2 tbsp warm oil/ghee, carom seeds, crushed fennel, turmeric, red chilli powder, a pinch of baking soda, salt, and 2 tbsp curd. Knead into a smooth, pliable dough using minimal warm water. Roll into 4 cylinder logs and boil in simmering water for 10–12 minutes until blisters appear on the surface and they float.",
+        "minutes": 14
+      },
+      {
+        "section": "Slice and lightly pan-sear gattas",
+        "text": "Drain the boiled logs (reserve the poaching liquid for gravy) and slice into 1/2-inch discs. Optionally toss in 1 tsp ghee for 2 minutes until lightly golden at the edges.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer in spiced Marwari yogurt gravy",
+        "text": "Whisk curd with coriander powder, turmeric, and Kashmiri chilli powder. Heat ghee in a kadai, temper cumin, mustard, hing, and ginger-chilli paste, then lower heat and stir in the spiced curd continuously until it boils. Add reserved gatta water and sliced gattas, simmer 7–8 minutes, and finish with crushed kasuri methi and coriander.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Adding 1 tbsp ghee and 2 tbsp curd into the besan dough ensures melt-in-the-mouth soft gattas that never turn hard."
+  },
+  {
+    "id": "static-1773",
+    "name": "Rajasthani Marwari Kadhi (Spiced Clove, Fenugreek & Asafoetida Tempered Yogurt-Besan Kadhi)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Sour buttermilk (chaas) or whisked sour curd",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fenugreek seeds (methi dana), mustard & cumin seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cloves, cinnamon stick & bay leaf",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Dried red chillies, curry leaves & hing",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated ginger & slit green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric & Kashmiri red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk smooth buttermilk-besan mixture",
+        "text": "Whisk besan into sour buttermilk with turmeric, salt, and 2 cups water until completely smooth with zero lumps.",
+        "minutes": 5
+      },
+      {
+        "section": "Temper whole spices and slow-simmer",
+        "text": "Heat 1 tbsp ghee in a deep pot, temper methi dana, mustard, cumin, cloves, bay leaf, hing, curry leaves, and ginger-green chillies. Pour in the buttermilk-besan liquid and stir continuously until it comes to a boil, then simmer gently for 18–20 minutes.",
+        "minutes": 20
+      },
+      {
+        "section": "Finish with red chilli ghee chhonk",
+        "text": "Heat remaining 1 tbsp ghee, bloom dried red chillies and Kashmiri red chilli powder, and pour over the hot kadhi with chopped coriander.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Light, pakora-free Marwari kadhi that accompanies steamed rice, khichdi, or bajra rotla."
+  },
+  {
+    "id": "static-1759",
+    "name": "Rajasthani Pitod ki Sabzi / Pitor Curry (Diamond-Cut Steamed Gram Flour Cakes in Tangy Spiced Yogurt Gravy)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sour curd (1/2 cup for pitod batter + 1 cup for gravy)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Water",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Carom seeds (ajwain), cumin seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-green chilli paste & minced garlic",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam masala & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook and set silky besan pitor (pitod) diamonds",
+        "text": "Whisk besan with 1/2 cup curd, 2 cups water, 1/2 tsp ajwain, cumin, hing, turmeric, chilli flakes, and salt into a lump-free slurry. Cook in a heavy pan over medium-low heat, stirring constantly for 8–10 minutes until thick and glossy. Spread 1/2-inch thick onto a greased thali, cool 10 minutes until set, and slice into diamond katlis.",
+        "minutes": 15
+      },
+      {
+        "section": "Prepare spiced Marwari dahi gravy",
+        "text": "Heat ghee in a kadai, temper cumin, mustard, hing, garlic, and ginger-chilli paste. Whisk 1 cup curd with coriander, turmeric, and Kashmiri chilli powder, add to the pan while stirring continuously, and simmer with 1.25 cups warm water for 6 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Gently fold in pitor diamonds",
+        "text": "Slide the diamond-cut besan pitor pieces into the bubbling yogurt gravy, simmer gently for 3–4 minutes without over-stirring, and garnish with kasuri methi and fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Unlike boiled gattas, Pitod (Pitor) are cooked into a custard-smooth gram flour fudge before slicing into delicate diamonds that melt in the mouth."
   },
   {
     "id": "static-0831",
@@ -75786,6 +78203,85 @@
     "notes": "A beloved Bengali winter lunch side dish."
   },
   {
+    "id": "static-1753",
+    "name": "Shahi Govind Gatta Curry (Royal Rajasthani Khoya & Dry-Fruit Stuffed Besan Dumplings in Rich Gravy)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 25,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Crumbled khoya (mawa) or paneer",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped cashews, almonds, pistachios & raisins",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick whisked yogurt (dahi)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion-cashew paste",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds, fennel & cardamom powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri chilli, turmeric & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam masala & kasuri methi",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt & fresh coriander",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stuff and poach Govind gattas",
+        "text": "Knead besan with ghee, curd, ajwain, turmeric, and salt into a soft dough. Mix crumbled khoya with chopped nuts, raisins, cardamom, and a pinch of salt. Flatten small portions of besan dough, seal the royal khoya-nut filling inside into spheres, boil in simmering water for 12 minutes, and lightly shallow-fry in ghee.",
+        "minutes": 18
+      },
+      {
+        "section": "Prepare royal yogurt-cashew gravy",
+        "text": "Heat ghee in a heavy pan, temper whole spices and hing, and saute onion-cashew paste until golden. Whisk yogurt with dry spices and stir continuously into the pan until oil separates.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer stuffed gattas and serve",
+        "text": "Pour 1.5 cups reserved poaching water into the gravy, add the stuffed Govind gattas, and simmer gently for 6–7 minutes. Garnish with kasuri methi and halved gattas showing the jewel-toned filling.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Jodhpur and Jaipur royal banquet specialty; cut a few gattas in half just before serving to showcase the rich mawa and nut center."
+  },
+  {
     "id": "static-1544",
     "name": "Shahi Paneer (Royal Mughlai Cashew, Almond, Saffron & Cream Paneer Curry)",
     "category": "Paneer",
@@ -76698,6 +79194,85 @@
       }
     ],
     "notes": "A beloved winter delicacy in Bengali households when fleshy broad sheem arrives in the market."
+  },
+  {
+    "id": "static-1775",
+    "name": "Sindhi Kadhi (Tangy Tamarind & Roasted Besan Vegetable Curry with Drumstick, Okra & Cluster Beans)",
+    "category": "Curry",
+    "region": "Sindhi",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Drumstick batons, potato cubes & cluster beans (gavar)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Okra (bhindi, slit & lightly sauteed) & cauliflower florets",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh tomato puree",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick tamarind pulp (imli)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds, methi dana & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Curry leaves, grated ginger & slit green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric & Kashmiri red chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander, pinch of jaggery & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast besan in hot oil until golden-amber",
+        "text": "Heat oil in a heavy pot, crackle mustard, cumin, methi dana, hing, and curry leaves, then add besan and roast on low flame for 5–6 minutes while stirring continuously until nutty and golden-amber.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer with tomato puree and vegetables",
+        "text": "Whisk in 4.5 cups warm water gradually to prevent lumps, add tomato puree, turmeric, red chilli, ginger, green chillies, salt, drumsticks, potatoes, cluster beans, and cauliflower. Cover and simmer for 18 minutes until vegetables are tender.",
+        "minutes": 18
+      },
+      {
+        "section": "Finish with sauteed bhindi and tamarind pulp",
+        "text": "Stir in lightly fried okra, tamarind pulp, and a pinch of jaggery. Simmer 5 more minutes and garnish with fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Unlike yogurt-based kadhis, Sindhi Kadhi gets its signature tang from roasted besan, tomatoes, and tamarind, making it naturally dairy-free when cooked in oil."
   },
   {
     "id": "static-1436",
@@ -80224,6 +82799,75 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1760",
+    "name": "Tawa Masala Pitor Fry / Crispy Patod Tikka (Pan-Crisped Spiced Gram Flour Squares with Mustard & Sesame Tempering)",
+    "category": "Snacks",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Buttermilk or whisked curd + water",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onion, green chillies & coriander",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Carom seeds (ajwain) & crushed fennel",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, white sesame seeds (til) & curry leaves",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, red chilli flakes & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or ghee (for pan-searing)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook and chill herb-flecked besan pitor slab",
+        "text": "Whisk besan with buttermilk, turmeric, ajwain, crushed fennel, chilli flakes, and salt. Cook over medium flame while stirring continuously until thick; fold in chopped coriander, spread on a greased plate, and cool until firm. Cut into squares or diamonds.",
+        "minutes": 14
+      },
+      {
+        "section": "Crisp on tawa with sesame-mustard tempering",
+        "text": "Heat oil on a cast-iron tawa, crackle mustard seeds, white sesame seeds, and curry leaves, and arrange the pitor squares in a single layer. Sear 3–4 minutes per side until golden-crusted outside and creamy inside.",
+        "minutes": 8
+      },
+      {
+        "section": "Sprinkle chaat masala and serve",
+        "text": "Finish with a squeeze of lemon juice and a dusting of chaat masala. Serve hot with green mint chutney or evening tea.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Delicious as a crispy high-protein snack or dry side dish alongside dal and roti."
+  },
+  {
     "id": "static-0416",
     "name": "Tawa Methi Paratha",
     "category": "Bread",
@@ -82383,6 +85027,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1763",
+    "name": "UP-Style Karara / Besan ki Meendhi Sabzi (Roasted Gram Flour Crumble Dumplings in Spiced Onion-Tomato Gravy)",
+    "category": "Curry",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onions & tomato puree",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, carom seeds (ajwain) & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, coriander, red chilli & garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rub and roast crumbly besan meendhi",
+        "text": "Season besan with salt, turmeric, ajwain, and 1 tsp oil, then sprinkle droplets of water while rubbing with fingertips to form irregular pea-sized pearls (meendhi/boondi-like crumbles). Roast in 1 tbsp mustard oil until golden and nutty.",
+        "minutes": 10
+      },
+      {
+        "section": "Prepare onion-tomato masala base",
+        "text": "Heat remaining mustard oil, crackle cumin and hing, saute onions and ginger-garlic paste until golden brown, and cook with tomato puree and ground spices until rich.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer roasted besan pearls in gravy",
+        "text": "Add 2.5 cups hot water, bring to a boil, stir in the roasted besan crumbles, and simmer 6–7 minutes until tender and thickened. Garnish with garam masala and coriander.",
+        "minutes": 7
+      }
+    ],
+    "notes": "Traditional Uttar Pradesh panty-staple curry made when fresh vegetables are scarce, prized for its nutty roasted besan texture."
+  },
+  {
     "id": "static-0122",
     "name": "Upma",
     "category": "Breakfast",
@@ -83302,60 +86010,6 @@
     "notes": "Street-style Indo-Chinese fried rice tossed directly with juicy, crispy vegetable Manchurian balls."
   },
   {
-    "id": "static-0611",
-    "name": "Vegetable Besan Chilla",
-    "category": "Breakfast",
-    "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
-    "servings": 2,
-    "ingredients": [
-      {
-        "name": "Vegetable / main ingredient",
-        "quantity": "1",
-        "unit": "cup"
-      },
-      {
-        "name": "Onion",
-        "quantity": "1",
-        "unit": "small"
-      },
-      {
-        "name": "Mixed vegetables",
-        "quantity": "1/2",
-        "unit": "cup"
-      },
-      {
-        "name": "Green chilli and ginger",
-        "quantity": "to taste",
-        "unit": ""
-      },
-      {
-        "name": "Oil, spices and salt",
-        "quantity": "to taste",
-        "unit": ""
-      }
-    ],
-    "steps": [
-      {
-        "section": "Prepare ingredients",
-        "text": "Wash, chop and measure the ingredients. Soak or ferment the base if the recipe requires it.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook aromatics",
-        "text": "Heat oil, add mustard or cumin seeds, onion, chilli and vegetables.",
-        "minutes": 5
-      },
-      {
-        "section": "Cook breakfast",
-        "text": "Add the main ingredient and the required water or batter; cook until tender and serve hot.",
-        "minutes": 15
-      }
-    ],
-    "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
-  },
-  {
     "id": "static-0257",
     "name": "Vegetable Chop",
     "category": "Snacks",
@@ -83689,6 +86343,75 @@
       }
     ],
     "notes": "High garlic content and crunchy golden fried noodles served on top are the hallmark signatures of street-style Manchow soup."
+  },
+  {
+    "id": "static-1766",
+    "name": "Vegetable Masala Besan Chilla (Grated Carrot, Capsicum, Spinach & Ginger-Chilli Gram Flour Pancakes)",
+    "category": "Breakfast",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour or fine suji (for extra crispness)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated carrot & finely diced bell peppers (capsicum)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, tomato & baby spinach",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-green chilli paste & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), cumin, turmeric & garam masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil or ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk besan-suji batter",
+        "text": "Combine besan, 2 tbsp rice flour/suji, ajwain, cumin, turmeric, garam masala, salt, and water into a medium-thick batter and rest for 10 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Mix colorful garden vegetables",
+        "text": "Fold in grated carrot, finely diced capsicum, onion, tomato, shredded spinach, ginger-chilli paste, and coriander.",
+        "minutes": 4
+      },
+      {
+        "section": "Pan-roast on medium flame",
+        "text": "Ladle onto a hot greased griddle, spread gently, drizzle oil around the edges, and cook 3 minutes per side until golden and the vegetables are tender-crisp.",
+        "minutes": 11
+      }
+    ],
+    "notes": "Adding 2 tbsp rice flour or semolina gives the vegetable-loaded chilla crisp golden edges."
   },
   {
     "id": "static-0939",
