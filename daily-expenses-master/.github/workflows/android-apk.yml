@@ -1,0 +1,173 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "frontend/**"
+      - ".github/workflows/android-apk.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Ensure Gradle distribution is available
+        run: |
+          mkdir -p frontend/android/gradle/wrapper
+          
+          URLS=(
+            "https://downloads.gradle-dn.com/distributions/gradle-8.13-bin.zip"
+            "https://mirrors.cloud.tencent.com/gradle/gradle-8.13-bin.zip"
+            "https://mirrors.aliyun.com/macports/distfiles/gradle/gradle-8.13-bin.zip"
+            "https://services.gradle.org/distributions/gradle-8.13-bin.zip"
+          )
+          
+          DOWNLOADED=false
+          for url in "${URLS[@]}"; do
+            echo "Attempting to download Gradle from $url..."
+            if curl -fSL --connect-timeout 20 --max-time 300 --retry 3 --retry-delay 3 "$url" -o frontend/android/gradle/wrapper/gradle-8.13-bin.zip; then
+              echo "Successfully downloaded Gradle 8.13 from $url"
+              DOWNLOADED=true
+              break
+            else
+              echo "Download from $url failed or timed out, trying next mirror..."
+            fi
+          done
+
+          if [ "$DOWNLOADED" = "true" ] && [ -s frontend/android/gradle/wrapper/gradle-8.13-bin.zip ]; then
+            echo "Setting distributionUrl to local wrapper zip..."
+            sed -i 's|distributionUrl=.*|distributionUrl=gradle-8.13-bin.zip|' frontend/android/gradle/wrapper/gradle-wrapper.properties
+            sed -i 's|validateDistributionUrl=.*|validateDistributionUrl=false|' frontend/android/gradle/wrapper/gradle-wrapper.properties
+          else
+            echo "Could not download from mirrors; falling back to direct CDN in gradle-wrapper.properties"
+          fi
+          cat frontend/android/gradle/wrapper/gradle-wrapper.properties
+
+      - name: Sync Capacitor Android
+        working-directory: frontend
+        run: npx cap sync android
+
+      - name: Make Gradle executable
+        run: chmod +x frontend/android/gradlew
+
+      - name: Calculate Android version
+        run: |
+          VERSION_CODE="${{ github.run_number }}"
+          VERSION_NAME="1.${VERSION_CODE}"
+
+          echo "VERSION_CODE=${VERSION_CODE}" >> "$GITHUB_ENV"
+          echo "VERSION_NAME=${VERSION_NAME}" >> "$GITHUB_ENV"
+
+          echo "Android versionCode: ${VERSION_CODE}"
+          echo "Android versionName: ${VERSION_NAME}"
+
+      - name: Decode release keystore
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode \
+            > frontend/android/app/release.keystore
+
+          test -f frontend/android/app/release.keystore
+
+      - name: Build Release APK
+        working-directory: frontend/android
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          ./gradlew assembleRelease --no-daemon --stacktrace \
+            -Pkotlin_version="2.0.21" \
+            -PkotlinVersion="2.0.21" \
+            -PAPP_VERSION_CODE="$VERSION_CODE" \
+            -PAPP_VERSION_NAME="$VERSION_NAME" \
+            -Pandroid.injected.signing.store.file="$GITHUB_WORKSPACE/frontend/android/app/release.keystore" \
+            -Pandroid.injected.signing.store.password="$ANDROID_KEYSTORE_PASSWORD" \
+            -Pandroid.injected.signing.key.alias="$ANDROID_KEY_ALIAS" \
+            -Pandroid.injected.signing.key.password="$ANDROID_KEY_PASSWORD"
+
+      - name: Locate and rename APK
+        run: |
+          APK_SOURCE="frontend/android/app/build/outputs/apk/release/app-release.apk"
+          APK="frontend/android/app/build/outputs/apk/release/daily-expenses-${VERSION_NAME}.apk"
+
+          echo "Checking for APK..."
+
+          if [ ! -f "$APK_SOURCE" ]; then
+            echo "ERROR: APK was not found at:"
+            echo "$APK_SOURCE"
+            echo ""
+            echo "APK files found:"
+            find frontend/android/app/build/outputs -type f -name "*.apk" -print
+            exit 1
+          fi
+
+          mv "$APK_SOURCE" "$APK"
+
+          echo "APK created successfully:"
+          ls -lh "$APK"
+
+          echo "APK_PATH=$APK" >> "$GITHUB_ENV"
+
+      - name: Verify APK
+        run: |
+          if [ ! -f "$APK_PATH" ]; then
+            echo "ERROR: APK does not exist:"
+            echo "$APK_PATH"
+            exit 1
+          fi
+
+          echo "Verified APK:"
+          ls -lh "$APK_PATH"
+
+      - name: Create GitHub Release and upload APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Creating release v${VERSION_NAME}"
+          echo "Uploading APK: ${APK_PATH}"
+
+          gh release create "v${VERSION_NAME}" \
+            "${APK_PATH}" \
+            --repo "${{ github.repository }}" \
+            --title "Daily Expenses v${VERSION_NAME}" \
+            --generate-notes
+
+          echo "Release created successfully."
+
+      - name: Remove release keystore
+        if: always()
+        run: |
+          rm -f frontend/android/app/release.keystore

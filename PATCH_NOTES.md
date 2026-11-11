@@ -364,3 +364,9 @@
 ## 23. Single-Line Horizontal Scrolling for Recipe Category Tags in Food Chart Add Recipe Modal
 - **Add Recipe Picker Category Chips (`frontend/src/pages/dietChart.css`)**:
   - Updated `.diet-modal.diet-picker .diet-category-chips.diet-picker-chips` to use `flex-wrap: nowrap`, `overflow-x: auto`, `overflow-y: hidden`, `scrollbar-width: thin`, and `-webkit-overflow-scrolling: touch` while maintaining `flex-shrink: 0` and `min-height: 40px` so all recipe category tags stay on a single line with smooth horizontal scrolling.
+
+
+## 24. Default "Remaining Amount" Share Type When Adding Survivor on Add Expenses Page
+- **Default Survivor Share Type (`frontend/src/pages/Expense.jsx`)**:
+  - Updated `addShare` so clicking **Add survivor** initializes the new survivor row with `shareType: "remaining"` ("Remaining amount") by default instead of `"fixed"`.
+  - Updated single-survivor fallback in `removeShare` to also default to `"remaining"` when a second `"average"` survivor row is removed.

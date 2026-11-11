@@ -848,7 +848,7 @@ export default function Expense() {
       ...form.shares,
       {
         survivorId: String(available.id),
-        shareType: "fixed",
+        shareType: "remaining",
         amount: "",
       },
     ]);
@@ -871,7 +871,7 @@ export default function Expense() {
     setForm((current) => {
       const nextShares = current.shares.filter((_, currentIndex) => currentIndex !== index);
       if (nextShares.length === 1 && nextShares[0].shareType === "average") {
-        nextShares[0] = { ...nextShares[0], shareType: "fixed" };
+        nextShares[0] = { ...nextShares[0], shareType: "remaining", amount: "" };
       }
       return { ...current, shares: nextShares };
     });
