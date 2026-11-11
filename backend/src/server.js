@@ -6,10 +6,7 @@ import { seedApplication } from "./services/bootstrapService.js";
 import { createRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/requestLogger.js";
-import {
-  startEmailSchedulers,
-  reconcileStaleEmailExecutions,
-} from "../scripts/scheduler.js";
+import { startEmailSchedulers, reconcileStaleEmailExecutions } from "../scripts/scheduler.js";
 import {
   startScheduledReportScheduler,
   reconcileStaleScheduledReportRuns,
@@ -81,11 +78,7 @@ if (isVercel) {
       // PostgreSQL pool connection timeouts can be transient under serverless
       // cold starts. Retry a failed initialization with a cooldown, while the
       // starting flag prevents duplicate concurrent retries in this instance.
-      if (
-        !app.locals.ready &&
-        !app.locals.starting &&
-        Date.now() - lastStartupAttemptAt >= 15000
-      ) {
+      if (!app.locals.ready && !app.locals.starting && Date.now() - lastStartupAttemptAt >= 15000) {
         app.locals.starting = true;
         lastStartupAttemptAt = Date.now();
         startupPromise = start();

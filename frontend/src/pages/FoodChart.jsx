@@ -1,5 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { BookOpen, CalendarDays, LocateFixed, MapPin, Pencil, Plus, Search, ShoppingBasket, Trash2, X } from "lucide-react";
+import {
+  BookOpen,
+  CalendarDays,
+  LocateFixed,
+  MapPin,
+  Pencil,
+  Plus,
+  Search,
+  ShoppingBasket,
+  Trash2,
+  X,
+} from "lucide-react";
 import { api, showToast } from "../lib/api";
 import {
   describeAutoMatchReason,
@@ -88,10 +99,7 @@ function resolveEntryRecipe(entry, recipesMap) {
         Array.isArray(r.ingredients) && r.ingredients.length
           ? r.ingredients
           : fallback?.ingredients || [],
-      steps:
-        Array.isArray(r.steps) && r.steps.length
-          ? r.steps
-          : fallback?.steps || [],
+      steps: Array.isArray(r.steps) && r.steps.length ? r.steps : fallback?.steps || [],
     };
   }
   if (fallback) return fallback;
@@ -108,7 +116,10 @@ function RecipeViewer({ entry, recipe, onClose, onAddIngredient }) {
   if (!entry || !recipe) return null;
   const ratio = Number(entry.servings || recipe.servings || 2) / Number(recipe.servings || 2);
   return (
-    <div className="diet-modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="diet-modal-backdrop"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
       <section className="diet-modal">
         <header>
           <h2>{recipe.name}</h2>
@@ -117,7 +128,8 @@ function RecipeViewer({ entry, recipe, onClose, onAddIngredient }) {
           </button>
         </header>
         <p className="diet-muted">
-          {recipe.category} · {recipe.region} · Prep {recipe.prepMinutes || 0} min · Cook {recipe.cookMinutes || 0} min · Planned servings {entry.servings}
+          {recipe.category} · {recipe.region} · Prep {recipe.prepMinutes || 0} min · Cook{" "}
+          {recipe.cookMinutes || 0} min · Planned servings {entry.servings}
         </p>
         <h3>Ingredients</h3>
         <div className="diet-ingredients">
@@ -189,9 +201,14 @@ function AddIngredientToMarketing({
   });
 
   useEffect(() => {
-    const ingredientUnit = String(ingredient?.unit || "").trim().toLowerCase();
+    const ingredientUnit = String(ingredient?.unit || "")
+      .trim()
+      .toLowerCase();
     const matchedUnit = units.find(
-      (unit) => String(unit.name || "").trim().toLowerCase() === ingredientUnit
+      (unit) =>
+        String(unit.name || "")
+          .trim()
+          .toLowerCase() === ingredientUnit,
     );
     const recommendedLoc =
       locations.find((loc) => String(loc.id) === String(defaultLocationId)) ||
@@ -443,8 +460,8 @@ export default function FoodChart() {
     const strictFlag = userChoseLocationRef.current ? "&strictLocation=true" : "";
     api(
       `/food-chart?date=${encodeURIComponent(date)}&locationId=${encodeURIComponent(
-        locationId || ""
-      )}${strictFlag}`
+        locationId || "",
+      )}${strictFlag}`,
     )
       .then((chart) => {
         if (!active) return;
@@ -498,16 +515,15 @@ export default function FoodChart() {
     }
   };
 
-  const recipesMap = useMemo(
-    () => new Map(recipes.map((r) => [String(r.id), r])),
-    [recipes]
-  );
+  const recipesMap = useMemo(() => new Map(recipes.map((r) => [String(r.id), r])), [recipes]);
 
   const isRecipeAlreadyInMeal = useCallback(
     (recipe, targetMeal = meal) => {
       if (!recipe) return false;
       const targetId = String(recipe.id || "").trim();
-      const targetName = String(recipe.name || "").trim().toLowerCase();
+      const targetName = String(recipe.name || "")
+        .trim()
+        .toLowerCase();
       const effectiveLoc = locationId ? String(locationId).trim() : "";
       return entries.some((entry) => {
         if (entry.meal !== targetMeal) return false;
@@ -516,14 +532,18 @@ export default function FoodChart() {
           if (entryLoc && entryLoc !== effectiveLoc) return false;
         }
         const resolved = resolveEntryRecipe(entry, recipesMap);
-        const entryId = String(entry.recipeId ?? entry.recipe_id ?? resolved?.id ?? entry.recipe?.id ?? "").trim();
-        const entryName = String(resolved?.name || entry.recipe?.name || "").trim().toLowerCase();
+        const entryId = String(
+          entry.recipeId ?? entry.recipe_id ?? resolved?.id ?? entry.recipe?.id ?? "",
+        ).trim();
+        const entryName = String(resolved?.name || entry.recipe?.name || "")
+          .trim()
+          .toLowerCase();
         if (targetId && entryId && targetId === entryId) return true;
         if (targetName && entryName && targetName === entryName) return true;
         return false;
       });
     },
-    [entries, meal, locationId, recipesMap]
+    [entries, meal, locationId, recipesMap],
   );
 
   const getRecipeUsageCount = useCallback(
@@ -532,7 +552,7 @@ export default function FoodChart() {
       const clientUsage = Number(localUsage[String(recipe?.id)] || 0);
       return serverUsage + clientUsage;
     },
-    [localUsage]
+    [localUsage],
   );
 
   const indexedRecipes = useMemo(() => indexRecipes(recipes), [recipes]);
@@ -550,7 +570,7 @@ export default function FoodChart() {
 
   const visiblePickerRecipes = useMemo(
     () => filteredRecipes.slice(0, pickerLimit),
-    [filteredRecipes, pickerLimit]
+    [filteredRecipes, pickerLimit],
   );
 
   const add = async (recipe) => {
@@ -602,7 +622,10 @@ export default function FoodChart() {
   };
 
   const edit = async (entry) => {
-    const value = window.prompt("How many servings should this recipe make?", String(entry.servings || 2));
+    const value = window.prompt(
+      "How many servings should this recipe make?",
+      String(entry.servings || 2),
+    );
     if (value === null) return;
     const servings = Number(value);
     if (!Number.isFinite(servings) || servings <= 0) {
@@ -625,7 +648,7 @@ export default function FoodChart() {
     const resolved = resolveEntryRecipe(entry, recipesMap);
     if (
       !window.confirm(
-        `Remove ${resolved.name || "this recipe"} from ${mealFor(entry)} on ${date}? It will remain in Recipe Master.`
+        `Remove ${resolved.name || "this recipe"} from ${mealFor(entry)} on ${date}? It will remain in Recipe Master.`,
       )
     )
       return;
@@ -656,7 +679,10 @@ export default function FoodChart() {
   const addIngredientToMarketing = async (formValues) => {
     const itemName = String(formValues.itemName || "").trim();
     if (!itemName || !formValues.purchaseDate || !formValues.locationId || !formValues.categoryId) {
-      showToast("warning", "Choose a date, location and category, and enter an ingredient. Quantity and unit are optional.");
+      showToast(
+        "warning",
+        "Choose a date, location and category, and enter an ingredient. Quantity and unit are optional.",
+      );
       return;
     }
     setAddingToMarketing(true);
@@ -679,7 +705,10 @@ export default function FoodChart() {
         }),
         silentToast: true,
       });
-      void recordLocationSelection(formValues.locationId, { coords, source: "food_chart_ingredient" });
+      void recordLocationSelection(formValues.locationId, {
+        coords,
+        source: "food_chart_ingredient",
+      });
       showToast("success", `${itemName} added to the marketing list.`);
       setAddIngredient(null);
     } catch (e) {
@@ -713,7 +742,12 @@ export default function FoodChart() {
       <div className="diet-date-bar">
         <CalendarDays size={18} />
         <label htmlFor="food-chart-date">Selected date</label>
-        <input id="food-chart-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <input
+          id="food-chart-date"
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
         <span>
           {new Date(`${date}T12:00:00`).toLocaleDateString("en-IN", {
             weekday: "short",
@@ -736,7 +770,10 @@ export default function FoodChart() {
             setLocationId(val);
             setAdding(false);
             if (val) {
-              void recordLocationSelection(val, { coords: currentCoords, source: "food_chart_select" });
+              void recordLocationSelection(val, {
+                coords: currentCoords,
+                source: "food_chart_select",
+              });
             }
           }}
         >
@@ -839,13 +876,19 @@ export default function FoodChart() {
         </div>
       )}
       {adding && (
-        <div className="diet-modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && setAdding(false)}>
+        <div
+          className="diet-modal-backdrop"
+          onMouseDown={(e) => e.target === e.currentTarget && setAdding(false)}
+        >
           <section className="diet-modal diet-picker">
             <header>
               <div>
                 <h2>Add Recipe</h2>
                 <p className="diet-muted">
-                  {date} · {locations.find((x) => String(x.id) === String(locationId))?.name || "All locations"} · Choose the meal and recipe to add.
+                  {date} ·{" "}
+                  {locations.find((x) => String(x.id) === String(locationId))?.name ||
+                    "All locations"}{" "}
+                  · Choose the meal and recipe to add.
                 </p>
               </div>
               <button className="icon-button" onClick={() => setAdding(false)} aria-label="Close">
@@ -906,7 +949,8 @@ export default function FoodChart() {
             {(query || pickerCategory !== "All") && (
               <div className="diet-search-meta" style={{ margin: "-2px 0 10px" }}>
                 <span>
-                  Showing {filteredRecipes.length} {filteredRecipes.length === 1 ? "match" : "matches"}
+                  Showing {filteredRecipes.length}{" "}
+                  {filteredRecipes.length === 1 ? "match" : "matches"}
                   {pickerCategory !== "All" ? ` in ${pickerCategory}` : ""}
                   {query ? ` for "${query}"` : ""}
                 </span>
@@ -937,7 +981,14 @@ export default function FoodChart() {
                         key={r.id}
                       >
                         <div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 8,
+                              flexWrap: "wrap",
+                            }}
+                          >
                             <strong>{r.name}</strong>
                             {isDuplicate && (
                               <span className="diet-duplicate-badge">
@@ -976,7 +1027,8 @@ export default function FoodChart() {
                         className="diet-secondary"
                         onClick={() => setPickerLimit((n) => n + INITIAL_PICKER_LIMIT)}
                       >
-                        Show more recipes ({filteredRecipes.length - visiblePickerRecipes.length} more)
+                        Show more recipes ({filteredRecipes.length - visiblePickerRecipes.length}{" "}
+                        more)
                       </button>
                     </div>
                   )}

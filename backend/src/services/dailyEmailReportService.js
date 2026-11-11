@@ -103,8 +103,7 @@ export async function sendDailyEmailReportToManagers() {
   const pdf = await buildDailyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate =
-    report.dailySummary?.[report.dailySummary.length - 1]?.date ||
-    dateMinusDays(1);
+    report.dailySummary?.[report.dailySummary.length - 1]?.date || dateMinusDays(1);
   for (const row of result.rows) {
     await sendDailyEmailReport(row.email, pdf, reportDate);
   }

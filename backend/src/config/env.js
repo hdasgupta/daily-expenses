@@ -49,10 +49,7 @@ export const env = {
   // Common recurring report schedules are fixed here so stale deployment
   // environment values cannot keep the old 06:00 schedules active.
   dailyEmailReportCron: "59 23 * * *",
-  dailyEmailReportTimezone: cleanEnvValue(
-    process.env.DAILY_EMAIL_REPORT_TIMEZONE,
-    "Asia/Kolkata",
-  ),
+  dailyEmailReportTimezone: cleanEnvValue(process.env.DAILY_EMAIL_REPORT_TIMEZONE, "Asia/Kolkata"),
   monthlyEmailReportCron: "59 23 L * *",
   monthlyEmailReportTimezone: cleanEnvValue(
     process.env.MONTHLY_EMAIL_REPORT_TIMEZONE,

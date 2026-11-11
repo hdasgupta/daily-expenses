@@ -6,17 +6,29 @@
 
 /**
  * Pre-indexes recipes for instant matching without repeated allocations.
- * @param {Array} recipes 
+ * @param {Array} recipes
  * @returns {Array} indexed recipes
  */
 export function indexRecipes(recipes = []) {
   if (!Array.isArray(recipes)) return [];
   return recipes.map((recipe) => {
-    const nameLower = String(recipe?.name || "").toLowerCase().trim();
-    const categoryLower = String(recipe?.category || "").toLowerCase().trim();
-    const regionLower = String(recipe?.region || "").toLowerCase().trim();
+    const nameLower = String(recipe?.name || "")
+      .toLowerCase()
+      .trim();
+    const categoryLower = String(recipe?.category || "")
+      .toLowerCase()
+      .trim();
+    const regionLower = String(recipe?.region || "")
+      .toLowerCase()
+      .trim();
     const ingredients = Array.isArray(recipe?.ingredients) ? recipe.ingredients : [];
-    const ingredientNames = ingredients.map((i) => String(i?.name || "").toLowerCase().trim()).filter(Boolean);
+    const ingredientNames = ingredients
+      .map((i) =>
+        String(i?.name || "")
+          .toLowerCase()
+          .trim(),
+      )
+      .filter(Boolean);
     const ingredientsText = ingredientNames.join(" ");
     const combinedText = `${nameLower} ${categoryLower} ${regionLower} ${ingredientsText}`;
     const prepMinutes = Number(recipe?.prepMinutes) || 0;
@@ -37,7 +49,7 @@ export function indexRecipes(recipes = []) {
 
 /**
  * Extracts all unique categories sorted alphabetically, with 'All' at the top.
- * @param {Array} recipes 
+ * @param {Array} recipes
  * @returns {Array<string>} list of category names
  */
 export function extractCategories(recipes = []) {
@@ -54,7 +66,7 @@ export function extractCategories(recipes = []) {
  * Searches and ranks recipes with multi-token matching, relevance scoring,
  * category filtering, and sorting (default: most used recipes on top).
  *
- * @param {Array} indexedRecipes 
+ * @param {Array} indexedRecipes
  * @param {Object} options
  * @param {string} options.query - search text
  * @param {string} options.category - active category filter ("All" or specific category)

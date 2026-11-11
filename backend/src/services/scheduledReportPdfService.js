@@ -160,8 +160,18 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
   const period = groups.find((column) => ["date", "week", "month", "year"].includes(column));
   const category = groups.includes("category") ? "category" : null;
   const survivor = groups.includes("survivor") ? "survivor" : null;
-  const xColumn = period || groups.find((column) => column !== category && column !== survivor) || groups[0];
-  const palette = ["#315f9f", "#d97706", "#059669", "#7c3aed", "#dc2626", "#0891b2", "#be185d", "#65a30d"];
+  const xColumn =
+    period || groups.find((column) => column !== category && column !== survivor) || groups[0];
+  const palette = [
+    "#315f9f",
+    "#d97706",
+    "#059669",
+    "#7c3aed",
+    "#dc2626",
+    "#0891b2",
+    "#be185d",
+    "#65a30d",
+  ];
   doc.x = left;
   doc.fontSize(13).text(title, left, doc.y);
   doc.moveDown(0.35);
@@ -198,13 +208,25 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
     if (category && survivor) {
       const categoryKey = String(row[category] ?? "—");
       const survivorKey = String(row[survivor] ?? "—");
-      if (!categoryMap.has(categoryKey)) categoryMap.set(categoryKey, { key: categoryKey, label: prettyValue(row[category], category) });
-      if (!survivorMap.has(survivorKey)) survivorMap.set(survivorKey, { key: survivorKey, label: prettyValue(row[survivor], survivor) });
+      if (!categoryMap.has(categoryKey))
+        categoryMap.set(categoryKey, {
+          key: categoryKey,
+          label: prettyValue(row[category], category),
+        });
+      if (!survivorMap.has(survivorKey))
+        survivorMap.set(survivorKey, {
+          key: survivorKey,
+          label: prettyValue(row[survivor], survivor),
+        });
       const key = `${xKey}\u0002${categoryKey}\u0002${survivorKey}`;
       values.set(key, (values.get(key) || 0) + Number(row.total || 0));
     } else {
       const seriesKey = String(row[seriesColumn] ?? "—");
-      if (!categoryMap.has(seriesKey)) categoryMap.set(seriesKey, { key: seriesKey, label: prettyValue(row[seriesColumn], seriesColumn) });
+      if (!categoryMap.has(seriesKey))
+        categoryMap.set(seriesKey, {
+          key: seriesKey,
+          label: prettyValue(row[seriesColumn], seriesColumn),
+        });
       const key = `${xKey}\u0002${seriesKey}`;
       values.set(key, (values.get(key) || 0) + Number(row.total || 0));
     }
@@ -218,7 +240,8 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
       category && survivor
         ? outerItems.map((outer) =>
             innerItems.reduce(
-              (s, inner) => s + (values.get(`${xItem.key}\u0002${outer.key}\u0002${inner.key}`) || 0),
+              (s, inner) =>
+                s + (values.get(`${xItem.key}\u0002${outer.key}\u0002${inner.key}`) || 0),
               0,
             ),
           )
@@ -243,33 +266,52 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
           const height = (value / max) * (chartHeight - 40);
           y -= height;
           total += value;
-          doc.save().fillColor(palette[outerIndex % palette.length]).rect(bx, y, stackWidth, height).fill().restore();
+          doc
+            .save()
+            .fillColor(palette[outerIndex % palette.length])
+            .rect(bx, y, stackWidth, height)
+            .fill()
+            .restore();
         });
       } else {
         total = Number(values.get(`${xItem.key}\u0002${outer.key}`) || 0);
         const height = (total / max) * (chartHeight - 40);
         y -= height;
-        doc.save().fillColor(palette[outerIndex % palette.length]).rect(bx, y, stackWidth, height).fill().restore();
+        doc
+          .save()
+          .fillColor(palette[outerIndex % palette.length])
+          .rect(bx, y, stackWidth, height)
+          .fill()
+          .restore();
       }
       if (total) {
-        doc.fontSize(5.5).fillColor("black").text(money(total), bx - 8, y - 10, {
-          width: stackWidth + 16,
-          align: "center",
-          ellipsis: true,
-        });
+        doc
+          .fontSize(5.5)
+          .fillColor("black")
+          .text(money(total), bx - 8, y - 10, {
+            width: stackWidth + 16,
+            align: "center",
+            ellipsis: true,
+          });
       }
     });
-    doc.fontSize(5.8).fillColor("black").text(xItem.label, startX + xIndex * slot, baseline + 5, {
-      width: Math.max(slot - 2, 12),
-      align: "center",
-      ellipsis: true,
-    });
+    doc
+      .fontSize(5.8)
+      .fillColor("black")
+      .text(xItem.label, startX + xIndex * slot, baseline + 5, {
+        width: Math.max(slot - 2, 12),
+        align: "center",
+        ellipsis: true,
+      });
   });
 
   let legendX = startX;
   let legendY = baseline + 28;
   outerItems.forEach((item, index) => {
-    const labelWidth = Math.min(115, Math.max(48, doc.widthOfString(item.label, { fontSize: 7 }) + 16));
+    const labelWidth = Math.min(
+      115,
+      Math.max(48, doc.widthOfString(item.label, { fontSize: 7 }) + 16),
+    );
     if (legendX + labelWidth > doc.page.width - doc.page.margins.right) {
       legendX = startX;
       legendY += 13;
@@ -279,11 +321,19 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
       legendX = startX;
       legendY = doc.page.margins.top;
     }
-    doc.save().fillColor(palette[index % palette.length]).rect(legendX, legendY, 8, 8).fill().restore();
-    doc.fillColor("black").fontSize(7).text(item.label, legendX + 11, legendY - 1, {
-      width: labelWidth - 11,
-      ellipsis: true,
-    });
+    doc
+      .save()
+      .fillColor(palette[index % palette.length])
+      .rect(legendX, legendY, 8, 8)
+      .fill()
+      .restore();
+    doc
+      .fillColor("black")
+      .fontSize(7)
+      .text(item.label, legendX + 11, legendY - 1, {
+        width: labelWidth - 11,
+        ellipsis: true,
+      });
     legendX += labelWidth;
   });
   doc.x = left;
@@ -311,7 +361,10 @@ function drawTable(doc, columns, rows, widths = null) {
 
   const drawRow = (values, header = false, index = 0) => {
     const height = header ? 25 : measureRowHeight(values);
-    if (doc.y + height > doc.page.height - doc.page.margins.bottom && doc.y > doc.page.margins.top + 1) {
+    if (
+      doc.y + height > doc.page.height - doc.page.margins.bottom &&
+      doc.y > doc.page.margins.top + 1
+    ) {
       doc.addPage();
     }
     const y = doc.y;
@@ -358,22 +411,20 @@ function drawTable(doc, columns, rows, widths = null) {
 
 function drawPivotTableChunk(doc, pivot, chunkValues, includeTotal) {
   const valueColumns = chunkValues.map((_, index) => `pivot_${index}`);
-  const columns = [
-    ...pivot.rowColumns,
-    ...valueColumns,
-    ...(includeTotal ? ["total"] : []),
-  ];
+  const columns = [...pivot.rowColumns, ...valueColumns, ...(includeTotal ? ["total"] : [])];
   const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
   const rowColumnWidths = pivot.rowColumns.map((_, index) =>
-    index === 0 ? Math.min(130, Math.max(80, usableWidth * 0.14)) : Math.min(110, Math.max(75, usableWidth * 0.12)),
+    index === 0
+      ? Math.min(130, Math.max(80, usableWidth * 0.14))
+      : Math.min(110, Math.max(75, usableWidth * 0.12)),
   );
   const totalRowColumnsWidth = rowColumnWidths.reduce((sum, w) => sum + w, 0);
   const dataColumnCount = valueColumns.length + (includeTotal ? 1 : 0);
-  const dataWidth = Math.max(36, (usableWidth - totalRowColumnsWidth) / Math.max(dataColumnCount, 1));
-  const widths = [
-    ...rowColumnWidths,
-    ...Array.from({ length: dataColumnCount }, () => dataWidth),
-  ];
+  const dataWidth = Math.max(
+    36,
+    (usableWidth - totalRowColumnsWidth) / Math.max(dataColumnCount, 1),
+  );
+  const widths = [...rowColumnWidths, ...Array.from({ length: dataColumnCount }, () => dataWidth)];
 
   const tableRows = pivot.rows.map((row) => {
     const result = Object.fromEntries(
@@ -512,7 +563,9 @@ export function buildScheduledReportPdfInProcess({ summary, raw, generatedAt }) 
       doc.addPage();
     }
     doc.x = left;
-    doc.fontSize(14).text(groupBy.length > 1 ? "2. Pivot summary table" : "2. Summary table", left, doc.y);
+    doc
+      .fontSize(14)
+      .text(groupBy.length > 1 ? "2. Pivot summary table" : "2. Summary table", left, doc.y);
     doc.moveDown(0.4);
     const pivot = pivotSummary(summary.rows || [], groupBy, periods);
     if (pivot) {

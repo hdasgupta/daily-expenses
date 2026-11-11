@@ -1526,7 +1526,6 @@ code {
   opacity: 0.75;
 }
 
-
 .report-chart-legend,
 .dashboard-chart-legend {
   display: flex;
@@ -1724,7 +1723,6 @@ code {
     right: 12px;
   }
 }
-
 
 /* Group labels in the navigation drawer */
 .drawer-section-title {

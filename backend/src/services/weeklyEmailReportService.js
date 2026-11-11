@@ -113,8 +113,7 @@ export async function sendWeeklyEmailReportToManagers() {
   const pdf = await buildWeeklyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate =
-    report.weeklySummary?.[report.weeklySummary.length - 1]?.weekEnd ||
-    dateMinusDays(1);
+    report.weeklySummary?.[report.weeklySummary.length - 1]?.weekEnd || dateMinusDays(1);
   for (const row of result.rows) {
     await sendWeeklyEmailReport(row.email, pdf, reportDate);
   }

@@ -64,9 +64,7 @@ export default function ScheduledReportForm({
       dayOfWeek: Number(form.dayOfWeek),
       dayOfMonth: Number(form.dayOfMonth),
       monthOfYear: Number(form.monthOfYear),
-      ...(isAdmin && !job && selectedManagerIds.length
-        ? { managerIds: selectedManagerIds }
-        : {}),
+      ...(isAdmin && !job && selectedManagerIds.length ? { managerIds: selectedManagerIds } : {}),
     });
   };
 

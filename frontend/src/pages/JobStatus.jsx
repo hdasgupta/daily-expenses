@@ -190,11 +190,17 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
     const labels = Array.isArray(filters.categoryItemLabels)
       ? filters.categoryItemLabels
       : filters.categoryItems;
-    const categoriesOnly = [...new Set(
-      labels
-        .map((value) => String(value).split(/\s+-\s+/)[0].trim())
-        .filter(Boolean),
-    )];
+    const categoriesOnly = [
+      ...new Set(
+        labels
+          .map((value) =>
+            String(value)
+              .split(/\s+-\s+/)[0]
+              .trim(),
+          )
+          .filter(Boolean),
+      ),
+    ];
     filterParts.push(
       `${categoryOnly ? "categories" : "category"} = ${(categoryOnly ? categoriesOnly : labels).join(", ")}`,
     );
@@ -369,7 +375,8 @@ export default function JobStatus({ user }) {
               String(item.label || "").replace(/\s*\(next day\)/gi, ""),
           }))
           .sort(
-            (a, b) => (staticScheduleOrder[a.jobName] || 99) - (staticScheduleOrder[b.jobName] || 99),
+            (a, b) =>
+              (staticScheduleOrder[a.jobName] || 99) - (staticScheduleOrder[b.jobName] || 99),
           ),
       );
 
@@ -387,10 +394,7 @@ export default function JobStatus({ user }) {
         ),
       );
 
-      if (
-        statusData.hasMoreDueJobs ||
-        fetchedRows.some((row) => row.status === "running")
-      ) {
+      if (statusData.hasMoreDueJobs || fetchedRows.some((row) => row.status === "running")) {
         followUpTimerRef.current = setTimeout(() => {
           load({ silent: true }).catch(() => {});
         }, 1500);
@@ -513,11 +517,19 @@ export default function JobStatus({ user }) {
 
   const filteredDashboardEmails = scheduledJobs.filter((job) => {
     const query = dashboardEmailSearch.trim().toLocaleLowerCase();
-    return !query || [
-      job.name, job.report_label, job.report_help, job.owner_name, job.owner_email,
-    ].some((value) => String(value || "").toLocaleLowerCase().includes(query));
+    return (
+      !query ||
+      [job.name, job.report_label, job.report_help, job.owner_name, job.owner_email].some((value) =>
+        String(value || "")
+          .toLocaleLowerCase()
+          .includes(query),
+      )
+    );
   });
-  const dashboardEmailPageCount = Math.max(1, Math.ceil(filteredDashboardEmails.length / dashboardEmailPageSize));
+  const dashboardEmailPageCount = Math.max(
+    1,
+    Math.ceil(filteredDashboardEmails.length / dashboardEmailPageSize),
+  );
   const visibleDashboardEmails = filteredDashboardEmails.slice(
     (Math.min(dashboardEmailPage, dashboardEmailPageCount) - 1) * dashboardEmailPageSize,
     Math.min(dashboardEmailPage, dashboardEmailPageCount) * dashboardEmailPageSize,
@@ -525,17 +537,27 @@ export default function JobStatus({ user }) {
 
   const filteredOneTimeEmails = oneTimeJobs.filter((job) => {
     const query = oneTimeEmailSearch.trim().toLocaleLowerCase();
-    return !query || [
-      job.name,
-      job.status,
-      job.last_error,
-      job.owner_name,
-      job.owner_email,
-      job.creator_name,
-      job.creator_email,
-    ].some((value) => String(value || "").toLocaleLowerCase().includes(query));
+    return (
+      !query ||
+      [
+        job.name,
+        job.status,
+        job.last_error,
+        job.owner_name,
+        job.owner_email,
+        job.creator_name,
+        job.creator_email,
+      ].some((value) =>
+        String(value || "")
+          .toLocaleLowerCase()
+          .includes(query),
+      )
+    );
   });
-  const oneTimeEmailPageCount = Math.max(1, Math.ceil(filteredOneTimeEmails.length / oneTimeEmailPageSize));
+  const oneTimeEmailPageCount = Math.max(
+    1,
+    Math.ceil(filteredOneTimeEmails.length / oneTimeEmailPageSize),
+  );
   const visibleOneTimeEmails = filteredOneTimeEmails.slice(
     (Math.min(oneTimeEmailPage, oneTimeEmailPageCount) - 1) * oneTimeEmailPageSize,
     Math.min(oneTimeEmailPage, oneTimeEmailPageCount) * oneTimeEmailPageSize,
@@ -600,11 +622,15 @@ export default function JobStatus({ user }) {
                   </span>
 
                   <span>
-                    <b>Dashboard source:</b> {job.report_label} — {job.report_help || "Dashboard report"}
+                    <b>Dashboard source:</b> {job.report_label} —{" "}
+                    {job.report_help || "Dashboard report"}
                   </span>
 
                   <span className="job-pdf-content">
-                    <b>PDF contents:</b> Chart · summary/pivot table · raw data <PdfContentsInfo dashboardSource={`${job.report_label} — ${job.report_help || "Dashboard report"}`} />
+                    <b>PDF contents:</b> Chart · summary/pivot table · raw data{" "}
+                    <PdfContentsInfo
+                      dashboardSource={`${job.report_label} — ${job.report_help || "Dashboard report"}`}
+                    />
                   </span>
 
                   <span>
@@ -663,7 +689,10 @@ export default function JobStatus({ user }) {
       <div className="card" style={{ marginBottom: 14 }}>
         <div className="card-title">
           <strong>One-time report PDF emails</strong>
-          <span>Scheduled from the Report page. Each item disappears after the email is successfully triggered.</span>
+          <span>
+            Scheduled from the Report page. Each item disappears after the email is successfully
+            triggered.
+          </span>
         </div>
 
         {oneTimeJobs.length ? (
@@ -675,7 +704,9 @@ export default function JobStatus({ user }) {
                     <strong>{job.name}</strong>
                     <span>Report PDF email</span>
                   </div>
-                  <span className={`scheduled-job-status ${job.status === "failed" ? "paused" : "active"}`}>
+                  <span
+                    className={`scheduled-job-status ${job.status === "failed" ? "paused" : "active"}`}
+                  >
                     {job.status === "failed" ? "Retrying" : "Scheduled"}
                   </span>
                 </div>
@@ -693,15 +724,34 @@ export default function JobStatus({ user }) {
                       ? `${job.owner_name || "Unknown"} · ${job.owner_email || "—"}`
                       : "—"}
                   </span>
-                  <span><b>Scheduled for:</b> {formatDate(job.scheduled_for)}</span>
-                  <span><b>Timezone:</b> Asia/Kolkata</span>
-                  <span className="job-pdf-content"><b>PDF contents:</b> Report chart · summary/pivot table · raw data <PdfContentsInfo config={job.config} categoryOnly /></span>
-                  {job.last_attempt_at ? <span><b>Last attempt:</b> {formatDate(job.last_attempt_at)}</span> : null}
-                  {job.last_error ? <span><b>Last error:</b> {job.last_error}</span> : null}
+                  <span>
+                    <b>Scheduled for:</b> {formatDate(job.scheduled_for)}
+                  </span>
+                  <span>
+                    <b>Timezone:</b> Asia/Kolkata
+                  </span>
+                  <span className="job-pdf-content">
+                    <b>PDF contents:</b> Report chart · summary/pivot table · raw data{" "}
+                    <PdfContentsInfo config={job.config} categoryOnly />
+                  </span>
+                  {job.last_attempt_at ? (
+                    <span>
+                      <b>Last attempt:</b> {formatDate(job.last_attempt_at)}
+                    </span>
+                  ) : null}
+                  {job.last_error ? (
+                    <span>
+                      <b>Last error:</b> {job.last_error}
+                    </span>
+                  ) : null}
                 </div>
 
                 <div className="scheduled-report-actions" style={{ marginTop: 10 }}>
-                  <button className="danger" type="button" onClick={() => setDeletingOneTimeJob(job)}>
+                  <button
+                    className="danger"
+                    type="button"
+                    onClick={() => setDeletingOneTimeJob(job)}
+                  >
                     <Trash2 size={15} />
                     Remove
                   </button>

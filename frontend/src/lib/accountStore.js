@@ -14,7 +14,9 @@ function normalizeAccount(account) {
     return null;
   }
 
-  const id = String(account.id || account.email || "").trim().toLowerCase();
+  const id = String(account.id || account.email || "")
+    .trim()
+    .toLowerCase();
   const token = String(account.token || "").trim();
 
   if (!id || !token) {
@@ -51,14 +53,20 @@ function saveAccounts(accounts) {
 
 export function getActiveAccountId() {
   try {
-    return String(localStorage.getItem(ACTIVE_ACCOUNT_KEY) || "").trim().toLowerCase() || null;
+    return (
+      String(localStorage.getItem(ACTIVE_ACCOUNT_KEY) || "")
+        .trim()
+        .toLowerCase() || null
+    );
   } catch {
     return null;
   }
 }
 
 export function setActiveAccountId(id) {
-  const normalizedId = String(id || "").trim().toLowerCase();
+  const normalizedId = String(id || "")
+    .trim()
+    .toLowerCase();
 
   if (normalizedId) {
     localStorage.setItem(ACTIVE_ACCOUNT_KEY, normalizedId);
@@ -134,7 +142,9 @@ export function updateAccount(user, token = null) {
 }
 
 export function removeAccount(id) {
-  const normalizedId = String(id || "").trim().toLowerCase();
+  const normalizedId = String(id || "")
+    .trim()
+    .toLowerCase();
   const accounts = getAccounts().filter((item) => item.id !== normalizedId);
 
   saveAccounts(accounts);

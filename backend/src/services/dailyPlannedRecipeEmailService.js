@@ -9,7 +9,12 @@ const staticRecipes = JSON.parse(
 );
 const staticRecipesById = new Map(staticRecipes.map((r) => [String(r.id), r]));
 const staticRecipesByName = new Map(
-  staticRecipes.map((r) => [String(r.name || "").trim().toLowerCase(), r]),
+  staticRecipes.map((r) => [
+    String(r.name || "")
+      .trim()
+      .toLowerCase(),
+    r,
+  ]),
 );
 
 function normalizeRecipeSnapshot(snapshot, recipeId = null) {
@@ -24,7 +29,11 @@ function normalizeRecipeSnapshot(snapshot, recipeId = null) {
   if (parsed && typeof parsed === "object" && (parsed.name || parsed.title)) {
     const fallback =
       (parsed.id && staticRecipesById.get(String(parsed.id))) ||
-      staticRecipesByName.get(String(parsed.name || parsed.title || "").trim().toLowerCase()) ||
+      staticRecipesByName.get(
+        String(parsed.name || parsed.title || "")
+          .trim()
+          .toLowerCase(),
+      ) ||
       null;
     if (fallback) {
       return {
@@ -99,7 +108,12 @@ export async function sendDailyPlannedRecipeEmailToAdmins(planDate) {
   const sections = MEALS.map((meal) => ({
     meal,
     recipes: result.rows
-      .filter((row) => String(row.meal || "").trim().toLowerCase() === meal.toLowerCase())
+      .filter(
+        (row) =>
+          String(row.meal || "")
+            .trim()
+            .toLowerCase() === meal.toLowerCase(),
+      )
       .map((row) => {
         const resolved = normalizeRecipeSnapshot(row.recipe, row.recipeId);
         return {

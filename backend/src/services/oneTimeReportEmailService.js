@@ -188,10 +188,10 @@ async function resolveScheduledFor(value) {
     throw error("Choose a valid future date and time.");
   }
 
-  const result = await q(
-    `SELECT ($1::timestamp AT TIME ZONE $2) AS scheduled_for`,
-    [text, TIMEZONE],
-  );
+  const result = await q(`SELECT ($1::timestamp AT TIME ZONE $2) AS scheduled_for`, [
+    text,
+    TIMEZONE,
+  ]);
   const scheduledFor = result.rows[0]?.scheduled_for;
   const timestamp = scheduledFor ? new Date(scheduledFor).getTime() : NaN;
 
@@ -223,9 +223,11 @@ export async function scheduleOneTimeReportEmail({
     );
   }
 
-  const requestedIds = [...new Set((Array.isArray(managerIds) ? managerIds : [])
-    .map((id) => String(id).trim())
-    .filter(Boolean))];
+  const requestedIds = [
+    ...new Set(
+      (Array.isArray(managerIds) ? managerIds : []).map((id) => String(id).trim()).filter(Boolean),
+    ),
+  ];
 
   let recipients = [{ id: user.id, email: user.email }];
   if (requestedIds.length) {
@@ -327,7 +329,10 @@ export async function removeOneTimeReportEmailJob({ id, userId, isAdmin = false 
   );
 
   if (!result.rows.length) {
-    throw error("Scheduled report email not found or you do not have permission to remove it.", 404);
+    throw error(
+      "Scheduled report email not found or you do not have permission to remove it.",
+      404,
+    );
   }
 }
 
@@ -340,7 +345,9 @@ export function startOneTimeReportEmailScheduler() {
   if (schedulerStarted) return;
 
   schedulerStarted = true;
-  console.log(`One-time report email scheduler enabled (${SCHEDULER_POLL_MS}ms polling, Asia/Kolkata schedules normalized to UTC)`);
+  console.log(
+    `One-time report email scheduler enabled (${SCHEDULER_POLL_MS}ms polling, Asia/Kolkata schedules normalized to UTC)`,
+  );
 
   const scheduleNextPoll = () => {
     schedulerTimer = setTimeout(async () => {
@@ -361,13 +368,15 @@ export function startOneTimeReportEmailScheduler() {
     try {
       await ensureOneTimeReportEmailSchedulerSchema();
       const clock = await q(`SELECT now() AS db_now, CURRENT_TIMESTAMP AS current_timestamp`);
-      console.log(JSON.stringify({
-        event: "one_time_report_email_scheduler_started",
-        timezone: TIMEZONE,
-        databaseNow: clock.rows[0]?.db_now || null,
-        databaseCurrentTimestamp: clock.rows[0]?.current_timestamp || null,
-        pollingMs: SCHEDULER_POLL_MS,
-      }));
+      console.log(
+        JSON.stringify({
+          event: "one_time_report_email_scheduler_started",
+          timezone: TIMEZONE,
+          databaseNow: clock.rows[0]?.db_now || null,
+          databaseCurrentTimestamp: clock.rows[0]?.current_timestamp || null,
+          pollingMs: SCHEDULER_POLL_MS,
+        }),
+      );
 
       await processDueOneTimeReportEmailJobs();
       scheduleNextPoll();
@@ -383,7 +392,10 @@ export function startOneTimeReportEmailScheduler() {
   })();
 }
 
-export async function processDueOneTimeReportEmailJobs({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+export async function processDueOneTimeReportEmailJobs({
+  maxJobs = Infinity,
+  deadlineMs = Infinity,
+} = {}) {
   if (activeOneTimePollPromise) {
     return activeOneTimePollPromise;
   }
@@ -444,10 +456,12 @@ export async function processDueOneTimeReportEmailJobs({ maxJobs = Infinity, dea
 }
 
 async function claimJob(id) {
-  console.log(JSON.stringify({
-    event: "one_time_report_email_execution_started",
-    jobId: id,
-  }));
+  console.log(
+    JSON.stringify({
+      event: "one_time_report_email_execution_started",
+      jobId: id,
+    }),
+  );
 
   const result = await q(
     `UPDATE public.one_time_report_email_jobs
@@ -463,11 +477,13 @@ async function claimJob(id) {
   );
 
   if (!result.rows[0]) {
-    console.log(JSON.stringify({
-      event: "one_time_report_email_claim_skipped",
-      jobId: id,
-      reason: "job_not_due_or_already_running",
-    }));
+    console.log(
+      JSON.stringify({
+        event: "one_time_report_email_claim_skipped",
+        jobId: id,
+        reason: "job_not_due_or_already_running",
+      }),
+    );
     return null;
   }
 
@@ -484,12 +500,14 @@ async function claimJob(id) {
     throw new Error(`Claimed one-time report email job ${id} could not be reloaded.`);
   }
 
-  console.log(JSON.stringify({
-    event: "one_time_report_email_job_claimed",
-    jobId: id,
-    ownerUserId: job.owner_user_id,
-    scheduledFor: job.scheduled_for,
-  }));
+  console.log(
+    JSON.stringify({
+      event: "one_time_report_email_job_claimed",
+      jobId: id,
+      ownerUserId: job.owner_user_id,
+      scheduledFor: job.scheduled_for,
+    }),
+  );
 
   return job;
 }
@@ -573,13 +591,15 @@ async function executeOneTimeReportEmailJob(id) {
 
     await q(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
 
-    console.log(JSON.stringify({
-      event: "one_time_report_email_completed",
-      jobId: id,
-      ownerUserId: job.owner_user_id,
-      executionJobName,
-      scheduledKey,
-    }));
+    console.log(
+      JSON.stringify({
+        event: "one_time_report_email_completed",
+        jobId: id,
+        ownerUserId: job.owner_user_id,
+        executionJobName,
+        scheduledKey,
+      }),
+    );
     return true;
   } catch (workerError) {
     const durationMs = Date.now() - startedAt;

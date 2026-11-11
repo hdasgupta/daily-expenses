@@ -12,14 +12,7 @@ import { signedObjectUrl } from "./storageService.js";
 
 const groupable = new Set(Object.keys(reportSql.groupExpr));
 const rawSortable = new Set(["date", "category", "item", "survivor"]);
-const groupedSortable = new Set([
-  "date",
-  "survivor",
-  "category",
-  "item",
-  "price",
-  ...groupable,
-]);
+const groupedSortable = new Set(["date", "survivor", "category", "item", "price", ...groupable]);
 
 function cleanConfig(config = {}) {
   const filters = config.filters || {};
@@ -225,7 +218,11 @@ function groupedDetailOrderSql(config) {
   };
 
   const parts = config.sortColumns
-    .map((sort) => expressions[sort.column] ? reportSql.order(expressions[sort.column], sort.direction.toUpperCase()) : null)
+    .map((sort) =>
+      expressions[sort.column]
+        ? reportSql.order(expressions[sort.column], sort.direction.toUpperCase())
+        : null,
+    )
     .filter(Boolean);
 
   parts.push("expense_date DESC", "id DESC");
@@ -392,11 +389,7 @@ async function resolveCategoryItemFilterLabelsForPdf(config) {
   if (!keys.length) return [];
 
   const categoryIds = [
-    ...new Set(
-      keys
-        .map((key) => String(key).split(":")[0])
-        .filter((value) => /^\d+$/.test(value)),
-    ),
+    ...new Set(keys.map((key) => String(key).split(":")[0]).filter((value) => /^\d+$/.test(value))),
   ];
   if (!categoryIds.length) return keys;
 

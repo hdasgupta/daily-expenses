@@ -1,35 +1,174 @@
-.marketing-page { width: 100%; min-width: 0; }
-.marketing-page .marketing-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: end; }
-.marketing-page .marketing-form-grid label { display: flex; min-width: 0; flex-direction: column; gap: 6px; color: var(--muted); font-size: 12px; }
-.marketing-page .marketing-form-grid h2 { margin: 0; font-size: 18px; }
-.marketing-page .marketing-error { margin: 0 0 14px; padding: 10px 12px; border: 1px solid #ef4444; border-radius: 9px; color: #b91c1c; background: #fef2f2; }
-.marketing-page button:not(.primary) { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--soft); color: var(--text); }
-.marketing-page .location-form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-.marketing-locations-page .location-section { margin-top: 22px; min-width: 0; }
-.marketing-locations-page .location-list-heading { margin-bottom: 12px; }
-.marketing-locations-page .location-list-heading h2, .marketing-locations-page .location-card h3 { margin: 0; }
-.marketing-locations-page .location-list-heading p { margin: 4px 0 0; }
-.marketing-locations-page .pagination { margin: 0 0 12px; max-width: 100%; }
-.marketing-locations-page .location-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; }
-.marketing-locations-page .location-card { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card, var(--surface)); }
-.marketing-locations-page .location-card-icon { display: flex; flex: 0 0 38px; width: 38px; height: 38px; align-items: center; justify-content: center; border-radius: 10px; color: var(--primary, #2563eb); background: var(--soft); }
-.marketing-locations-page .location-card-content { flex: 1 1 auto; min-width: 0; }
-.marketing-locations-page .location-card-content h3 { overflow-wrap: anywhere; font-size: 15px; font-weight: 650; }
-.marketing-locations-page .location-card-content p { margin: 4px 0 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
-.marketing-locations-page .location-card-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-.marketing-locations-page .location-card-actions button { display: inline-flex; align-items: center; gap: 5px; }
-.marketing-locations-page .location-empty-state { padding: 22px 16px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); text-align: center; background: var(--card, var(--surface)); }
+.marketing-page {
+  width: 100%;
+  min-width: 0;
+}
+.marketing-page .marketing-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+.marketing-page .marketing-form-grid label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.marketing-page .marketing-form-grid h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.marketing-page .marketing-error {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid #ef4444;
+  border-radius: 9px;
+  color: #b91c1c;
+  background: #fef2f2;
+}
+.marketing-page button:not(.primary) {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--soft);
+  color: var(--text);
+}
+.marketing-page .location-form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.marketing-locations-page .location-section {
+  margin-top: 22px;
+  min-width: 0;
+}
+.marketing-locations-page .location-list-heading {
+  margin-bottom: 12px;
+}
+.marketing-locations-page .location-list-heading h2,
+.marketing-locations-page .location-card h3 {
+  margin: 0;
+}
+.marketing-locations-page .location-list-heading p {
+  margin: 4px 0 0;
+}
+.marketing-locations-page .pagination {
+  margin: 0 0 12px;
+  max-width: 100%;
+}
+.marketing-locations-page .location-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  min-width: 0;
+}
+.marketing-locations-page .location-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card, var(--surface));
+}
+.marketing-locations-page .location-card-icon {
+  display: flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--primary, #2563eb);
+  background: var(--soft);
+}
+.marketing-locations-page .location-card-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.marketing-locations-page .location-card-content h3 {
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  font-weight: 650;
+}
+.marketing-locations-page .location-card-content p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.marketing-locations-page .location-card-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.marketing-locations-page .location-card-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.marketing-locations-page .location-empty-state {
+  padding: 22px 16px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+  background: var(--card, var(--surface));
+}
 
 /* Marketing list: responsive item cards instead of a wide, hard-to-read table. */
-.marketing-list-page .marketing-list-form { padding: 20px; margin-bottom: 24px; }
-.marketing-list-page .marketing-form-title { display: flex; grid-column: 1 / -1; align-items: center; gap: 10px; color: var(--primary, #2563eb); }
-.marketing-list-page .marketing-form-title h2 { color: var(--text); }
-.marketing-list-page .marketing-list-form-actions { display: flex; grid-column: 1 / -1; flex-wrap: wrap; gap: 8px; }
-.marketing-list-page .marketing-items-section { min-width: 0; }
-.marketing-list-page .marketing-items-heading { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
-.marketing-list-page .marketing-items-heading h2 { margin: 0; font-size: 19px; }
-.marketing-list-page .marketing-items-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
-.marketing-list-page .marketing-heading-right { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.marketing-list-page .marketing-list-form {
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.marketing-list-page .marketing-form-title {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary, #2563eb);
+}
+.marketing-list-page .marketing-form-title h2 {
+  color: var(--text);
+}
+.marketing-list-page .marketing-list-form-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.marketing-list-page .marketing-items-section {
+  min-width: 0;
+}
+.marketing-list-page .marketing-items-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.marketing-list-page .marketing-items-heading h2 {
+  margin: 0;
+  font-size: 19px;
+}
+.marketing-list-page .marketing-items-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.marketing-list-page .marketing-heading-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 .marketing-list-page .marketing-total-cost-banner {
   display: inline-flex;
   align-items: center;
@@ -62,114 +201,446 @@
   font-size: 10.5px;
   color: var(--muted);
 }
-.marketing-list-page .marketing-list-legend { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 12px; }
-.marketing-list-page .marketing-list-legend span { display: inline-flex; align-items: center; gap: 6px; }
-.marketing-list-page .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.marketing-list-page .pending-dot { background: #d97706; }
-.marketing-list-page .purchased-dot { background: #16a34a; }
-.marketing-list-page .pagination { margin: 0 0 14px; max-width: 100%; }
-.marketing-list-page .marketing-item-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.marketing-list-page .marketing-item-card { display: flex; flex-direction: column; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--card, var(--surface)); box-shadow: 0 2px 8px rgb(15 23 42 / 4%); }
-.marketing-list-page .marketing-item-card.status-pending { border-top: 3px solid #d97706; }
-.marketing-list-page .marketing-item-card.status-purchased { border-top: 3px solid #16a34a; }
-.marketing-list-page .marketing-item-card.status-removed { border-top: 3px solid #9ca3af; opacity: .88; }
-.marketing-list-page .marketing-item-card-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-.marketing-list-page .marketing-status-pill { display: inline-flex; align-items: center; gap: 5px; width: fit-content; border-radius: 999px; padding: 5px 9px; font-size: 11px; font-weight: 700; }
-.marketing-list-page .marketing-status-pill.pending { color: #92400e; background: #fef3c7; }
-.marketing-list-page .marketing-status-pill.purchased { color: #166534; background: #dcfce7; }
-.marketing-list-page .marketing-status-pill.removed { color: #4b5563; background: #f3f4f6; }
-.marketing-list-page .marketing-item-date { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 12px; }
-.marketing-list-page .marketing-item-main { display: flex; align-items: center; gap: 12px; margin: 16px 0; min-width: 0; }
-.marketing-list-page .marketing-item-icon { display: flex; flex: 0 0 44px; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 12px; color: var(--primary, #2563eb); background: var(--soft); }
- .marketing-list-page .marketing-item-name { min-width: 0; flex: 1 1 auto; }
-.marketing-list-page .marketing-item-icon-actions { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 5px; margin-left: auto; }
+.marketing-list-page .marketing-list-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.marketing-list-page .marketing-list-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.marketing-list-page .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.marketing-list-page .pending-dot {
+  background: #d97706;
+}
+.marketing-list-page .purchased-dot {
+  background: #16a34a;
+}
+.marketing-list-page .pagination {
+  margin: 0 0 14px;
+  max-width: 100%;
+}
+.marketing-list-page .marketing-item-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.marketing-list-page .marketing-item-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card, var(--surface));
+  box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+}
+.marketing-list-page .marketing-item-card.status-pending {
+  border-top: 3px solid #d97706;
+}
+.marketing-list-page .marketing-item-card.status-purchased {
+  border-top: 3px solid #16a34a;
+}
+.marketing-list-page .marketing-item-card.status-removed {
+  border-top: 3px solid #9ca3af;
+  opacity: 0.88;
+}
+.marketing-list-page .marketing-item-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.marketing-list-page .marketing-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.marketing-list-page .marketing-status-pill.pending {
+  color: #92400e;
+  background: #fef3c7;
+}
+.marketing-list-page .marketing-status-pill.purchased {
+  color: #166534;
+  background: #dcfce7;
+}
+.marketing-list-page .marketing-status-pill.removed {
+  color: #4b5563;
+  background: #f3f4f6;
+}
+.marketing-list-page .marketing-item-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.marketing-list-page .marketing-item-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  min-width: 0;
+}
+.marketing-list-page .marketing-item-icon {
+  display: flex;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: var(--primary, #2563eb);
+  background: var(--soft);
+}
+.marketing-list-page .marketing-item-name {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.marketing-list-page .marketing-item-icon-actions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
 .marketing-list-page .marketing-item-edit-icon,
-.marketing-list-page .marketing-item-remove-icon { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: transparent; cursor: pointer; }
-.marketing-list-page .marketing-item-edit-icon:hover { color: var(--primary, #2563eb); background: var(--soft); }
-.marketing-list-page .marketing-item-remove-icon { color: #dc2626; }
-.marketing-list-page .marketing-item-remove-icon:hover { color: #b91c1c; background: #fef2f2; }
+.marketing-list-page .marketing-item-remove-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+.marketing-list-page .marketing-item-edit-icon:hover {
+  color: var(--primary, #2563eb);
+  background: var(--soft);
+}
+.marketing-list-page .marketing-item-remove-icon {
+  color: #dc2626;
+}
+.marketing-list-page .marketing-item-remove-icon:hover {
+  color: #b91c1c;
+  background: #fef2f2;
+}
 .marketing-list-page .marketing-item-edit-icon:focus-visible,
-.marketing-list-page .marketing-item-remove-icon:focus-visible { outline: 2px solid var(--primary, #2563eb); outline-offset: 2px; }
-.marketing-list-page .marketing-item-name h3 { margin: 0; overflow-wrap: anywhere; font-size: 16px; font-weight: 700; color: var(--text); }
-.marketing-list-page .marketing-item-name p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
-.marketing-list-page .marketing-item-details { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.marketing-list-page .marketing-item-details > div { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-.marketing-list-page .marketing-item-details span { color: var(--muted); font-size: 11px; }
-.marketing-list-page .marketing-item-details strong { color: var(--text); font-size: 13px; overflow-wrap: anywhere; }
-.marketing-list-page .marketing-item-approx-cost strong { color: var(--primary, #2563eb); }
-.marketing-list-page .marketing-location-value { display: inline-flex; align-items: center; gap: 4px; }
-.marketing-list-page .marketing-purchase-price { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 12px; }
-.marketing-list-page .marketing-purchase-price strong { margin-left: auto; color: var(--text); font-size: 15px; }
-.marketing-list-page .marketing-removed-note { margin-top: 12px; color: var(--muted); font-size: 12px; }
-.marketing-list-page .marketing-item-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 14px; }
-.marketing-list-page .marketing-item-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-.marketing-list-page .marketing-item-actions .primary { flex: 1 1 180px; }
-.marketing-list-page .marketing-readonly-label { display: inline-flex; align-items: center; gap: 6px; padding: 5px 0; color: var(--muted); font-size: 12px; }
-.marketing-list-page .marketing-list-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 150px; padding: 24px 16px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; background: var(--card, var(--surface)); }
-.marketing-list-page .marketing-list-empty strong { color: var(--text); }
-.marketing-list-page .marketing-loading-mark { width: 20px; height: 20px; border: 2px solid var(--line); border-top-color: var(--primary, #2563eb); border-radius: 50%; }
-@media (max-width: 760px) { .marketing-list-page .marketing-item-grid { grid-template-columns: minmax(0, 1fr); } }
+.marketing-list-page .marketing-item-remove-icon:focus-visible {
+  outline: 2px solid var(--primary, #2563eb);
+  outline-offset: 2px;
+}
+.marketing-list-page .marketing-item-name h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+.marketing-list-page .marketing-item-name p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.marketing-list-page .marketing-item-details {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.marketing-list-page .marketing-item-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.marketing-list-page .marketing-item-details span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.marketing-list-page .marketing-item-details strong {
+  color: var(--text);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.marketing-list-page .marketing-item-approx-cost strong {
+  color: var(--primary, #2563eb);
+}
+.marketing-list-page .marketing-location-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.marketing-list-page .marketing-purchase-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.marketing-list-page .marketing-purchase-price strong {
+  margin-left: auto;
+  color: var(--text);
+  font-size: 15px;
+}
+.marketing-list-page .marketing-removed-note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.marketing-list-page .marketing-item-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+.marketing-list-page .marketing-item-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.marketing-list-page .marketing-item-actions .primary {
+  flex: 1 1 180px;
+}
+.marketing-list-page .marketing-readonly-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.marketing-list-page .marketing-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 150px;
+  padding: 24px 16px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  color: var(--muted);
+  text-align: center;
+  background: var(--card, var(--surface));
+}
+.marketing-list-page .marketing-list-empty strong {
+  color: var(--text);
+}
+.marketing-list-page .marketing-loading-mark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--line);
+  border-top-color: var(--primary, #2563eb);
+  border-radius: 50%;
+}
+@media (max-width: 760px) {
+  .marketing-list-page .marketing-item-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 @media (max-width: 640px) {
-  .marketing-page .marketing-form-grid { grid-template-columns: minmax(0, 1fr); }
-  .marketing-locations-page .location-card { align-items: flex-start; flex-wrap: wrap; padding: 12px; }
-  .marketing-locations-page .location-card-content { flex-basis: calc(100% - 52px); }
-  .marketing-locations-page .location-card-actions { width: 100%; padding-left: 50px; justify-content: flex-start; }
-  .marketing-list-page .marketing-list-form { padding: 15px; }
-  .marketing-list-page .marketing-item-card { padding: 14px; }
-  .marketing-list-page .marketing-item-details { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  .marketing-page .marketing-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .marketing-locations-page .location-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+  .marketing-locations-page .location-card-content {
+    flex-basis: calc(100% - 52px);
+  }
+  .marketing-locations-page .location-card-actions {
+    width: 100%;
+    padding-left: 50px;
+    justify-content: flex-start;
+  }
+  .marketing-list-page .marketing-list-form {
+    padding: 15px;
+  }
+  .marketing-list-page .marketing-item-card {
+    padding: 14px;
+  }
+  .marketing-list-page .marketing-item-details {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  }
 }
 
 /* Keep the selected marketing-list date first and visually prominent. */
-.marketing-list-page .marketing-date-field { grid-column: 1 / -1; }
-.marketing-list-page .marketing-date-field input { max-width: 360px; }
-
-
-/* Compact marketing item cards vertically while retaining every data field and action. */
-.marketing-list-page .marketing-item-grid { gap: 8px; }
-.marketing-list-page .marketing-item-card { padding: 9px 11px; border-radius: 10px; box-shadow: none; }
-.marketing-list-page .marketing-item-card.status-pending,
-.marketing-list-page .marketing-item-card.status-purchased,
-.marketing-list-page .marketing-item-card.status-removed { border-top-width: 2px; }
-.marketing-list-page .marketing-item-card-top { gap: 5px 8px; }
-.marketing-list-page .marketing-status-pill { padding: 3px 7px; font-size: 10px; }
-.marketing-list-page .marketing-item-date { font-size: 11px; gap: 4px; }
-.marketing-list-page .marketing-item-main { gap: 8px; margin: 7px 0; }
-.marketing-list-page .marketing-item-icon { flex-basis: 32px; width: 32px; height: 32px; border-radius: 8px; }
-.marketing-list-page .marketing-item-icon svg { width: 17px; height: 17px; }
-.marketing-list-page .marketing-item-name h3 { font-size: 14px; line-height: 1.25; }
-.marketing-list-page .marketing-item-name p { margin-top: 2px; font-size: 11px; line-height: 1.25; }
-.marketing-list-page .marketing-item-details { gap: 7px; padding: 6px 0; }
-.marketing-list-page .marketing-item-details > div { gap: 2px; }
-.marketing-list-page .marketing-item-details span { font-size: 10px; }
-.marketing-list-page .marketing-item-details strong { font-size: 12px; line-height: 1.3; }
-.marketing-list-page .marketing-location-value { gap: 3px; }
-.marketing-list-page .marketing-purchase-price { gap: 6px; margin-top: 6px; font-size: 11px; }
-.marketing-list-page .marketing-purchase-price strong { font-size: 13px; }
-.marketing-list-page .marketing-removed-note { margin-top: 6px; font-size: 11px; }
-.marketing-list-page .marketing-item-actions { gap: 6px; padding-top: 7px; }
-.marketing-list-page .marketing-item-actions button { padding: 5px 8px; font-size: 12px; }
-.marketing-list-page .marketing-readonly-label { padding: 2px 0; font-size: 11px; }
-.marketing-list-page .marketing-item-checkbox { gap: 4px; font-size: 11px; }
-.marketing-list-page .marketing-item-checkbox input { margin: 0; }
-@media (max-width: 640px) {
-  .marketing-list-page .marketing-item-card { padding: 8px 10px; }
-  .marketing-list-page .marketing-item-main { margin: 6px 0; }
-  .marketing-list-page .marketing-item-details { padding: 5px 0; }
-  .marketing-list-page .marketing-item-actions { padding-top: 6px; }
+.marketing-list-page .marketing-date-field {
+  grid-column: 1 / -1;
+}
+.marketing-list-page .marketing-date-field input {
+  max-width: 360px;
 }
 
+/* Compact marketing item cards vertically while retaining every data field and action. */
+.marketing-list-page .marketing-item-grid {
+  gap: 8px;
+}
+.marketing-list-page .marketing-item-card {
+  padding: 9px 11px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+.marketing-list-page .marketing-item-card.status-pending,
+.marketing-list-page .marketing-item-card.status-purchased,
+.marketing-list-page .marketing-item-card.status-removed {
+  border-top-width: 2px;
+}
+.marketing-list-page .marketing-item-card-top {
+  gap: 5px 8px;
+}
+.marketing-list-page .marketing-status-pill {
+  padding: 3px 7px;
+  font-size: 10px;
+}
+.marketing-list-page .marketing-item-date {
+  font-size: 11px;
+  gap: 4px;
+}
+.marketing-list-page .marketing-item-main {
+  gap: 8px;
+  margin: 7px 0;
+}
+.marketing-list-page .marketing-item-icon {
+  flex-basis: 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+.marketing-list-page .marketing-item-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.marketing-list-page .marketing-item-name h3 {
+  font-size: 14px;
+  line-height: 1.25;
+}
+.marketing-list-page .marketing-item-name p {
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.25;
+}
+.marketing-list-page .marketing-item-details {
+  gap: 7px;
+  padding: 6px 0;
+}
+.marketing-list-page .marketing-item-details > div {
+  gap: 2px;
+}
+.marketing-list-page .marketing-item-details span {
+  font-size: 10px;
+}
+.marketing-list-page .marketing-item-details strong {
+  font-size: 12px;
+  line-height: 1.3;
+}
+.marketing-list-page .marketing-location-value {
+  gap: 3px;
+}
+.marketing-list-page .marketing-purchase-price {
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+.marketing-list-page .marketing-purchase-price strong {
+  font-size: 13px;
+}
+.marketing-list-page .marketing-removed-note {
+  margin-top: 6px;
+  font-size: 11px;
+}
+.marketing-list-page .marketing-item-actions {
+  gap: 6px;
+  padding-top: 7px;
+}
+.marketing-list-page .marketing-item-actions button {
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.marketing-list-page .marketing-readonly-label {
+  padding: 2px 0;
+  font-size: 11px;
+}
+.marketing-list-page .marketing-item-checkbox {
+  gap: 4px;
+  font-size: 11px;
+}
+.marketing-list-page .marketing-item-checkbox input {
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .marketing-list-page .marketing-item-card {
+    padding: 8px 10px;
+  }
+  .marketing-list-page .marketing-item-main {
+    margin: 6px 0;
+  }
+  .marketing-list-page .marketing-item-details {
+    padding: 5px 0;
+  }
+  .marketing-list-page .marketing-item-actions {
+    padding-top: 6px;
+  }
+}
 
 /* Minimal-height cards: omit repeated date/location and align status with quantity. */
-.marketing-list-page .marketing-item-card-top { min-height: 0; }
-.marketing-list-page .marketing-item-card-top:empty { display: none; }
-.marketing-list-page .marketing-item-quantity-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.marketing-list-page .marketing-item-quantity-status > div { min-width: 0; }
-.marketing-list-page .marketing-item-quantity-status .marketing-status-pill { flex: 0 0 auto; margin-left: auto; }
-
+.marketing-list-page .marketing-item-card-top {
+  min-height: 0;
+}
+.marketing-list-page .marketing-item-card-top:empty {
+  display: none;
+}
+.marketing-list-page .marketing-item-quantity-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.marketing-list-page .marketing-item-quantity-status > div {
+  min-width: 0;
+}
+.marketing-list-page .marketing-item-quantity-status .marketing-status-pill {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
 
 /* Require and visually emphasize selected marketing items using the active theme colors. */
 .marketing-list-page .marketing-item-card.is-selected {
-  background: var(--soft, color-mix(in srgb, var(--primary, #2563eb) 10%, var(--card, var(--surface, #fff))));
+  background: var(
+    --soft,
+    color-mix(in srgb, var(--primary, #2563eb) 10%, var(--card, var(--surface, #fff)))
+  );
   border-color: var(--primary, #2563eb);
   box-shadow: inset 0 0 0 1px var(--primary, #2563eb);
 }
@@ -180,27 +651,76 @@
   accent-color: var(--primary, #2563eb);
 }
 
-
 /* Confirmation dialog for permanent marketing-list deletion. */
 .marketing-list-page .marketing-confirm-overlay {
-  position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center;
-  padding: 18px; background: rgb(0 0 0 / 48%);
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgb(0 0 0 / 48%);
 }
 .marketing-list-page .marketing-confirm-dialog {
-  width: min(100%, 420px); padding: 22px; border: 1px solid var(--line); border-radius: 16px;
-  background: var(--card, var(--surface, #fff)); color: var(--text); box-shadow: 0 20px 60px rgb(0 0 0 / 25%);
+  width: min(100%, 420px);
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card, var(--surface, #fff));
+  color: var(--text);
+  box-shadow: 0 20px 60px rgb(0 0 0 / 25%);
 }
 .marketing-list-page .marketing-confirm-icon {
-  display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: 12px;
-  border-radius: 12px; color: var(--danger, #dc2626); background: color-mix(in srgb, var(--danger, #dc2626) 12%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  color: var(--danger, #dc2626);
+  background: color-mix(in srgb, var(--danger, #dc2626) 12%, transparent);
 }
-.marketing-list-page .marketing-confirm-dialog h2 { margin: 0 0 8px; font-size: 19px; color: var(--text); }
-.marketing-list-page .marketing-confirm-dialog p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-.marketing-list-page .marketing-confirm-dialog p strong { color: var(--text); }
-.marketing-list-page .marketing-confirm-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
-.marketing-list-page .marketing-confirm-actions button { min-height: 38px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 9px; background: var(--card, var(--surface, #fff)); color: var(--text); cursor: pointer; }
-.marketing-list-page .marketing-confirm-actions .marketing-confirm-delete { border-color: var(--danger, #dc2626); background: var(--danger, #dc2626); color: #fff; }
-.marketing-list-page .marketing-confirm-actions button:disabled { opacity: .6; cursor: not-allowed; }
+.marketing-list-page .marketing-confirm-dialog h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  color: var(--text);
+}
+.marketing-list-page .marketing-confirm-dialog p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.marketing-list-page .marketing-confirm-dialog p strong {
+  color: var(--text);
+}
+.marketing-list-page .marketing-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+.marketing-list-page .marketing-confirm-actions button {
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card, var(--surface, #fff));
+  color: var(--text);
+  cursor: pointer;
+}
+.marketing-list-page .marketing-confirm-actions .marketing-confirm-delete {
+  border-color: var(--danger, #dc2626);
+  background: var(--danger, #dc2626);
+  color: #fff;
+}
+.marketing-list-page .marketing-confirm-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 /* GPS & frequency-mapped location badges and auto-detect controls */
 .marketing-locations-page .location-card.is-recommended-location {
@@ -437,7 +957,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
-
 
 /* Bulk selection toolbar & bulk action buttons */
 .marketing-list-page .marketing-bulk-toolbar {

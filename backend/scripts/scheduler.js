@@ -66,9 +66,11 @@ function lastPastSaturdayDateKey(local) {
   const weekday =
     local.weekday in WEEKDAY_NUM
       ? WEEKDAY_NUM[local.weekday]
-      : new Date(Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day))).getUTCDay();
+      : new Date(
+          Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day)),
+        ).getUTCDay();
   // Number of days since the most recent past Saturday (strictly before today: 1..7 days ago)
-  const daysSinceSaturday = ((weekday - 6 + 7) % 7) || 7;
+  const daysSinceSaturday = (weekday - 6 + 7) % 7 || 7;
   const d = new Date(
     Date.UTC(Number(local.year), Number(local.month) - 1, Number(local.day) - daysSinceSaturday),
   );
@@ -149,7 +151,9 @@ async function isSystemJobDueOrRetryable(jobName, scheduledKey) {
   if (
     row.status === "failed" &&
     row.error_message !== "Execution interrupted or timed out before completion" &&
-    !String(row.error_message || "").toLowerCase().includes("fetch failed")
+    !String(row.error_message || "")
+      .toLowerCase()
+      .includes("fetch failed")
   ) {
     const refMs = new Date(row.completed_at || row.started_at).getTime();
     if (Date.now() - refMs < FAILED_RETRY_COOLDOWN_MINUTES * 60 * 1000) {
@@ -467,7 +471,10 @@ async function retryRecentFailedSystemJobs({ maxJobs = Infinity, deadlineMs = In
   return { executedCount, hasMoreDue };
 }
 
-export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+export async function catchUpMissedEmailReports({
+  maxJobs = Infinity,
+  deadlineMs = Infinity,
+} = {}) {
   if (activeCatchUpPromise) {
     return activeCatchUpPromise;
   }
@@ -489,7 +496,10 @@ export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs
       const recipeLocal = getLocalDateParts(env.dailyPlannedRecipeTimezone);
       const recipeHour = Number(recipeLocal.hour === "24" ? 0 : recipeLocal.hour);
       const recipeTodayKey = `${recipeLocal.year}-${recipeLocal.month}-${recipeLocal.day}`;
-      if (recipeHour >= 6 && (await isSystemJobDueOrRetryable("daily-planned-recipe-email", recipeTodayKey))) {
+      if (
+        recipeHour >= 6 &&
+        (await isSystemJobDueOrRetryable("daily-planned-recipe-email", recipeTodayKey))
+      ) {
         if (executedCount >= maxJobs || Date.now() >= deadlineMs) {
           hasMoreDue = true;
           return { executedCount, hasMoreDue };
@@ -512,8 +522,7 @@ export async function catchUpMissedEmailReports({ maxJobs = Infinity, deadlineMs
       const dailyTodayKey = `${dailyLocal.year}-${dailyLocal.month}-${dailyLocal.day}`;
       const dailyYesterdayKey = yesterdayDateKeyFromLocal(dailyLocal);
 
-      const dueDailyKey =
-        dailyHour === 23 && dailyMinute >= 59 ? dailyTodayKey : dailyYesterdayKey;
+      const dueDailyKey = dailyHour === 23 && dailyMinute >= 59 ? dailyTodayKey : dailyYesterdayKey;
 
       if (await isSystemJobDueOrRetryable("daily-email-report", dueDailyKey)) {
         if (executedCount >= maxJobs || Date.now() >= deadlineMs) {

@@ -22,20 +22,98 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { group: "Add Data", path: "/marketing-list", label: "Marketing list", icon: ClipboardList, permission: "add-expense" },
-  { group: "Add Data", path: "/add-expense", label: "Add Expense", icon: ClipboardList, permission: "add-expense" },
-  { group: "Diet Chart", path: "/food-chart", label: "Food Chart", icon: Utensils, permission: "add-expense" },
-  { group: "Diet Chart", path: "/recipe-master", label: "Recipe Master", icon: BookOpen, permission: "add-expense" },
-  { group: "Manipulation", path: "/report", label: "Reports", icon: FileBarChart, permission: "report" },
-  { group: "Manipulation", path: "/dashboard", label: "Dashboard", icon: Gauge, permission: "dashboard" },
-  { group: "Job", path: "/job-status", label: "Job status", icon: RefreshCw, permission: "job-status" },
+  {
+    group: "Add Data",
+    path: "/marketing-list",
+    label: "Marketing list",
+    icon: ClipboardList,
+    permission: "add-expense",
+  },
+  {
+    group: "Add Data",
+    path: "/add-expense",
+    label: "Add Expense",
+    icon: ClipboardList,
+    permission: "add-expense",
+  },
+  {
+    group: "Diet Chart",
+    path: "/food-chart",
+    label: "Food Chart",
+    icon: Utensils,
+    permission: "add-expense",
+  },
+  {
+    group: "Diet Chart",
+    path: "/recipe-master",
+    label: "Recipe Master",
+    icon: BookOpen,
+    permission: "add-expense",
+  },
+  {
+    group: "Manipulation",
+    path: "/report",
+    label: "Reports",
+    icon: FileBarChart,
+    permission: "report",
+  },
+  {
+    group: "Manipulation",
+    path: "/dashboard",
+    label: "Dashboard",
+    icon: Gauge,
+    permission: "dashboard",
+  },
+  {
+    group: "Job",
+    path: "/job-status",
+    label: "Job status",
+    icon: RefreshCw,
+    permission: "job-status",
+  },
   { group: "Metadata", path: "/add-item", label: "Add Items", icon: Tags, permission: "add-item" },
-  { group: "Metadata", path: "/add-unit", label: "Add units", icon: Database, permission: "add-unit" },
-  { group: "Metadata", path: "/add-survivor", label: "Add Survivor", icon: Users, permission: "add-survivor" },
-  { group: "Metadata", path: "/marketing-locations", label: "Add location", icon: MapPin, permission: "add-expense" },
-  { group: "Bulk upload", path: "/bulk-upload-categories-items", label: "Bulk upload categories/items", icon: Tags, permission: "bulk-upload-categories-items" },
-  { group: "Bulk upload", path: "/bulk-upload-expenses", label: "Bulk upload expenses", icon: ClipboardList, permission: "bulk-upload-expenses" },
-  { group: "Administration", path: "/add-user", label: "Add users", icon: UserRound, permission: "add-user" },
+  {
+    group: "Metadata",
+    path: "/add-unit",
+    label: "Add units",
+    icon: Database,
+    permission: "add-unit",
+  },
+  {
+    group: "Metadata",
+    path: "/add-survivor",
+    label: "Add Survivor",
+    icon: Users,
+    permission: "add-survivor",
+  },
+  {
+    group: "Metadata",
+    path: "/marketing-locations",
+    label: "Add location",
+    icon: MapPin,
+    permission: "add-expense",
+  },
+  {
+    group: "Bulk upload",
+    path: "/bulk-upload-categories-items",
+    label: "Bulk upload categories/items",
+    icon: Tags,
+    permission: "bulk-upload-categories-items",
+  },
+  {
+    group: "Bulk upload",
+    path: "/bulk-upload-expenses",
+    label: "Bulk upload expenses",
+    icon: ClipboardList,
+    permission: "bulk-upload-expenses",
+  },
+  {
+    group: "Administration",
+    path: "/add-user",
+    label: "Add users",
+    icon: UserRound,
+    permission: "add-user",
+  },
 ];
 
 function normalizePermissions(permissions) {
@@ -166,9 +244,7 @@ export default function Layout({
                 aria-expanded={accountMenuOpen}
                 aria-label="Switch account"
               >
-                <span className="account-avatar">
-                  {fullName.charAt(0).toUpperCase() || "U"}
-                </span>
+                <span className="account-avatar">{fullName.charAt(0).toUpperCase() || "U"}</span>
                 <span className="account-switcher-text">
                   <strong>{fullName}</strong>
                   <small>{user?.email || "Current account"}</small>
@@ -182,7 +258,11 @@ export default function Layout({
 
                   {accounts.map((account) => {
                     const accountName = String(
-                      account.fullName || account.full_name || account.name || account.email || "User",
+                      account.fullName ||
+                        account.full_name ||
+                        account.name ||
+                        account.email ||
+                        "User",
                     ).trim();
 
                     const isActive = account.id === activeAccountId;
@@ -265,12 +345,7 @@ export default function Layout({
               <span>{dark ? "Light" : "Dark"}</span>
             </button>
 
-            <button
-              className="header-button"
-              onClick={logout}
-              title="Logout"
-              aria-label="Logout"
-            >
+            <button className="header-button" onClick={logout} title="Logout" aria-label="Logout">
               <LogOut size={17} />
             </button>
           </div>
@@ -322,7 +397,8 @@ export default function Layout({
               {startsGroup ? <div className="drawer-section-title">{item.group}</div> : null}
               <button
                 className={
-                  path === item.path || (item.path === "/dashboard" && path.startsWith("/dashboard"))
+                  path === item.path ||
+                  (item.path === "/dashboard" && path.startsWith("/dashboard"))
                     ? "active"
                     : ""
                 }

@@ -53,13 +53,9 @@ export async function uploadObject(key, buffer, contentType) {
 export async function signedObjectUrl(key) {
   if (!client || !key) return null;
   try {
-    return await getSignedUrl(
-      client,
-      new GetObjectCommand({ Bucket: env.s3Bucket, Key: key }),
-      {
-        expiresIn: 900,
-      },
-    );
+    return await getSignedUrl(client, new GetObjectCommand({ Bucket: env.s3Bucket, Key: key }), {
+      expiresIn: 900,
+    });
   } catch (error) {
     console.error("Failed to generate signed proof URL", {
       key,

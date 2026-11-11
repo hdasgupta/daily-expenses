@@ -68,9 +68,7 @@ function runJob(job) {
     if (timer) clearTimeout(timer);
     activeWorkers -= 1;
 
-    const cleanupPromise = worker
-      ? worker.terminate().catch(() => {})
-      : Promise.resolve();
+    const cleanupPromise = worker ? worker.terminate().catch(() => {}) : Promise.resolve();
 
     cleanupPromise.finally(processQueue);
 
@@ -104,7 +102,10 @@ function runJob(job) {
       settled = true;
       if (timer) clearTimeout(timer);
       activeWorkers -= 1;
-      void worker.terminate().catch(() => {}).finally(processQueue);
+      void worker
+        .terminate()
+        .catch(() => {})
+        .finally(processQueue);
       job.reject(new Error(message?.error || "PDF generation failed"));
       return;
     }

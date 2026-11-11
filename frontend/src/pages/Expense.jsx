@@ -257,8 +257,7 @@ function buildPureHeroDigitsCanvas(img) {
     const maxCh = Math.max(...tallCols.map((cr) => cr.ch));
     const maxCy1 = Math.max(...tallCols.map((cr) => cr.cy1));
     const first = colRuns[0];
-    const hasSuperscriptRupee =
-      first.ch < maxCh * 0.85 || maxCy1 - first.cy1 > maxCh * 0.12;
+    const hasSuperscriptRupee = first.ch < maxCh * 0.85 || maxCy1 - first.cy1 > maxCh * 0.12;
 
     candidates.push({
       by0,
@@ -309,7 +308,11 @@ function buildPureHeroDigitsCanvas(img) {
   return outCanvas;
 }
 
-function buildNormalizedCanvas(img, crop = { x: 0.05, y: 0.08, w: 0.9, h: 0.75 }, targetWidth = 380) {
+function buildNormalizedCanvas(
+  img,
+  crop = { x: 0.05, y: 0.08, w: 0.9, h: 0.75 },
+  targetWidth = 380,
+) {
   const sx = Math.floor(img.naturalWidth * crop.x);
   const sy = Math.floor(img.naturalHeight * crop.y);
   const sw = Math.max(1, Math.floor(img.naturalWidth * crop.w));
@@ -411,7 +414,9 @@ function extractAmountFromFullText(rawText) {
 
   for (const line of lines) {
     if (bankOrMetaPattern.test(line)) continue;
-    const m = line.match(/(?:₹|rs\.?|inr)\s*([0-9]{1,3}(?:,[0-9]{2,3})+(?:\.[0-9]{1,2})?|[1-9][0-9]*(?:\.[0-9]{1,2})?)/i);
+    const m = line.match(
+      /(?:₹|rs\.?|inr)\s*([0-9]{1,3}(?:,[0-9]{2,3})+(?:\.[0-9]{1,2})?|[1-9][0-9]*(?:\.[0-9]{1,2})?)/i,
+    );
     if (m) {
       const val = parseStrictCurrencyNumber(m[1]);
       if (val !== null) return val;
@@ -459,11 +464,7 @@ async function detectAmountFromScreenshot(file) {
   }
 
   // Step 2: Fallback full-receipt OCR if the screenshot is a non-standard layout
-  const fallbackCanvas = buildNormalizedCanvas(
-    img,
-    { x: 0.05, y: 0.08, w: 0.9, h: 0.72 },
-    380,
-  );
+  const fallbackCanvas = buildNormalizedCanvas(img, { x: 0.05, y: 0.08, w: 0.9, h: 0.72 }, 380);
   const fullResult = await recognizeCanvasFast(fallbackCanvas);
   return extractAmountFromFullText(fullResult?.data?.text || "");
 }
@@ -778,11 +779,29 @@ export default function Expense() {
   useEffect(() => {
     if (!categories.length || !units.length) return;
     let prefill;
-    try { prefill = JSON.parse(localStorage.getItem("marketing-purchase-prefill") || "null"); } catch { prefill = null; }
+    try {
+      prefill = JSON.parse(localStorage.getItem("marketing-purchase-prefill") || "null");
+    } catch {
+      prefill = null;
+    }
     if (!prefill?.marketingItemId && !Array.isArray(prefill?.marketingItemIds)) return;
     setEditingId(null);
     setDate(prefill.expenseDate || today());
-    setForm({ ...emptyForm(prefill.expenseDate || today()), categoryId: String(prefill.categoryId || ""), itemId: prefill.marketingItemIds ? TOTAL_ITEM : String(prefill.itemId || (prefill.itemName ? OTHER_ITEM : TOTAL_ITEM)), otherItem: prefill.marketingItemIds ? "" : (prefill.itemId ? "" : String(prefill.itemName || "")), quantity: prefill.marketingItemIds ? "" : (prefill.quantity ?? ""), unitId: prefill.marketingItemIds ? "" : String(prefill.unitId || ""), comment: String(prefill.comment || "") });
+    setForm({
+      ...emptyForm(prefill.expenseDate || today()),
+      categoryId: String(prefill.categoryId || ""),
+      itemId: prefill.marketingItemIds
+        ? TOTAL_ITEM
+        : String(prefill.itemId || (prefill.itemName ? OTHER_ITEM : TOTAL_ITEM)),
+      otherItem: prefill.marketingItemIds
+        ? ""
+        : prefill.itemId
+          ? ""
+          : String(prefill.itemName || ""),
+      quantity: prefill.marketingItemIds ? "" : (prefill.quantity ?? ""),
+      unitId: prefill.marketingItemIds ? "" : String(prefill.unitId || ""),
+      comment: String(prefill.comment || ""),
+    });
     resetProofInput();
     if (prefill.categoryId) loadItems(String(prefill.categoryId)).catch(() => {});
   }, [categories, units]);
@@ -877,23 +896,41 @@ export default function Expense() {
 
     const expenseId = result.id;
     let marketingPrefill = null;
-    try { marketingPrefill = JSON.parse(localStorage.getItem("marketing-purchase-prefill") || "null"); } catch { marketingPrefill = null; }
-    if ((marketingPrefill?.marketingItemId || Array.isArray(marketingPrefill?.marketingItemIds)) && expenseId) {
+    try {
+      marketingPrefill = JSON.parse(localStorage.getItem("marketing-purchase-prefill") || "null");
+    } catch {
+      marketingPrefill = null;
+    }
+    if (
+      (marketingPrefill?.marketingItemId || Array.isArray(marketingPrefill?.marketingItemIds)) &&
+      expenseId
+    ) {
       try {
         if (Array.isArray(marketingPrefill.marketingItemIds)) {
           await api("/marketing-list/purchased-bulk", {
             method: "POST",
-            body: JSON.stringify({ itemIds: marketingPrefill.marketingItemIds, expenseId, price: payload.totalCost }),
+            body: JSON.stringify({
+              itemIds: marketingPrefill.marketingItemIds,
+              expenseId,
+              price: payload.totalCost,
+            }),
           });
         } else {
           await api(`/marketing-list/${marketingPrefill.marketingItemId}/purchased`, {
             method: "POST",
-            body: JSON.stringify({ expenseId, price: payload.totalCost, quantity: payload.quantity, unitId: payload.unitId }),
+            body: JSON.stringify({
+              expenseId,
+              price: payload.totalCost,
+              quantity: payload.quantity,
+              unitId: payload.unitId,
+            }),
           });
         }
         localStorage.removeItem("marketing-purchase-prefill");
       } catch (error) {
-        setFormError(`Expense saved, but the Marketing List status could not be updated: ${error.message || "Please retry from Marketing List"}`);
+        setFormError(
+          `Expense saved, but the Marketing List status could not be updated: ${error.message || "Please retry from Marketing List"}`,
+        );
       }
     }
 
@@ -1097,7 +1134,8 @@ export default function Expense() {
         </label>
 
         <label>
-          Attach proof (optional — choosing a Google Pay / UPI screenshot auto-fills Total cost & Online mode)
+          Attach proof (optional — choosing a Google Pay / UPI screenshot auto-fills Total cost &
+          Online mode)
           <input
             key={proofInputKey}
             ref={proofInputRef}
@@ -1247,7 +1285,9 @@ export default function Expense() {
                   min={share.shareType === "fixed" ? "0.01" : "0"}
                   step="0.01"
                   required={share.shareType === "fixed"}
-                  placeholder={share.shareType === "fixed" ? "Enter amount (> 0)" : "Auto-calculated"}
+                  placeholder={
+                    share.shareType === "fixed" ? "Enter amount (> 0)" : "Auto-calculated"
+                  }
                   value={
                     share.shareType === "fixed"
                       ? share.amount

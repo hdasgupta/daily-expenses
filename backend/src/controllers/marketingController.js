@@ -76,7 +76,10 @@ function normalizeApproximateCost(rawValue) {
 }
 
 function normalizeUnitFamily(unitName) {
-  const raw = String(unitName || "").trim().toLowerCase().replace(/\./g, "");
+  const raw = String(unitName || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\./g, "");
   if (!raw) return null;
   if (["kg", "kgs", "kilogram", "kilograms", "kilo", "kilos"].includes(raw)) {
     return { family: "mass", factor: 1000 };
@@ -96,7 +99,11 @@ function normalizeUnitFamily(unitName) {
   if (["doz", "dozen", "dozens"].includes(raw)) {
     return { family: "count", factor: 12 };
   }
-  if (["pc", "pcs", "piece", "pieces", "no", "nos", "number", "numbers", "unit", "units"].includes(raw)) {
+  if (
+    ["pc", "pcs", "piece", "pieces", "no", "nos", "number", "numbers", "unit", "units"].includes(
+      raw,
+    )
+  ) {
     return { family: "count", factor: 1 };
   }
   return { family: `exact:${raw}`, factor: 1 };
@@ -123,9 +130,10 @@ async function estimateCostFromLastItem({ itemId, itemName, quantity, unitId }) 
   }
 
   try {
-    const targetUnitRes = await q("SELECT id, name FROM public.units WHERE id = NULLIF($1, '')::bigint", [
-      cleanUnitId,
-    ]);
+    const targetUnitRes = await q(
+      "SELECT id, name FROM public.units WHERE id = NULLIF($1, '')::bigint",
+      [cleanUnitId],
+    );
     const targetUnitName = targetUnitRes.rows[0]?.name || "";
 
     const historyRes = await q(
@@ -163,16 +171,16 @@ async function estimateCostFromLastItem({ itemId, itemName, quantity, unitId }) 
         Number(row.approximate_cost) > 0
           ? Number(row.approximate_cost)
           : Number(row.single_expense_price) > 0
-          ? Number(row.single_expense_price)
-          : 0;
+            ? Number(row.single_expense_price)
+            : 0;
       if (!(refCost > 0)) continue;
 
       const refQty =
         Number(row.approximate_cost) > 0 && Number(row.quantity) > 0
           ? Number(row.quantity)
           : Number(row.purchased_quantity) > 0
-          ? Number(row.purchased_quantity)
-          : Number(row.quantity);
+            ? Number(row.purchased_quantity)
+            : Number(row.quantity);
       const refUnitId =
         Number(row.approximate_cost) > 0 && row.unit_id
           ? row.unit_id
@@ -525,7 +533,8 @@ export async function markPurchasedBulk(req, res) {
   );
   if (result.rowCount !== ids.length) {
     return res.status(409).json({
-      error: "One or more selected items are no longer pending. Refresh the Marketing List and try again.",
+      error:
+        "One or more selected items are no longer pending. Refresh the Marketing List and try again.",
     });
   }
   res.json({

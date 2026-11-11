@@ -1,5 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Bar, BarChart, CartesianGrid, LabelList, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import {
   ArrowDown,
   ArrowUp,
@@ -105,7 +115,9 @@ function normalizeLoaded(config = {}) {
       ...(config.filters || {}),
       // Saved selections may have been created by older app versions.
       // Always normalize multi-select values before the UI reads .length/includes.
-      categoryItems: Array.isArray(config.filters?.categoryItems) ? config.filters.categoryItems : [],
+      categoryItems: Array.isArray(config.filters?.categoryItems)
+        ? config.filters.categoryItems
+        : [],
       categories: Array.isArray(config.filters?.categories) ? config.filters.categories : [],
       survivors: Array.isArray(config.filters?.survivors) ? config.filters.survivors : [],
     },
@@ -167,7 +179,11 @@ function buildUiShareRows(rows) {
     const target = map.get(key);
     let nestedShares = row.survivor_shares;
     if (typeof nestedShares === "string") {
-      try { nestedShares = JSON.parse(nestedShares); } catch { nestedShares = []; }
+      try {
+        nestedShares = JSON.parse(nestedShares);
+      } catch {
+        nestedShares = [];
+      }
     }
     if (Array.isArray(nestedShares) && nestedShares.length) {
       for (const item of nestedShares) {
@@ -258,7 +274,11 @@ function reportChartValue(value, column) {
   if (["date", "week", "month"].includes(column)) {
     const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
     if (!Number.isNaN(date.getTime())) {
-      return new Intl.DateTimeFormat("en-IN", { day: "2-digit", month: "short", year: "numeric" }).format(date);
+      return new Intl.DateTimeFormat("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }).format(date);
     }
   }
   return String(value);
@@ -270,7 +290,12 @@ function buildReportChartModel(result) {
   if (groupBy.length <= 1) {
     return {
       stackedCategory: false,
-      data: rows.map((row, index) => ({ ...row, chartLabel: groupBy[0] ? reportChartValue(row[groupBy[0]], groupBy[0]) : "Total", chartValue: Number(row.total || 0), index })),
+      data: rows.map((row, index) => ({
+        ...row,
+        chartLabel: groupBy[0] ? reportChartValue(row[groupBy[0]], groupBy[0]) : "Total",
+        chartValue: Number(row.total || 0),
+        index,
+      })),
       series: [{ dataKey: "chartValue", label: "Total", fill: "var(--accent)" }],
       description: "Each bar represents one summary-table row.",
     };
@@ -279,27 +304,45 @@ function buildReportChartModel(result) {
   const period = groupBy.find((column) => ["date", "week", "month", "year"].includes(column));
   const category = groupBy.includes("category") ? "category" : null;
   const survivor = groupBy.includes("survivor") ? "survivor" : null;
-  const xColumn = period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
+  const xColumn =
+    period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
 
   if (category && survivor) {
-    const categoryValues = [...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries()];
-    const survivorValues = [...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries()];
+    const categoryValues = [
+      ...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries(),
+    ];
+    const survivorValues = [
+      ...new Map(rows.map((row) => [String(row[survivor] ?? "—"), row[survivor]])).entries(),
+    ];
     const dataMap = new Map();
     const series = [];
     const palette = Array.from({ length: 8 }, (_, i) => `var(--dashboard-series-${i + 1})`);
     const survivorCount = Math.max(survivorValues.length, 1);
-    const shadeFor = (categoryIndex, survivorIndex) => `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
+    const shadeFor = (categoryIndex, survivorIndex) =>
+      `color-mix(in srgb, ${palette[categoryIndex % palette.length]} ${Math.round(35 + ((survivorIndex + 1) / survivorCount) * 65)}%, white)`;
 
     categoryValues.forEach(([categoryKey, categoryValue], categoryIndex) => {
       survivorValues.forEach(([survivorKey, survivorValue]) => {
         const dataKey = `cat_${categoryIndex}_surv_${survivorKey.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
-        series.push({ dataKey, label: reportChartValue(categoryValue, category), category: String(categoryValue ?? "—"), survivor: reportChartValue(survivorValue, survivor), stackId: `category_${categoryIndex}`, fill: shadeFor(categoryIndex, survivorValues.findIndex(([key]) => key === survivorKey)), legendType: "none" });
+        series.push({
+          dataKey,
+          label: reportChartValue(categoryValue, category),
+          category: String(categoryValue ?? "—"),
+          survivor: reportChartValue(survivorValue, survivor),
+          stackId: `category_${categoryIndex}`,
+          fill: shadeFor(
+            categoryIndex,
+            survivorValues.findIndex(([key]) => key === survivorKey),
+          ),
+          legendType: "none",
+        });
       });
     });
 
     rows.forEach((row) => {
       const xKey = String(row[xColumn] ?? "—");
-      if (!dataMap.has(xKey)) dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
+      if (!dataMap.has(xKey))
+        dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
       const target = dataMap.get(xKey);
       const ci = categoryValues.findIndex(([key]) => key === String(row[category] ?? "—"));
       const dataKey = `cat_${ci}_surv_${String(row[survivor] ?? "—").replace(/[^a-zA-Z0-9_-]/g, "_")}`;
@@ -330,16 +373,26 @@ function buildReportChartModel(result) {
     const seriesKey = String(row[seriesColumn] ?? "—");
     if (!seriesMap.has(seriesKey)) {
       const index = seriesMap.size;
-      seriesMap.set(seriesKey, { dataKey: `series_${index}`, label: reportChartValue(row[seriesColumn], seriesColumn), fill: `var(--dashboard-series-${(index % 8) + 1})` });
+      seriesMap.set(seriesKey, {
+        dataKey: `series_${index}`,
+        label: reportChartValue(row[seriesColumn], seriesColumn),
+        fill: `var(--dashboard-series-${(index % 8) + 1})`,
+      });
     }
     const xKey = String(row[xColumn] ?? "—");
-    if (!dataMap.has(xKey)) dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
+    if (!dataMap.has(xKey))
+      dataMap.set(xKey, { chartLabel: reportChartValue(row[xColumn], xColumn), _groupRows: {} });
     const target = dataMap.get(xKey);
     const series = seriesMap.get(seriesKey);
     target[series.dataKey] = Number(target[series.dataKey] || 0) + Number(row.total || 0);
     target._groupRows[series.dataKey] = row;
   });
-  return { stackedCategory: false, data: [...dataMap.values()], series: [...seriesMap.values()], description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.` };
+  return {
+    stackedCategory: false,
+    data: [...dataMap.values()],
+    series: [...seriesMap.values()],
+    description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.`,
+  };
 }
 
 export default function Reports({ user }) {
@@ -685,7 +738,9 @@ export default function Reports({ user }) {
         loadingMessage: "Refreshing saved selections…",
       }),
     );
-    setSelectionPage((page) => Math.min(page, Math.max(1, Math.ceil(selections.length / selectionsPageSize))));
+    setSelectionPage((page) =>
+      Math.min(page, Math.max(1, Math.ceil(selections.length / selectionsPageSize))),
+    );
   };
 
   const openShareSelection = async (selection) => {
@@ -758,11 +813,11 @@ export default function Reports({ user }) {
           );
           const rows = [
             ...(Array.isArray(firstPage?.rows) ? firstPage.rows : []),
-            ...rest.flatMap((page) => Array.isArray(page?.rows) ? page.rows : []),
+            ...rest.flatMap((page) => (Array.isArray(page?.rows) ? page.rows : [])),
           ];
-          setScheduleManagers(rows.filter((manager) =>
-            manager.role === "manager" && !manager.is_disabled,
-          ));
+          setScheduleManagers(
+            rows.filter((manager) => manager.role === "manager" && !manager.is_disabled),
+          );
         })
         .catch(() => setScheduleManagers([]))
         .finally(() => setScheduleManagersLoading(false));
@@ -788,9 +843,14 @@ export default function Reports({ user }) {
       // Fall back to a valid local date/time; the user can adjust it in the dialog.
       const fallback = new Date(Date.now() + 10 * 60 * 1000);
       const pad = (value) => String(value).padStart(2, "0");
-      setScheduleDate(`${fallback.getFullYear()}-${pad(fallback.getMonth() + 1)}-${pad(fallback.getDate())}`);
+      setScheduleDate(
+        `${fallback.getFullYear()}-${pad(fallback.getMonth() + 1)}-${pad(fallback.getDate())}`,
+      );
       setScheduleTime(`${pad(fallback.getHours())}:${pad(fallback.getMinutes())}`);
-      console.warn("Could not prefill schedule time in Asia/Kolkata; using device local time.", error);
+      console.warn(
+        "Could not prefill schedule time in Asia/Kolkata; using device local time.",
+        error,
+      );
     }
   };
 
@@ -813,9 +873,10 @@ export default function Reports({ user }) {
         loadingMessage: "Scheduling report PDF email…",
         toast: {
           type: "success",
-          message: user?.role === "admin" && selectedScheduleManagerIds.length
-            ? `Report PDF email scheduled for ${selectedScheduleManagerIds.length} manager(s).`
-            : "Report PDF email scheduled.",
+          message:
+            user?.role === "admin" && selectedScheduleManagerIds.length
+              ? `Report PDF email scheduled for ${selectedScheduleManagerIds.length} manager(s).`
+              : "Report PDF email scheduled.",
         },
       });
       setScheduleEmailModal(false);
@@ -1059,48 +1120,84 @@ export default function Reports({ user }) {
           Email me report PDF
         </button>
 
-        <button
-          className="secondary"
-          type="button"
-          onClick={openScheduleEmail}
-        >
+        <button className="secondary" type="button" onClick={openScheduleEmail}>
           <CalendarClock size={17} />
           Schedule email
         </button>
       </div>
 
-      {showChart && result?.rows?.length ? (() => {
-        const chartModel = buildReportChartModel(result);
-        return (
-          <div className="card report-chart">
-            {chartModel.stackedCategory ? (
-              <div className="report-chart-legend">
-                {chartModel.categories.map((item) => (
-                  <div className="report-chart-legend-group" key={item.label}>
-                    <strong><i style={{ background: item.fill }} />{item.label}</strong>
-                    {item.shades.map((shade) => (
-                      <span key={`${item.label}-${shade.label}`}><i style={{ background: shade.fill }} />{shade.label}</span>
+      {showChart && result?.rows?.length
+        ? (() => {
+            const chartModel = buildReportChartModel(result);
+            return (
+              <div className="card report-chart">
+                {chartModel.stackedCategory ? (
+                  <div className="report-chart-legend">
+                    {chartModel.categories.map((item) => (
+                      <div className="report-chart-legend-group" key={item.label}>
+                        <strong>
+                          <i style={{ background: item.fill }} />
+                          {item.label}
+                        </strong>
+                        {item.shades.map((shade) => (
+                          <span key={`${item.label}-${shade.label}`}>
+                            <i style={{ background: shade.fill }} />
+                            {shade.label}
+                          </span>
+                        ))}
+                      </div>
                     ))}
                   </div>
-                ))}
+                ) : null}
+                <ResponsiveContainer width="100%" height={380}>
+                  <BarChart data={chartModel.data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="chartLabel"
+                      tick={{ fontSize: 11 }}
+                      interval={0}
+                      angle={chartModel.stackedCategory ? -25 : -25}
+                      textAnchor="end"
+                      height={90}
+                    />
+                    <YAxis />
+                    <Tooltip
+                      formatter={(value, name, item) => [
+                        `₹${Number(value).toFixed(2)}`,
+                        item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name,
+                      ]}
+                    />
+                    {!chartModel.stackedCategory && chartModel.series.length > 1 ? (
+                      <Legend />
+                    ) : null}
+                    {chartModel.series.map((series) => (
+                      <Bar
+                        key={series.dataKey}
+                        dataKey={series.dataKey}
+                        name={series.label}
+                        fill={series.fill}
+                        stackId={series.stackId}
+                        stroke="var(--surface)"
+                        strokeWidth={2.5}
+                      >
+                        <LabelList
+                          dataKey={series.dataKey}
+                          position="inside"
+                          fill="#ffffff"
+                          fontSize={9}
+                          formatter={(value) =>
+                            Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""
+                          }
+                        />
+                      </Bar>
+                    ))}
+                  </BarChart>
+                </ResponsiveContainer>
+                <div className="report-chart-description">{chartModel.description}</div>
               </div>
-            ) : null}
-            <ResponsiveContainer width="100%" height={380}>
-              <BarChart data={chartModel.data}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="chartLabel" tick={{ fontSize: 11 }} interval={0} angle={chartModel.stackedCategory ? -25 : -25} textAnchor="end" height={90} />
-                <YAxis />
-                <Tooltip formatter={(value, name, item) => [`₹${Number(value).toFixed(2)}`, item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name]} />
-                {!chartModel.stackedCategory && chartModel.series.length > 1 ? <Legend /> : null}
-                {chartModel.series.map((series) => (
-                  <Bar key={series.dataKey} dataKey={series.dataKey} name={series.label} fill={series.fill} stackId={series.stackId} stroke="var(--surface)" strokeWidth={2.5}><LabelList dataKey={series.dataKey} position="inside" fill="#ffffff" fontSize={9} formatter={(value) => Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""} /></Bar>
-                ))}
-              </BarChart>
-            </ResponsiveContainer>
-            <div className="report-chart-description">{chartModel.description}</div>
-          </div>
-        );
-      })() : null}
+            );
+          })()
+        : null}
 
       <ReportContent result={result} renderCell={renderCell} />
 
@@ -1244,74 +1341,98 @@ export default function Reports({ user }) {
 
       <Modal open={loadModal} title="Load report selection" onClose={() => setLoadModal(false)}>
         <div className="selection-list">
-          {selections.filter((selection) => String(selection.name || "").toLocaleLowerCase().includes(selectionSearch.trim().toLocaleLowerCase())).slice((selectionPage - 1) * selectionsPageSize, selectionPage * selectionsPageSize).map((selection) => (
-            <div className="selection-row" key={selection.id}>
-              <button
-                type="button"
-                onClick={() => {
-                  setConfig(normalizeLoaded(selection.config));
+          {selections
+            .filter((selection) =>
+              String(selection.name || "")
+                .toLocaleLowerCase()
+                .includes(selectionSearch.trim().toLocaleLowerCase()),
+            )
+            .slice((selectionPage - 1) * selectionsPageSize, selectionPage * selectionsPageSize)
+            .map((selection) => (
+              <div className="selection-row" key={selection.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setConfig(normalizeLoaded(selection.config));
 
-                  setShowChart(false);
-                  setLoadModal(false);
-                }}
-              >
-                <span>{selection.name}</span>
-                {!selection.is_owner ? (
-                  <span className="selection-shared-mark" title={`Shared by ${selection.owner_name || "another manager"}`}>
-                    <CheckCircle2 size={15} />
-                  </span>
-                ) : null}
-              </button>
+                    setShowChart(false);
+                    setLoadModal(false);
+                  }}
+                >
+                  <span>{selection.name}</span>
+                  {!selection.is_owner ? (
+                    <span
+                      className="selection-shared-mark"
+                      title={`Shared by ${selection.owner_name || "another manager"}`}
+                    >
+                      <CheckCircle2 size={15} />
+                    </span>
+                  ) : null}
+                </button>
 
-              <div className="selection-actions">
-                {selection.is_owner ? (
-                  <button
-                    type="button"
-                    className="icon-button"
-                    title="Share selection with managers"
-                    onClick={() => openShareSelection(selection)}
-                  >
-                    <Share2 size={16} />
-                  </button>
-                ) : null}
+                <div className="selection-actions">
+                  {selection.is_owner ? (
+                    <button
+                      type="button"
+                      className="icon-button"
+                      title="Share selection with managers"
+                      onClick={() => openShareSelection(selection)}
+                    >
+                      <Share2 size={16} />
+                    </button>
+                  ) : null}
 
-                {selection.is_owner ? (
-                  <button
-                    type="button"
-                    className="icon-button danger-soft"
-                    title="Delete selection"
-                    onClick={async () => {
-                      await api(`/report-selections/${selection.id}`, {
-                        method: "DELETE",
-                        loadingMessage: "Deleting saved selection…",
-                      });
-                      await refreshSelections();
-                    }}
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    className="icon-button danger-soft"
-                    title="Remove shared selection"
-                    onClick={() => unshareSelectionForMe(selection)}
-                  >
-                    <UserRoundX size={16} />
-                  </button>
-                )}
+                  {selection.is_owner ? (
+                    <button
+                      type="button"
+                      className="icon-button danger-soft"
+                      title="Delete selection"
+                      onClick={async () => {
+                        await api(`/report-selections/${selection.id}`, {
+                          method: "DELETE",
+                          loadingMessage: "Deleting saved selection…",
+                        });
+                        await refreshSelections();
+                      }}
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="icon-button danger-soft"
+                      title="Remove shared selection"
+                      onClick={() => unshareSelectionForMe(selection)}
+                    >
+                      <UserRoundX size={16} />
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          {!selections.filter((selection) => String(selection.name || "").toLocaleLowerCase().includes(selectionSearch.trim().toLocaleLowerCase())).length ? (
-            <div className="empty-card">{selections.length ? "No saved selections match your search." : "No saved selections."}</div>
+          {!selections.filter((selection) =>
+            String(selection.name || "")
+              .toLocaleLowerCase()
+              .includes(selectionSearch.trim().toLocaleLowerCase()),
+          ).length ? (
+            <div className="empty-card">
+              {selections.length
+                ? "No saved selections match your search."
+                : "No saved selections."}
+            </div>
           ) : null}
         </div>
         {selections.length > 0 ? (
           <Pagination
             page={selectionPage}
-            total={selections.filter((selection) => String(selection.name || "").toLocaleLowerCase().includes(selectionSearch.trim().toLocaleLowerCase())).length}
+            total={
+              selections.filter((selection) =>
+                String(selection.name || "")
+                  .toLocaleLowerCase()
+                  .includes(selectionSearch.trim().toLocaleLowerCase()),
+              ).length
+            }
             pageSize={selectionsPageSize}
             setPage={setSelectionPage}
             setPageSize={setSelectionsPageSize}
@@ -1339,7 +1460,10 @@ export default function Reports({ user }) {
         <form className="form-stack" onSubmit={shareCurrentSelection}>
           <div className="selection-share-list">
             {shareableManagers.map((manager) => (
-              <label className={`selection-share-row${manager.shared ? " is-shared" : ""}`} key={manager.id}>
+              <label
+                className={`selection-share-row${manager.shared ? " is-shared" : ""}`}
+                key={manager.id}
+              >
                 <input
                   type="checkbox"
                   checked={selectedManagerIds.includes(String(manager.id))}
@@ -1360,11 +1484,17 @@ export default function Reports({ user }) {
                 {manager.shared ? <CheckCircle2 size={15} title="Already shared" /> : null}
               </label>
             ))}
-            {!shareableManagers.length ? <div className="empty-card">No other managers available to share with.</div> : null}
+            {!shareableManagers.length ? (
+              <div className="empty-card">No other managers available to share with.</div>
+            ) : null}
           </div>
           <div className="modal-actions">
-            <button type="button" className="button secondary" onClick={() => setShareModal(false)}>Cancel</button>
-            <button type="submit" className="button primary">Share</button>
+            <button type="button" className="button secondary" onClick={() => setShareModal(false)}>
+              Cancel
+            </button>
+            <button type="submit" className="button primary">
+              Share
+            </button>
           </div>
         </form>
       </Modal>
@@ -1389,7 +1519,12 @@ export default function Reports({ user }) {
             >
               Cancel
             </button>
-            <button className="primary" type="submit" form="schedule-report-email-form" disabled={scheduleBusy}>
+            <button
+              className="primary"
+              type="submit"
+              form="schedule-report-email-form"
+              disabled={scheduleBusy}
+            >
               {scheduleBusy ? "Scheduling…" : "Schedule email"}
             </button>
           </>
@@ -1397,7 +1532,8 @@ export default function Reports({ user }) {
       >
         <form id="schedule-report-email-form" onSubmit={scheduleEmail}>
           <div className="notice">
-            The current report filters, grouping, sorting and summary settings will be saved as a snapshot and emailed once at the selected time.
+            The current report filters, grouping, sorting and summary settings will be saved as a
+            snapshot and emailed once at the selected time.
           </div>
 
           <label>
@@ -1414,7 +1550,8 @@ export default function Reports({ user }) {
             <div className="multi-picker">
               <strong>Send to managers (optional)</strong>
               <span className="field-note">
-                Select one or more active managers. If none are selected, the email is scheduled for your account.
+                Select one or more active managers. If none are selected, the email is scheduled for
+                your account.
               </span>
               <div className="multi-options">
                 {scheduleManagersLoading ? (
@@ -1427,13 +1564,17 @@ export default function Reports({ user }) {
                         <input
                           type="checkbox"
                           checked={selectedScheduleManagerIds.includes(managerId)}
-                          onChange={() => setSelectedScheduleManagerIds((current) =>
-                            current.includes(managerId)
-                              ? current.filter((id) => id !== managerId)
-                              : [...current, managerId],
-                          )}
+                          onChange={() =>
+                            setSelectedScheduleManagerIds((current) =>
+                              current.includes(managerId)
+                                ? current.filter((id) => id !== managerId)
+                                : [...current, managerId],
+                            )
+                          }
                         />
-                        <span>{manager.full_name} ({manager.email})</span>
+                        <span>
+                          {manager.full_name} ({manager.email})
+                        </span>
                       </label>
                     );
                   })
@@ -1467,7 +1608,8 @@ export default function Reports({ user }) {
           </div>
 
           <span className="field-note">
-            India Standard Time (Asia/Kolkata). {user?.role === "admin" && selectedScheduleManagerIds.length
+            India Standard Time (Asia/Kolkata).{" "}
+            {user?.role === "admin" && selectedScheduleManagerIds.length
               ? `The email will be sent to ${selectedScheduleManagerIds.length} selected manager(s).`
               : "The email will be sent to your account email."}
           </span>
@@ -1609,11 +1751,7 @@ function FilterCard({
         <MultiPicker
           label="Category"
           options={categoryOptions}
-          selected={
-            Array.isArray(config.filters.categories)
-              ? config.filters.categories
-              : []
-          }
+          selected={Array.isArray(config.filters.categories) ? config.filters.categories : []}
           onToggle={(value) =>
             setConfig((current) => {
               const selected = Array.isArray(current.filters.categories)
@@ -1644,9 +1782,17 @@ function FilterCard({
           onToggle={(value) =>
             setFilter(
               "categoryItems",
-              (Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []).includes(String(value))
+              (Array.isArray(config.filters.categoryItems)
+                ? config.filters.categoryItems
+                : []
+              ).includes(String(value))
                 ? config.filters.categoryItems.filter((item) => item !== String(value))
-                : [...(Array.isArray(config.filters.categoryItems) ? config.filters.categoryItems : []), String(value)],
+                : [
+                    ...(Array.isArray(config.filters.categoryItems)
+                      ? config.filters.categoryItems
+                      : []),
+                    String(value),
+                  ],
             )
           }
         />

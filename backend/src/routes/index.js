@@ -99,7 +99,11 @@ export function createRouter(maxUploadBytes) {
   router.post("/marketing-list/change-date-bulk", auth, marketingController.changeDateBulk);
   router.get("/marketing-locations", auth, marketingController.listLocations);
   router.post("/marketing-locations", auth, marketingController.createLocation);
-  router.post("/marketing-locations/track-selection", auth, marketingController.trackLocationSelection);
+  router.post(
+    "/marketing-locations/track-selection",
+    auth,
+    marketingController.trackLocationSelection,
+  );
   router.put("/marketing-locations/:id", auth, marketingController.updateLocation);
   router.delete("/marketing-locations/:id", auth, marketingController.deleteLocation);
   router.post("/marketing-list/send-email", marketingController.sendScheduledEmail);
@@ -167,16 +171,31 @@ export function createRouter(maxUploadBytes) {
   router.get("/report-selections", auth, permit("report"), reportController.selections);
   router.post("/report-selections", auth, permit("report"), reportController.save);
   router.delete("/report-selections/:id", auth, permit("report"), reportController.remove);
-  router.get("/report-selections/:id/shareable-users", auth, permit("report"), reportController.shareableUsers);
+  router.get(
+    "/report-selections/:id/shareable-users",
+    auth,
+    permit("report"),
+    reportController.shareableUsers,
+  );
   router.put("/report-selections/:id/share", auth, permit("report"), reportController.share);
-  router.delete("/report-selections/:id/share/me", auth, permit("report"), reportController.unshareMe);
+  router.delete(
+    "/report-selections/:id/share/me",
+    auth,
+    permit("report"),
+    reportController.unshareMe,
+  );
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
 
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
   router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);
-  router.get("/scheduled-reports/recipients", auth, permit("job-status"), scheduledReportController.recipients);
+  router.get(
+    "/scheduled-reports/recipients",
+    auth,
+    permit("job-status"),
+    scheduledReportController.recipients,
+  );
   router.post("/scheduled-reports", auth, permit("job-status"), scheduledReportController.create);
   router.put(
     "/scheduled-reports/:id",

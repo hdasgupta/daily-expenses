@@ -25,10 +25,7 @@ export function haversineDistanceKm(lat1, lon1, lat2, lon2) {
   const dLon = toRad(lon2 - lon1);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) *
-      Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
@@ -64,7 +61,7 @@ function saveCachedGpsPosition(coords) {
         longitude: Number(coords.longitude),
         accuracy: coords.accuracy ? Number(coords.accuracy) : null,
         timestamp: Date.now(),
-      })
+      }),
     );
   } catch {
     // ignore storage errors
@@ -117,7 +114,7 @@ export function getCurrentGpsPosition(options = {}) {
         enableHighAccuracy,
         timeout,
         maximumAge,
-      }
+      },
     );
   });
 }
@@ -163,7 +160,7 @@ export function updateLocalLocationStats(locationId, coords = null) {
 
     const sum = existing.points.reduce(
       (acc, pt) => ({ lat: acc.lat + pt.lat, lng: acc.lng + pt.lng }),
-      { lat: 0, lng: 0 }
+      { lat: 0, lng: 0 },
     );
     existing.centroidLat = sum.lat / existing.points.length;
     existing.centroidLng = sum.lng / existing.points.length;
@@ -185,23 +182,14 @@ export function enrichLocationsWithClientStats(locations = [], coords = null) {
 
     const serverLat = toFiniteCoord(loc.latitude);
     const serverLng = toFiniteCoord(loc.longitude);
-    const effectiveLat =
-      serverLat !== null ? serverLat : toFiniteCoord(local.centroidLat);
-    const effectiveLng =
-      serverLng !== null ? serverLng : toFiniteCoord(local.centroidLng);
+    const effectiveLat = serverLat !== null ? serverLat : toFiniteCoord(local.centroidLat);
+    const effectiveLng = serverLng !== null ? serverLng : toFiniteCoord(local.centroidLng);
 
     let distanceKm = toFiniteCoord(loc.distance_km);
-    if (
-      distanceKm === null &&
-      hasCallerGps &&
-      effectiveLat !== null &&
-      effectiveLng !== null
-    ) {
+    if (distanceKm === null && hasCallerGps && effectiveLat !== null && effectiveLng !== null) {
       distanceKm =
-        Math.round(
-          haversineDistanceKm(callerLat, callerLng, effectiveLat, effectiveLng) *
-            1000
-        ) / 1000;
+        Math.round(haversineDistanceKm(callerLat, callerLng, effectiveLat, effectiveLng) * 1000) /
+        1000;
     }
 
     let localNearbyCount = 0;
@@ -209,18 +197,14 @@ export function enrichLocationsWithClientStats(locations = [], coords = null) {
       localNearbyCount = local.points.filter(
         (pt) =>
           isValidCoordinates({ latitude: pt.lat, longitude: pt.lng }) &&
-          haversineDistanceKm(callerLat, callerLng, pt.lat, pt.lng) <=
-            NEARBY_RADIUS_KM
+          haversineDistanceKm(callerLat, callerLng, pt.lat, pt.lng) <= NEARBY_RADIUS_KM,
       ).length;
     }
 
     const serverUsage = Number(loc.usage_count || 0);
     const localUsage = Number(local.count || 0);
     const usageCount = Math.max(serverUsage, localUsage);
-    const nearbyUsageCount = Math.max(
-      Number(loc.nearby_usage_count || 0),
-      localNearbyCount
-    );
+    const nearbyUsageCount = Math.max(Number(loc.nearby_usage_count || 0), localNearbyCount);
 
     return {
       ...loc,
@@ -336,8 +320,8 @@ export async function fetchLocationsWithGps(options = {}) {
   const coords = isValidCoordinates(providedCoords)
     ? providedCoords
     : fastInitial
-    ? getCachedGpsPosition(24 * 60 * 60 * 1000)
-    : await getCurrentGpsPosition();
+      ? getCachedGpsPosition(24 * 60 * 60 * 1000)
+      : await getCurrentGpsPosition();
 
   let query = "";
   if (isValidCoordinates(coords)) {
@@ -359,7 +343,7 @@ export async function fetchLocationsWithGps(options = {}) {
 
 export async function recordLocationSelection(
   locationId,
-  { coords = null, source = "manual_select", pinLocationCoordinates = false } = {}
+  { coords = null, source = "manual_select", pinLocationCoordinates = false } = {},
 ) {
   if (!locationId) return;
   const resolvedCoords = isValidCoordinates(coords)

@@ -135,7 +135,13 @@ export async function runSchedulerTick({ maxJobs = 1, budgetMs = 7000 } = {}) {
   };
 }
 
-export async function getJobStatus({ page = 1, pageSize = 10, search = "", userId, isAdmin = false }) {
+export async function getJobStatus({
+  page = 1,
+  pageSize = 10,
+  search = "",
+  userId,
+  isAdmin = false,
+}) {
   const safePage = Math.max(1, Number(page) || 1);
   const safePageSize = [5, 10, 20, 50].includes(Number(pageSize)) ? Number(pageSize) : 10;
   const safeSearch = String(search || "").trim();
@@ -211,19 +217,17 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
          OR r.job_name LIKE 'one-time-report:%:user:' || NULLIF($2::text, '')
        )
   ) history`;
-  const historyWhere =
-    `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3
+  const historyWhere = `$3 = '' OR history.job_name ILIKE $3 OR history.scheduled_report_name ILIKE $3
       OR history.status ILIKE $3 OR history.scheduled_key ILIKE $3 OR history.error_message ILIKE $3
       OR ($1::boolean = TRUE AND (history.owner_name ILIKE $3 OR history.owner_email ILIKE $3))`;
 
   const [countResult, rowsResult] = await Promise.all([
-    q(`SELECT COUNT(*)::int AS total
+    q(
+      `SELECT COUNT(*)::int AS total
          FROM ${historySql}
-        WHERE ${historyWhere}`, [
-      Boolean(isAdmin),
-      userId,
-      searchPattern,
-    ]),
+        WHERE ${historyWhere}`,
+      [Boolean(isAdmin), userId, searchPattern],
+    ),
     q(
       `SELECT id, job_name, scheduled_key, status, started_at, completed_at,
               duration_ms, error_message, scheduled_report_name, owner_name, owner_email
@@ -251,22 +255,22 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
   );
 
   const oneTimeJobs = oneTimeResult.rows;
-  const categoryResult = await q(
-    `SELECT id, name FROM public.categories`,
-  );
+  const categoryResult = await q(`SELECT id, name FROM public.categories`);
   const categoryNames = new Map(
     (categoryResult.rows || []).map((row) => [String(row.id), row.name]),
   );
 
   const enrichedOneTimeJobs = oneTimeJobs.map((job) => {
     const config = job.config && typeof job.config === "object" ? { ...job.config } : {};
-    const filters = config.filters && typeof config.filters === "object" ? { ...config.filters } : {};
+    const filters =
+      config.filters && typeof config.filters === "object" ? { ...config.filters } : {};
     const keys = Array.isArray(filters.categoryItems) ? filters.categoryItems : [];
 
     if (keys.length) {
       filters.categoryItemLabels = keys.map((key) => {
         const [categoryId, kind] = String(key).split(":");
-        const categoryName = categoryNames.get(String(categoryId)) || `Unknown category (${categoryId})`;
+        const categoryName =
+          categoryNames.get(String(categoryId)) || `Unknown category (${categoryId})`;
         if (kind === "item") return `${categoryName} - Item`;
         return `${categoryName} - ${kind === "other" ? "Other" : "Total"}`;
       });
@@ -282,37 +286,39 @@ export async function getJobStatus({ page = 1, pageSize = 10, search = "", userI
     return { ...job, config: { ...config, filters } };
   });
 
-  const schedules = scheduleDefinitions.filter((item) => isAdmin || !item.adminOnly).map((item) => {
-    const normalizedCron = normalizeCronExpression(item.cron);
-    const valid = Boolean(normalizedCron && cron.validate(normalizedCron));
-    let nextRunAt = null;
-    if (valid) {
-      try {
-        const lastDayMatch = String(item.cron || "")
-          .trim()
-          .match(/^(\d+)\s+(\d+)\s+L\s+\*\s+\*$/i);
-        if (lastDayMatch) {
-          nextRunAt = computeNextLastDayOfMonthRun(
-            Number(lastDayMatch[1]),
-            Number(lastDayMatch[2]),
-            item.timezone,
-          );
-        } else {
-          const task = cron.schedule(normalizedCron, () => {}, { timezone: item.timezone });
-          const nextRun = task.getNextRun();
-          nextRunAt =
-            nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
-              ? nextRun.toISOString()
-              : null;
-          task.stop();
-          task.destroy();
+  const schedules = scheduleDefinitions
+    .filter((item) => isAdmin || !item.adminOnly)
+    .map((item) => {
+      const normalizedCron = normalizeCronExpression(item.cron);
+      const valid = Boolean(normalizedCron && cron.validate(normalizedCron));
+      let nextRunAt = null;
+      if (valid) {
+        try {
+          const lastDayMatch = String(item.cron || "")
+            .trim()
+            .match(/^(\d+)\s+(\d+)\s+L\s+\*\s+\*$/i);
+          if (lastDayMatch) {
+            nextRunAt = computeNextLastDayOfMonthRun(
+              Number(lastDayMatch[1]),
+              Number(lastDayMatch[2]),
+              item.timezone,
+            );
+          } else {
+            const task = cron.schedule(normalizedCron, () => {}, { timezone: item.timezone });
+            const nextRun = task.getNextRun();
+            nextRunAt =
+              nextRun instanceof Date && !Number.isNaN(nextRun.getTime())
+                ? nextRun.toISOString()
+                : null;
+            task.stop();
+            task.destroy();
+          }
+        } catch (error) {
+          console.error(`Unable to calculate next run for ${item.jobName}`, error);
         }
-      } catch (error) {
-        console.error(`Unable to calculate next run for ${item.jobName}`, error);
       }
-    }
-    return { ...item, configured: Boolean(item.cron), valid, nextRunAt };
-  });
+      return { ...item, configured: Boolean(item.cron), valid, nextRunAt };
+    });
 
   return {
     schedules,

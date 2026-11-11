@@ -119,8 +119,7 @@ export async function sendMonthlyEmailReportToManagers() {
   const pdf = await buildMonthlyEmailReportPdf(report);
   const result = await q(userSql.managers);
   const reportDate =
-    report.monthlySummary?.[report.monthlySummary.length - 1]?.monthEnd ||
-    dateMinusDays(1);
+    report.monthlySummary?.[report.monthlySummary.length - 1]?.monthEnd || dateMinusDays(1);
   for (const row of result.rows) {
     await sendMonthlyEmailReport(row.email, pdf, reportDate);
   }

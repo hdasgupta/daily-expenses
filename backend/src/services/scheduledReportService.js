@@ -238,11 +238,13 @@ async function triggerImmediateScheduledReportPoll() {
 
 export async function createScheduledReportJob(data, user) {
   const config = normalizePayload(data);
-  const requestedIds = [...new Set(
-    (Array.isArray(data.managerIds) ? data.managerIds : [])
-      .map((id) => String(id).trim())
-      .filter(Boolean),
-  )];
+  const requestedIds = [
+    ...new Set(
+      (Array.isArray(data.managerIds) ? data.managerIds : [])
+        .map((id) => String(id).trim())
+        .filter(Boolean),
+    ),
+  ];
 
   let recipientIds = [String(user.id)];
 
@@ -477,7 +479,12 @@ export async function buildScheduledReport(reportKey) {
     summary.periods = periods;
     summary.periodColumn = periodColumn;
 
-    if (Array.isArray(definition.groupBy) && definition.groupBy.length === 1 && periodColumn && periods.length) {
+    if (
+      Array.isArray(definition.groupBy) &&
+      definition.groupBy.length === 1 &&
+      periodColumn &&
+      periods.length
+    ) {
       const byPeriod = new Map();
       for (const row of summary.rows || []) {
         const key =

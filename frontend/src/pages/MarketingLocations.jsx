@@ -60,7 +60,10 @@ export default function MarketingLocations() {
         allowCacheFallback: false,
       });
       if (!isValidCoordinates(coords)) {
-        showToast("warning", "Unable to read current GPS coordinates. Check browser/app location permissions.");
+        showToast(
+          "warning",
+          "Unable to read current GPS coordinates. Check browser/app location permissions.",
+        );
         return;
       }
       setCurrentCoords(coords);
@@ -101,18 +104,24 @@ export default function MarketingLocations() {
   };
 
   const filteredRows = useMemo(() => {
-    const term = String(pagination.search || "").trim().toLowerCase();
+    const term = String(pagination.search || "")
+      .trim()
+      .toLowerCase();
     const filtered = rows.filter(
-      (row) =>
-        !term ||
-        `${row.name || ""} ${row.address || ""}`.toLowerCase().includes(term)
+      (row) => !term || `${row.name || ""} ${row.address || ""}`.toLowerCase().includes(term),
     );
     const column = pagination.sortColumn;
     if (column) {
       filtered.sort((a, b) => {
         if (column === "distance_km") {
-          const leftDist = a.distance_km === null || a.distance_km === undefined ? Infinity : Number(a.distance_km);
-          const rightDist = b.distance_km === null || b.distance_km === undefined ? Infinity : Number(b.distance_km);
+          const leftDist =
+            a.distance_km === null || a.distance_km === undefined
+              ? Infinity
+              : Number(a.distance_km);
+          const rightDist =
+            b.distance_km === null || b.distance_km === undefined
+              ? Infinity
+              : Number(b.distance_km);
           const result = leftDist - rightDist;
           return pagination.sortDirection === "desc" ? -result : result;
         }
@@ -174,13 +183,26 @@ export default function MarketingLocations() {
     setEditing(row.id);
     setName(row.name || "");
     setAddress(row.address || "");
-    setLatitude(row.latitude !== null && row.latitude !== undefined ? String(Number(row.latitude).toFixed(6)) : "");
-    setLongitude(row.longitude !== null && row.longitude !== undefined ? String(Number(row.longitude).toFixed(6)) : "");
+    setLatitude(
+      row.latitude !== null && row.latitude !== undefined
+        ? String(Number(row.latitude).toFixed(6))
+        : "",
+    );
+    setLongitude(
+      row.longitude !== null && row.longitude !== undefined
+        ? String(Number(row.longitude).toFixed(6))
+        : "",
+    );
     setError("");
   };
 
   const remove = async (id) => {
-    if (!window.confirm("Delete this location? Existing list items will keep their history but show no location.")) return;
+    if (
+      !window.confirm(
+        "Delete this location? Existing list items will keep their history but show no location.",
+      )
+    )
+      return;
     setError("");
     try {
       await api(`/marketing-locations/${id}`, { method: "DELETE" });
@@ -195,11 +217,18 @@ export default function MarketingLocations() {
       <div className="page-heading">
         <div>
           <h1>Add Location</h1>
-          <p>Manage places where marketing-list items are purchased and map GPS coordinates for automatic nearest and most-frequent selection.</p>
+          <p>
+            Manage places where marketing-list items are purchased and map GPS coordinates for
+            automatic nearest and most-frequent selection.
+          </p>
         </div>
       </div>
 
-      {error ? <div className="marketing-error" role="alert">{error}</div> : null}
+      {error ? (
+        <div className="marketing-error" role="alert">
+          {error}
+        </div>
+      ) : null}
 
       <form className="card marketing-form-grid" onSubmit={save}>
         <label>
@@ -339,9 +368,7 @@ export default function MarketingLocations() {
                           </span>
                         )}
                         {!row.is_nearest && distLabel && (
-                          <span className="location-badge badge-distance">
-                            📍 {distLabel} away
-                          </span>
+                          <span className="location-badge badge-distance">📍 {distLabel} away</span>
                         )}
                         {uses > 0 && (
                           <span
@@ -349,7 +376,8 @@ export default function MarketingLocations() {
                               row.is_most_frequent ? "badge-frequent" : "badge-usage"
                             }`}
                           >
-                            <Star size={11} /> {row.is_most_frequent ? `Most frequent (${uses}x)` : `${uses}x used`}
+                            <Star size={11} />{" "}
+                            {row.is_most_frequent ? `Most frequent (${uses}x)` : `${uses}x used`}
                           </span>
                         )}
                       </div>
@@ -361,7 +389,8 @@ export default function MarketingLocations() {
                       </p>
                     ) : (
                       <p className="location-gps-coords muted">
-                        GPS coordinates will be learned automatically when selected or can be pinned now.
+                        GPS coordinates will be learned automatically when selected or can be pinned
+                        now.
                       </p>
                     )}
                   </div>
@@ -376,11 +405,7 @@ export default function MarketingLocations() {
                       <LocateFixed size={16} />{" "}
                       <span>{pinningId === row.id ? "Pinning…" : "Pin GPS"}</span>
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => edit(row)}
-                      aria-label={`Edit ${row.name}`}
-                    >
+                    <button type="button" onClick={() => edit(row)} aria-label={`Edit ${row.name}`}>
                       <Pencil size={16} /> <span>Edit</span>
                     </button>
                     <button

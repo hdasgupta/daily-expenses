@@ -1,6 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
-import { BookOpen, CalendarClock, CalendarDays, Clock3, MapPin, Plus, Search, ShoppingBasket, X } from "lucide-react";
+import {
+  BookOpen,
+  CalendarClock,
+  CalendarDays,
+  Clock3,
+  MapPin,
+  Plus,
+  Search,
+  ShoppingBasket,
+  X,
+} from "lucide-react";
 import { api, showToast } from "../lib/api";
 import {
   describeAutoMatchReason,
@@ -44,7 +54,10 @@ function incrementLocalRecipeUsage(recipeId) {
 function RecipeDetails({ recipe, onClose, onAddIngredient, onAddToFoodChart }) {
   if (!recipe) return null;
   return (
-    <div className="diet-modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="diet-modal-backdrop"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
       <section className="diet-modal">
         <header>
           <h2>{recipe.name}</h2>
@@ -53,7 +66,13 @@ function RecipeDetails({ recipe, onClose, onAddIngredient, onAddToFoodChart }) {
               <button
                 type="button"
                 className="diet-primary"
-                style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 12px", fontSize: "13px" }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "6px 12px",
+                  fontSize: "13px",
+                }}
                 title={`Add ${recipe.name} to food chart`}
                 aria-label={`Add ${recipe.name} to food chart`}
                 onClick={() => {
@@ -70,14 +89,17 @@ function RecipeDetails({ recipe, onClose, onAddIngredient, onAddToFoodChart }) {
           </div>
         </header>
         <p className="diet-muted">
-          {recipe.category} · {recipe.region} · Prep {recipe.prepMinutes || 0} min · Cook {recipe.cookMinutes || 0} min · Serves {recipe.servings || 2}
+          {recipe.category} · {recipe.region} · Prep {recipe.prepMinutes || 0} min · Cook{" "}
+          {recipe.cookMinutes || 0} min · Serves {recipe.servings || 2}
         </p>
         <h3>Ingredients</h3>
         <div className="diet-ingredients">
           {(recipe.ingredients || []).map((ingredient, i) => (
             <div className="diet-view-ingredient" key={i}>
               <span>{ingredient.name}</span>
-              <strong>{[ingredient.quantity, ingredient.unit].filter(Boolean).join(" ") || "As needed"}</strong>
+              <strong>
+                {[ingredient.quantity, ingredient.unit].filter(Boolean).join(" ") || "As needed"}
+              </strong>
               <button
                 type="button"
                 className="icon-button diet-add-marketing-item"
@@ -111,7 +133,15 @@ function RecipeDetails({ recipe, onClose, onAddIngredient, onAddToFoodChart }) {
   );
 }
 
-function AddIngredientToMarketing({ ingredient, categories, locations, units, onClose, onSubmit, saving }) {
+function AddIngredientToMarketing({
+  ingredient,
+  categories,
+  locations,
+  units,
+  onClose,
+  onSubmit,
+  saving,
+}) {
   const [form, setForm] = useState({
     purchaseDate: todayKolkata(),
     locationId: "",
@@ -123,12 +153,16 @@ function AddIngredientToMarketing({ ingredient, categories, locations, units, on
   const [autoHint, setAutoHint] = useState("");
 
   useEffect(() => {
-    const ingredientUnit = String(ingredient?.unit || "").trim().toLowerCase();
+    const ingredientUnit = String(ingredient?.unit || "")
+      .trim()
+      .toLowerCase();
     const matchedUnit = units.find(
-      (unit) => String(unit.name || "").trim().toLowerCase() === ingredientUnit
+      (unit) =>
+        String(unit.name || "")
+          .trim()
+          .toLowerCase() === ingredientUnit,
     );
-    const recommendedLoc =
-      locations.find((loc) => loc.auto_recommended) || locations[0] || null;
+    const recommendedLoc = locations.find((loc) => loc.auto_recommended) || locations[0] || null;
     if (recommendedLoc && !form.locationId) {
       setAutoHint(describeAutoMatchReason(recommendedLoc));
     }
@@ -320,17 +354,23 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
     let active = true;
     setCheckingMeals(true);
     const dateQuery = encodeURIComponent(String(form.date).slice(0, 10));
-    const locQuery = form.locationId ? `&locationId=${encodeURIComponent(form.locationId)}&strictLocation=true` : "";
+    const locQuery = form.locationId
+      ? `&locationId=${encodeURIComponent(form.locationId)}&strictLocation=true`
+      : "";
     api(`/food-chart?date=${dateQuery}${locQuery}`, { silent: true })
       .then((rows) => {
         if (!active) return;
         const busy = new Set();
         const targetId = String(recipe.id || "").trim();
-        const targetName = String(recipe.name || "").trim().toLowerCase();
+        const targetName = String(recipe.name || "")
+          .trim()
+          .toLowerCase();
         for (const row of Array.isArray(rows) ? rows : []) {
           const rowRecipe = row.recipe || row.recipe_snapshot || {};
           const rowRecipeId = String(row.recipeId || rowRecipe.id || "").trim();
-          const rowRecipeName = String(rowRecipe.name || "").trim().toLowerCase();
+          const rowRecipeName = String(rowRecipe.name || "")
+            .trim()
+            .toLowerCase();
           if (
             (targetId && rowRecipeId && targetId === rowRecipeId) ||
             (targetName && rowRecipeName && targetName === rowRecipeName)
@@ -381,7 +421,8 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
           <div>
             <h2>Add recipe to Food Chart</h2>
             <p className="diet-muted">
-              Add <strong>{recipe.name}</strong> to the food chart for the selected date, location, and meal time.
+              Add <strong>{recipe.name}</strong> to the food chart for the selected date, location,
+              and meal time.
             </p>
           </div>
           <button
@@ -395,7 +436,11 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
           </button>
         </header>
 
-        {error && <div className="diet-error" style={{ margin: "0 0 10px" }}>{error}</div>}
+        {error && (
+          <div className="diet-error" style={{ margin: "0 0 10px" }}>
+            {error}
+          </div>
+        )}
 
         <label>
           <span>
@@ -447,19 +492,17 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
             {MEAL_OPTIONS.map((opt) => {
               const isScheduled = scheduledMeals.has(opt.value);
               return (
-                <option
-                  key={opt.value}
-                  value={opt.value}
-                  disabled={isScheduled}
-                >
-                  {opt.label}{isScheduled ? " — Already scheduled" : ""}
+                <option key={opt.value} value={opt.value} disabled={isScheduled}>
+                  {opt.label}
+                  {isScheduled ? " — Already scheduled" : ""}
                 </option>
               );
             })}
           </select>
           {scheduledMeals.size >= MEAL_OPTIONS.length && (
             <small className="diet-auto-location-hint" style={{ color: "var(--danger, #dc2626)" }}>
-              {recipe.name} is already scheduled for all meal times on {form.date}. Choose another date.
+              {recipe.name} is already scheduled for all meal times on {form.date}. Choose another
+              date.
             </small>
           )}
           {scheduledMeals.size > 0 && scheduledMeals.size < MEAL_OPTIONS.length && (
@@ -482,12 +525,7 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
         </label>
 
         <footer>
-          <button
-            type="button"
-            className="diet-secondary"
-            onClick={onClose}
-            disabled={saving}
-          >
+          <button type="button" className="diet-secondary" onClick={onClose} disabled={saving}>
             Cancel
           </button>
           <button
@@ -574,7 +612,7 @@ export default function RecipeMaster() {
       const clientUsage = Number(localUsage[String(recipe?.id)] || 0);
       return serverUsage + clientUsage;
     },
-    [localUsage]
+    [localUsage],
   );
 
   const filtered = useMemo(() => {
@@ -587,10 +625,7 @@ export default function RecipeMaster() {
     });
   }, [indexedRecipes, query, category, sortColumn, sortDirection, getRecipeUsageCount]);
 
-  const visibleRecipes = useMemo(
-    () => filtered.slice(0, visibleCount),
-    [filtered, visibleCount]
-  );
+  const visibleRecipes = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
 
   const hasMore = visibleCount < filtered.length;
 
@@ -606,7 +641,7 @@ export default function RecipeMaster() {
           setVisibleCount((prev) => Math.min(prev + 30, filtered.length));
         }
       },
-      { root: null, rootMargin: "320px 0px", threshold: 0.01 }
+      { root: null, rootMargin: "320px 0px", threshold: 0.01 },
     );
 
     observer.observe(node);
@@ -668,7 +703,10 @@ export default function RecipeMaster() {
   const addIngredientToMarketing = async (values) => {
     const itemName = String(values.itemName || "").trim();
     if (!itemName || !values.purchaseDate || !values.locationId || !values.categoryId) {
-      showToast("warning", "Choose a date, location and category, and enter an ingredient. Quantity and unit are optional.");
+      showToast(
+        "warning",
+        "Choose a date, location and category, and enter an ingredient. Quantity and unit are optional.",
+      );
       return;
     }
     setAddingToMarketing(true);
@@ -694,7 +732,10 @@ export default function RecipeMaster() {
         }),
         silentToast: true,
       });
-      void recordLocationSelection(values.locationId, { coords, source: "recipe_master_ingredient" });
+      void recordLocationSelection(values.locationId, {
+        coords,
+        source: "recipe_master_ingredient",
+      });
       showToast("success", `${itemName} added to the marketing list.`);
       setAddIngredient(null);
     } catch (e) {
@@ -814,7 +855,8 @@ export default function RecipeMaster() {
         </div>
         <div className="diet-search-meta">
           <span>
-            Showing <strong>{visibleRecipes.length}</strong> of <strong>{filtered.length}</strong> {filtered.length === 1 ? "recipe" : "recipes"}
+            Showing <strong>{visibleRecipes.length}</strong> of <strong>{filtered.length}</strong>{" "}
+            {filtered.length === 1 ? "recipe" : "recipes"}
             {category !== "All" ? ` in ${category}` : ""}
             {query ? ` matching "${query}"` : ""}
           </span>
@@ -862,46 +904,50 @@ export default function RecipeMaster() {
         <>
           <div className="diet-recipe-list">
             {visibleRecipes.map((recipe) => {
-            const usageCount = getRecipeUsageCount(recipe);
-            return (
-              <article className="diet-recipe-row" key={recipe.id}>
-                <div className="diet-recipe-main">
-                  <strong>{recipe.name}</strong>
-                  <span>
-                    {recipe.category} · {recipe.region} · {recipe.ingredients?.length || 0} ingredients · {Number(recipe.prepMinutes || 0) + Number(recipe.cookMinutes || 0)} min
-                    {usageCount > 0 && (
-                      <span className="diet-usage-badge" style={{ marginLeft: 6 }}>
-                        Used {usageCount}x
-                      </span>
-                    )}
-                  </span>
-                </div>
-                <div className="diet-actions">
-                  <button
-                    type="button"
-                    className="icon-button diet-add-chart-btn"
-                    title={`Add ${recipe.name} to food chart`}
-                    aria-label={`Add ${recipe.name} to food chart`}
-                    onClick={() => openAddToFoodChart(recipe)}
-                  >
-                    <CalendarClock size={18} />
-                  </button>
-                  <button
-                    type="button"
-                    className="icon-button"
-                    title="View recipe"
-                    aria-label={`View ${recipe.name}`}
-                    onClick={() => handleViewRecipe(recipe)}
-                  >
-                    <BookOpen size={18} />
-                  </button>
-                </div>
-              </article>
-            );
-          })}
+              const usageCount = getRecipeUsageCount(recipe);
+              return (
+                <article className="diet-recipe-row" key={recipe.id}>
+                  <div className="diet-recipe-main">
+                    <strong>{recipe.name}</strong>
+                    <span>
+                      {recipe.category} · {recipe.region} · {recipe.ingredients?.length || 0}{" "}
+                      ingredients ·{" "}
+                      {Number(recipe.prepMinutes || 0) + Number(recipe.cookMinutes || 0)} min
+                      {usageCount > 0 && (
+                        <span className="diet-usage-badge" style={{ marginLeft: 6 }}>
+                          Used {usageCount}x
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                  <div className="diet-actions">
+                    <button
+                      type="button"
+                      className="icon-button diet-add-chart-btn"
+                      title={`Add ${recipe.name} to food chart`}
+                      aria-label={`Add ${recipe.name} to food chart`}
+                      onClick={() => openAddToFoodChart(recipe)}
+                    >
+                      <CalendarClock size={18} />
+                    </button>
+                    <button
+                      type="button"
+                      className="icon-button"
+                      title="View recipe"
+                      aria-label={`View ${recipe.name}`}
+                      onClick={() => handleViewRecipe(recipe)}
+                    >
+                      <BookOpen size={18} />
+                    </button>
+                  </div>
+                </article>
+              );
+            })}
             {!filtered.length && (
               <div className="diet-empty">
-                {query || category !== "All" ? "No recipes match your search criteria." : "No recipes found in the static catalogue."}
+                {query || category !== "All"
+                  ? "No recipes match your search criteria."
+                  : "No recipes found in the static catalogue."}
               </div>
             )}
           </div>
@@ -920,9 +966,7 @@ export default function RecipeMaster() {
             </div>
           )}
           {!hasMore && filtered.length > 30 && (
-            <div className="diet-scroll-end">
-              All {filtered.length} recipes loaded
-            </div>
+            <div className="diet-scroll-end">All {filtered.length} recipes loaded</div>
           )}
         </>
       )}

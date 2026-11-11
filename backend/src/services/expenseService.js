@@ -16,7 +16,9 @@ function normalizeShares(totalCost, inputShares) {
   }
 
   const shares = inputShares.map((share) => {
-    const shareType = ["fixed", "average", "remaining"].includes(share.shareType) ? share.shareType : null;
+    const shareType = ["fixed", "average", "remaining"].includes(share.shareType)
+      ? share.shareType
+      : null;
     let amount = null;
     if (shareType === "fixed") {
       const raw = String(share.amount ?? "").trim();

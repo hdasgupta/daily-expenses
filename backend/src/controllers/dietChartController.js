@@ -3,10 +3,17 @@ import { q } from "../db/index.js";
 import { recordLocationGpsSelection } from "./marketingController.js";
 
 // The recipe catalogue is version-controlled project data. Update recipes.json and redeploy to change it.
-const staticRecipes = JSON.parse(readFileSync(new URL("../data/recipes.json", import.meta.url), "utf8"));
+const staticRecipes = JSON.parse(
+  readFileSync(new URL("../data/recipes.json", import.meta.url), "utf8"),
+);
 const staticRecipesById = new Map(staticRecipes.map((r) => [String(r.id), r]));
 const staticRecipesByName = new Map(
-  staticRecipes.map((r) => [String(r.name || "").trim().toLowerCase(), r]),
+  staticRecipes.map((r) => [
+    String(r.name || "")
+      .trim()
+      .toLowerCase(),
+    r,
+  ]),
 );
 
 function normalizeRecipeSnapshot(snapshot, recipeId = null) {
@@ -21,7 +28,11 @@ function normalizeRecipeSnapshot(snapshot, recipeId = null) {
   if (parsed && typeof parsed === "object" && parsed.name) {
     const fallback =
       (parsed.id && staticRecipesById.get(String(parsed.id))) ||
-      staticRecipesByName.get(String(parsed.name || "").trim().toLowerCase()) ||
+      staticRecipesByName.get(
+        String(parsed.name || "")
+          .trim()
+          .toLowerCase(),
+      ) ||
       null;
     if (fallback) {
       return {
@@ -32,9 +43,7 @@ function normalizeRecipeSnapshot(snapshot, recipeId = null) {
             ? parsed.ingredients
             : fallback.ingredients || [],
         steps:
-          Array.isArray(parsed.steps) && parsed.steps.length
-            ? parsed.steps
-            : fallback.steps || [],
+          Array.isArray(parsed.steps) && parsed.steps.length ? parsed.steps : fallback.steps || [],
       };
     }
     return parsed;
@@ -42,7 +51,9 @@ function normalizeRecipeSnapshot(snapshot, recipeId = null) {
   if (recipeId && staticRecipesById.has(String(recipeId))) {
     return staticRecipesById.get(String(recipeId));
   }
-  return parsed || { name: "Recipe", category: "Other", region: "Indian", ingredients: [], steps: [] };
+  return (
+    parsed || { name: "Recipe", category: "Other", region: "Indian", ingredients: [], steps: [] }
+  );
 }
 
 export async function listRecipes(req, res) {
@@ -77,7 +88,11 @@ export async function listRecipes(req, res) {
 
     const enriched = staticRecipes.map((recipe) => {
       const idStats = byId.get(String(recipe.id)) || { total: 0, user: 0 };
-      const nameStats = byName.get(String(recipe.name || "").trim().toLowerCase()) || { total: 0, user: 0 };
+      const nameStats = byName.get(
+        String(recipe.name || "")
+          .trim()
+          .toLowerCase(),
+      ) || { total: 0, user: 0 };
       const usageCount = Math.max(idStats.total, nameStats.total);
       const userUsageCount = Math.max(idStats.user, nameStats.user);
       return {
@@ -99,9 +114,11 @@ export async function listRecipes(req, res) {
   }
 }
 
-const readOnlyRecipeResponse = (_req, res) => res.status(405).json({
-  error: "The recipe catalogue is read-only. Update backend/src/data/recipes.json and redeploy to change recipes.",
-});
+const readOnlyRecipeResponse = (_req, res) =>
+  res.status(405).json({
+    error:
+      "The recipe catalogue is read-only. Update backend/src/data/recipes.json and redeploy to change recipes.",
+  });
 export const createRecipe = readOnlyRecipeResponse;
 export const updateRecipe = readOnlyRecipeResponse;
 export const deleteRecipe = readOnlyRecipeResponse;
@@ -172,7 +189,9 @@ export async function addFoodChartEntry(req, res) {
   const b = req.body || {};
   const date = String(b.date || "").slice(0, 10);
   const meal = String(b.meal || "");
-  const locationId = /^\d+$/.test(String(b.locationId || "").trim()) ? String(b.locationId).trim() : "";
+  const locationId = /^\d+$/.test(String(b.locationId || "").trim())
+    ? String(b.locationId).trim()
+    : "";
   if (
     !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
     !["Breakfast", "Lunch", "Evening Snacks", "Dinner"].includes(meal) ||
@@ -186,7 +205,9 @@ export async function addFoodChartEntry(req, res) {
   }
 
   // Validate that no duplicate recipe is entered for the same date, meal timing, and location
-  const numericRecipeId = /^\d+$/.test(String(b.recipeId || "").trim()) ? String(b.recipeId).trim() : null;
+  const numericRecipeId = /^\d+$/.test(String(b.recipeId || "").trim())
+    ? String(b.recipeId).trim()
+    : null;
   const duplicateCheck = await q(
     `SELECT id, recipe_snapshot->>'name' AS name
        FROM public.food_chart_entries
@@ -256,10 +277,9 @@ export async function updateFoodChartEntry(req, res) {
 }
 
 export async function removeFoodChartEntry(req, res) {
-  const result = await q(
-    "DELETE FROM public.food_chart_entries WHERE id=$1 RETURNING id",
-    [req.params.id],
-  );
+  const result = await q("DELETE FROM public.food_chart_entries WHERE id=$1 RETURNING id", [
+    req.params.id,
+  ]);
   if (!result.rowCount) return res.status(404).json({ error: "Food chart entry not found" });
   res.json({ ok: true, id: result.rows[0].id });
 }

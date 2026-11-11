@@ -208,7 +208,9 @@ async function isAlreadyCompletedOrCoolingDown(job, key) {
   if (
     row.status === "failed" &&
     row.error_message !== "Execution interrupted or timed out before completion" &&
-    !String(row.error_message || "").toLowerCase().includes("fetch failed")
+    !String(row.error_message || "")
+      .toLowerCase()
+      .includes("fetch failed")
   ) {
     const refTime = new Date(row.completed_at || row.started_at).getTime();
     if (Date.now() - refTime < FAILED_RETRY_COOLDOWN_MINUTES * 60 * 1000) {
@@ -455,7 +457,10 @@ async function resolveDueKeyForJob(job, local) {
   return null;
 }
 
-export async function processDueScheduledReportJobs({ maxJobs = Infinity, deadlineMs = Infinity } = {}) {
+export async function processDueScheduledReportJobs({
+  maxJobs = Infinity,
+  deadlineMs = Infinity,
+} = {}) {
   if (activePollPromise) {
     return activePollPromise;
   }
