@@ -168,11 +168,11 @@ function buildPureHeroDigitsCanvas(img) {
     }
   }
 
-  // Search for hero amount bands across y: 10%..55% (covers both GPay receipt screen and GPay blue-tick "Paid to" screen)
-  const yStart = Math.floor(h * 0.1);
+  // Search for hero amount bands across y: 4%..55% (covers both standard and tall scrolling bill/UPI receipts)
+  const yStart = Math.floor(h * 0.04);
   const yEnd = Math.floor(h * 0.55);
-  const xStart = Math.floor(w * 0.12);
-  const xEnd = Math.floor(w * 0.88);
+  const xStart = Math.floor(w * 0.08);
+  const xEnd = Math.floor(w * 0.92);
 
   const runs = [];
   let inRun = false;
@@ -196,7 +196,8 @@ function buildPureHeroDigitsCanvas(img) {
     runs.push({ y0: runStart, y1: yEnd - 1, bh: yEnd - runStart });
   }
 
-  const minHeroHeight = Math.max(16, Math.floor(h * 0.024));
+  // Font size on mobile screenshots scales with screen width, not scrolling height
+  const minHeroHeight = Math.min(24, Math.max(14, Math.floor(Math.min(w, h) * 0.055)));
   const candidates = [];
 
   for (const band of runs) {
@@ -249,7 +250,7 @@ function buildPureHeroDigitsCanvas(img) {
     }
 
     // A hero rupee amount ("₹" + 1..9 digit/comma columns) has between 2 and 10 character columns
-    if (colRuns.length < 2 || colRuns.length > 10) continue;
+    if (colRuns.length < 2 || colRuns.length > 12) continue;
 
     const tallCols = colRuns.slice(1).filter((cr) => cr.ch > bh * 0.5);
     if (!tallCols.length) continue;
@@ -282,16 +283,11 @@ function buildPureHeroDigitsCanvas(img) {
   const cw = Math.max(1, dx1 - dx0);
   const ch = Math.max(1, dy1 - dy0);
 
-  const padX = 30;
-  const padY = 20;
-  const outCanvas = document.createElement("canvas");
-  outCanvas.width = cw + padX * 2;
-  outCanvas.height = ch + padY * 2;
-  const outCtx = outCanvas.getContext("2d");
-  outCtx.fillStyle = "#ffffff";
-  outCtx.fillRect(0, 0, outCanvas.width, outCanvas.height);
-
-  const cropImgData = outCtx.createImageData(cw, ch);
+  const cropCanvas = document.createElement("canvas");
+  cropCanvas.width = cw;
+  cropCanvas.height = ch;
+  const cropCtx = cropCanvas.getContext("2d");
+  const cropImgData = cropCtx.createImageData(cw, ch);
   const dst = cropImgData.data;
   for (let y = 0; y < ch; y += 1) {
     for (let x = 0; x < cw; x += 1) {
@@ -304,7 +300,23 @@ function buildPureHeroDigitsCanvas(img) {
       dst[idx + 3] = 255;
     }
   }
-  outCtx.putImageData(cropImgData, padX, padY);
+  cropCtx.putImageData(cropImgData, 0, 0);
+
+  // Upscale small crops (common in narrow/scrolling screenshots) so decimal points and digits stay crisp for OCR
+  const upscale = ch < 60 ? Math.min(3, Math.max(1, Math.round(72 / Math.max(ch, 1)))) : 1;
+  const scaledW = cw * upscale;
+  const scaledH = ch * upscale;
+  const padX = 32;
+  const padY = 24;
+  const outCanvas = document.createElement("canvas");
+  outCanvas.width = scaledW + padX * 2;
+  outCanvas.height = scaledH + padY * 2;
+  const outCtx = outCanvas.getContext("2d");
+  outCtx.fillStyle = "#ffffff";
+  outCtx.fillRect(0, 0, outCanvas.width, outCanvas.height);
+  outCtx.imageSmoothingEnabled = true;
+  outCtx.imageSmoothingQuality = "high";
+  outCtx.drawImage(cropCanvas, 0, 0, cw, ch, padX, padY, scaledW, scaledH);
   return outCanvas;
 }
 
@@ -318,7 +330,7 @@ function buildNormalizedCanvas(
   const sw = Math.max(1, Math.floor(img.naturalWidth * crop.w));
   const sh = Math.max(1, Math.floor(img.naturalHeight * crop.h));
 
-  const scale = Math.min(1.25, Math.max(0.6, targetWidth / sw));
+  const scale = Math.min(2.5, Math.max(0.6, targetWidth / sw));
   const dw = Math.max(1, Math.round(sw * scale));
   const dh = Math.max(1, Math.round(sh * scale));
 
@@ -359,27 +371,55 @@ function extractAmountFromFullText(rawText) {
   if (!rawText) return null;
   const lines = String(rawText)
     .split(/\r?\n/)
-    .map((l) => l.trim())
+    .map((l) => l.replace(/(\d)\s*\.\s*(\d)/g, "$1.$2").trim())
     .filter(Boolean);
 
-  // 1. Check explicit Google Pay confirmation sentence: "Payment of ₹18 completed"
+  // 1. Check explicit bill / payment total lines first (e.g. "Total amount ₹532.72", "₹532.72 paid", "Payment of ₹18 completed")
   let paymentOfRaw = null;
   for (const line of lines) {
-    const m = line.match(/payment\s+of\s+([₹$%?ftzFrR]?\s*[0-9][0-9,.]*)\s+completed/i);
-    if (m) {
-      paymentOfRaw = m[1].replace(/[^0-9.]/g, "");
-      break;
+    const totalMatch = line.match(
+      /\b(?:total\s*amount|grand\s*total|total\s*payable|amount\s*paid|you\s*paid)\b[^0-9₹$]*[₹$%?ftzFrR]?\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)/i,
+    );
+    if (totalMatch) {
+      const val = parseStrictCurrencyNumber(totalMatch[1]);
+      if (val !== null) return val;
+    }
+
+    const paidMatch = line.match(
+      /[₹$%?ftzFrR]?\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*\bpaid\b/i,
+    );
+    if (paidMatch) {
+      const val = parseStrictCurrencyNumber(paidMatch[1]);
+      if (val !== null) return val;
+    }
+
+    const completedMatch = line.match(
+      /payment\s+of\s+([₹$%?ftzFrR]?\s*[0-9][0-9,.]*)\s+completed/i,
+    );
+    if (completedMatch && !paymentOfRaw) {
+      paymentOfRaw = completedMatch[1].replace(/[^0-9.]/g, "");
     }
   }
 
   // 2. Check standalone numeric line between "To <Name>" and "Completed" / "Pay again",
-  //    OR immediately above "Paid to" (for Google Pay's blue-checkmark confirmation screen)
+  //    immediately above "Completed" (for bill payment receipts like "Airtel Postpaid Mobile"),
+  //    or immediately above "Paid to" (for Google Pay's blue-checkmark confirmation screen)
   let heroRaw = null;
   const toIdx = lines.findIndex((l) => /^to\s+/i.test(l));
   const completedIdx = lines.findIndex((l) => /\b(?:completed|pay\s*again)\b/i.test(l));
   if (toIdx !== -1 && completedIdx !== -1 && completedIdx > toIdx) {
     for (let i = toIdx + 1; i < completedIdx; i += 1) {
       const m = lines[i].match(/^[₹$%?ftzFrR]?\s*([0-9][0-9,.]*)$/);
+      if (m) {
+        heroRaw = m[1].replace(/,/g, "");
+        break;
+      }
+    }
+  }
+
+  if (!heroRaw && completedIdx > 0) {
+    for (let i = completedIdx - 1; i >= Math.max(0, completedIdx - 3); i -= 1) {
+      const m = lines[i].match(/^[₹$%?ftzFrR]?\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)$/);
       if (m) {
         heroRaw = m[1].replace(/,/g, "");
         break;
@@ -409,11 +449,18 @@ function extractAmountFromFullText(rawText) {
     }
   }
 
+  if (heroRaw) {
+    const val = parseStrictCurrencyNumber(heroRaw);
+    if (val !== null) return val;
+  }
+
   const bankOrMetaPattern =
     /\b(?:bank|banking\s*name|a\/c|account|upi\s*transaction|google\s*transaction|transaction\s*id|@|phonepe|okicici|oksbi|okaxis|okhdfcbank)\b/i;
+  const subItemPattern =
+    /\b(?:bill\s*amount|platform\s*fee|convenience\s*fee|fee\s*for|gst|tax|discount|cashback)\b/i;
 
   for (const line of lines) {
-    if (bankOrMetaPattern.test(line)) continue;
+    if (bankOrMetaPattern.test(line) || subItemPattern.test(line)) continue;
     const m = line.match(
       /(?:₹|rs\.?|inr)\s*([0-9]{1,3}(?:,[0-9]{2,3})+(?:\.[0-9]{1,2})?|[1-9][0-9]*(?:\.[0-9]{1,2})?)/i,
     );
@@ -423,9 +470,6 @@ function extractAmountFromFullText(rawText) {
     }
   }
 
-  if (heroRaw) {
-    return parseStrictCurrencyNumber(heroRaw);
-  }
   if (paymentOfRaw) {
     return parseStrictCurrencyNumber(paymentOfRaw);
   }
@@ -453,7 +497,9 @@ async function detectAmountFromScreenshot(file) {
     }
 
     const pureResult = await recognizeCanvasFast(pureDigitsCanvas);
-    const pureText = String(pureResult?.data?.text || "").trim();
+    const pureText = String(pureResult?.data?.text || "")
+      .replace(/(\d)\s*\.\s*(\d)/g, "$1.$2")
+      .trim();
     const tokenMatch = pureText.match(/([1-9][0-9,]*(?:\.[0-9]{1,2})?)/);
     if (tokenMatch) {
       const val = parseStrictCurrencyNumber(tokenMatch[1]);
@@ -463,8 +509,13 @@ async function detectAmountFromScreenshot(file) {
     }
   }
 
-  // Step 2: Fallback full-receipt OCR if the screenshot is a non-standard layout
-  const fallbackCanvas = buildNormalizedCanvas(img, { x: 0.05, y: 0.08, w: 0.9, h: 0.72 }, 380);
+  // Step 2: Fallback full-receipt OCR if the screenshot is a non-standard or bill-payment layout
+  const fallbackWidth = Math.max(480, Math.min(720, (img.naturalWidth || 380) * 2));
+  const fallbackCanvas = buildNormalizedCanvas(
+    img,
+    { x: 0.03, y: 0.04, w: 0.94, h: 0.78 },
+    fallbackWidth,
+  );
   const fullResult = await recognizeCanvasFast(fallbackCanvas);
   return extractAmountFromFullText(fullResult?.data?.text || "");
 }
