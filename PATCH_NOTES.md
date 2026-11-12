@@ -404,3 +404,6 @@
 - **Fix Clipped `₹` Prefix & Partial `paid` Match (`frontend/src/pages/Expense.jsx`)**:
   - Clamped `dx0` in `buildPureHeroDigitsCanvas` to `colRuns[0].x1 + 1` when `hasSuperscriptRupee` is true so no trailing pixels of the `₹` symbol leak into `pureDigitsCanvas`.
   - Tightened `paidMatch` and `totalMatch` boundaries in `extractAmountFromFullText` and joined `TextDetector` blocks so partial digit fragments (like `2` from `%S32.72 paid`) are never returned over the full `532.72` total.
+
+- **Cross-Verify Hero Amount Against Full-Receipt Total (`frontend/src/pages/Expense.jsx`)**:
+  - Relaxed `hasSuperscriptRupee` height/baseline thresholds (`0.90` / `0.08`) in `buildPureHeroDigitsCanvas` and added Step 2 cross-verification in `detectAmountFromScreenshot` whenever a hero candidate has 4+ integer digits starting with `1`, `2`, `3`, or `7` so a misread `₹` prefix (e.g. `2532.72` vs `Total amount ₹532.72`) resolves to `532.72`.

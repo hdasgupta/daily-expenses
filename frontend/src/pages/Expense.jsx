@@ -258,7 +258,7 @@ function buildPureHeroDigitsCanvas(img) {
     const maxCh = Math.max(...tallCols.map((cr) => cr.ch));
     const maxCy1 = Math.max(...tallCols.map((cr) => cr.cy1));
     const first = colRuns[0];
-    const hasSuperscriptRupee = first.ch < maxCh * 0.85 || maxCy1 - first.cy1 > maxCh * 0.12;
+    const hasSuperscriptRupee = first.ch < maxCh * 0.9 || maxCy1 - first.cy1 > maxCh * 0.08;
 
     candidates.push({
       by0,
@@ -483,6 +483,7 @@ async function detectAmountFromScreenshot(file) {
   const img = await loadImageElement(file);
 
   // Step 1: Isolate the pure hero digits canvas (with the shorter superscript '₹' column removed!)
+  let heroCandidate = null;
   const pureDigitsCanvas = buildPureHeroDigitsCanvas(img);
   if (pureDigitsCanvas) {
     if (typeof window !== "undefined" && "TextDetector" in window) {
@@ -495,26 +496,35 @@ async function detectAmountFromScreenshot(file) {
           .join("")
           .replace(/(\d)\s*\.\s*(\d)/g, "$1.$2");
         const joinedVal = parseStrictCurrencyNumber(joined);
-        if (joinedVal !== null) return joinedVal;
+        if (joinedVal !== null) heroCandidate = joinedVal;
       } catch {
         // Continue to Tesseract worker
       }
     }
 
-    const pureResult = await recognizeCanvasFast(pureDigitsCanvas);
-    const pureText = String(pureResult?.data?.text || "")
-      .replace(/(\d)\s*\.\s*(\d)/g, "$1.$2")
-      .trim();
-    const tokenMatch = pureText.match(/([1-9][0-9,]*(?:\.[0-9]{1,2})?)/);
-    if (tokenMatch) {
-      const val = parseStrictCurrencyNumber(tokenMatch[1]);
-      if (val !== null) {
-        return val;
+    if (heroCandidate === null) {
+      const pureResult = await recognizeCanvasFast(pureDigitsCanvas);
+      const pureText = String(pureResult?.data?.text || "")
+        .replace(/(\d)\s*\.\s*(\d)/g, "$1.$2")
+        .trim();
+      const tokenMatch = pureText.match(/([1-9][0-9,]*(?:\.[0-9]{1,2})?)/);
+      if (tokenMatch) {
+        const val = parseStrictCurrencyNumber(tokenMatch[1]);
+        if (val !== null) heroCandidate = val;
       }
     }
   }
 
-  // Step 2: Fallback full-receipt OCR if the screenshot is a non-standard or bill-payment layout
+  // If heroCandidate is clean and has < 4 integer digits (or doesn't start with 1/2/3/7), return immediately
+  const heroIntStr = heroCandidate !== null ? String(Math.floor(heroCandidate)) : "";
+  if (
+    heroCandidate !== null &&
+    (heroIntStr.length < 4 || !/^[1237]/.test(heroIntStr))
+  ) {
+    return heroCandidate;
+  }
+
+  // Step 2: Full-receipt OCR fallback / cross-verification (catches '₹' misread as leading 1/2/3/7, e.g. 2532.72 -> 532.72)
   const fallbackWidth = Math.max(480, Math.min(720, (img.naturalWidth || 380) * 2));
   const fallbackCanvas = buildNormalizedCanvas(
     img,
@@ -522,7 +532,18 @@ async function detectAmountFromScreenshot(file) {
     fallbackWidth,
   );
   const fullResult = await recognizeCanvasFast(fallbackCanvas);
-  return extractAmountFromFullText(fullResult?.data?.text || "");
+  const fallbackVal = extractAmountFromFullText(fullResult?.data?.text || "");
+
+  if (heroCandidate !== null && fallbackVal !== null) {
+    const heroStr = String(heroCandidate);
+    const fallbackStr = String(fallbackVal);
+    if (heroStr.length === fallbackStr.length + 1 && heroStr.endsWith(fallbackStr)) {
+      return fallbackVal;
+    }
+    return heroCandidate;
+  }
+
+  return heroCandidate ?? fallbackVal;
 }
 
 function formatExpenseDate(value) {
