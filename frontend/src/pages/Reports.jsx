@@ -256,7 +256,7 @@ function calculateDisplayTotal(rows) {
       continue;
     }
 
-    const amountValue = row.report_amount ?? row.share_price ?? row.amount;
+    const amountValue = row.report_amount ?? row.share_price ?? row.amount ?? row.expense_amount;
     const amount =
       amountValue !== null && amountValue !== undefined && amountValue !== ""
         ? Number(amountValue)
@@ -1082,7 +1082,7 @@ export default function Reports({ user }) {
           Run report
         </button>
 
-        {config.summarise ? (
+        {config.summarise && config.groupBy.length > 0 ? (
           <button
             className="secondary"
             type="button"
@@ -1131,7 +1131,7 @@ export default function Reports({ user }) {
         </button>
       </div>
 
-      {showChart && result?.rows?.length
+      {showChart && config.groupBy.length > 0 && result?.rows?.length
         ? (() => {
             const chartModel = buildReportChartModel(result);
             return (

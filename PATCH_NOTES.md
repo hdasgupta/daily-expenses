@@ -385,3 +385,11 @@
   - Replaced boilerplate outline entries (`static-0647` *Besan Chilla*, `static-0620` *Masala Besan Chilla*, `static-0611` *Vegetable Besan Chilla*, `static-0317` *Dhokla*, `static-0377` *Khandvi*, `static-0855` *Besan Ladoo*, and `static-0877` *Mysore Pak*) with detailed, authentic culinary recipes.
 - **Catalogue Verification & Alphabetical Sorting**:
   - Sorted all **1,528** recipes strictly alphabetically by name from A to Z with zero duplicate IDs and zero duplicate names.
+
+
+## 26. Unsplit Raw Report Mode When No Group By Is Applied (With or Without Summarise)
+- **Per-Expense Raw Report SQL (`backend/scripts/sql/reportSql.js`)**:
+  - Updated `sourcePerExpense` and `rawSelectPerExpense` to group by `e.id` so each expense is returned as a single unsplit row with its full `total_cost` (`expense_amount`) and all survivor shares aggregated onto separate lines (`\n`) in the `share` column (`<Survivor Name>: ₹<Amount> (<Percentage>%)`).
+  - Preserved `sourcePerSurvivor` for grouped reports (`config.groupBy.length > 0`) so survivor-level groupings and summaries continue to use each survivor's resolved share amount.
+- **Report Execution & PDF Export (`backend/src/services/reportService.js`, `backend/src/services/reportPdfService.js`, `frontend/src/pages/Reports.jsx`)**:
+  - Updated `runReport` and `buildReportPdfData` so that whenever no `Group by` is selected (`!config.groupBy.length`)—both when no filter/sort/group by/summarise is applied and when `Summarise` is enabled without `Group by`—the report displays the unsplit raw expense report (`mode: "raw"`).

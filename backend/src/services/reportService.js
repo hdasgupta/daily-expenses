@@ -241,13 +241,22 @@ export async function runReport(input) {
    * Consequently every visible expense row represents only that survivor's
    * share and the original total_cost is never repeated across survivors.
    */
-  const cte = reportSql.sourcePerExpense;
   const params = [];
   const where = addFilter([], params, config.filters, "expense_source");
 
-  if (!config.groupBy.length && !config.summarise) {
+  /*
+   * When no Group By is applied (whether Summarise is unchecked or checked,
+   * and whether filters/sorts are applied or not), show the raw report
+   * without breaking up the share of each survivor into separate rows.
+   */
+  if (!config.groupBy.length) {
     const result = await q(
-      reportSql.raw(cte, reportSql.rawSelectPerExpense, where, detailOrderSql(config)),
+      reportSql.raw(
+        reportSql.sourcePerExpense,
+        reportSql.rawSelectPerExpense,
+        where,
+        detailOrderSql(config),
+      ),
       params,
     );
     const rows = await hydrateRows(result.rows);
@@ -271,18 +280,7 @@ export async function runReport(input) {
     };
   }
 
-  if (!config.groupBy.length && config.summarise) {
-    const result = await q(reportSql.totalSummary(cte, where), params);
-    const total = Number(result.rows[0]?.total || 0);
-
-    return {
-      mode: "summary",
-      columns: ["total"],
-      rows: [{ total }],
-      total,
-      chartData: [{ label: "Total", value: total }],
-    };
-  }
+  const cte = reportSql.sourcePerSurvivor;
 
   /*
    * Grouping without summarise is intentionally a detail report. SQL keeps
@@ -428,7 +426,24 @@ async function resolveCategoryItemFilterLabelsForPdf(config) {
 }
 
 export async function buildReportPdfData(config = {}) {
-  const report = await runReport(config);
+  const clean = cleanConfig(config);
+  const report = await runReport(clean);
+  const categoryItemLabels = await resolveCategoryItemFilterLabelsForPdf(config);
+
+  if (!clean.groupBy.length) {
+    return {
+      ...report,
+      rawRows: report.rows || [],
+      rawColumns: report.columns || [],
+      pdfConfig: {
+        ...config,
+        filters: {
+          ...(config.filters || {}),
+          categoryItemLabels,
+        },
+      },
+    };
+  }
 
   const rawConfig = {
     ...config,
@@ -443,7 +458,6 @@ export async function buildReportPdfData(config = {}) {
   };
 
   const rawReport = await runReport(rawConfig);
-  const categoryItemLabels = await resolveCategoryItemFilterLabelsForPdf(config);
 
   return {
     ...report,

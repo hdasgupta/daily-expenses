@@ -213,6 +213,7 @@ function getRawDumpColumns(rows) {
     "unit",
     "survivor",
     "share",
+    "expense_amount",
     "total_cost",
     "comment",
     "proof_url",
@@ -1361,8 +1362,8 @@ function drawGroupedBarChart(doc, report, config) {
   }
 }
 
-function drawRawDump(doc, rows, config) {
-  doc.addPage();
+function drawRawDump(doc, rows, config, addPageBefore = true) {
+  if (addPageBefore) doc.addPage();
 
   drawSectionTitle(
     doc,
@@ -1460,11 +1461,9 @@ export function buildReportPdfInProcess(report, config = {}) {
         config,
         "Each table below contains the filtered raw records belonging to the group identified above.",
       );
-    } else if (summarise && !groupBy.length) {
-      drawSummaryTotal(doc, report);
     }
 
-    drawRawDump(doc, sourceRows, config);
+    drawRawDump(doc, sourceRows, config, groupBy.length > 0);
 
     doc.end();
   });

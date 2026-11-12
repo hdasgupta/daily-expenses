@@ -1,11 +1,7 @@
 export const reportSql = {
   /*
-   * Report source rows are always split to one row per survivor.
-   *
-   * expense_shares.amount is the resolved share amount produced by the
-   * expense allocation rules (fixed / average / remaining). Keeping the
-   * split at the source-query level prevents the original total_cost from
-   * being repeated for every survivor.
+   * Per-survivor source used when Group By is applied so survivor-level
+   * groupings and summaries reflect each survivor's resolved share amount.
    */
   sourcePerSurvivor: `expense_source AS (
     SELECT
@@ -45,6 +41,11 @@ export const reportSql = {
       ON s.id = es.survivor_id
   )`,
 
+  /*
+   * Per-expense source used for raw reports when no Group By is applied.
+   * Keeps each expense as a single unsplit row with all survivor shares
+   * formatted on separate lines in the share column.
+   */
   sourcePerExpense: `expense_source AS (
     SELECT
       e.id,
@@ -62,14 +63,31 @@ export const reportSql = {
       c.name AS category,
       COALESCE(i.name, e.other_item, 'Total') AS item,
       u.name AS unit,
-      es.survivor_id,
-      COALESCE(s.full_name, 'Unassigned') AS survivor,
-      COALESCE(es.amount, e.total_cost) AS report_amount,
-      CASE
-        WHEN es.survivor_id IS NULL THEN ARRAY[]::bigint[]
-        ELSE ARRAY[es.survivor_id]::bigint[]
-      END AS survivor_ids,
-      COALESCE(es.share_type, 'remaining') AS share_type
+      COALESCE(
+        STRING_AGG(s.full_name, ', ' ORDER BY s.full_name),
+        'Unassigned'
+      ) AS survivor,
+      COALESCE(
+        STRING_AGG(
+          CONCAT(
+            s.full_name,
+            ': ₹',
+            TO_CHAR(es.amount, 'FM9999999990.00'),
+            CASE
+              WHEN e.total_cost > 0 THEN CONCAT(' (', TO_CHAR((es.amount / e.total_cost) * 100, 'FM999999990.00'), '%)')
+              ELSE ''
+            END
+          ),
+          E'\n'
+          ORDER BY s.full_name
+        ) FILTER (WHERE s.id IS NOT NULL),
+        'No survivor share recorded'
+      ) AS share,
+      e.total_cost AS report_amount,
+      COALESCE(
+        ARRAY_AGG(es.survivor_id ORDER BY s.full_name) FILTER (WHERE es.survivor_id IS NOT NULL),
+        ARRAY[]::bigint[]
+      ) AS survivor_ids
     FROM public.expenses e
     JOIN public.categories c
       ON c.id = e.category_id
@@ -81,14 +99,9 @@ export const reportSql = {
       ON es.expense_id = e.id
     LEFT JOIN public.survivors s
       ON s.id = es.survivor_id
+    GROUP BY e.id, c.name, i.name, u.name
   )`,
 
-  /*
-   * Keep the report's existing field set, but make the expense amount the
-   * survivor's split amount. The survivor name is carried by the share
-   * field so a split expense becomes multiple visible expense rows without
-   * repeating the original total_cost.
-   */
   rawSelectPerSurvivor: `
     id AS expense_id,
     expense_date,
@@ -109,19 +122,14 @@ export const reportSql = {
     item,
     quantity,
     unit,
-    CONCAT(survivor, ': ₹', TO_CHAR(report_amount, 'FM9999999990.00')) AS share,
+    share,
     report_amount AS expense_amount,
     comment,
     proof_key
   `,
 
   raw: (cte, select, where, orderSql) =>
-    `WITH ${cte}
-     SELECT ${select}
-     FROM expense_source
-     ${where}
-     ORDER BY ${orderSql}
-     LIMIT 5000`,
+    `WITH ${cte} SELECT ${select} FROM expense_source ${where} ORDER BY ${orderSql} LIMIT 5000`,
 
   where: (clauses) => (clauses.length ? `WHERE ${clauses.join(" AND ")}` : ""),
 
@@ -134,13 +142,26 @@ export const reportSql = {
      ${where}`,
 
   grouped: (cte, select, where, groupBy, orderSql) =>
-    `WITH ${cte}
-     SELECT ${select}
-     FROM expense_source
-     ${where}
-     GROUP BY ${groupBy}
-     ${orderSql ? `ORDER BY ${orderSql}` : ""}
-     LIMIT 5000`,
+    `WITH ${cte} SELECT ${select} FROM expense_source ${where} GROUP BY ${groupBy}${orderSql ? ` ORDER BY ${orderSql}` : ""} LIMIT 5000`,
+
+  groupedOrder: (groupBy = [], sortColumns = [], priceAggregate = "SUM(report_amount)") => {
+    const parts = [];
+    for (const sort of sortColumns) {
+      const dir = sort?.direction === "desc" ? "DESC" : "ASC";
+      if (sort?.column === "price") {
+        parts.push(`${priceAggregate} ${dir}`);
+        continue;
+      }
+      const pos = groupBy.indexOf(sort?.column);
+      if (pos !== -1) {
+        parts.push(`${pos + 1} ${dir}`);
+      } else if (reportSql.groupExpr[sort?.column]) {
+        parts.push(`MIN(${reportSql.groupExpr[sort.column]}) ${dir}`);
+      }
+    }
+    if (parts.length) return parts.join(", ");
+    return groupBy.map((_, index) => `${index + 1} ASC`).join(", ");
+  },
 
   groupedDetail: (cte, select, where, groupBy, groupOrderSql, detailOrderSql) =>
     `WITH ${cte}
