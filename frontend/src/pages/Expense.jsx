@@ -219,7 +219,7 @@ function buildPureHeroDigitsCanvas(img) {
           }
         }
       }
-      if (maxY >= minY) {
+      if (maxY >= minY && cx1 - cx0 + 1 >= 2 && maxY - minY + 1 >= 2) {
         colRuns.push({
           x0: cx0,
           x1: cx1,
@@ -414,7 +414,22 @@ function extractAmountFromFullText(rawText) {
     if (totalMatch) {
       const val = parseStrictCurrencyNumber(totalMatch[1]);
       if (val !== null) {
-        return stripMisreadRupeePrefixAgainstBill(val, extractBillAmountFromText(rawText));
+        const cleanedTotal = stripMisreadRupeePrefixAgainstBill(
+          val,
+          extractBillAmountFromText(rawText),
+        );
+        // Check if another line has the same amount without a leading 1/2/3/7 from '₹'
+        const totalStr = String(cleanedTotal);
+        if (String(Math.floor(cleanedTotal)).length >= 4 && /^[1237]/.test(totalStr)) {
+          const withoutFirst = parseStrictCurrencyNumber(totalStr.slice(1));
+          if (withoutFirst !== null) {
+            const strippedStr = String(withoutFirst);
+            if (lines.some((other) => other !== line && other.includes(strippedStr))) {
+              return withoutFirst;
+            }
+          }
+        }
+        return cleanedTotal;
       }
     }
 
@@ -571,8 +586,19 @@ async function detectAmountFromScreenshot(file) {
   if (cleanedHero !== null && fallbackVal !== null) {
     const heroStr = String(cleanedHero);
     const fallbackStr = String(fallbackVal);
-    if (heroStr.length === fallbackStr.length + 1 && heroStr.endsWith(fallbackStr)) {
+    if (
+      heroStr.length === fallbackStr.length + 1 &&
+      /^[1237]/.test(heroStr) &&
+      heroStr.endsWith(fallbackStr)
+    ) {
       return fallbackVal;
+    }
+    if (
+      fallbackStr.length === heroStr.length + 1 &&
+      /^[1237]/.test(fallbackStr) &&
+      fallbackStr.endsWith(heroStr)
+    ) {
+      return cleanedHero;
     }
     return cleanedHero;
   }
