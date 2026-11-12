@@ -407,3 +407,6 @@
 
 - **Cross-Verify Hero Amount Against Full-Receipt Total (`frontend/src/pages/Expense.jsx`)**:
   - Relaxed `hasSuperscriptRupee` height/baseline thresholds (`0.90` / `0.08`) in `buildPureHeroDigitsCanvas` and added Step 2 cross-verification in `detectAmountFromScreenshot` whenever a hero candidate has 4+ integer digits starting with `1`, `2`, `3`, or `7` so a misread `₹` prefix (e.g. `2532.72` vs `Total amount ₹532.72`) resolves to `532.72`.
+
+- **Bill-Amount Sanity Check for Misread `₹` Prefix (`frontend/src/pages/Expense.jsx`)**:
+  - Added `extractBillAmountFromText` and `stripMisreadRupeePrefixAgainstBill` so that even if OCR misreads `₹` as a leading `1`/`2`/`3`/`7` on both the hero amount and `Total amount` (e.g. `2532.72`), comparing against `Bill amount` (`529.82`) automatically strips the stray leading digit and returns `532.72`.

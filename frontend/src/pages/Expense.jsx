@@ -258,7 +258,7 @@ function buildPureHeroDigitsCanvas(img) {
     const maxCh = Math.max(...tallCols.map((cr) => cr.ch));
     const maxCy1 = Math.max(...tallCols.map((cr) => cr.cy1));
     const first = colRuns[0];
-    const hasSuperscriptRupee = first.ch < maxCh * 0.9 || maxCy1 - first.cy1 > maxCh * 0.08;
+    const hasSuperscriptRupee = first.ch < maxCh * 0.92 || maxCy1 - first.cy1 >= maxCh * 0.06 || first.cy0 > maxCh * 0.08;
 
     candidates.push({
       by0,
@@ -369,6 +369,35 @@ function buildNormalizedCanvas(
   return canvas;
 }
 
+function stripMisreadRupeePrefixAgainstBill(candidate, billAmount) {
+  if (candidate === null || billAmount === null || billAmount <= 0) return candidate;
+  const candStr = String(candidate);
+  const intPart = candStr.split(".")[0];
+  if (intPart.length >= 4 && /^[1237]/.test(intPart) && candidate > billAmount * 1.8) {
+    const stripped = parseStrictCurrencyNumber(candStr.slice(1));
+    if (stripped !== null && stripped >= billAmount * 0.95 && stripped <= billAmount * 1.5) {
+      return stripped;
+    }
+  }
+  return candidate;
+}
+
+function extractBillAmountFromText(rawText) {
+  if (!rawText) return null;
+  const lines = String(rawText)
+    .split(/\r?\n/)
+    .map((l) => l.replace(/(\d)\s*[.,]\s*(\d{2})$/, "$1.$2").replace(/(\d)\s*\.\s*(\d)/g, "$1.$2").trim())
+    .filter(Boolean);
+  for (const line of lines) {
+    const m = line.match(/\bbill\s*amount\b[^0-9₹$a-zA-Z]*(?:[₹$%?ftzFrR]\s*)?([1-9][0-9,]*(?:\.[0-9]{1,2})?)/i);
+    if (m) {
+      const val = parseStrictCurrencyNumber(m[1]);
+      if (val !== null) return val;
+    }
+  }
+  return null;
+}
+
 function extractAmountFromFullText(rawText) {
   if (!rawText) return null;
   const lines = String(rawText)
@@ -384,7 +413,9 @@ function extractAmountFromFullText(rawText) {
     );
     if (totalMatch) {
       const val = parseStrictCurrencyNumber(totalMatch[1]);
-      if (val !== null) return val;
+      if (val !== null) {
+        return stripMisreadRupeePrefixAgainstBill(val, extractBillAmountFromText(rawText));
+      }
     }
 
     const paidMatch = line.match(
@@ -532,18 +563,21 @@ async function detectAmountFromScreenshot(file) {
     fallbackWidth,
   );
   const fullResult = await recognizeCanvasFast(fallbackCanvas);
-  const fallbackVal = extractAmountFromFullText(fullResult?.data?.text || "");
+  const fullText = fullResult?.data?.text || "";
+  const billAmount = extractBillAmountFromText(fullText);
+  const fallbackVal = extractAmountFromFullText(fullText);
+  const cleanedHero = stripMisreadRupeePrefixAgainstBill(heroCandidate, billAmount);
 
-  if (heroCandidate !== null && fallbackVal !== null) {
-    const heroStr = String(heroCandidate);
+  if (cleanedHero !== null && fallbackVal !== null) {
+    const heroStr = String(cleanedHero);
     const fallbackStr = String(fallbackVal);
     if (heroStr.length === fallbackStr.length + 1 && heroStr.endsWith(fallbackStr)) {
       return fallbackVal;
     }
-    return heroCandidate;
+    return cleanedHero;
   }
 
-  return heroCandidate ?? fallbackVal;
+  return cleanedHero ?? fallbackVal;
 }
 
 function formatExpenseDate(value) {
