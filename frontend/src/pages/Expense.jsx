@@ -274,9 +274,11 @@ function buildPureHeroDigitsCanvas(img) {
   if (!candidates.length) return null;
   candidates.sort((a, b) => b.score - a.score);
   const chosen = candidates[0];
-  const { by0, by1, digitRuns } = chosen;
+  const { by0, by1, colRuns, hasSuperscriptRupee, digitRuns } = chosen;
 
-  const dx0 = Math.max(0, digitRuns[0].x0 - 6);
+  const dx0 = hasSuperscriptRupee
+    ? Math.max(colRuns[0].x1 + 1, digitRuns[0].x0 - 2)
+    : Math.max(0, digitRuns[0].x0 - 6);
   const dx1 = Math.min(w, digitRuns[digitRuns.length - 1].x1 + 7);
   const dy0 = Math.max(0, by0 - 6);
   const dy1 = Math.min(h, by1 + 7);
@@ -378,7 +380,7 @@ function extractAmountFromFullText(rawText) {
   let paymentOfRaw = null;
   for (const line of lines) {
     const totalMatch = line.match(
-      /\b(?:total\s*amount|grand\s*total|total\s*payable|amount\s*paid|you\s*paid)\b[^0-9₹$]*[₹$%?ftzFrR]?\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)/i,
+      /\b(?:total\s*amount|grand\s*total|total\s*payable|amount\s*paid|you\s*paid)\b[^0-9₹$a-zA-Z]*(?:[₹$%?ftzFrR]\s*)?([1-9][0-9,]*(?:\.[0-9]{1,2})?)(?=\s|$)/i,
     );
     if (totalMatch) {
       const val = parseStrictCurrencyNumber(totalMatch[1]);
@@ -386,7 +388,7 @@ function extractAmountFromFullText(rawText) {
     }
 
     const paidMatch = line.match(
-      /[₹$%?ftzFrR]?\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*\bpaid\b/i,
+      /(?:^|[\s₹$])[₹$]?\s*([1-9][0-9,]*(?:\.[0-9]{1,2})?)\s+\bpaid\b/i,
     );
     if (paidMatch) {
       const val = parseStrictCurrencyNumber(paidMatch[1]);
@@ -487,10 +489,13 @@ async function detectAmountFromScreenshot(file) {
       try {
         const detector = new window.TextDetector();
         const blocks = await detector.detect(pureDigitsCanvas);
-        for (const b of blocks || []) {
-          const val = parseStrictCurrencyNumber(b?.rawValue);
-          if (val !== null) return val;
-        }
+        const joined = (blocks || [])
+          .map((b) => String(b?.rawValue || "").trim())
+          .filter(Boolean)
+          .join("")
+          .replace(/(\d)\s*\.\s*(\d)/g, "$1.$2");
+        const joinedVal = parseStrictCurrencyNumber(joined);
+        if (joinedVal !== null) return joinedVal;
       } catch {
         // Continue to Tesseract worker
       }

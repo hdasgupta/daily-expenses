@@ -400,3 +400,7 @@
   - Updated `buildPureHeroDigitsCanvas` to compute `minHeroHeight` relative to screen width (`Math.min(w, h)`) rather than total scrolling height `h`, scan from `y = 4%` to `55%`, and upscale small hero digit crops (`ch < 60`) up to 3x so decimal points and digits on narrow/tall bill-payment screenshots (e.g., `227×1000` `₹532.72`) remain sharp for OCR.
 - **Bill Breakdown Total Parsing (`frontend/src/pages/Expense.jsx`)**:
   - Enhanced `extractAmountFromFullText` and `detectAmountFromScreenshot` to prioritize `Total amount`, `Grand total`, `Amount paid`, and `₹X paid` lines as well as hero amounts above `Completed` (even without a `To <Name>` header), while skipping sub-item lines (`Bill amount`, `Platform fee`, `Convenience fee`, `GST`) so the final paid total (`532.72`) is extracted instead of pre-fee amounts (`529.82`).
+
+- **Fix Clipped `₹` Prefix & Partial `paid` Match (`frontend/src/pages/Expense.jsx`)**:
+  - Clamped `dx0` in `buildPureHeroDigitsCanvas` to `colRuns[0].x1 + 1` when `hasSuperscriptRupee` is true so no trailing pixels of the `₹` symbol leak into `pureDigitsCanvas`.
+  - Tightened `paidMatch` and `totalMatch` boundaries in `extractAmountFromFullText` and joined `TextDetector` blocks so partial digit fragments (like `2` from `%S32.72 paid`) are never returned over the full `532.72` total.
