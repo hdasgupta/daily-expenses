@@ -7,6 +7,7 @@ import {
   Database,
   FileBarChart,
   Gauge,
+  IndianRupee,
   KeyRound,
   LogOut,
   MapPin,
@@ -33,7 +34,7 @@ const navItems = [
     group: "Add Data",
     path: "/add-expense",
     label: "Add Expense",
-    icon: ClipboardList,
+    icon: IndianRupee,
     permission: "add-expense",
   },
   {

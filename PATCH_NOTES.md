@@ -410,3 +410,8 @@
 
 - **Bill-Amount Sanity Check for Misread `₹` Prefix (`frontend/src/pages/Expense.jsx`)**:
   - Added `extractBillAmountFromText` and `stripMisreadRupeePrefixAgainstBill` so that even if OCR misreads `₹` as a leading `1`/`2`/`3`/`7` on both the hero amount and `Total amount` (e.g. `2532.72`), comparing against `Bill amount` (`529.82`) automatically strips the stray leading digit and returns `532.72`.
+
+
+## 28. Navigation Drawer Rupee Icon for Add Expense
+- **Navigation Panel Icon (`frontend/src/components/Layout.jsx`)**:
+  - Updated the **Add Expense** (`/add-expense`) navigation item to use `IndianRupee` (`₹`) from `lucide-react` instead of `ClipboardList`.
