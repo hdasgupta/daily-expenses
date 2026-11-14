@@ -415,3 +415,8 @@
 ## 28. Navigation Drawer Rupee Icon for Add Expense
 - **Navigation Panel Icon (`frontend/src/components/Layout.jsx`)**:
   - Updated the **Add Expense** (`/add-expense`) navigation item to use `IndianRupee` (`₹`) from `lucide-react` instead of `ClipboardList`.
+
+
+## 29. Navigation Drawer Bulk Upload Icons
+- **Bulk Upload Icons (`frontend/src/components/Layout.jsx`)**:
+  - Updated **Bulk upload categories/items** (`/bulk-upload-categories-items`) to use `FolderUp` and **Bulk upload expenses** (`/bulk-upload-expenses`) to use `FileSpreadsheet` from `lucide-react`.
