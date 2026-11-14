@@ -443,3 +443,28 @@
   17. *Palak Masala Rice / Spinach Corn Pulao* (`static-1812`)
   18. *Methi Masala Rice / Methi Pulao* (`static-1813`)
 - **Catalogue Verification**: Sorted all **1,546** recipes strictly alphabetically by name with zero duplicate IDs or duplicate names.
+
+
+## 31. Mysore Bonda, Bajji, Punugulu & Vada Catalogue Expansion (`recipes.json` & `expandedStarterRecipes.js`)
+- **Added 20 Authentic Bonda & Related Fritter Recipes** (`static-1814`–`static-1833`):
+  1. *Mysore Bonda / Mysore Bajji* (`static-1814`)
+  2. *Mangalore Bajji / Goli Baje* (`static-1815`)
+  3. *Andhra Challapunugulu / Sour Buttermilk Punugulu* (`static-1816`)
+  4. *Instant Rava Bonda / Suji Curd Bonda* (`static-1817`)
+  5. *Godhuma Bonda / Whole Wheat Flour Mysore Bonda* (`static-1818`)
+  6. *Mangalore Buns* (`static-1819`)
+  7. *South Indian Urulai Kizhangu Bonda / Aloo Bonda* (`static-1820`)
+  8. *Vegetable Bonda / Mixed Veg Bonda* (`static-1821`)
+  9. *Vengaya Bonda / South Indian Onion Bonda* (`static-1822`)
+  10. *Keerai Bonda / Palak Mysore Bonda* (`static-1823`)
+  11. *Mutta Bonda / South Indian Egg Bonda* (`static-1824`)
+  12. *Kerala Pazham Bonda / KaiVada* (`static-1825`)
+  13. *Bengali Phuluri / Teler Bora* (`static-1826`)
+  14. *Maddur Vada* (`static-1827`)
+  15. *Sabudana Vada* (`static-1828`)
+  16. *Balekai Bajji / Vazhakkai Bajji* (`static-1829`)
+  17. *Ulli Bajji / Crispy Onion Ring & Slice Bajji* (`static-1830`)
+  18. *Capsicum Bajji / Kudaimilagai Bajji* (`static-1831`)
+  19. *Bread Bonda / Stuffed Masala Aloo Bread Bonda* (`static-1832`)
+  20. *Instant Rava Medu Vada / Crispy Suji-Curd Donut Vada* (`static-1833`)
+- **Catalogue Verification**: Sorted all **1,566** recipes strictly alphabetically by name with zero duplicate IDs or duplicate names.

@@ -3820,6 +3820,80 @@
     "notes": "Popular quick protein street snack served across Kathmandu cafes and local bhattis."
   },
   {
+    "id": "static-1816",
+    "name": "Andhra Challapunugulu / Sour Buttermilk Punugulu (Crispy Bite-Sized Maida, Rice Flour & Curd Street Fritters)",
+    "category": "Snacks",
+    "region": "Andhra",
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Maida (all-purpose flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "1/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick sour buttermilk or whisked sour curd",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Finely chopped green chillies, grated ginger & curry leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds (jeera)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whip sour buttermilk and flour batter",
+        "text": "Combine maida, rice flour, cumin seeds, salt, and sour buttermilk in a bowl. Beat well by hand for 4 minutes until smooth and thick; cover and rest for 30 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Fold in chopped onions and aromatics",
+        "text": "Mix in finely chopped onion, green chillies, grated ginger, curry leaves, and baking soda right before frying.",
+        "minutes": 3
+      },
+      {
+        "section": "Fry bite-sized crispy punugulu",
+        "text": "Drop small bite-sized pearls of batter into medium-hot oil and fry until crisp and golden brown. Serve piping hot with peanut chutney or spicy tomato-red chilli chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Popular Vijayawada and Guntur evening street snack made instantly without idli-dosa batter."
+  },
+  {
     "id": "static-1018",
     "name": "Andhra Royyala Iguru (Spicy Andhra Prawn Masala)",
     "category": "Prawns",
@@ -5258,6 +5332,75 @@
       }
     ],
     "notes": "Classic Italian-American comfort baked pasta; letting it rest for 10 minutes after baking allows the layers to set cleanly for slicing."
+  },
+  {
+    "id": "static-1829",
+    "name": "Balekai Bajji / Vazhakkai Bajji (South Indian Crispy Spiced Besan-Rice Batter Fried Raw Banana Fritters)",
+    "category": "Fritters",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Raw green bananas / plantains (peeled & sliced lengthwise into thin planks)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crispness)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & asafoetida (hing)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric & cumin powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda & 1 tsp hot oil",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slice raw bananas in salted water",
+        "text": "Peel the green skin of raw bananas and slice lengthwise into 1/8-inch thin slices; soak briefly in salted water so they do not darken, then pat dry on a cloth.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk smooth besan-rice bajji batter",
+        "text": "Whisk besan, rice flour, ajwain, hing, Kashmiri red chilli, turmeric, cumin powder, baking soda, salt, 1 tsp hot oil, and water into a smooth, ribbon-thick batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip and puff-fry golden",
+        "text": "Coat each raw banana slice evenly in the batter, scrape off excess drip against the bowl rim, and slide into hot oil. Spoon hot oil on top so the bajjis puff up crisp and golden. Serve with coconut chutney.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Classic Marina Beach and Udupi tea-time bajji."
   },
   {
     "id": "static-1375",
@@ -8409,6 +8552,75 @@
       }
     ],
     "notes": "The quintessential everyday rainy-day Bengali household comfort meal, typically paired with crispy fried omelette or begun bhaja."
+  },
+  {
+    "id": "static-1826",
+    "name": "Bengali Phuluri / Teler Bora (Fluffy Hand-Whipped Besan, Onion, Kalo Jeere & Posto Monsoon Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fine besan (gram flour, sifted)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Rice flour (or poppy seeds / posto for crunch)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped onion & green chillies",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Nigella seeds (kalo jeere)",
+        "quantity": "3/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric & Kashmiri red chilli powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Fresh coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whip besan batter by hand until it floats on water",
+        "text": "Whisk sifted besan, rice flour, turmeric, red chilli, baking soda, salt, and water vigorously by hand for 5–6 minutes until pale and airy (a tiny drop of batter should float in a bowl of water).",
+        "minutes": 7
+      },
+      {
+        "section": "Fold in kalo jeere, posto, and chillies",
+        "text": "Stir in kalo jeere, posto (if using), finely chopped onion, green chillies, and coriander.",
+        "minutes": 3
+      },
+      {
+        "section": "Fry puffed golden phuluris in mustard oil",
+        "text": "Drop small round dollops into medium-hot mustard oil; they will immediately puff into light, hollow-centered golden spheres. Serve hot with muri (puffed rice) and kasundi.",
+        "minutes": 10
+      }
+    ],
+    "notes": "The Bengali cousin of Mysore Bonda—whipping besan by hand until a drop floats in water guarantees feather-light phuluris."
   },
   {
     "id": "static-1782",
@@ -12712,6 +12924,70 @@
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1832",
+    "name": "Bread Bonda / Stuffed Masala Aloo Bread Bonda (Spiced Potato-Pea Stuffed Bread Spheres Deep-Fried Crisp)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sandwich bread slices (crusts trimmed)",
+        "quantity": "8",
+        "unit": "slices"
+      },
+      {
+        "name": "Boiled & mashed potatoes",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Boiled green peas, finely chopped onion & coriander",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & cumin seeds",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Amchur powder, red chilli, coriander powder & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Water/milk (for moistening bread) & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare tangy aloo-matar stuffing",
+        "text": "Temper cumin, ginger, and green chillies in 1 tbsp oil, saute onion and green peas, then mash in boiled potatoes, red chilli, coriander powder, amchur, garam masala, fresh coriander, and salt. Shape into 8 small balls.",
+        "minutes": 8
+      },
+      {
+        "section": "Wrap potato balls in moistened bread",
+        "text": "Briefly dip one side of a bread slice in water, press gently between palms to squeeze out excess water, place a spiced potato ball in the center, and mold the bread tightly around it into a smooth sphere. Let sit 5 minutes to surface-dry.",
+        "minutes": 7
+      },
+      {
+        "section": "Deep-fry until golden and crunchy",
+        "text": "Fry the bread bondas in medium-hot oil until evenly golden brown and super crisp. Serve with green mint chutney and sweet tamarind chutney.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Resting the shaped bread balls for 5 minutes before frying dries the outer surface so they absorb minimal oil and turn ultra-crisp."
+  },
+  {
     "id": "static-0954",
     "name": "Bread Butter and Jam Sandwich",
     "category": "Sandwiches",
@@ -13874,6 +14150,75 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1831",
+    "name": "Capsicum Bajji / Kudaimilagai Bajji (Crisp Ajwain & Gram Flour Batter-Fried Bell Pepper Rings & Wedges)",
+    "category": "Fritters",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Firm green bell peppers (capsicum, deseeded & cut into thick rings or wedges)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), sesame seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric & amchur powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt & chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk sesame-ajwain besan batter",
+        "text": "Whisk besan, rice flour, ajwain, white sesame seeds, hing, red chilli, turmeric, amchur, baking soda, salt, and water into a thick, glossy batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat capsicum and deep-fry",
+        "text": "Pat capsicum wedges or rings dry, dip into the batter, and deep-fry in medium-hot oil for 3–4 minutes until golden and crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Serve hot",
+        "text": "Sprinkle chaat masala and serve immediately with green chutney.",
+        "minutes": 2
+      }
+    ],
+    "notes": "White sesame seeds and carom seeds in the batter pair wonderfully with the sweet crunch of bell peppers."
   },
   {
     "id": "static-1652",
@@ -35272,6 +35617,80 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1818",
+    "name": "Godhuma Bonda / Whole Wheat Flour Mysore Bonda (Healthy Atta, Rice Flour, Sour Curd & Onion-Herb Fritters)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Whole wheat flour (atta)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crispness)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sour curd (dahi)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies, curry leaves & coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds & carom seeds (ajwain)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whip atta, rice flour, and curd batter",
+        "text": "Combine whole wheat flour, rice flour, sour curd, cumin, ajwain, salt, and 1/3 cup water. Beat vigorously by hand for 4–5 minutes to aerate, then rest covered for 20 minutes.",
+        "minutes": 7
+      },
+      {
+        "section": "Fold in onions and herbs",
+        "text": "Stir in finely chopped onion, grated ginger, green chillies, curry leaves, coriander, and baking soda.",
+        "minutes": 3
+      },
+      {
+        "section": "Deep-fry golden brown",
+        "text": "Drop round portions into medium-hot oil with wet fingers and fry on medium heat until deep golden and cooked through.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Maida-free whole-wheat variation of Mysore Bonda with a nutty aroma and light, airy crumb."
+  },
+  {
     "id": "static-0847",
     "name": "Gokul Pithe",
     "category": "Sweets",
@@ -38847,6 +39266,154 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1817",
+    "name": "Instant Rava Bonda / Suji Curd Bonda (Crispy Semolina, Rice Flour, Yogurt, Onion & Cashew Round Fritters)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fine semolina (barik suji / rava)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour & maida",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whisked sour curd (dahi)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, grated carrot & chopped cashews",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies, curry leaves & coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, crushed black pepper & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak suji in curd to hydrate",
+        "text": "Mix semolina, rice flour, maida, sour curd, salt, and 1/4 cup water in a bowl. Cover and rest for 15 minutes so the rava swells and softens.",
+        "minutes": 15
+      },
+      {
+        "section": "Beat in aromatics and baking soda",
+        "text": "Add finely chopped onion, grated carrot, cashews, ginger, green chillies, curry leaves, coriander, cumin, pepper, hing, and baking soda; beat by hand for 2 minutes into a dropping-consistency batter.",
+        "minutes": 4
+      },
+      {
+        "section": "Deep-fry crunchy rava bondas",
+        "text": "Drop small round spoonfuls into medium-hot oil and fry until crunchy golden on the outside and soft inside. Serve hot with coconut chutney.",
+        "minutes": 11
+      }
+    ],
+    "notes": "Ready in 25 minutes with zero fermentation—semolina gives an extra crunchy exterior."
+  },
+  {
+    "id": "static-1833",
+    "name": "Instant Rava Medu Vada / Crispy Suji-Curd Donut Vada (Spiced Semolina, Sour Curd, Ginger, Pepper & Curry Leaf Vadas)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fine semolina (rava / suji)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sour curd (dahi) + 3/4 cup water",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, grated ginger & green chillies",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Crushed black peppercorns, cumin seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Finely chopped curry leaves & fresh coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for cooking dough & deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook rava-curd dough or soak thick batter",
+        "text": "Whisk sour curd and 3/4 cup water in a pan, add cumin, crushed pepper, hing, ginger, green chillies, curry leaves, and salt; bring to a simmer, stir in rava and rice flour on low flame for 2–3 minutes until it forms a soft dough ball, and cool slightly.",
+        "minutes": 8
+      },
+      {
+        "section": "Knead with onion and shape donut vadas",
+        "text": "Knead the warm dough with finely chopped onion, coriander, baking soda, and 1 tsp oil until smooth. Grease palms, shape into flattened rounds, and poke a neat hole in the center with a wet finger.",
+        "minutes": 6
+      },
+      {
+        "section": "Deep-fry until golden and crunchy",
+        "text": "Slide the vadas into medium-hot oil and fry on medium heat until crisp and golden brown on both sides. Serve hot with sambar and coconut chutney.",
+        "minutes": 11
+      }
+    ],
+    "notes": "Gives the authentic donut shape, pepper-curry leaf aroma, and crunch of Medu Vada in 30 minutes with zero dal soaking or grinding."
   },
   {
     "id": "static-0794",
@@ -43429,6 +43996,80 @@
     "notes": "Make sure the cooked keema has zero moisture and is completely cool before stuffing."
   },
   {
+    "id": "static-1823",
+    "name": "Keerai Bonda / Palak Mysore Bonda (Spiced Spinach, Sour Curd, Gram Flour & Rice Flour Crispy Round Fritters)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Finely shredded fresh spinach or amaranth greens (keerai)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour) & maida (1/2 cup each)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sour curd (dahi)",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, grated ginger & green chillies",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin seeds, crushed black pepper & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat curd-flour base and fold in greens",
+        "text": "Beat besan, maida, rice flour, sour curd, cumin, pepper, hing, and salt with a splash of water for 3 minutes until fluffy. Fold in finely shredded greens, chopped onion, ginger, green chillies, and baking soda.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry emerald-flecked bondas",
+        "text": "Drop round spoonfuls into medium-hot oil and fry on medium heat for 4–5 minutes until crisp and golden brown.",
+        "minutes": 12
+      },
+      {
+        "section": "Serve hot",
+        "text": "Serve piping hot with coconut chutney or mint chutney.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Combines the airy sour-curd crumb of Mysore Bonda with iron-rich leafy greens."
+  },
+  {
     "id": "static-1049",
     "name": "Kerala Chemmeen Roast (Nadan Spicy Prawn Fry)",
     "category": "Prawns",
@@ -43560,6 +44201,75 @@
       }
     ],
     "notes": "Spicy, aromatic Kerala toddy-shop style Meen Mutta Roast."
+  },
+  {
+    "id": "static-1825",
+    "name": "Kerala Pazham Bonda / KaiVada (Sweet Ripe Banana, Jaggery, Coconut, Cardamom & Rice-Flour Fritters)",
+    "category": "Snacks",
+    "region": "Kerala",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Ripe nendran or robusta bananas (mashed by hand)",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Whole wheat flour (atta) or maida",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated jaggery (melted in 1/4 cup warm water & strained)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh grated coconut & tiny coconut bites (thenga kothu, fried in ghee)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Black sesame seeds, cardamom powder & dry ginger powder (chukku)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda & pinch of salt",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coconut oil (for frying)",
+        "quantity": "for frying",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mash bananas with jaggery syrup and spices",
+        "text": "Mash ripe bananas thoroughly in a bowl, then mix in warm strained jaggery syrup, ghee-fried coconut bits, grated coconut, sesame seeds, cardamom powder, dry ginger powder, baking soda, and a pinch of salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Fold in flour to form thick batter",
+        "text": "Fold in wheat flour/maida and rice flour, beating by hand for 2 minutes into a thick, scoopable bonda batter.",
+        "minutes": 4
+      },
+      {
+        "section": "Fry in coconut oil until caramelized",
+        "text": "Drop round spoonfuls into medium-low coconut oil and fry slowly until deep mahogany-golden outside and soft and fragrant inside.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Kerala tea-shop classic ('Pazham Bonda' / 'Unniyappam-style bonda') made without any grinder."
   },
   {
     "id": "static-1050",
@@ -50660,6 +51370,75 @@
     "notes": "The famous Andhra delicacy from Tapeswaram: shatteringly crisp pastry layers that gush with sweet syrup with every bite."
   },
   {
+    "id": "static-1827",
+    "name": "Maddur Vada (Karnataka Crispy Layered Rice Flour, Semolina, Maida, Onion & Curry Leaf Flat Discs)",
+    "category": "Snacks",
+    "region": "Karnataka",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Rice flour",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fine semolina (rava / suji)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Maida (all-purpose flour)",
+        "quantity": "1/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely sliced onions",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped curry leaves, coriander & green chillies",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "White sesame seeds (til), crushed peanuts & hing",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Smoking-hot oil or ghee (3 tbsp for dough) + oil for frying",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rub flours with smoking-hot oil and onions",
+        "text": "Mix rice flour, rava, maida, sesame seeds, crushed peanuts, hing, and salt; pour 3 tbsp smoking-hot oil over the flour and rub until crumbly. Add sliced onions, green chillies, curry leaves, and coriander, squeezing to release onion juices.",
+        "minutes": 7
+      },
+      {
+        "section": "Bind stiff dough and pat into thin discs",
+        "text": "Sprinkle warm water in small splashes to form a firm, non-sticky dough. Divide into balls and pat on greased parchment or banana leaf into 3.5-inch flat discs.",
+        "minutes": 6
+      },
+      {
+        "section": "Deep-fry on medium-low flame until flaky and crisp",
+        "text": "Fry in medium-hot oil, turning occasionally for 5–6 minutes until deep golden brown and crunchy throughout. Serve with coconut chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Famous railway-station snack from Maddur between Bengaluru and Mysuru—requires only pre-ground flours and no blender."
+  },
+  {
     "id": "static-1799",
     "name": "Maharashtrian Masala Bhat (Spiced Basmati / Kolam Rice with Tindora, Brinjal, Green Peas, Cashews & Goda Masala)",
     "category": "Rice",
@@ -51268,6 +52047,154 @@
       }
     ],
     "notes": "Coastal Maharashtrian specialty known for its smoky roasted coconut vatan and tangy kokum."
+  },
+  {
+    "id": "static-1815",
+    "name": "Mangalore Bajji / Goli Baje (Coastal Karnataka Spongy Sour-Curd, Maida, Besan & Ginger-Curry Leaf Fritters)",
+    "category": "Snacks",
+    "region": "Karnataka",
+    "prepMinutes": 45,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Maida (all-purpose flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour, for nutty golden color & softness)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sour curd (dahi)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely grated ginger & finely chopped green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped curry leaves, coriander & cumin seeds",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar (traditional coastal touch) & pinch of hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coconut oil or groundnut oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat elastic curd-flour batter by hand",
+        "text": "Whisk sour curd, sugar, salt, and hing in a bowl. Add maida, besan, rice flour, grated ginger, green chillies, curry leaves, and cumin. Beat vigorously with your hand for 4–5 minutes into a thick, sticky, stretchy batter (no extra water needed if curd is moist).",
+        "minutes": 7
+      },
+      {
+        "section": "Rest and fold in baking soda",
+        "text": "Rest the covered batter for 45 minutes to 1 hour. Right before frying, sprinkle baking soda and beat gently for 1 minute.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry puffy golden goli baje",
+        "text": "With wet fingers, pinch marble-to-golf-ball-sized portions into medium-hot oil; they will puff into round spheres and flip on their own. Fry on medium-low heat until rich golden brown and serve with red coconut chutney.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Udupi-Mangalore tiffin classic; adding 2 tbsp besan and 1 tsp sugar produces a deep golden crust and pillowy crumb."
+  },
+  {
+    "id": "static-1819",
+    "name": "Mangalore Buns (Fluffy Sweet-Savory Ripe Banana, Curd, Cumin & Flour Deep-Fried Puri Buns)",
+    "category": "Breakfast",
+    "region": "Karnataka",
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Overripe bananas (peeled & mashed smooth with a fork)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Maida or half maida + half whole wheat flour",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sour curd (dahi)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar or jaggery powder",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds (jeera)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee (for kneading) + oil for frying",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1/2",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mash ripe bananas with sugar, curd, and cumin",
+        "text": "Mash ripe bananas thoroughly with a fork or potato masher until creamy, then mix in sugar, sour curd, cumin seeds, baking soda, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Knead soft dough and rest",
+        "text": "Add flour gradually and knead without adding water into a soft, pliable dough; coat with 1 tbsp ghee and rest covered for at least 30 minutes (or up to 4 hours).",
+        "minutes": 10
+      },
+      {
+        "section": "Roll thick discs and puff-fry",
+        "text": "Roll dough balls into slightly thick 4-inch discs (thicker than regular puris) and slide into medium-hot oil. Spoon hot oil on top so they balloon into golden-brown, pillowy buns. Serve warm with spicy coconut chutney and kurma.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Iconic Udupi-Mangalore breakfast pairing sweet banana-scented fried buns with fiery coconut chutney."
   },
   {
     "id": "static-1059",
@@ -58427,6 +59354,80 @@
     "notes": "Celebratory Chennai/Ambur wedding-style Kuska infused with coconut milk, stone flower (kalpasi), and saffron."
   },
   {
+    "id": "static-1824",
+    "name": "Mutta Bonda / South Indian Egg Bonda (Spiced Hard-Boiled Eggs Coated in Crispy Carom-Rice-Besan Batter)",
+    "category": "Egg",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Hard-boiled eggs (peeled & halved lengthwise)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crisp shell)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste & finely chopped curry leaves",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), fennel powder & hing",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric, black pepper & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Finely chopped onion, coriander & chaat masala (for garnish)",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season halved boiled eggs",
+        "text": "Sprinkle a pinch of black pepper, red chilli powder, and salt over the cut faces of the boiled egg halves.",
+        "minutes": 3
+      },
+      {
+        "section": "Whisk thick spiced besan-rice batter",
+        "text": "Whisk besan, rice flour, ginger-garlic paste, ajwain, fennel, turmeric, red chilli, garam masala, hing, baking soda, salt, 1 tsp hot oil, and water into a smooth, thick coating batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip and fry golden",
+        "text": "Coat each egg half completely in the batter and deep-fry in medium-hot oil until puffed and golden. Serve topped with finely chopped raw onion, coriander, and a dash of chaat masala.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Evening street-cart favorite across Chennai, Hyderabad, and Bengaluru."
+  },
+  {
     "id": "static-1271",
     "name": "Mutton Kathi Roll (Kolkata Street-Style Spiced Mutton Kabab Roll)",
     "category": "Snacks",
@@ -58681,6 +59682,85 @@
       }
     ],
     "notes": "Slow-simmering extracts rich collagen and bone marrow, yielding a deeply restorative, therapeutic winter shorba."
+  },
+  {
+    "id": "static-1814",
+    "name": "Mysore Bonda / Mysore Bajji (Crispy Outside & Fluffy Aerated Maida, Rice Flour, Sour Curd & Coconut Fritters)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 35,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Maida (all-purpose flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crisp golden crust)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sour curd (whisked smooth)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped fresh coconut bits (optional)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely grated ginger & finely chopped green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped curry leaves & fresh coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds (jeera) & crushed black pepper",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda (cooking soda)",
+        "quantity": "1/2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Hot oil (1 tbsp for batter) + oil for deep frying",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Hand-beat maida, rice flour, and sour curd batter",
+        "text": "In a wide bowl, combine maida, rice flour, sour curd, salt, baking soda, and 2–3 tbsp water. Beat vigorously by hand in one direction for 5 minutes until thick, elastic, and airy. Fold in cumin, grated ginger, chopped green chillies, curry leaves, coriander, coconut bits, and 1 tbsp hot oil.",
+        "minutes": 8
+      },
+      {
+        "section": "Rest batter to ferment and aerate",
+        "text": "Cover the bowl and rest at warm room temperature for 30–60 minutes so the sour curd and baking soda create tiny air pockets.",
+        "minutes": 30
+      },
+      {
+        "section": "Drop round bondas and deep-fry golden",
+        "text": "Wet your fingers with water, scoop small portions of batter, and drop smoothly into medium-hot oil. Fry on medium flame while stirring gently in circles for 4–5 minutes until evenly golden, crisp outside, and spongy inside. Serve hot with coconut or ginger chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Vigorous 5-minute manual hand-beating and resting with sour curd give Mysore Bonda its signature airy honeycomb interior without any blender."
   },
   {
     "id": "static-1794",
@@ -77981,6 +79061,75 @@
     "notes": "Coating soaked sabudana with coarse roasted peanut powder before cooking is the secret to non-sticky, pearly Sabudana Khichdi."
   },
   {
+    "id": "static-1828",
+    "name": "Sabudana Vada (Maharashtrian Crispy Soaked Tapioca Pearl, Mashed Potato & Crushed Peanut Patties)",
+    "category": "Snacks",
+    "region": "Maharashtrian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Sabudana (tapioca pearls, washed & soaked 4–5 hrs until fluffy)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Boiled, peeled & grated/mashed potatoes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Roasted & coarsely crushed peanuts",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped green chillies & grated ginger",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds (jeera) & finely chopped coriander",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice & pinch of sugar",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Groundnut oil (for frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Sendha namak (rock salt) or regular salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine fluffy soaked sabudana, potato, and peanuts",
+        "text": "Ensure soaked sabudana pearls are completely dry and mash effortlessly between fingers. Mix with grated boiled potatoes, coarsely crushed roasted peanuts, cumin, ginger, green chillies, coriander, lemon juice, sugar, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Shape smooth crack-free patties",
+        "text": "Knead lightly until cohesive, grease palms, and shape into 8 slightly flattened discs with smooth, crack-free edges.",
+        "minutes": 5
+      },
+      {
+        "section": "Fry golden and puffy",
+        "text": "Fry in medium-hot oil without touching for the first minute, then flip and cook until blistered, golden, and crunchy outside while translucent inside. Serve with sweetened curd or peanut chutney.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Crushed roasted peanuts absorb excess moisture from potatoes so the vadas never burst in hot oil."
+  },
+  {
     "id": "static-1204",
     "name": "Sada Aloor Torkari (Bengali White Potato Curry with Kalonji & Green Chilli)",
     "category": "Vegetable",
@@ -80839,6 +81988,80 @@
       }
     ],
     "notes": "Warm black pepper and sesame oil complement fish eggs without overpowering them."
+  },
+  {
+    "id": "static-1820",
+    "name": "South Indian Urulai Kizhangu Bonda / Aloo Bonda (Curry-Leaf & Mustard Tempered Potato Balls in Crisp Besan-Rice Batter)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled & mashed potatoes",
+        "quantity": "3",
+        "unit": "large"
+      },
+      {
+        "name": "Finely chopped onion, grated ginger & green chillies",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Mustard seeds, urad dal, chana dal, curry leaves & hing",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for crisp shell)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & lemon juice",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for tempering & deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare South Indian lentil-tempered potato filling",
+        "text": "Heat 1 tbsp oil, crackle mustard seeds, urad dal, chana dal, hing, and curry leaves, then saute onion, grated ginger, and green chillies. Mix in mashed potatoes, turmeric, salt, lemon juice, and coriander; cool and roll into 8 round balls.",
+        "minutes": 10
+      },
+      {
+        "section": "Whisk crisp besan-rice batter",
+        "text": "Whisk besan, rice flour, red chilli powder, turmeric, hing, baking soda, salt, 1 tsp hot oil, and water into a smooth, thick coating batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip and deep-fry golden",
+        "text": "Dip each spiced potato sphere into the batter and fry in medium-hot oil until crisp and golden. Serve with coconut chutney and sambar.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Crunchy roasted urad and chana dal inside the potato filling distinguish Tamil/Karnataka Aloo Bonda."
   },
   {
     "id": "static-1452",
@@ -86230,6 +87453,75 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1830",
+    "name": "Ulli Bajji / Crispy Onion Ring & Slice Bajji (Spiced Gram & Rice Flour Coated Thick Onion Round Fritters)",
+    "category": "Fritters",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Large red onions (peeled & cut into 1/4-inch thick round discs)",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain) & roasted cumin powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri red chilli, turmeric, hing & finely chopped coriander",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt & chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare thick spiced bajji batter",
+        "text": "Whisk besan, rice flour, ajwain, cumin powder, Kashmiri chilli, turmeric, hing, chopped coriander, baking soda, salt, 1 tsp hot oil, and water into a thick coating batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip whole onion rounds and fry",
+        "text": "Keep the thick onion slices intact as full multi-ring discs, dip carefully into the batter, and fry in medium-hot oil until golden and crisp on both sides while the onion inside turns sweet and tender.",
+        "minutes": 12
+      },
+      {
+        "section": "Dust with chaat masala",
+        "text": "Drain on paper towels, sprinkle chaat masala, and serve hot with mint or tomato chutney.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Keeping the cross-section onion disc whole creates a sweet, juicy center inside a puffed besan shell."
+  },
+  {
     "id": "static-1804",
     "name": "UP-Style Aloo Tehri / Vegetable Tahari (Turmeric, Mustard Oil, Potato, Cauliflower & Green Pea Spiced Rice)",
     "category": "Rice",
@@ -87287,6 +88579,80 @@
     "notes": "Street-style Indo-Chinese fried rice tossed directly with juicy, crispy vegetable Manchurian balls."
   },
   {
+    "id": "static-1821",
+    "name": "Vegetable Bonda / Mixed Veg Bonda (Spiced Carrot, Beans, Peas & Potato Spheres in Crisp Gram Flour Batter)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Boiled & mashed potatoes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Finely chopped French beans, grated carrot & green peas (steamed)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, grated ginger & green chillies",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (saunf), curry leaves, turmeric & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red chilli powder, hing & pinch of baking soda",
+        "quantity": "1.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Fresh coriander, lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced mixed-vegetable filling and roll balls",
+        "text": "Temper fennel seeds and curry leaves in 1 tbsp oil, saute onion, ginger, and green chillies, then stir in steamed carrot, beans, peas, mashed potatoes, turmeric, garam masala, lemon juice, and coriander. Roll into firm balls.",
+        "minutes": 10
+      },
+      {
+        "section": "Prepare besan-rice coating batter",
+        "text": "Whisk besan, rice flour, red chilli, hing, baking soda, salt, and water into a smooth coating batter.",
+        "minutes": 4
+      },
+      {
+        "section": "Coat and deep-fry",
+        "text": "Dip each vegetable ball into the batter and fry in medium-hot oil until crisp and golden brown.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Tea-stall favorite across Tamil Nadu and Kerala where fennel seeds give a subtle biryani-like aroma to the vegetable filling."
+  },
+  {
     "id": "static-0257",
     "name": "Vegetable Chop",
     "category": "Snacks",
@@ -87944,6 +89310,75 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1822",
+    "name": "Vengaya Bonda / South Indian Onion Bonda (Crispy Round Sliced Onion, Curry Leaf, Fennel & Besan-Rice Fritters)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Thinly sliced onions",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "1/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel seeds (saunf, lightly crushed)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & curry leaves",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder, turmeric & hing",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Hot oil (1 tbsp for batter) + oil for frying",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze sliced onions with salt and spices",
+        "text": "Toss thinly sliced onions with salt, crushed fennel seeds, grated ginger, green chillies, curry leaves, coriander, red chilli powder, and turmeric; squeeze with fingers for 2 minutes so the onions release natural moisture.",
+        "minutes": 4
+      },
+      {
+        "section": "Bind into thick round bonda dough",
+        "text": "Add besan, rice flour, hing, and 1 tbsp hot oil; mix and sprinkle just 2–3 tbsp water to bind into a thick, scoopable mixture.",
+        "minutes": 4
+      },
+      {
+        "section": "Shape and deep-fry round onion bondas",
+        "text": "Shape loosely into round balls (unlike ragged pakodas) and fry in medium-hot oil until deep golden and crisp outside while staying soft inside.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Unlike irregular onion pakoda, Vengaya Bonda uses slightly more besan and moisture to form round, soft-centered spheres."
   },
   {
     "id": "static-0791",
