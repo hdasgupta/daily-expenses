@@ -420,3 +420,26 @@
 ## 29. Navigation Drawer Bulk Upload Icons
 - **Bulk Upload Icons (`frontend/src/components/Layout.jsx`)**:
   - Updated **Bulk upload categories/items** (`/bulk-upload-categories-items`) to use `FolderUp` and **Bulk upload expenses** (`/bulk-upload-expenses`) to use `FileSpreadsheet` from `lucide-react`.
+
+
+## 30. Masala Rice & Khuska Catalogue Expansion (`recipes.json` & `expandedStarterRecipes.js`)
+- **Added 18 Authentic Masala Rice & Khuska Recipes** (`static-1796`–`static-1813`):
+  1. *Khuska / Kuska (South Indian Plain Biryani Rice)* (`static-1796`)
+  2. *Muslim Wedding Style Kuska Rice / Tamil Bhai Veetu Khuska* (`static-1797`)
+  3. *Hyderabadi Bagara Rice / Baghara Chawal* (`static-1798`)
+  4. *Maharashtrian Masala Bhat* (`static-1799`)
+  5. *Homestyle Masala Rice / Veg Masala Chawal* (`static-1800`)
+  6. *Chettinad Brinji Rice / Vegetable Brinji* (`static-1801`)
+  7. *Karnataka Vangi Bath* (`static-1802`)
+  8. *Mumbai Street-Style Tawa Pulao* (`static-1803`)
+  9. *UP-Style Aloo Tehri / Vegetable Tahari* (`static-1804`)
+  10. *Coconut Milk Pulao / Thengai Paal Sadam* (`static-1805`)
+  11. *Pudina Masala Rice / Mint Coriander Pulao* (`static-1806`)
+  12. *Punjabi Kabuli Chana Pulao* (`static-1807`)
+  13. *Soya Chunks Masala Pulao / Nutri Pulao* (`static-1808`)
+  14. *Kaju Ghee Rice / Nei Choru* (`static-1809`)
+  15. *Egg Masala Rice / Anda Tawa Pulao* (`static-1810`)
+  16. *Garlic Pepper Masala Rice / Poondu Milagu Sadam* (`static-1811`)
+  17. *Palak Masala Rice / Spinach Corn Pulao* (`static-1812`)
+  18. *Methi Masala Rice / Methi Pulao* (`static-1813`)
+- **Catalogue Verification**: Sorted all **1,546** recipes strictly alphabetically by name with zero duplicate IDs or duplicate names.

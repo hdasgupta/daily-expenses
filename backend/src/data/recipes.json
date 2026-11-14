@@ -15638,6 +15638,80 @@
     "notes": "Tangy raw mango and creamy ground coconut make this one of Kerala's most iconic seafood curries."
   },
   {
+    "id": "static-1801",
+    "name": "Chettinad Brinji Rice / Vegetable Brinji (Star Anise, Kalpasi, Coconut Milk, Bread Croutons & Mixed Veg Spiced Rice)",
+    "category": "Rice",
+    "region": "Tamil",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Seeraga samba or basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "French beans, carrot, green peas & cauliflower florets",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions & ripe tomato",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Coconut milk (1 cup) + water (2 cups)",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Brinji leaf (bay leaf), star anise, kapok buds (marathi mokku), kalpasi, cloves & fennel",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste, mint & coriander leaves",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee-toasted bread croutons & roasted cashews (for garnish)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, red chilli & coriander powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper Chettinad brinji spices",
+        "text": "Heat ghee and oil, toast cashews and bread cubes until crisp and set aside. Temper brinji leaf, star anise, marathi mokku, kalpasi, cinnamon, cloves, and fennel, then saute sliced onions, ginger-garlic paste, and green chillies.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook vegetables and herbs",
+        "text": "Add tomato, mint, coriander, turmeric, chilli, and coriander powder along with beans, carrot, peas, and cauliflower; saute 4 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer in coconut milk and top with croutons",
+        "text": "Pour coconut milk, water, and salt, bring to a boil, fold in drained rice, and cook covered on low heat for 12–14 minutes. Top with crunchy ghee-fried bread croutons and cashews before serving.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Signature Tamil wedding/tiffin Brinji rice where fragrant brinji leaf and coconut milk meet crunchy bread croutons."
+  },
+  {
     "id": "static-1026",
     "name": "Chettinad Prawn Masala (Eral Chettinad Curry)",
     "category": "Prawns",
@@ -24575,6 +24649,80 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1805",
+    "name": "Coconut Milk Pulao / Thengai Paal Sadam (Creamy Whole-Spiced Coconut Milk, Cashew & Mint Basmati Rice)",
+    "category": "Rice",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or seeraga samba rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Thick fresh coconut milk",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions & slit green chillies",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste & fresh mint leaves",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Bay leaf, cinnamon, cloves, cardamom, star anise & fennel",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole cashews & golden raisins",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Desi ghee or coconut oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry cashews and temper whole spices",
+        "text": "Heat ghee in a heavy pot, fry cashews and raisins until golden and set aside. Temper bay leaf, cinnamon, cloves, cardamom, star anise, and fennel seeds.",
+        "minutes": 4
+      },
+      {
+        "section": "Saute onions, green chillies, and mint",
+        "text": "Add sliced onions, slit green chillies, ginger-garlic paste, and mint leaves; saute until onions turn soft and translucent without browning too dark.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer in creamy coconut milk",
+        "text": "Pour coconut milk, water, and salt, bring to a gentle simmer, fold in drained rice, and cook covered on low heat for 12–14 minutes. Garnish with fried cashews and raisins.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Mildly spiced, silky South Indian coconut milk rice that pairs wonderfully with vegetable kurma, mushroom masala, or chicken curry."
+  },
+  {
     "id": "static-0910",
     "name": "Coconut Payasam",
     "category": "Sweets",
@@ -30094,6 +30242,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1810",
+    "name": "Egg Masala Rice / Anda Tawa Pulao (Spiced Onion-Tomato Masala Rice with Pan-Seared Boiled Eggs & Curry Leaves)",
+    "category": "Rice",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Cooked & cooled basmati or long-grain rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Hard-boiled eggs (halved or quartered)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped onions & ripe tomatoes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste, green chillies & curry leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, coriander, garam masala & black pepper",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil & 1 tbsp butter/ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pan-sear spiced boiled eggs",
+        "text": "Heat 1 tbsp oil/butter in a wide pan with a pinch of turmeric, chilli powder, and salt; sear halved boiled eggs cut-side down for 2 minutes until golden and set aside.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook onion-tomato-curry leaf masala",
+        "text": "In the same pan, crackle cumin and curry leaves, saute onions and ginger-garlic paste until browned, then cook tomatoes and ground spices until thick and rich.",
+        "minutes": 7
+      },
+      {
+        "section": "Toss rice and fold in seared eggs",
+        "text": "Toss cooled cooked rice and black pepper into the masala on medium-high flame for 3 minutes, gently nestle the seared eggs and fresh coriander on top, and serve hot.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Fast 15-minute high-protein street-style egg masala rice using pre-cooked rice and boiled eggs."
+  },
+  {
     "id": "static-0732",
     "name": "Egg Mayo Sandwich",
     "category": "Sandwich",
@@ -34332,6 +34544,70 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1811",
+    "name": "Garlic Pepper Masala Rice / Poondu Milagu Sadam (Chettinad Crushed Black Pepper, Roasted Garlic, Ghee & Curry Leaf Rice)",
+    "category": "Rice",
+    "region": "Tamil",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Cooked & cooled fluffy white rice",
+        "quantity": "3",
+        "unit": "cups"
+      },
+      {
+        "name": "Peeled garlic cloves (sliced or lightly crushed)",
+        "quantity": "14",
+        "unit": "cloves"
+      },
+      {
+        "name": "Coarsely crushed black peppercorns & cumin seeds",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, chana dal, urad dal & cashews",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh curry leaves & dried red chillies",
+        "quantity": "2",
+        "unit": "sprigs"
+      },
+      {
+        "name": "Sesame oil (gingelly oil) & desi ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, hing & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast garlic and lentils in gingelly oil",
+        "text": "Heat sesame oil and ghee in a kadai, crackle mustard seeds, chana dal, urad dal, cashews, dried red chillies, hing, and curry leaves. Add sliced garlic cloves and slow-roast until golden and fragrant.",
+        "minutes": 6
+      },
+      {
+        "section": "Bloom crushed black pepper and cumin",
+        "text": "Lower heat, stir in coarsely crushed black pepper, cumin, turmeric, and salt for 30 seconds so the pepper oils bloom without burning.",
+        "minutes": 2
+      },
+      {
+        "section": "Fold in cooked rice",
+        "text": "Toss in cooled rice gently until coated in the aromatic garlic-pepper tempering. Serve warm with appalam or onion raita.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Warming South Indian comfort rice packed with roasted garlic and freshly cracked black pepper."
+  },
+  {
     "id": "static-0987",
     "name": "Garlic Potato Bharta",
     "category": "Vegetable Bharta",
@@ -37399,6 +37675,75 @@
     "notes": "Famous North Kolkata sweet-shop morning breakfast kochuri."
   },
   {
+    "id": "static-1800",
+    "name": "Homestyle Masala Rice / Veg Masala Chawal (One-Pot Onion, Tomato, Carrot, Peas & Garam Masala Spiced Basmati Rice)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or long-grain rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onion & ripe tomato",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Diced carrot, green peas & diced potato",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, minced garlic & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bay leaf, cinnamon, green cardamom & cumin seeds",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri chilli, coriander powder & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute aromatics and tomato masala",
+        "text": "Heat ghee in a pressure cooker or kadai, crackle cumin, bay leaf, cinnamon, and cardamom, then saute onion, grated ginger, garlic, and green chillies until golden. Add chopped tomato and ground spices and cook until soft.",
+        "minutes": 7
+      },
+      {
+        "section": "Fold in vegetables and soaked rice",
+        "text": "Toss diced carrot, green peas, potato, and drained basmati rice into the masala for 2 minutes.",
+        "minutes": 3
+      },
+      {
+        "section": "Simmer or pressure cook",
+        "text": "Add 2.75 cups hot water and salt; pressure cook for 1–2 whistles (or simmer covered 12–15 minutes), rest 5 minutes, fluff with fresh coriander, and serve with yogurt or cucumber salad.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Everyday comfort one-pot masala rice built for quick manual prep with a knife, grater, and pressure cooker."
+  },
+  {
     "id": "static-0965",
     "name": "Honey Butter Sandwich",
     "category": "Sandwiches",
@@ -37706,6 +38051,70 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1798",
+    "name": "Hyderabadi Bagara Rice / Baghara Chawal (Shahi Jeera, Caramelized Onion, Mint & Ghee Tempered Spiced Rice)",
+    "category": "Rice",
+    "region": "Hyderabadi",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Aged basmati rice (soaked 20 mins)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Shahi jeera (caraway seeds), cloves, cardamom, cinnamon & bay leaves",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint leaves & coriander leaves",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Pure desi ghee & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Hot water & salt",
+        "quantity": "3.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper shahi jeera and brown onions",
+        "text": "Heat ghee and oil in a heavy pot, crackle shahi jeera, bay leaves, cinnamon, cloves, and green cardamom, then saute sliced onions until golden brown.",
+        "minutes": 7
+      },
+      {
+        "section": "Saute ginger-garlic, chillies, and fresh herbs",
+        "text": "Add ginger-garlic paste and slit green chillies; saute 2 minutes, then stir in torn mint and coriander leaves until aromatic.",
+        "minutes": 3
+      },
+      {
+        "section": "Cook fluffy bagara chawal",
+        "text": "Add 3.5 cups hot water and salt, bring to a boil, fold in drained basmati rice, cover tightly, and simmer on low flame for 12–14 minutes until every grain is separate and fragrant.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Hyderabadi and Telangana staple spiced rice served alongside Mirchi ka Salan, Baghara Baingan, or Dalcha."
   },
   {
     "id": "static-1741",
@@ -40282,6 +40691,70 @@
     "notes": "Serve hot with garlic naan, tandoori roti, or jeera rice."
   },
   {
+    "id": "static-1809",
+    "name": "Kaju Ghee Rice / Nei Choru (Malabar-Style Ghee-Roasted Cashews, Golden Raisins, Crispy Shallots & Whole Spice Rice)",
+    "category": "Rice",
+    "region": "Kerala",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Kaima / jeerakasala or basmati rice (soaked 20 mins)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Pure desi ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Whole cashews & golden raisins",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Thinly sliced shallots or onions",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cinnamon, cloves, green cardamom, star anise, mace & bay leaf",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Crushed ginger, garlic & slit green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Hot water, pinch of turmeric/saffron & salt",
+        "quantity": "3.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry cashews, raisins, and shallots in ghee",
+        "text": "Heat desi ghee in a heavy pot, fry cashews golden, plump the raisins, and crisp-fry half the sliced shallots until deep brown; reserve for garnish.",
+        "minutes": 7
+      },
+      {
+        "section": "Toast rice in whole-spice infused ghee",
+        "text": "Temper cinnamon, cloves, cardamom, star anise, mace, and bay leaf in the remaining ghee, saute remaining shallots and ginger-garlic-chillies, then toast drained rice for 2–3 minutes.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer and garnish",
+        "text": "Pour 3.5 cups hot water with salt, cover tightly, and simmer 12 minutes until fluffy. Top with crispy fried shallots, cashews, and raisins.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Kerala and coastal Karnataka festive Ghee Rice (Nei Choru), best paired with spicy roasted curries or kurma."
+  },
+  {
     "id": "static-0854",
     "name": "Kaju Katli",
     "category": "Sweets",
@@ -41759,6 +42232,75 @@
       }
     ],
     "notes": "A therapeutic, tangy-sweet-bitter flatbread beloved in Gujarati and Rajasthani cooking."
+  },
+  {
+    "id": "static-1802",
+    "name": "Karnataka Vangi Bath (Spiced Brinjal / Eggplant, Tamarind & Roasted Vangi Bath Powder Masala Rice)",
+    "category": "Rice",
+    "region": "Karnataka",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Cooked & cooled sona masoori or basmati rice",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Tender purple brinjal / eggplant (thinly sliced lengthwise)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Vangi bath masala powder (coriander, chana-urad dal, cinnamon, cloves, dry coconut & red chilli)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Thick tamarind pulp & pinch of jaggery",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, chana dal, urad dal, peanuts, cashews & curry leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, hing & fresh coriander",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sesame oil or groundnut oil + 1 tbsp ghee",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crackle Karnataka lentil-nut tempering",
+        "text": "Heat oil in a wide kadai, crackle mustard seeds, chana dal, urad dal, peanuts, cashews, hing, and curry leaves until golden.",
+        "minutes": 4
+      },
+      {
+        "section": "Cook brinjal in tangy tamarind and Vangi Bath masala",
+        "text": "Add sliced brinjal, turmeric, and salt; saute until tender. Stir in tamarind pulp, pinch of jaggery, and Vangi Bath powder, cooking 3–4 minutes until aromatic and glossy.",
+        "minutes": 9
+      },
+      {
+        "section": "Fold in cooked rice",
+        "text": "Turn off heat, gently fold in cooled, fluffy rice with 1 tbsp desi ghee and chopped fresh coriander until every grain is coated in spiced masala.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Beloved Karnataka breakfast and lunchbox masala rice; using slightly cooled, separated rice keeps the grains intact."
   },
   {
     "id": "static-1210",
@@ -43907,6 +44449,85 @@
       }
     ],
     "notes": "A royal North Indian festive delicacy reminiscent of stuffed sweet peda in paratha form."
+  },
+  {
+    "id": "static-1796",
+    "name": "Khuska / Kuska (South Indian Plain Biryani Rice — Fragrant Seeraga Samba / Basmati Rice with Whole Spices, Mint & Curd)",
+    "category": "Rice",
+    "region": "South Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Seeraga samba rice or aged basmati rice (soaked 20 mins)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Finely chopped ripe tomato",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Ginger-garlic paste & slit green chillies",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint leaves (pudina) & coriander leaves",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Thick whisked curd (dahi)",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Bay leaf, cinnamon, cloves, green cardamom, star anise & fennel",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red chilli powder, turmeric & biryani masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee & neutral oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Warm water or thin coconut milk & salt",
+        "quantity": "3.5",
+        "unit": "cups"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize onions and bloom whole spices",
+        "text": "Heat ghee and oil in a heavy pot or pressure cooker, temper bay leaf, cinnamon, cloves, cardamom, star anise, and fennel seeds, then fry thinly sliced onions until deep golden brown.",
+        "minutes": 7
+      },
+      {
+        "section": "Saute ginger-garlic, herbs, tomato, and curd",
+        "text": "Add ginger-garlic paste and slit green chillies and cook 2 minutes until raw smell fades. Stir in chopped mint, coriander, tomato, red chilli powder, turmeric, and biryani masala until soft, then lower heat and whisk in curd until oil separates.",
+        "minutes": 6
+      },
+      {
+        "section": "Dum-cook soaked rice to fluffy perfection",
+        "text": "Pour in 3.5 cups hot water and salt, bring to a rolling boil, fold in drained soaked rice gently, and cook covered on low dum for 12–14 minutes (or 1 whistle on medium flame) followed by 5 minutes rest before fluffing with a fork. Serve hot with salna, kurma, or onion raita.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Classic South Indian 'plain biryani' (Kuska) prized for its rich, aromatic masala rice grains without any meat."
   },
   {
     "id": "static-1483",
@@ -50039,6 +50660,80 @@
     "notes": "The famous Andhra delicacy from Tapeswaram: shatteringly crisp pastry layers that gush with sweet syrup with every bite."
   },
   {
+    "id": "static-1799",
+    "name": "Maharashtrian Masala Bhat (Spiced Basmati / Kolam Rice with Tindora, Brinjal, Green Peas, Cashews & Goda Masala)",
+    "category": "Rice",
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or ambemohar/kolam rice (washed & soaked 15 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sliced tendli (ivy gourd / kundru) or baby brinjal cubes",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Green peas, diced potato & cashew halves",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Goda masala (Maharashtrian black spice blend)",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard seeds, cumin, bay leaf, cinnamon, cloves & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste & curry leaves",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, red chilli powder & pinch of jaggery",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee (for cooking & final drizzle)",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh grated coconut, chopped coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper phodni and saute vegetables",
+        "text": "Heat 2 tbsp ghee in a heavy pot, crackle mustard seeds, cumin, bay leaf, cinnamon, cloves, hing, and curry leaves. Fry cashews golden, then saute ginger-garlic-green chilli paste, sliced tendli/brinjal, potato, and green peas for 4–5 minutes.",
+        "minutes": 7
+      },
+      {
+        "section": "Toast rice with Goda masala",
+        "text": "Add turmeric, red chilli powder, Goda masala, salt, and drained rice; saute gently for 2 minutes so the grains are coated in aromatic spiced ghee.",
+        "minutes": 3
+      },
+      {
+        "section": "Simmer and garnish with coconut and ghee",
+        "text": "Pour 3 cups hot water, add a tiny pinch of jaggery, cover and cook on low flame for 12 minutes until tender. Fluff and garnish generously with fresh grated coconut, chopped coriander, and a drizzle of desi ghee.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Traditional Maharashtrian festive one-pot spiced rice served with kadhi or koshimbir."
+  },
+  {
     "id": "static-1777",
     "name": "Maharashtrian Pithla (Comforting Creamy Tempered Gram Flour, Garlic & Green Chilli Curry for Bhakri)",
     "category": "Curry",
@@ -54076,6 +54771,80 @@
     "notes": "Sautéing fresh methi leaves in ghee removes any harsh bitterness and leaves a warm herbal aroma."
   },
   {
+    "id": "static-1813",
+    "name": "Methi Masala Rice / Methi Pulao (Fresh Fenugreek Leaves, Green Peas, Peanuts & Spiced Basmati Rice)",
+    "category": "Rice",
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh methi (fenugreek) leaves (washed & chopped)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Green peas & raw peanuts",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Sliced onion & chopped tomato",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, bay leaf, cinnamon, cloves & cardamom",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, red chilli, coriander & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry peanuts and saute aromatics",
+        "text": "Heat ghee, fry peanuts golden, temper cumin and whole spices, then saute onion, ginger-garlic-chilli paste, and tomato.",
+        "minutes": 7
+      },
+      {
+        "section": "Wilt fresh methi leaves with spices",
+        "text": "Add chopped methi leaves, green peas, turmeric, red chilli, coriander powder, and garam masala; saute 3 minutes until methi wilts and loses rawness.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer rice",
+        "text": "Fold in drained rice, 2.75 cups hot water, and salt; cover and simmer 12 minutes until tender and fragrant.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Earthy winter masala rice pairing fresh fenugreek greens with sweet green peas and crunchy peanuts."
+  },
+  {
     "id": "static-1616",
     "name": "Methi Matar Paratha (Fresh Fenugreek & Crushed Peas Stuffed Paratha)",
     "category": "Bread",
@@ -57132,6 +57901,75 @@
     "notes": "Squeezing the radish dry turns its sharp bite sweet and earthy once fried in mustard oil."
   },
   {
+    "id": "static-1803",
+    "name": "Mumbai Street-Style Tawa Pulao (Pav Bhaji Masala, Butter, Boiled Potato, Peas & Capsicum Spiced Rice)",
+    "category": "Rice",
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Cooked & cooled basmati rice",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Finely chopped onion, tomatoes & green capsicum",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled diced potato & boiled green peas",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic-Kashmiri chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Pav bhaji masala",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, turmeric & Kashmiri red chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salted butter & oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Lemon juice, fresh coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook buttery tawa onion-tomato-chilli masala",
+        "text": "Melt butter with oil on a wide tawa or skillet, crackle cumin seeds, saute onion and ginger-garlic-chilli paste, then add tomatoes and cook until pulpy and bright red.",
+        "minutes": 7
+      },
+      {
+        "section": "Toss vegetables with Pav Bhaji masala",
+        "text": "Add diced capsicum, boiled potato cubes, green peas, turmeric, Kashmiri chilli powder, Pav Bhaji masala, and salt; mash lightly in spots and toss 3 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss cooked rice on high heat",
+        "text": "Fold in cooked rice, sprinkle lemon juice and chopped coriander, and toss on high heat for 2–3 minutes until smoky and evenly spiced. Serve hot with boondi raita.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Iconic Mumbai Chowpatty street food turning leftover or pre-cooked basmati rice into a buttery, tangy masala feast."
+  },
+  {
     "id": "static-1583",
     "name": "Murgir Keema Kochuri (Kolkata Cabin-Style Spiced Minced Chicken Stuffed Puri)",
     "category": "Bread",
@@ -57508,6 +58346,85 @@
       }
     ],
     "notes": "Earthy, umami-rich stuffed paratha combining sautéed garlic mushrooms and black pepper."
+  },
+  {
+    "id": "static-1797",
+    "name": "Muslim Wedding Style Kuska Rice / Tamil Bhai Veetu Khuska (Saffron, Caramelized Onion, Cashew & Coconut Milk Dum Khuska)",
+    "category": "Rice",
+    "region": "Tamil",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Seeraga samba or long-grain basmati rice (soaked 25 mins)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions (for birista & base)",
+        "quantity": "2",
+        "unit": "large"
+      },
+      {
+        "name": "Thick coconut milk + warm water",
+        "quantity": "3.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Whisked curd & lemon juice",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger-garlic paste & green chilli paste",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint & coriander leaves",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cinnamon, cloves, cardamom, star anise, marathi mokku & kalpasi",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri chilli powder & garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Saffron soaked in warm milk & roasted cashews",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Desi ghee & oil",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crisp cashews and birista onions",
+        "text": "Heat ghee and oil in a heavy handi, fry cashews until golden and set aside, then caramelize half the sliced onions until crisp brown (birista).",
+        "minutes": 7
+      },
+      {
+        "section": "Build Bhai Veetu masala base",
+        "text": "In the same pot, temper whole spices and kalpasi, saute remaining onions, ginger-garlic-green chilli paste, mint, coriander, Kashmiri chilli powder, and curd until fragrant and glossy.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer with coconut milk and steam on dum",
+        "text": "Add coconut milk, water, lemon juice, and salt; bring to a boil, add drained rice, cook 80% until water reduces to surface level, drizzle saffron milk, scatter fried onions and cashews, seal tightly, and dum-cook on low heat for 10 minutes.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Celebratory Chennai/Ambur wedding-style Kuska infused with coconut milk, stone flower (kalpasi), and saffron."
   },
   {
     "id": "static-1271",
@@ -61891,6 +62808,75 @@
       }
     ],
     "notes": "Fresh spinach leaves folded into the besan dough keep the gattas naturally moist, vibrant, and iron-rich."
+  },
+  {
+    "id": "static-1812",
+    "name": "Palak Masala Rice / Spinach Corn Pulao (Pureed Spinach, Sweet Corn, Garlic & Whole Spice Fragrant Rice)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh spinach leaves (palak, blanched & pureed with 1 green chilli)",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Sweet corn kernels & diced onion",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic & grated ginger",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, bay leaf, cinnamon, cloves & cardamom",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander powder, garam masala & kasuri methi",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or butter",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & lemon juice",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute garlic, onion, and corn",
+        "text": "Heat ghee, temper cumin and whole spices, then saute minced garlic, ginger, and diced onion until translucent. Toss in sweet corn kernels for 2 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Cook spinach puree with spices",
+        "text": "Stir in fresh spinach puree, coriander powder, garam masala, and kasuri methi; simmer 3 minutes.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer rice until vibrant green and fluffy",
+        "text": "Fold in drained basmati rice, 2.25 cups hot water, salt, and a squeeze of lemon juice; cover and simmer 12 minutes.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Nutritious green masala rice where sweet corn pops against garlic-spiced spinach."
   },
   {
     "id": "static-1546",
@@ -73037,6 +74023,80 @@
     "notes": "Refreshing mint-scented multi-layered paratha."
   },
   {
+    "id": "static-1806",
+    "name": "Pudina Masala Rice / Mint Coriander Pulao (Fresh Mint-Coriander-Green Chilli Paste, Cashew & Ghee Spiced Rice)",
+    "category": "Rice",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh mint leaves (pudina, packed)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Green chillies, ginger & garlic (for herb paste)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sliced onion & green peas",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Bay leaf, cinnamon, cloves, cardamom & cumin",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cashews & lemon juice",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grind vibrant mint-coriander masala paste",
+        "text": "Grind or finely mince mint leaves, coriander leaves, green chillies, ginger, and garlic with 2 tbsp water and a squeeze of lemon juice to preserve bright green color.",
+        "minutes": 5
+      },
+      {
+        "section": "Saute spices, onion, and herb paste",
+        "text": "Heat ghee, fry cashews, temper whole spices, saute sliced onion and green peas, then stir in the fresh mint-coriander paste for 2–3 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Simmer rice until aromatic",
+        "text": "Fold in drained rice, add 2.75 cups hot water and salt, cover and simmer 12 minutes until fluffy and emerald-tinted.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Refreshing, cooling herbaceous masala rice ideal for lunchboxes and paired with boondi raita."
+  },
+  {
     "id": "static-1482",
     "name": "Pui Patar Bora (Crispy Malabar Spinach Leaf Fritters)",
     "category": "Fritters",
@@ -73320,6 +74380,75 @@
       }
     ],
     "notes": "Fragrant panch-phoron tempered Aloo Kumro Fry."
+  },
+  {
+    "id": "static-1807",
+    "name": "Punjabi Kabuli Chana Pulao (Spiced Chickpea, Whole Garam Masala, Ginger Juliennes & Caramelized Onion Rice)",
+    "category": "Rice",
+    "region": "Punjabi",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled kabuli chana (white chickpeas)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Thinly sliced onions & chopped tomato",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste & julienned ginger",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin, bay leaf, black cardamom, cinnamon & black peppercorns",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chana masala / biryani masala, red chilli & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander, mint & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelize onions and whole spices",
+        "text": "Heat ghee, temper cumin, bay leaf, black cardamom, cinnamon, and peppercorns, then fry sliced onions until rich golden brown.",
+        "minutes": 7
+      },
+      {
+        "section": "Saute chickpeas with masala",
+        "text": "Add ginger-garlic paste, tomato, and ground spices; cook until glossy, then toss in boiled kabuli chana for 3 minutes so the chickpeas absorb the masala.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer with basmati rice",
+        "text": "Fold in drained rice, 2.75 cups hot water (or chickpea stock), and salt. Cover and cook on low heat for 12 minutes, garnish with ginger juliennes and coriander, and serve with raita.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Hearty protein-rich Punjabi one-pot pulao using pre-boiled chickpeas."
   },
   {
     "id": "static-1772",
@@ -79820,6 +80949,80 @@
     "notes": "Wholesome, protein-packed vegetarian chowmin with crispy-edged spiced soya chunks."
   },
   {
+    "id": "static-1808",
+    "name": "Soya Chunks Masala Pulao / Nutri Pulao (Protein-Rich Spiced Soya Nuggets, Yogurt, Mint & Biryani Masala Rice)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Soya chunks (meal maker, boiled 5 mins & squeezed dry)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whisked curd (dahi)",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Sliced onion, tomato & green peas",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Ginger-garlic paste & green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Biryani masala, turmeric, Kashmiri chilli & coriander powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Whole spices (bay leaf, cumin, cloves, cardamom, cinnamon)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh mint, coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate squeezed soya chunks in spiced curd",
+        "text": "Boil soya chunks in salted water, rinse cold, squeeze out excess water, and toss with whisked curd, half the ginger-garlic paste, biryani masala, turmeric, chilli powder, and salt for 10 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Bhuno onion-tomato masala and marinated soya",
+        "text": "Heat ghee, temper whole spices, saute sliced onions until golden, add remaining ginger-garlic paste, tomato, and marinated soya chunks; cook 5 minutes until juicy and aromatic.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook fluffy soya masala rice",
+        "text": "Add green peas, mint, coriander, drained rice, and 2.75 cups hot water. Cover and simmer 12 minutes until done.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Marinating squeezed soya chunks in yogurt and biryani masala ensures they soak up deep flavor instead of tasting bland."
+  },
+  {
     "id": "static-1628",
     "name": "Soya Keema Paratha (Spiced Nutrela Soya Granules Stuffed High-Protein Paratha)",
     "category": "Bread",
@@ -85025,6 +86228,80 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1804",
+    "name": "UP-Style Aloo Tehri / Vegetable Tahari (Turmeric, Mustard Oil, Potato, Cauliflower & Green Pea Spiced Rice)",
+    "category": "Rice",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Basmati or short-grain aromatic rice (soaked 20 mins)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Potato cubes & small cauliflower florets",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Fresh green peas & diced carrot",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Sliced onion & chopped ripe tomatoes",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Bay leaf, cinnamon, black cardamom, cloves, cumin & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-garlic-green chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric (generous 1 tsp), coriander, red chilli & garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kachi ghani mustard oil & 1 tbsp desi ghee",
+        "quantity": "3.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Smoke mustard oil and sear vegetables",
+        "text": "Heat mustard oil until lightly smoking, cool slightly, temper cumin, hing, and whole spices, then saute sliced onion and ginger-garlic paste. Add potatoes and cauliflower and roast 4 minutes until lightly golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook golden turmeric-tomato masala",
+        "text": "Stir in chopped tomatoes, turmeric, coriander powder, red chilli, garam masala, and green peas; cook until tomatoes break down and oil glistens.",
+        "minutes": 5
+      },
+      {
+        "section": "Simmer rice and finish with ghee",
+        "text": "Toss in drained rice, add 2.75 cups hot water and salt, cook covered for 12 minutes (or 1 pressure whistle), rest 5 minutes, and finish with desi ghee and fresh coriander. Serve with curd and papad.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Winter comfort rice from Uttar Pradesh and Awadh, distinguished by pungent mustard oil and vibrant golden turmeric."
   },
   {
     "id": "static-1763",
