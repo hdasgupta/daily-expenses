@@ -468,3 +468,12 @@
   19. *Bread Bonda / Stuffed Masala Aloo Bread Bonda* (`static-1832`)
   20. *Instant Rava Medu Vada / Crispy Suji-Curd Donut Vada* (`static-1833`)
 - **Catalogue Verification**: Sorted all **1,566** recipes strictly alphabetically by name with zero duplicate IDs or duplicate names.
+
+
+## 32. Paporer Dolma & Traditional Papad Recipe Catalogue Expansion (`recipes.json` & `expandedStarterRecipes.js`)
+- **Added 20 Authentic Papad / Papor Recipes** (`static-1834`–`static-1853`):
+  - **Bengali Paporer Dolma & Traditional Papor Curries (6)**: *Paporer Dolma / Papader Dolma* (`static-1834`), *Amish Chingri Paporer Dolma* (`static-1835`), *Paporer Dalna / Aloo Paporer Jhol* (`static-1836`), *Paporer Chorchori / Papor Aloo Bori Ghonto* (`static-1837`), *Papor Bharta / Paporer Chokha* (`static-1838`), and *Paporer Tok / Papor Ambol* (`static-1839`).
+  - **Rajasthani, Sindhi & Gujarati Papad Curries & Sabzis (6)**: *Rajasthani Papad ki Sabzi* (`static-1840`), *Methi Papad ki Sabzi* (`static-1841`), *Mangodi Papad ki Sabzi* (`static-1842`), *Papad Pyaz ki Sabzi* (`static-1843`), *Sindhi Papad Curry / Happala Kadhi* (`static-1844`), and *Gujarati Papad Churi / Marwari Papad Churi* (`static-1845`).
+  - **Stuffed Papad Rolls, Cones & Street Snacks (5)**: *Papad Roll / Crispy Potato-Pea Stuffed Papad Cigar Rolls* (`static-1846`), *Paneer Masala Papad Cone / Stuffed Papad Cones* (`static-1847`), *Dahi Papad Chaat* (`static-1848`), *Papad Pakora / Batter-Fried Masala Papad Bhajiya* (`static-1849`), and *Cheese & Corn Masala Papad* (`static-1850`).
+  - **Manual Homemade Papad Recipes (3)**: *Homemade Rice Flour Papad / Chawal ke Khichiya Papad* (`static-1851`), *Sabudana Papad / Sago Pearl Sun-Dried Crisps* (`static-1852`), and *Aloo Papad / Sun-Dried Grated Potato & Red Chilli Flake Papad* (`static-1853`).
+- **Catalogue Verification**: Sorted all **1,586** recipes strictly alphabetically by name with zero duplicate IDs or duplicate names.

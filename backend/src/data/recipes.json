@@ -2316,6 +2316,65 @@
     "notes": "The ultimate crowd-pleasing combination of creamy paneer and spiced potato."
   },
   {
+    "id": "static-1853",
+    "name": "Aloo Papad / Sun-Dried Grated Potato & Red Chilli Flake Papad (Traditional Hand-Pressed Boiled Potato Crisps)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Potatoes (boiled, peeled & finely grated on a handheld grater)",
+        "quantity": "4",
+        "unit": "large"
+      },
+      {
+        "name": "Cumin seeds (jeera)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Crushed red chilli flakes (kuti lal mirch)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Finely chopped fresh coriander leaves & pinch of hing",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard oil or groundnut oil (for kneading & greasing)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt or sendha namak",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grate boiled potatoes and knead smooth spiced dough",
+        "text": "Grate cooled boiled potatoes using the fine side of a handheld grater so there are zero lumps. Add cumin seeds, red chilli flakes, hing, chopped coriander, salt, and 1 tbsp oil, and knead by hand for 4–5 minutes into a smooth, elastic potato dough.",
+        "minutes": 12
+      },
+      {
+        "section": "Press thin rounds between oiled plastic sheets",
+        "text": "Grease palms with oil, roll small balls of potato dough, place between two oiled plastic sheets, and press firmly with a flat steel plate or chakla into thin, even circles.",
+        "minutes": 15
+      },
+      {
+        "section": "Sun-dry and flash-fry",
+        "text": "Peel off the top sheet, sun-dry the potato discs for 1–2 days until crisp and dry, and flash-fry in medium-hot oil for 2–3 seconds per side until golden.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Using a fine handheld grater instead of mashing produces silky, lump-free Aloo Papads that press paper-thin without tearing."
+  },
+  {
     "id": "static-0306",
     "name": "Aloo Paratha",
     "category": "Bread",
@@ -3641,6 +3700,80 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1835",
+    "name": "Amish Chingri Paporer Dolma (Bengali Prawn & Potato Stuffed Papad Rolls in Spiced Onion-Tomato-Ginger Gravy)",
+    "category": "Prawns",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Medium urad/moong papads",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Small prawns (chingri, shelled, deveined & finely chopped)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled & mashed potato (for binding stuffing)",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Finely chopped onions, grated ginger & minced garlic",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Ripe tomato (finely chopped)",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, cumin & coriander powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bay leaf, cinnamon, cardamom, cloves & Bengali gorom moshla",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil & 1 tsp ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Flour slurry (for sealing) & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spiced chingri-aloo pur (stuffing)",
+        "text": "Heat 1 tbsp mustard oil, saute half the chopped onion, garlic, ginger, and finely chopped prawns with turmeric, chilli powder, and salt for 4 minutes. Mix in boiled mashed potato and 1/2 tsp gorom moshla to form a cohesive filling; cool.",
+        "minutes": 8
+      },
+      {
+        "section": "Roll dampened papads and fry golden",
+        "text": "Moisten each papad briefly in water until pliable, stuff with a portion of prawn-potato filling, fold sides in and roll tightly, seal with flour paste, and fry in mustard oil until golden brown.",
+        "minutes": 10
+      },
+      {
+        "section": "Prepare rich onion-tomato kosha gravy",
+        "text": "Temper bay leaf and whole spices in mustard oil, brown the remaining onion, ginger, garlic, and tomato with spices, add 1.25 cups warm water, and simmer 5 minutes. Finish with ghee and gorom moshla, and ladle over the chingri paporer dolmas before serving.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Festive Bengali non-vegetarian variation of Paporer Dolma combining sweet river prawns with crisp-fried papad shells."
   },
   {
     "id": "static-1200",
@@ -15409,6 +15542,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1850",
+    "name": "Cheese & Corn Masala Papad (Roasted Pepper Papad Topped with Sweet Corn, Onion, Tomato, Sev & Grated Cheese)",
+    "category": "Starters",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 5,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Large black-pepper urad papads (roasted or fried)",
+        "quantity": "3",
+        "unit": "large"
+      },
+      {
+        "name": "Boiled sweet corn kernels",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, deseeded tomato & green capsicum",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated processed/cheddar cheese or crumbled paneer",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped green chillies & fresh coriander",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat masala, roasted cumin & Kashmiri chilli powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nylon sev & lemon juice",
+        "quantity": "1/3",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast or fry papads flat",
+        "text": "Roast the papads flat on a dry tawa pressing with a folded cloth (or flash-fry in hot oil) so they stay flat like a crisp pizza base.",
+        "minutes": 4
+      },
+      {
+        "section": "Mix corn-onion-tomato kachumber",
+        "text": "Toss sweet corn, finely chopped onion, deseeded tomato, capsicum, green chillies, coriander, lemon juice, and chaat masala.",
+        "minutes": 4
+      },
+      {
+        "section": "Top with salad, grated cheese, and sev",
+        "text": "Spread the corn-vegetable topping evenly across the crisp papads, shower generously with grated cheese and nylon sev, dust with Kashmiri chilli powder, and serve immediately.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Popular dhaba and restaurant starter upgrade on classic Masala Papad."
+  },
+  {
     "id": "static-0928",
     "name": "Cheese Balls",
     "category": "Starters",
@@ -27054,6 +27251,70 @@
     "notes": "One of Bengal's crown-jewel prawn delicacies; can also be steamed in a heatproof bowl with tender coconut water and malai."
   },
   {
+    "id": "static-1848",
+    "name": "Dahi Papad Chaat (Crispy Fried Papad Topped with Whisked Sweetened Curd, Boiled Potato, Chutneys & Sev)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 5,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Fried or roasted papads (broken into large nacho-style triangles)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Thick chilled curd (whisked smooth with 1 tbsp sugar & black salt)",
+        "quantity": "1.25",
+        "unit": "cups"
+      },
+      {
+        "name": "Boiled diced potato & boiled chickpeas",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Sweet tamarind-date chutney & spicy mint-coriander chutney",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, coriander & pomegranate arils",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted cumin powder, Kashmiri chilli powder & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fine nylon sev",
+        "quantity": "1/2",
+        "unit": "cup"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Arrange crispy papad triangles",
+        "text": "Arrange crisp fried or roasted papad triangles on a wide platter and scatter diced boiled potatoes and chickpeas on top.",
+        "minutes": 3
+      },
+      {
+        "section": "Drizzle whisked sweet curd and chutneys",
+        "text": "Spoon chilled sweetened curd generously over the papads, followed by ribbons of tamarind-date chutney and spicy green mint chutney.",
+        "minutes": 3
+      },
+      {
+        "section": "Garnish with spices, sev, and pomegranate",
+        "text": "Dust with roasted cumin powder, Kashmiri chilli powder, and chaat masala, and top with chopped onion, nylon sev, pomegranate, and coriander. Serve immediately.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Instant 10-minute alternative to Dahi Papdi Chaat using crispy papad shards."
+  },
+  {
     "id": "static-0758",
     "name": "Dahi Sandwich",
     "category": "Sandwich",
@@ -36570,6 +36831,70 @@
     "notes": "Maintaining a strict 1:3 ratio of besan to sour buttermilk liquid guarantees melt-in-the-mouth rolls that peel effortlessly."
   },
   {
+    "id": "static-1845",
+    "name": "Gujarati Papad Churi / Marwari Papad Churi (Crushed Roasted Papad Tossed with Ghee, Sev, Onion, Coriander & Chaat Masala)",
+    "category": "Snacks",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 5,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Roasted or fried urad/moong/khichiya papads",
+        "quantity": "5",
+        "unit": "pcs"
+      },
+      {
+        "name": "Crispy nylon sev or Bikaneri bhujia",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely chopped onion, deseeded tomato & green chillies",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Melted desi ghee",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri red chilli powder, roasted cumin powder & chaat masala",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves & lemon juice",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast and crush papads into flaky shards",
+        "text": "Roast papads over an open flame or tawa until crisp and blistered, cool for 1 minute, and crush by hand in a mixing bowl into bite-sized flakes.",
+        "minutes": 4
+      },
+      {
+        "section": "Toss with warm ghee and spices",
+        "text": "Drizzle warm melted desi ghee over the crushed papad and toss with Kashmiri red chilli powder, roasted cumin powder, chaat masala, and black salt so the spices cling to every shard.",
+        "minutes": 2
+      },
+      {
+        "section": "Fold in onions, bhujia, and lemon",
+        "text": "Add finely chopped onion, tomato, green chillies, fresh coriander, crunchy bhujia/sev, and lemon juice right before serving.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Signature Gujarati/Marwari restaurant accompaniment and crunchy evening snack."
+  },
+  {
     "id": "static-1739",
     "name": "Gujarati Vaghareli Khichdi (Spiced Tuvar-Moong Dal Khichdi with Garlic-Curry Leaf Tempering)",
     "category": "Rice",
@@ -38092,6 +38417,70 @@
       }
     ],
     "notes": "Famous North Kolkata sweet-shop morning breakfast kochuri."
+  },
+  {
+    "id": "static-1851",
+    "name": "Homemade Rice Flour Papad / Chawal ke Khichiya Papad (Manual Steamed Rice Flour, Cumin & Green Chilli Sun-Dried Crisps)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Fine rice flour (chawal ka aata)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Water",
+        "quantity": "2",
+        "unit": "cups"
+      },
+      {
+        "name": "Cumin seeds (jeera) & carom seeds (ajwain)",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Finely minced green chillies or red chilli flakes",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Papad khar or baking soda",
+        "quantity": "1/4",
+        "unit": "tsp"
+      },
+      {
+        "name": "Finely chopped coriander leaves & sesame seeds",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil (for greasing sheets & frying) & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil spiced water and steam rice flour dough (khichiya)",
+        "text": "Bring 2 cups water to a rolling boil with cumin seeds, ajwain, minced green chillies/chilli flakes, papad khar/baking soda, and salt. Stir in 1 cup rice flour continuously on low heat until it forms a lump-free mass, then cover and steam on lowest flame for 6–7 minutes.",
+        "minutes": 12
+      },
+      {
+        "section": "Knead warm dough and press between greased sheets",
+        "text": "Transfer the warm dough to a greased plate, knead for 5 minutes with a little oil until smooth and elastic, roll into lemon-sized balls, and press each ball flat between two oiled plastic sheets using a flat-bottomed steel bowl or rolling pin.",
+        "minutes": 15
+      },
+      {
+        "section": "Sun-dry and puff-fry",
+        "text": "Dry the thin discs in bright sunlight for 1–2 days until translucent and brittle. Store in an airtight jar and deep-fry in hot oil for 3 seconds whenever needed—they puff up to triple their size.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Manual stovetop khichiya method requiring only a pot, greased sheet, and flat bowl—zero blender or special press needed."
   },
   {
     "id": "static-1800",
@@ -52521,6 +52910,75 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1842",
+    "name": "Mangodi Papad ki Sabzi (Marwari Sun-Dried Moong Dal Badi & Papad in Spiced Ghee-Yogurt Curry)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Moong dal mangodi / badi (lightly crushed)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Spiced papads (roasted & broken into pieces)",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whisked sour curd (dahi)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin seeds, cloves, bay leaf & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger-green chilli paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, coriander & garam masala",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kasuri methi, fresh coriander & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast mangodi in ghee and simmer until tender",
+        "text": "Heat 1 tbsp ghee in a pot, roast moong dal mangodi until golden and nutty, then add 2 cups water and a pinch of turmeric and simmer covered for 10–12 minutes (or 1 whistle) until mangodis are soft.",
+        "minutes": 12
+      },
+      {
+        "section": "Prepare spiced yogurt gravy",
+        "text": "In another pan, heat remaining ghee, temper cumin, cloves, bay leaf, hing, and ginger-chilli paste, and stir in curd whisked with coriander and Kashmiri chilli powder until boiling.",
+        "minutes": 5
+      },
+      {
+        "section": "Combine mangodi and roasted papad",
+        "text": "Combine the cooked mangodis (with their stock) and yogurt gravy, bring to a boil, stir in broken roasted papads and kasuri methi, simmer 2 minutes, and serve hot.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Classic Rajasthani dry-pantry duet combining nutty sun-dried lentil mangodis and peppery papad."
+  },
+  {
     "id": "static-1282",
     "name": "Mangsher Ghugni (Kolkata Street-Style Mutton Keema Yellow Pea Ghugni)",
     "category": "Curry",
@@ -55829,6 +56287,80 @@
       }
     ],
     "notes": "A harmonious blend of sweet winter peas and pleasantly bitter fresh fenugreek."
+  },
+  {
+    "id": "static-1841",
+    "name": "Methi Papad ki Sabzi (Rajasthani Fenugreek Seeds & Papad Curry in Spiced Onion-Tomato-Curd Gravy)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Roasted or fried urad/moong papads (broken into bite-sized pieces)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Fenugreek seeds (methi dana, boiled 7–8 mins in water & drained)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped onion & ripe tomato",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whisked curd (dahi)",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Minced garlic & grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, hing, turmeric, red chilli & coriander powder",
+        "quantity": "3.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (dry mango powder) or raisins (to balance methi)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or ghee",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil methi dana to remove bitterness",
+        "text": "Boil fenugreek seeds in 2 cups water for 7–8 minutes until plumped and tender, then drain and rinse once in fresh water so all harsh bitterness is removed.",
+        "minutes": 8
+      },
+      {
+        "section": "Cook onion-tomato-curd masala",
+        "text": "Heat oil/ghee, temper cumin and hing, saute onion, garlic, and ginger until golden, then cook tomato, dry spices, and whisked curd until oil separates.",
+        "minutes": 7
+      },
+      {
+        "section": "Simmer with boiled methi and papad",
+        "text": "Add 1.25 cups hot water, boiled methi dana, and amchur/raisins; simmer 4 minutes, fold in broken roasted papads for 1 minute, and garnish with fresh coriander.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Signature Bikaner and Jodhpur desert specialty pairing diabetic-friendly boiled fenugreek seeds with spiced papad."
   },
   {
     "id": "static-0426",
@@ -65654,6 +66186,70 @@
     "notes": "Finely chopped coriander stems and garlic give Manchurian sauce its unmistakable savory depth."
   },
   {
+    "id": "static-1847",
+    "name": "Paneer Masala Papad Cone / Stuffed Papad Cones (Crispy Roasted Papad Cones Filled with Tangy Paneer, Corn & Chaat)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Large round urad papads (halved into semi-circles)",
+        "quantity": "4",
+        "unit": "large"
+      },
+      {
+        "name": "Finely diced fresh paneer & boiled sweet corn",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Finely diced onion, tomato, cucumber & raw mango",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted peanuts, pomegranate pearls & nylon sev",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Green mint chutney & sweet tamarind chutney",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat masala, roasted cumin powder & black salt",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Fresh coriander leaves & lemon juice",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast papad halves and shape into cones",
+        "text": "Roast each half-moon papad on a dry hot tawa pressing with a cloth until crisp, then immediately roll into a cone while still warm and pliable, holding for 10 seconds until it sets into a rigid cone.",
+        "minutes": 8
+      },
+      {
+        "section": "Toss tangy paneer-corn chaat filling",
+        "text": "In a bowl, toss diced paneer, sweet corn, onion, tomato, cucumber, roasted peanuts, chutneys, chaat masala, cumin powder, black salt, lemon juice, and coriander.",
+        "minutes": 5
+      },
+      {
+        "section": "Fill cones and crown with sev and pomegranate",
+        "text": "Spoon the paneer chaat mixture into the crispy papad cones just before serving and top with nylon sev and pomegranate pearls.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Shaping the roasted papad within 5 seconds of lifting it off the hot tawa locks in the cone shape effortlessly."
+  },
+  {
     "id": "static-1564",
     "name": "Paneer Pakora (Crispy Ajwain-Spiced Gram Flour Batter-Fried Cottage Cheese Fritters)",
     "category": "Fritters",
@@ -66464,6 +67060,70 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1849",
+    "name": "Papad Pakora / Batter-Fried Masala Papad Bhajiya (Spiced Besan-Rice Batter Coated Crispy Papad Fritters)",
+    "category": "Fritters",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Urad or moong papads (cut into quarters or triangles)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice flour (for extra crunch)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom seeds (ajwain), white sesame seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & finely chopped coriander",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Chaat masala & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk spiced besan-rice batter",
+        "text": "Whisk besan, rice flour, ajwain, sesame seeds, hing, turmeric, red chilli, chopped coriander, a light pinch of salt, and water into a medium-thin coating batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip papad wedges and flash-fry",
+        "text": "Dip each raw papad triangle into the spiced batter and slide immediately into medium-hot oil; fry 1.5–2 minutes per side until puffed, golden, and super crispy.",
+        "minutes": 8
+      },
+      {
+        "section": "Dust with chaat masala",
+        "text": "Drain on paper towels, sprinkle chaat masala, and serve hot with evening tea and green chutney.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Quick monsoon tea-time telebhaja/pakora when you want something ultra-crunchy in 15 minutes."
+  },
+  {
     "id": "static-1625",
     "name": "Papad Paratha (Spiced Crushed Roasted Papad & Coriander Stuffed Crunchy Paratha)",
     "category": "Bread",
@@ -66516,6 +67176,489 @@
       }
     ],
     "notes": "A quick, crunchy Rajasthani-inspired paratha that turns simple roasted papad into an exciting meal."
+  },
+  {
+    "id": "static-1843",
+    "name": "Papad Pyaz ki Sabzi (Jodhpuri Dry Stir-Fry of Sliced Onions, Roasted Papad & Crushed Fennel-Coriander)",
+    "category": "Vegetable",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Spiced urad/moong papads (roasted crisp & broken into bite-sized shards)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Thickly sliced red onions (or spring onions)",
+        "quantity": "2.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Crushed fennel seeds (saunf), coriander seeds & cumin",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Slit green chillies & grated ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & amchur powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil or ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry sliced onions with crushed spices",
+        "text": "Heat oil in a wide pan, crackle cumin, crushed fennel, crushed coriander seeds, and hing, then saute sliced onions, ginger, and green chillies on medium-high flame for 4 minutes so the onions stay juicy-crisp.",
+        "minutes": 5
+      },
+      {
+        "section": "Season with dry spices and splash of water",
+        "text": "Add turmeric, Kashmiri red chilli, amchur, salt, and 2 tbsp water; cook 2 minutes so a glossy masala coats the onions.",
+        "minutes": 3
+      },
+      {
+        "section": "Fold in roasted papad shards",
+        "text": "Toss in the broken roasted papad pieces and chopped coriander, stir on low heat for 1 minute, and serve immediately with hot rotis.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Quick 10-minute dry tiffin sabzi where sweet caramelized onions hug smoky roasted papad shards."
+  },
+  {
+    "id": "static-1846",
+    "name": "Papad Roll / Crispy Potato-Pea Stuffed Papad Cigar Rolls (Spiced Aloo Masala Wrapped in Papad & Fried Crisp)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Medium urad or moong papads",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Boiled & mashed potatoes",
+        "quantity": "3",
+        "unit": "medium"
+      },
+      {
+        "name": "Boiled green peas, finely chopped onion & grated carrot",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated ginger, chopped green chillies & coriander leaves",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Roasted cumin powder, chaat masala, amchur & garam masala",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Maida or besan paste (for sealing edges)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Oil (for shallow or deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare zesty aloo-matar filling",
+        "text": "Mix boiled mashed potatoes with green peas, finely chopped onion, grated carrot, ginger, green chillies, coriander, roasted cumin, amchur, chaat masala, garam masala, and salt; shape into 6 cylindrical fingers.",
+        "minutes": 8
+      },
+      {
+        "section": "Dampen papads and roll tightly",
+        "text": "Dip one papad at a time in water for 3 seconds, place on a damp cloth for 30 seconds until flexible, set a potato log near the bottom edge, fold in both sides, roll tightly like a spring roll, and seal the flap with maida/besan paste.",
+        "minutes": 7
+      },
+      {
+        "section": "Fry until blistered and crunchy",
+        "text": "Fry the stuffed papad rolls in medium-hot oil for 2–3 minutes, turning gently until blistered and golden brown. Slice diagonally and serve hot with mint and tamarind chutneys.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Produces a shatteringly crisp blistered shell around a soft, spiced potato center."
+  },
+  {
+    "id": "static-1838",
+    "name": "Papor Bharta / Paporer Chokha (Bengali Crushed Roasted Papad Mash with Mustard Oil, Onion & Roasted Dry Chilli)",
+    "category": "Vegetable Bharta",
+    "region": "Bengali",
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 3,
+    "ingredients": [
+      {
+        "name": "Urad or moong dal papads (dry-roasted over open flame or fried)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped red onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Whole dried red chillies (roasted crisp in mustard oil)",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Finely chopped green chilli & fresh coriander leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kachi ghani pungent mustard oil",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black salt (bit noon) & regular salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast papads and dry red chillies",
+        "text": "Roast papads directly over a stovetop flame with tongs (or fry in oil) until blistered and crisp. Fry whole dried red chillies in 1 tsp mustard oil until dark and crunchy.",
+        "minutes": 4
+      },
+      {
+        "section": "Crush chillies with onion and mustard oil",
+        "text": "In a bowl, crumble the roasted dry red chillies with a pinch of salt and black salt using your fingers, then rub in finely chopped onion, green chilli, coriander leaves, and raw pungent mustard oil.",
+        "minutes": 3
+      },
+      {
+        "section": "Fold in crushed papad and serve immediately",
+        "text": "Coarsely crush the roasted papads into bite-sized shards, toss into the spiced onion-mustard oil mixture, and serve immediately alongside hot steamed rice or khichuri.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Ready in 5 minutes; always mix the crushed papad right before eating so it stays super crunchy."
+  },
+  {
+    "id": "static-1837",
+    "name": "Paporer Chorchori / Papor Aloo Bori Ghonto (Bengali Crushed Fried Papad, Potato & Bori Dry Masala Medley)",
+    "category": "Vegetable",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Roasted or fried papads (coarsely crushed)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes & brinjal (diced into small cubes)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Sun-dried lentil dumplings (bori, fried & crushed)",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Panch phoron, dry red chilli & bay leaf",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger, chopped tomato & slit green chillies",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Turmeric, cumin powder & Kashmiri chilli powder",
+        "quantity": "2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves, pinch of sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry papad, bori, and diced vegetables",
+        "text": "Heat mustard oil, fry papads and bori until crisp and set aside. Temper panch phoron, dry red chilli, and bay leaf, then saute diced potatoes and brinjal until golden.",
+        "minutes": 8
+      },
+      {
+        "section": "Simmer with ginger-cumin spices",
+        "text": "Add grated ginger, chopped tomato, green chillies, turmeric, cumin, chilli powder, and salt with 1/2 cup water; cover and cook until potatoes are soft and almost dry.",
+        "minutes": 7
+      },
+      {
+        "section": "Toss in crushed papad and bori",
+        "text": "Fold in coarsely crushed fried papad, crushed bori, a pinch of sugar, and chopped coriander; toss for 1 minute and serve hot with dal and steamed rice.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Adding the crushed papad at the very end preserves a delightful contrast of crunchy and saucy textures."
+  },
+  {
+    "id": "static-1836",
+    "name": "Paporer Dalna / Aloo Paporer Jhol (Traditional Bengali Niramish Fried Papad & Potato Cumin-Ginger Curry)",
+    "category": "Curry",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Bengali moong or urad papads (cut into quarters)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potatoes (peeled & cut into lengthwise wedges)",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Ripe tomato (cut into wedges)",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Grated ginger & slit green chillies",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin seeds, bay leaf, dry red chilli & pinch of hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin powder, coriander powder, turmeric & Kashmiri red chilli",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bengali gorom moshla powder & desi ghee",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt & pinch of sugar",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry papad quarters and golden potato wedges",
+        "text": "Heat mustard oil in a kadai, fry the quartered papads until crisp and set aside. In the same oil, fry potato wedges with a pinch of turmeric and salt until golden.",
+        "minutes": 7
+      },
+      {
+        "section": "Cook fragrant ginger-cumin-tomato jhol",
+        "text": "Temper bay leaf, dry red chilli, cumin seeds, and hing. Add grated ginger, tomato wedges, cumin powder, coriander powder, turmeric, and Kashmiri chilli with a splash of water; cook until oil separates, then add fried potatoes and 2 cups warm water and simmer 8 minutes until potatoes are tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold in fried papads and finish with ghee",
+        "text": "Gently tuck the fried papad pieces into the simmering jhol, cook 1–2 minutes so they soften slightly while keeping their shape, and finish with 1 tsp desi ghee and gorom moshla.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Beloved Bengali household rainy-day and niramish lunch curry when fresh green vegetables are scarce."
+  },
+  {
+    "id": "static-1834",
+    "name": "Paporer Dolma / Papader Dolma (Bengali Stuffed Papad Rolls with Spiced Potato, Chhena & Nut Filling in Rich Ginger-Cumin Gravy)",
+    "category": "Curry",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Medium plain urad/moong dal papads",
+        "quantity": "8",
+        "unit": "pcs"
+      },
+      {
+        "name": "Boiled & mashed potatoes",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Crumbled chhena / paneer",
+        "quantity": "1/2",
+        "unit": "cup"
+      },
+      {
+        "name": "Chopped cashews & golden raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Grated ginger & green chilli paste",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely chopped tomato & whisked curd (for gravy)",
+        "quantity": "3/4",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin seeds, bay leaf, cinnamon, cardamom & cloves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli, cumin & coriander powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bengali bhaja moshla & gorom moshla",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Besan or maida paste (for sealing) + mustard oil & 1 tbsp ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sugar & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced potato-chhena stuffing",
+        "text": "Heat 1 tbsp oil in a pan, temper cumin and grated ginger, then saute mashed potatoes and crumbled chhena/paneer with turmeric, chilli powder, bhaja moshla, chopped cashews, raisins, a pinch of sugar, and salt. Cool completely.",
+        "minutes": 8
+      },
+      {
+        "section": "Soften papads, stuff into cigar rolls, and shallow-fry",
+        "text": "Briefly dip each papad in lukewarm water for 3–4 seconds and lay on a clean cloth for 1 minute until pliable. Place a log of potato-chhena stuffing near one edge, fold sides in, roll tightly into a neat cylinder (dolma), seal the edge with thick besan/maida paste, and shallow-fry in mustard oil until crisp and golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Simmer niramish ginger-cumin-curd gravy and plate",
+        "text": "In the remaining oil, temper bay leaf, whole garam masala, cumin, and hing. Cook ginger paste, chopped tomato, cumin-coriander powder, turmeric, Kashmiri chilli, and whisked curd until oil separates, then add 1.25 cups warm water and simmer 5 minutes into a velvety gravy. Finish with ghee and Bengali gorom moshla, and pour hot gravy over the crispy paporer dolmas just before serving.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Lost-recipe Thakurbarir and traditional Bengali niramish delicacy; pouring the hot gravy over the stuffed papad rolls right at serving time keeps them crisp-tender."
+  },
+  {
+    "id": "static-1839",
+    "name": "Paporer Tok / Papor Ambol (Bengali Sweet-and-Sour Tamarind, Jaggery & Panch-Phoron Papad Chutney)",
+    "category": "Side Dish",
+    "region": "Bengali",
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Papads (fried or roasted & broken into large pieces)",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Thick seedless tamarind pulp (tetul golano)",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Grated jaggery (gur) or sugar",
+        "quantity": "1/3",
+        "unit": "cup"
+      },
+      {
+        "name": "Panch phoron or mustard seeds & dry red chilli",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric powder & roasted panch-phoron bhaja moshla",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black salt & regular salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper panch phoron and simmer tamarind-jaggery broth",
+        "text": "Heat mustard oil in a pan, crackle dry red chilli and panch phoron (or mustard seeds), then pour in tamarind pulp, 1.25 cups water, turmeric, salt, and jaggery. Simmer 5–6 minutes until glossy and slightly syrupy.",
+        "minutes": 7
+      },
+      {
+        "section": "Drop in fried papad pieces",
+        "text": "Add the fried papad pieces to the bubbling sweet-and-sour tamarind broth, simmer 1 minute, and turn off heat.",
+        "minutes": 2
+      },
+      {
+        "section": "Sprinkle bhaja moshla",
+        "text": "Dust with roasted panch-phoron powder and black salt; serve as the palate-cleansing final course of a Bengali meal.",
+        "minutes": 1
+      }
+    ],
+    "notes": "Traditional rural Bengal summer lunch closer combining tangy tamarind, sweet jaggery, and soft-crisp papad."
   },
   {
     "id": "static-0246",
@@ -76692,6 +77835,80 @@
     "notes": "Light, pakora-free Marwari kadhi that accompanies steamed rice, khichdi, or bajra rotla."
   },
   {
+    "id": "static-1840",
+    "name": "Rajasthani Papad ki Sabzi (Marwari Roasted Moong/Urad Papad Simmered in Tangy Spiced Yogurt Gravy)",
+    "category": "Curry",
+    "region": "Rajasthani",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Spiced Rajasthani moong/urad papads (roasted or fried & broken into triangles)",
+        "quantity": "4",
+        "unit": "large"
+      },
+      {
+        "name": "Whisked sour curd (dahi)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (gram flour, to stabilize curd)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin seeds, mustard seeds, fenugreek seeds & hing",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger & finely chopped green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri red chilli, coriander & turmeric powder",
+        "quantity": "3",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri methi & garam masala",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Desi ghee or oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk spiced yogurt mixture",
+        "text": "Whisk curd smoothly with 1 tsp besan, coriander powder, turmeric, and Kashmiri red chilli powder so it never splits when heated.",
+        "minutes": 3
+      },
+      {
+        "section": "Temper spices and simmer dahi gravy",
+        "text": "Heat ghee in a kadai, crackle cumin, mustard, fenugreek seeds, and hing, then saute grated ginger and green chillies. Lower flame, stir in the spiced curd continuously until it boils, add 1.25 cups warm water and salt, and simmer 5 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold in roasted papad pieces and kasuri methi",
+        "text": "Add the roasted papad triangles and crushed kasuri methi, simmer 1–2 minutes until the papad absorbs the tangy gravy, garnish with fresh coriander, and serve immediately with phulkas or rice.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Quickest 15-minute Marwari household curry; go light on added salt as papads already contain salt and Papad Khar."
+  },
+  {
     "id": "static-1759",
     "name": "Rajasthani Pitod ki Sabzi / Pitor Curry (Diamond-Cut Steamed Gram Flour Cakes in Tangy Spiced Yogurt Gravy)",
     "category": "Curry",
@@ -79059,6 +80276,65 @@
       }
     ],
     "notes": "Coating soaked sabudana with coarse roasted peanut powder before cooking is the secret to non-sticky, pearly Sabudana Khichdi."
+  },
+  {
+    "id": "static-1852",
+    "name": "Sabudana Papad / Sago Pearl Sun-Dried Crisps (Stovetop-Cooked Translucent Tapioca Pearl & Cumin Papad)",
+    "category": "Snacks",
+    "region": "Maharashtrian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Sabudana (tapioca pearls, washed & soaked overnight in 1 cup water)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Water (for cooking)",
+        "quantity": "5",
+        "unit": "cups"
+      },
+      {
+        "name": "Cumin seeds (jeera)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red chilli flakes (optional)",
+        "quantity": "1/2",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sendha namak (rock salt) or regular salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "for frying",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Simmer soaked sabudana into glossy translucent batter",
+        "text": "Boil 5 cups water in a heavy pot, add soaked sabudana and salt, and cook on medium-low heat for 18–20 minutes while stirring regularly until the pearls turn completely translucent and the mixture thickens like porridge. Stir in cumin seeds and chilli flakes and cool for 10 minutes.",
+        "minutes": 22
+      },
+      {
+        "section": "Spoon rounds onto sun-drying sheet",
+        "text": "Pour ladlefuls of the warm batter onto a clean plastic sheet in the sun, spreading gently with the back of the spoon into 3-inch circles.",
+        "minutes": 10
+      },
+      {
+        "section": "Sun-dry until glass-clear and fry",
+        "text": "Sun-dry for 2 days, flipping once on day 1, until hard and glass-like. Deep-fry in hot oil for 3 seconds to blossom into snowy-white, melt-in-the-mouth crisps.",
+        "minutes": 5
+      }
+    ],
+    "notes": "No rolling or grinding required—simply ladle the cooked sago batter onto a sheet in the sun."
   },
   {
     "id": "static-1828",
@@ -81551,6 +82827,80 @@
       }
     ],
     "notes": "Unlike yogurt-based kadhis, Sindhi Kadhi gets its signature tang from roasted besan, tomatoes, and tamarind, making it naturally dairy-free when cooked in oil."
+  },
+  {
+    "id": "static-1844",
+    "name": "Sindhi Papad Curry / Happala Kadhi (Spiced Tomato-Tamarind-Besan Gravy with Crisp Papad Pieces)",
+    "category": "Curry",
+    "region": "Sindhi",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "Peppery Sindhi urad papads (roasted or fried & quartered)",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (gram flour)",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Finely grated or pureed ripe tomatoes",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Tamarind pulp (imli)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mustard seeds, cumin seeds, fenugreek seeds & curry leaves",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Grated ginger & slit green chillies",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Turmeric, Kashmiri red chilli & coriander powder",
+        "quantity": "2.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fresh coriander leaves & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast besan with whole spices",
+        "text": "Heat oil in a pot, crackle mustard, cumin, fenugreek seeds, hing, and curry leaves, then roast 2.5 tbsp besan on low flame for 3 minutes until golden and nutty.",
+        "minutes": 4
+      },
+      {
+        "section": "Simmer tangy tomato-tamarind broth",
+        "text": "Whisk in 2.5 cups warm water, grated tomatoes, ginger, green chillies, turmeric, chilli, coriander powder, tamarind pulp, and salt. Simmer 8–10 minutes until smooth and flavorful.",
+        "minutes": 10
+      },
+      {
+        "section": "Add papad pieces and serve",
+        "text": "Stir in quartered roasted/fried papads and fresh coriander, simmer 1 minute, and serve hot with steamed rice.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Dairy-free Sindhi papad curry thickened with nutty roasted besan and brightened with tomato and tamarind."
   },
   {
     "id": "static-1436",
