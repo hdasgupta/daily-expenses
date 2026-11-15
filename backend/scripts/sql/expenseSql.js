@@ -1,5 +1,7 @@
 export const expenseSql = {
-  countByDate: `SELECT COUNT(*)
+  countByDate: `SELECT COUNT(*),
+      COALESCE(SUM(e.total_cost), 0) AS total_amount,
+      (SELECT COALESCE(SUM(total_cost), 0) FROM public.expenses WHERE expense_date=$1) AS date_total_amount
     FROM public.expenses e JOIN public.categories c ON c.id=e.category_id LEFT JOIN public.items i ON i.id=e.item_id
     WHERE e.expense_date=$1
       AND (c.name ILIKE $2 OR COALESCE(i.name,'') ILIKE $2 OR COALESCE(e.other_item,'') ILIKE $2

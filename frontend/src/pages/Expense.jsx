@@ -757,6 +757,7 @@ export default function Expense() {
 
   const [rows, setRows] = useState([]);
   const [total, setTotal] = useState(0);
+  const [dateTotalAmount, setDateTotalAmount] = useState(0);
 
   const [proofExpense, setProofExpense] = useState(null);
   const [proofFile, setProofFile] = useState(null);
@@ -905,8 +906,16 @@ export default function Expense() {
       },
     );
 
-    setRows(Array.isArray(result?.rows) ? result.rows : []);
+    const nextRows = Array.isArray(result?.rows) ? result.rows : [];
+    setRows(nextRows);
     setTotal(Number(result?.total || 0));
+    if (result?.totalAmount !== undefined && result?.totalAmount !== null) {
+      setDateTotalAmount(Number(result.totalAmount) || 0);
+    } else {
+      setDateTotalAmount(
+        nextRows.reduce((sum, row) => sum + (Number(row?.total_cost) || 0), 0),
+      );
+    }
   };
 
   useEffect(() => {
@@ -1493,10 +1502,25 @@ export default function Expense() {
         </div>
       </form>
 
-      <div className="subheading">
+      <div className="subheading" style={{ flexWrap: "wrap" }}>
         <div>
           <h2>Expenses for {date}</h2>
           <p>All expenses recorded for the selected date.</p>
+        </div>
+
+        <div
+          className="dashboard-summary-card"
+          style={{
+            padding: "10px 16px",
+            minWidth: "190px",
+          }}
+        >
+          <span style={{ display: "block", color: "var(--muted)", fontSize: "11px" }}>
+            Total expense for {formatExpenseDate(date)}
+          </span>
+          <strong style={{ display: "block", fontSize: "18px", marginTop: "4px" }}>
+            ₹{Number(dateTotalAmount || 0).toFixed(2)}
+          </strong>
         </div>
       </div>
 

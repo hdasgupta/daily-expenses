@@ -477,3 +477,10 @@
   - **Stuffed Papad Rolls, Cones & Street Snacks (5)**: *Papad Roll / Crispy Potato-Pea Stuffed Papad Cigar Rolls* (`static-1846`), *Paneer Masala Papad Cone / Stuffed Papad Cones* (`static-1847`), *Dahi Papad Chaat* (`static-1848`), *Papad Pakora / Batter-Fried Masala Papad Bhajiya* (`static-1849`), and *Cheese & Corn Masala Papad* (`static-1850`).
   - **Manual Homemade Papad Recipes (3)**: *Homemade Rice Flour Papad / Chawal ke Khichiya Papad* (`static-1851`), *Sabudana Papad / Sago Pearl Sun-Dried Crisps* (`static-1852`), and *Aloo Papad / Sun-Dried Grated Potato & Red Chilli Flake Papad* (`static-1853`).
 - **Catalogue Verification**: Sorted all **1,586** recipes strictly alphabetically by name with zero duplicate IDs or duplicate names.
+
+
+## 33. Total Expense Summary Card for Selected Date on Add Expenses Page
+- **Backend Date Total Aggregation (`backend/scripts/sql/expenseSql.js`, `backend/src/models/expenseModel.js`)**:
+  - Updated `countByDate` and `listExpenses` (`GET /api/expenses`) to return `totalAmount` (the total sum of `total_cost` across all expenses recorded for the selected `expense_date`, independent of pagination) alongside `filteredTotalAmount` and `total`.
+- **Add Expenses List Header Summary (`frontend/src/pages/Expense.jsx`)**:
+  - Added a summary card at the top of the **Expenses for <Date>** section displaying **Total expense for <Date>: ₹<Amount>** (with automatic client-side sum fallback if communicating with an older backend).

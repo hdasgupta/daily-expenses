@@ -16,7 +16,15 @@ export async function listExpenses({ date, page, pageSize, search, sortColumn, s
   const count = await q(expenseSql.countByDate, [date, like]);
   const offset = (page - 1) * pageSize;
   const rows = await q(expenseSql.listByDate(sort, dir), [date, like, pageSize, offset]);
-  return { rows: rows.rows, total: Number(count.rows[0].count), page, pageSize, date };
+  return {
+    rows: rows.rows,
+    total: Number(count.rows[0].count),
+    totalAmount: Number(count.rows[0].date_total_amount ?? count.rows[0].total_amount ?? 0),
+    filteredTotalAmount: Number(count.rows[0].total_amount || 0),
+    page,
+    pageSize,
+    date,
+  };
 }
 
 export async function findExpense(id) {
