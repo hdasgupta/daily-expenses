@@ -276,11 +276,15 @@ function addSelectionFilters(filters, selection, groupBy) {
     next.dateTo = "";
   }
 
-  if (groupBy.includes("category") && selection.category_id != null) {
+  if (Array.isArray(selection.categories) && selection.categories.length) {
+    next.categories = selection.categories.map(String).filter(Boolean);
+  } else if (selection.category_id != null && selection.category_id !== "") {
     next.categories = [String(selection.category_id)];
   }
 
-  if (groupBy.includes("survivor") && selection.survivor_id != null) {
+  if (Array.isArray(selection.survivors) && selection.survivors.length) {
+    next.survivors = selection.survivors.map(String).filter(Boolean);
+  } else if (selection.survivor_id != null && selection.survivor_id !== "") {
     next.survivors = [String(selection.survivor_id)];
   }
 
@@ -363,20 +367,35 @@ export async function runDashboardReport(reportKey, mode = "summary", selection 
     direction: index === 0 ? "desc" : "asc",
   }));
 
-  const result = await runReport({
-    dateFilterType: "range",
+  const periodColumn = definition.groupBy[0];
+  const breakdownGroupBy = [periodColumn, "survivor", "category"];
+  const breakdownSortColumns = breakdownGroupBy.map((column, index) => ({
+    column,
+    direction: index === 0 ? "desc" : "asc",
+  }));
 
-    filters,
-
-    sortColumns,
-
-    groupBy: definition.groupBy,
-
-    summarise: true,
-  });
+  const [result, breakdownResult] = await Promise.all([
+    runReport({
+      dateFilterType: "range",
+      filters,
+      sortColumns,
+      groupBy: definition.groupBy,
+      summarise: true,
+    }),
+    definition.groupBy.length === 3
+      ? Promise.resolve(null)
+      : runReport({
+          dateFilterType: "range",
+          filters,
+          sortColumns: breakdownSortColumns,
+          groupBy: breakdownGroupBy,
+          summarise: true,
+        }),
+  ]);
 
   return {
     ...result,
+    breakdownRows: breakdownResult ? breakdownResult.rows : result.rows,
     reportKey,
     title: definition.label,
     groupBy: definition.groupBy,

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, BarChart3, CalendarClock, RefreshCw } from "lucide-react";
+import { ArrowLeft, BarChart3, CalendarClock, Filter, RefreshCw, RotateCcw } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -315,6 +315,85 @@ function buildPivotSummary(rows, groupBy) {
   };
 }
 
+function asArray(value) {
+  if (Array.isArray(value)) return value;
+  if (Array.isArray(value?.rows)) return value.rows;
+  if (Array.isArray(value?.data)) return value.data;
+  if (Array.isArray(value?.items)) return value.items;
+  return [];
+}
+
+function filterDashboardData(data, categoryFilter, survivorFilter, categories = [], survivors = []) {
+  if (!data) return null;
+  if (!categoryFilter && !survivorFilter) return data;
+
+  const groupBy = Array.isArray(data.groupBy) ? data.groupBy : [];
+  const selectedCategoryName =
+    categories.find((c) => String(c.id) === String(categoryFilter))?.name || null;
+  const selectedSurvivorName =
+    survivors.find((s) => String(s.id) === String(survivorFilter))?.full_name || null;
+
+  const sourceRows = Array.isArray(data.breakdownRows) && data.breakdownRows.length
+    ? data.breakdownRows
+    : Array.isArray(data.rows)
+      ? data.rows
+      : [];
+
+  const matching = sourceRows.filter((row) => {
+    if (categoryFilter) {
+      const idMatch =
+        row.category_id != null && String(row.category_id) === String(categoryFilter);
+      const nameMatch =
+        selectedCategoryName != null && String(row.category) === String(selectedCategoryName);
+      if (!idMatch && !nameMatch) return false;
+    }
+    if (survivorFilter) {
+      const idMatch =
+        row.survivor_id != null && String(row.survivor_id) === String(survivorFilter);
+      const nameMatch =
+        selectedSurvivorName != null && String(row.survivor) === String(selectedSurvivorName);
+      if (!idMatch && !nameMatch) return false;
+    }
+    return true;
+  });
+
+  const groupedMap = new Map();
+  for (const row of matching) {
+    const key = groupBy.map((col) => stableValueKey(row[col])).join("\u001f");
+    if (!groupedMap.has(key)) {
+      const nextRow = {};
+      for (const col of groupBy) {
+        nextRow[col] = row[col];
+      }
+      if (row.category_id != null) nextRow.category_id = row.category_id;
+      else if (categoryFilter) nextRow.category_id = categoryFilter;
+      if (row.survivor_id != null) nextRow.survivor_id = row.survivor_id;
+      else if (survivorFilter) nextRow.survivor_id = survivorFilter;
+      nextRow.total = 0;
+      groupedMap.set(key, nextRow);
+    }
+    const target = groupedMap.get(key);
+    target.total = Math.round((target.total + Number(row.total || 0)) * 100) / 100;
+  }
+
+  const rows = Array.from(groupedMap.values()).sort((a, b) => {
+    for (let index = 0; index < groupBy.length; index += 1) {
+      const col = groupBy[index];
+      const cmp = compareGroupValues(a, b, col);
+      if (cmp) return index === 0 && isDateGroup(col) ? -cmp : cmp;
+    }
+    return 0;
+  });
+
+  const total = Math.round(rows.reduce((sum, r) => sum + Number(r.total || 0), 0) * 100) / 100;
+
+  return {
+    ...data,
+    rows,
+    total,
+  };
+}
+
 function readReportKey() {
   const parts = window.location.pathname.split("/").filter(Boolean);
 
@@ -330,11 +409,26 @@ export default function DashboardDetail({ navigate, user }) {
 
   const [loading, setLoading] = useState(true);
 
+  const [categories, setCategories] = useState([]);
+  const [survivors, setSurvivors] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [survivorFilter, setSurvivorFilter] = useState("");
+
   const [scheduleOpen, setScheduleOpen] = useState(false);
 
   const [scheduleBusy, setScheduleBusy] = useState(false);
 
   const canSchedule = user?.permissions?.includes("job-status");
+
+  useEffect(() => {
+    Promise.all([
+      api("/meta/categories", { silent: true }).catch(() => []),
+      api("/meta/survivors", { silent: true }).catch(() => []),
+    ]).then(([catData, survData]) => {
+      setCategories(asArray(catData));
+      setSurvivors(asArray(survData));
+    });
+  }, []);
 
   const load = () => {
     if (!report) return;
@@ -357,10 +451,25 @@ export default function DashboardDetail({ navigate, user }) {
   };
 
   useEffect(() => {
+    setCategoryFilter("");
+    setSurvivorFilter("");
     load();
   }, [reportKey]);
 
-  const chartModel = useMemo(() => buildChartModel(data), [data]);
+  const activeFilters = useMemo(
+    () => ({
+      categoryId: categoryFilter || "",
+      survivorId: survivorFilter || "",
+    }),
+    [categoryFilter, survivorFilter],
+  );
+
+  const filteredData = useMemo(
+    () => filterDashboardData(data, categoryFilter, survivorFilter, categories, survivors),
+    [data, categoryFilter, survivorFilter, categories, survivors],
+  );
+
+  const chartModel = useMemo(() => buildChartModel(filteredData), [filteredData]);
 
   const chartData = chartModel.data;
 
@@ -435,27 +544,81 @@ export default function DashboardDetail({ navigate, user }) {
         </div>
       </div>
 
-      {loading && !data ? (
+      <div className="card dashboard-detail-filter-bar">
+        <div className="dashboard-detail-filter-head">
+          <strong>
+            <Filter size={16} />
+            Quick Filters
+          </strong>
+          {(categoryFilter || survivorFilter) ? (
+            <button
+              type="button"
+              className="secondary dashboard-filter-clear-btn"
+              onClick={() => {
+                setCategoryFilter("");
+                setSurvivorFilter("");
+              }}
+            >
+              <RotateCcw size={14} />
+              Clear filters
+            </button>
+          ) : null}
+        </div>
+
+        <div className="dashboard-detail-filter-grid">
+          <label>
+            Category
+            <select
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+            >
+              <option value="">All categories</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={String(cat.id)}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Survivor
+            <select
+              value={survivorFilter}
+              onChange={(e) => setSurvivorFilter(e.target.value)}
+            >
+              <option value="">All survivors</option>
+              {survivors.map((surv) => (
+                <option key={surv.id} value={String(surv.id)}>
+                  {surv.full_name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      {loading && !filteredData ? (
         <div className="empty-card">Loading dashboard report…</div>
-      ) : data ? (
+      ) : filteredData ? (
         <>
           <div className="dashboard-detail-summary">
             <div className="summary-card dashboard-summary-card">
               <span>Summarised expenses</span>
 
-              <strong>{money(data.total)}</strong>
+              <strong>{money(filteredData.total)}</strong>
             </div>
 
             <div className="summary-card dashboard-summary-card">
               <span>Summary rows</span>
 
-              <strong>{data.rows?.length || 0}</strong>
+              <strong>{filteredData.rows?.length || 0}</strong>
             </div>
 
             <div className="summary-card dashboard-summary-card">
               <span>Date range</span>
 
-              <strong>{data.rangeLabel}</strong>
+              <strong>{filteredData.rangeLabel}</strong>
             </div>
           </div>
 
@@ -557,7 +720,15 @@ export default function DashboardDetail({ navigate, user }) {
                           legendType={chartModel.stackedCategory ? "none" : undefined}
                           onClick={(entry) => {
                             const row = entry?.payload?._groupRows?.[series.dataKey];
-                            if (row) openDrilldown(navigate, report.key, data.groupBy, row);
+                            if (row) {
+                              openDrilldown(
+                                navigate,
+                                report.key,
+                                filteredData.groupBy,
+                                row,
+                                activeFilters,
+                              );
+                            }
                           }}
                         >
                           <LabelList
@@ -587,15 +758,20 @@ export default function DashboardDetail({ navigate, user }) {
               <span>Grouped by {data.groupBy?.join(", ")} · sum of expenses</span>
             </div>
 
-            {data.rows?.length ? (
+            {filteredData.rows?.length ? (
               <div className="table-scroll">
-                {data.groupBy?.length > 1 ? (
-                  <PivotSummaryTable data={data} report={report} navigate={navigate} />
+                {filteredData.groupBy?.length > 1 ? (
+                  <PivotSummaryTable
+                    data={filteredData}
+                    report={report}
+                    navigate={navigate}
+                    activeFilters={activeFilters}
+                  />
                 ) : (
                   <table className="data-table dashboard-summary-table">
                     <thead>
                       <tr>
-                        {(data.groupBy || []).map((column) => (
+                        {(filteredData.groupBy || []).map((column) => (
                           <th key={column}>{column}</th>
                         ))}
 
@@ -604,10 +780,10 @@ export default function DashboardDetail({ navigate, user }) {
                     </thead>
 
                     <tbody>
-                      {buildMergedCells(data.rows, data.groupBy || []).map(
+                      {buildMergedCells(filteredData.rows, filteredData.groupBy || []).map(
                         ({ row, rowIndex, cells }) => (
-                          <tr key={`${rowIndex}-${rowLabel(row, data.groupBy || [])}`}>
-                            {(data.groupBy || []).map((column, columnIndex) => {
+                          <tr key={`${rowIndex}-${rowLabel(row, filteredData.groupBy || [])}`}>
+                            {(filteredData.groupBy || []).map((column, columnIndex) => {
                               const cell = cells[columnIndex];
 
                               if (cell.hidden) {
@@ -632,7 +808,13 @@ export default function DashboardDetail({ navigate, user }) {
                                 type="button"
                                 className="table-link-button"
                                 onClick={() =>
-                                  openDrilldown(navigate, report.key, data.groupBy, row)
+                                  openDrilldown(
+                                    navigate,
+                                    report.key,
+                                    filteredData.groupBy,
+                                    row,
+                                    activeFilters,
+                                  )
                                 }
                               >
                                 {money(row.total)}
@@ -645,7 +827,9 @@ export default function DashboardDetail({ navigate, user }) {
                   </table>
                 )}
               </div>
-            ) : null}
+            ) : (
+              <div className="empty-card">No summary rows match the selected filters.</div>
+            )}
           </div>
         </>
       ) : null}
@@ -667,7 +851,7 @@ export default function DashboardDetail({ navigate, user }) {
   );
 }
 
-function PivotSummaryTable({ data, report, navigate }) {
+function PivotSummaryTable({ data, report, navigate, activeFilters }) {
   const pivot = buildPivotSummary(data.rows, data.groupBy);
 
   if (!pivot) return null;
@@ -728,7 +912,7 @@ function PivotSummaryTable({ data, report, navigate }) {
                       <button
                         type="button"
                         className="table-link-button"
-                        onClick={() => openDrilldown(navigate, report.key, data.groupBy, entry.row)}
+                        onClick={() => openDrilldown(navigate, report.key, data.groupBy, entry.row, activeFilters)}
                       >
                         {money(entry.total)}
                       </button>
@@ -895,7 +1079,7 @@ function buildChartModel(data) {
   };
 }
 
-function openDrilldown(navigate, reportKey, groupBy, row) {
+function openDrilldown(navigate, reportKey, groupBy, row, activeFilters = {}) {
   const selection = {};
 
   for (const column of groupBy) {
@@ -904,10 +1088,14 @@ function openDrilldown(navigate, reportKey, groupBy, row) {
 
   if (row.category_id != null) {
     selection.category_id = row.category_id;
+  } else if (activeFilters.categoryId) {
+    selection.category_id = activeFilters.categoryId;
   }
 
   if (row.survivor_id != null) {
     selection.survivor_id = row.survivor_id;
+  } else if (activeFilters.survivorId) {
+    selection.survivor_id = activeFilters.survivorId;
   }
 
   const query = encodeURIComponent(JSON.stringify(selection));

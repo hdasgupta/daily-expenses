@@ -498,3 +498,11 @@
   - Updated `buildChartModel` so `daily-survivor`, `weekly-survivor`, `monthly-survivor`, and `yearly-survivor` (`seriesColumn === "survivor"`) assign `stackId: "survivor_stack"` to all survivor series, stacking survivors vertically inside each `date` / `week` / `month` / `year` bar while preserving click-to-drilldown on every survivor segment.
 - **Scheduled Report PDF Stacked Survivor Chart (`backend/src/services/scheduledReportPdfService.js`)**:
   - Updated `drawChart` so `daily-survivor`, `weekly-survivor`, `monthly-survivor`, and `yearly-survivor` PDF charts also stack survivors inside each period bar.
+
+
+## 36. Instant Survivor & Category Filters Across All Dashboard Detail Pages
+- **Backend Breakdown & Drilldown Filtering (`backend/src/services/dashboardReportService.js`)**:
+  - Updated `runDashboardReport` (`mode === "summary"`) to include `breakdownRows` (aggregated across `[period, "survivor", "category"]`) alongside `rows`, and updated `addSelectionFilters` to apply `category_id` / `categories` and `survivor_id` / `survivors` across all 16 dashboard reports in both summary and drilldown modes.
+- **Instant Client-Side Re-Aggregation & Filter UI (`frontend/src/pages/DashboardDetail.jsx`, `frontend/src/styles.css`)**:
+  - Added a **Quick Filters** card with **Category** and **Survivor** dropdowns (plus a one-click **Clear filters** button) to every Dashboard Detail page.
+  - Selecting a Category or Survivor filters `breakdownRows` and re-aggregates by the report's `groupBy` in-memory with 0ms latency, updating the **Summarised expenses** total, **Summary rows** count, **Summary bar chart**, **Summarise report** table, and drilldown links immediately.

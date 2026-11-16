@@ -1736,3 +1736,36 @@ code {
 .drawer-section-title:first-of-type {
   padding-top: 3px;
 }
+
+/* Dashboard Detail instant Category & Survivor filter bar */
+.dashboard-detail-filter-bar {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+}
+.dashboard-detail-filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.dashboard-detail-filter-head strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+}
+.dashboard-filter-clear-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.dashboard-detail-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 620px) {
+  .dashboard-detail-filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
