@@ -235,6 +235,7 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
   const xItems = [...xMap.values()];
   const outerItems = [...categoryMap.values()];
   const innerItems = [...survivorMap.values()];
+  const isCategoryOnlyStack = Boolean(category && !survivor);
   const max = Math.max(
     ...xItems.flatMap((xItem) =>
       category && survivor
@@ -245,45 +246,40 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
               0,
             ),
           )
-        : outerItems.map((outer) => values.get(`${xItem.key}\u0002${outer.key}`) || 0),
+        : isCategoryOnlyStack
+          ? [
+              outerItems.reduce(
+                (s, outer) => s + (values.get(`${xItem.key}\u0002${outer.key}`) || 0),
+                0,
+              ),
+            ]
+          : outerItems.map((outer) => values.get(`${xItem.key}\u0002${outer.key}`) || 0),
     ),
     1,
   );
   const slot = usableWidth / Math.max(xItems.length, 1);
-  const stackWidth = Math.max(6, Math.min(24, (slot - 10) / Math.max(outerItems.length, 1) - 2));
+  const stackWidth = isCategoryOnlyStack
+    ? Math.max(14, Math.min(36, slot * 0.55))
+    : Math.max(6, Math.min(24, (slot - 10) / Math.max(outerItems.length, 1) - 2));
 
   xItems.forEach((xItem, xIndex) => {
-    const groupWidth = Math.max(outerItems.length, 1) * (stackWidth + 2) - 2;
-    const groupStart = startX + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
-    outerItems.forEach((outer, outerIndex) => {
-      const bx = groupStart + outerIndex * (stackWidth + 2);
+    if (isCategoryOnlyStack) {
+      const bx = startX + xIndex * slot + Math.max((slot - stackWidth) / 2, 0);
       let y = baseline;
       let total = 0;
-      if (category && survivor) {
-        innerItems.forEach((inner) => {
-          const value = Number(values.get(`${xItem.key}\u0002${outer.key}\u0002${inner.key}`) || 0);
-          if (!value) return;
-          const height = (value / max) * (chartHeight - 40);
-          y -= height;
-          total += value;
-          doc
-            .save()
-            .fillColor(palette[outerIndex % palette.length])
-            .rect(bx, y, stackWidth, height)
-            .fill()
-            .restore();
-        });
-      } else {
-        total = Number(values.get(`${xItem.key}\u0002${outer.key}`) || 0);
-        const height = (total / max) * (chartHeight - 40);
+      outerItems.forEach((outer, outerIndex) => {
+        const value = Number(values.get(`${xItem.key}\u0002${outer.key}`) || 0);
+        if (!value) return;
+        const height = (value / max) * (chartHeight - 40);
         y -= height;
+        total += value;
         doc
           .save()
           .fillColor(palette[outerIndex % palette.length])
           .rect(bx, y, stackWidth, height)
           .fill()
           .restore();
-      }
+      });
       if (total) {
         doc
           .fontSize(5.5)
@@ -294,7 +290,52 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
             ellipsis: true,
           });
       }
-    });
+    } else {
+      const groupWidth = Math.max(outerItems.length, 1) * (stackWidth + 2) - 2;
+      const groupStart = startX + xIndex * slot + Math.max((slot - groupWidth) / 2, 0);
+      outerItems.forEach((outer, outerIndex) => {
+        const bx = groupStart + outerIndex * (stackWidth + 2);
+        let y = baseline;
+        let total = 0;
+        if (category && survivor) {
+          innerItems.forEach((inner) => {
+            const value = Number(
+              values.get(`${xItem.key}\u0002${outer.key}\u0002${inner.key}`) || 0,
+            );
+            if (!value) return;
+            const height = (value / max) * (chartHeight - 40);
+            y -= height;
+            total += value;
+            doc
+              .save()
+              .fillColor(palette[outerIndex % palette.length])
+              .rect(bx, y, stackWidth, height)
+              .fill()
+              .restore();
+          });
+        } else {
+          total = Number(values.get(`${xItem.key}\u0002${outer.key}`) || 0);
+          const height = (total / max) * (chartHeight - 40);
+          y -= height;
+          doc
+            .save()
+            .fillColor(palette[outerIndex % palette.length])
+            .rect(bx, y, stackWidth, height)
+            .fill()
+            .restore();
+        }
+        if (total) {
+          doc
+            .fontSize(5.5)
+            .fillColor("black")
+            .text(money(total), bx - 8, y - 10, {
+              width: stackWidth + 16,
+              align: "center",
+              ellipsis: true,
+            });
+        }
+      });
+    }
     doc
       .fontSize(5.8)
       .fillColor("black")

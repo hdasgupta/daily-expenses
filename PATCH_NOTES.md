@@ -484,3 +484,10 @@
   - Updated `countByDate` and `listExpenses` (`GET /api/expenses`) to return `totalAmount` (the total sum of `total_cost` across all expenses recorded for the selected `expense_date`, independent of pagination) alongside `filteredTotalAmount` and `total`.
 - **Add Expenses List Header Summary (`frontend/src/pages/Expense.jsx`)**:
   - Added a summary card at the top of the **Expenses for <Date>** section displaying **Total expense for <Date>: ₹<Amount>** (with automatic client-side sum fallback if communicating with an older backend).
+
+
+## 34. Stacked Bar Chart for Daily / Weekly / Monthly / Yearly Reports by Category (Dashboard Detail & Scheduled PDF)
+- **Dashboard Detail Stacked Category Chart (`frontend/src/pages/DashboardDetail.jsx`)**:
+  - Updated `buildChartModel` so that when `seriesColumn === "category"` (`daily-category`, `weekly-category`, `monthly-category`, and `yearly-category`), all category series share `stackId: "category_stack"`, stacking categories vertically inside each `date` / `week` / `month` / `year` bar while preserving per-segment click-to-drilldown.
+- **Scheduled Report PDF Stacked Category Chart (`backend/src/services/scheduledReportPdfService.js`)**:
+  - Updated `drawChart` so `daily-category`, `weekly-category`, `monthly-category`, and `yearly-category` PDF charts also render categories stacked inside each period bar.

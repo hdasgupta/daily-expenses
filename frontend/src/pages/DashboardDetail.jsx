@@ -550,7 +550,7 @@ export default function DashboardDetail({ navigate, user }) {
                           }
                           fill={series.fill}
                           stackId={series.stackId}
-                          barSize={chartModel.stackedCategory ? 34 : 100}
+                          barSize={chartModel.stackedCategory ? 34 : chartModel.stackedPeriodCategory ? 56 : 100}
                           cursor="pointer"
                           stroke="var(--surface)"
                           strokeWidth={2.5}
@@ -852,6 +852,7 @@ function buildChartModel(data) {
   }
 
   const seriesColumn = groupBy.find((column) => column !== xColumn) || groupBy[1];
+  const isCategoryStacked = seriesColumn === "category";
   const seriesMap = new Map();
   const chartRows = new Map();
   rows.forEach((row) => {
@@ -862,6 +863,7 @@ function buildChartModel(data) {
         dataKey: `series_${index}`,
         label: prettyValue(row[seriesColumn], seriesColumn),
         fill: `var(--dashboard-series-${(index % 8) + 1})`,
+        stackId: isCategoryStacked ? "category_stack" : undefined,
       });
     }
     const xKey = stableValueKey(row[xColumn]);
@@ -879,9 +881,14 @@ function buildChartModel(data) {
   return {
     multiSeries: true,
     stackedCategory: false,
+    stackedPeriodCategory: isCategoryStacked,
     pivotGrouping: false,
-    minWidth: Math.max(720, chartRows.size * Math.max(seriesMap.size, 1) * 60 + 140),
-    description: `${xColumn} on the X-axis with ${seriesColumn} as the legend. Click any bar to drill down.`,
+    minWidth: isCategoryStacked
+      ? Math.max(720, chartRows.size * 96 + 140)
+      : Math.max(720, chartRows.size * Math.max(seriesMap.size, 1) * 60 + 140),
+    description: isCategoryStacked
+      ? `${xColumn} on the X-axis with categories stacked by ${xColumn}. Click any segment to drill down.`
+      : `${xColumn} on the X-axis with ${seriesColumn} as the legend. Click any bar to drill down.`,
     data: Array.from(chartRows.values()),
     series: Array.from(seriesMap.values()),
   };
