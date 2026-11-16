@@ -491,3 +491,10 @@
   - Updated `buildChartModel` so that when `seriesColumn === "category"` (`daily-category`, `weekly-category`, `monthly-category`, and `yearly-category`), all category series share `stackId: "category_stack"`, stacking categories vertically inside each `date` / `week` / `month` / `year` bar while preserving per-segment click-to-drilldown.
 - **Scheduled Report PDF Stacked Category Chart (`backend/src/services/scheduledReportPdfService.js`)**:
   - Updated `drawChart` so `daily-category`, `weekly-category`, `monthly-category`, and `yearly-category` PDF charts also render categories stacked inside each period bar.
+
+
+## 35. Stacked Bar Chart for Daily / Weekly / Monthly / Yearly Reports by Survivor (Dashboard Detail & Scheduled PDF)
+- **Dashboard Detail Stacked Survivor Chart (`frontend/src/pages/DashboardDetail.jsx`)**:
+  - Updated `buildChartModel` so `daily-survivor`, `weekly-survivor`, `monthly-survivor`, and `yearly-survivor` (`seriesColumn === "survivor"`) assign `stackId: "survivor_stack"` to all survivor series, stacking survivors vertically inside each `date` / `week` / `month` / `year` bar while preserving click-to-drilldown on every survivor segment.
+- **Scheduled Report PDF Stacked Survivor Chart (`backend/src/services/scheduledReportPdfService.js`)**:
+  - Updated `drawChart` so `daily-survivor`, `weekly-survivor`, `monthly-survivor`, and `yearly-survivor` PDF charts also stack survivors inside each period bar.

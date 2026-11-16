@@ -852,7 +852,8 @@ function buildChartModel(data) {
   }
 
   const seriesColumn = groupBy.find((column) => column !== xColumn) || groupBy[1];
-  const isCategoryStacked = seriesColumn === "category";
+  const isPeriodStacked = seriesColumn === "category" || seriesColumn === "survivor";
+  const seriesPlural = seriesColumn === "category" ? "categories" : `${seriesColumn}s`;
   const seriesMap = new Map();
   const chartRows = new Map();
   rows.forEach((row) => {
@@ -863,7 +864,7 @@ function buildChartModel(data) {
         dataKey: `series_${index}`,
         label: prettyValue(row[seriesColumn], seriesColumn),
         fill: `var(--dashboard-series-${(index % 8) + 1})`,
-        stackId: isCategoryStacked ? "category_stack" : undefined,
+        stackId: isPeriodStacked ? `${seriesColumn}_stack` : undefined,
       });
     }
     const xKey = stableValueKey(row[xColumn]);
@@ -881,13 +882,13 @@ function buildChartModel(data) {
   return {
     multiSeries: true,
     stackedCategory: false,
-    stackedPeriodCategory: isCategoryStacked,
+    stackedPeriodCategory: isPeriodStacked,
     pivotGrouping: false,
-    minWidth: isCategoryStacked
+    minWidth: isPeriodStacked
       ? Math.max(720, chartRows.size * 96 + 140)
       : Math.max(720, chartRows.size * Math.max(seriesMap.size, 1) * 60 + 140),
-    description: isCategoryStacked
-      ? `${xColumn} on the X-axis with categories stacked by ${xColumn}. Click any segment to drill down.`
+    description: isPeriodStacked
+      ? `${xColumn} on the X-axis with ${seriesPlural} stacked by ${xColumn}. Click any segment to drill down.`
       : `${xColumn} on the X-axis with ${seriesColumn} as the legend. Click any bar to drill down.`,
     data: Array.from(chartRows.values()),
     series: Array.from(seriesMap.values()),

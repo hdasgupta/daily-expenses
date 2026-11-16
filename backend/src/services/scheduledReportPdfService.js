@@ -235,7 +235,7 @@ function drawPivotBarChart(doc, title, rows, groupBy, periods = []) {
   const xItems = [...xMap.values()];
   const outerItems = [...categoryMap.values()];
   const innerItems = [...survivorMap.values()];
-  const isCategoryOnlyStack = Boolean(category && !survivor);
+  const isCategoryOnlyStack = Boolean((category && !survivor) || (survivor && !category));
   const max = Math.max(
     ...xItems.flatMap((xItem) =>
       category && survivor
