@@ -1737,32 +1737,332 @@ code {
   padding-top: 3px;
 }
 
-/* Dashboard Detail instant Category & Survivor filter bar */
+/* Dashboard Detail Smart Multi-Select Filter Bar */
 .dashboard-detail-filter-bar {
   margin-bottom: 14px;
-  padding: 14px 16px;
+  padding: 16px 18px;
+  overflow: visible;
+  position: relative;
+  z-index: 30;
+  background: linear-gradient(180deg, var(--card) 0%, color-mix(in srgb, var(--soft) 45%, var(--card)) 100%);
 }
 .dashboard-detail-filter-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
-.dashboard-detail-filter-head strong {
+.dashboard-detail-filter-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard-detail-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 13px;
+  justify-content: center;
+  background: color-mix(in srgb, var(--primary) 14%, var(--soft));
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.dashboard-detail-filter-title strong {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.2;
+}
+.dashboard-detail-filter-title small {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--muted);
 }
 .dashboard-filter-clear-btn {
-  padding: 5px 10px;
+  padding: 6px 12px;
   font-size: 12px;
+  border-radius: 999px;
 }
 .dashboard-detail-filter-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
+}
+.smart-multiselect {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.smart-multiselect-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.smart-multiselect-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+.smart-multiselect-label svg {
+  color: var(--primary);
+}
+.smart-multiselect-count-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  background: var(--soft);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  transition: all 0.15s ease;
+}
+.smart-multiselect.has-selection .smart-multiselect-count-badge {
+  background: color-mix(in srgb, var(--primary) 14%, var(--card));
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
+}
+.smart-multiselect-trigger {
+  width: 100%;
+  min-height: 44px;
+  padding: 6px 10px 6px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.smart-multiselect-trigger:hover,
+.smart-multiselect.is-open .smart-multiselect-trigger {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 14%, transparent);
+}
+.smart-multiselect-trigger-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+.smart-multiselect-placeholder {
+  color: var(--muted);
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.smart-multiselect-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-width: 0;
+}
+.smart-multiselect-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--primary) 13%, var(--soft));
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
+  max-width: 165px;
+  transition: background 0.15s ease;
+}
+.smart-multiselect-chip > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.smart-multiselect-chip:hover {
+  background: color-mix(in srgb, var(--primary) 22%, var(--soft));
+}
+.smart-multiselect-chip.more {
+  background: var(--soft);
+  color: var(--text);
+  border-color: var(--line);
+}
+.smart-multiselect-trigger-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.smart-multiselect-inline-clear {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.smart-multiselect-inline-clear:hover {
+  background: var(--soft);
+  color: var(--danger, #dc2626);
+}
+.smart-multiselect-chevron {
+  transition: transform 0.18s ease;
+}
+.smart-multiselect-chevron.rotated {
+  transform: rotate(180deg);
+}
+.smart-multiselect-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 120;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.18);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.smart-multiselect-search {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--muted);
+}
+.smart-multiselect-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: var(--text);
+  font-size: 12.5px;
+}
+.smart-multiselect-search-clear {
+  border: 0;
+  background: transparent;
+  padding: 2px;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.smart-multiselect-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 2px;
+}
+.smart-multiselect-action-btn {
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.smart-multiselect-action-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.smart-multiselect-action-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.smart-multiselect-toolbar-meta {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.smart-multiselect-options {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-width: thin;
+}
+.smart-multiselect-option {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 7px 9px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.smart-multiselect-option:hover {
+  background: var(--soft);
+}
+.smart-multiselect-option.is-selected {
+  background: color-mix(in srgb, var(--primary) 10%, var(--soft));
+  border-color: color-mix(in srgb, var(--primary) 24%, transparent);
+  font-weight: 600;
+}
+.smart-multiselect-checkbox {
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+  transition: all 0.12s ease;
+}
+.smart-multiselect-checkbox.checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.smart-multiselect-option-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.smart-multiselect-empty {
+  padding: 14px 8px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
 }
 @media (max-width: 620px) {
   .dashboard-detail-filter-grid {

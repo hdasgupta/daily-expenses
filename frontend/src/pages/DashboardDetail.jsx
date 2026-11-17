@@ -1,5 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, BarChart3, CalendarClock, Filter, RefreshCw, RotateCcw } from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowLeft,
+  BarChart3,
+  CalendarClock,
+  Check,
+  ChevronDown,
+  Filter,
+  RefreshCw,
+  RotateCcw,
+  Search,
+  Tags,
+  Users,
+  X,
+} from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -323,35 +336,271 @@ function asArray(value) {
   return [];
 }
 
-function filterDashboardData(data, categoryFilter, survivorFilter, categories = [], survivors = []) {
+function SmartMultiSelect({
+  label,
+  icon: Icon,
+  placeholder,
+  options,
+  selectedIds,
+  onChange,
+}) {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const handlePointerDown = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
+  const selectedSet = useMemo(
+    () => new Set((selectedIds || []).map(String)),
+    [selectedIds],
+  );
+
+  const filteredOptions = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return options;
+    return options.filter((opt) => String(opt.label || "").toLowerCase().includes(q));
+  }, [options, query]);
+
+  const selectedOptions = useMemo(
+    () => options.filter((opt) => selectedSet.has(String(opt.id))),
+    [options, selectedSet],
+  );
+
+  const toggleOption = (id) => {
+    const key = String(id);
+    if (selectedSet.has(key)) {
+      onChange(selectedIds.filter((item) => String(item) !== key));
+    } else {
+      onChange([...selectedIds, key]);
+    }
+  };
+
+  const selectAllMatching = () => {
+    const next = new Set(selectedIds.map(String));
+    filteredOptions.forEach((opt) => next.add(String(opt.id)));
+    onChange(Array.from(next));
+  };
+
+  const clearSelection = (event) => {
+    if (event) event.stopPropagation();
+    onChange([]);
+  };
+
+  return (
+    <div
+      className={`smart-multiselect${open ? " is-open" : ""}${
+        selectedIds.length ? " has-selection" : ""
+      }`}
+      ref={containerRef}
+    >
+      <div className="smart-multiselect-header">
+        <span className="smart-multiselect-label">
+          {Icon ? <Icon size={14} /> : null}
+          {label}
+        </span>
+        <span className="smart-multiselect-count-badge">
+          {selectedIds.length === 0
+            ? "All"
+            : selectedIds.length === options.length && options.length > 0
+              ? `All (${options.length})`
+              : `${selectedIds.length} selected`}
+        </span>
+      </div>
+
+      <button
+        type="button"
+        className="smart-multiselect-trigger"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+      >
+        <div className="smart-multiselect-trigger-content">
+          {selectedOptions.length === 0 ? (
+            <span className="smart-multiselect-placeholder">{placeholder}</span>
+          ) : (
+            <div className="smart-multiselect-chips">
+              {selectedOptions.slice(0, 3).map((opt) => (
+                <span
+                  key={opt.id}
+                  className="smart-multiselect-chip"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleOption(opt.id);
+                  }}
+                >
+                  <span>{opt.label}</span>
+                  <X size={12} />
+                </span>
+              ))}
+              {selectedOptions.length > 3 ? (
+                <span className="smart-multiselect-chip more">
+                  +{selectedOptions.length - 3} more
+                </span>
+              ) : null}
+            </div>
+          )}
+        </div>
+
+        <div className="smart-multiselect-trigger-actions">
+          {selectedIds.length > 0 ? (
+            <span
+              role="button"
+              tabIndex={0}
+              title="Clear selection"
+              className="smart-multiselect-inline-clear"
+              onClick={clearSelection}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") clearSelection(e);
+              }}
+            >
+              <X size={14} />
+            </span>
+          ) : null}
+          <ChevronDown
+            size={16}
+            className={`smart-multiselect-chevron${open ? " rotated" : ""}`}
+          />
+        </div>
+      </button>
+
+      {open ? (
+        <div className="smart-multiselect-popover">
+          <div className="smart-multiselect-search">
+            <Search size={14} />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={`Search ${label.toLowerCase()}…`}
+              autoFocus
+            />
+            {query ? (
+              <button
+                type="button"
+                className="smart-multiselect-search-clear"
+                onClick={() => setQuery("")}
+                title="Clear search"
+              >
+                <X size={13} />
+              </button>
+            ) : null}
+          </div>
+
+          <div className="smart-multiselect-toolbar">
+            <button
+              type="button"
+              className="smart-multiselect-action-btn"
+              onClick={selectAllMatching}
+              disabled={!filteredOptions.length}
+            >
+              {query ? "Select matching" : "Select all"}
+            </button>
+            <button
+              type="button"
+              className="smart-multiselect-action-btn"
+              onClick={() => onChange([])}
+              disabled={!selectedIds.length}
+            >
+              Clear all
+            </button>
+            <span className="smart-multiselect-toolbar-meta">
+              {selectedIds.length}/{options.length}
+            </span>
+          </div>
+
+          <div className="smart-multiselect-options">
+            {filteredOptions.length ? (
+              filteredOptions.map((opt) => {
+                const isSelected = selectedSet.has(String(opt.id));
+                return (
+                  <button
+                    type="button"
+                    key={opt.id}
+                    className={`smart-multiselect-option${isSelected ? " is-selected" : ""}`}
+                    onClick={() => toggleOption(opt.id)}
+                  >
+                    <span className={`smart-multiselect-checkbox${isSelected ? " checked" : ""}`}>
+                      {isSelected ? <Check size={12} strokeWidth={3} /> : null}
+                    </span>
+                    <span className="smart-multiselect-option-label">{opt.label}</span>
+                  </button>
+                );
+              })
+            ) : (
+              <div className="smart-multiselect-empty">No matching {label.toLowerCase()}</div>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function filterDashboardData(
+  data,
+  categoryFilters = [],
+  survivorFilters = [],
+  categories = [],
+  survivors = [],
+) {
   if (!data) return null;
-  if (!categoryFilter && !survivorFilter) return data;
+  const catIds = Array.isArray(categoryFilters)
+    ? categoryFilters.map(String).filter(Boolean)
+    : [];
+  const survIds = Array.isArray(survivorFilters)
+    ? survivorFilters.map(String).filter(Boolean)
+    : [];
+
+  if (!catIds.length && !survIds.length) return data;
 
   const groupBy = Array.isArray(data.groupBy) ? data.groupBy : [];
-  const selectedCategoryName =
-    categories.find((c) => String(c.id) === String(categoryFilter))?.name || null;
-  const selectedSurvivorName =
-    survivors.find((s) => String(s.id) === String(survivorFilter))?.full_name || null;
+  const catIdSet = new Set(catIds);
+  const survIdSet = new Set(survIds);
 
-  const sourceRows = Array.isArray(data.breakdownRows) && data.breakdownRows.length
-    ? data.breakdownRows
-    : Array.isArray(data.rows)
-      ? data.rows
-      : [];
+  const catNameSet = new Set(
+    categories
+      .filter((c) => catIdSet.has(String(c.id)))
+      .map((c) => String(c.name)),
+  );
+  const survNameSet = new Set(
+    survivors
+      .filter((s) => survIdSet.has(String(s.id)))
+      .map((s) => String(s.full_name)),
+  );
+
+  const sourceRows =
+    Array.isArray(data.breakdownRows) && data.breakdownRows.length
+      ? data.breakdownRows
+      : Array.isArray(data.rows)
+        ? data.rows
+        : [];
 
   const matching = sourceRows.filter((row) => {
-    if (categoryFilter) {
-      const idMatch =
-        row.category_id != null && String(row.category_id) === String(categoryFilter);
-      const nameMatch =
-        selectedCategoryName != null && String(row.category) === String(selectedCategoryName);
+    if (catIds.length) {
+      const idMatch = row.category_id != null && catIdSet.has(String(row.category_id));
+      const nameMatch = row.category != null && catNameSet.has(String(row.category));
       if (!idMatch && !nameMatch) return false;
     }
-    if (survivorFilter) {
-      const idMatch =
-        row.survivor_id != null && String(row.survivor_id) === String(survivorFilter);
-      const nameMatch =
-        selectedSurvivorName != null && String(row.survivor) === String(selectedSurvivorName);
+    if (survIds.length) {
+      const idMatch = row.survivor_id != null && survIdSet.has(String(row.survivor_id));
+      const nameMatch = row.survivor != null && survNameSet.has(String(row.survivor));
       if (!idMatch && !nameMatch) return false;
     }
     return true;
@@ -365,10 +614,16 @@ function filterDashboardData(data, categoryFilter, survivorFilter, categories = 
       for (const col of groupBy) {
         nextRow[col] = row[col];
       }
-      if (row.category_id != null) nextRow.category_id = row.category_id;
-      else if (categoryFilter) nextRow.category_id = categoryFilter;
-      if (row.survivor_id != null) nextRow.survivor_id = row.survivor_id;
-      else if (survivorFilter) nextRow.survivor_id = survivorFilter;
+      if (groupBy.includes("category") && row.category_id != null) {
+        nextRow.category_id = row.category_id;
+      } else if (catIds.length === 1) {
+        nextRow.category_id = catIds[0];
+      }
+      if (groupBy.includes("survivor") && row.survivor_id != null) {
+        nextRow.survivor_id = row.survivor_id;
+      } else if (survIds.length === 1) {
+        nextRow.survivor_id = survIds[0];
+      }
       nextRow.total = 0;
       groupedMap.set(key, nextRow);
     }
@@ -411,8 +666,8 @@ export default function DashboardDetail({ navigate, user }) {
 
   const [categories, setCategories] = useState([]);
   const [survivors, setSurvivors] = useState([]);
-  const [categoryFilter, setCategoryFilter] = useState("");
-  const [survivorFilter, setSurvivorFilter] = useState("");
+  const [categoryFilters, setCategoryFilters] = useState([]);
+  const [survivorFilters, setSurvivorFilters] = useState([]);
 
   const [scheduleOpen, setScheduleOpen] = useState(false);
 
@@ -451,22 +706,32 @@ export default function DashboardDetail({ navigate, user }) {
   };
 
   useEffect(() => {
-    setCategoryFilter("");
-    setSurvivorFilter("");
+    setCategoryFilters([]);
+    setSurvivorFilters([]);
     load();
   }, [reportKey]);
 
+  const categoryOptions = useMemo(
+    () => categories.map((c) => ({ id: String(c.id), label: c.name })),
+    [categories],
+  );
+
+  const survivorOptions = useMemo(
+    () => survivors.map((s) => ({ id: String(s.id), label: s.full_name })),
+    [survivors],
+  );
+
   const activeFilters = useMemo(
     () => ({
-      categoryId: categoryFilter || "",
-      survivorId: survivorFilter || "",
+      categories: categoryFilters,
+      survivors: survivorFilters,
     }),
-    [categoryFilter, survivorFilter],
+    [categoryFilters, survivorFilters],
   );
 
   const filteredData = useMemo(
-    () => filterDashboardData(data, categoryFilter, survivorFilter, categories, survivors),
-    [data, categoryFilter, survivorFilter, categories, survivors],
+    () => filterDashboardData(data, categoryFilters, survivorFilters, categories, survivors),
+    [data, categoryFilters, survivorFilters, categories, survivors],
   );
 
   const chartModel = useMemo(() => buildChartModel(filteredData), [filteredData]);
@@ -546,55 +811,48 @@ export default function DashboardDetail({ navigate, user }) {
 
       <div className="card dashboard-detail-filter-bar">
         <div className="dashboard-detail-filter-head">
-          <strong>
-            <Filter size={16} />
-            Quick Filters
-          </strong>
-          {(categoryFilter || survivorFilter) ? (
+          <div className="dashboard-detail-filter-title">
+            <span className="dashboard-detail-filter-icon">
+              <Filter size={15} />
+            </span>
+            <div>
+              <strong>Smart Instant Filters</strong>
+              <small>Filter chart & summary table in real time across multiple categories and survivors</small>
+            </div>
+          </div>
+          {(categoryFilters.length > 0 || survivorFilters.length > 0) ? (
             <button
               type="button"
               className="secondary dashboard-filter-clear-btn"
               onClick={() => {
-                setCategoryFilter("");
-                setSurvivorFilter("");
+                setCategoryFilters([]);
+                setSurvivorFilters([]);
               }}
             >
               <RotateCcw size={14} />
-              Clear filters
+              Reset filters ({categoryFilters.length + survivorFilters.length})
             </button>
           ) : null}
         </div>
 
         <div className="dashboard-detail-filter-grid">
-          <label>
-            Category
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-            >
-              <option value="">All categories</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={String(cat.id)}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SmartMultiSelect
+            label="Categories"
+            icon={Tags}
+            placeholder="All categories included — click to select…"
+            options={categoryOptions}
+            selectedIds={categoryFilters}
+            onChange={setCategoryFilters}
+          />
 
-          <label>
-            Survivor
-            <select
-              value={survivorFilter}
-              onChange={(e) => setSurvivorFilter(e.target.value)}
-            >
-              <option value="">All survivors</option>
-              {survivors.map((surv) => (
-                <option key={surv.id} value={String(surv.id)}>
-                  {surv.full_name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SmartMultiSelect
+            label="Survivors"
+            icon={Users}
+            placeholder="All survivors included — click to select…"
+            options={survivorOptions}
+            selectedIds={survivorFilters}
+            onChange={setSurvivorFilters}
+          />
         </div>
       </div>
 
@@ -1088,14 +1346,14 @@ function openDrilldown(navigate, reportKey, groupBy, row, activeFilters = {}) {
 
   if (row.category_id != null) {
     selection.category_id = row.category_id;
-  } else if (activeFilters.categoryId) {
-    selection.category_id = activeFilters.categoryId;
+  } else if (Array.isArray(activeFilters.categories) && activeFilters.categories.length) {
+    selection.categories = activeFilters.categories;
   }
 
   if (row.survivor_id != null) {
     selection.survivor_id = row.survivor_id;
-  } else if (activeFilters.survivorId) {
-    selection.survivor_id = activeFilters.survivorId;
+  } else if (Array.isArray(activeFilters.survivors) && activeFilters.survivors.length) {
+    selection.survivors = activeFilters.survivors;
   }
 
   const query = encodeURIComponent(JSON.stringify(selection));

@@ -506,3 +506,9 @@
 - **Instant Client-Side Re-Aggregation & Filter UI (`frontend/src/pages/DashboardDetail.jsx`, `frontend/src/styles.css`)**:
   - Added a **Quick Filters** card with **Category** and **Survivor** dropdowns (plus a one-click **Clear filters** button) to every Dashboard Detail page.
   - Selecting a Category or Survivor filters `breakdownRows` and re-aggregates by the report's `groupBy` in-memory with 0ms latency, updating the **Summarised expenses** total, **Summary rows** count, **Summary bar chart**, **Summarise report** table, and drilldown links immediately.
+
+
+## 37. Smart Interactive Multi-Select Design for Category & Survivor Filters on Dashboard Detail Pages
+- **Smart Multi-Select Component (`frontend/src/pages/DashboardDetail.jsx`, `frontend/src/styles.css`)**:
+  - Upgraded the **Categories** and **Survivors** filters on all Dashboard Detail pages to custom interactive multi-select dropdowns (`SmartMultiSelect`).
+  - Features live search filtering inside each dropdown, **Select all / Select matching** and **Clear all** quick actions, removable selected pill chips (`×`) in the trigger bar, live selection counter badges (`X selected`), custom animated checkboxes, and instant 0ms multi-item re-aggregation across the summary cards, stacked bar charts, pivot tables, and drilldown links.
