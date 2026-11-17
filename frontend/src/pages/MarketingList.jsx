@@ -29,7 +29,7 @@ import {
 import Pagination from "../components/Pagination";
 import ProofViewer from "../components/ProofViewer";
 import { usePagination } from "../hooks/usePagination";
-import { todayKolkata } from "../utils/dates.js";
+import { formatLongDateWithWeekday, todayKolkata } from "../utils/dates.js";
 
 const empty = () => ({
   categoryId: "",
@@ -1090,6 +1090,11 @@ export default function MarketingList({ navigate }) {
               setPage(1);
             }}
           />
+          {form.purchaseDate ? (
+            <span className="date-long-preview">
+              {formatLongDateWithWeekday(form.purchaseDate)}
+            </span>
+          ) : null}
           <div className="marketing-date-nav">
             <button
               type="button"

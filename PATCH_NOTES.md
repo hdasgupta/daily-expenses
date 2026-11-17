@@ -564,3 +564,10 @@
 
 - **Date Navigation Buttons**: Added **Previous marketing date** and **Next marketing date** buttons beneath the Date input on the Marketing List page (`frontend/src/pages/MarketingList.jsx`).
 - **Populated-Date Jumping**: Each button scans all dates that have items in the marketing list (`marketingDates`) and jumps directly to the nearest earlier or later date with items, disabling automatically when no earlier or later populated date exists.
+
+---
+
+## 45. Long Date Format with Weekday & Month Name (`dates.js`, `MarketingList.jsx`, `Expense.jsx`, `FoodChart.jsx`, `styles.css`)
+
+- **Shared Long Date Formatter (`formatLongDateWithWeekday`)**: Added `formatLongDateWithWeekday` in `frontend/src/utils/dates.js` formatting dates in `en-IN` (`Asia/Kolkata`) with full weekday name, day, full month name, and year (e.g., `Tuesday, 17 November 2026`).
+- **Date Field Previews**: Applied `formatLongDateWithWeekday` directly on the Date fields in **Marketing List** (`MarketingList.jsx`), **Add Expenses** (`Expense.jsx`), and **Food Chart** (`FoodChart.jsx`).

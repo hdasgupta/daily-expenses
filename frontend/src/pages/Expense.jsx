@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Check, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
-import { formatDateKolkata, todayKolkata } from "../utils/dates.js";
+import { formatDateKolkata, formatLongDateWithWeekday, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -1196,6 +1196,9 @@ export default function Expense() {
             }}
             required
           />
+          {form.expenseDate ? (
+            <span className="date-long-preview">{formatLongDateWithWeekday(form.expenseDate)}</span>
+          ) : null}
         </label>
 
         <label>

@@ -23,7 +23,7 @@ import {
   recordLocationSelection,
 } from "../lib/locationTracker";
 import ConfirmDialog from "../components/ConfirmDialog";
-import { todayKolkata } from "../utils/dates.js";
+import { formatLongDateWithWeekday, todayKolkata } from "../utils/dates.js";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import "./dietChart.css";
 
@@ -793,14 +793,7 @@ export default function FoodChart() {
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-        <span>
-          {new Date(`${date}T12:00:00`).toLocaleDateString("en-IN", {
-            weekday: "short",
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          })}
-        </span>
+        <span className="date-long-preview">{formatLongDateWithWeekday(date)}</span>
       </div>
       <div className="diet-date-bar">
         <MapPin size={18} />

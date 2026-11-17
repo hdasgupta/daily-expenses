@@ -2075,3 +2075,11 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+.date-long-preview {
+  display: block;
+  margin-top: 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--primary);
+}

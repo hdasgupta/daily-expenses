@@ -34,3 +34,17 @@ export function formatDateKolkata(value) {
   }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), 12)));
   return `${day}, ${monthName}, ${year.slice(-2)}`;
 }
+
+export function formatLongDateWithWeekday(value) {
+  if (!value) return "";
+  const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return String(value);
+  const [, year, month, day] = match;
+  return new Intl.DateTimeFormat("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: APP_TIMEZONE,
+  }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), 12)));
+}
