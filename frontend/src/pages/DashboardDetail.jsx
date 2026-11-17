@@ -655,6 +655,40 @@ function readReportKey() {
   return parts[2] || "daily";
 }
 
+function dashboardFilterStorageKey(userId, reportKey) {
+  return `dashboard_filters:${userId || "anon"}:${reportKey || ""}`;
+}
+
+function readCachedDashboardFilters(userId, reportKey) {
+  if (!reportKey) return { categories: [], survivors: [] };
+  try {
+    const raw = localStorage.getItem(dashboardFilterStorageKey(userId, reportKey));
+    if (!raw) return { categories: [], survivors: [] };
+    const parsed = JSON.parse(raw);
+    return {
+      categories: Array.isArray(parsed?.categories) ? parsed.categories.map(String).filter(Boolean) : [],
+      survivors: Array.isArray(parsed?.survivors) ? parsed.survivors.map(String).filter(Boolean) : [],
+    };
+  } catch {
+    return { categories: [], survivors: [] };
+  }
+}
+
+function writeCachedDashboardFilters(userId, reportKey, filters) {
+  if (!reportKey) return;
+  try {
+    localStorage.setItem(
+      dashboardFilterStorageKey(userId, reportKey),
+      JSON.stringify({
+        categories: Array.isArray(filters?.categories) ? filters.categories.map(String).filter(Boolean) : [],
+        survivors: Array.isArray(filters?.survivors) ? filters.survivors.map(String).filter(Boolean) : [],
+      }),
+    );
+  } catch {
+    // Ignore storage quota errors
+  }
+}
+
 export default function DashboardDetail({ navigate, user }) {
   const reportKey = readReportKey();
 
@@ -666,12 +700,18 @@ export default function DashboardDetail({ navigate, user }) {
 
   const [categories, setCategories] = useState([]);
   const [survivors, setSurvivors] = useState([]);
-  const [categoryFilters, setCategoryFilters] = useState([]);
-  const [survivorFilters, setSurvivorFilters] = useState([]);
+  const [categoryFilters, setCategoryFilters] = useState(
+    () => readCachedDashboardFilters(user?.id, reportKey).categories,
+  );
+  const [survivorFilters, setSurvivorFilters] = useState(
+    () => readCachedDashboardFilters(user?.id, reportKey).survivors,
+  );
 
   const [scheduleOpen, setScheduleOpen] = useState(false);
 
   const [scheduleBusy, setScheduleBusy] = useState(false);
+
+  const saveFilterTimerRef = useRef(null);
 
   const canSchedule = user?.permissions?.includes("job-status");
 
@@ -706,10 +746,80 @@ export default function DashboardDetail({ navigate, user }) {
   };
 
   useEffect(() => {
+    let cancelled = false;
+    const cached = readCachedDashboardFilters(user?.id, reportKey);
+    setCategoryFilters(cached.categories);
+    setSurvivorFilters(cached.survivors);
+    load();
+
+    if (report) {
+      api(`/dashboard/filters/${encodeURIComponent(report.key)}`, { silent: true })
+        .then((saved) => {
+          if (cancelled || !saved) return;
+          const nextCategories = Array.isArray(saved.categories)
+            ? saved.categories.map(String).filter(Boolean)
+            : [];
+          const nextSurvivors = Array.isArray(saved.survivors)
+            ? saved.survivors.map(String).filter(Boolean)
+            : [];
+          setCategoryFilters(nextCategories);
+          setSurvivorFilters(nextSurvivors);
+          writeCachedDashboardFilters(user?.id, report.key, {
+            categories: nextCategories,
+            survivors: nextSurvivors,
+          });
+        })
+        .catch(() => {});
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [reportKey, user?.id]);
+
+  useEffect(() => {
+    return () => {
+      if (saveFilterTimerRef.current) {
+        clearTimeout(saveFilterTimerRef.current);
+      }
+    };
+  }, []);
+
+  const persistFilters = (nextCategories, nextSurvivors) => {
+    if (!report) return;
+    const targetReportKey = report.key;
+    const payload = {
+      categories: Array.isArray(nextCategories) ? nextCategories.map(String).filter(Boolean) : [],
+      survivors: Array.isArray(nextSurvivors) ? nextSurvivors.map(String).filter(Boolean) : [],
+    };
+    writeCachedDashboardFilters(user?.id, targetReportKey, payload);
+    if (saveFilterTimerRef.current) {
+      clearTimeout(saveFilterTimerRef.current);
+    }
+    saveFilterTimerRef.current = setTimeout(() => {
+      api(`/dashboard/filters/${encodeURIComponent(targetReportKey)}`, {
+        method: "PUT",
+        body: JSON.stringify(payload),
+        silent: true,
+      }).catch(() => {});
+    }, 250);
+  };
+
+  const handleCategoryFiltersChange = (nextCategories) => {
+    setCategoryFilters(nextCategories);
+    persistFilters(nextCategories, survivorFilters);
+  };
+
+  const handleSurvivorFiltersChange = (nextSurvivors) => {
+    setSurvivorFilters(nextSurvivors);
+    persistFilters(categoryFilters, nextSurvivors);
+  };
+
+  const handleResetFilters = () => {
     setCategoryFilters([]);
     setSurvivorFilters([]);
-    load();
-  }, [reportKey]);
+    persistFilters([], []);
+  };
 
   const categoryOptions = useMemo(
     () => categories.map((c) => ({ id: String(c.id), label: c.name })),
@@ -838,10 +948,7 @@ export default function DashboardDetail({ navigate, user }) {
             <button
               type="button"
               className="secondary dashboard-filter-clear-btn"
-              onClick={() => {
-                setCategoryFilters([]);
-                setSurvivorFilters([]);
-              }}
+              onClick={handleResetFilters}
             >
               <RotateCcw size={14} />
               Reset filters ({categoryFilters.length + survivorFilters.length})
@@ -856,7 +963,7 @@ export default function DashboardDetail({ navigate, user }) {
             placeholder="All categories included — click to select…"
             options={categoryOptions}
             selectedIds={categoryFilters}
-            onChange={setCategoryFilters}
+            onChange={handleCategoryFiltersChange}
           />
 
           <SmartMultiSelect
@@ -865,7 +972,7 @@ export default function DashboardDetail({ navigate, user }) {
             placeholder="All survivors included — click to select…"
             options={survivorOptions}
             selectedIds={survivorFilters}
-            onChange={setSurvivorFilters}
+            onChange={handleSurvivorFiltersChange}
           />
         </div>
       </div>

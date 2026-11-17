@@ -527,3 +527,11 @@
 - **Schedule Modal & Payload Integration**: `DashboardDetail.jsx` and `ScheduledReportForm.jsx` now pass and display the currently selected multi-select Category and Survivor filters (`categories`, `categoryLabels`, `survivors`, `survivorLabels`) inside the schedule summary card and persist them when creating or editing a scheduled dashboard email.
 - **Database Schema & Automatic Migration**: Added `filters JSONB NOT NULL DEFAULT '{}'::jsonb` to `public.scheduled_report_jobs` in `schemaSql.js` with an automatic idempotent runtime check (`ensureScheduledReportSchema`) in `scheduledReportService.js`.
 - **Filtered Scheduled PDF & Email Generation**: `buildScheduledReport` and `sendScheduledReportJob` now apply the saved Category and Survivor filters to both the dashboard summary/chart query and the raw expense table query, print `Filters applied: ...` in the PDF report header (`scheduledReportPdfService.js`) and email body, and display the applied filters on the `JobStatus.jsx` card and tooltip.
+
+---
+
+## 40. Per-User Dashboard Detail Filter Persistence (`DashboardDetail.jsx`, `dashboardFilterService.js`, `dashboardController.js`, `schemaSql.js`)
+
+- **Database Persistence (`public.dashboard_user_filters`)**: Added `dashboard_user_filters` keyed by `(user_id, report_key)` with `categories JSONB`, `survivors JSONB`, and automatic table creation (`ensureDashboardUserFiltersTable`) so each user's Category and Survivor selections are stored independently per dashboard detail page.
+- **API Endpoints**: Added `GET /api/dashboard/filters/:reportKey` and `PUT /api/dashboard/filters/:reportKey` in `routes/index.js` and `dashboardController.js` protected by `auth` and `permit("dashboard")`.
+- **Automatic Restore & Instant Save (`DashboardDetail.jsx`)**: Every Dashboard Detail page now restores the user's saved filters on load (using `localStorage` for immediate zero-flicker hydration synced with the server response) and automatically persists changes whenever Category or Survivor selections are updated or reset.

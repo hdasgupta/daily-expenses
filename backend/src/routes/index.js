@@ -187,6 +187,18 @@ export function createRouter(maxUploadBytes) {
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
+  router.get(
+    "/dashboard/filters/:reportKey",
+    auth,
+    permit("dashboard"),
+    dashboardController.getFilters,
+  );
+  router.put(
+    "/dashboard/filters/:reportKey",
+    auth,
+    permit("dashboard"),
+    dashboardController.saveFilters,
+  );
 
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
   router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);

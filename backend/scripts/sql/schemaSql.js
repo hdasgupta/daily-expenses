@@ -189,6 +189,14 @@ ALTER TABLE public.scheduled_report_jobs
   ADD COLUMN IF NOT EXISTS created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL;
 ALTER TABLE public.scheduled_report_jobs
   ADD COLUMN IF NOT EXISTS filters JSONB NOT NULL DEFAULT '{}'::jsonb;
+CREATE TABLE IF NOT EXISTS public.dashboard_user_filters (
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  report_key VARCHAR(100) NOT NULL,
+  categories JSONB NOT NULL DEFAULT '[]'::jsonb,
+  survivors JSONB NOT NULL DEFAULT '[]'::jsonb,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, report_key)
+);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_creator
   ON public.scheduled_report_jobs(created_by_user_id);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active
