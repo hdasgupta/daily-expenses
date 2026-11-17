@@ -240,11 +240,42 @@ function describeReportConfig(config = {}, { categoryOnly = false } = {}) {
   };
 }
 
-function PdfContentsInfo({ config, dashboardSource = "", categoryOnly = false }) {
+function describeDashboardJobFilters(filters = {}) {
+  if (!filters || typeof filters !== "object") {
+    return "All categories & survivors";
+  }
+  const parts = [];
+  const categories =
+    Array.isArray(filters.categoryLabels) && filters.categoryLabels.length
+      ? filters.categoryLabels
+      : Array.isArray(filters.categories) && filters.categories.length
+        ? filters.categories
+        : [];
+  const survivors =
+    Array.isArray(filters.survivorLabels) && filters.survivorLabels.length
+      ? filters.survivorLabels
+      : Array.isArray(filters.survivors) && filters.survivors.length
+        ? filters.survivors
+        : [];
+  if (categories.length) {
+    parts.push(`Categories: ${categories.join(", ")}`);
+  }
+  if (survivors.length) {
+    parts.push(`Survivors: ${survivors.join(", ")}`);
+  }
+  return parts.length ? parts.join(" · ") : "All categories & survivors";
+}
+
+function PdfContentsInfo({
+  config,
+  dashboardSource = "",
+  dashboardFilters = "",
+  categoryOnly = false,
+}) {
   const details = config ? describeReportConfig(config, { categoryOnly }) : null;
   const description = details
     ? `PDF contents: report chart, summary/pivot table, and filtered raw expense data. Filters: ${details.filters}. Group by: ${details.groupBy}. Sorting: ${details.sorting}. Summarised: ${details.summarise}. Interactive dashboard controls are not included.`
-    : `PDF contains the dashboard report chart, summary/pivot table, and underlying expense data. Dashboard source: ${dashboardSource || "predefined dashboard report"}. Interactive dashboard controls are not included.`;
+    : `PDF contains the dashboard report chart, summary/pivot table, and underlying expense data. Dashboard source: ${dashboardSource || "predefined dashboard report"}. Filters applied: ${dashboardFilters || "All categories & survivors"}. Interactive dashboard controls are not included.`;
 
   return (
     <span className="job-pdf-info">
@@ -519,7 +550,14 @@ export default function JobStatus({ user }) {
     const query = dashboardEmailSearch.trim().toLocaleLowerCase();
     return (
       !query ||
-      [job.name, job.report_label, job.report_help, job.owner_name, job.owner_email].some((value) =>
+      [
+        job.name,
+        job.report_label,
+        job.report_help,
+        job.owner_name,
+        job.owner_email,
+        describeDashboardJobFilters(job.filters),
+      ].some((value) =>
         String(value || "")
           .toLocaleLowerCase()
           .includes(query),
@@ -626,10 +664,15 @@ export default function JobStatus({ user }) {
                     {job.report_help || "Dashboard report"}
                   </span>
 
+                  <span>
+                    <b>Filters applied:</b> {describeDashboardJobFilters(job.filters)}
+                  </span>
+
                   <span className="job-pdf-content">
                     <b>PDF contents:</b> Chart · summary/pivot table · raw data{" "}
                     <PdfContentsInfo
                       dashboardSource={`${job.report_label} — ${job.report_help || "Dashboard report"}`}
+                      dashboardFilters={describeDashboardJobFilters(job.filters)}
                     />
                   </span>
 

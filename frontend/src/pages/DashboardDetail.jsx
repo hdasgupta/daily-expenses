@@ -729,6 +729,17 @@ export default function DashboardDetail({ navigate, user }) {
     [categoryFilters, survivorFilters],
   );
 
+  const scheduleFilters = useMemo(() => {
+    const categoryMap = new Map(categories.map((c) => [String(c.id), c.name]));
+    const survivorMap = new Map(survivors.map((s) => [String(s.id), s.full_name]));
+    return {
+      categories: categoryFilters,
+      categoryLabels: categoryFilters.map((id) => categoryMap.get(String(id)) || String(id)),
+      survivors: survivorFilters,
+      survivorLabels: survivorFilters.map((id) => survivorMap.get(String(id)) || String(id)),
+    };
+  }, [categoryFilters, survivorFilters, categories, survivors]);
+
   const filteredData = useMemo(
     () => filterDashboardData(data, categoryFilters, survivorFilters, categories, survivors),
     [data, categoryFilters, survivorFilters, categories, survivors],
@@ -745,7 +756,10 @@ export default function DashboardDetail({ navigate, user }) {
       await api("/scheduled-reports", {
         method: "POST",
 
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          ...payload,
+          filters: payload?.filters ?? scheduleFilters,
+        }),
 
         loadingMessage: "Creating email schedule…",
       });
@@ -1099,6 +1113,7 @@ export default function DashboardDetail({ navigate, user }) {
       >
         <ScheduledReportForm
           report={report}
+          filters={scheduleFilters}
           recipient={user?.email}
           onSubmit={createSchedule}
           busy={scheduleBusy}

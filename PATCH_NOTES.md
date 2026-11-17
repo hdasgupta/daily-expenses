@@ -519,3 +519,11 @@
 
 - **Root-Relative Logo Resolution (`/logo.png`)**: Replaced the relative `<img src="logo.png" />` fallback in `frontend/src/components/Layout.jsx` with a root-relative `"/logo.png"` path and `resolveOrganizationLogoUrl(...)` helper so nested routes (such as `/dashboard/:reportKey` and `/dashboard/drilldown`) never request `/dashboard/logo.png` or render a broken image icon after login.
 - **Automatic Fallback (`onError`) & Unclipped Aspect Ratio (`object-fit: contain`)**: Added an `onError` handler that falls back to `"/logo.png"` if a custom `VITE_ORGANIZATION_LOGO_URL` fails to load, and updated `.brand-mark` / `.brand-mark img` in `frontend/src/styles.css` (`flex-shrink: 0`, `object-fit: contain`, clean white badge frame, and `64px` left clearance from the drawer toggle button) so the full ribbon logo displays cleanly without top/bottom cropping.
+
+---
+
+## 39. Scheduled Dashboard Emails Include Applied Category & Survivor Filters (`DashboardDetail.jsx`, `ScheduledReportForm.jsx`, `JobStatus.jsx`, `scheduledReportService.js`, `scheduledReportPdfService.js`, `schemaSql.js`)
+
+- **Schedule Modal & Payload Integration**: `DashboardDetail.jsx` and `ScheduledReportForm.jsx` now pass and display the currently selected multi-select Category and Survivor filters (`categories`, `categoryLabels`, `survivors`, `survivorLabels`) inside the schedule summary card and persist them when creating or editing a scheduled dashboard email.
+- **Database Schema & Automatic Migration**: Added `filters JSONB NOT NULL DEFAULT '{}'::jsonb` to `public.scheduled_report_jobs` in `schemaSql.js` with an automatic idempotent runtime check (`ensureScheduledReportSchema`) in `scheduledReportService.js`.
+- **Filtered Scheduled PDF & Email Generation**: `buildScheduledReport` and `sendScheduledReportJob` now apply the saved Category and Survivor filters to both the dashboard summary/chart query and the raw expense table query, print `Filters applied: ...` in the PDF report header (`scheduledReportPdfService.js`) and email body, and display the applied filters on the `JobStatus.jsx` card and tooltip.

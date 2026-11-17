@@ -22,6 +22,37 @@ function frequencyFor(reportKey) {
   return String(reportKey || "").split("-")[0] || "daily";
 }
 
+function normalizeFilters(rawFilters = {}) {
+  if (!rawFilters || typeof rawFilters !== "object") {
+    return { categories: [], categoryLabels: [], survivors: [], survivorLabels: [] };
+  }
+  const clean = (arr) =>
+    Array.isArray(arr)
+      ? [...new Set(arr.map((v) => String(v ?? "").trim()).filter(Boolean))]
+      : [];
+  return {
+    categories: clean(rawFilters.categories),
+    categoryLabels: clean(rawFilters.categoryLabels),
+    survivors: clean(rawFilters.survivors),
+    survivorLabels: clean(rawFilters.survivorLabels),
+  };
+}
+
+function formatFiltersSummary(filters = {}) {
+  const norm = normalizeFilters(filters);
+  const parts = [];
+  const categories = norm.categoryLabels.length ? norm.categoryLabels : norm.categories;
+  const survivors = norm.survivorLabels.length ? norm.survivorLabels : norm.survivors;
+
+  if (categories.length) {
+    parts.push(`Categories: ${categories.join(", ")}`);
+  }
+  if (survivors.length) {
+    parts.push(`Survivors: ${survivors.join(", ")}`);
+  }
+  return parts.length ? parts.join(" · ") : "All categories · All survivors";
+}
+
 function defaultForm(reportKey, job) {
   const frequency = frequencyFor(reportKey);
   return {
@@ -39,6 +70,7 @@ function defaultForm(reportKey, job) {
 export default function ScheduledReportForm({
   report,
   job = null,
+  filters = null,
   recipient = "",
   onSubmit,
   busy,
@@ -52,6 +84,15 @@ export default function ScheduledReportForm({
     setSelectedManagerIds([]);
   }, [report?.key, job?.id]);
 
+  const effectiveFilters = useMemo(
+    () => normalizeFilters(filters ?? job?.filters ?? {}),
+    [filters, job?.filters],
+  );
+  const filterSummaryText = useMemo(
+    () => formatFiltersSummary(effectiveFilters),
+    [effectiveFilters],
+  );
+
   const frequency = form.frequency;
   const frequencyLabel = frequencyLabels[frequency] || frequency;
   const periodHelp = useMemo(() => report?.help || "Dashboard report", [report]);
@@ -64,6 +105,7 @@ export default function ScheduledReportForm({
       dayOfWeek: Number(form.dayOfWeek),
       dayOfMonth: Number(form.dayOfMonth),
       monthOfYear: Number(form.monthOfYear),
+      filters: effectiveFilters,
       ...(isAdmin && !job && selectedManagerIds.length ? { managerIds: selectedManagerIds } : {}),
     });
   };
@@ -74,6 +116,9 @@ export default function ScheduledReportForm({
         <div>
           <strong>{report?.label || job?.report_label || job?.report_key}</strong>
           <span>{periodHelp}</span>
+          <span style={{ display: "block", marginTop: 6, fontSize: 12.5, fontWeight: 500 }}>
+            <b>Filters applied:</b> {filterSummaryText}
+          </span>
         </div>
       </div>
 

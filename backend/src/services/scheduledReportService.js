@@ -8,6 +8,116 @@ import { nowIso, toIsoDateString } from "../utils/dates.js";
 
 const FREQUENCIES = new Set(["daily", "weekly", "monthly", "yearly"]);
 
+let schemaReadyPromise = null;
+
+async function ensureScheduledReportSchema() {
+  if (!schemaReadyPromise) {
+    schemaReadyPromise = q(
+      `ALTER TABLE public.scheduled_report_jobs
+         ADD COLUMN IF NOT EXISTS filters JSONB NOT NULL DEFAULT '{}'::jsonb`,
+    ).catch((err) => {
+      schemaReadyPromise = null;
+      console.error("Failed to ensure scheduled_report_jobs.filters column", err);
+    });
+  }
+  await schemaReadyPromise;
+}
+
+function cleanStringArray(values) {
+  if (!Array.isArray(values)) return [];
+  return [
+    ...new Set(
+      values
+        .map((v) => String(v ?? "").trim())
+        .filter(Boolean),
+    ),
+  ];
+}
+
+export function normalizeScheduledFilters(rawFilters, existingFilters = null) {
+  let source = rawFilters;
+  if (source === undefined) {
+    source = existingFilters;
+  }
+  if (typeof source === "string") {
+    try {
+      source = JSON.parse(source);
+    } catch {
+      source = {};
+    }
+  }
+  if (!source || typeof source !== "object") {
+    return {};
+  }
+
+  const categories = cleanStringArray(source.categories);
+  const categoryLabels = cleanStringArray(source.categoryLabels);
+  const survivors = cleanStringArray(source.survivors);
+  const survivorLabels = cleanStringArray(source.survivorLabels);
+
+  const normalized = {};
+  if (categories.length) normalized.categories = categories;
+  if (categoryLabels.length) normalized.categoryLabels = categoryLabels;
+  if (survivors.length) normalized.survivors = survivors;
+  if (survivorLabels.length) normalized.survivorLabels = survivorLabels;
+  return normalized;
+}
+
+export function formatScheduledFilterSummary(filters = {}) {
+  const normalized = normalizeScheduledFilters(filters);
+  const parts = [];
+  const categories = normalized.categoryLabels?.length
+    ? normalized.categoryLabels
+    : normalized.categories || [];
+  const survivors = normalized.survivorLabels?.length
+    ? normalized.survivorLabels
+    : normalized.survivors || [];
+
+  if (categories.length) {
+    parts.push(`Categories: ${categories.join(", ")}`);
+  }
+  if (survivors.length) {
+    parts.push(`Survivors: ${survivors.join(", ")}`);
+  }
+  return parts.join(" · ");
+}
+
+async function resolveScheduledReportFilters(rawFilters = {}) {
+  const next = normalizeScheduledFilters(rawFilters);
+
+  if (
+    next.categories?.length &&
+    (!next.categoryLabels || next.categoryLabels.length !== next.categories.length)
+  ) {
+    const numericIds = next.categories.filter((id) => /^\d+$/.test(id));
+    if (numericIds.length) {
+      const res = await q(
+        `SELECT id, name FROM public.categories WHERE id = ANY($1::bigint[])`,
+        [numericIds],
+      );
+      const map = new Map(res.rows.map((r) => [String(r.id), r.name]));
+      next.categoryLabels = next.categories.map((id) => map.get(String(id)) || String(id));
+    }
+  }
+
+  if (
+    next.survivors?.length &&
+    (!next.survivorLabels || next.survivorLabels.length !== next.survivors.length)
+  ) {
+    const numericIds = next.survivors.filter((id) => /^\d+$/.test(id));
+    if (numericIds.length) {
+      const res = await q(
+        `SELECT id, full_name FROM public.survivors WHERE id = ANY($1::bigint[])`,
+        [numericIds],
+      );
+      const map = new Map(res.rows.map((r) => [String(r.id), r.full_name]));
+      next.survivorLabels = next.survivors.map((id) => map.get(String(id)) || String(id));
+    }
+  }
+
+  return next;
+}
+
 function error(message, statusCode = 400) {
   const result = new Error(message);
   result.statusCode = statusCode;
@@ -116,6 +226,8 @@ function normalizePayload(data = {}, existing = null) {
     throw error("The selected schedule is not valid.");
   }
 
+  const filters = normalizeScheduledFilters(data.filters, existing?.filters);
+
   return {
     name,
     reportKey,
@@ -125,6 +237,7 @@ function normalizePayload(data = {}, existing = null) {
     dayOfMonth,
     monthOfYear,
     cronExpression,
+    filters,
   };
 }
 
@@ -150,8 +263,12 @@ function decorateJob(row) {
 
   const definition = getDashboardDefinition(row.report_key);
 
+  const normalizedFilters = normalizeScheduledFilters(row.filters);
+
   return {
     ...row,
+    filters: normalizedFilters,
+    filter_summary: formatScheduledFilterSummary(normalizedFilters),
     time_of_day: String(row.time_of_day || "").slice(0, 5),
     report_label: definition?.label || row.report_key,
     report_help: definition?.help || "Dashboard report",
@@ -173,6 +290,7 @@ export async function listScheduledReportRecipients() {
 }
 
 export async function listScheduledReportJobs({ userId, isAdmin = false }) {
+  await ensureScheduledReportSchema();
   await q(
     `UPDATE public.scheduled_report_jobs
         SET created_by_user_id = owner_user_id,
@@ -183,7 +301,7 @@ export async function listScheduledReportJobs({ userId, isAdmin = false }) {
   const result = await q(
     `SELECT j.id, j.name, j.owner_user_id, j.created_by_user_id, j.report_key, j.frequency,
             j.time_of_day, j.day_of_week, j.day_of_month, j.month_of_year,
-            j.cron_expression, j.active, j.created_at, j.updated_at,
+            j.cron_expression, j.filters, j.active, j.created_at, j.updated_at,
             u.full_name AS owner_name, u.email AS owner_email,
             COALESCE(c.full_name, u.full_name) AS creator_name,
             COALESCE(c.email, u.email) AS creator_email
@@ -275,11 +393,14 @@ export async function createScheduledReportJob(data, user) {
     recipientIds = requestedIds;
   }
 
+  await ensureScheduledReportSchema();
+  const resolvedFilters = await resolveScheduledReportFilters(config.filters);
+
   const result = await q(
     `INSERT INTO public.scheduled_report_jobs
       (name, owner_user_id, created_by_user_id, report_key, frequency, time_of_day, day_of_week,
-       day_of_month, month_of_year, cron_expression, active)
-     SELECT $1, recipient.id, $3, $4, $5, $6, $7, $8, $9, $10, $11
+       day_of_month, month_of_year, cron_expression, active, filters)
+     SELECT $1, recipient.id, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12::jsonb
        FROM public.users recipient
       WHERE recipient.id = ANY($2::bigint[])
      RETURNING *`,
@@ -295,6 +416,7 @@ export async function createScheduledReportJob(data, user) {
       config.monthOfYear,
       config.cronExpression,
       data.active !== false,
+      JSON.stringify(resolvedFilters || {}),
     ],
   );
 
@@ -327,6 +449,9 @@ export async function updateScheduledReportJob(id, data, user) {
 
   const active = data.active == null ? Boolean(existing.active) : Boolean(data.active);
 
+  await ensureScheduledReportSchema();
+  const resolvedFilters = await resolveScheduledReportFilters(config.filters);
+
   const result = await q(
     `UPDATE public.scheduled_report_jobs
         SET name = $1,
@@ -338,8 +463,9 @@ export async function updateScheduledReportJob(id, data, user) {
             month_of_year = $7,
             cron_expression = $8,
             active = $9,
+            filters = $10::jsonb,
             updated_at = now()
-      WHERE id = $10
+      WHERE id = $11
       RETURNING *`,
     [
       config.name,
@@ -351,6 +477,7 @@ export async function updateScheduledReportJob(id, data, user) {
       config.monthOfYear,
       config.cronExpression,
       active,
+      JSON.stringify(resolvedFilters || {}),
       id,
     ],
   );
@@ -404,7 +531,8 @@ export async function getScheduledReportForExecution(id) {
   return result.rows[0] || null;
 }
 
-function rawDumpSql() {
+function rawDumpSql(extraClauses = []) {
+  const filterSql = extraClauses.length ? `\n       AND ${extraClauses.join("\n       AND ")}` : "";
   return `
     SELECT e.id AS expense_id,
            e.expense_date,
@@ -425,7 +553,7 @@ function rawDumpSql() {
       LEFT JOIN public.survivors s
         ON s.id = es.survivor_id
      WHERE e.expense_date >= $1
-       AND e.expense_date <= $2
+       AND e.expense_date <= $2${filterSql}
      ORDER BY e.expense_date,
               e.id,
               s.full_name
@@ -465,9 +593,13 @@ function enumeratePeriodBuckets(unit, count, dateFrom) {
   return [];
 }
 
-export async function buildScheduledReport(reportKey) {
+export async function buildScheduledReport(reportKey, rawFilters = {}) {
+  const resolvedFilters = await resolveScheduledReportFilters(rawFilters);
+  const filterSummaryText = formatScheduledFilterSummary(resolvedFilters);
   const definition = getDashboardDefinition(reportKey);
-  const summary = await runDashboardReport(reportKey, "summary");
+  const summary = await runDashboardReport(reportKey, "summary", resolvedFilters);
+  summary.filters = resolvedFilters;
+  summary.filterSummaryText = filterSummaryText;
 
   const match = String(summary.rangeLabel || "").match(
     /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/,
@@ -506,7 +638,20 @@ export async function buildScheduledReport(reportKey) {
   let dumpRows = [];
 
   if (match) {
-    const dumpResult = await q(rawDumpSql(), [match[1], match[2]]);
+    const params = [match[1], match[2]];
+    const extraClauses = [];
+    const categoryIds = (resolvedFilters.categories || []).filter((id) => /^\d+$/.test(id));
+    if (categoryIds.length) {
+      params.push(categoryIds);
+      extraClauses.push(`e.category_id = ANY($${params.length}::bigint[])`);
+    }
+    const survivorIds = (resolvedFilters.survivors || []).filter((id) => /^\d+$/.test(id));
+    if (survivorIds.length) {
+      params.push(survivorIds);
+      extraClauses.push(`es.survivor_id = ANY($${params.length}::bigint[])`);
+    }
+
+    const dumpResult = await q(rawDumpSql(extraClauses), params);
     const proofCache = new Map();
 
     const getCachedProofUrl = async (key) => {
@@ -527,7 +672,7 @@ export async function buildScheduledReport(reportKey) {
       })),
     );
   } else {
-    const rawResult = await runDashboardReport(reportKey, "drilldown");
+    const rawResult = await runDashboardReport(reportKey, "drilldown", resolvedFilters);
     dumpRows = rawResult.rows || [];
   }
 
@@ -536,6 +681,14 @@ export async function buildScheduledReport(reportKey) {
     raw: dumpRows,
     generatedAt: nowIso(),
   };
+}
+
+function escapeHtmlText(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function formatScheduledEmailSubject(job, summary) {
@@ -557,10 +710,15 @@ function formatScheduledEmailBody(job, summary, raw) {
 
   const rowCount = Array.isArray(raw) ? raw.length : 0;
 
+  const filterText = summary?.filterSummaryText || "All categories and survivors";
+
   return `
     <p>
-      Attached is the scheduled <strong>${reportLabel}</strong>
-      PDF for <strong>${rangeLabel}</strong>.
+      Attached is the scheduled <strong>${escapeHtmlText(reportLabel)}</strong>
+      PDF for <strong>${escapeHtmlText(rangeLabel)}</strong>.
+    </p>
+    <p>
+      <strong>Filters applied:</strong> ${escapeHtmlText(filterText)}
     </p>
     <p>
       The PDF contains the report summary and visual analysis,
@@ -572,7 +730,7 @@ function formatScheduledEmailBody(job, summary, raw) {
 }
 
 export async function sendScheduledReportJob(job) {
-  const { summary, raw, generatedAt } = await buildScheduledReport(job.report_key);
+  const { summary, raw, generatedAt } = await buildScheduledReport(job.report_key, job.filters);
 
   const pdf = await buildScheduledReportPdf({
     summary,

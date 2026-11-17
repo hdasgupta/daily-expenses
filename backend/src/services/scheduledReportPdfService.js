@@ -587,9 +587,25 @@ export function buildScheduledReportPdfInProcess({ summary, raw, generatedAt }) 
     const left = doc.page.margins.left;
     const groupBy = summary.groupBy || [];
     const periods = Array.isArray(summary.periods) ? summary.periods : [];
+    const filterParts = [];
+    if (summary.filters?.categoryLabels?.length) {
+      filterParts.push(`Categories: ${summary.filters.categoryLabels.join(", ")}`);
+    } else if (summary.filters?.categories?.length) {
+      filterParts.push(`Categories: ${summary.filters.categories.join(", ")}`);
+    }
+    if (summary.filters?.survivorLabels?.length) {
+      filterParts.push(`Survivors: ${summary.filters.survivorLabels.join(", ")}`);
+    } else if (summary.filters?.survivors?.length) {
+      filterParts.push(`Survivors: ${summary.filters.survivors.join(", ")}`);
+    }
+    const filterLine =
+      summary.filterSummaryText ||
+      (filterParts.length ? filterParts.join(" · ") : "All categories and survivors");
+
     doc.fontSize(20).text(`Expense Report - ${summary.title}`, left, doc.y);
     doc.fontSize(9).fillColor("#555").text(`Generated: ${generatedAt}`, left, doc.y);
     doc.fontSize(9).text(`Report range: ${summary.rangeLabel}`, left, doc.y);
+    doc.fontSize(9).text(`Filters applied: ${filterLine}`, left, doc.y);
     doc.fillColor("black").moveDown();
 
     if (groupBy.length > 1) {
