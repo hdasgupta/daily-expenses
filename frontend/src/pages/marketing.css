@@ -1115,3 +1115,21 @@
     justify-content: center;
   }
 }
+
+.marketing-list-page .marketing-date-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.marketing-list-page .marketing-date-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}

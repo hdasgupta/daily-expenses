@@ -3,6 +3,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Calendar,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Clock3,
   Eye,
   FileText,
@@ -490,6 +492,39 @@ export default function MarketingList({ navigate }) {
     } catch (e) {
       showToast("error", e.message || "Unable to open expense proof.");
     }
+  };
+
+  const marketingDates = useMemo(() => {
+    const dates = new Set();
+    for (const row of rows) {
+      const d = String(row.purchase_date || "").slice(0, 10);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+        dates.add(d);
+      }
+    }
+    return [...dates].sort();
+  }, [rows]);
+
+  const currentPurchaseDate = String(form.purchaseDate || "").slice(0, 10);
+
+  const previousMarketingDate = useMemo(() => {
+    for (let i = marketingDates.length - 1; i >= 0; i -= 1) {
+      if (marketingDates[i] < currentPurchaseDate) {
+        return marketingDates[i];
+      }
+    }
+    return null;
+  }, [marketingDates, currentPurchaseDate]);
+
+  const nextMarketingDate = useMemo(
+    () => marketingDates.find((d) => d > currentPurchaseDate) || null,
+    [marketingDates, currentPurchaseDate],
+  );
+
+  const goToMarketingDate = (targetDate) => {
+    if (!targetDate) return;
+    change("purchaseDate", targetDate);
+    setPage(1);
   };
 
   const filteredRows = useMemo(() => {
@@ -1055,6 +1090,36 @@ export default function MarketingList({ navigate }) {
               setPage(1);
             }}
           />
+          <div className="marketing-date-nav">
+            <button
+              type="button"
+              className="secondary marketing-date-nav-btn"
+              onClick={() => goToMarketingDate(previousMarketingDate)}
+              disabled={!previousMarketingDate}
+              title={
+                previousMarketingDate
+                  ? `Go to ${displayDate(previousMarketingDate)}`
+                  : "No previous date with marketing list items"
+              }
+            >
+              <ChevronLeft size={14} />
+              <span>Previous marketing date</span>
+            </button>
+            <button
+              type="button"
+              className="secondary marketing-date-nav-btn"
+              onClick={() => goToMarketingDate(nextMarketingDate)}
+              disabled={!nextMarketingDate}
+              title={
+                nextMarketingDate
+                  ? `Go to ${displayDate(nextMarketingDate)}`
+                  : "No next date with marketing list items"
+              }
+            >
+              <span>Next marketing date</span>
+              <ChevronRight size={14} />
+            </button>
+          </div>
         </label>
         <label>
           <span className="location-label-row">

@@ -557,3 +557,10 @@
 
 - **Reset Button Beside Add Recipe**: Added a **Reset** button next to **Add Recipe** in `frontend/src/pages/FoodChart.jsx` with a confirmation dialog before clearing.
 - **Bulk Meal Clearing Endpoint (`DELETE /api/food-chart`)**: Added `resetFoodChartEntries` in `backend/src/controllers/dietChartController.js` to delete all planned entries across `Breakfast`, `Lunch`, `Evening Snacks`, and `Dinner` for the selected `date` and `locationId` (or all locations when none is selected).
+
+---
+
+## 44. Previous & Next Marketing Date Navigation Buttons (`MarketingList.jsx`, `marketing.css`)
+
+- **Date Navigation Buttons**: Added **Previous marketing date** and **Next marketing date** buttons beneath the Date input on the Marketing List page (`frontend/src/pages/MarketingList.jsx`).
+- **Populated-Date Jumping**: Each button scans all dates that have items in the marketing list (`marketingDates`) and jumps directly to the nearest earlier or later date with items, disabling automatically when no earlier or later populated date exists.
