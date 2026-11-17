@@ -550,3 +550,10 @@
 
 - **Reset Button Beside Submit**: Added a **Reset** button (`handleResetToDefault`) in `frontend/src/pages/MarketingList.jsx` directly below the form beside the **Add to marketing list** button.
 - **Default State & Nearest GPS Location**: Clicking **Reset** resets `purchaseDate` to today (`todayKolkata()`), clears category, item, quantity, unit, and approximate cost back to their default empty state, and automatically detects the nearest shopping location from current GPS coordinates (with cached/history fallback if GPS is unavailable).
+
+---
+
+## 43. Food Chart Reset Button for Selected Date & Location (`FoodChart.jsx`, `dietChartController.js`, `dietChart.css`)
+
+- **Reset Button Beside Add Recipe**: Added a **Reset** button next to **Add Recipe** in `frontend/src/pages/FoodChart.jsx` with a confirmation dialog before clearing.
+- **Bulk Meal Clearing Endpoint (`DELETE /api/food-chart`)**: Added `resetFoodChartEntries` in `backend/src/controllers/dietChartController.js` to delete all planned entries across `Breakfast`, `Lunch`, `Evening Snacks`, and `Dinner` for the selected `date` and `locationId` (or all locations when none is selected).

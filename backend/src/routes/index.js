@@ -87,6 +87,7 @@ export function createRouter(maxUploadBytes) {
   router.get("/food-chart", auth, dietChartController.listFoodChart);
   router.post("/food-chart", auth, dietChartController.addFoodChartEntry);
   router.put("/food-chart/:id", auth, dietChartController.updateFoodChartEntry);
+  router.delete("/food-chart", auth, dietChartController.resetFoodChartEntries);
   router.delete("/food-chart/:id", auth, dietChartController.removeFoodChartEntry);
 
   router.get("/marketing-list", auth, marketingController.listItems);

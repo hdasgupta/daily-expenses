@@ -283,3 +283,32 @@ export async function removeFoodChartEntry(req, res) {
   if (!result.rowCount) return res.status(404).json({ error: "Food chart entry not found" });
   res.json({ ok: true, id: result.rows[0].id });
 }
+
+export async function resetFoodChartEntries(req, res) {
+  const date = String(req.query?.date ?? req.body?.date ?? "").slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return res.status(400).json({ error: "A valid date (YYYY-MM-DD) is required" });
+  }
+  const rawLocationId = String(req.query?.locationId ?? req.body?.locationId ?? "").trim();
+  const locationId = /^\d+$/.test(rawLocationId) ? rawLocationId : "";
+  const meals = ["Breakfast", "Lunch", "Evening Snacks", "Dinner"];
+
+  const result = locationId
+    ? await q(
+        `DELETE FROM public.food_chart_entries
+          WHERE chart_date = $1::date
+            AND meal = ANY($2::text[])
+            AND (location_id = $3::bigint OR location_id IS NULL)
+          RETURNING id`,
+        [date, meals, locationId],
+      )
+    : await q(
+        `DELETE FROM public.food_chart_entries
+          WHERE chart_date = $1::date
+            AND meal = ANY($2::text[])
+          RETURNING id`,
+        [date, meals],
+      );
+
+  res.json({ ok: true, deletedCount: result.rowCount });
+}

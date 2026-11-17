@@ -6,6 +6,7 @@ import {
   MapPin,
   Pencil,
   Plus,
+  RotateCcw,
   Search,
   ShoppingBasket,
   Trash2,
@@ -21,6 +22,7 @@ import {
   pickBestLocation,
   recordLocationSelection,
 } from "../lib/locationTracker";
+import ConfirmDialog from "../components/ConfirmDialog";
 import { todayKolkata } from "../utils/dates.js";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import "./dietChart.css";
@@ -365,6 +367,8 @@ export default function FoodChart() {
   const [marketingUnits, setMarketingUnits] = useState([]);
   const [addIngredient, setAddIngredient] = useState(null);
   const [addingToMarketing, setAddingToMarketing] = useState(false);
+  const [confirmResetOpen, setConfirmResetOpen] = useState(false);
+  const [resetting, setResetting] = useState(false);
   const userChoseLocationRef = useRef(false);
   const hasEntriesForDateRef = useRef(false);
 
@@ -718,6 +722,36 @@ export default function FoodChart() {
     }
   };
 
+  const selectedLocationName =
+    locations.find((loc) => String(loc.id) === String(locationId))?.name || "All locations";
+
+  const confirmResetFoodChart = async () => {
+    if (resetting) return;
+    setResetting(true);
+    setError("");
+    try {
+      const qs = new URLSearchParams({ date });
+      if (locationId) qs.set("locationId", String(locationId));
+      const res = await api(`/food-chart?${qs.toString()}`, {
+        method: "DELETE",
+        silentToast: true,
+      });
+      setConfirmResetOpen(false);
+      await load();
+      const deletedCount = Number(res?.deletedCount || 0);
+      showToast(
+        "success",
+        deletedCount
+          ? `Removed ${deletedCount} ${deletedCount === 1 ? "recipe" : "recipes"} from the Food Chart.`
+          : "Food Chart is already empty for this date and location.",
+      );
+    } catch (e) {
+      setError(e.message || "Unable to reset food chart.");
+    } finally {
+      setResetting(false);
+    }
+  };
+
   const mealFor = (entry) => entry.meal;
 
   return (
@@ -727,17 +761,28 @@ export default function FoodChart() {
           <h1>Food Chart</h1>
           <p>Plan meals independently for each date using your reusable recipe library.</p>
         </div>
-        <button
-          className="diet-primary"
-          onClick={() => {
-            setMeal("Breakfast");
-            setPickerLimit(INITIAL_PICKER_LIMIT);
-            setPickerCategory("All");
-            setAdding(true);
-          }}
-        >
-          <Plus size={17} /> Add Recipe
-        </button>
+        <div className="diet-heading-actions">
+          <button
+            className="diet-primary"
+            onClick={() => {
+              setMeal("Breakfast");
+              setPickerLimit(INITIAL_PICKER_LIMIT);
+              setPickerCategory("All");
+              setAdding(true);
+            }}
+          >
+            <Plus size={17} /> Add Recipe
+          </button>
+          <button
+            type="button"
+            className="diet-secondary"
+            onClick={() => setConfirmResetOpen(true)}
+            disabled={resetting || loading || !entries.length}
+            title="Remove all recipes in Breakfast, Lunch, Evening Snacks, and Dinner for the selected date and location"
+          >
+            <RotateCcw size={16} /> {resetting ? "Resetting…" : "Reset"}
+          </button>
+        </div>
       </div>
       <div className="diet-date-bar">
         <CalendarDays size={18} />
@@ -1069,6 +1114,15 @@ export default function FoodChart() {
         onClose={() => setAddIngredient(null)}
         onSubmit={addIngredientToMarketing}
         saving={addingToMarketing}
+      />
+      <ConfirmDialog
+        open={confirmResetOpen}
+        title="Reset Food Chart"
+        message={`Remove all recipes in Breakfast, Lunch, Evening Snacks, and Dinner for ${date} (${selectedLocationName})?`}
+        confirmLabel="Reset"
+        onCancel={() => resetting || setConfirmResetOpen(false)}
+        onConfirm={confirmResetFoodChart}
+        busy={resetting}
       />
     </main>
   );
