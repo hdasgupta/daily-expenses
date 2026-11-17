@@ -512,3 +512,10 @@
 - **Smart Multi-Select Component (`frontend/src/pages/DashboardDetail.jsx`, `frontend/src/styles.css`)**:
   - Upgraded the **Categories** and **Survivors** filters on all Dashboard Detail pages to custom interactive multi-select dropdowns (`SmartMultiSelect`).
   - Features live search filtering inside each dropdown, **Select all / Select matching** and **Clear all** quick actions, removable selected pill chips (`×`) in the trigger bar, live selection counter badges (`X selected`), custom animated checkboxes, and instant 0ms multi-item re-aggregation across the summary cards, stacked bar charts, pivot tables, and drilldown links.
+
+---
+
+## 38. Post-Login Organization Logo Rendering & Route-Safe Fallback (`Layout.jsx` & `styles.css`)
+
+- **Root-Relative Logo Resolution (`/logo.png`)**: Replaced the relative `<img src="logo.png" />` fallback in `frontend/src/components/Layout.jsx` with a root-relative `"/logo.png"` path and `resolveOrganizationLogoUrl(...)` helper so nested routes (such as `/dashboard/:reportKey` and `/dashboard/drilldown`) never request `/dashboard/logo.png` or render a broken image icon after login.
+- **Automatic Fallback (`onError`) & Unclipped Aspect Ratio (`object-fit: contain`)**: Added an `onError` handler that falls back to `"/logo.png"` if a custom `VITE_ORGANIZATION_LOGO_URL` fails to load, and updated `.brand-mark` / `.brand-mark img` in `frontend/src/styles.css` (`flex-shrink: 0`, `object-fit: contain`, clean white badge frame, and `64px` left clearance from the drawer toggle button) so the full ribbon logo displays cleanly without top/bottom cropping.

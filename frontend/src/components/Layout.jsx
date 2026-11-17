@@ -194,6 +194,31 @@ export function getNavigationItems(permissions) {
   return navItems.filter((item) => normalized.includes(item.permission));
 }
 
+function resolveOrganizationLogoUrl(rawUrl) {
+  const cleaned = String(rawUrl || "")
+    .trim()
+    .replace(/^['"]+|['"]+$/g, "")
+    .trim();
+  if (!cleaned || cleaned === "undefined" || cleaned === "null") {
+    return "/logo.png";
+  }
+  const driveMatch =
+    cleaned.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i) ||
+    cleaned.match(/[?&]id=([^&#]+)/i);
+  if (driveMatch && cleaned.includes("drive.google.com")) {
+    return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+  }
+  if (
+    /^(https?:)?\/\//i.test(cleaned) ||
+    cleaned.startsWith("data:") ||
+    cleaned.startsWith("blob:") ||
+    cleaned.startsWith("/")
+  ) {
+    return cleaned;
+  }
+  return `/${cleaned.replace(/^\.?\//, "")}`;
+}
+
 export default function Layout({
   user,
   path,
@@ -208,6 +233,9 @@ export default function Layout({
 }) {
   const [open, setOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [logoSrc, setLogoSrc] = useState(() =>
+    resolveOrganizationLogoUrl(import.meta.env.VITE_ORGANIZATION_LOGO_URL),
+  );
 
   const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
 
@@ -359,19 +387,27 @@ export default function Layout({
           style={{
             position: "relative",
             zIndex: 2,
-            paddingLeft: "56px",
+            paddingLeft: "64px",
           }}
         >
           <div className="brand-mark">
-            {import.meta.env.VITE_ORGANIZATION_LOGO_URL ? (
-              <img src={import.meta.env.VITE_ORGANIZATION_LOGO_URL} alt="Organization" />
-            ) : (
-              <img src="logo.png" width="32" height="32" alt="Organization" />
-            )}
+            <img
+              src={logoSrc || "/logo.png"}
+              width="36"
+              height="36"
+              alt="Organization"
+              onError={(e) => {
+                if (!e.currentTarget.src.endsWith("/logo.png")) {
+                  setLogoSrc("/logo.png");
+                }
+              }}
+            />
           </div>
 
           <div>
-            <strong>{import.meta.env.VITE_ORGANIZATION_NAME || "Rehabilitation Center"}</strong>
+            <strong>
+              {import.meta.env.VITE_ORGANIZATION_NAME || "West Bengal Forum for Mental Health"}
+            </strong>
 
             <span>Daily Expenses</span>
           </div>
