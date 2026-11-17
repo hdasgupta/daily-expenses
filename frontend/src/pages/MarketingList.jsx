@@ -8,6 +8,7 @@ import {
   FileText,
   LocateFixed,
   Pencil,
+  RotateCcw,
   ShoppingBasket,
   Trash2,
   Wallet,
@@ -660,6 +661,63 @@ export default function MarketingList({ navigate }) {
     setAutoCostHint("");
     setForm({ ...empty(), ...selection });
   };
+
+  const handleResetToDefault = async () => {
+    setEditing(null);
+    setError("");
+    userEditedCostRef.current = false;
+    userChoseLocationRef.current = false;
+    setAutoCostHint("");
+    setAutoLocationHint("");
+    setPage(1);
+
+    const defaults = empty();
+    const cachedPick = isValidCoordinates(currentCoords)
+      ? pickBestLocation(locations, currentCoords)
+      : null;
+
+    setForm({
+      ...defaults,
+      locationId: cachedPick?.bestLocation ? String(cachedPick.bestLocation.id) : "",
+    });
+    if (cachedPick?.bestLocation) {
+      setLocations(cachedPick.locations);
+      setAutoLocationHint(describeAutoMatchReason(cachedPick.bestLocation));
+    }
+
+    setDetectingGps(true);
+    try {
+      const coords = await getCurrentGpsPosition({
+        timeout: 8000,
+        maximumAge: 0,
+        enableHighAccuracy: true,
+      });
+      setCurrentCoords(coords);
+      const refreshed = await fetchLocationsWithGps({ coords, silent: true });
+      const locList = Array.isArray(refreshed?.locations) ? refreshed.locations : locations;
+      setLocations(locList);
+      const bestLoc = refreshed?.bestLocation || pickBestLocation(locList, coords).bestLocation;
+      if (bestLoc && !userChoseLocationRef.current) {
+        setForm((current) => ({
+          ...current,
+          locationId: String(bestLoc.id),
+        }));
+        setAutoLocationHint(describeAutoMatchReason(bestLoc));
+      }
+    } catch {
+      const fallback = pickBestLocation(locations, currentCoords);
+      if (fallback?.bestLocation && !userChoseLocationRef.current) {
+        setLocations(fallback.locations);
+        setForm((current) => ({
+          ...current,
+          locationId: String(fallback.bestLocation.id),
+        }));
+        setAutoLocationHint(describeAutoMatchReason(fallback.bestLocation));
+      }
+    } finally {
+      setDetectingGps(false);
+    }
+  };
   const save = async (event) => {
     event.preventDefault();
     setError("");
@@ -1103,6 +1161,16 @@ export default function MarketingList({ navigate }) {
         <div className="marketing-list-form-actions">
           <button className="primary" type="submit">
             {editing ? "Save changes" : "Add to marketing list"}
+          </button>
+          <button
+            type="button"
+            className="secondary"
+            onClick={handleResetToDefault}
+            disabled={detectingGps}
+            title="Reset date to today, select nearest GPS location, and clear other fields"
+          >
+            <RotateCcw size={15} />
+            {detectingGps ? "Resetting…" : "Reset"}
           </button>
           {editing && (
             <button type="button" onClick={resetForm}>

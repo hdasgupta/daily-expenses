@@ -543,3 +543,10 @@
 - **Database Persistence (`public.report_user_preferences`)**: Added `report_user_preferences` keyed by `user_id` with `config JSONB` and automatic table creation (`ensureReportUserPreferencesTable`) to store each user's active filters, date filter mode, sort columns, group-by columns, and summarise toggle.
 - **API Endpoints**: Added `GET /api/reports/preferences` and `PUT /api/reports/preferences` in `routes/index.js` and `reportController.js` protected by `auth` and `permit("report")`.
 - **Automatic Restore & Save (`Reports.jsx`)**: When the Reports page opens, it restores the user's saved filter, sort, group-by, and summarise state from the database (with immediate `localStorage` hydration) and automatically persists any subsequent changes per user.
+
+---
+
+## 42. Marketing List Form Reset Button with Today's Date & Nearest GPS Location (`MarketingList.jsx`)
+
+- **Reset Button Beside Submit**: Added a **Reset** button (`handleResetToDefault`) in `frontend/src/pages/MarketingList.jsx` directly below the form beside the **Add to marketing list** button.
+- **Default State & Nearest GPS Location**: Clicking **Reset** resets `purchaseDate` to today (`todayKolkata()`), clears category, item, quantity, unit, and approximate cost back to their default empty state, and automatically detects the nearest shopping location from current GPS coordinates (with cached/history fallback if GPS is unavailable).
