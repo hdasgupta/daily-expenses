@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -395,8 +395,33 @@ function buildReportChartModel(result) {
   };
 }
 
+function reportPreferenceStorageKey(userId) {
+  return `report_page_config:${userId || "anon"}`;
+}
+
+function readCachedReportConfig(userId) {
+  try {
+    const raw = localStorage.getItem(reportPreferenceStorageKey(userId));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? normalizeLoaded(parsed) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedReportConfig(userId, config) {
+  try {
+    localStorage.setItem(reportPreferenceStorageKey(userId), JSON.stringify(config));
+  } catch {
+    // Ignore storage quota errors
+  }
+}
+
 export default function Reports({ user }) {
-  const [config, setConfig] = useState(initialConfig);
+  const [config, setConfig] = useState(() => readCachedReportConfig(user?.id) || initialConfig);
+  const preferencesHydratedRef = useRef(false);
+  const savePreferenceTimerRef = useRef(null);
 
   const [result, setResult] = useState(null);
 
@@ -447,6 +472,59 @@ export default function Reports({ user }) {
   const [scheduleManagers, setScheduleManagers] = useState([]);
   const [selectedScheduleManagerIds, setSelectedScheduleManagerIds] = useState([]);
   const [scheduleManagersLoading, setScheduleManagersLoading] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    preferencesHydratedRef.current = false;
+
+    const cached = readCachedReportConfig(user?.id);
+    if (cached) {
+      setConfig(cached);
+    }
+
+    api("/reports/preferences", { silent: true })
+      .then((saved) => {
+        if (cancelled) return;
+        if (saved?.config) {
+          const normalized = normalizeLoaded(saved.config);
+          setConfig(normalized);
+          writeCachedReportConfig(user?.id, normalized);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) {
+          preferencesHydratedRef.current = true;
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
+
+  useEffect(() => {
+    if (!preferencesHydratedRef.current) return;
+    writeCachedReportConfig(user?.id, config);
+
+    if (savePreferenceTimerRef.current) {
+      clearTimeout(savePreferenceTimerRef.current);
+    }
+
+    savePreferenceTimerRef.current = setTimeout(() => {
+      api("/reports/preferences", {
+        method: "PUT",
+        body: JSON.stringify({ config }),
+        silent: true,
+      }).catch(() => {});
+    }, 300);
+
+    return () => {
+      if (savePreferenceTimerRef.current) {
+        clearTimeout(savePreferenceTimerRef.current);
+      }
+    };
+  }, [config, user?.id]);
 
   useEffect(() => {
     Promise.all([

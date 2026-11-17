@@ -535,3 +535,11 @@
 - **Database Persistence (`public.dashboard_user_filters`)**: Added `dashboard_user_filters` keyed by `(user_id, report_key)` with `categories JSONB`, `survivors JSONB`, and automatic table creation (`ensureDashboardUserFiltersTable`) so each user's Category and Survivor selections are stored independently per dashboard detail page.
 - **API Endpoints**: Added `GET /api/dashboard/filters/:reportKey` and `PUT /api/dashboard/filters/:reportKey` in `routes/index.js` and `dashboardController.js` protected by `auth` and `permit("dashboard")`.
 - **Automatic Restore & Instant Save (`DashboardDetail.jsx`)**: Every Dashboard Detail page now restores the user's saved filters on load (using `localStorage` for immediate zero-flicker hydration synced with the server response) and automatically persists changes whenever Category or Survivor selections are updated or reset.
+
+---
+
+## 41. Per-User Report Page State Persistence (`Reports.jsx`, `reportPreferenceService.js`, `reportController.js`, `schemaSql.js`)
+
+- **Database Persistence (`public.report_user_preferences`)**: Added `report_user_preferences` keyed by `user_id` with `config JSONB` and automatic table creation (`ensureReportUserPreferencesTable`) to store each user's active filters, date filter mode, sort columns, group-by columns, and summarise toggle.
+- **API Endpoints**: Added `GET /api/reports/preferences` and `PUT /api/reports/preferences` in `routes/index.js` and `reportController.js` protected by `auth` and `permit("report")`.
+- **Automatic Restore & Save (`Reports.jsx`)**: When the Reports page opens, it restores the user's saved filter, sort, group-by, and summarise state from the database (with immediate `localStorage` hydration) and automatically persists any subsequent changes per user.

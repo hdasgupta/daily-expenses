@@ -197,6 +197,11 @@ CREATE TABLE IF NOT EXISTS public.dashboard_user_filters (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   PRIMARY KEY (user_id, report_key)
 );
+CREATE TABLE IF NOT EXISTS public.report_user_preferences (
+  user_id BIGINT PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
+  config JSONB NOT NULL DEFAULT '{}'::jsonb,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_creator
   ON public.scheduled_report_jobs(created_by_user_id);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active

@@ -14,6 +14,10 @@ import {
   removeOneTimeReportEmailJob,
   scheduleOneTimeReportEmail,
 } from "../services/oneTimeReportEmailService.js";
+import {
+  getUserReportPreference,
+  saveUserReportPreference,
+} from "../services/reportPreferenceService.js";
 
 export async function query(req, res) {
   res.json(await runReport(req.body || {}));
@@ -91,4 +95,12 @@ export async function emailReport(req, res) {
   const pdf = await buildReportPdf(report, report.pdfConfig || config);
   await sendReportEmail(req.user.email, pdf);
   res.json({ ok: true, email: req.user.email });
+}
+
+export async function getPreference(req, res) {
+  res.json(await getUserReportPreference(req.user.id));
+}
+
+export async function savePreference(req, res) {
+  res.json(await saveUserReportPreference(req.user.id, req.body?.config ?? req.body ?? {}));
 }

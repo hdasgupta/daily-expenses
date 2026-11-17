@@ -159,6 +159,8 @@ export function createRouter(maxUploadBytes) {
   );
 
   router.post("/reports/query", auth, permit("report"), reportController.query);
+  router.get("/reports/preferences", auth, permit("report"), reportController.getPreference);
+  router.put("/reports/preferences", auth, permit("report"), reportController.savePreference);
   router.post("/reports/export-pdf", auth, permit("report"), reportController.exportPdf);
   router.post("/reports/email-pdf", auth, permit("report"), reportController.emailReport);
   router.post("/reports/schedule-email", auth, permit("report"), reportController.scheduleEmail);
