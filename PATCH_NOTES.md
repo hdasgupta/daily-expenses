@@ -590,3 +590,10 @@
 ## 48. Reset Button After Run Report on Reports Page (`Reports.jsx`)
 
 - **Reset Action Button**: Added a **Reset** button (`onClick={reset}` with `RotateCcw` icon) directly after the **Run report** button in `frontend/src/pages/Reports.jsx` to clear active filters, sorting, grouping, summarise state, chart, and results (and persist the reset state per user).
+
+---
+
+## 49. Dedicated Summarise Section & Organized Action Button Groups (`Reports.jsx`, `styles.css`)
+
+- **Separate Summarise Section**: Moved the **Summarise** toggle into its own dedicated card (`.report-summarise-card`) below the Sort/Group By builder with an explicit status label and helper description.
+- **Organized Action Groups**: Grouped the Reports page action buttons into three clear subsections inside `.report-actions-card`: **Report** (`Run report`, `Reset`, `Show/Hide chart`), **Selections** (`Save selection`, `Load selection`), and **Export & Email** (`Export PDF`, `Email me report PDF`, `Schedule email`).
