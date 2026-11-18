@@ -609,3 +609,9 @@
 ## 51. Tighter Gap Between Dashboard Report Links (`styles.css`)
 
 - **Minimal Grid Gap (`gap: 4px`)**: Reduced `.dashboard-report-list` grid gap from `8px` to `4px` and tightened `.dashboard-report-link` padding to `8px 10px` in `frontend/src/styles.css` so adjacent dashboard report links sit closer together.
+
+---
+
+## 52. Remove `.card` Bottom Margin on Dashboard Report Links (`styles.css`)
+
+- **Minimal Gap (`gap: 2px`, `margin-bottom: 0`)**: Overrode `.card`'s inherited `margin-bottom: 18px` on `.dashboard-report-link` and set `.dashboard-report-list` grid gap to `2px` in `frontend/src/styles.css` so both horizontal and vertical spacing between Dashboard report links are truly minimal.

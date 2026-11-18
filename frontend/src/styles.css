@@ -1243,7 +1243,7 @@ code {
 .dashboard-report-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 4px;
+  gap: 2px;
 }
 .dashboard-report-link {
   width: 100%;
@@ -1251,8 +1251,9 @@ code {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 8px;
-  padding: 8px 10px;
-  border-radius: 9px;
+  margin-bottom: 0;
+  padding: 7px 10px;
+  border-radius: 8px;
   text-align: left;
   color: var(--text);
   cursor: pointer;
