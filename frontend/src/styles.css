@@ -1242,18 +1242,15 @@ code {
 
 .dashboard-report-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 .dashboard-report-link {
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 0;
-  padding: 7px 10px;
-  border-radius: 8px;
+  gap: 12px;
   text-align: left;
   color: var(--text);
   cursor: pointer;
@@ -1263,9 +1260,9 @@ code {
   transform: translateY(-1px);
 }
 .dashboard-report-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   background: var(--soft);
@@ -1278,15 +1275,10 @@ code {
 .dashboard-report-copy small {
   display: block;
 }
-.dashboard-report-copy strong {
-  font-size: 13px;
-  line-height: 1.25;
-}
 .dashboard-report-copy small {
-  margin-top: 2px;
+  margin-top: 4px;
   color: var(--muted);
   font-size: 11px;
-  line-height: 1.25;
 }
 .dashboard-back-button {
   margin-bottom: 12px;
@@ -1361,17 +1353,10 @@ code {
   color: var(--primary-deep);
 }
 
-@media (orientation: landscape) {
-  .dashboard-report-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 860px) and (orientation: portrait) {
+@media (max-width: 860px) {
   .dashboard-report-list {
     grid-template-columns: 1fr;
   }
-}
-@media (max-width: 860px) {
   .dashboard-detail-summary {
     grid-template-columns: 1fr 1fr;
   }
@@ -2115,45 +2100,4 @@ code {
   font-size: 12px;
   font-weight: 600;
   line-height: 1.2;
-}
-
-.report-summarise-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-.report-summarise-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.report-actions-card {
-  margin-bottom: 14px;
-}
-.report-action-groups {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
-  align-items: flex-start;
-}
-.report-action-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.report-action-group-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-}
-.report-action-group-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
 }

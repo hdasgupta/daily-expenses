@@ -19,7 +19,6 @@ import {
   CalendarClock,
   Filter,
   FolderOpen,
-  Play,
   Plus,
   RotateCcw,
   Save,
@@ -1133,117 +1132,81 @@ export default function Reports({ user }) {
         ) : null}
       </div>
 
-      <div className="card report-summarise-card">
-        <div className="report-summarise-head">
-          <div className="section-title" style={{ marginBottom: 0 }}>
-            <BarChart3 size={19} />
-            Summarise
-          </div>
-          <label className="switch-row">
-            <input
-              type="checkbox"
-              checked={config.summarise}
-              onChange={(e) => {
-                setConfig((current) => ({
-                  ...current,
-                  summarise: e.target.checked,
-                }));
+      <div className="card report-actions">
+        <label className="switch-row">
+          <input
+            type="checkbox"
+            checked={config.summarise}
+            onChange={(e) => {
+              setConfig((current) => ({
+                ...current,
+                summarise: e.target.checked,
+              }));
 
-                setShowChart(false);
-              }}
-            />
+              setShowChart(false);
+            }}
+          />
 
-            <span className="switch" />
+          <span className="switch" />
 
-            <strong>{config.summarise ? "Enabled" : "Disabled"}</strong>
-          </label>
-        </div>
-        <div className="muted-inline">
-          {config.groupBy.length
-            ? "Aggregate expense totals by your selected Group By columns. Grouping does not automatically enable summarise."
-            : "Add at least one Group By column above to aggregate totals and view summary charts."}
-        </div>
-      </div>
+          <strong>Summarise</strong>
 
-      <div className="card report-actions-card">
-        <div className="report-action-groups">
-          <div className="report-action-group">
-            <span className="report-action-group-label">Report</span>
-            <div className="report-action-group-buttons">
-              <button className="primary" type="button" onClick={apply}>
-                <Play size={16} />
-                Run report
-              </button>
+          {config.groupBy.length ? (
+            <small className="field-note">Grouping does not automatically enable summarise.</small>
+          ) : null}
+        </label>
 
-              <button
-                className="secondary"
-                type="button"
-                onClick={reset}
-                title="Reset all filters, sorting, grouping, summarise, and report results"
-              >
-                <RotateCcw size={16} />
-                Reset
-              </button>
+        <button className="secondary" type="button" onClick={apply}>
+          Run report
+        </button>
 
-              {config.summarise && config.groupBy.length > 0 ? (
-                <button
-                  className="secondary"
-                  type="button"
-                  disabled={!result}
-                  onClick={() => setShowChart((value) => !value)}
-                >
-                  <BarChart3 size={16} />
-                  {showChart ? "Hide chart" : "Show chart"}
-                </button>
-              ) : null}
-            </div>
-          </div>
+        {config.summarise && config.groupBy.length > 0 ? (
+          <button
+            className="secondary"
+            type="button"
+            disabled={!result}
+            onClick={() => setShowChart((value) => !value)}
+          >
+            <BarChart3 size={17} />
 
-          <div className="report-action-group">
-            <span className="report-action-group-label">Selections</span>
-            <div className="report-action-group-buttons">
-              <button className="secondary" type="button" onClick={() => setSaveModal(true)}>
-                <Save size={16} />
-                Save selection
-              </button>
+            {showChart ? "Hide chart" : "Show chart"}
+          </button>
+        ) : null}
 
-              <button className="secondary" type="button" onClick={loadSelections}>
-                <FolderOpen size={16} />
-                Load selection
-              </button>
-            </div>
-          </div>
+        <button className="secondary" type="button" onClick={() => setSaveModal(true)}>
+          <Save size={17} />
+          Save selection
+        </button>
 
-          <div className="report-action-group">
-            <span className="report-action-group-label">Export & Email</span>
-            <div className="report-action-group-buttons">
-              <button
-                className="secondary"
-                type="button"
-                disabled={!result?.rows?.length}
-                onClick={exportPdf}
-              >
-                <Download size={16} />
-                Export PDF
-              </button>
+        <button className="secondary" type="button" onClick={loadSelections}>
+          <FolderOpen size={17} />
+          Load selection
+        </button>
 
-              <button
-                className="secondary"
-                type="button"
-                disabled={!result?.rows?.length}
-                onClick={emailReport}
-              >
-                <Mail size={16} />
-                Email me report PDF
-              </button>
+        <button
+          className="secondary"
+          type="button"
+          disabled={!result?.rows?.length}
+          onClick={exportPdf}
+        >
+          <Download size={17} />
+          Export PDF
+        </button>
 
-              <button className="secondary" type="button" onClick={openScheduleEmail}>
-                <CalendarClock size={16} />
-                Schedule email
-              </button>
-            </div>
-          </div>
-        </div>
+        <button
+          className="secondary"
+          type="button"
+          disabled={!result?.rows?.length}
+          onClick={emailReport}
+        >
+          <Mail size={17} />
+          Email me report PDF
+        </button>
+
+        <button className="secondary" type="button" onClick={openScheduleEmail}>
+          <CalendarClock size={17} />
+          Schedule email
+        </button>
       </div>
 
       {showChart && config.groupBy.length > 0 && result?.rows?.length
