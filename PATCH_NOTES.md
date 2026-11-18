@@ -584,3 +584,9 @@
 ## 47. Relative Day Labels (Yesterday / Today / Tomorrow) Beside Long Date (`dates.js`)
 
 - **Contextual Relative Day Suffix**: Updated `formatLongDateWithWeekday` in `frontend/src/utils/dates.js` to append `(Today)`, `(Yesterday)`, or `(Tomorrow)` beside the full weekday/month/long date across **Marketing List**, **Add Expenses**, and **Food Chart** whenever the selected date matches.
+
+---
+
+## 48. Reset Button After Run Report on Reports Page (`Reports.jsx`)
+
+- **Reset Action Button**: Added a **Reset** button (`onClick={reset}` with `RotateCcw` icon) directly after the **Run report** button in `frontend/src/pages/Reports.jsx` to clear active filters, sorting, grouping, summarise state, chart, and results (and persist the reset state per user).

@@ -1160,6 +1160,16 @@ export default function Reports({ user }) {
           Run report
         </button>
 
+        <button
+          className="secondary"
+          type="button"
+          onClick={reset}
+          title="Reset all filters, sorting, grouping, summarise, and report results"
+        >
+          <RotateCcw size={17} />
+          Reset
+        </button>
+
         {config.summarise && config.groupBy.length > 0 ? (
           <button
             className="secondary"
