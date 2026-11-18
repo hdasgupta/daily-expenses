@@ -658,3 +658,10 @@
 ## 59. Hashbrown & Potato Rösti Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
 
 - **16 Hashbrown Varieties (`static-1888`–`static-1903`)**: Added **Aloo Laccha Tawa Hashbrowns**, **Cheese & Chive Hashbrowns**, **Classic Crispy Hashbrowns**, **Egg & Hashbrown Skillet**, **Garlic Herb Potato Rösti**, **Gobi Aloo Hashbrowns**, **Green Chilli & Coriander Masala Hashbrowns**, **Hashbrown Toast**, **Herbed Sweet Potato Hashbrowns**, **Indian-Style Besan Aloo Hashbrowns**, **Onion & Black Pepper Hashbrowns**, **Paneer Stuffed Hashbrowns**, **Potato & Carrot Hashbrowns**, **Potato Latkes**, **Smoked Paprika & Oregano Hashbrown Coins**, and **Spinach & Corn Potato Hashbrowns** (manual box-grater/knife/skillet preparation only, no beef, sorted alphabetically A–Z; total recipes: **1636**).
+
+---
+
+## 60. Uniform Recipe Category & Region Tags (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **Canonical Category Tags (23 unique)**: Unified duplicate and overlapping category labels (`Evening Snack`, `Breakfast / Snack`, `Dinner / Street Food`, `Lunch / Dinner` -> `Snacks`; `Sandwiches` -> `Sandwich`; `Starter` -> `Starters`; `Fish & Seafood` -> `Fish`) across all 1636 recipes so Food Chart filter chips and Recipe Master categories stay clean and consistent.
+- **Canonical Region Tags (40 unique)**: Consolidated overlapping regional/cuisine labels (such as `Bengali / Indian`, `Indian / Bengali`, `Bengali / Kolkata Street Food` -> `Bengali`; `North Indian / Indian` -> `North Indian`; `Indo-Chinese / Indian`, `Indo-Chinese / Kolkata` -> `Indo-Chinese`; `Italian-inspired` -> `Italian`; `Indian / International` -> `Fusion`).
