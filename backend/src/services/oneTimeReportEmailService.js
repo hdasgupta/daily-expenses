@@ -605,7 +605,7 @@ async function executeOneTimeReportEmailJob(id) {
       startedAt: new Date(startedAt).toISOString(),
       completedAt: new Date().toISOString(),
       durationMs,
-      errorMessage: null,
+      errorMessage: "Recipients: 1",
     });
 
     await q(`DELETE FROM public.one_time_report_email_jobs WHERE id = $1`, [id]);
@@ -657,7 +657,7 @@ async function executeOneTimeReportEmailJob(id) {
           startedAt: new Date(startedAt).toISOString(),
           completedAt: new Date().toISOString(),
           durationMs,
-          errorMessage,
+          errorMessage: `Recipients: 0 — ${errorMessage}`,
         });
       } catch {
         // updateExecutionHistory already logs the detailed persistence error.

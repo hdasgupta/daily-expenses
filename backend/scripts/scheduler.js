@@ -207,6 +207,15 @@ async function markJobCompleted(executionId, durationMs, status = "completed", d
   );
 }
 
+function formatExecutionDetails(result) {
+  const count = Number(result?.recipients ?? 0);
+  const reason = String(result?.reason || "").trim();
+  if (reason && !/^recipients=/i.test(reason)) {
+    return `Recipients: ${count} — ${reason}`;
+  }
+  return `Recipients: ${count}`;
+}
+
 async function markJobFailed(executionId, durationMs, error) {
   await q(
     `UPDATE public.scheduler_job_executions
@@ -215,7 +224,7 @@ async function markJobFailed(executionId, durationMs, error) {
          duration_ms = $2,
          error_message = $3
      WHERE id = $1`,
-    [executionId, durationMs, error?.message || String(error)],
+    [executionId, durationMs, `Recipients: 0 — ${error?.message || String(error)}`],
   );
 }
 
@@ -269,7 +278,7 @@ async function runEmailJobOnce(jobName, scheduledKey, send) {
     const result = await send();
     const durationMs = Math.max(0, Date.now() - startedAt);
     const executionStatus = result?.skipped ? "skipped" : "completed";
-    await markJobCompleted(executionId, durationMs, executionStatus, result?.reason || null);
+    await markJobCompleted(executionId, durationMs, executionStatus, formatExecutionDetails(result));
 
     logSchedulerEvent(
       executionStatus === "skipped" ? "scheduler_job_skipped" : "scheduler_job_completed",

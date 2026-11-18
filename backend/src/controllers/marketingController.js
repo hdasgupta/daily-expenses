@@ -950,7 +950,7 @@ export async function sendScheduledEmail(req, res) {
     if (result.skipped) {
       await q(
         "UPDATE public.scheduler_job_executions SET status='skipped',completed_at=now(),duration_ms=$2,error_message=$3 WHERE id=$1",
-        [claim.rows[0].id, Date.now() - started, result.reason],
+        [claim.rows[0].id, Date.now() - started, `Recipients: 0 — ${result.reason}`],
       );
       return res.json({
         ok: true,
@@ -964,7 +964,7 @@ export async function sendScheduledEmail(req, res) {
 
     await q(
       "UPDATE public.scheduler_job_executions SET status='completed',completed_at=now(),duration_ms=$2,error_message=$3 WHERE id=$1",
-      [claim.rows[0].id, Date.now() - started, result.reason],
+      [claim.rows[0].id, Date.now() - started, `Recipients: ${Number(result.recipients || 0)}`],
     );
     res.json({
       ok: true,
@@ -976,7 +976,11 @@ export async function sendScheduledEmail(req, res) {
   } catch (error) {
     await q(
       "UPDATE public.scheduler_job_executions SET status='failed',completed_at=now(),duration_ms=$2,error_message=$3 WHERE id=$1",
-      [claim.rows[0].id, Date.now() - started, String(error?.message || error).slice(0, 2000)],
+      [
+        claim.rows[0].id,
+        Date.now() - started,
+        `Recipients: 0 — ${String(error?.message || error).slice(0, 1980)}`,
+      ],
     );
     throw error;
   }

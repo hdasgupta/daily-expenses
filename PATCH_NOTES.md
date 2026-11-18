@@ -646,3 +646,9 @@
 ## 57. Marketing List Email Disabled-User Hardening (`marketingController.js`)
 
 - **Strict Active-Recipient Filtering**: Hardened `sendMarketingListForDate` in `backend/src/controllers/marketingController.js` with `COALESCE(u.is_disabled, false) = false`, `lower(r.name) IN ('manager','admin')`, non-empty email validation, a runtime `is_disabled` skip guard, and an explicit `skipped: true` return when no active recipients exist.
+
+---
+
+## 58. Recipient Count in Job Status Execution History (`scheduler.js`, `marketingController.js`, `scheduledReportScheduler.js`, `oneTimeReportEmailService.js`)
+
+- **Consistent `Recipients: N` Details**: Updated all scheduled email execution recorders (`scheduler.js`, `marketingController.js`, `scheduledReportScheduler.js`, and `oneTimeReportEmailService.js`) to store `Recipients: N` (and `Recipients: 0 — <reason/error>` on skipped or failed runs) in `error_message` so the **Error / details** column on the Job Status page always displays the recipient count for every scheduled job.

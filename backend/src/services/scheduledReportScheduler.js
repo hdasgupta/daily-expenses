@@ -335,8 +335,15 @@ async function runJob(jobId, key) {
     );
 
     const result = await sendScheduledReportJob(job);
+    const recipientCount = Number(result?.recipients ?? 0);
+    const executionStatus = result?.skipped ? "skipped" : "completed";
 
-    await finishExecution(execution, "completed", startedAt, null);
+    await finishExecution(
+      execution,
+      executionStatus,
+      startedAt,
+      `Recipients: ${recipientCount}`,
+    );
 
     console.log(
       JSON.stringify({
@@ -359,7 +366,7 @@ async function runJob(jobId, key) {
 
     if (execution) {
       try {
-        await finishExecution(execution, "failed", startedAt, errorMessage);
+        await finishExecution(execution, "failed", startedAt, `Recipients: 0 — ${errorMessage}`);
       } catch (finishError) {
         console.error("Failed to record scheduled report failure", {
           jobId,
