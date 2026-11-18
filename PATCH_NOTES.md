@@ -578,3 +578,9 @@
 
 - **Day-by-Day Date Navigation (`shiftIsoDate`)**: Added `shiftIsoDate` in `frontend/src/utils/dates.js` for timezone-safe `±1` day stepping.
 - **Add Expenses (`Expense.jsx`) & Food Chart (`FoodChart.jsx`)**: Added **Previous date** and **Next date** buttons on both pages' date controls (disabling **Next date** on Add Expenses when today's maximum date is reached).
+
+---
+
+## 47. Relative Day Labels (Yesterday / Today / Tomorrow) Beside Long Date (`dates.js`)
+
+- **Contextual Relative Day Suffix**: Updated `formatLongDateWithWeekday` in `frontend/src/utils/dates.js` to append `(Today)`, `(Yesterday)`, or `(Tomorrow)` beside the full weekday/month/long date across **Marketing List**, **Add Expenses**, and **Food Chart** whenever the selected date matches.
