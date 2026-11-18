@@ -2027,6 +2027,65 @@ const definitions = [
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1888",
+    "name": "Aloo Laccha Tawa Hashbrowns (Indian Spiced Crispy Grated Potato Patties)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "starchy potatoes (peeled and coarsely grated)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "cornflour or rice flour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chilli & ginger",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted cumin powder & chaat masala",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee (for pan-frying)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rinse, squeeze, and season grated potatoes",
+        "text": "Rinse coarsely grated potatoes in cold water until the water runs clear, then squeeze firmly in a clean cloth by hand until completely dry. Toss with cornflour, chopped green chilli, ginger, cumin powder, coriander, and salt.",
+        "minutes": 10
+      },
+      {
+        "section": "Crisp on hot tawa",
+        "text": "Heat oil on a flat tawa, press small flat patties of the mixture onto the surface, and cook 5–6 minutes per side on medium heat until deep golden and crisp. Dust with chaat masala and serve hot.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Hand-squeezing out all starch water is the key to ultra-crisp laccha hashbrowns."
+  },
+  {
     "id": "static-1418",
     "name": "Aloo Lachha Namkeen / Farali Potato Chiwda (Crispy Potato Juliennes, Peanuts & Cashews)",
     "category": "Snacks",
@@ -16079,6 +16138,60 @@ const definitions = [
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1889",
+    "name": "Cheese & Chive Hashbrowns (Pan-Crisped Grated Potato & Melted Cheese Patties)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (peeled and coarsely grated)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "grated cheddar or processed cheese",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely snipped spring onion greens or chives",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "butter & oil mix",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dry and mix potatoes with cheese",
+        "text": "Rinse and hand-squeeze grated potatoes dry in a clean towel. Mix with grated cheese, snipped spring onion greens, cornflour, black pepper, and salt.",
+        "minutes": 10
+      },
+      {
+        "section": "Pan-fry until crisp and bubbly",
+        "text": "Cook flat patties in a butter-oil skillet over medium heat for 6–7 minutes per side until the cheese forms a lacy golden crust.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Uses a simple hand box grater and skillet; no food processor needed."
+  },
+  {
     "id": "static-1850",
     "name": "Cheese & Corn Masala Papad (Roasted Pepper Papad Topped with Sweet Corn, Onion, Tomato, Sev & Grated Cheese)",
     "category": "Starters",
@@ -25443,6 +25556,55 @@ const definitions = [
     "notes": "Real stovetop custard pudding with deep cocoa depth, velvety texture, and no artificial pudding mixes."
   },
   {
+    "id": "static-1890",
+    "name": "Classic Crispy Hashbrowns (Diner-Style Pan-Fried Shredded Potatoes)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "starchy potatoes (peeled and coarsely grated)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "butter",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "neutral vegetable oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Wash and thoroughly dry shreds",
+        "text": "Grate potatoes on the large holes of a box grater, rinse in cold water to remove surface starch, and wring dry in a clean kitchen cloth.",
+        "minutes": 10
+      },
+      {
+        "section": "Pan-fry undisturbed until golden",
+        "text": "Heat oil and butter in a wide skillet over medium heat. Spread shredded potatoes in an even 1/2-inch layer, season with salt and pepper, and cook undisturbed for 7 minutes until crisp brown underneath. Flip in sections or as one cake and cook 6 minutes more.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Avoid stirring while browning so the bottom forms a crisp diner-style crust."
+  },
+  {
     "id": "static-1711",
     "name": "Classic Italian Minestrone Soup (Hearty Bean, Ditalini, Zucchini & Tomato Broth with Pesto)",
     "category": "Soup",
@@ -30308,6 +30470,60 @@ const definitions = [
       }
     ],
     "notes": "Known as Echorer Bharta in Bengal and Kathal ka Chokha in Bihar."
+  },
+  {
+    "id": "static-1891",
+    "name": "Egg & Hashbrown Skillet (Fried Egg Over Crispy Shredded Potatoes)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated and squeezed dry)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "eggs",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "butter & oil",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chilli flakes & oregano",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "salt & black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp the hashbrown base",
+        "text": "Saute chopped onion with dried grated potatoes in butter and oil for 6 minutes until bottom is golden, flip, and cook 5 minutes more.",
+        "minutes": 12
+      },
+      {
+        "section": "Cook eggs on top",
+        "text": "Make two shallow wells in the crisp potato bed, crack an egg into each, season with salt, pepper, chilli flakes, and oregano, cover with a lid, and cook 3–4 minutes until whites set.",
+        "minutes": 4
+      }
+    ],
+    "notes": "One-pan breakfast skillet ready straight from the stovetop."
   },
   {
     "id": "static-0047",
@@ -36076,6 +36292,60 @@ const definitions = [
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1892",
+    "name": "Garlic Herb Potato Rösti (Swiss-Style Crisp Skillet Potato Cake)",
+    "category": "Breakfast / Snack",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (parboiled 5 minutes, cooled and grated)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "finely minced garlic",
+        "quantity": "2 cloves",
+        "unit": ""
+      },
+      {
+        "name": "butter or olive oil",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "dried thyme or oregano",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "fresh chopped parsley or coriander",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt & black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season parboiled grated potato",
+        "text": "Toss coarsely grated parboiled potatoes gently with minced garlic, herbs, salt, and black pepper.",
+        "minutes": 5
+      },
+      {
+        "section": "Form and crisp rösti cake",
+        "text": "Melt butter/oil in a skillet, press the potato mixture into a flat round cake, and cook on medium-low heat for 8–9 minutes per side (using a plate to flip cleanly) until deeply golden and crisp.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Brief parboiling gives a tender interior and crisp buttery exterior."
+  },
+  {
     "id": "static-1187",
     "name": "Garlic Lachha Paratha (Crispy Garlic & Butter Layered Paratha)",
     "category": "Bread",
@@ -36802,6 +37072,65 @@ const definitions = [
       }
     ],
     "notes": "Authentic coastal Goan curry best enjoyed with steamed red or parboiled rice."
+  },
+  {
+    "id": "static-1893",
+    "name": "Gobi Aloo Hashbrowns (Crispy Grated Cauliflower & Potato Patties)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (peeled and grated)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "cauliflower (finely hand-grated)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "cornflour or rice flour",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted cumin & turmeric",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for shallow frying)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze and bind gobi-aloo",
+        "text": "Wring grated potato and grated cauliflower together in a cloth to remove moisture, then mix with cornflour, ginger, green chilli, cumin, turmeric, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Shallow-fry crisp patties",
+        "text": "Shape into flat discs and shallow-fry on a hot oiled tawa for 6 minutes per side until crisp and golden.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Lighter vegetable-packed hashbrown variation using hand-grated cauliflower."
   },
   {
     "id": "static-1004",
@@ -38055,6 +38384,65 @@ const definitions = [
     "notes": "A GI-tagged culinary art form from Purba and Paschim Medinipur, shaped like traditional Bengali jewelry and eaten whole as a crunchy accompaniment to steamed rice and dal."
   },
   {
+    "id": "static-1894",
+    "name": "Green Chilli & Coriander Masala Hashbrowns (Desi Tawa Aloo Rösti)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated and squeezed dry)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chillies",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "amchur (dry mango powder) & garam masala",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix desi masala hashbrown base",
+        "text": "Combine well-dried grated potatoes with green chillies, coriander, cornflour, amchur, garam masala, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Toast on tawa",
+        "text": "Cook flat patties in hot oil on a tawa for 6–7 minutes per side until crisp and speckled golden.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Bright, tangy street-style flavours; serve with tomato ketchup or curd."
+  },
+  {
     "id": "static-0936",
     "name": "Green Chilli Omelette",
     "category": "Breakfast",
@@ -39293,6 +39681,55 @@ const definitions = [
     "notes": "Fresh mint, coriander, and black salt give Hariyali Paneer Tikka a zesty herbal punch."
   },
   {
+    "id": "static-1895",
+    "name": "Hashbrown Toast / Golden Rectangular Potato Patties (Tawa-Crisped)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (peeled, coarsely grated and par-steamed 3 min)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "onion powder or finely grated onion",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "black pepper & salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "oil (for shallow frying)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape rectangular hashbrown patties",
+        "text": "Steam or boil grated potatoes briefly for 3 minutes, drain and press dry, then mix with cornflour, grated onion, salt, and pepper. Press into 4 neat rectangular patties by hand.",
+        "minutes": 10
+      },
+      {
+        "section": "Shallow-fry until crunchy",
+        "text": "Shallow-fry in hot oil for 5–6 minutes per side until deep golden and crisp outside, tender inside.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Classic fast-food style rectangular hashbrown patties made entirely on the stovetop without freezing."
+  },
+  {
     "id": "static-0942",
     "name": "Herb Omelette",
     "category": "Breakfast",
@@ -39340,6 +39777,60 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1896",
+    "name": "Herbed Sweet Potato Hashbrowns (Pan-Crisped Grated Sweet Potato Cakes)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "sweet potatoes (peeled and coarsely grated)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "cornflour or rice flour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spring onion",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oregano & black pepper",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "olive oil or butter",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat grated sweet potato",
+        "text": "Toss grated sweet potato with cornflour, spring onion, oregano, black pepper, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-sear cakes",
+        "text": "Cook thin patties in a lightly oiled skillet on medium-low heat for 5–6 minutes per side until caramelised and crisp.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Cook on medium-low heat so the natural sugars caramelise without scorching."
   },
   {
     "id": "static-0334",
@@ -41375,6 +41866,65 @@ const definitions = [
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-1897",
+    "name": "Indian-Style Besan Aloo Hashbrowns (Gram-Flour Bound Grated Potato Pancakes)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated and squeezed dry)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "rice flour (for extra crunch)",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain (carom seeds)",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, chilli powder & chopped green chilli",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bind potatoes with besan",
+        "text": "Mix dried grated potatoes with besan, rice flour, ajwain, turmeric, chilli powder, green chilli, and salt (add 1 tbsp water only if needed to bind).",
+        "minutes": 6
+      },
+      {
+        "section": "Crisp on tawa",
+        "text": "Cook thin patties on an oiled tawa for 5–6 minutes per side until nutty and crunchy.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Besan and ajwain add warm Indian pakora notes to crisp grated-potato hashbrowns."
   },
   {
     "id": "static-0781",
@@ -64923,6 +65473,55 @@ const definitions = [
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1898",
+    "name": "Onion & Black Pepper Hashbrowns (Caramelised Onion & Crushed Pepper Potato Skillet)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated, rinsed and squeezed dry)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced onion",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "coarsely crushed black pepper",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter & oil",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Caramelise onions",
+        "text": "Saute sliced onion in 1 tbsp butter/oil on medium-low heat for 6 minutes until sweet and golden.",
+        "minutes": 6
+      },
+      {
+        "section": "Crisp potatoes with onion and pepper",
+        "text": "Add remaining oil/butter, spread dried grated potatoes over the onions, season with salt and crushed black pepper, and cook 6 minutes per side until crisp.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Sweet sauteed onions contrast wonderfully with bold cracked black pepper."
+  },
+  {
     "id": "static-0975",
     "name": "Onion Capsicum Sandwich",
     "category": "Sandwich",
@@ -68832,6 +69431,60 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1899",
+    "name": "Paneer Stuffed Hashbrowns (Crispy Grated Potato Patties with Spiced Paneer Center)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 18,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated and squeezed dry)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "crumbled paneer",
+        "quantity": "100 g",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chilli, coriander & chaat masala",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt & black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season paneer filling and potato shell",
+        "text": "Mix crumbled paneer with green chilli, coriander, chaat masala, and a pinch of salt. Mix dried grated potatoes with cornflour, salt, and pepper.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff and pan-fry",
+        "text": "Sandwich 1 tbsp spiced paneer between two thin layers of grated potato, press edges to seal into a patty, and shallow-fry 6–7 minutes per side until crisp golden.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Crispy laccha potato exterior with a soft spiced paneer core."
   },
   {
     "id": "static-0922",
@@ -74353,6 +75006,60 @@ const definitions = [
     "notes": "A royal Bankura and Rarh Bengal delicacy celebrated for the velvety texture and nutty flavor of posto."
   },
   {
+    "id": "static-1900",
+    "name": "Potato & Carrot Hashbrowns (Two-Root Crispy Skillet Pancakes)",
+    "category": "Breakfast",
+    "region": "Continental",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "carrots (peeled and coarsely grated)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "cornflour or maida",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped spring onion or parsley",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or butter",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt & black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Squeeze and combine roots",
+        "text": "Squeeze grated potato and carrot together in a clean towel until dry, then toss with cornflour, spring onion, salt, and pepper.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-fry until crisp",
+        "text": "Cook flat patties in heated oil/butter for 6–7 minutes per side until golden and tender.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Vibrant orange-gold colour and mild natural sweetness from grated carrots."
+  },
+  {
     "id": "static-0465",
     "name": "Potato Egg Bhuna",
     "category": "Egg",
@@ -74675,6 +75382,60 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1901",
+    "name": "Potato Latkes (Traditional Crisp Grated Potato & Onion Pancakes)",
+    "category": "Breakfast / Snack",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (peeled and coarsely grated)",
+        "quantity": "2 large",
+        "unit": ""
+      },
+      {
+        "name": "onion (finely grated)",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "egg (lightly beaten, or 2 tbsp cornflour for eggless)",
+        "quantity": "1",
+        "unit": ""
+      },
+      {
+        "name": "maida or fine suji",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for shallow frying)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt & black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Drain and bind latke batter",
+        "text": "Squeeze grated potato and grated onion together in a cloth until dry, then mix immediately with beaten egg, maida, salt, and pepper.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry crisp lacy latkes",
+        "text": "Drop spoonfuls into hot shimmering oil, flatten lightly with a spatula, and fry 5–6 minutes per side until lacy, crisp, and deep golden.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Serve hot with curd or apple-cinnamon/tomato relish."
   },
   {
     "id": "static-1265",
@@ -85252,6 +86013,60 @@ const definitions = [
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1902",
+    "name": "Smoked Paprika & Oregano Hashbrown Coins (Mini Crispy Potato Discs)",
+    "category": "Evening Snack",
+    "region": "Continental",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated and squeezed dry)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "paprika or Kashmiri chilli powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "dried oregano & garlic powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season mini coin mix",
+        "text": "Toss well-dried grated potatoes with cornflour, paprika, oregano, garlic powder, and salt.",
+        "minutes": 6
+      },
+      {
+        "section": "Crisp mini coins on tawa",
+        "text": "Shape into bite-sized 2-inch coins and shallow-fry 4–5 minutes per side until crunchy all around.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Bite-sized party and tea-time snack coins."
+  },
+  {
     "id": "static-0883",
     "name": "Soan Papdi",
     "category": "Sweets",
@@ -86665,6 +87480,65 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1903",
+    "name": "Spinach & Corn Potato Hashbrowns (Palak-Makai Crispy Grated Potato Cakes)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "potatoes (coarsely grated and squeezed dry)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spinach (palak)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled sweet corn kernels (roughly chopped)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "minced garlic & black pepper",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or butter",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine potato, spinach, and corn",
+        "text": "Mix dried grated potatoes with finely chopped spinach, roughly chopped boiled corn, cornflour, minced garlic, black pepper, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Pan-fry until golden",
+        "text": "Cook flat patties in heated oil/butter on medium heat for 6 minutes per side until crisp and golden.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Roughly chopping the corn kernels with a knife helps them stay inside the patty while frying."
   },
   {
     "id": "static-1706",

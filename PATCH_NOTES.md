@@ -652,3 +652,9 @@
 ## 58. Recipient Count in Job Status Execution History (`scheduler.js`, `marketingController.js`, `scheduledReportScheduler.js`, `oneTimeReportEmailService.js`)
 
 - **Consistent `Recipients: N` Details**: Updated all scheduled email execution recorders (`scheduler.js`, `marketingController.js`, `scheduledReportScheduler.js`, and `oneTimeReportEmailService.js`) to store `Recipients: N` (and `Recipients: 0 — <reason/error>` on skipped or failed runs) in `error_message` so the **Error / details** column on the Job Status page always displays the recipient count for every scheduled job.
+
+---
+
+## 59. Hashbrown & Potato Rösti Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **16 Hashbrown Varieties (`static-1888`–`static-1903`)**: Added **Aloo Laccha Tawa Hashbrowns**, **Cheese & Chive Hashbrowns**, **Classic Crispy Hashbrowns**, **Egg & Hashbrown Skillet**, **Garlic Herb Potato Rösti**, **Gobi Aloo Hashbrowns**, **Green Chilli & Coriander Masala Hashbrowns**, **Hashbrown Toast**, **Herbed Sweet Potato Hashbrowns**, **Indian-Style Besan Aloo Hashbrowns**, **Onion & Black Pepper Hashbrowns**, **Paneer Stuffed Hashbrowns**, **Potato & Carrot Hashbrowns**, **Potato Latkes**, **Smoked Paprika & Oregano Hashbrown Coins**, and **Spinach & Corn Potato Hashbrowns** (manual box-grater/knife/skillet preparation only, no beef, sorted alphabetically A–Z; total recipes: **1636**).
