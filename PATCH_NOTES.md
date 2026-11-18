@@ -603,3 +603,9 @@
 ## 50. Compact Dashboard Report Link Grid (`Dashboard.jsx`, `styles.css`)
 
 - **Compact 4-Column Responsive Grid**: Updated `.dashboard-report-list` and `.dashboard-report-link` in `frontend/src/styles.css` to arrange the 16 predefined dashboard report links into a compact 4-column desktop grid (2 columns on medium screens, 1 column on mobile) with tighter card padding, gap, and icon sizing while preserving all existing labels and descriptions verbatim.
+
+---
+
+## 51. Tighter Gap Between Dashboard Report Links (`styles.css`)
+
+- **Minimal Grid Gap (`gap: 4px`)**: Reduced `.dashboard-report-list` grid gap from `8px` to `4px` and tightened `.dashboard-report-link` padding to `8px 10px` in `frontend/src/styles.css` so adjacent dashboard report links sit closer together.
