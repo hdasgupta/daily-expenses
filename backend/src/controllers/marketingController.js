@@ -882,16 +882,28 @@ export async function sendMarketingListForDate(purchaseDate = nextDayIST()) {
 
   const recipients = (
     await q(
-      `SELECT email
+      `SELECT u.email, u.is_disabled
          FROM public.users u
          JOIN public.roles r ON r.id=u.role_id
-        WHERE r.name IN ('manager','admin')
-          AND u.is_disabled=false
-        ORDER BY CASE WHEN r.name='manager' THEN 1 ELSE 2 END, u.email`,
+        WHERE lower(r.name) IN ('manager','admin')
+          AND COALESCE(u.is_disabled, false) = false
+          AND NULLIF(TRIM(u.email), '') IS NOT NULL
+        ORDER BY CASE WHEN lower(r.name)='manager' THEN 1 ELSE 2 END, u.email`,
     )
-  ).rows;
+  ).rows.filter((recipient) => recipient.email && !recipient.is_disabled);
+
+  if (!recipients.length) {
+    return {
+      skipped: true,
+      reason: "No active (non-disabled) manager or admin recipients found",
+      date: purchaseDate,
+      rows: items.length,
+      recipients: 0,
+    };
+  }
 
   for (const recipient of recipients) {
+    if (!recipient.email || recipient.is_disabled) continue;
     await sendMarketingListEmail(recipient.email, purchaseDate, items);
   }
 

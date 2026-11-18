@@ -640,3 +640,9 @@
 
 - **One-Time Scheduled Report Emails (`oneTimeReportEmailService.js`)**: Joined `public.users` with `u.is_disabled = FALSE` in `processDueOneTimeReportEmailJobs` and added an `owner_disabled` guard in `claimJob` so disabled users never receive one-time scheduled report emails even if their account was disabled after scheduling.
 - **Recurring Scheduled Report Guard (`scheduledReportService.js`)**: Added a defense-in-depth `owner_disabled`/`is_disabled` check in `sendScheduledReportJob` alongside the existing `u.is_disabled = FALSE` filters across all recurring report, planned recipe, and marketing list email schedulers.
+
+---
+
+## 57. Marketing List Email Disabled-User Hardening (`marketingController.js`)
+
+- **Strict Active-Recipient Filtering**: Hardened `sendMarketingListForDate` in `backend/src/controllers/marketingController.js` with `COALESCE(u.is_disabled, false) = false`, `lower(r.name) IN ('manager','admin')`, non-empty email validation, a runtime `is_disabled` skip guard, and an explicit `skipped: true` return when no active recipients exist.
