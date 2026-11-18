@@ -597,3 +597,9 @@
 
 - **Separate Summarise Section**: Moved the **Summarise** toggle into its own dedicated card (`.report-summarise-card`) below the Sort/Group By builder with an explicit status label and helper description.
 - **Organized Action Groups**: Grouped the Reports page action buttons into three clear subsections inside `.report-actions-card`: **Report** (`Run report`, `Reset`, `Show/Hide chart`), **Selections** (`Save selection`, `Load selection`), and **Export & Email** (`Export PDF`, `Email me report PDF`, `Schedule email`).
+
+---
+
+## 50. Compact Dashboard Report Link Grid (`Dashboard.jsx`, `styles.css`)
+
+- **Compact 4-Column Responsive Grid**: Updated `.dashboard-report-list` and `.dashboard-report-link` in `frontend/src/styles.css` to arrange the 16 predefined dashboard report links into a compact 4-column desktop grid (2 columns on medium screens, 1 column on mobile) with tighter card padding, gap, and icon sizing while preserving all existing labels and descriptions verbatim.

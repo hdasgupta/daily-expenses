@@ -1242,15 +1242,17 @@ code {
 
 .dashboard-report-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
 }
 .dashboard-report-link {
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
+  padding: 10px 11px;
+  border-radius: 11px;
   text-align: left;
   color: var(--text);
   cursor: pointer;
@@ -1260,9 +1262,9 @@ code {
   transform: translateY(-1px);
 }
 .dashboard-report-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   display: grid;
   place-items: center;
   background: var(--soft);
@@ -1275,10 +1277,15 @@ code {
 .dashboard-report-copy small {
   display: block;
 }
+.dashboard-report-copy strong {
+  font-size: 13px;
+  line-height: 1.25;
+}
 .dashboard-report-copy small {
-  margin-top: 4px;
+  margin-top: 2px;
   color: var(--muted);
   font-size: 11px;
+  line-height: 1.25;
 }
 .dashboard-back-button {
   margin-bottom: 12px;
@@ -1353,6 +1360,11 @@ code {
   color: var(--primary-deep);
 }
 
+@media (max-width: 1080px) {
+  .dashboard-report-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 @media (max-width: 860px) {
   .dashboard-report-list {
     grid-template-columns: 1fr;

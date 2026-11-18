@@ -128,13 +128,13 @@ export default function Dashboard({ navigate }) {
               onClick={() => navigate(`/dashboard/report/${report.key}`)}
             >
               <span className="dashboard-report-icon">
-                <Icon size={21} />
+                <Icon size={17} />
               </span>
               <span className="dashboard-report-copy">
                 <strong>{report.label}</strong>
                 <small>{report.help}</small>
               </span>
-              <ChevronRight size={19} />
+              <ChevronRight size={16} />
             </button>
           );
         })}
