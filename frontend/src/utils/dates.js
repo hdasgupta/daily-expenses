@@ -48,3 +48,11 @@ export function formatLongDateWithWeekday(value) {
     timeZone: APP_TIMEZONE,
   }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), 12)));
 }
+
+export function shiftIsoDate(value, deltaDays) {
+  const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+  const base = match
+    ? new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]) + Number(deltaDays || 0)))
+    : new Date();
+  return base.toISOString().slice(0, 10);
+}

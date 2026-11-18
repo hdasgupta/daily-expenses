@@ -571,3 +571,10 @@
 
 - **Shared Long Date Formatter (`formatLongDateWithWeekday`)**: Added `formatLongDateWithWeekday` in `frontend/src/utils/dates.js` formatting dates in `en-IN` (`Asia/Kolkata`) with full weekday name, day, full month name, and year (e.g., `Tuesday, 17 November 2026`).
 - **Date Field Previews**: Applied `formatLongDateWithWeekday` directly on the Date fields in **Marketing List** (`MarketingList.jsx`), **Add Expenses** (`Expense.jsx`), and **Food Chart** (`FoodChart.jsx`).
+
+---
+
+## 46. Previous & Next Date Buttons on Add Expenses and Food Chart (`Expense.jsx`, `FoodChart.jsx`, `dates.js`, `styles.css`)
+
+- **Day-by-Day Date Navigation (`shiftIsoDate`)**: Added `shiftIsoDate` in `frontend/src/utils/dates.js` for timezone-safe `±1` day stepping.
+- **Add Expenses (`Expense.jsx`) & Food Chart (`FoodChart.jsx`)**: Added **Previous date** and **Next date** buttons on both pages' date controls (disabling **Next date** on Add Expenses when today's maximum date is reached).

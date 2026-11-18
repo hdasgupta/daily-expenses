@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Check, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
-import { formatDateKolkata, formatLongDateWithWeekday, todayKolkata } from "../utils/dates.js";
+import { formatDateKolkata, formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -1199,6 +1199,35 @@ export default function Expense() {
           {form.expenseDate ? (
             <span className="date-long-preview">{formatLongDateWithWeekday(form.expenseDate)}</span>
           ) : null}
+          <div className="date-nav-row">
+            <button
+              type="button"
+              className="secondary date-nav-btn"
+              onClick={() => {
+                const target = shiftIsoDate(form.expenseDate || today(), -1);
+                setDate(target);
+                updateField("expenseDate", target);
+              }}
+            >
+              <ChevronLeft size={14} />
+              <span>Previous date</span>
+            </button>
+            <button
+              type="button"
+              className="secondary date-nav-btn"
+              disabled={!form.expenseDate || form.expenseDate >= today()}
+              onClick={() => {
+                const candidate = shiftIsoDate(form.expenseDate || today(), 1);
+                const maxDate = today();
+                const target = candidate > maxDate ? maxDate : candidate;
+                setDate(target);
+                updateField("expenseDate", target);
+              }}
+            >
+              <span>Next date</span>
+              <ChevronRight size={14} />
+            </button>
+          </div>
         </label>
 
         <label>

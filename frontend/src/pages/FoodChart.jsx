@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   BookOpen,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   LocateFixed,
   MapPin,
   Pencil,
@@ -23,7 +25,7 @@ import {
   recordLocationSelection,
 } from "../lib/locationTracker";
 import ConfirmDialog from "../components/ConfirmDialog";
-import { formatLongDateWithWeekday, todayKolkata } from "../utils/dates.js";
+import { formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import "./dietChart.css";
 
@@ -794,6 +796,24 @@ export default function FoodChart() {
           onChange={(e) => setDate(e.target.value)}
         />
         <span className="date-long-preview">{formatLongDateWithWeekday(date)}</span>
+        <div className="date-nav-row">
+          <button
+            type="button"
+            className="diet-secondary date-nav-btn"
+            onClick={() => setDate((current) => shiftIsoDate(current || todayKolkata(), -1))}
+          >
+            <ChevronLeft size={14} />
+            <span>Previous date</span>
+          </button>
+          <button
+            type="button"
+            className="diet-secondary date-nav-btn"
+            onClick={() => setDate((current) => shiftIsoDate(current || todayKolkata(), 1))}
+          >
+            <span>Next date</span>
+            <ChevronRight size={14} />
+          </button>
+        </div>
       </div>
       <div className="diet-date-bar">
         <MapPin size={18} />
