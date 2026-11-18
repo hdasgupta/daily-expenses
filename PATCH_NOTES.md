@@ -615,3 +615,9 @@
 ## 52. Remove `.card` Bottom Margin on Dashboard Report Links (`styles.css`)
 
 - **Minimal Gap (`gap: 2px`, `margin-bottom: 0`)**: Overrode `.card`'s inherited `margin-bottom: 18px` on `.dashboard-report-link` and set `.dashboard-report-list` grid gap to `2px` in `frontend/src/styles.css` so both horizontal and vertical spacing between Dashboard report links are truly minimal.
+
+---
+
+## 53. Two-Column Dashboard Links in Landscape Mode (`styles.css`)
+
+- **Landscape Two-Column Grid**: Updated `.dashboard-report-list` in `frontend/src/styles.css` to use `grid-template-columns: repeat(2, minmax(0, 1fr))` in landscape mode (`@media (orientation: landscape)`) and on wider screens, while switching to 1 column only on narrow portrait screens (`@media (max-width: 860px) and (orientation: portrait)`).
