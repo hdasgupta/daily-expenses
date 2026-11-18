@@ -730,6 +730,14 @@ function formatScheduledEmailBody(job, summary, raw) {
 }
 
 export async function sendScheduledReportJob(job) {
+  if (job?.owner_disabled || job?.is_disabled) {
+    return {
+      recipients: 0,
+      rows: 0,
+      skipped: true,
+      reportKey: job.report_key,
+    };
+  }
   const { summary, raw, generatedAt } = await buildScheduledReport(job.report_key, job.filters);
 
   const pdf = await buildScheduledReportPdf({

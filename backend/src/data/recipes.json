@@ -54,6 +54,70 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1870",
+    "name": "Aam Tel Muri Makha (Mango-Pickle Oil & Spiced Puffed Rice Tiffin)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 8,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "aam tel (mango pickle oil with masala)",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped red onion",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chillies",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "roasted peanuts",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "chanachur (Bengali mixture)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "black salt",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix aromatics and mango-pickle oil",
+        "text": "In a large mixing bowl, combine chopped onion, green chillies, coriander, black salt, and aam tel (mango pickle oil with its spice bits). Toss lightly so the onion absorbs the tangy pickle masala.",
+        "minutes": 4
+      },
+      {
+        "section": "Fold in muri and crunch",
+        "text": "Add crisp puffed rice, roasted peanuts, and chanachur. Toss briskly by hand or spoon for 30 seconds and serve immediately while crunchy.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Classic Bengali tiffin using leftover mango pickle oil; serve right away so muri stays crisp."
+  },
+  {
     "id": "static-1728",
     "name": "Aar Macher Khichuri (Bengali River Catfish & Roasted Moong Dal Khichuri)",
     "category": "Rice",
@@ -234,6 +298,90 @@
       }
     ],
     "notes": "Bold, tangy pickle-spiced potatoes great with poori, paratha, or dal-chawal."
+  },
+  {
+    "id": "static-1854",
+    "name": "Achari Gobi Roll (Pickled Mustard-Spice Cauliflower Kathi Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (finely chopped)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat flour or maida parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "panch phoron (five-spice mix)",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "finely minced ginger",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric powder",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri red chilli powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "dry mango powder (amchur)",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "mango pickle masala oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced red onion",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook achari gobi filling",
+        "text": "Heat mustard oil in a kadhai until smoking slightly, lower flame, and crackle panch phoron. Add minced ginger and chopped cauliflower florets with salt, turmeric, and chilli powder; stir-fry on medium-high heat for 10 minutes until tender and charred at the edges.",
+        "minutes": 12
+      },
+      {
+        "section": "Finish with pickle spice and assemble",
+        "text": "Toss the cooked cauliflower with amchur and mango pickle masala oil. Warm two flaky parathas on a tawa, spoon the achari gobi down the center, top with sliced onion and lemon juice, and roll tightly.",
+        "minutes": 6
+      }
+    ],
+    "notes": "No blender or mixer needed; hand-minced ginger and ready pickle masala give deep achari tang."
   },
   {
     "id": "static-1729",
@@ -1426,6 +1574,95 @@
     "notes": "Quintessential Punjabi highway dhaba breakfast paratha uniting spiced potatoes and cauliflower."
   },
   {
+    "id": "static-1855",
+    "name": "Aloo Gobi Roll (Spiced Potato & Cauliflower Kathi Roll)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (small)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "potato (peeled and small-diced)",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "tawa parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "mustard or vegetable oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cumin seeds",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric powder",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "coriander powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "garam masala",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "sliced onion rings & green chillies",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala & lemon juice",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare dry aloo gobi masala",
+        "text": "Heat oil in a pan, crackle cumin seeds, and saute chopped onion and grated ginger for 3 minutes. Add diced potato, cauliflower, turmeric, coriander powder, and salt; cover and cook on low-medium heat for 12 minutes, stirring occasionally, until dry and crisp-edged.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll in warm parathas",
+        "text": "Sprinkle garam masala over the dry aloo gobi. Crisp two parathas on a tawa, layer the hot aloo gobi down the middle with raw onion rings, green chillies, chaat masala, and lemon juice, then roll tightly.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Keep the aloo gobi filling completely dry so the paratha stays crisp."
+  },
+  {
     "id": "static-0045",
     "name": "Aloo Jhol",
     "category": "Vegetable",
@@ -1542,6 +1779,70 @@
       }
     ],
     "notes": "A nostalgic outside-school-gate Kolkata street chaat."
+  },
+  {
+    "id": "static-1871",
+    "name": "Aloo Kabli Muri Makha (Spiced Potato, Sprouted Gram & Puffed Rice)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "boiled potato (small-diced)",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "boiled or sprouted kala chana (black chickpeas)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, tomato & cucumber",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "tamarind pulp (hand-strained with warm water)",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "bhaja masala (roasted cumin-chilli powder)",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "black salt & chaat masala",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "chopped green chilli & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season potato and chana",
+        "text": "Toss diced boiled potato, kala chana, onion, tomato, cucumber, green chilli, coriander, bhaja masala, black salt, and tamarind pulp in a bowl.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss with puffed rice",
+        "text": "Just before serving, fold in crisp muri and toss gently so every grain gets lightly coated with tangy Aloo Kabli spices.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Hand-soak seedless tamarind in warm water and squeeze through a strainer—no blender needed."
   },
   {
     "id": "static-1236",
@@ -1778,6 +2079,60 @@
       }
     ],
     "notes": "Crisp potato-and-nut namkeen popular both as an everyday snack and on fasting days."
+  },
+  {
+    "id": "static-1872",
+    "name": "Aloo Makha Muri (Mustard-Oil Mashed Potato & Crisp Puffed Rice Tiffin)",
+    "category": "Breakfast / Snack",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "boiled potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "dry red chillies (fried crisp in mustard oil)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped red onion",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "raw mustard oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare Bengali aloo makha",
+        "text": "Crush the fried dry red chillies with salt by hand, then mash boiled potatoes with chopped onion and mustard oil until smooth and fragrant.",
+        "minutes": 8
+      },
+      {
+        "section": "Serve with crisp muri",
+        "text": "Serve the warm spiced aloo makha alongside or lightly folded into crisp puffed rice for a comforting Bengali morning or evening tiffin.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Homestyle Bengali comfort tiffin; crumble dry red chillies with salt using fingertips."
   },
   {
     "id": "static-0035",
@@ -8146,6 +8501,65 @@
     "notes": ""
   },
   {
+    "id": "static-1873",
+    "name": "Beguni Diye Muri Makha (Crispy Eggplant Fritter & Mustard-Oil Puffed Rice)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced brinjal (begun)",
+        "quantity": "6 slices",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, kalonji & red chilli powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil (for frying & tossing)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "chopped onion & green chillies",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "black salt & chanachur",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crisp beguni",
+        "text": "Whisk besan with turmeric, kalonji, chilli powder, salt, and water into a smooth batter. Dip brinjal slices and fry in hot oil until golden and crisp; drain and break into bite-sized pieces.",
+        "minutes": 12
+      },
+      {
+        "section": "Toss with muri makha",
+        "text": "Toss puffed rice with 1 tsp raw mustard oil, chopped onion, green chillies, black salt, chanachur, and the crisp beguni pieces.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Traditional Bengali rainy-evening tiffin pairing hot beguni with pungent mustard-oil muri."
+  },
+  {
     "id": "static-0824",
     "name": "Bel Sherbet",
     "category": "Beverage",
@@ -10029,6 +10443,70 @@
       }
     ],
     "notes": "Classic melt-in-the-mouth tea-time gathiya seasoned with carom seeds and black pepper."
+  },
+  {
+    "id": "static-1874",
+    "name": "Bhel Muri Makha (Sukha Bhel-Style Crunchy Puffed Rice Tiffin)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "nylon sev",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "roasted peanuts",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & tomato (deseeded)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled diced potato",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "tamarind-jaggery syrup",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala, cumin powder & black salt",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped coriander & lemon juice",
+        "quantity": "2 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine vegetables and spices",
+        "text": "Mix chopped onion, deseeded tomato, diced potato, coriander, chaat masala, cumin powder, black salt, and tamarind-jaggery syrup in a bowl.",
+        "minutes": 5
+      },
+      {
+        "section": "Toss with muri and sev",
+        "text": "Add puffed rice, roasted peanuts, and nylon sev; toss briskly with lemon juice and serve immediately.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Deseeding the tomato keeps the puffed rice crisp for longer."
   },
   {
     "id": "static-0569",
@@ -15216,6 +15694,65 @@
       }
     ],
     "notes": "Iconic street-side crunchy flattened kala-chana snack enjoyed standalone or with chopped onion and lemon."
+  },
+  {
+    "id": "static-1875",
+    "name": "Chana Jor Garam Muri Makha (Spiced Flattened Chickpea & Puffed Rice)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 8,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "chana jor garam",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & cucumber",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chillies",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "chopped coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss muri with chana jor garam",
+        "text": "Combine chopped onion, cucumber, green chillies, coriander, black salt, and mustard oil in a bowl. Fold in crisp puffed rice and chana jor garam.",
+        "minutes": 5
+      },
+      {
+        "section": "Finish with lemon",
+        "text": "Squeeze fresh lemon juice over the mix, toss once more, and serve right away.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Zero-cook spicy crunch tiffin ready in under 10 minutes."
   },
   {
     "id": "static-1565",
@@ -20891,6 +21428,90 @@
     "notes": "Fragrant Indo-Chinese chowmin infused with garlic oil and topped with crunchy golden burnt garlic."
   },
   {
+    "id": "static-1856",
+    "name": "Chilli Gobi Roll (Tangra-Style Crispy Indo-Chinese Cauliflower Roll)",
+    "category": "Evening Snack",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (bite-sized)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "cornflour",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "flaky laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely minced garlic & ginger",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "sliced capsicum & onion",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "dark soy sauce",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "red chilli sauce",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "white vinegar",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying and tossing)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry cauliflower florets",
+        "text": "Blanch cauliflower florets in salted boiling water for 2 minutes, drain well, and toss with cornflour, maida, salt, and pepper using a splash of water to coat. Shallow- or deep-fry in hot oil until crisp and golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss in Tangra chilli sauce and roll",
+        "text": "In a hot wok or kadhai with 1 tbsp oil, flash-saute minced garlic, ginger, sliced onion, and capsicum for 2 minutes. Add soy sauce, chilli sauce, vinegar, and fried gobi; toss on high heat until glossy, then wrap inside warm tawa parathas.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Toss the crispy gobi with sauces just before rolling to preserve crunch."
+  },
+  {
     "id": "static-1559",
     "name": "Chilli Paneer Dry (Kolkata Tangra-Style Crispy Batter-Fried Paneer with Green Chillies & Bell Peppers)",
     "category": "Paneer",
@@ -23780,6 +24401,65 @@
     "notes": "Nostalgic childhood favorite across Bengali and Indian households."
   },
   {
+    "id": "static-1876",
+    "name": "Chira Bhaja Diye Muri Makha (Crispy Flattened Rice & Puffed Rice Mix)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 8,
+    "cookMinutes": 8,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "thick chira (flattened rice / poha)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "raw peanuts",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "curry leaves & slit green chillies",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "black salt & roasted cumin powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-roast chira and peanuts",
+        "text": "Heat oil in a kadhai, fry peanuts, curry leaves, and slit green chillies until crisp, then add dry thick chira and roast on medium-low heat for 5 minutes until puffed and crunchy. Cool slightly.",
+        "minutes": 8
+      },
+      {
+        "section": "Toss with muri",
+        "text": "Combine the crisp chira bhaja with puffed rice, chopped onion, black salt, and roasted cumin powder.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Two-texture Bengali tiffin combining crunchy pan-roasted chira with light muri."
+  },
+  {
     "id": "static-1371",
     "name": "Chirer Moa (Crispy Fried Flattened Rice & Jaggery Balls)",
     "category": "Sweets",
@@ -24033,6 +24713,60 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1877",
+    "name": "Cholar Dal Bhaja Muri Makha (Crunchy Fried Chana Dal & Puffed Rice Tiffin)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "spiced fried chana dal namkeen",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, cucumber & tomato",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chilli & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "black salt & lemon juice",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare vegetable base",
+        "text": "Mix chopped onion, cucumber, deseeded tomato, green chilli, coriander, black salt, and mustard oil in a bowl.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold in muri and fried chana dal",
+        "text": "Add crisp puffed rice and spiced fried chana dal, drizzle with lemon juice, toss well, and serve.",
+        "minutes": 3
+      }
+    ],
+    "notes": "High-crunch protein-rich evening tiffin."
   },
   {
     "id": "static-0200",
@@ -28421,6 +29155,65 @@
     "notes": "Known as Nenua ka Chokha in Bihar and Dhundul Bharta in Bengal."
   },
   {
+    "id": "static-1878",
+    "name": "Dim Bhaja Diye Muri Makha (Spiced Egg Bhurji & Mustard-Oil Puffed Rice Tiffin)",
+    "category": "Breakfast / Snack",
+    "region": "Bengali",
+    "prepMinutes": 8,
+    "cookMinutes": 6,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "eggs",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & green chillies",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric & crushed black pepper",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chanachur (optional)",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "salt & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook spicy egg bhurji",
+        "text": "Heat 1 tbsp mustard oil in a pan, saute half the chopped onion and green chilli for 2 minutes, then scramble in beaten eggs with turmeric, pepper, and salt until dry and crumbly.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss with muri makha",
+        "text": "In a bowl, mix puffed rice with remaining raw onion, green chilli, 1 tsp raw mustard oil, black salt, chanachur, and the hot egg bhurji.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Quick protein-packed Bengali hostel and home tiffin."
+  },
+  {
     "id": "static-0505",
     "name": "Dim Kosha",
     "category": "Egg",
@@ -28795,6 +29588,55 @@
     "notes": "Tangy, creamy yogurt gravy softens the crisp fish egg fritters into melt-in-the-mouth dumplings."
   },
   {
+    "id": "static-1879",
+    "name": "Doi Muri (Curd, Ripe Banana & Jaggery Puffed Rice Breakfast Tiffin)",
+    "category": "Breakfast",
+    "region": "Bengali",
+    "prepMinutes": 5,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "puffed rice (muri)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "fresh curd (tok doi or mishti doi)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "ripe banana (sliced)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery or sugar",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk curd and jaggery",
+        "text": "Beat the curd by hand with grated jaggery (omit if using mishti doi) and a tiny pinch of salt until smooth.",
+        "minutes": 3
+      },
+      {
+        "section": "Fold in muri and banana",
+        "text": "Add sliced ripe banana and puffed rice, mix gently, and serve immediately.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Cooling summer breakfast tiffin; no cooking required."
+  },
+  {
     "id": "static-1534",
     "name": "Doi Paneer (Bengali Yogurt, Cashew & Char Magaj White Gravy Paneer)",
     "category": "Paneer",
@@ -29011,6 +29853,80 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1857",
+    "name": "Double Egg Gobi Roll (Double Anda Spiced Cauliflower Kathi Roll)",
+    "category": "Dinner / Street Food",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "eggs (beaten with a pinch of salt)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "cauliflower florets (small)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped ginger & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cumin & coriander powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri chilli & turmeric powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "sliced onion, cucumber & green chilli",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala & kasundi or ketchup",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast spiced gobi",
+        "text": "Saute cauliflower florets with 1 tbsp oil, chopped ginger, green chilli, cumin, coriander, turmeric, Kashmiri chilli, and salt in a hot pan for 10 minutes until lightly charred and tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Double-egg griddle paratha and roll",
+        "text": "For each roll, pour 2 beaten eggs onto a lightly oiled hot tawa and immediately press a laccha paratha over the wet egg until it bonds and turns golden. Flip, fill with spiced gobi, onion, cucumber, chaat masala, and kasundi, then roll tightly.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Two eggs per paratha give a hearty Kolkata-style double-anda crust."
+  },
+  {
     "id": "static-0943",
     "name": "Double Egg Omelette",
     "category": "Breakfast",
@@ -29171,6 +30087,50 @@
       }
     ],
     "notes": "Crisp, travel-friendly dry kachori filled with a sweet, tangy, and nutty masala."
+  },
+  {
+    "id": "static-1880",
+    "name": "Dudh Muri with Gur & Banana (Warm Milk, Jaggery & Puffed Rice Tiffin)",
+    "category": "Breakfast",
+    "region": "Bengali",
+    "prepMinutes": 5,
+    "cookMinutes": 5,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "puffed rice (muri)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "milk (boiled and warm)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (date palm jaggery) or cane jaggery",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ripe banana (sliced)",
+        "quantity": "2",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dissolve jaggery in warm milk",
+        "text": "Bring milk to a boil in a saucepan, remove from heat, and stir in jaggery until completely dissolved.",
+        "minutes": 5
+      },
+      {
+        "section": "Pour over muri and banana",
+        "text": "Place puffed rice and sliced ripe banana in bowls, pour the warm sweetened milk over them, and serve right away.",
+        "minutes": 2
+      }
+    ],
+    "notes": "Classic Bengali household tiffin for children and elders alike."
   },
   {
     "id": "static-0846",
@@ -30414,6 +31374,80 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1858",
+    "name": "Egg Gobi Roll / Anda Gobi Kathi Roll (Kolkata Street-Style Egg-Coated Cauliflower Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "eggs (beaten with pinch of salt)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "cauliflower florets (finely chopped)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric & red chilli powder",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted cumin powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced onion & green chilli",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook dry spiced gobi",
+        "text": "Stir-fry chopped cauliflower in 1 tbsp hot oil with grated ginger, turmeric, chilli powder, cumin powder, and salt for 9–10 minutes until cooked through and golden.",
+        "minutes": 10
+      },
+      {
+        "section": "Coat paratha with egg and wrap",
+        "text": "Pour 1 beaten egg onto an oiled tawa, place a paratha on top so the egg adheres, cook 1 minute, and flip. Spoon the gobi filling along the center, add sliced onion, green chilli, black salt, and lemon juice, and roll up.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Classic Kolkata street roll pairing crisp egg-coated paratha with dry roasted cauliflower."
   },
   {
     "id": "static-0345",
@@ -35519,6 +36553,65 @@
     "notes": "Served steaming hot across Kolkata streets, railway stations, and evening tea stalls."
   },
   {
+    "id": "static-1881",
+    "name": "Ghugni Muri Makha (Spiced Yellow Pea Ghugni & Crisp Puffed Rice)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "dried yellow peas (matar, soaked overnight)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & tomato",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & chopped green chillies",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, cumin & bhaja masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "tamarind water, black salt & coriander",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Pressure-cook ghugni",
+        "text": "Pressure-cook soaked yellow peas with turmeric and salt for 3–4 whistles until tender. In a kadhai, heat mustard oil, saute half the onion, ginger, tomato, and cumin, then simmer with the cooked peas for 8 minutes.",
+        "minutes": 25
+      },
+      {
+        "section": "Top with crisp muri and garnishes",
+        "text": "Ladle hot ghugni into bowls, top generously with crisp puffed rice, raw chopped onion, green chillies, coriander, bhaja masala, black salt, and tamarind water.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Kolkata street-style ghugni-muri tiffin; add muri just before eating for crunch."
+  },
+  {
     "id": "static-0765",
     "name": "Ginger Tea",
     "category": "Tea",
@@ -35775,6 +36868,514 @@
     "notes": "For a Bengali Phulkopi Bharta variation, skip the tomato and mash boiled florets directly with raw mustard oil, roasted red chilli, onion, and coriander."
   },
   {
+    "id": "static-1859",
+    "name": "Gobi Bhurji Roll (Finely Grated Spiced Cauliflower Keema Kathi Roll)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower (hand-grated on box grater)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "green peas (optional)",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped tomato",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cumin seeds",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, coriander & garam masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "fresh coriander & lemon juice",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute grated gobi bhurji",
+        "text": "Heat oil in a kadhai, crackle cumin seeds, and saute chopped onion, ginger, and green chilli until golden. Add chopped tomato, spices, and salt; cook 3 minutes, then fold in hand-grated cauliflower and peas and stir-fry briskly for 8 minutes until dry and crumbly.",
+        "minutes": 11
+      },
+      {
+        "section": "Finish and wrap",
+        "text": "Toss the gobi bhurji with chopped coriander and lemon juice. Spoon onto warm tawa parathas and roll tightly.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Box-grating cauliflower creates a quick keema-like texture with zero blender or food processor."
+  },
+  {
+    "id": "static-1860",
+    "name": "Gobi Cheese Roll (Melted Cheese & Spiced Cauliflower Frankie Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (finely chopped)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated processed or cheddar cheese",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "tawa rotis or parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & garlic",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "pav bhaji or frankie masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "red chilli powder & turmeric",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "shredded cabbage & sliced onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice & salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare cheesy frankie gobi filling",
+        "text": "Saute chopped onion and garlic in butter/oil until soft, add chopped cauliflower, chilli powder, turmeric, frankie masala, and salt, and cook 10–12 minutes until tender and dry.",
+        "minutes": 12
+      },
+      {
+        "section": "Melt cheese on tawa and roll",
+        "text": "Warm each paratha on a tawa, spread the hot gobi filling down the center, scatter grated cheese generously so it melts from the heat, add cabbage, onion, and lemon juice, and roll up.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Hot cauliflower filling melts the hand-grated cheese naturally inside the roll."
+  },
+  {
+    "id": "static-1861",
+    "name": "Gobi Corn Roll (Spiced Cauliflower & Sweet Corn Masala Wrap)",
+    "category": "Breakfast / Snack",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (small)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "boiled sweet corn kernels",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "black pepper & roasted cumin powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala & oregano",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice & chopped coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute gobi and sweet corn",
+        "text": "Heat butter or oil in a pan and stir-fry small cauliflower florets with salt and pepper for 8 minutes until tender-crisp. Add capsicum, boiled sweet corn, cumin, chaat masala, and oregano; toss 3 minutes.",
+        "minutes": 11
+      },
+      {
+        "section": "Wrap in warm parathas",
+        "text": "Finish with lemon juice and chopped coriander, spoon onto warm tawa parathas, and roll tightly.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Mild, kid-friendly wrap with natural sweetness from corn and crunch from cauliflower."
+  },
+  {
+    "id": "static-1862",
+    "name": "Gobi Kebab Roll (Pan-Seared Grated Cauliflower Tikki Kathi Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower (finely hand-grated)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "roasted besan (gram flour)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potato",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger, green chilli & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cumin, garam masala & amchur",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for pan-searing)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "sliced onion rings & lemon juice",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape and pan-sear gobi kebabs",
+        "text": "Squeeze excess moisture from grated cauliflower by hand, then mix with mashed potato, dry-roasted besan, ginger, green chilli, coriander, spices, and salt. Shape into 4 oblong kebabs and pan-sear on an oiled tawa for 8 minutes until crisp and brown on all sides.",
+        "minutes": 14
+      },
+      {
+        "section": "Assemble kebab rolls",
+        "text": "Place 2 hot gobi kebabs on each warm paratha, top with onion rings and lemon juice, and roll firmly.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Hand-squeezing the grated cauliflower keeps the kebab mixture firm without needing a grinder."
+  },
+  {
+    "id": "static-1863",
+    "name": "Gobi Manchurian Roll (Street-Style Cauliflower Manchurian Frankie)",
+    "category": "Evening Snack",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (small)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "cornflour & maida mix",
+        "quantity": "5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "parathas or frankie rotis",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped garlic, ginger & green chilli",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spring onion & cabbage",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "tomato ketchup & red chilli sauce",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "vinegar & black pepper",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crispy cauliflower bites",
+        "text": "Coat parboiled cauliflower florets in a thick batter of cornflour, maida, salt, and pepper, then fry in hot oil until crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Glaze in Manchurian sauce and roll",
+        "text": "Saute minced garlic, ginger, and green chilli in 1 tbsp oil; add soy sauce, ketchup, chilli sauce, vinegar, and 2 tbsp water. Toss in fried gobi until coated in a thick glaze, then roll inside warm parathas with shredded cabbage and spring onion.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Keep the Manchurian glaze thick rather than soupy so the wrap holds cleanly."
+  },
+  {
+    "id": "static-1864",
+    "name": "Gobi Matar Roll (Spiced Cauliflower & Green Peas Masala Paratha Roll)",
+    "category": "Lunch / Dinner",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (small)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "green peas (fresh or boiled)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "mustard or vegetable oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cumin seeds",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & chopped green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, cumin & coriander powder",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "garam masala & amchur",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "sliced red onion & lemon juice",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook dry gobi matar",
+        "text": "Crackle cumin seeds in hot oil, saute ginger and green chilli, and add cauliflower florets, green peas, turmeric, cumin, coriander, and salt. Cover and cook 12 minutes, stirring occasionally, until tender and dry.",
+        "minutes": 14
+      },
+      {
+        "section": "Season and roll",
+        "text": "Sprinkle garam masala and amchur over the hot filling, spoon onto warm parathas with sliced onion and lemon juice, and roll up.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Great winter tiffin roll using fresh seasonal phulkopi and motorshuti."
+  },
+  {
+    "id": "static-1865",
+    "name": "Gobi Paneer Roll (Spiced Cauliflower & Crumbled Paneer Kathi Roll)",
+    "category": "Dinner / Street Food",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (finely chopped)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "paneer (crumbled or small cubes)",
+        "quantity": "150 g",
+        "unit": ""
+      },
+      {
+        "name": "laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "sliced capsicum & onion",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & minced garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri chilli, turmeric & garam masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "kasuri methi (crushed)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala & lemon juice",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stir-fry gobi and paneer",
+        "text": "Roast chopped cauliflower in hot oil with ginger, garlic, turmeric, chilli, and salt for 8 minutes. Add capsicum, onion, paneer, garam masala, and kasuri methi; saute 4 minutes until aromatic and lightly seared.",
+        "minutes": 12
+      },
+      {
+        "section": "Assemble kathi rolls",
+        "text": "Warm parathas on a tawa, fill with the gobi-paneer mixture, sprinkle chaat masala and lemon juice, and roll tightly.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Combining roasted cauliflower with paneer adds protein while keeping the roll hearty."
+  },
+  {
     "id": "static-0366",
     "name": "Gobi Paratha",
     "category": "Bread",
@@ -35822,6 +37423,164 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1866",
+    "name": "Gobi Roll (Kolkata Street-Style Spiced Cauliflower Kathi Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (small bite-sized)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & minced garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric powder",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri red chilli powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted cumin & coriander powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced red onion",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "slit or chopped green chillies",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast spiced cauliflower on tawa/kadhai",
+        "text": "Heat oil in a wide pan or tawa, add cauliflower florets, grated ginger, garlic, turmeric, chilli powder, cumin, coriander, and salt. Roast on medium-high heat for 12 minutes, tossing often, until tender inside with crisp charred edges.",
+        "minutes": 12
+      },
+      {
+        "section": "Wrap in flaky Kolkata laccha paratha",
+        "text": "Toast laccha parathas on a hot tawa until crisp and flaky. Spoon the roasted spiced gobi down the center, top with raw sliced onion, green chillies, chaat masala, black salt, and lemon juice, and roll tightly in paper.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Pure vegetarian Kolkata street-style kathi roll; dry high-heat roasting gives authentic smoky flavour."
+  },
+  {
+    "id": "static-1867",
+    "name": "Gobi Tikka Roll (Tawa-Roasted Spiced Cauliflower & Curd Kathi Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (medium)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "thick curd (whisked by hand)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted besan (gram flour)",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & minced garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri chilli, cumin & garam masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "kasuri methi (crushed)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "laccha parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "sliced onion rings & lemon juice",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Marinate and tawa-roast gobi tikka",
+        "text": "Whisk thick curd, roasted besan, mustard oil, ginger, garlic, spices, kasuri methi, and salt in a bowl. Coat parboiled cauliflower florets and pan-roast on a hot oiled tawa for 10–12 minutes until charred and smoky.",
+        "minutes": 12
+      },
+      {
+        "section": "Roll with onion and lemon",
+        "text": "Arrange hot gobi tikka pieces down the middle of crisp warm parathas, top with onion rings and fresh lemon juice, and roll up.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Roasted besan helps the spiced curd marinade cling to the cauliflower on a flat tawa."
   },
   {
     "id": "static-0113",
@@ -41264,6 +43023,65 @@
     "notes": "A beloved Bengali summer afternoon dish using fresh tart green mangoes."
   },
   {
+    "id": "static-1882",
+    "name": "Kacha Chola Muri Makha (Soaked Black Chickpea, Coconut & Ginger Puffed Rice)",
+    "category": "Breakfast / Snack",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "soaked kala chana (kacha chola, drained)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh coconut (finely diced)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced ginger & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "black salt & roasted cumin powder",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Combine soaked chola and aromatics",
+        "text": "In a bowl, toss drained soaked kala chana with finely diced fresh coconut, minced ginger, green chilli, chopped onion, black salt, roasted cumin powder, and mustard oil.",
+        "minutes": 6
+      },
+      {
+        "section": "Fold in crisp muri",
+        "text": "Add puffed rice and toss briskly until evenly coated. Serve immediately.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Wholesome no-cook morning tiffin popular across Bengal."
+  },
+  {
     "id": "static-0833",
     "name": "Kacha Golla",
     "category": "Sweets",
@@ -43557,6 +45375,60 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1883",
+    "name": "Kasundi Muri Makha (Bengali Mustard Sauce & Crisp Puffed Rice Tiffin)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 8,
+    "cookMinutes": 0,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "Bengali kasundi (fermented mustard sauce)",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped cucumber, tomato & onion",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "roasted peanuts & chanachur",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped green chillies & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix kasundi and vegetables",
+        "text": "Toss chopped onion, cucumber, deseeded tomato, green chillies, coriander, and black salt with Bengali kasundi in a mixing bowl.",
+        "minutes": 5
+      },
+      {
+        "section": "Add muri and crunch",
+        "text": "Fold in puffed rice, roasted peanuts, and chanachur, toss lightly, and serve right away.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Tangy, pungent kasundi gives instant zing without needing extra oil."
   },
   {
     "id": "static-1611",
@@ -59493,6 +61365,65 @@
     "notes": "Classic evening snack served across heritage tea stalls and cabins in Shyambazar and College Street."
   },
   {
+    "id": "static-1884",
+    "name": "Muri Bhaja (Ghee & Curry Leaf Roasted Crispy Puffed Rice)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 5,
+    "cookMinutes": 8,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "puffed rice (muri)",
+        "quantity": "4 cups",
+        "unit": ""
+      },
+      {
+        "name": "ghee or vegetable oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "raw peanuts",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "curry leaves",
+        "quantity": "12",
+        "unit": ""
+      },
+      {
+        "name": "mustard seeds",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric powder & red chilli powder",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Temper peanuts and curry leaves",
+        "text": "Heat ghee or oil in a wide kadhai on low-medium flame, crackle mustard seeds, and fry peanuts and curry leaves until crunchy.",
+        "minutes": 4
+      },
+      {
+        "section": "Roast puffed rice",
+        "text": "Stir in turmeric, chilli powder, and black salt, then add puffed rice and toss continuously on low heat for 4 minutes until crisp and golden.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Stores well in an airtight tin for days; great quick tea-time tiffin."
+  },
+  {
     "id": "static-0915",
     "name": "Murir Moa",
     "category": "Sweets",
@@ -60509,6 +62440,60 @@
       }
     ],
     "notes": "Crisp, carom-scented savory ribbon crackers ideal for tea time."
+  },
+  {
+    "id": "static-1885",
+    "name": "Narkel Bhaja Diye Muri Makha (Pan-Fried Coconut Slices & Mustard-Oil Puffed Rice)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 6,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "fresh coconut (thinly sliced)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "raw peanuts",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & green chillies",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "black salt & bhaja masala",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry coconut slices and peanuts",
+        "text": "Heat 2 tsp oil in a small pan and fry thin coconut slices and peanuts on medium-low heat until golden and crisp; drain.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss with muri",
+        "text": "Mix puffed rice with chopped onion, green chillies, remaining mustard oil, black salt, bhaja masala, and the warm fried coconut and peanuts.",
+        "minutes": 3
+      }
+    ],
+    "notes": "Nutty toasted coconut slices elevate simple muri makha into a festive snack."
   },
   {
     "id": "static-1381",
@@ -68807,6 +70792,75 @@
     "notes": "Using a higher ratio of rice flour keeps jute leaf fritters extra crunchy."
   },
   {
+    "id": "static-1868",
+    "name": "Patta Gobi Roll / Cabbage & Cauliflower Veg Kathi Roll (Bandhakopi-Phulkopi Street Roll)",
+    "category": "Evening Snack",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "finely shredded cabbage (patta gobi)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped cauliflower (phulkopi)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "sliced onion & julienned carrot",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "flaky parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & chaat masala",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & vinegar (optional)",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "High-heat stir-fry vegetables",
+        "text": "Heat oil in a kadhai, add minced ginger and green chilli, then toss in chopped cauliflower and carrot on high heat for 6 minutes. Add shredded cabbage, onion, salt, black pepper, and optional soy-vinegar; stir-fry 4 minutes so vegetables stay crisp-tender.",
+        "minutes": 10
+      },
+      {
+        "section": "Wrap in warm parathas",
+        "text": "Dust with chaat masala, spoon onto crisp tawa parathas, and roll tightly.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Combines both patta gobi (cabbage) and phulkopi (cauliflower) for crisp street-style crunch."
+  },
+  {
     "id": "static-0899",
     "name": "Payasam (Ada Pradhaman)",
     "category": "Sweets",
@@ -69904,6 +71958,60 @@
       }
     ],
     "notes": "Kolkata sweet-shop take on the North Indian pyaaz kachori, featuring caramelized onions and whole crushed spices."
+  },
+  {
+    "id": "static-1886",
+    "name": "Peyaji Diye Muri Makha (Crispy Onion Fritter & Jhalmuri Tiffin)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced red onions (for peyaji)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "besan & rice flour mix",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped green chillies & kalonji",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "chanachur, raw onion & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fry crunchy peyaji",
+        "text": "Mix sliced onions with besan, rice flour, green chillies, kalonji, salt, and minimal water; drop small clusters into hot oil and fry until crisp and brown.",
+        "minutes": 10
+      },
+      {
+        "section": "Crush into muri makha",
+        "text": "Break hot crispy peyaji into bite-sized pieces and toss with puffed rice, raw mustard oil, chopped onion, chanachur, and black salt.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Beloved Bengali street and home evening tiffin."
   },
   {
     "id": "static-1065",
@@ -81428,6 +83536,80 @@
     "notes": "Fiery Tangra-style Schezwan chicken and egg chowmin."
   },
   {
+    "id": "static-1869",
+    "name": "Schezwan Gobi Roll (Fiery Garlic-Chilli Cauliflower Street Roll)",
+    "category": "Evening Snack",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "cauliflower florets (small)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "cornflour & maida mix",
+        "quantity": "4 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "parathas",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely minced garlic & ginger",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "red chilli flakes or crushed red chillies",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "tomato ketchup & soy sauce",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "vinegar",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "sliced capsicum & shredded cabbage",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-fry cauliflower",
+        "text": "Toss blanched cauliflower florets with cornflour, maida, salt, and water to coat lightly, then fry in hot oil until golden and crisp.",
+        "minutes": 10
+      },
+      {
+        "section": "Toss in manual Schezwan tadka and roll",
+        "text": "Heat 1 tbsp oil, saute minced garlic, ginger, and red chilli flakes for 1 minute; stir in ketchup, soy sauce, vinegar, and capsicum. Toss in fried gobi on high heat, then wrap in warm parathas with shredded cabbage.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Hand-minced garlic and red chilli flakes create a bold Schezwan-style glaze without any mixer or grinder."
+  },
+  {
     "id": "static-1561",
     "name": "Schezwan Paneer Dry (Wok-Tossed Crispy Paneer in Fiery Homemade Schezwan Pepper Sauce)",
     "category": "Paneer",
@@ -86936,6 +89118,65 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1887",
+    "name": "Telebhaja Muri Makha (Aloor Chop & Puffed Rice Evening Tiffin)",
+    "category": "Evening Snack",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri)",
+        "quantity": "3 cups",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "bhaja masala, turmeric & ginger",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil (for frying & tossing)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "chopped onion, green chillies & chanachur",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make crisp aloor chop",
+        "text": "Season mashed potatoes with bhaja masala, grated ginger, and salt; shape into 4 flat patties, dip in spiced besan batter, and fry until golden.",
+        "minutes": 12
+      },
+      {
+        "section": "Serve with spiced muri makha",
+        "text": "Toss muri with raw mustard oil, chopped onion, green chillies, chanachur, and black salt; serve with hot crushed or whole aloor chop.",
+        "minutes": 4
+      }
+    ],
+    "notes": "Classic Kolkata telebhaja-muri pairing for tea-time."
   },
   {
     "id": "static-1669",

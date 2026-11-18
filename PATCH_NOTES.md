@@ -578,3 +578,65 @@
 
 - **Day-by-Day Date Navigation (`shiftIsoDate`)**: Added `shiftIsoDate` in `frontend/src/utils/dates.js` for timezone-safe `±1` day stepping.
 - **Add Expenses (`Expense.jsx`) & Food Chart (`FoodChart.jsx`)**: Added **Previous date** and **Next date** buttons on both pages' date controls (disabling **Next date** on Add Expenses when today's maximum date is reached).
+
+---
+
+## 47. Relative Day Labels (Yesterday / Today / Tomorrow) Beside Long Date (`dates.js`)
+
+- **Contextual Relative Day Suffix**: Updated `formatLongDateWithWeekday` in `frontend/src/utils/dates.js` to append `(Today)`, `(Yesterday)`, or `(Tomorrow)` beside the full weekday/month/long date across **Marketing List**, **Add Expenses**, and **Food Chart** whenever the selected date matches.
+
+---
+
+## 48. Reset Button After Run Report on Reports Page (`Reports.jsx`)
+
+- **Reset Action Button**: Added a **Reset** button (`onClick={reset}` with `RotateCcw` icon) directly after the **Run report** button in `frontend/src/pages/Reports.jsx` to clear active filters, sorting, grouping, summarise state, chart, and results (and persist the reset state per user).
+
+---
+
+## 49. Dedicated Summarise Section & Organized Action Button Groups (`Reports.jsx`, `styles.css`)
+
+- **Separate Summarise Section**: Moved the **Summarise** toggle into its own dedicated card (`.report-summarise-card`) below the Sort/Group By builder with an explicit status label and helper description.
+- **Organized Action Groups**: Grouped the Reports page action buttons into three clear subsections inside `.report-actions-card`: **Report** (`Run report`, `Reset`, `Show/Hide chart`), **Selections** (`Save selection`, `Load selection`), and **Export & Email** (`Export PDF`, `Email me report PDF`, `Schedule email`).
+
+---
+
+## 50. Compact Dashboard Report Link Grid (`Dashboard.jsx`, `styles.css`)
+
+- **Compact 4-Column Responsive Grid**: Updated `.dashboard-report-list` and `.dashboard-report-link` in `frontend/src/styles.css` to arrange the 16 predefined dashboard report links into a compact 4-column desktop grid (2 columns on medium screens, 1 column on mobile) with tighter card padding, gap, and icon sizing while preserving all existing labels and descriptions verbatim.
+
+---
+
+## 51. Tighter Gap Between Dashboard Report Links (`styles.css`)
+
+- **Minimal Grid Gap (`gap: 4px`)**: Reduced `.dashboard-report-list` grid gap from `8px` to `4px` and tightened `.dashboard-report-link` padding to `8px 10px` in `frontend/src/styles.css` so adjacent dashboard report links sit closer together.
+
+---
+
+## 52. Remove `.card` Bottom Margin on Dashboard Report Links (`styles.css`)
+
+- **Minimal Gap (`gap: 2px`, `margin-bottom: 0`)**: Overrode `.card`'s inherited `margin-bottom: 18px` on `.dashboard-report-link` and set `.dashboard-report-list` grid gap to `2px` in `frontend/src/styles.css` so both horizontal and vertical spacing between Dashboard report links are truly minimal.
+
+---
+
+## 53. Two-Column Dashboard Links in Landscape Mode (`styles.css`)
+
+- **Landscape Two-Column Grid**: Updated `.dashboard-report-list` in `frontend/src/styles.css` to use `grid-template-columns: repeat(2, minmax(0, 1fr))` in landscape mode (`@media (orientation: landscape)`) and on wider screens, while switching to 1 column only on narrow portrait screens (`@media (max-width: 860px) and (orientation: portrait)`).
+
+---
+
+## 54. Gobi Roll Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **16 Gobi Roll Varieties (`static-1854`–`static-1869`)**: Added Kolkata street-style **Gobi Roll**, **Aloo Gobi Roll**, **Chilli Gobi Roll**, **Gobi Manchurian Roll**, **Gobi Tikka Roll**, **Gobi Matar Roll**, **Gobi Paneer Roll**, **Egg Gobi Roll**, **Double Egg Gobi Roll**, **Gobi Cheese Roll**, **Gobi Bhurji Roll**, **Achari Gobi Roll**, **Schezwan Gobi Roll**, **Gobi Corn Roll**, **Patta Gobi Roll**, and **Gobi Kebab Roll** (manual stovetop/tawa/grater preparation only, no beef, sorted alphabetically A–Z; total recipes: **1602**).
+
+---
+
+## 55. Muri Makha & Bengali Tiffin Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **18 Muri Makha & Tiffin Varieties (`static-1870`–`static-1887`)**: Added **Aam Tel Muri Makha**, **Aloo Kabli Muri Makha**, **Aloo Makha Muri**, **Beguni Diye Muri Makha**, **Bhel Muri Makha**, **Chana Jor Garam Muri Makha**, **Chira Bhaja Diye Muri Makha**, **Cholar Dal Bhaja Muri Makha**, **Dim Bhaja Diye Muri Makha**, **Doi Muri**, **Dudh Muri with Gur & Banana**, **Ghugni Muri Makha**, **Kacha Chola Muri Makha**, **Kasundi Muri Makha**, **Muri Bhaja**, **Narkel Bhaja Diye Muri Makha**, **Peyaji Diye Muri Makha**, and **Telebhaja Muri Makha** (manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1620**).
+
+---
+
+## 56. Skip All Scheduled Emails for Disabled Users (`oneTimeReportEmailService.js`, `scheduledReportService.js`)
+
+- **One-Time Scheduled Report Emails (`oneTimeReportEmailService.js`)**: Joined `public.users` with `u.is_disabled = FALSE` in `processDueOneTimeReportEmailJobs` and added an `owner_disabled` guard in `claimJob` so disabled users never receive one-time scheduled report emails even if their account was disabled after scheduling.
+- **Recurring Scheduled Report Guard (`scheduledReportService.js`)**: Added a defense-in-depth `owner_disabled`/`is_disabled` check in `sendScheduledReportJob` alongside the existing `u.is_disabled = FALSE` filters across all recurring report, planned recipe, and marketing list email schedulers.

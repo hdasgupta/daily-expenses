@@ -40,13 +40,23 @@ export function formatLongDateWithWeekday(value) {
   const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (!match) return String(value);
   const [, year, month, day] = match;
-  return new Intl.DateTimeFormat("en-IN", {
+  const iso = `${year}-${month}-${day}`;
+  const formatted = new Intl.DateTimeFormat("en-IN", {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
     timeZone: APP_TIMEZONE,
   }).format(new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), 12)));
+
+  const today = todayKolkata();
+  const yesterday = shiftIsoDate(today, -1);
+  const tomorrow = shiftIsoDate(today, 1);
+
+  if (iso === today) return `${formatted} (Today)`;
+  if (iso === yesterday) return `${formatted} (Yesterday)`;
+  if (iso === tomorrow) return `${formatted} (Tomorrow)`;
+  return formatted;
 }
 
 export function shiftIsoDate(value, deltaDays) {

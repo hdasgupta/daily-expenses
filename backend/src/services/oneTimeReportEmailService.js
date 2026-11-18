@@ -408,22 +408,24 @@ export async function processDueOneTimeReportEmailJobs({
       await reconcileStaleOneTimeReportEmailJobs();
 
       const due = await q(
-        `SELECT id
-           FROM public.one_time_report_email_jobs
-          WHERE scheduled_for <= clock_timestamp()
+        `SELECT j.id
+           FROM public.one_time_report_email_jobs j
+           JOIN public.users u ON u.id = j.owner_user_id
+          WHERE j.scheduled_for <= clock_timestamp()
+            AND u.is_disabled = FALSE
             AND (
-              status = 'pending'
+              j.status = 'pending'
               OR (
-                status = 'failed'
+                j.status = 'failed'
                 AND (
-                  last_attempt_at IS NULL
-                  OR last_error LIKE 'Previous execution was interrupted%'
-                  OR last_error ILIKE '%fetch failed%'
-                  OR last_attempt_at <= clock_timestamp() - ($1::int * INTERVAL '1 minute')
+                  j.last_attempt_at IS NULL
+                  OR j.last_error LIKE 'Previous execution was interrupted%'
+                  OR j.last_error ILIKE '%fetch failed%'
+                  OR j.last_attempt_at <= clock_timestamp() - ($1::int * INTERVAL '1 minute')
                 )
               )
             )
-          ORDER BY scheduled_for ASC, id ASC
+          ORDER BY j.scheduled_for ASC, j.id ASC
           LIMIT 20`,
         [FAILED_RETRY_COOLDOWN_MINUTES],
       );
@@ -488,7 +490,7 @@ async function claimJob(id) {
   }
 
   const jobResult = await q(
-    `SELECT j.*, u.email AS owner_email, u.full_name AS owner_name
+    `SELECT j.*, u.email AS owner_email, u.full_name AS owner_name, u.is_disabled AS owner_disabled
        FROM public.one_time_report_email_jobs j
        JOIN public.users u ON u.id = j.owner_user_id
       WHERE j.id = $1`,
@@ -498,6 +500,23 @@ async function claimJob(id) {
   const job = jobResult.rows[0];
   if (!job) {
     throw new Error(`Claimed one-time report email job ${id} could not be reloaded.`);
+  }
+  if (job.owner_disabled) {
+    await q(
+      `UPDATE public.one_time_report_email_jobs
+          SET status = 'pending',
+              updated_at = now()
+        WHERE id = $1`,
+      [id],
+    );
+    console.log(
+      JSON.stringify({
+        event: "one_time_report_email_skipped_disabled_user",
+        jobId: id,
+        ownerUserId: job.owner_user_id,
+      }),
+    );
+    return null;
   }
 
   console.log(
