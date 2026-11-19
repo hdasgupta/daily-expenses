@@ -677,3 +677,10 @@
 ## 62. Single-Line Organization Name in Header (`Layout.jsx`, `styles.css`)
 
 - **Single-Line Truncation & Responsive Sizing**: Added `.brand-copy` (`min-width: 0; flex: 1`) in `frontend/src/components/Layout.jsx` and configured `.brand-row strong` in `frontend/src/styles.css` with `white-space: nowrap`, `overflow: hidden`, `text-overflow: ellipsis`, and `font-size: clamp(12.5px, 3.2vw, 15px)` so the organization name always renders on one line across desktop and mobile screens.
+
+---
+
+## 63. App Version Badge on Top-Left Corner of Every Page (`appVersion.js`, `Layout.jsx`, `Login.jsx`, `styles.css`)
+
+- **Shared Version Source (`frontend/src/lib/appVersion.js`)**: Exported `APP_VERSION` from `frontend/package.json` (`2.0.0`, with optional `VITE_APP_VERSION` override).
+- **Top-Left Version Pill Across All Pages**: Rendered `v{APP_VERSION}` (`.app-version-badge`) on the top-left corner of `.top-header` in `Layout.jsx` (all authenticated pages) and fixed at the top-left corner of `Login.jsx` (login/forgot-password screen).

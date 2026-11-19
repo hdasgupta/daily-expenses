@@ -101,9 +101,30 @@ button:disabled {
   min-height: 46px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  gap: 10px;
   padding: 0 20px;
   border-bottom: 1px solid var(--line);
+}
+.app-version-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+.app-version-floating {
+  position: fixed;
+  top: 12px;
+  left: 14px;
+  z-index: 45;
 }
 .user-header {
   display: flex;
@@ -1070,7 +1091,8 @@ code {
     padding: 0 10px;
   }
   .user-header {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     justify-content: flex-end;
     gap: 7px;
     flex-wrap: nowrap;

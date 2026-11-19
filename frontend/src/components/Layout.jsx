@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { APP_VERSION } from "../lib/appVersion";
 import {
   ChevronDown,
   ClipboardList,
@@ -266,6 +267,9 @@ export default function Layout({
     <div className="app-shell">
       <header className="site-header">
         <div className="top-header">
+          <span className="app-version-badge" title={`App version ${APP_VERSION}`}>
+            v{APP_VERSION}
+          </span>
           <div className="user-header">
             <div className="account-switcher">
               <button

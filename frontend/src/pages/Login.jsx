@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowLeft, KeyRound, LogIn, Plus, RotateCcw, ShieldCheck, X } from "lucide-react";
 import { api } from "../lib/api";
+import { APP_VERSION } from "../lib/appVersion";
 import PasswordField from "../components/PasswordField";
 import {
   getSavedCredential,
@@ -191,6 +192,12 @@ export default function Login({ onLogin, onCancel, initialPath, isAddingAccount 
 
   return (
     <div className="login-shell">
+      <span
+        className="app-version-badge app-version-floating"
+        title={`App version ${APP_VERSION}`}
+      >
+        v{APP_VERSION}
+      </span>
       <div className="login-card card">
         <div className="login-logo">
           <img src="/logo.png" width="64" height="64" />
