@@ -289,6 +289,48 @@ function PdfContentsInfo({
   );
 }
 
+const ERROR_TEXT_PATTERN =
+  /\b(error|failed|failure|exception|timeout|timed out|refused|rejected|invalid|unable|cannot|denied|unhandled|interrupted|unauthorized|forbidden|econn|enotfound|etimedout|socket|crash)\b/i;
+
+function isLikelyErrorText(text, status) {
+  if (status === "failed") return true;
+  if (status === "skipped") return false;
+  return ERROR_TEXT_PATTERN.test(String(text || ""));
+}
+
+function renderExecutionDetailCell(row) {
+  const raw = String(row?.error_message || "").trim();
+  if (!raw) {
+    return <span className="job-detail-muted">—</span>;
+  }
+
+  const splitMatch = raw.match(/^(Recipients:\s*\d+)\s*[—-]\s*(.+)$/i);
+  if (splitMatch) {
+    const recipientPart = splitMatch[1];
+    const detailPart = splitMatch[2].trim();
+    const isErr = isLikelyErrorText(detailPart, row?.status);
+    return (
+      <span className="job-detail-split">
+        <span className={`job-detail-chip ${isErr ? "muted" : "info"}`}>{recipientPart}</span>
+        <span className={isErr ? "job-detail-error" : "job-detail-muted"}>{detailPart}</span>
+      </span>
+    );
+  }
+
+  if (/^Recipients:\s*\d+$/i.test(raw) || /^recipients=\d+/i.test(raw)) {
+    const isSuccess = row?.status === "completed";
+    return (
+      <span className={`job-detail-chip ${isSuccess ? "success" : "info"}`}>{raw}</span>
+    );
+  }
+
+  if (isLikelyErrorText(raw, row?.status)) {
+    return <span className="job-detail-error">{raw}</span>;
+  }
+
+  return <span className="job-detail-info">{raw}</span>;
+}
+
 function statusIcon(status) {
   if (status === "completed") {
     return <CheckCircle2 size={15} />;
@@ -928,7 +970,7 @@ export default function JobStatus({ user }) {
                         : `${row.duration_ms} ms`}
                   </td>
 
-                  <td className="job-error-cell">{row.error_message || "—"}</td>
+                  <td className="job-error-cell">{renderExecutionDetailCell(row)}</td>
                 </tr>
               ))}
 

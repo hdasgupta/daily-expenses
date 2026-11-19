@@ -665,3 +665,9 @@
 
 - **Canonical Category Tags (23 unique)**: Unified duplicate and overlapping category labels (`Evening Snack`, `Breakfast / Snack`, `Dinner / Street Food`, `Lunch / Dinner` -> `Snacks`; `Sandwiches` -> `Sandwich`; `Starter` -> `Starters`; `Fish & Seafood` -> `Fish`) across all 1636 recipes so Food Chart filter chips and Recipe Master categories stay clean and consistent.
 - **Canonical Region Tags (40 unique)**: Consolidated overlapping regional/cuisine labels (such as `Bengali / Indian`, `Indian / Bengali`, `Bengali / Kolkata Street Food` -> `Bengali`; `North Indian / Indian` -> `North Indian`; `Indo-Chinese / Indian`, `Indo-Chinese / Kolkata` -> `Indo-Chinese`; `Italian-inspired` -> `Italian`; `Indian / International` -> `Fusion`).
+
+---
+
+## 61. Smart Error vs Details Coloring in Job Status Execution History (`JobStatus.jsx`, `jobStatus.css`)
+
+- **Semantic Classification (`renderExecutionDetailCell`)**: Updated the **Error / details** column in `frontend/src/pages/JobStatus.jsx` and `frontend/src/pages/jobStatus.css` to distinguish errors from operational details (`Recipients: N`, skipped reasons, etc.)—rendering completed recipient counts in green (`--success`), informational details/reasons in primary/muted tones, and actual errors in red (`--danger`).
