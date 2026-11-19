@@ -684,3 +684,12 @@
 
 - **Shared Version Source (`frontend/src/lib/appVersion.js`)**: Exported `APP_VERSION` from `frontend/package.json` (`2.0.0`, with optional `VITE_APP_VERSION` override).
 - **Top-Left Version Pill Across All Pages**: Rendered `v{APP_VERSION}` (`.app-version-badge`) on the top-left corner of `.top-header` in `Layout.jsx` (all authenticated pages) and fixed at the top-left corner of `Login.jsx` (login/forgot-password screen).
+
+---
+
+## 64. Auto-Incremented App Version (`vite.config.js`, `bump-version.mjs`, `appVersion.js`, `package.json`)
+
+- **Automatic Version Incrementing**: Added `frontend/scripts/bump-version.mjs` (hooked into `prebuild` in `frontend/package.json`) and `resolveAutoIncrementVersion()` in `frontend/vite.config.js` to inject `__APP_VERSION__` at build/dev time:
+  - Uses the Git commit count (`<major>.<minor>.<commitCount>`) automatically whenever full Git history is available.
+  - Auto-increments the patch version in `frontend/package.json` on every local `npm run build` (`2.0.1` -> `2.0.2` -> ...).
+  - Appends a strictly increasing IST build stamp (`<major>.<minor>.<patch>.YYMMDDHHmm`) on shallow CI/Vercel deployments where full Git history is not cloned.
