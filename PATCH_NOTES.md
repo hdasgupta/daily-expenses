@@ -671,3 +671,9 @@
 ## 61. Smart Error vs Details Coloring in Job Status Execution History (`JobStatus.jsx`, `jobStatus.css`)
 
 - **Semantic Classification (`renderExecutionDetailCell`)**: Updated the **Error / details** column in `frontend/src/pages/JobStatus.jsx` and `frontend/src/pages/jobStatus.css` to distinguish errors from operational details (`Recipients: N`, skipped reasons, etc.)—rendering completed recipient counts in green (`--success`), informational details/reasons in primary/muted tones, and actual errors in red (`--danger`).
+
+---
+
+## 62. Single-Line Organization Name in Header (`Layout.jsx`, `styles.css`)
+
+- **Single-Line Truncation & Responsive Sizing**: Added `.brand-copy` (`min-width: 0; flex: 1`) in `frontend/src/components/Layout.jsx` and configured `.brand-row strong` in `frontend/src/styles.css` with `white-space: nowrap`, `overflow: hidden`, `text-overflow: ellipsis`, and `font-size: clamp(12.5px, 3.2vw, 15px)` so the organization name always renders on one line across desktop and mobile screens.

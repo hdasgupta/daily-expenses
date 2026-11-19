@@ -147,8 +147,15 @@ button:disabled {
 .brand-row span {
   display: block;
 }
+.brand-copy {
+  min-width: 0;
+  flex: 1;
+}
 .brand-row strong {
-  font-size: 15px;
+  font-size: clamp(12.5px, 3.2vw, 15px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .brand-row span {
   color: var(--muted);

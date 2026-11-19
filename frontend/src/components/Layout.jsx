@@ -404,8 +404,8 @@ export default function Layout({
             />
           </div>
 
-          <div>
-            <strong>
+          <div className="brand-copy">
+            <strong title={import.meta.env.VITE_ORGANIZATION_NAME || "West Bengal Forum for Mental Health"}>
               {import.meta.env.VITE_ORGANIZATION_NAME || "West Bengal Forum for Mental Health"}
             </strong>
 
