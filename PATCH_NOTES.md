@@ -693,3 +693,9 @@
   - Uses the Git commit count (`<major>.<minor>.<commitCount>`) automatically whenever full Git history is available.
   - Auto-increments the patch version in `frontend/package.json` on every local `npm run build` (`2.0.1` -> `2.0.2` -> ...).
   - Appends a strictly increasing IST build stamp (`<major>.<minor>.<patch>.YYMMDDHHmm`) on shallow CI/Vercel deployments where full Git history is not cloned.
+
+---
+
+## 65. Total Approximate Cost for Selected Items on Marketing List (`MarketingList.jsx`, `marketing.css`)
+
+- **Selected Items Approximate Total (`selectedCostSummary`)**: Computed the live total approximate cost of all checked pending items in `frontend/src/pages/MarketingList.jsx` using `getEffectiveRowApproximateCost` and displayed it both in the bulk selection toolbar (`N selected · Approx. ₹X.XX`) and as a dedicated **Total approx. (selected)** summary banner beside **Total cost (filtered)**.

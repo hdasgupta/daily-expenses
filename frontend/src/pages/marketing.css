@@ -1133,3 +1133,12 @@
   font-weight: 600;
   line-height: 1.2;
 }
+
+.marketing-list-page .marketing-selected-cost-banner {
+  border-color: var(--success, #188a55);
+  background: var(--success-soft, #e9f8f0);
+}
+.marketing-list-page .marketing-selected-cost-banner svg,
+.marketing-list-page .marketing-selected-cost-banner strong {
+  color: var(--success, #188a55);
+}

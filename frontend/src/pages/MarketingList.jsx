@@ -598,9 +598,26 @@ export default function MarketingList({ navigate }) {
   const safePage = Math.min(page, pageCount);
   const visibleRows = filteredRows.slice((safePage - 1) * pageSize, safePage * pageSize);
   const pendingFilteredRows = filteredRows.filter((row) => row.status === "pending");
-  const selectedPendingRows = pendingFilteredRows.filter((row) =>
-    selectedIds.includes(String(row.id)),
+  const selectedPendingRows = useMemo(
+    () => pendingFilteredRows.filter((row) => selectedIds.includes(String(row.id))),
+    [pendingFilteredRows, selectedIds],
   );
+
+  const selectedCostSummary = useMemo(() => {
+    let totalCost = 0;
+    let costItemCount = 0;
+    for (const row of selectedPendingRows) {
+      const approx = getEffectiveRowApproximateCost(row, rows, units);
+      if (approx !== null && approx > 0) {
+        totalCost += approx;
+        costItemCount += 1;
+      }
+    }
+    return {
+      totalCost,
+      costItemCount,
+    };
+  }, [selectedPendingRows, rows, units]);
   const allFilteredSelected =
     pendingFilteredRows.length > 0 &&
     pendingFilteredRows.every((row) => selectedIds.includes(String(row.id)));
@@ -1001,7 +1018,10 @@ export default function MarketingList({ navigate }) {
           <span>{allFilteredSelected ? "Deselect all" : "Select all pending items"}</span>
         </label>
         {selectedPendingRows.length > 0 && (
-          <div className="marketing-selection-count">{selectedPendingRows.length} selected</div>
+          <div className="marketing-selection-count">
+            {selectedPendingRows.length} selected · Approx. ₹
+            {selectedCostSummary.totalCost.toFixed(2)}
+          </div>
         )}
         {selectedPendingRows.length > 0 && (
           <div className="marketing-selection-actions">
@@ -1280,6 +1300,22 @@ export default function MarketingList({ navigate }) {
                 )}
               </div>
             </div>
+            {selectedPendingRows.length > 0 && (
+              <div
+                className="marketing-total-cost-banner marketing-selected-cost-banner"
+                aria-live="polite"
+              >
+                <Wallet size={16} />
+                <div className="marketing-total-cost-copy">
+                  <span>Total approx. (selected)</span>
+                  <strong>₹{selectedCostSummary.totalCost.toFixed(2)}</strong>
+                  <small>
+                    {selectedCostSummary.costItemCount} of {selectedPendingRows.length} selected{" "}
+                    {selectedPendingRows.length === 1 ? "item" : "items"} with cost
+                  </small>
+                </div>
+              </div>
+            )}
             <div className="marketing-list-legend">
               <span>
                 <i className="status-dot pending-dot" /> Pending
