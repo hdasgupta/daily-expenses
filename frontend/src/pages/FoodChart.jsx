@@ -754,6 +754,23 @@ export default function FoodChart() {
     }
   };
 
+  useEffect(() => {
+    const onVoice = (event) => {
+      const detail = event?.detail;
+      if (!detail) return;
+      if (detail.type === "refresh-food-chart") {
+        if (detail.date) setDate(detail.date);
+        void load();
+      } else if (detail.type === "date-step") {
+        if (detail.direction === "today") setDate(todayKolkata());
+        else if (detail.direction === "prev") setDate((c) => shiftIsoDate(c || todayKolkata(), -1));
+        else if (detail.direction === "next") setDate((c) => shiftIsoDate(c || todayKolkata(), 1));
+      }
+    };
+    window.addEventListener("app:voice-action", onVoice);
+    return () => window.removeEventListener("app:voice-action", onVoice);
+  }, [load]);
+
   const mealFor = (entry) => entry.meal;
 
   return (

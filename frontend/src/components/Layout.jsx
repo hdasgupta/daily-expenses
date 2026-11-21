@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { APP_VERSION } from "../lib/appVersion";
+import VoiceAssistant from "./VoiceAssistant";
 import {
   ChevronDown,
   ClipboardList,
@@ -461,6 +462,7 @@ export default function Layout({
       </aside>
 
       <main className="main-content">{children}</main>
+      <VoiceAssistant user={user} path={path} navigate={navigate} onSetDark={setDark} />
     </div>
   );
 }

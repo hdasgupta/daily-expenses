@@ -739,3 +739,16 @@
 
 - **Complete `expense_type` Propagation**: Added `expense_type` and `total_cost` across `rawSelectPerSurvivor`, `sourcePerExpense` `GROUP BY`, and `reportRow()` in `reportSql.js` / `reportService.js`.
 - **Clean Label Formatting (`DashboardDrilldown.jsx`)**: Added `formatExpenseType` so the **Expense type** column consistently displays `Cash` or `Online` (matching the Add Expenses form).
+
+---
+
+## 72. Full-App Voice Command Assistant & Step-by-Step Guided Flows (`voiceEngine.js`, `VoiceAssistant.jsx`, `voiceAssistant.css`, `Layout.jsx`, `MarketingList.jsx`, `Expense.jsx`, `FoodChart.jsx`, `RecipeMaster.jsx`, `Reports.jsx`, `DashboardDetail.jsx`)
+
+- **Global Voice Engine (`frontend/src/lib/voiceEngine.js`)**: Implemented Web Speech API recognition (`en-IN`, `bn-IN`, `hi-IN`), spoken Text-to-Speech prompts (`speechSynthesis`, enabled by default with mute toggle), fuzzy option/multi-option matching, spoken date & number/unit parsing, and intent routing.
+- **Step-by-Step Guided Wizards with Mandatory Final Confirmation (`VoiceAssistant.jsx`)**:
+  - **Add Marketing List** (date → GPS/location → category → item → quantity & unit → approximate cost → confirm & save).
+  - **Add Expense** (date → category → item → quantity & unit → total cost → cash/online → survivors → comment → confirm & save).
+  - **Add Recipe to Food Chart** (date → location → meal timing → fuzzy recipe search & numbered selection → servings → confirm & save).
+  - **Build & Run Report** (date filter → categories → survivors → group by → sort → summarise → auto-run with chart).
+  - **Filter Dashboard Details** (optional report pick → multi-select categories → multi-select survivors → apply & persist).
+- **Direct Voice Commands & Briefings**: Supports **Search Recipe in Recipe Master**, **Show Dashboard** / open any of the 16 dashboard reports, **Reset Filters**, **Previous/Next Date / Go to Today**, **Dark/Light Mode**, and read-aloud status briefings (**Today's total expense**, **Marketing list summary**, **Today's food chart**).

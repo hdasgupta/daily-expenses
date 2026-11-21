@@ -527,6 +527,28 @@ export default function MarketingList({ navigate }) {
     setPage(1);
   };
 
+  useEffect(() => {
+    const onVoice = (event) => {
+      const detail = event?.detail;
+      if (!detail) return;
+      if (detail.type === "refresh-marketing-list") {
+        if (detail.date) change("purchaseDate", detail.date);
+        void load();
+      } else if (detail.type === "date-step") {
+        if (detail.direction === "today") {
+          change("purchaseDate", todayKolkata());
+          setPage(1);
+        } else if (detail.direction === "prev" && previousMarketingDate) {
+          goToMarketingDate(previousMarketingDate);
+        } else if (detail.direction === "next" && nextMarketingDate) {
+          goToMarketingDate(nextMarketingDate);
+        }
+      }
+    };
+    window.addEventListener("app:voice-action", onVoice);
+    return () => window.removeEventListener("app:voice-action", onVoice);
+  }, [previousMarketingDate, nextMarketingDate]);
+
   const filteredRows = useMemo(() => {
     const term = String(pagination.search || "")
       .trim()

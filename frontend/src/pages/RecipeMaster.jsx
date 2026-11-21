@@ -554,7 +554,30 @@ export default function RecipeMaster() {
   const [localUsage, setLocalUsage] = useState(readLocalRecipeUsage);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() => {
+    try {
+      const pending = sessionStorage.getItem("voice_recipe_search");
+      if (pending) {
+        sessionStorage.removeItem("voice_recipe_search");
+        return pending;
+      }
+    } catch {
+      // Ignore storage errors
+    }
+    return "";
+  });
+
+  useEffect(() => {
+    const onVoice = (event) => {
+      if (event?.detail?.type === "recipe-search") {
+        setQuery(String(event.detail.query || ""));
+        setCategory("All");
+        setVisibleCount(30);
+      }
+    };
+    window.addEventListener("app:voice-action", onVoice);
+    return () => window.removeEventListener("app:voice-action", onVoice);
+  }, []);
   const [category, setCategory] = useState("All");
   const [sortColumn, setSortColumn] = useState("usageCount");
   const [sortDirection, setSortDirection] = useState("desc");

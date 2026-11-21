@@ -779,6 +779,19 @@ export default function Reports({ user }) {
     await runReportWithConfig(config);
   };
 
+  useEffect(() => {
+    const onVoice = (event) => {
+      if (event?.detail?.type === "run-report" && event.detail.config) {
+        const normalized = normalizeLoaded(event.detail.config);
+        setConfig(normalized);
+        writeCachedReportConfig(user?.id, normalized);
+        void runReportWithConfig(normalized).catch(() => {});
+      }
+    };
+    window.addEventListener("app:voice-action", onVoice);
+    return () => window.removeEventListener("app:voice-action", onVoice);
+  }, [user?.id]);
+
   const addSort = () => {
     if (!sortColumn || config.sortColumns.some((item) => item.column === sortColumn)) {
       return;

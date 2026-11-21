@@ -823,6 +823,29 @@ export default function DashboardDetail({ navigate, user }) {
     persistFilters([], []);
   };
 
+  useEffect(() => {
+    const onVoice = (event) => {
+      const detail = event?.detail;
+      if (!detail) return;
+      if (detail.type === "dashboard-apply-filters") {
+        if (!detail.reportKey || detail.reportKey === reportKey) {
+          const nextCats = Array.isArray(detail.categories) ? detail.categories.map(String) : [];
+          const nextSurvs = Array.isArray(detail.survivors) ? detail.survivors.map(String) : [];
+          setCategoryFilters(nextCats);
+          setSurvivorFilters(nextSurvs);
+        }
+      } else if (detail.type === "dashboard-reset-filters") {
+        setCategoryFilters([]);
+        setSurvivorFilters([]);
+        persistFilters([], []);
+      } else if (detail.type === "dashboard-show-report") {
+        openInReports();
+      }
+    };
+    window.addEventListener("app:voice-action", onVoice);
+    return () => window.removeEventListener("app:voice-action", onVoice);
+  }, [reportKey, data, categoryFilters, survivorFilters]);
+
   const categoryOptions = useMemo(
     () => categories.map((c) => ({ id: String(c.id), label: c.name })),
     [categories],

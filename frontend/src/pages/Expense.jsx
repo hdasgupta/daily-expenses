@@ -892,6 +892,38 @@ export default function Expense() {
     setItems(asArray(data));
   };
 
+  useEffect(() => {
+    const onVoice = (event) => {
+      const detail = event?.detail;
+      if (!detail) return;
+      if (detail.type === "refresh-expenses") {
+        const targetDate = detail.date || date;
+        if (detail.date) {
+          setDate(detail.date);
+          updateField("expenseDate", detail.date);
+        }
+        void loadExpenses(1, targetDate);
+      } else if (detail.type === "date-step") {
+        const maxDate = todayKolkata();
+        if (detail.direction === "today") {
+          setDate(maxDate);
+          updateField("expenseDate", maxDate);
+        } else if (detail.direction === "prev") {
+          const target = shiftIsoDate(date || maxDate, -1);
+          setDate(target);
+          updateField("expenseDate", target);
+        } else if (detail.direction === "next") {
+          const cand = shiftIsoDate(date || maxDate, 1);
+          const target = cand > maxDate ? maxDate : cand;
+          setDate(target);
+          updateField("expenseDate", target);
+        }
+      }
+    };
+    window.addEventListener("app:voice-action", onVoice);
+    return () => window.removeEventListener("app:voice-action", onVoice);
+  }, [date]);
+
   const loadExpenses = async (requestedPage = page, requestedDate = date) => {
     if (!pagination.ready) return;
 
