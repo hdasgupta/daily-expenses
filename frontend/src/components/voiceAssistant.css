@@ -197,3 +197,41 @@
   border-color: var(--danger);
   color: #fff;
 }
+
+.voice-step-control {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.voice-step-row {
+  flex-direction: row;
+  align-items: center;
+}
+.voice-step-input {
+  width: 100%;
+  min-width: 0;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  font-size: 13px;
+}
+.voice-step-apply-btn {
+  padding: 7px 11px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.voice-multi-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 130px;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+.voice-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}

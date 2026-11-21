@@ -46,6 +46,24 @@ const GROUP_OPTIONS = [
   { id: "item", name: "Item" },
   { id: "survivor", name: "Survivor" },
 ];
+const DASHBOARD_REPORT_OPTIONS = [
+  { id: "daily", name: "Daily report" },
+  { id: "weekly", name: "Weekly Report" },
+  { id: "monthly", name: "Monthly Report" },
+  { id: "yearly", name: "Yearly Report" },
+  { id: "daily-category", name: "Daily report by Category" },
+  { id: "weekly-category", name: "Weekly report by Category" },
+  { id: "monthly-category", name: "Monthly report by Category" },
+  { id: "yearly-category", name: "Yearly report by Category" },
+  { id: "daily-survivor", name: "Daily report by Survivor" },
+  { id: "weekly-survivor", name: "Weekly report by Survivor" },
+  { id: "monthly-survivor", name: "Monthly report by Survivor" },
+  { id: "yearly-survivor", name: "Yearly report by Survivor" },
+  { id: "daily-survivor-category", name: "Daily report Survivor vs Category" },
+  { id: "weekly-survivor-category", name: "Weekly report Survivor vs Category" },
+  { id: "monthly-survivor-category", name: "Monthly report Survivor vs Category" },
+  { id: "yearly-survivor-category", name: "Yearly report Survivor vs Category" },
+];
 const ORDINAL_INDEX = { first: 0, "1": 0, one: 0, second: 1, "2": 1, two: 1, third: 2, "3": 2, three: 2, fourth: 3, "4": 3, four: 3, fifth: 4, "5": 4, five: 4 };
 
 const VOICE_LANGUAGES = [
@@ -84,6 +102,13 @@ export default function VoiceAssistant({ user, path, navigate, onSetDark }) {
   const [manualInput, setManualInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [wizard, setWizard] = useState(null);
+  const [stepItems, setStepItems] = useState([]);
+  const [stepRecipeQuery, setStepRecipeQuery] = useState("");
+  const [stepQty, setStepQty] = useState("");
+  const [stepUnitId, setStepUnitId] = useState("");
+  const [stepNumericVal, setStepNumericVal] = useState("");
+  const [stepTextVal, setStepTextVal] = useState("");
+  const [stepMultiIds, setStepMultiIds] = useState([]);
 
   // Cached metadata for fast voice matching
   const metaRef = useRef({
@@ -102,7 +127,51 @@ export default function VoiceAssistant({ user, path, navigate, onSetDark }) {
 
   useEffect(() => {
     wizardRef.current = wizard;
-  }, [wizard]);
+    if (!wizard) {
+      setStepItems([]);
+      setStepRecipeQuery("");
+      setStepQty("");
+      setStepUnitId("");
+      setStepNumericVal("");
+      setStepTextVal("");
+      setStepMultiIds([]);
+      return;
+    }
+    const step = wizard.steps[wizard.stepIndex];
+    setStepRecipeQuery("");
+    setStepQty(wizard.data?.quantity || "");
+    setStepUnitId(wizard.data?.unitId || "");
+    setStepNumericVal(
+      step?.key === "cost"
+        ? wizard.data?.approximateCost || ""
+        : step?.key === "totalCost"
+          ? wizard.data?.totalCost || ""
+          : step?.key === "servings"
+            ? String(wizard.data?.servings ?? 2)
+            : "",
+    );
+    setStepTextVal(step?.key === "comment" ? wizard.data?.comment || "" : "");
+    if (step?.key === "categories") {
+      setStepMultiIds(Array.isArray(wizard.data?.categories) ? wizard.data.categories : []);
+    } else if (step?.key === "survivors") {
+      setStepMultiIds(
+        Array.isArray(wizard.data?.survivors)
+          ? wizard.data.survivors
+          : Array.isArray(wizard.data?.survivorIds)
+            ? wizard.data.survivorIds
+            : [],
+      );
+    } else if (step?.key === "groupBy") {
+      setStepMultiIds(Array.isArray(wizard.data?.groupBy) ? wizard.data.groupBy : []);
+    } else {
+      setStepMultiIds([]);
+    }
+    if (step?.key === "item" && wizard.data?.categoryId) {
+      void loadCategoryItems(wizard.data.categoryId).then(setStepItems);
+    } else {
+      setStepItems([]);
+    }
+  }, [wizard?.type, wizard?.stepIndex, wizard?.data?.categoryId]);
   useEffect(() => {
     ttsRef.current = ttsEnabled;
   }, [ttsEnabled]);
@@ -1481,6 +1550,575 @@ export default function VoiceAssistant({ user, path, navigate, onSetDark }) {
   const currentStep = wizard ? wizard.steps[wizard.stepIndex] : null;
   const isConfirmStep = currentStep?.key === "confirm";
 
+  const advanceWizardDirectly = (patchData = {}) => {
+    if (!wizard) return;
+    stopListening();
+    stopSpeaking();
+    const nextIndex = Math.min(wizard.stepIndex + 1, wizard.steps.length - 1);
+    promptForWizardStep(
+      {
+        ...wizard,
+        stepIndex: nextIndex,
+        data: { ...wizard.data, ...patchData },
+        suggestions: [],
+      },
+      { autoListen: true },
+    );
+  };
+
+  const toggleMultiId = (id) => {
+    const key = String(id);
+    setStepMultiIds((prev) =>
+      prev.includes(key) ? prev.filter((item) => item !== key) : [...prev, key],
+    );
+  };
+
+  const renderStepControl = () => {
+    if (!wizard || !currentStep || isConfirmStep) return null;
+    const key = currentStep.key;
+    const meta = metaRef.current;
+
+    // 1. Date picker step
+    if (key === "date") {
+      const dateField =
+        wizard.type === "marketing"
+          ? "purchaseDate"
+          : wizard.type === "expense"
+            ? "expenseDate"
+            : "date";
+      const val = wizard.data?.[dateField] || todayKolkata();
+      const maxDate = wizard.type === "expense" ? todayKolkata() : undefined;
+      return (
+        <div className="voice-step-control">
+          <input
+            type="date"
+            className="voice-step-input"
+            value={val}
+            max={maxDate}
+            onChange={(e) => {
+              if (e.target.value) advanceWizardDirectly({ [dateField]: e.target.value });
+            }}
+          />
+          <div className="voice-chips">
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() => advanceWizardDirectly({ [dateField]: todayKolkata() })}
+            >
+              Today
+            </button>
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() => advanceWizardDirectly({ [dateField]: shiftIsoDate(todayKolkata(), -1) })}
+            >
+              Yesterday
+            </button>
+            {wizard.type !== "expense" ? (
+              <button
+                type="button"
+                className="voice-chip"
+                onClick={() => advanceWizardDirectly({ [dateField]: shiftIsoDate(todayKolkata(), 1) })}
+              >
+                Tomorrow
+              </button>
+            ) : null}
+          </div>
+        </div>
+      );
+    }
+
+    // 2. Report date filter step
+    if (key === "dateFilter") {
+      const today = todayKolkata();
+      return (
+        <div className="voice-step-control">
+          <div className="voice-chips">
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() =>
+                advanceWizardDirectly({ dateFilterType: "none", dateLabel: "all dates" })
+              }
+            >
+              All dates
+            </button>
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() =>
+                advanceWizardDirectly({ dateFilterType: "date", date: today, dateLabel: today })
+              }
+            >
+              Today
+            </button>
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() => {
+                const from = shiftIsoDate(today, -7);
+                const to = shiftIsoDate(today, -1);
+                advanceWizardDirectly({
+                  dateFilterType: "range",
+                  dateFrom: from,
+                  dateTo: to,
+                  dateLabel: `${from} to ${to}`,
+                });
+              }}
+            >
+              Last 7 days
+            </button>
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() =>
+                advanceWizardDirectly({
+                  dateFilterType: "month",
+                  month: today.slice(0, 7),
+                  dateLabel: today.slice(0, 7),
+                })
+              }
+            >
+              This month
+            </button>
+            <button
+              type="button"
+              className="voice-chip"
+              onClick={() =>
+                advanceWizardDirectly({
+                  dateFilterType: "year",
+                  year: today.slice(0, 4),
+                  dateLabel: today.slice(0, 4),
+                })
+              }
+            >
+              This year
+            </button>
+          </div>
+          <input
+            type="date"
+            className="voice-step-input"
+            aria-label="Pick specific report date"
+            value={wizard.data?.date || ""}
+            onChange={(e) => {
+              if (e.target.value) {
+                advanceWizardDirectly({
+                  dateFilterType: "date",
+                  date: e.target.value,
+                  dateLabel: e.target.value,
+                });
+              }
+            }}
+          />
+        </div>
+      );
+    }
+
+    // 3. Location dropdown
+    if (key === "location") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value={wizard.data?.locationId || ""}
+            onChange={(e) => {
+              const id = e.target.value;
+              const loc = meta.locations.find((l) => String(l.id) === String(id));
+              advanceWizardDirectly({
+                locationId: id,
+                locationName: loc?.name || "",
+              });
+            }}
+          >
+            <option value="">Choose location…</option>
+            {meta.locations.map((loc) => (
+              <option key={loc.id} value={loc.id}>
+                {loc.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    // 4. Single category dropdown (Marketing List & Expense)
+    if (key === "category") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value={wizard.data?.categoryId || ""}
+            onChange={async (e) => {
+              const id = e.target.value;
+              const cat = meta.categories.find((c) => String(c.id) === String(id));
+              if (!cat) return;
+              await loadCategoryItems(cat.id);
+              advanceWizardDirectly({ categoryId: String(cat.id), categoryName: cat.name });
+            }}
+          >
+            <option value="">Choose category…</option>
+            {meta.categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    // 5. Item dropdown + custom item entry
+    if (key === "item") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value=""
+            onChange={(e) => {
+              const val = e.target.value;
+              if (!val) return;
+              if (val === "__total__") {
+                advanceWizardDirectly({ itemId: "__total__", otherItem: "", itemLabel: "Total" });
+                return;
+              }
+              const item = stepItems.find((i) => String(i.id) === String(val));
+              if (!item) return;
+              if (wizard.type === "marketing") {
+                advanceWizardDirectly({ itemId: String(item.id), itemName: item.name });
+              } else {
+                advanceWizardDirectly({
+                  itemId: String(item.id),
+                  otherItem: "",
+                  itemLabel: item.name,
+                });
+              }
+            }}
+          >
+            <option value="">Choose item from list…</option>
+            {wizard.type === "expense" ? <option value="__total__">Total</option> : null}
+            {stepItems.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    // 6. Meal dropdown (Food Chart)
+    if (key === "meal") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value={wizard.data?.meal || ""}
+            onChange={(e) => {
+              if (e.target.value) advanceWizardDirectly({ meal: e.target.value });
+            }}
+          >
+            <option value="">Choose meal…</option>
+            {MEAL_OPTIONS.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    // 7. Recipe searchable dropdown (Food Chart)
+    if (key === "recipe") {
+      const qLower = stepRecipeQuery.trim().toLowerCase();
+      const filtered = qLower
+        ? meta.recipes.filter((r) => String(r.name || "").toLowerCase().includes(qLower)).slice(0, 40)
+        : meta.recipes.slice(0, 40);
+      return (
+        <div className="voice-step-control">
+          <input
+            type="search"
+            className="voice-step-input"
+            placeholder="Filter recipes…"
+            value={stepRecipeQuery}
+            onChange={(e) => setStepRecipeQuery(e.target.value)}
+          />
+          <select
+            className="voice-step-input"
+            value=""
+            onChange={(e) => {
+              const pick = meta.recipes.find((r) => String(r.id) === String(e.target.value));
+              if (pick) {
+                advanceWizardDirectly({
+                  recipeId: String(pick.id),
+                  recipeName: pick.name,
+                  servings: Number(pick.servings) || 2,
+                  recipeMatches: [],
+                });
+              }
+            }}
+          >
+            <option value="">Choose recipe ({filtered.length} shown)…</option>
+            {filtered.map((r) => (
+              <option key={r.id} value={r.id}>
+                {r.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    // 8. Expense type dropdown
+    if (key === "expenseType") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value=""
+            onChange={(e) => {
+              if (e.target.value) advanceWizardDirectly({ expenseType: e.target.value });
+            }}
+          >
+            <option value="">Choose expense type…</option>
+            <option value="cash">Cash</option>
+            <option value="online">Online</option>
+          </select>
+        </div>
+      );
+    }
+
+    // 9. Dashboard report dropdown
+    if (key === "reportKey") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value={wizard.data?.reportKey || ""}
+            onChange={(e) => {
+              if (e.target.value) advanceWizardDirectly({ reportKey: e.target.value });
+            }}
+          >
+            <option value="">Choose dashboard report…</option>
+            {DASHBOARD_REPORT_OPTIONS.map((opt) => (
+              <option key={opt.id} value={opt.id}>
+                {opt.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    // 10. Quantity & Unit controls
+    if (key === "quantity") {
+      return (
+        <div className="voice-step-control voice-step-row">
+          <input
+            type="number"
+            step="any"
+            min="0"
+            className="voice-step-input"
+            placeholder="Qty"
+            value={stepQty}
+            onChange={(e) => setStepQty(e.target.value)}
+          />
+          <select
+            className="voice-step-input"
+            value={stepUnitId}
+            onChange={(e) => setStepUnitId(e.target.value)}
+          >
+            <option value="">Unit…</option>
+            {meta.units.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            className="primary voice-step-apply-btn"
+            onClick={() => {
+              const unit = meta.units.find((u) => String(u.id) === String(stepUnitId));
+              advanceWizardDirectly({
+                quantity: stepQty,
+                unitId: unit ? String(unit.id) : "",
+                unitName: unit?.name || "",
+              });
+            }}
+          >
+            Next
+          </button>
+        </div>
+      );
+    }
+
+    // 11. Cost / Total Cost / Servings numeric input
+    if (key === "cost" || key === "totalCost" || key === "servings") {
+      const placeholder =
+        key === "servings" ? "Servings (e.g. 2)" : "Amount in ₹";
+      return (
+        <div className="voice-step-control voice-step-row">
+          <input
+            type="number"
+            step={key === "servings" ? "1" : "0.01"}
+            min="0"
+            className="voice-step-input"
+            placeholder={placeholder}
+            value={stepNumericVal}
+            onChange={(e) => setStepNumericVal(e.target.value)}
+          />
+          <button
+            type="button"
+            className="primary voice-step-apply-btn"
+            disabled={key === "totalCost" && (!stepNumericVal || Number(stepNumericVal) <= 0)}
+            onClick={() => {
+              if (key === "cost") advanceWizardDirectly({ approximateCost: stepNumericVal });
+              else if (key === "totalCost") advanceWizardDirectly({ totalCost: stepNumericVal });
+              else advanceWizardDirectly({ servings: Math.max(1, Math.round(Number(stepNumericVal) || 2)) });
+            }}
+          >
+            Next
+          </button>
+        </div>
+      );
+    }
+
+    // 12. Multi-select categories / survivors / groupBy
+    if (key === "categories" || key === "survivors" || key === "groupBy") {
+      const options =
+        key === "categories"
+          ? meta.categories.map((c) => ({ id: String(c.id), name: c.name }))
+          : key === "survivors"
+            ? meta.survivors.map((s) => ({ id: String(s.id), name: s.full_name }))
+            : GROUP_OPTIONS;
+      return (
+        <div className="voice-step-control">
+          <div className="voice-multi-list">
+            {options.map((opt) => {
+              const checked = stepMultiIds.includes(opt.id);
+              return (
+                <button
+                  key={opt.id}
+                  type="button"
+                  className={`voice-chip${checked ? " active" : ""}`}
+                  onClick={() => toggleMultiId(opt.id)}
+                >
+                  {checked ? "✓ " : ""}
+                  {opt.name}
+                </button>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            className="primary voice-step-apply-btn"
+            onClick={() => {
+              const labels = options
+                .filter((o) => stepMultiIds.includes(o.id))
+                .map((o) => o.name);
+              if (key === "categories") {
+                advanceWizardDirectly({ categories: stepMultiIds, categoryLabels: labels });
+              } else if (key === "survivors") {
+                if (wizard.type === "expense") {
+                  advanceWizardDirectly({
+                    survivorIds: stepMultiIds.length
+                      ? stepMultiIds
+                      : meta.survivors.map((s) => String(s.id)),
+                    survivorLabels: labels.length ? labels : ["All survivors (equal)"],
+                  });
+                } else {
+                  advanceWizardDirectly({ survivors: stepMultiIds, survivorLabels: labels });
+                }
+              } else {
+                advanceWizardDirectly({ groupBy: stepMultiIds });
+              }
+            }}
+          >
+            Apply ({stepMultiIds.length ? `${stepMultiIds.length} selected` : "All / None"})
+          </button>
+        </div>
+      );
+    }
+
+    // 13. Sort dropdown (Report Builder)
+    if (key === "sort") {
+      return (
+        <div className="voice-step-control">
+          <select
+            className="voice-step-input"
+            value=""
+            onChange={(e) => {
+              const val = e.target.value;
+              if (!val) return;
+              if (val === "default") {
+                advanceWizardDirectly({ sortColumns: [] });
+                return;
+              }
+              const [column, direction] = val.split(":");
+              advanceWizardDirectly({ sortColumns: [{ column, direction }] });
+            }}
+          >
+            <option value="">Choose sort order…</option>
+            <option value="default">Default order</option>
+            <option value="date:desc">Date (newest first)</option>
+            <option value="date:asc">Date (oldest first)</option>
+            <option value="price:desc">Amount (highest first)</option>
+            <option value="price:asc">Amount (lowest first)</option>
+            <option value="category:asc">Category (A–Z)</option>
+            <option value="survivor:asc">Survivor (A–Z)</option>
+          </select>
+        </div>
+      );
+    }
+
+    // 14. Summarise Yes / No (Report Builder)
+    if (key === "summarise") {
+      return (
+        <div className="voice-step-control voice-chips">
+          <button
+            type="button"
+            className="voice-chip active"
+            onClick={() => advanceWizardDirectly({ summarise: true })}
+          >
+            Yes — Summarise & Show Chart
+          </button>
+          <button
+            type="button"
+            className="voice-chip"
+            onClick={() => advanceWizardDirectly({ summarise: false })}
+          >
+            No — Detailed Rows
+          </button>
+        </div>
+      );
+    }
+
+    // 15. Comment text input
+    if (key === "comment") {
+      return (
+        <div className="voice-step-control voice-step-row">
+          <input
+            type="text"
+            className="voice-step-input"
+            placeholder="Optional comment…"
+            value={stepTextVal}
+            onChange={(e) => setStepTextVal(e.target.value)}
+          />
+          <button
+            type="button"
+            className="primary voice-step-apply-btn"
+            onClick={() => advanceWizardDirectly({ comment: stepTextVal.trim() })}
+          >
+            Next
+          </button>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <>
       <button
@@ -1595,6 +2233,8 @@ export default function VoiceAssistant({ user, path, navigate, onSetDark }) {
                   Step {wizard.stepIndex + 1} of {wizard.steps.length}: {currentStep?.label}
                 </span>
               </div>
+
+              {renderStepControl()}
 
               {wizard.suggestions?.length ? (
                 <div className="voice-chips">

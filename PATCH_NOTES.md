@@ -759,3 +759,9 @@
 
 - **Android Manifest Permissions**: Added `android.permission.RECORD_AUDIO`, `android.permission.MODIFY_AUDIO_SETTINGS`, optional microphone hardware feature, and Android 11+ `<queries>` for `android.speech.RecognitionService` in `frontend/android/app/src/main/AndroidManifest.xml`.
 - **Native Runtime Permission & SpeechRecognizer (`AndroidSpeechBridge.kt`, `MainActivity.kt`)**: Added `DailyExpensesSpeech` JavascriptInterface that requests `Manifest.permission.RECORD_AUDIO` at runtime on Android (auto-starting recognition once granted) and streams partial/final results from Android's native `SpeechRecognizer` directly into `voiceEngine.js`.
+
+---
+
+## 74. Interactive Date Pickers & Dropdowns Inside Step-by-Step Voice Flows (`VoiceAssistant.jsx`, `voiceAssistant.css`)
+
+- **Inline Step Controls (`renderStepControl`)**: Every step across all five guided voice flows (**Add Marketing List**, **Add Expense**, **Add Recipe to Food Chart**, **Build Report**, and **Filter Dashboard Details**) now renders its native interactive control right inside the Voice Assistant step card—`<input type="date">` with Today/Yesterday/Tomorrow shortcuts, `<select>` dropdowns for locations, categories, items, meals, recipes, expense type, sort order, and dashboard reports, and multi-select toggle chips for categories, survivors, and group-by fields—working seamlessly alongside voice input.
