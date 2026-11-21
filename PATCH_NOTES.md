@@ -752,3 +752,10 @@
   - **Build & Run Report** (date filter → categories → survivors → group by → sort → summarise → auto-run with chart).
   - **Filter Dashboard Details** (optional report pick → multi-select categories → multi-select survivors → apply & persist).
 - **Direct Voice Commands & Briefings**: Supports **Search Recipe in Recipe Master**, **Show Dashboard** / open any of the 16 dashboard reports, **Reset Filters**, **Previous/Next Date / Go to Today**, **Dark/Light Mode**, and read-aloud status briefings (**Today's total expense**, **Marketing list summary**, **Today's food chart**).
+
+---
+
+## 73. Native Android Microphone Permission & Speech Recognition Bridge (`AndroidManifest.xml`, `AndroidSpeechBridge.kt`, `MainActivity.kt`, `voiceEngine.js`)
+
+- **Android Manifest Permissions**: Added `android.permission.RECORD_AUDIO`, `android.permission.MODIFY_AUDIO_SETTINGS`, optional microphone hardware feature, and Android 11+ `<queries>` for `android.speech.RecognitionService` in `frontend/android/app/src/main/AndroidManifest.xml`.
+- **Native Runtime Permission & SpeechRecognizer (`AndroidSpeechBridge.kt`, `MainActivity.kt`)**: Added `DailyExpensesSpeech` JavascriptInterface that requests `Manifest.permission.RECORD_AUDIO` at runtime on Android (auto-starting recognition once granted) and streams partial/final results from Android's native `SpeechRecognizer` directly into `voiceEngine.js`.

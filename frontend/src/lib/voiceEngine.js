@@ -1,7 +1,15 @@
 import { formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 
+function getNativeAndroidSpeech() {
+  if (typeof window === "undefined") return null;
+  const bridge = window.DailyExpensesSpeech;
+  if (!bridge || typeof bridge.startListening !== "function") return null;
+  return bridge;
+}
+
 export function isSpeechRecognitionSupported() {
   if (typeof window === "undefined") return false;
+  if (getNativeAndroidSpeech()) return true;
   return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
 }
 
@@ -13,6 +21,31 @@ export function createSpeechRecognizer({
   onEnd,
   onError,
 } = {}) {
+  const nativeBridge = getNativeAndroidSpeech();
+  if (nativeBridge) {
+    return {
+      start() {
+        window.__onNativeVoiceEvent = (payload) => {
+          const type = payload?.type;
+          const value = String(payload?.value || "").trim();
+          if (type === "start") onStart?.();
+          else if (type === "interim" && value) onInterim?.(value);
+          else if (type === "final" && value) onFinal?.(value);
+          else if (type === "error") onError?.(value || "speech-error");
+          else if (type === "end") onEnd?.();
+        };
+        nativeBridge.startListening(lang);
+      },
+      stop() {
+        try {
+          nativeBridge.stopListening?.();
+        } catch {
+          // Ignore native stop errors
+        }
+      },
+    };
+  }
+
   const SpeechRec =
     typeof window !== "undefined" && (window.SpeechRecognition || window.webkitSpeechRecognition);
   if (!SpeechRec) return null;
