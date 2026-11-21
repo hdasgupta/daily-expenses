@@ -719,3 +719,9 @@
 ## 68. Show Report Button on Every Dashboard Detail Page (`DashboardDetail.jsx`)
 
 - **Open in Reports with Auto-Run (`openInReports`)**: Added a **Show report** button to the toolbar of every Dashboard Detail page (`frontend/src/pages/DashboardDetail.jsx`) that forwards the report's exact date range, active Category and Survivor multi-select filters, sorting, group-by columns, and `summarise: true` to `/report` and automatically executes the report so the chart and results render immediately.
+
+---
+
+## 69. Clickable Bar Chart Tooltips for Dashboard Drilldown (`DashboardDetail.jsx`, `styles.css`)
+
+- **Interactive Tooltip Drilldown (`DashboardChartTooltip`)**: Replaced the passive Recharts tooltip on `frontend/src/pages/DashboardDetail.jsx` with a clickable custom `DashboardChartTooltip` (`pointerEvents: "auto"`) listing each non-zero bar series as a clickable button (`→`) that opens the corresponding Dashboard Drilldown page with all active filters preserved (and also fixed single-series bar clicks to drill down directly).

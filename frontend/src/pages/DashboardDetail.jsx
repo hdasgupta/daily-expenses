@@ -1149,9 +1149,20 @@ export default function DashboardDetail({ navigate, user }) {
 
                       <Tooltip
                         wrapperClassName="dashboard-detail-tooltip"
-                        contentStyle={{}}
-                        formatter={(value, name) => [money(value), name]}
-                        labelFormatter={(label) => label}
+                        wrapperStyle={{ pointerEvents: "auto", zIndex: 1000 }}
+                        content={
+                          <DashboardChartTooltip
+                            onSelectRow={(row) =>
+                              openDrilldown(
+                                navigate,
+                                report.key,
+                                filteredData.groupBy,
+                                row,
+                                activeFilters,
+                              )
+                            }
+                          />
+                        }
                       />
 
                       {!chartModel.stackedCategory && chartModel.multiSeries ? <Legend /> : null}
@@ -1173,7 +1184,8 @@ export default function DashboardDetail({ navigate, user }) {
                           strokeWidth={2.5}
                           legendType={chartModel.stackedCategory ? "none" : undefined}
                           onClick={(entry) => {
-                            const row = entry?.payload?._groupRows?.[series.dataKey];
+                            const row =
+                              entry?.payload?._groupRows?.[series.dataKey] || entry?.payload;
                             if (row) {
                               openDrilldown(
                                 navigate,
@@ -1303,6 +1315,61 @@ export default function DashboardDetail({ navigate, user }) {
         />
       </Modal>
     </section>
+  );
+}
+
+function DashboardChartTooltip({ active, payload, label, onSelectRow }) {
+  if (!active || !Array.isArray(payload) || !payload.length) return null;
+
+  const items = payload.filter((entry) => Number(entry?.value || 0) > 0);
+  if (!items.length) return null;
+
+  const resolveRow = (entry) => entry?.payload?._groupRows?.[entry?.dataKey] || entry?.payload;
+
+  const handleCardClick = () => {
+    if (items.length === 1) {
+      const row = resolveRow(items[0]);
+      if (row) onSelectRow(row);
+    }
+  };
+
+  return (
+    <div
+      className={`dashboard-chart-tooltip-card${items.length === 1 ? " is-single" : ""}`}
+      onClick={handleCardClick}
+      onMouseDown={(e) => e.stopPropagation()}
+    >
+      <div className="dashboard-chart-tooltip-head">
+        <strong>{label}</strong>
+        <small>Click to drill down</small>
+      </div>
+      <div className="dashboard-chart-tooltip-list">
+        {items.map((entry, idx) => {
+          const row = resolveRow(entry);
+          return (
+            <button
+              key={`${entry.dataKey || entry.name || idx}`}
+              type="button"
+              className="dashboard-chart-tooltip-item"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (row) onSelectRow(row);
+              }}
+            >
+              <span
+                className="dashboard-chart-tooltip-dot"
+                style={{ background: entry.color || entry.fill || "var(--primary)" }}
+              />
+              <span className="dashboard-chart-tooltip-name">{entry.name}</span>
+              <strong className="dashboard-chart-tooltip-value">{money(entry.value)}</strong>
+              <span className="dashboard-chart-tooltip-arrow" aria-hidden="true">
+                →
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
