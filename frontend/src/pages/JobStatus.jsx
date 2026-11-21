@@ -680,7 +680,7 @@ export default function JobStatus({ user, navigate }) {
     } catch {
       // Ignore storage errors
     }
-    navigate?.("/reports");
+    navigate?.("/report");
   };
 
   const filteredDashboardEmails = scheduledJobs.filter((job) => {
