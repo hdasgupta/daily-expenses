@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CheckCircle2, Edit3, Info, LoaderCircle, RefreshCw, Trash2, XCircle } from "lucide-react";
+import { BarChart3, CheckCircle2, Edit3, Info, LoaderCircle, RefreshCw, Trash2, XCircle } from "lucide-react";
 import { api } from "../lib/api";
 import Pagination from "../components/Pagination";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -7,6 +7,7 @@ import Modal from "../components/Modal";
 import ScheduledReportForm from "../components/ScheduledReportForm";
 import { usePagination } from "../hooks/usePagination";
 import { getDashboardReports } from "./Dashboard";
+import { shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import "./jobStatus.css";
 import "./scheduledReports.css";
 
@@ -377,7 +378,86 @@ function describeScheduledJob(job) {
   )}`;
 }
 
-export default function JobStatus({ user }) {
+const DASHBOARD_REPORT_SPECS = {
+  daily: { unit: "day", count: 7, groupBy: ["date"] },
+  weekly: { unit: "week", count: 4, groupBy: ["week"] },
+  monthly: { unit: "month", count: 3, groupBy: ["month"] },
+  yearly: { unit: "year", count: 2, groupBy: ["year"] },
+  "daily-category": { unit: "day", count: 7, groupBy: ["date", "category"] },
+  "weekly-category": { unit: "week", count: 4, groupBy: ["week", "category"] },
+  "monthly-category": { unit: "month", count: 3, groupBy: ["month", "category"] },
+  "yearly-category": { unit: "year", count: 2, groupBy: ["year", "category"] },
+  "daily-survivor": { unit: "day", count: 7, groupBy: ["date", "survivor"] },
+  "weekly-survivor": { unit: "week", count: 4, groupBy: ["week", "survivor"] },
+  "monthly-survivor": { unit: "month", count: 3, groupBy: ["month", "survivor"] },
+  "yearly-survivor": { unit: "year", count: 2, groupBy: ["year", "survivor"] },
+  "daily-survivor-category": { unit: "day", count: 7, groupBy: ["date", "survivor", "category"] },
+  "weekly-survivor-category": { unit: "week", count: 4, groupBy: ["week", "survivor", "category"] },
+  "monthly-survivor-category": { unit: "month", count: 3, groupBy: ["month", "survivor", "category"] },
+  "yearly-survivor-category": { unit: "year", count: 2, groupBy: ["year", "survivor", "category"] },
+};
+
+function computeDashboardDateRange(unit, count) {
+  const yesterday = shiftIsoDate(todayKolkata(), -1);
+  if (unit === "day") {
+    return { dateFrom: shiftIsoDate(yesterday, -(count - 1)), dateTo: yesterday };
+  }
+  if (unit === "week") {
+    return { dateFrom: shiftIsoDate(yesterday, -(count * 7 - 1)), dateTo: yesterday };
+  }
+  if (unit === "month") {
+    const [y, m] = yesterday.split("-").map(Number);
+    const startDate = new Date(Date.UTC(y, m - 1 - (count - 1), 1));
+    return { dateFrom: startDate.toISOString().slice(0, 10), dateTo: yesterday };
+  }
+  const [y] = yesterday.split("-").map(Number);
+  return { dateFrom: `${y - (count - 1)}-01-01`, dateTo: yesterday };
+}
+
+function buildDashboardJobReportConfig(job) {
+  const spec = DASHBOARD_REPORT_SPECS[job?.report_key] || {
+    unit: "day",
+    count: 7,
+    groupBy: ["date"],
+  };
+  const range = computeDashboardDateRange(spec.unit, spec.count);
+  const categories = Array.isArray(job?.filters?.categories)
+    ? job.filters.categories.map(String).filter(Boolean)
+    : [];
+  const survivors = Array.isArray(job?.filters?.survivors)
+    ? job.filters.survivors.map(String).filter(Boolean)
+    : [];
+
+  const activeFilters = ["date"];
+  if (categories.length) activeFilters.push("categories");
+  if (survivors.length) activeFilters.push("survivors");
+
+  const sortColumns = spec.groupBy.map((column, index) => ({
+    column,
+    direction: index === 0 ? "desc" : "asc",
+  }));
+
+  return {
+    activeFilters,
+    dateFilterType: "range",
+    filters: {
+      date: "",
+      dateFrom: range.dateFrom,
+      dateTo: range.dateTo,
+      month: "",
+      year: "",
+      hasProof: "",
+      categoryItems: [],
+      categories,
+      survivors,
+    },
+    sortColumns,
+    groupBy: [...spec.groupBy],
+    summarise: true,
+  };
+}
+
+export default function JobStatus({ user, navigate }) {
   const pagination = usePagination("job-status", null);
 
   const [page, setPage] = useState(1);
@@ -588,6 +668,21 @@ export default function JobStatus({ user }) {
   const canManage = (job) =>
     user?.role === "admin" || String(job.owner_user_id) === String(user?.id);
 
+  const canOpenReports =
+    !Array.isArray(user?.permissions) || user.permissions.includes("report");
+
+  const openJobInReports = (reportConfig) => {
+    try {
+      sessionStorage.setItem(
+        "job_status_open_report_config",
+        JSON.stringify({ config: reportConfig || {}, autoRun: true }),
+      );
+    } catch {
+      // Ignore storage errors
+    }
+    navigate?.("/reports");
+  };
+
   const filteredDashboardEmails = scheduledJobs.filter((job) => {
     const query = dashboardEmailSearch.trim().toLocaleLowerCase();
     return (
@@ -729,17 +824,40 @@ export default function JobStatus({ user }) {
                   </div>
                 ) : null}
 
-                {canManage(job) ? (
+                {canOpenReports || canManage(job) ? (
                   <div className="scheduled-report-actions" style={{ marginTop: 10 }}>
-                    <button className="secondary" type="button" onClick={() => setEditingJob(job)}>
-                      <Edit3 size={15} />
-                      Edit
-                    </button>
+                    {canOpenReports ? (
+                      <button
+                        className="secondary"
+                        type="button"
+                        onClick={() => openJobInReports(buildDashboardJobReportConfig(job))}
+                      >
+                        <BarChart3 size={15} />
+                        Show report
+                      </button>
+                    ) : null}
 
-                    <button className="danger" type="button" onClick={() => setDeletingJob(job)}>
-                      <Trash2 size={15} />
-                      Remove
-                    </button>
+                    {canManage(job) ? (
+                      <>
+                        <button
+                          className="secondary"
+                          type="button"
+                          onClick={() => setEditingJob(job)}
+                        >
+                          <Edit3 size={15} />
+                          Edit
+                        </button>
+
+                        <button
+                          className="danger"
+                          type="button"
+                          onClick={() => setDeletingJob(job)}
+                        >
+                          <Trash2 size={15} />
+                          Remove
+                        </button>
+                      </>
+                    ) : null}
                   </div>
                 ) : null}
               </article>
@@ -832,6 +950,16 @@ export default function JobStatus({ user }) {
                 </div>
 
                 <div className="scheduled-report-actions" style={{ marginTop: 10 }}>
+                  {canOpenReports ? (
+                    <button
+                      className="secondary"
+                      type="button"
+                      onClick={() => openJobInReports(job.config || {})}
+                    >
+                      <BarChart3 size={15} />
+                      Show report
+                    </button>
+                  ) : null}
                   <button
                     className="danger"
                     type="button"

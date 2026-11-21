@@ -699,3 +699,10 @@
 ## 65. Total Approximate Cost for Selected Items on Marketing List (`MarketingList.jsx`, `marketing.css`)
 
 - **Selected Items Approximate Total (`selectedCostSummary`)**: Computed the live total approximate cost of all checked pending items in `frontend/src/pages/MarketingList.jsx` using `getEffectiveRowApproximateCost` and displayed it both in the bulk selection toolbar (`N selected · Approx. ₹X.XX`) and as a dedicated **Total approx. (selected)** summary banner beside **Total cost (filtered)**.
+
+---
+
+## 66. Show Report Button on Job Status Page with Auto-Run (`JobStatus.jsx`, `Reports.jsx`)
+
+- **Show Report Actions**: Added a **Show report** button to both the **Scheduled dashboard emails** and **One-time report PDF emails** cards in `frontend/src/pages/JobStatus.jsx`.
+- **Restore & Auto-Run in Reports (`Reports.jsx`)**: Clicking **Show report** passes the job's complete filter, sort, group-by, and summarise configuration (translating scheduled dashboard report keys and saved category/survivor filters into the exact date range, grouping, sorting, and summarise state) into `Reports.jsx` via `sessionStorage` and automatically runs the report query so results appear immediately.

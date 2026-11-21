@@ -419,6 +419,24 @@ function writeCachedReportConfig(userId, config) {
   }
 }
 
+const JOB_STATUS_REPORT_STORAGE_KEY = "job_status_open_report_config";
+
+function consumeJobStatusReportPayload() {
+  try {
+    const raw = sessionStorage.getItem(JOB_STATUS_REPORT_STORAGE_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(JOB_STATUS_REPORT_STORAGE_KEY);
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    return {
+      config: normalizeLoaded(parsed.config || {}),
+      autoRun: parsed.autoRun !== false,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export default function Reports({ user }) {
   const [config, setConfig] = useState(() => readCachedReportConfig(user?.id) || initialConfig);
   const preferencesHydratedRef = useRef(false);
@@ -474,9 +492,46 @@ export default function Reports({ user }) {
   const [selectedScheduleManagerIds, setSelectedScheduleManagerIds] = useState([]);
   const [scheduleManagersLoading, setScheduleManagersLoading] = useState(false);
 
+  const runReportWithConfig = async (targetConfig) => {
+    const queryConfig = targetConfig || config;
+    const data = await api("/reports/query", {
+      method: "POST",
+      body: JSON.stringify(queryConfig),
+      loadingMessage: "Running report query…",
+    });
+
+    const serverTotal = Number(data?.total);
+    const fallbackTotal = calculateDisplayTotal(data?.rows);
+    const resolvedTotal =
+      Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
+
+    // The API already returns one row per resolved survivor share. Never merge
+    // rows back into the original expense, because that would hide the split
+    // amounts and repeat the original total in survivor reports.
+    const next = {
+      ...data,
+      total: resolvedTotal,
+    };
+
+    setResult(next);
+  };
+
   useEffect(() => {
     let cancelled = false;
     preferencesHydratedRef.current = false;
+
+    const jobPayload = consumeJobStatusReportPayload();
+    if (jobPayload) {
+      setConfig(jobPayload.config);
+      writeCachedReportConfig(user?.id, jobPayload.config);
+      preferencesHydratedRef.current = true;
+      if (jobPayload.autoRun) {
+        void runReportWithConfig(jobPayload.config).catch(() => {});
+      }
+      return () => {
+        cancelled = true;
+      };
+    }
 
     const cached = readCachedReportConfig(user?.id);
     if (cached) {
@@ -682,28 +737,7 @@ export default function Reports({ user }) {
     );
 
   const apply = async () => {
-    const data = await api("/reports/query", {
-      method: "POST",
-      body: JSON.stringify(config),
-      loadingMessage: "Running report query…",
-    });
-
-    const serverTotal = Number(data?.total);
-
-    const fallbackTotal = calculateDisplayTotal(data?.rows);
-
-    const resolvedTotal =
-      Number.isFinite(serverTotal) && serverTotal !== 0 ? serverTotal : fallbackTotal;
-
-    // The API already returns one row per resolved survivor share. Never merge
-    // rows back into the original expense, because that would hide the split
-    // amounts and repeat the original total in survivor reports.
-    const next = {
-      ...data,
-      total: resolvedTotal,
-    };
-
-    setResult(next);
+    await runReportWithConfig(config);
   };
 
   const addSort = () => {
