@@ -210,6 +210,8 @@ function reportRow(row) {
     quantity: row.quantity,
     unit: row.unit,
     survivor: row.survivor,
+    expense_type: row.expense_type || null,
+    total_cost: row.total_cost == null ? null : Number(row.total_cost),
     share: `${row.survivor}: ₹${Number(row.report_amount || 0).toFixed(2)}`,
     expense_amount: row.report_amount == null ? null : Number(row.report_amount),
     comment: row.comment,

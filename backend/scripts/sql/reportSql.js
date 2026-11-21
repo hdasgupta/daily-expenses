@@ -99,7 +99,7 @@ export const reportSql = {
       ON es.expense_id = e.id
     LEFT JOIN public.survivors s
       ON s.id = es.survivor_id
-    GROUP BY e.id, c.name, i.name, u.name
+    GROUP BY e.id, e.expense_type, c.name, i.name, u.name
   )`,
 
   rawSelectPerSurvivor: `
@@ -109,7 +109,10 @@ export const reportSql = {
     item,
     quantity,
     unit,
+    survivor,
+    expense_type,
     CONCAT(survivor, ': ₹', TO_CHAR(report_amount, 'FM9999999990.00')) AS share,
+    total_cost,
     report_amount AS expense_amount,
     comment,
     proof_key

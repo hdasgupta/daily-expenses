@@ -732,3 +732,10 @@
 
 - **Complete Raw Drilldown Fields (`reportSql.js`, `reportService.js`)**: Included `total_cost`, `survivor`, and `expense_type` in `rawSelectPerExpense` and hydrated `total_cost` as a number in `hydrateRows` so Dashboard Drilldown rows no longer show `₹0.00` or `—` for those columns.
 - **Fallback Expense Amount (`DashboardDrilldown.jsx`)**: Updated the Expense column cell to render `money(row.expense_amount ?? row.total_cost)`.
+
+---
+
+## 71. Normalize & Propagate Expense Type in Dashboard Drilldown (`reportSql.js`, `reportService.js`, `DashboardDrilldown.jsx`)
+
+- **Complete `expense_type` Propagation**: Added `expense_type` and `total_cost` across `rawSelectPerSurvivor`, `sourcePerExpense` `GROUP BY`, and `reportRow()` in `reportSql.js` / `reportService.js`.
+- **Clean Label Formatting (`DashboardDrilldown.jsx`)**: Added `formatExpenseType` so the **Expense type** column consistently displays `Cash` or `Online` (matching the Add Expenses form).

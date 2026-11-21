@@ -7,6 +7,13 @@ function money(value) {
   return `₹${Number(value || 0).toFixed(2)}`;
 }
 
+function formatExpenseType(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "online") return "Online";
+  if (normalized === "cash") return "Cash";
+  return value ? String(value) : "—";
+}
+
 function dateValue(value) {
   if (!value) return "—";
 
@@ -207,7 +214,7 @@ export default function DashboardDrilldown({ navigate }) {
 
                       <td>{row.survivor || "—"}</td>
 
-                      <td>{row.expense_type || "—"}</td>
+                      <td>{formatExpenseType(row.expense_type ?? row.expenseType)}</td>
 
                       <td className="number-cell">{money(row.expense_amount ?? row.total_cost)}</td>
 
