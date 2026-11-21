@@ -714,6 +714,8 @@ export default function DashboardDetail({ navigate, user }) {
   const saveFilterTimerRef = useRef(null);
 
   const canSchedule = user?.permissions?.includes("job-status");
+  const canOpenReports =
+    !Array.isArray(user?.permissions) || user.permissions.includes("report");
 
   useEffect(() => {
     Promise.all([
@@ -859,6 +861,66 @@ export default function DashboardDetail({ navigate, user }) {
 
   const chartData = chartModel.data;
 
+  const openInReports = () => {
+    const groupBy =
+      Array.isArray(data?.groupBy) && data.groupBy.length
+        ? data.groupBy
+        : (() => {
+            const parts = String(reportKey || "").split("-");
+            const periodMap = { daily: "date", weekly: "week", monthly: "month", yearly: "year" };
+            const cols = [periodMap[parts[0]] || "date"];
+            if (parts.includes("survivor")) cols.push("survivor");
+            if (parts.includes("category")) cols.push("category");
+            return cols;
+          })();
+
+    const rangeMatch = String(data?.rangeLabel || "").match(
+      /^(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})$/,
+    );
+    const dateFrom = rangeMatch ? rangeMatch[1] : "";
+    const dateTo = rangeMatch ? rangeMatch[2] : "";
+
+    const activeFilterTypes = [];
+    if (dateFrom || dateTo) activeFilterTypes.push("date");
+    if (categoryFilters.length) activeFilterTypes.push("categories");
+    if (survivorFilters.length) activeFilterTypes.push("survivors");
+
+    const sortColumns = groupBy.map((column, index) => ({
+      column,
+      direction: index === 0 ? "desc" : "asc",
+    }));
+
+    const reportConfig = {
+      activeFilters: activeFilterTypes,
+      dateFilterType: dateFrom || dateTo ? "range" : "none",
+      filters: {
+        date: "",
+        dateFrom,
+        dateTo,
+        month: "",
+        year: "",
+        hasProof: "",
+        categoryItems: [],
+        categories: [...categoryFilters],
+        survivors: [...survivorFilters],
+      },
+      sortColumns,
+      groupBy: [...groupBy],
+      summarise: true,
+    };
+
+    try {
+      sessionStorage.setItem(
+        "job_status_open_report_config",
+        JSON.stringify({ config: reportConfig, autoRun: true }),
+      );
+    } catch {
+      // Ignore storage errors
+    }
+
+    navigate("/report");
+  };
+
   const createSchedule = async (payload) => {
     setScheduleBusy(true);
 
@@ -912,6 +974,19 @@ export default function DashboardDetail({ navigate, user }) {
         </div>
 
         <div className="toolbar-actions">
+          {canOpenReports ? (
+            <button
+              className="secondary"
+              type="button"
+              onClick={openInReports}
+              disabled={loading && !data}
+              title="Open this dashboard report in the Reports page with current filters, grouping, sorting, and summarise applied"
+            >
+              <BarChart3 size={17} />
+              Show report
+            </button>
+          ) : null}
+
           {canSchedule ? (
             <button type="button" onClick={() => setScheduleOpen(true)}>
               <CalendarClock size={17} />

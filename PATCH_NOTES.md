@@ -713,3 +713,9 @@
 
 - **Auto-Show Chart When Summarise Enabled**: Defaulted `showChart` to `true` and kept it enabled whenever a summarised report runs on `frontend/src/pages/Reports.jsx`, while preserving the Show/Hide chart toggle.
 - **Dashboard Chart Parity (`buildReportChartModel` & `reportService.js`)**: Returned `groupBy` in summary responses from `backend/src/services/reportService.js` and aligned `buildReportChartModel` and the chart container with `DashboardDetail.jsx`—rendering single-series bar charts for 1-column groupings, stacked bar charts (`stackId`) for Category and Survivor groupings across periods, and category-legend / survivor-shaded stacked bars for 3-column (`period + survivor + category`) groupings.
+
+---
+
+## 68. Show Report Button on Every Dashboard Detail Page (`DashboardDetail.jsx`)
+
+- **Open in Reports with Auto-Run (`openInReports`)**: Added a **Show report** button to the toolbar of every Dashboard Detail page (`frontend/src/pages/DashboardDetail.jsx`) that forwards the report's exact date range, active Category and Survivor multi-select filters, sorting, group-by columns, and `summarise: true` to `/report` and automatically executes the report so the chart and results render immediately.
