@@ -371,6 +371,8 @@ export default function FoodChart() {
   const [addingToMarketing, setAddingToMarketing] = useState(false);
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
   const [resetting, setResetting] = useState(false);
+  const [reloadTick, setReloadTick] = useState(0);
+  const load = useCallback(() => setReloadTick((t) => t + 1), []);
   const userChoseLocationRef = useRef(false);
   const hasEntriesForDateRef = useRef(false);
 
@@ -493,7 +495,7 @@ export default function FoodChart() {
     return () => {
       active = false;
     };
-  }, [date, locationId]);
+  }, [date, locationId, reloadTick]);
 
   const handleAutoDetectLocation = async () => {
     setDetectingGps(true);
