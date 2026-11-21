@@ -706,3 +706,10 @@
 
 - **Show Report Actions**: Added a **Show report** button to both the **Scheduled dashboard emails** and **One-time report PDF emails** cards in `frontend/src/pages/JobStatus.jsx`.
 - **Restore & Auto-Run in Reports (`Reports.jsx`)**: Clicking **Show report** passes the job's complete filter, sort, group-by, and summarise configuration (translating scheduled dashboard report keys and saved category/survivor filters into the exact date range, grouping, sorting, and summarise state) into `Reports.jsx` via `sessionStorage` and automatically runs the report query so results appear immediately.
+
+---
+
+## 67. Auto-Displayed Dashboard-Matched Summary Charts on Reports Page (`Reports.jsx`, `reportService.js`)
+
+- **Auto-Show Chart When Summarise Enabled**: Defaulted `showChart` to `true` and kept it enabled whenever a summarised report runs on `frontend/src/pages/Reports.jsx`, while preserving the Show/Hide chart toggle.
+- **Dashboard Chart Parity (`buildReportChartModel` & `reportService.js`)**: Returned `groupBy` in summary responses from `backend/src/services/reportService.js` and aligned `buildReportChartModel` and the chart container with `DashboardDetail.jsx`—rendering single-series bar charts for 1-column groupings, stacked bar charts (`stackId`) for Category and Survivor groupings across periods, and category-legend / survivor-shaded stacked bars for 3-column (`period + survivor + category`) groupings.

@@ -372,6 +372,7 @@ export async function runReport(input) {
   return {
     mode: "summary",
     columns: [...config.groupBy, "total"],
+    groupBy: config.groupBy,
     rows,
     total,
     chartData: chartData(rows, config.groupBy),

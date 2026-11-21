@@ -285,19 +285,42 @@ function reportChartValue(value, column) {
   return String(value);
 }
 
-function buildReportChartModel(result) {
+function buildReportChartModel(result, fallbackGroupBy = []) {
   const rows = Array.isArray(result?.rows) ? result.rows : [];
-  const groupBy = Array.isArray(result?.groupBy) ? result.groupBy : [];
+  const inferredColumns = Array.isArray(result?.columns)
+    ? result.columns.filter((col) => col !== "total")
+    : [];
+  const groupBy =
+    Array.isArray(result?.groupBy) && result.groupBy.length
+      ? result.groupBy
+      : Array.isArray(fallbackGroupBy) && fallbackGroupBy.length
+        ? fallbackGroupBy
+        : inferredColumns;
+
   if (groupBy.length <= 1) {
+    const grouped = new Map();
+    rows.forEach((row) => {
+      const key = String(groupBy[0] ? row[groupBy[0]] ?? "—" : "Total");
+      const amount = Number(row.total || 0);
+      const existing = grouped.get(key);
+      grouped.set(
+        key,
+        existing ? { ...existing, total: Number(existing.total || 0) + amount } : row,
+      );
+    });
+    const chartRows = [...grouped.values()];
     return {
+      multiSeries: false,
       stackedCategory: false,
-      data: rows.map((row, index) => ({
+      stackedPeriodCategory: false,
+      minWidth: Math.max(720, chartRows.length * 72 + 120),
+      data: chartRows.map((row, index) => ({
         ...row,
         chartLabel: groupBy[0] ? reportChartValue(row[groupBy[0]], groupBy[0]) : "Total",
         chartValue: Number(row.total || 0),
         index,
       })),
-      series: [{ dataKey: "chartValue", label: "Total", fill: "var(--accent)" }],
+      series: [{ dataKey: "chartValue", label: "Sum of expenses", fill: "var(--primary)" }],
       description: "Each bar represents one summary-table row.",
     };
   }
@@ -308,7 +331,7 @@ function buildReportChartModel(result) {
   const xColumn =
     period || groupBy.find((column) => column !== survivor && column !== category) || groupBy[0];
 
-  if (category && survivor) {
+  if (category && survivor && xColumn !== category && xColumn !== survivor) {
     const categoryValues = [
       ...new Map(rows.map((row) => [String(row[category] ?? "—"), row[category]])).entries(),
     ];
@@ -352,7 +375,10 @@ function buildReportChartModel(result) {
     });
 
     return {
+      multiSeries: true,
       stackedCategory: true,
+      stackedPeriodCategory: false,
+      minWidth: Math.max(720, dataMap.size * Math.max(categoryValues.length, 1) * 74 + 160),
       data: [...dataMap.values()],
       series,
       categories: categoryValues.map(([, value], index) => ({
@@ -368,6 +394,8 @@ function buildReportChartModel(result) {
   }
 
   const seriesColumn = groupBy.find((column) => column !== xColumn) || groupBy[1];
+  const isPeriodStacked = seriesColumn === "category" || seriesColumn === "survivor";
+  const seriesPlural = seriesColumn === "category" ? "categories" : `${seriesColumn}s`;
   const seriesMap = new Map();
   const dataMap = new Map();
   rows.forEach((row) => {
@@ -378,6 +406,7 @@ function buildReportChartModel(result) {
         dataKey: `series_${index}`,
         label: reportChartValue(row[seriesColumn], seriesColumn),
         fill: `var(--dashboard-series-${(index % 8) + 1})`,
+        stackId: isPeriodStacked ? `${seriesColumn}_stack` : undefined,
       });
     }
     const xKey = String(row[xColumn] ?? "—");
@@ -389,10 +418,17 @@ function buildReportChartModel(result) {
     target._groupRows[series.dataKey] = row;
   });
   return {
+    multiSeries: true,
     stackedCategory: false,
+    stackedPeriodCategory: isPeriodStacked,
+    minWidth: isPeriodStacked
+      ? Math.max(720, dataMap.size * 96 + 140)
+      : Math.max(720, dataMap.size * Math.max(seriesMap.size, 1) * 60 + 140),
     data: [...dataMap.values()],
     series: [...seriesMap.values()],
-    description: `${xColumn} on the X-axis with ${seriesColumn} as the legend.`,
+    description: isPeriodStacked
+      ? `${xColumn} on the X-axis with ${seriesPlural} stacked by ${xColumn}.`
+      : `${xColumn} on the X-axis with ${seriesColumn} as the legend.`,
   };
 }
 
@@ -480,7 +516,7 @@ export default function Reports({ user }) {
   const [shareableManagers, setShareableManagers] = useState([]);
   const [selectedManagerIds, setSelectedManagerIds] = useState([]);
 
-  const [showChart, setShowChart] = useState(false);
+  const [showChart, setShowChart] = useState(true);
 
   const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [scheduleEmailModal, setScheduleEmailModal] = useState(false);
@@ -514,6 +550,9 @@ export default function Reports({ user }) {
     };
 
     setResult(next);
+    if (queryConfig.summarise && queryConfig.groupBy?.length) {
+      setShowChart(true);
+    }
   };
 
   useEffect(() => {
@@ -1178,12 +1217,13 @@ export default function Reports({ user }) {
               type="checkbox"
               checked={config.summarise}
               onChange={(e) => {
+                const checked = e.target.checked;
                 setConfig((current) => ({
                   ...current,
-                  summarise: e.target.checked,
+                  summarise: checked,
                 }));
 
-                setShowChart(false);
+                setShowChart(checked);
               }}
             />
 
@@ -1280,74 +1320,100 @@ export default function Reports({ user }) {
         </div>
       </div>
 
-      {showChart && config.groupBy.length > 0 && result?.rows?.length
+      {showChart && config.summarise && config.groupBy.length > 0 && result?.mode === "summary" && result?.rows?.length
         ? (() => {
-            const chartModel = buildReportChartModel(result);
+            const chartModel = buildReportChartModel(result, config.groupBy);
             return (
-              <div className="card report-chart">
-                {chartModel.stackedCategory ? (
-                  <div className="report-chart-legend">
-                    {chartModel.categories.map((item) => (
-                      <div className="report-chart-legend-group" key={item.label}>
-                        <strong>
-                          <i style={{ background: item.fill }} />
-                          {item.label}
-                        </strong>
-                        {item.shades.map((shade) => (
-                          <span key={`${item.label}-${shade.label}`}>
-                            <i style={{ background: shade.fill }} />
-                            {shade.label}
-                          </span>
+              <div className="card dashboard-detail-chart report-chart">
+                <div className="card-title">
+                  <strong>
+                    <BarChart3 size={17} />
+                    Summary bar chart
+                  </strong>
+                  <span>{chartModel.description}</span>
+                </div>
+                <div className="dashboard-detail-chart-scroll">
+                  <div
+                    className="dashboard-detail-chart-inner"
+                    style={{ minWidth: `${chartModel.minWidth}px` }}
+                  >
+                    {chartModel.stackedCategory ? (
+                      <div className="dashboard-chart-legend">
+                        {chartModel.categories.map((item) => (
+                          <div className="report-chart-legend-group" key={item.label}>
+                            <strong>
+                              <i style={{ background: item.fill }} />
+                              {item.label}
+                            </strong>
+                            {item.shades.map((shade) => (
+                              <span key={`${item.label}-${shade.label}`}>
+                                <i style={{ background: shade.fill }} />
+                                {shade.label}
+                              </span>
+                            ))}
+                          </div>
                         ))}
                       </div>
-                    ))}
-                  </div>
-                ) : null}
-                <ResponsiveContainer width="100%" height={380}>
-                  <BarChart data={chartModel.data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="chartLabel"
-                      tick={{ fontSize: 11 }}
-                      interval={0}
-                      angle={chartModel.stackedCategory ? -25 : -25}
-                      textAnchor="end"
-                      height={90}
-                    />
-                    <YAxis />
-                    <Tooltip
-                      formatter={(value, name, item) => [
-                        `₹${Number(value).toFixed(2)}`,
-                        item?.payload?._groupRows?.[item?.dataKey] ? `${name}` : name,
-                      ]}
-                    />
-                    {!chartModel.stackedCategory && chartModel.series.length > 1 ? (
-                      <Legend />
                     ) : null}
-                    {chartModel.series.map((series) => (
-                      <Bar
-                        key={series.dataKey}
-                        dataKey={series.dataKey}
-                        name={series.label}
-                        fill={series.fill}
-                        stackId={series.stackId}
-                        stroke="var(--surface)"
-                        strokeWidth={2.5}
+                    <ResponsiveContainer width="100%" height={380}>
+                      <BarChart
+                        data={chartModel.data}
+                        margin={{
+                          top: 8,
+                          right: 18,
+                          left: 10,
+                          bottom: chartModel.multiSeries ? 55 : 90,
+                        }}
                       >
-                        <LabelList
-                          dataKey={series.dataKey}
-                          position="inside"
-                          fill="#ffffff"
-                          fontSize={9}
-                          formatter={(value) =>
-                            Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""
-                          }
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis
+                          dataKey="chartLabel"
+                          tick={{ fontSize: 10 }}
+                          interval={0}
+                          angle={chartModel.multiSeries ? 0 : -35}
+                          textAnchor={chartModel.multiSeries ? "middle" : "end"}
+                          height={chartModel.multiSeries ? 72 : 100}
                         />
-                      </Bar>
-                    ))}
-                  </BarChart>
-                </ResponsiveContainer>
-                <div className="report-chart-description">{chartModel.description}</div>
+                        <YAxis tick={{ fontSize: 11 }} />
+                        <Tooltip
+                          formatter={(value, name, item) => {
+                            const s = chartModel.series.find((x) => x.dataKey === item?.dataKey);
+                            const label =
+                              chartModel.stackedCategory && s?.survivor
+                                ? `${s.label} · ${s.survivor}`
+                                : name;
+                            return [`₹${Number(value || 0).toFixed(2)}`, label];
+                          }}
+                        />
+                        {!chartModel.stackedCategory && chartModel.series.length > 1 ? (
+                          <Legend />
+                        ) : null}
+                        {chartModel.series.map((series) => (
+                          <Bar
+                            key={series.dataKey}
+                            dataKey={series.dataKey}
+                            name={series.label}
+                            fill={series.fill}
+                            stackId={series.stackId}
+                            stroke={series.stackId ? "var(--card)" : undefined}
+                            strokeWidth={series.stackId ? 1.5 : 0}
+                            radius={series.stackId ? [0, 0, 0, 0] : [5, 5, 0, 0]}
+                          >
+                            <LabelList
+                              dataKey={series.dataKey}
+                              position={series.stackId ? "inside" : "top"}
+                              fill={series.stackId ? "#ffffff" : "var(--text)"}
+                              fontSize={9}
+                              formatter={(value) =>
+                                Number(value) > 0 ? `₹${Number(value).toFixed(0)}` : ""
+                              }
+                            />
+                          </Bar>
+                        ))}
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
               </div>
             );
           })()
