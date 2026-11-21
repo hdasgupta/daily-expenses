@@ -122,7 +122,10 @@ export const reportSql = {
     item,
     quantity,
     unit,
+    survivor,
+    expense_type,
     share,
+    total_cost,
     report_amount AS expense_amount,
     comment,
     proof_key

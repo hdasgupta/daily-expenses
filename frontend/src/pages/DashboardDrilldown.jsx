@@ -209,7 +209,7 @@ export default function DashboardDrilldown({ navigate }) {
 
                       <td>{row.expense_type || "—"}</td>
 
-                      <td className="number-cell">{money(row.total_cost)}</td>
+                      <td className="number-cell">{money(row.expense_amount ?? row.total_cost)}</td>
 
                       <td className="number-cell" style={{ whiteSpace: "pre-line" }}>
                         {row.share_price != null

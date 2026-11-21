@@ -189,6 +189,12 @@ async function hydrateRows(rows) {
     rows.map(async (row) => ({
       ...row,
       quantity: row.quantity == null ? null : Number(row.quantity),
+      total_cost:
+        row.total_cost == null
+          ? row.expense_amount == null
+            ? null
+            : Number(row.expense_amount)
+          : Number(row.total_cost),
       expense_amount: row.expense_amount == null ? null : Number(row.expense_amount),
       proof_url: row.proof_key ? await signedObjectUrl(row.proof_key) : null,
     })),

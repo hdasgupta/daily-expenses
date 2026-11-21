@@ -725,3 +725,10 @@
 ## 69. Clickable Bar Chart Tooltips for Dashboard Drilldown (`DashboardDetail.jsx`, `styles.css`)
 
 - **Interactive Tooltip Drilldown (`DashboardChartTooltip`)**: Replaced the passive Recharts tooltip on `frontend/src/pages/DashboardDetail.jsx` with a clickable custom `DashboardChartTooltip` (`pointerEvents: "auto"`) listing each non-zero bar series as a clickable button (`→`) that opens the corresponding Dashboard Drilldown page with all active filters preserved (and also fixed single-series bar clicks to drill down directly).
+
+---
+
+## 70. Fix Dashboard Drilldown Expense, Survivor & Expense Type Columns (`reportSql.js`, `reportService.js`, `DashboardDrilldown.jsx`)
+
+- **Complete Raw Drilldown Fields (`reportSql.js`, `reportService.js`)**: Included `total_cost`, `survivor`, and `expense_type` in `rawSelectPerExpense` and hydrated `total_cost` as a number in `hydrateRows` so Dashboard Drilldown rows no longer show `₹0.00` or `—` for those columns.
+- **Fallback Expense Amount (`DashboardDrilldown.jsx`)**: Updated the Expense column cell to render `money(row.expense_amount ?? row.total_cost)`.
