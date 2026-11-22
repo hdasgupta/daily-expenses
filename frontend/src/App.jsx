@@ -11,6 +11,7 @@ import Units from "./pages/Units";
 import BulkUpload from "./pages/BulkUpload";
 import Reports from "./pages/Reports";
 import Dashboard from "./pages/Dashboard";
+import PriceTrend from "./pages/PriceTrend";
 import DashboardDetail from "./pages/DashboardDetail";
 import DashboardDrilldown from "./pages/DashboardDrilldown";
 import Users from "./pages/Users";
@@ -63,6 +64,10 @@ const routes = {
   },
   "/dashboard": {
     component: Dashboard,
+    permission: "dashboard",
+  },
+  "/price-trend": {
+    component: PriceTrend,
     permission: "dashboard",
   },
   "/add-user": {

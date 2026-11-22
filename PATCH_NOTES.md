@@ -765,3 +765,11 @@
 ## 74. Interactive Date Pickers & Dropdowns Inside Step-by-Step Voice Flows (`VoiceAssistant.jsx`, `voiceAssistant.css`)
 
 - **Inline Step Controls (`renderStepControl`)**: Every step across all five guided voice flows (**Add Marketing List**, **Add Expense**, **Add Recipe to Food Chart**, **Build Report**, and **Filter Dashboard Details**) now renders its native interactive control right inside the Voice Assistant step card—`<input type="date">` with Today/Yesterday/Tomorrow shortcuts, `<select>` dropdowns for locations, categories, items, meals, recipes, expense type, sort order, and dashboard reports, and multi-select toggle chips for categories, survivors, and group-by fields—working seamlessly alongside voice input.
+
+---
+
+## 75. Price Trend Page Under Manipulation (`PriceTrend.jsx`, `priceTrendService.js`, `priceTrendController.js`, `Layout.jsx`, `App.jsx`)
+
+- **Navigation & Route**: Added **Price Trend** (`/price-trend`) under the **Manipulation** group in `frontend/src/components/Layout.jsx` and registered it in `frontend/src/App.jsx`.
+- **1-Unit Price Trend API (`GET /api/price-trend`)**: Added `priceTrendService.js` and `priceTrendController.js` to query historical expenses and marketing list records filtered by Location (optional), Category, Item, and Unit (with automatic mass/volume conversion such as `gm ↔ kg` and `ml ↔ L`), returning up to **5 latest prices in date descending order**.
+- **Line Chart & KPIs (`PriceTrend.jsx`)**: Plots the 1-unit price line chart in date descending order with value labels, interactive tooltips, KPI summary cards (latest, average, min/max, change), and a detailed breakdown table.

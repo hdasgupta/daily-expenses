@@ -21,6 +21,7 @@ import {
   RefreshCw,
   Sun,
   Tags,
+  TrendingUp,
   UserRound,
   Users,
   X,
@@ -67,6 +68,13 @@ const navItems = [
     path: "/dashboard",
     label: "Dashboard",
     icon: Gauge,
+    permission: "dashboard",
+  },
+  {
+    group: "Manipulation",
+    path: "/price-trend",
+    label: "Price Trend",
+    icon: TrendingUp,
     permission: "dashboard",
   },
   {

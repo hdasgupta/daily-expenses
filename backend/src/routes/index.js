@@ -8,6 +8,7 @@ import * as paginationController from "../controllers/paginationController.js";
 import * as userController from "../controllers/userController.js";
 import * as reportController from "../controllers/reportController.js";
 import * as dashboardController from "../controllers/dashboardController.js";
+import * as priceTrendController from "../controllers/priceTrendController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
 import * as scheduledReportController from "../controllers/scheduledReportController.js";
@@ -189,6 +190,7 @@ export function createRouter(maxUploadBytes) {
   );
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
+  router.get("/price-trend", auth, permit("dashboard"), priceTrendController.getPriceTrend);
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
   router.get(
     "/dashboard/filters/:reportKey",
