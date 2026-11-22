@@ -794,3 +794,9 @@
 ## 78. Include Today in 7-Day Daily Dashboard Reports (`dashboardReportService.js`, `JobStatus.jsx`)
 
 - **7-Day Daily Range Ending Today**: Updated `rangeFor("day", count)` in `backend/src/services/dashboardReportService.js` and `computeDashboardDateRange("day", count)` in `frontend/src/pages/JobStatus.jsx` to span `today - (count - 1)` through `today` (Asia/Kolkata) so all 4 Daily dashboard reports include today's expenses as the latest day of the 7-day window.
+
+---
+
+## 79. Marketing List Known Item Order Count Badge in Dropdown (`MarketingList.jsx`)
+
+- **Order Count in Brackets**: Computed `itemOrderCounts` across all non-removed marketing list orders in `frontend/src/pages/MarketingList.jsx` and displayed `${item.name} (${count})` inside the **Known item** `<select>` options after a category is selected, while keeping `form.itemName` strictly set to the clean `item.name` without the count suffix.

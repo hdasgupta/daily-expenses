@@ -599,6 +599,34 @@ export default function MarketingList({ navigate }) {
     pagination.sortDirection,
   ]);
 
+  const itemOrderCounts = useMemo(() => {
+    const byId = new Map();
+    const byName = new Map();
+    const selectedCat = String(form.categoryId || "");
+
+    for (const row of rows) {
+      if (row.status === "removed") continue;
+      if (row.item_id != null && row.item_id !== "") {
+        const key = String(row.item_id);
+        byId.set(key, (byId.get(key) || 0) + 1);
+      } else if (
+        row.item_name &&
+        (!selectedCat || String(row.category_id || "") === selectedCat)
+      ) {
+        const nameKey = String(row.item_name).trim().toLowerCase();
+        if (nameKey) {
+          byName.set(nameKey, (byName.get(nameKey) || 0) + 1);
+        }
+      }
+    }
+
+    return (item) => {
+      const idCount = byId.get(String(item.id)) || 0;
+      const nameCount = byName.get(String(item.name || "").trim().toLowerCase()) || 0;
+      return idCount + nameCount;
+    };
+  }, [rows, form.categoryId]);
+
   const filteredCostSummary = useMemo(() => {
     let totalCost = 0;
     let costItemCount = 0;
@@ -1222,7 +1250,7 @@ export default function MarketingList({ navigate }) {
             <option value="">Custom / type item name</option>
             {items.map((item) => (
               <option key={item.id} value={item.id}>
-                {item.name}
+                {item.name} ({itemOrderCounts(item)})
               </option>
             ))}
           </select>
