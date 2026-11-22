@@ -788,3 +788,9 @@
 - **Smart Unit Selection (`GET /api/price-trend/smart-unit`)**: Automatically picks the most frequently used unit for the selected item, promoting Gram (`g`/`gm`) to **Kilogram** (`kg`) and Millilitre (`ml`) to **Litre** (`L`) whenever available.
 - **Per-User Persistence (`public.price_trend_user_preferences`)**: Saves and restores each user's Location, Category, Item, and Unit selections via `GET/PUT /api/price-trend/preferences` (with instant `localStorage` hydration).
 - **Reset Button**: Added a **Reset** button beside **Refresh** that clears Category, Item, Unit, and chart results and re-detects the nearest GPS location.
+
+---
+
+## 78. Include Today in 7-Day Daily Dashboard Reports (`dashboardReportService.js`, `JobStatus.jsx`)
+
+- **7-Day Daily Range Ending Today**: Updated `rangeFor("day", count)` in `backend/src/services/dashboardReportService.js` and `computeDashboardDateRange("day", count)` in `frontend/src/pages/JobStatus.jsx` to span `today - (count - 1)` through `today` (Asia/Kolkata) so all 4 Daily dashboard reports include today's expenses as the latest day of the 7-day window.

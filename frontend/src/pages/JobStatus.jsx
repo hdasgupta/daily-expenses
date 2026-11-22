@@ -398,9 +398,10 @@ const DASHBOARD_REPORT_SPECS = {
 };
 
 function computeDashboardDateRange(unit, count) {
-  const yesterday = shiftIsoDate(todayKolkata(), -1);
+  const today = todayKolkata();
+  const yesterday = shiftIsoDate(today, -1);
   if (unit === "day") {
-    return { dateFrom: shiftIsoDate(yesterday, -(count - 1)), dateTo: yesterday };
+    return { dateFrom: shiftIsoDate(today, -(count - 1)), dateTo: today };
   }
   if (unit === "week") {
     return { dateFrom: shiftIsoDate(yesterday, -(count * 7 - 1)), dateTo: yesterday };
