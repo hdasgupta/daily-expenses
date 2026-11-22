@@ -773,3 +773,9 @@
 - **Navigation & Route**: Added **Price Trend** (`/price-trend`) under the **Manipulation** group in `frontend/src/components/Layout.jsx` and registered it in `frontend/src/App.jsx`.
 - **1-Unit Price Trend API (`GET /api/price-trend`)**: Added `priceTrendService.js` and `priceTrendController.js` to query historical expenses and marketing list records filtered by Location (optional), Category, Item, and Unit (with automatic mass/volume conversion such as `gm ↔ kg` and `ml ↔ L`), returning up to **5 latest prices in date descending order**.
 - **Line Chart & KPIs (`PriceTrend.jsx`)**: Plots the 1-unit price line chart in date descending order with value labels, interactive tooltips, KPI summary cards (latest, average, min/max, change), and a detailed breakdown table.
+
+---
+
+## 76. Price Trend Plots Marketing List Approximate Price (`priceTrendService.js`, `PriceTrend.jsx`)
+
+- **Per-Item Approximate Price Source**: Updated `backend/src/services/priceTrendService.js` to calculate 1-unit prices exclusively from `public.marketing_list_items.approximate_cost` (normalized by `quantity` and compatible unit conversions such as `gm ↔ kg` and `ml ↔ L`) instead of combined `expenses.total_cost`, plotting up to 5 latest prices in date descending order.

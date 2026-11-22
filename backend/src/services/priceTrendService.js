@@ -30,7 +30,13 @@ function normalizeUnitName(name) {
     .replace(/[^a-z]/g, "");
 }
 
-function convertQuantityToTargetUnit(quantity, sourceUnitId, sourceUnitName, targetUnitId, targetUnitName) {
+function convertQuantityToTargetUnit(
+  quantity,
+  sourceUnitId,
+  sourceUnitName,
+  targetUnitId,
+  targetUnitName,
+) {
   const qty = Number(quantity);
   if (!Number.isFinite(qty) || qty <= 0) return null;
 
@@ -47,7 +53,12 @@ function convertQuantityToTargetUnit(quantity, sourceUnitId, sourceUnitName, tar
   return null;
 }
 
-export async function getItemPriceTrend({ locationId = "", categoryId = "", itemId = "", unitId = "" }) {
+export async function getItemPriceTrend({
+  locationId = "",
+  categoryId = "",
+  itemId = "",
+  unitId = "",
+}) {
   const cleanCategoryId = /^\d+$/.test(String(categoryId || "").trim())
     ? String(categoryId).trim()
     : "";
@@ -92,16 +103,14 @@ export async function getItemPriceTrend({ locationId = "", categoryId = "", item
   const marketingQuery = cleanLocationId
     ? `SELECT m.id,
               m.purchase_date::text AS price_date,
-              COALESCE(m.expense_price, e.total_cost, m.approximate_cost) AS total_price,
-              COALESCE(m.purchased_quantity, m.quantity, e.quantity) AS quantity,
-              COALESCE(m.purchased_unit_id, m.unit_id, e.unit_id) AS unit_id,
+              m.approximate_cost AS approx_price,
+              m.quantity,
+              m.unit_id,
               u.name AS unit_name,
               ml.name AS location_name,
-              m.expense_id,
               m.status
          FROM public.marketing_list_items m
-         LEFT JOIN public.expenses e ON e.id = m.expense_id
-         LEFT JOIN public.units u ON u.id = COALESCE(m.purchased_unit_id, m.unit_id, e.unit_id)
+         LEFT JOIN public.units u ON u.id = m.unit_id
          LEFT JOIN public.marketing_locations ml ON ml.id = m.location_id
         WHERE m.location_id = $1::bigint
           AND m.status <> 'removed'
@@ -112,22 +121,22 @@ export async function getItemPriceTrend({ locationId = "", categoryId = "", item
               AND lower(trim(m.item_name)) = lower(trim($4))
             )
           )
-          AND COALESCE(m.expense_price, e.total_cost, m.approximate_cost) > 0
-          AND COALESCE(m.purchased_quantity, m.quantity, e.quantity) > 0
+          AND m.approximate_cost IS NOT NULL
+          AND m.approximate_cost > 0
+          AND m.quantity IS NOT NULL
+          AND m.quantity > 0
         ORDER BY m.purchase_date DESC, m.id DESC
         LIMIT 100`
     : `SELECT m.id,
               m.purchase_date::text AS price_date,
-              COALESCE(m.expense_price, e.total_cost, m.approximate_cost) AS total_price,
-              COALESCE(m.purchased_quantity, m.quantity, e.quantity) AS quantity,
-              COALESCE(m.purchased_unit_id, m.unit_id, e.unit_id) AS unit_id,
+              m.approximate_cost AS approx_price,
+              m.quantity,
+              m.unit_id,
               u.name AS unit_name,
               ml.name AS location_name,
-              m.expense_id,
               m.status
          FROM public.marketing_list_items m
-         LEFT JOIN public.expenses e ON e.id = m.expense_id
-         LEFT JOIN public.units u ON u.id = COALESCE(m.purchased_unit_id, m.unit_id, e.unit_id)
+         LEFT JOIN public.units u ON u.id = m.unit_id
          LEFT JOIN public.marketing_locations ml ON ml.id = m.location_id
         WHERE m.status <> 'removed'
           AND (
@@ -137,8 +146,10 @@ export async function getItemPriceTrend({ locationId = "", categoryId = "", item
               AND lower(trim(m.item_name)) = lower(trim($3))
             )
           )
-          AND COALESCE(m.expense_price, e.total_cost, m.approximate_cost) > 0
-          AND COALESCE(m.purchased_quantity, m.quantity, e.quantity) > 0
+          AND m.approximate_cost IS NOT NULL
+          AND m.approximate_cost > 0
+          AND m.quantity IS NOT NULL
+          AND m.quantity > 0
         ORDER BY m.purchase_date DESC, m.id DESC
         LIMIT 100`;
 
@@ -146,84 +157,10 @@ export async function getItemPriceTrend({ locationId = "", categoryId = "", item
     ? [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName]
     : [cleanItemId, cleanCategoryId, targetItemName];
 
-  const expenseQuery = cleanLocationId
-    ? `SELECT e.id,
-              e.expense_date::text AS price_date,
-              e.total_cost AS total_price,
-              e.quantity,
-              e.unit_id,
-              u.name AS unit_name,
-              ml.name AS location_name
-         FROM public.expenses e
-         JOIN public.marketing_list_items m ON m.expense_id = e.id AND m.location_id = $1::bigint
-         LEFT JOIN public.units u ON u.id = e.unit_id
-         LEFT JOIN public.marketing_locations ml ON ml.id = m.location_id
-        WHERE e.category_id = $2::bigint
-          AND e.item_id = $3::bigint
-          AND e.total_cost > 0
-          AND e.quantity > 0
-        ORDER BY e.expense_date DESC, e.id DESC
-        LIMIT 100`
-    : `SELECT e.id,
-              e.expense_date::text AS price_date,
-              e.total_cost AS total_price,
-              e.quantity,
-              e.unit_id,
-              u.name AS unit_name,
-              ml.name AS location_name
-         FROM public.expenses e
-         LEFT JOIN public.marketing_list_items m ON m.expense_id = e.id
-         LEFT JOIN public.units u ON u.id = e.unit_id
-         LEFT JOIN public.marketing_locations ml ON ml.id = m.location_id
-        WHERE e.category_id = $1::bigint
-          AND e.item_id = $2::bigint
-          AND e.total_cost > 0
-          AND e.quantity > 0
-        ORDER BY e.expense_date DESC, e.id DESC
-        LIMIT 100`;
-
-  const expenseParams = cleanLocationId
-    ? [cleanLocationId, cleanCategoryId, cleanItemId]
-    : [cleanCategoryId, cleanItemId];
-
-  const [marketingRes, expenseRes] = await Promise.all([
-    q(marketingQuery, marketingParams),
-    q(expenseQuery, expenseParams),
-  ]);
+  const marketingRes = await q(marketingQuery, marketingParams);
 
   const candidates = [];
-  const seenExpenseIds = new Set();
-
-  for (const row of expenseRes.rows || []) {
-    const convertedQty = convertQuantityToTargetUnit(
-      row.quantity,
-      row.unit_id,
-      row.unit_name,
-      cleanUnitId,
-      targetUnitName,
-    );
-    if (!convertedQty) continue;
-    const totalPrice = Number(row.total_price);
-    const unitPrice = Number((totalPrice / convertedQty).toFixed(2));
-    if (!Number.isFinite(unitPrice) || unitPrice <= 0) continue;
-    seenExpenseIds.add(String(row.id));
-    candidates.push({
-      id: `exp-${row.id}`,
-      date: String(row.price_date || "").slice(0, 10),
-      sortId: Number(row.id) || 0,
-      unitPrice,
-      totalPrice: Number(totalPrice.toFixed(2)),
-      quantity: Number(row.quantity),
-      unitName: row.unit_name || targetUnitName,
-      locationName: row.location_name || "Direct expense",
-      source: "Expense",
-    });
-  }
-
   for (const row of marketingRes.rows || []) {
-    if (row.expense_id && seenExpenseIds.has(String(row.expense_id))) {
-      continue;
-    }
     const convertedQty = convertQuantityToTargetUnit(
       row.quantity,
       row.unit_id,
@@ -232,23 +169,23 @@ export async function getItemPriceTrend({ locationId = "", categoryId = "", item
       targetUnitName,
     );
     if (!convertedQty) continue;
-    const totalPrice = Number(row.total_price);
-    const unitPrice = Number((totalPrice / convertedQty).toFixed(2));
+    const approxPrice = Number(row.approx_price);
+    const unitPrice = Number((approxPrice / convertedQty).toFixed(2));
     if (!Number.isFinite(unitPrice) || unitPrice <= 0) continue;
+
     candidates.push({
       id: `mkt-${row.id}`,
       date: String(row.price_date || "").slice(0, 10),
       sortId: Number(row.id) || 0,
       unitPrice,
-      totalPrice: Number(totalPrice.toFixed(2)),
+      totalPrice: Number(approxPrice.toFixed(2)),
       quantity: Number(row.quantity),
       unitName: row.unit_name || targetUnitName,
       locationName: row.location_name || locationName,
-      source: row.status === "purchased" ? "Purchased (Marketing List)" : "Approx (Marketing List)",
+      source: row.status === "purchased" ? "Purchased (Approx. price)" : "Pending (Approx. price)",
     });
   }
 
-  // Sort strictly by date descending (latest first), taking at most 5 latest prices
   candidates.sort((a, b) => {
     const dateDiff = b.date.localeCompare(a.date);
     if (dateDiff !== 0) return dateDiff;

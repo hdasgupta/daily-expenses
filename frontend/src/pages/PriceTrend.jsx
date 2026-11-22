@@ -133,7 +133,7 @@ export default function PriceTrend() {
         <div>
           <h1>Price Trend</h1>
           <p>
-            Select location, category, item, and unit to plot the 1-unit price trend for up to 5
+            Select location, category, item, and unit to plot the 1-unit approximate price trend for up to 5
             latest dates (newest to oldest).
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function PriceTrend() {
           {stats ? (
             <div className="price-trend-kpis">
               <div className="summary-card dashboard-summary-card">
-                <span>Latest 1 {trend.unitName} price</span>
+                <span>Latest 1 {trend.unitName} approx. price</span>
                 <strong>{money(stats.latest)}</strong>
               </div>
               <div className="summary-card dashboard-summary-card">
@@ -272,7 +272,7 @@ export default function PriceTrend() {
                       tickFormatter={(v) => `₹${Number(v).toFixed(0)}`}
                     />
                     <Tooltip
-                      formatter={(value) => [`${money(value)} / ${trend.unitName}`, "1 unit price"]}
+                      formatter={(value) => [`${money(value)} / ${trend.unitName}`, "1 unit approx. price"]}
                       labelFormatter={(_, payload) => {
                         const pt = payload?.[0]?.payload;
                         if (!pt) return "";
@@ -314,9 +314,9 @@ export default function PriceTrend() {
                   <tr>
                     <th>Date</th>
                     <th>Location</th>
-                    <th className="number-cell">Purchased Qty</th>
-                    <th className="number-cell">Total Price</th>
-                    <th className="number-cell">1 {trend.unitName} Price</th>
+                    <th className="number-cell">Quantity</th>
+                    <th className="number-cell">Approx. Price</th>
+                    <th className="number-cell">1 {trend.unitName} Approx. Price</th>
                     <th>Source</th>
                   </tr>
                 </thead>
