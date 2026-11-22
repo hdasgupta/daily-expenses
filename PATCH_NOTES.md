@@ -800,3 +800,9 @@
 ## 79. Marketing List Known Item Order Count Badge in Dropdown (`MarketingList.jsx`)
 
 - **Order Count in Brackets**: Computed `itemOrderCounts` across all non-removed marketing list orders in `frontend/src/pages/MarketingList.jsx` and displayed `${item.name} (${count})` inside the **Known item** `<select>` options after a category is selected, while keeping `form.itemName` strictly set to the clean `item.name` without the count suffix.
+
+---
+
+## 80. Marketing List Known Item Latest 1-Unit Approx. Price in Dropdown (`MarketingList.jsx`)
+
+- **Latest Unit Approximate Price (`₹X/unit`)**: Extended the **Known item** dropdown options in `frontend/src/pages/MarketingList.jsx` to show each item's latest approximate 1-unit price alongside its order count (e.g., `Potatoes (14) · ₹30/kg`), automatically converting grams (`g`/`gm`) to **kg** and millilitres (`ml`) to **L**, preferring the currently selected location when available, and keeping `form.itemName` strictly clean (`item.name`).

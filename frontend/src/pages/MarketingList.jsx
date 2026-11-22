@@ -599,33 +599,98 @@ export default function MarketingList({ navigate }) {
     pagination.sortDirection,
   ]);
 
-  const itemOrderCounts = useMemo(() => {
-    const byId = new Map();
-    const byName = new Map();
+  const itemOrderMeta = useMemo(() => {
+    const byIdCount = new Map();
+    const byNameCount = new Map();
+    const byIdLatest = new Map();
+    const byNameLatest = new Map();
     const selectedCat = String(form.categoryId || "");
+    const selectedLoc = String(form.locationId || "");
+
+    const unitNameById = new Map(units.map((u) => [String(u.id), String(u.name || "").trim()]));
+    const GRAM_SET = new Set(["g", "gm", "gms", "gram", "grams"]);
+    const ML_SET = new Set(["ml", "milliliter", "millilitre", "milliliters", "millilitres"]);
+
+    const computeNormalizedUnitPrice = (row) => {
+      const approx = Number(row.approximate_cost);
+      const qty = Number(row.quantity);
+      if (!Number.isFinite(approx) || approx <= 0 || !Number.isFinite(qty) || qty <= 0) {
+        return null;
+      }
+      const rawUnit = String(row.unit_name || unitNameById.get(String(row.unit_id || "")) || "").trim();
+      const normUnit = rawUnit.toLowerCase().replace(/[^a-z]/g, "");
+      let unitPrice = approx / qty;
+      let displayUnit = rawUnit || "unit";
+
+      if (GRAM_SET.has(normUnit)) {
+        unitPrice = approx / (qty / 1000);
+        displayUnit = "kg";
+      } else if (ML_SET.has(normUnit)) {
+        unitPrice = approx / (qty / 1000);
+        displayUnit = "L";
+      }
+
+      if (!Number.isFinite(unitPrice) || unitPrice <= 0) return null;
+      const rounded = Number(unitPrice.toFixed(2));
+      const priceStr = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2);
+      return {
+        label: `₹${priceStr}/${displayUnit}`,
+        date: String(row.purchase_date || "").slice(0, 10),
+        id: Number(row.id || 0),
+        locMatch: selectedLoc && String(row.location_id || "") === selectedLoc ? 1 : 0,
+      };
+    };
+
+    const isBetterCandidate = (next, current) => {
+      if (!current) return true;
+      if (next.locMatch !== current.locMatch) return next.locMatch > current.locMatch;
+      const dateCmp = next.date.localeCompare(current.date);
+      if (dateCmp !== 0) return dateCmp > 0;
+      return next.id > current.id;
+    };
 
     for (const row of rows) {
       if (row.status === "removed") continue;
-      if (row.item_id != null && row.item_id !== "") {
+      const hasItemId = row.item_id != null && row.item_id !== "";
+      const nameKey = String(row.item_name || "").trim().toLowerCase();
+      const catMatches = !selectedCat || String(row.category_id || "") === selectedCat;
+
+      if (hasItemId) {
         const key = String(row.item_id);
-        byId.set(key, (byId.get(key) || 0) + 1);
-      } else if (
-        row.item_name &&
-        (!selectedCat || String(row.category_id || "") === selectedCat)
-      ) {
-        const nameKey = String(row.item_name).trim().toLowerCase();
-        if (nameKey) {
-          byName.set(nameKey, (byName.get(nameKey) || 0) + 1);
+        byIdCount.set(key, (byIdCount.get(key) || 0) + 1);
+      } else if (nameKey && catMatches) {
+        byNameCount.set(nameKey, (byNameCount.get(nameKey) || 0) + 1);
+      }
+
+      const cand = computeNormalizedUnitPrice(row);
+      if (cand) {
+        if (hasItemId) {
+          const key = String(row.item_id);
+          if (isBetterCandidate(cand, byIdLatest.get(key))) {
+            byIdLatest.set(key, cand);
+          }
+        }
+        if (nameKey && catMatches) {
+          if (isBetterCandidate(cand, byNameLatest.get(nameKey))) {
+            byNameLatest.set(nameKey, cand);
+          }
         }
       }
     }
 
     return (item) => {
-      const idCount = byId.get(String(item.id)) || 0;
-      const nameCount = byName.get(String(item.name || "").trim().toLowerCase()) || 0;
-      return idCount + nameCount;
+      const idKey = String(item.id);
+      const nameKey = String(item.name || "").trim().toLowerCase();
+      const count = (byIdCount.get(idKey) || 0) + (byNameCount.get(nameKey) || 0);
+      const idLatest = byIdLatest.get(idKey);
+      const nameLatest = byNameLatest.get(nameKey);
+      const bestPrice = isBetterCandidate(idLatest, nameLatest) ? idLatest : nameLatest;
+      return {
+        count,
+        priceLabel: bestPrice?.label || "",
+      };
     };
-  }, [rows, form.categoryId]);
+  }, [rows, form.categoryId, form.locationId, units]);
 
   const filteredCostSummary = useMemo(() => {
     let totalCost = 0;
@@ -1248,11 +1313,15 @@ export default function MarketingList({ navigate }) {
           Known item
           <select value={form.itemId} onChange={(event) => change("itemId", event.target.value)}>
             <option value="">Custom / type item name</option>
-            {items.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.name} ({itemOrderCounts(item)})
-              </option>
-            ))}
+            {items.map((item) => {
+              const meta = itemOrderMeta(item);
+              return (
+                <option key={item.id} value={item.id}>
+                  {item.name} ({meta.count})
+                  {meta.priceLabel ? ` · ${meta.priceLabel}` : ""}
+                </option>
+              );
+            })}
           </select>
         </label>
         <label>
