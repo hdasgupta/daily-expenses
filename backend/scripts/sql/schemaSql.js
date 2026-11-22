@@ -202,6 +202,14 @@ CREATE TABLE IF NOT EXISTS public.report_user_preferences (
   config JSONB NOT NULL DEFAULT '{}'::jsonb,
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS public.price_trend_user_preferences (
+  user_id BIGINT PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
+  location_id VARCHAR(50) NOT NULL DEFAULT '',
+  category_id VARCHAR(50) NOT NULL DEFAULT '',
+  item_id VARCHAR(50) NOT NULL DEFAULT '',
+  unit_id VARCHAR(50) NOT NULL DEFAULT '',
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_creator
   ON public.scheduled_report_jobs(created_by_user_id);
 CREATE INDEX IF NOT EXISTS idx_scheduled_report_jobs_active

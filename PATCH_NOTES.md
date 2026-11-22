@@ -779,3 +779,12 @@
 ## 76. Price Trend Plots Marketing List Approximate Price (`priceTrendService.js`, `PriceTrend.jsx`)
 
 - **Per-Item Approximate Price Source**: Updated `backend/src/services/priceTrendService.js` to calculate 1-unit prices exclusively from `public.marketing_list_items.approximate_cost` (normalized by `quantity` and compatible unit conversions such as `gm ↔ kg` and `ml ↔ L`) instead of combined `expenses.total_cost`, plotting up to 5 latest prices in date descending order.
+
+---
+
+## 77. Price Trend GPS Location, Smart Unit (kg > g, L > mL), Per-User Persistence & Reset (`PriceTrend.jsx`, `priceTrendService.js`, `schemaSql.js`)
+
+- **Nearest GPS Auto-Location**: Automatically selects the nearest GPS shopping location when no saved location exists (or when tapping **Auto GPS** / **Reset**).
+- **Smart Unit Selection (`GET /api/price-trend/smart-unit`)**: Automatically picks the most frequently used unit for the selected item, promoting Gram (`g`/`gm`) to **Kilogram** (`kg`) and Millilitre (`ml`) to **Litre** (`L`) whenever available.
+- **Per-User Persistence (`public.price_trend_user_preferences`)**: Saves and restores each user's Location, Category, Item, and Unit selections via `GET/PUT /api/price-trend/preferences` (with instant `localStorage` hydration).
+- **Reset Button**: Added a **Reset** button beside **Refresh** that clears Category, Item, Unit, and chart results and re-detects the nearest GPS location.

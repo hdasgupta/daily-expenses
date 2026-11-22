@@ -191,6 +191,24 @@ export function createRouter(maxUploadBytes) {
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
   router.get("/price-trend", auth, permit("dashboard"), priceTrendController.getPriceTrend);
+  router.get(
+    "/price-trend/smart-unit",
+    auth,
+    permit("dashboard"),
+    priceTrendController.getSmartUnit,
+  );
+  router.get(
+    "/price-trend/preferences",
+    auth,
+    permit("dashboard"),
+    priceTrendController.getPreferences,
+  );
+  router.put(
+    "/price-trend/preferences",
+    auth,
+    permit("dashboard"),
+    priceTrendController.savePreferences,
+  );
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
   router.get(
     "/dashboard/filters/:reportKey",

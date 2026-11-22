@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   CartesianGrid,
   LabelList,
@@ -9,9 +9,16 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { RefreshCw, TrendingUp } from "lucide-react";
+import { LocateFixed, RefreshCw, RotateCcw, TrendingUp } from "lucide-react";
 import { api } from "../lib/api";
-import { fetchLocationsWithGps } from "../lib/locationTracker";
+import {
+  describeAutoMatchReason,
+  fetchLocationsWithGps,
+  formatLocationOptionLabel,
+  getCurrentGpsPosition,
+  isValidCoordinates,
+  pickBestLocation,
+} from "../lib/locationTracker";
 import { formatLongDateWithWeekday } from "../utils/dates.js";
 
 function money(value) {
@@ -31,45 +38,291 @@ function shortDate(value) {
   }).format(new Date(Date.UTC(Number(y), Number(m) - 1, Number(d), 12)));
 }
 
-export default function PriceTrend() {
+function prefStorageKey(userId) {
+  return `price_trend_prefs:${userId || "anon"}`;
+}
+
+function readCachedPrefs(userId) {
+  try {
+    const raw = localStorage.getItem(prefStorageKey(userId));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    return {
+      locationId: String(parsed.locationId || ""),
+      categoryId: String(parsed.categoryId || ""),
+      itemId: String(parsed.itemId || ""),
+      unitId: String(parsed.unitId || ""),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedPrefs(userId, prefs) {
+  try {
+    localStorage.setItem(prefStorageKey(userId), JSON.stringify(prefs));
+  } catch {
+    // Ignore storage quota errors
+  }
+}
+
+export default function PriceTrend({ user }) {
+  const initialCached = useMemo(() => readCachedPrefs(user?.id), [user?.id]);
+
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [units, setUnits] = useState([]);
 
-  const [locationId, setLocationId] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [itemId, setItemId] = useState("");
-  const [unitId, setUnitId] = useState("");
+  const [locationId, setLocationId] = useState(() => initialCached?.locationId || "");
+  const [categoryId, setCategoryId] = useState(() => initialCached?.categoryId || "");
+  const [itemId, setItemId] = useState(() => initialCached?.itemId || "");
+  const [unitId, setUnitId] = useState(() => initialCached?.unitId || "");
+
+  const [currentCoords, setCurrentCoords] = useState(null);
+  const [autoLocationHint, setAutoLocationHint] = useState("");
+  const [detectingGps, setDetectingGps] = useState(false);
 
   const [trend, setTrend] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const prefsHydratedRef = useRef(false);
+  const userChoseLocationRef = useRef(Boolean(initialCached?.locationId));
+  const pendingRestoredItemIdRef = useRef(initialCached?.itemId || "");
+  const saveTimerRef = useRef(null);
+
+  // Initial metadata + saved user preferences + nearest GPS location
   useEffect(() => {
+    let cancelled = false;
+    prefsHydratedRef.current = false;
+
     Promise.all([
       fetchLocationsWithGps({ silent: true, fastInitial: true }).catch(() => ({ locations: [] })),
       api("/meta/categories", { silent: true }).catch(() => []),
       api("/meta/units", { silent: true }).catch(() => []),
-    ]).then(([locBundle, cats, unitList]) => {
+      api("/price-trend/preferences", { silent: true }).catch(() => ({ preferences: null })),
+    ]).then(([locBundle, cats, unitList, prefRes]) => {
+      if (cancelled) return;
       const locs = Array.isArray(locBundle?.locations) ? locBundle.locations : [];
       setLocations(locs);
       setCategories(Array.isArray(cats) ? cats : []);
       setUnits(Array.isArray(unitList) ? unitList : []);
-    });
-  }, []);
+      if (isValidCoordinates(locBundle?.coords)) {
+        setCurrentCoords(locBundle.coords);
+      }
 
+      const saved = prefRes?.preferences || readCachedPrefs(user?.id);
+      if (saved && (saved.locationId || saved.categoryId || saved.itemId || saved.unitId)) {
+        if (saved.locationId) {
+          userChoseLocationRef.current = true;
+          setLocationId(saved.locationId);
+        } else if (locBundle?.bestLocation) {
+          setLocationId(String(locBundle.bestLocation.id));
+          setAutoLocationHint(describeAutoMatchReason(locBundle.bestLocation));
+        }
+        if (saved.categoryId) {
+          pendingRestoredItemIdRef.current = saved.itemId || "";
+          setCategoryId(saved.categoryId);
+        }
+        if (saved.itemId) setItemId(saved.itemId);
+        if (saved.unitId) setUnitId(saved.unitId);
+        writeCachedPrefs(user?.id, saved);
+      } else if (locBundle?.bestLocation) {
+        setLocationId(String(locBundle.bestLocation.id));
+        setAutoLocationHint(describeAutoMatchReason(locBundle.bestLocation));
+      }
+
+      prefsHydratedRef.current = true;
+
+      // Refine with live GPS in background if user hasn't manually locked a location
+      if (!userChoseLocationRef.current) {
+        getCurrentGpsPosition({ timeout: 6000 })
+          .then(async (liveCoords) => {
+            if (cancelled || !isValidCoordinates(liveCoords)) return;
+            setCurrentCoords(liveCoords);
+            try {
+              const refreshed = await fetchLocationsWithGps({ coords: liveCoords, silent: true });
+              if (cancelled) return;
+              if (Array.isArray(refreshed?.locations) && refreshed.locations.length) {
+                setLocations(refreshed.locations);
+                if (!userChoseLocationRef.current && refreshed.bestLocation) {
+                  setLocationId(String(refreshed.bestLocation.id));
+                  setAutoLocationHint(describeAutoMatchReason(refreshed.bestLocation));
+                }
+              }
+            } catch {
+              const localRefined = pickBestLocation(locs, liveCoords);
+              if (!cancelled && localRefined.bestLocation && !userChoseLocationRef.current) {
+                setLocations(localRefined.locations);
+                setLocationId(String(localRefined.bestLocation.id));
+                setAutoLocationHint(describeAutoMatchReason(localRefined.bestLocation));
+              }
+            }
+          })
+          .catch(() => {});
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
+
+  // Persist selections per user whenever they change after hydration
   useEffect(() => {
-    setItemId("");
-    setTrend(null);
+    if (!prefsHydratedRef.current) return;
+    const payload = { locationId, categoryId, itemId, unitId };
+    writeCachedPrefs(user?.id, payload);
+
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => {
+      api("/price-trend/preferences", {
+        method: "PUT",
+        body: JSON.stringify(payload),
+        silent: true,
+      }).catch(() => {});
+    }, 250);
+
+    return () => {
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    };
+  }, [locationId, categoryId, itemId, unitId, user?.id]);
+
+  // Load items when category changes (preserving restored itemId if applicable)
+  useEffect(() => {
+    let cancelled = false;
     if (!categoryId) {
       setItems([]);
-      return;
+      setItemId("");
+      setTrend(null);
+      return undefined;
     }
+
+    const expectedItemId = pendingRestoredItemIdRef.current;
+    pendingRestoredItemIdRef.current = "";
+
     api(`/meta/items/${encodeURIComponent(categoryId)}`, { silent: true })
-      .then((list) => setItems(Array.isArray(list) ? list : []))
-      .catch(() => setItems([]));
+      .then((list) => {
+        if (cancelled) return;
+        const arr = Array.isArray(list) ? list : [];
+        setItems(arr);
+        if (expectedItemId && arr.some((i) => String(i.id) === String(expectedItemId))) {
+          setItemId(String(expectedItemId));
+        } else if (itemId && !arr.some((i) => String(i.id) === String(itemId))) {
+          setItemId("");
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setItems([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [categoryId]);
+
+  const selectSmartUnitForItem = async (targetItemId, targetCategoryId, targetLocationId) => {
+    if (!targetItemId) return;
+    try {
+      const qs = new URLSearchParams({ itemId: String(targetItemId) });
+      if (targetCategoryId) qs.set("categoryId", String(targetCategoryId));
+      if (targetLocationId) qs.set("locationId", String(targetLocationId));
+      const res = await api(`/price-trend/smart-unit?${qs.toString()}`, { silent: true });
+      if (res?.unitId) {
+        setUnitId(String(res.unitId));
+      }
+    } catch {
+      // Ignore smart-unit lookup errors
+    }
+  };
+
+  const handleCategoryChange = (nextCategoryId) => {
+    pendingRestoredItemIdRef.current = "";
+    setCategoryId(nextCategoryId);
+    setItemId("");
+    setTrend(null);
+  };
+
+  const handleItemChange = (nextItemId) => {
+    setItemId(nextItemId);
+    setTrend(null);
+    if (nextItemId) {
+      void selectSmartUnitForItem(nextItemId, categoryId, locationId);
+    }
+  };
+
+  const handleAutoDetectLocation = async () => {
+    setDetectingGps(true);
+    try {
+      const coords = await getCurrentGpsPosition({
+        timeout: 8000,
+        maximumAge: 0,
+        enableHighAccuracy: true,
+      });
+      setCurrentCoords(coords);
+      const refreshed = await fetchLocationsWithGps({ coords, silent: true });
+      const locList = Array.isArray(refreshed?.locations) ? refreshed.locations : locations;
+      setLocations(locList);
+      const best = refreshed?.bestLocation || pickBestLocation(locList, coords).bestLocation;
+      if (best) {
+        userChoseLocationRef.current = false;
+        setLocationId(String(best.id));
+        setAutoLocationHint(describeAutoMatchReason(best));
+      }
+    } catch {
+      const fallback = pickBestLocation(locations, currentCoords);
+      if (fallback?.bestLocation) {
+        setLocations(fallback.locations);
+        setLocationId(String(fallback.bestLocation.id));
+        setAutoLocationHint(describeAutoMatchReason(fallback.bestLocation));
+      }
+    } finally {
+      setDetectingGps(false);
+    }
+  };
+
+  const handleReset = async () => {
+    pendingRestoredItemIdRef.current = "";
+    userChoseLocationRef.current = false;
+    setCategoryId("");
+    setItemId("");
+    setUnitId("");
+    setItems([]);
+    setTrend(null);
+    setError("");
+    setAutoLocationHint("");
+
+    let nextLocId = "";
+    setDetectingGps(true);
+    try {
+      const coords = await getCurrentGpsPosition({
+        timeout: 6000,
+        maximumAge: 0,
+        enableHighAccuracy: true,
+      });
+      setCurrentCoords(coords);
+      const refreshed = await fetchLocationsWithGps({ coords, silent: true });
+      const locList = Array.isArray(refreshed?.locations) ? refreshed.locations : locations;
+      setLocations(locList);
+      const best = refreshed?.bestLocation || pickBestLocation(locList, coords).bestLocation;
+      if (best) {
+        nextLocId = String(best.id);
+        setAutoLocationHint(describeAutoMatchReason(best));
+      }
+    } catch {
+      const fallback = pickBestLocation(locations, currentCoords);
+      if (fallback?.bestLocation) {
+        setLocations(fallback.locations);
+        nextLocId = String(fallback.bestLocation.id);
+        setAutoLocationHint(describeAutoMatchReason(fallback.bestLocation));
+      }
+    } finally {
+      setLocationId(nextLocId);
+      setDetectingGps(false);
+    }
+  };
 
   const fetchTrend = async () => {
     if (!categoryId || !itemId || !unitId) {
@@ -107,7 +360,6 @@ export default function PriceTrend() {
 
   const chartData = useMemo(() => {
     const pts = Array.isArray(trend?.points) ? trend.points : [];
-    // Points arrive sorted by date descending (at most 5 latest)
     return pts.map((pt, idx) => ({
       ...pt,
       xLabel: shortDate(pt.date),
@@ -133,38 +385,76 @@ export default function PriceTrend() {
         <div>
           <h1>Price Trend</h1>
           <p>
-            Select location, category, item, and unit to plot the 1-unit approximate price trend for up to 5
-            latest dates (newest to oldest).
+            Select location, category, item, and unit to plot the 1-unit approximate price trend for
+            up to 5 latest dates (newest to oldest).
           </p>
         </div>
 
-        <button
-          className="secondary"
-          type="button"
-          onClick={fetchTrend}
-          disabled={loading || !categoryId || !itemId || !unitId}
-        >
-          <RefreshCw size={17} />
-          Refresh
-        </button>
+        <div className="toolbar-actions">
+          <button
+            className="secondary"
+            type="button"
+            onClick={handleReset}
+            disabled={detectingGps}
+            title="Reset selections and auto-detect nearest GPS location"
+          >
+            <RotateCcw size={16} />
+            {detectingGps ? "Resetting…" : "Reset"}
+          </button>
+
+          <button
+            className="secondary"
+            type="button"
+            onClick={fetchTrend}
+            disabled={loading || !categoryId || !itemId || !unitId}
+          >
+            <RefreshCw size={16} />
+            Refresh
+          </button>
+        </div>
       </div>
 
       <div className="card price-trend-filters">
         <label>
-          Location
-          <select value={locationId} onChange={(e) => setLocationId(e.target.value)}>
+          <span className="location-label-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 6 }}>
+            <span>Location</span>
+            <button
+              type="button"
+              className="secondary"
+              style={{ padding: "2px 7px", fontSize: 11 }}
+              onClick={handleAutoDetectLocation}
+              disabled={detectingGps || !locations.length}
+              title="Auto-select nearest GPS location"
+            >
+              <LocateFixed size={12} />
+              {detectingGps ? "Locating…" : "Auto GPS"}
+            </button>
+          </span>
+          <select
+            value={locationId}
+            onChange={(e) => {
+              userChoseLocationRef.current = Boolean(e.target.value);
+              setAutoLocationHint("");
+              setLocationId(e.target.value);
+            }}
+          >
             <option value="">All locations</option>
             {locations.map((loc) => (
               <option key={loc.id} value={loc.id}>
-                {loc.name}
+                {formatLocationOptionLabel(loc)}
               </option>
             ))}
           </select>
+          {autoLocationHint ? (
+            <small className="field-note" style={{ color: "var(--primary)" }}>
+              {autoLocationHint}
+            </small>
+          ) : null}
         </label>
 
         <label>
           Category
-          <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+          <select value={categoryId} onChange={(e) => handleCategoryChange(e.target.value)}>
             <option value="">Choose category</option>
             {categories.map((cat) => (
               <option key={cat.id} value={cat.id}>
@@ -178,7 +468,7 @@ export default function PriceTrend() {
           Item
           <select
             value={itemId}
-            onChange={(e) => setItemId(e.target.value)}
+            onChange={(e) => handleItemChange(e.target.value)}
             disabled={!categoryId}
           >
             <option value="">{categoryId ? "Choose item" : "Select category first"}</option>
@@ -207,8 +497,8 @@ export default function PriceTrend() {
 
       {!categoryId || !itemId || !unitId ? (
         <div className="empty-card">
-          Select a Category, Item, and Unit (and optionally a Location) to view the 1-unit price
-          trend.
+          Select a Category, Item, and Unit (and optionally a Location) to view the 1-unit
+          approximate price trend.
         </div>
       ) : loading && !trend ? (
         <div className="empty-card">Loading price trend…</div>
@@ -272,7 +562,10 @@ export default function PriceTrend() {
                       tickFormatter={(v) => `₹${Number(v).toFixed(0)}`}
                     />
                     <Tooltip
-                      formatter={(value) => [`${money(value)} / ${trend.unitName}`, "1 unit approx. price"]}
+                      formatter={(value) => [
+                        `${money(value)} / ${trend.unitName}`,
+                        "1 unit approx. price",
+                      ]}
                       labelFormatter={(_, payload) => {
                         const pt = payload?.[0]?.payload;
                         if (!pt) return "";
@@ -282,7 +575,7 @@ export default function PriceTrend() {
                     <Line
                       type="monotone"
                       dataKey="unitPrice"
-                      name={`Price per 1 ${trend.unitName}`}
+                      name={`Approx. price per 1 ${trend.unitName}`}
                       stroke="var(--primary)"
                       strokeWidth={3}
                       dot={{ r: 5, fill: "var(--primary)", strokeWidth: 2, stroke: "var(--card)" }}
@@ -342,7 +635,7 @@ export default function PriceTrend() {
         </>
       ) : (
         <div className="empty-card">
-          No matching price records found for this item and unit
+          No matching approximate price records found for this item and unit
           {locationId ? " at the selected location" : ""}.
         </div>
       )}

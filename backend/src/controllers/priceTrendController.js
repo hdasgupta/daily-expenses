@@ -1,4 +1,9 @@
-import { getItemPriceTrend } from "../services/priceTrendService.js";
+import {
+  getItemPriceTrend,
+  getSmartUnitForItem,
+  getUserPriceTrendPreferences,
+  saveUserPriceTrendPreferences,
+} from "../services/priceTrendService.js";
 
 export async function getPriceTrend(req, res) {
   res.json(
@@ -9,4 +14,22 @@ export async function getPriceTrend(req, res) {
       unitId: req.query.unitId,
     }),
   );
+}
+
+export async function getSmartUnit(req, res) {
+  res.json(
+    await getSmartUnitForItem({
+      locationId: req.query.locationId,
+      categoryId: req.query.categoryId,
+      itemId: req.query.itemId,
+    }),
+  );
+}
+
+export async function getPreferences(req, res) {
+  res.json(await getUserPriceTrendPreferences(req.user.id));
+}
+
+export async function savePreferences(req, res) {
+  res.json(await saveUserPriceTrendPreferences(req.user.id, req.body || {}));
 }
