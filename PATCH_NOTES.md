@@ -831,3 +831,9 @@
 ## 84. Bread Pakora & Crisp Bread Snack Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
 
 - **18 Bread Pakora & Bread Fritter Varieties (`static-1904`–`static-1921`)**: Added **Aloo Stuffed Bread Pakora**, **Bengali Dim Pauruti Chop / Egg Stuffed Bread Pakora**, **Bread Aloo Chop**, **Bread Cheese Pakora**, **Bread Cutlet**, **Bread Fingers**, **Bread Keema-Style Soya Pakora**, **Bread Medu Vada**, **Bread Pakora (Plain)**, **Bread Poha Pakora**, **Bread Roll**, **Bread Upma Pakora**, **Chilli Garlic Bread Pakora**, **Jodhpur Mirchi Bread Pakora**, **Kasundi Aloo Bread Pakora**, **No-Fry Tawa Bread Pakora**, **Paneer Stuffed Bread Pakora**, and **Sweet Corn & Cheese Bread Roll** (canonical categories/regions, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1654**).
+
+---
+
+## 85. Momo Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **18 Momo Varieties (`static-1922`–`static-1939`)**: Added **Veg Steamed Momo**, **Chicken Steamed Momo**, **Gondhoraj Chicken Momo**, **Paneer Steamed Momo**, **Cheese & Corn Momo**, **Atta Veg Momo**, **Veg Kothey Momo**, **Chicken Kothey Momo**, **Chicken Jhol Momo**, **Chilli Garlic Pan-Tossed Momo**, **Kurkure Veg Momo**, **Tandoori Tawa Momo**, **Fried Veg Momo**, **Chingri / Prawn Steamed Momo**, **Fish Momo**, **Egg Bhurji Momo**, **Mushroom & Spring Onion Momo**, and **Soya Keema Momo** (canonical categories/regions, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1672**).

@@ -5454,6 +5454,65 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1922",
+    "name": "Atta Veg Momo (Whole Wheat Steamed Vegetable Dumplings)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "whole wheat flour (atta)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely grated cabbage & carrot",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced ginger & garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & soy sauce",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead soft wheat dough and prepare veg filling",
+        "text": "Knead whole wheat flour with a pinch of salt, 1 tsp oil, and warm water into a smooth soft dough; rest 15 minutes. Squeeze excess moisture from grated cabbage and carrot by hand, then mix with onion, spring onion, minced ginger, garlic, remaining oil, soy sauce, black pepper, and salt.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll, pleat, and steam",
+        "text": "Roll small thin circles, place 1 tbsp filling in the center, and pleat edges tightly to seal. Steam over boiling water in a greased steamer or idli stand for 12–14 minutes until glossy and cooked through.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Wholesome whole-wheat alternative to maida momos; rolling thin keeps them tender."
+  },
+  {
     "id": "static-1670",
     "name": "Avocado Chocolate Pudding (Silky Dark Cacao & Ripe Avocado Chilled Vegan Pudding)",
     "category": "Sweets",
@@ -17049,6 +17108,65 @@
     "notes": "Popular dhaba and restaurant starter upgrade on classic Masala Papad."
   },
   {
+    "id": "static-1923",
+    "name": "Cheese & Corn Momo (Steamed Melted Cheese & Sweet Corn Dumplings)",
+    "category": "Snacks",
+    "region": "Indo-Chinese",
+    "prepMinutes": 25,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled sweet corn kernels (finely chopped)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated processed or cheddar cheese",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum & spring onion",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "minced garlic, oregano & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare dough and cheesy corn stuffing",
+        "text": "Knead maida with salt, 1 tsp oil, and water into a smooth dough; rest 15 minutes. Mix finely chopped boiled corn, grated cheese, capsicum, spring onion, minced garlic, oregano, black pepper, and a pinch of salt.",
+        "minutes": 15
+      },
+      {
+        "section": "Shape and steam until cheese melts",
+        "text": "Roll thin wrappers, spoon filling in the center, pleat tightly so cheese cannot leak, and steam over boiling water for 10–12 minutes. Serve piping hot.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Finely chopping the corn by knife ensures smooth pleating and even melting."
+  },
+  {
     "id": "static-0928",
     "name": "Cheese Balls",
     "category": "Starters",
@@ -19669,6 +19787,70 @@
     "notes": "The authentic punch comes from balancing high-acidity vinegar against the pungent kick of freshly ground white pepper."
   },
   {
+    "id": "static-1924",
+    "name": "Chicken Jhol Momo (Nepali Steamed Chicken Dumplings in Tangy Spiced Tomato-Sesame Broth)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 25,
+    "cookMinutes": 22,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely hand-minced boneless chicken",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger, garlic & coriander",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "ripe tomatoes (finely grated on box grater)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "toasted sesame seeds (hand-crushed)",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted cumin, turmeric & Kashmiri chilli powder",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "lemon juice & oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Steam juicy chicken momos",
+        "text": "Mix hand-minced chicken with chopped onion, half the ginger-garlic, coriander, 1 tsp oil, and salt. Wrap in thin rolled maida discs and steam for 14 minutes.",
+        "minutes": 18
+      },
+      {
+        "section": "Simmer manual jhol broth and serve",
+        "text": "Saute remaining ginger-garlic in 1 tbsp oil, add grated tomatoes, hand-crushed toasted sesame seeds, cumin, turmeric, chilli powder, salt, and 1.5 cups water. Simmer 8 minutes, finish with lemon juice, and pour hot broth over the steamed momos.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Grating ripe tomatoes and crushing toasted sesame seeds manually creates rich Nepali jhol without a blender."
+  },
+  {
     "id": "static-1269",
     "name": "Chicken Kathi Roll (Kolkata Nizam's-Style Skewer-Roasted Chicken Roll)",
     "category": "Snacks",
@@ -20569,6 +20751,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1925",
+    "name": "Chicken Kothey Momo (Crispy Pan-Seared Half-Moon Chicken Dumplings)",
+    "category": "Starters",
+    "region": "Nepali",
+    "prepMinutes": 25,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced boneless chicken",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger, garlic & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for pan-searing)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape crescent kothey momos",
+        "text": "Mix minced chicken with onion, spring onion, ginger, garlic, green chilli, soy sauce, black pepper, 1 tsp oil, and salt. Roll thin maida circles, fill, and pleat into flat-bottomed half-moon crescents.",
+        "minutes": 15
+      },
+      {
+        "section": "Pan-sear and steam-finish",
+        "text": "Arrange momos flat-side down in an oiled heavy skillet on medium heat for 3 minutes until bottoms turn crisp and golden. Pour 1/3 cup water around the edges, cover tightly, and steam 8–10 minutes until water evaporates and chicken is cooked through.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Signature Nepali kothey technique gives a crunchy golden base and juicy steamed top in one pan."
+  },
+  {
     "id": "static-0671",
     "name": "Chicken Liver Bhuna",
     "category": "Curry",
@@ -21388,6 +21629,70 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1926",
+    "name": "Chicken Steamed Momo (Darjeeling Street-Style Juicy Minced Chicken Dumplings)",
+    "category": "Snacks",
+    "region": "Tibetan",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced boneless chicken",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced ginger & garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "melted butter or oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix juicy Darjeeling chicken filling",
+        "text": "Combine minced chicken with finely chopped onion, spring onion, ginger, garlic, coriander, soy sauce, black pepper, melted butter/oil, 2 tbsp water (for juiciness), and salt.",
+        "minutes": 10
+      },
+      {
+        "section": "Pleat and steam",
+        "text": "Roll rested maida dough into thin 3-inch rounds, fill with 1 tbsp chicken mixture, pleat into classic round bundles, and steam over briskly boiling water for 14–15 minutes.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Mixing 2 tbsp water and a spoon of butter/oil into the chicken keeps the filling tender and soupy inside."
   },
   {
     "id": "static-1710",
@@ -22344,6 +22649,70 @@
     "notes": "Smoky egg chowmin infused with roasted garlic oil and topped with crunchy golden garlic bits."
   },
   {
+    "id": "static-1927",
+    "name": "Chilli Garlic Pan-Tossed Momo (Tangra-Style Spicy Indo-Chinese Chilli Momos)",
+    "category": "Starters",
+    "region": "Indo-Chinese",
+    "prepMinutes": 25,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "steamed or pan-fried veg/chicken momos",
+        "quantity": "10",
+        "unit": ""
+      },
+      {
+        "name": "finely minced garlic & ginger",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "diced capsicum & onion petals",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "red chilli sauce & tomato ketchup",
+        "quantity": "2.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "dark soy sauce & vinegar",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "cornflour (mixed with 3 tbsp water)",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "spring onion greens & oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt & black pepper",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp momos lightly",
+        "text": "Shallow-fry or pan-sear pre-steamed momos in 1 tbsp oil until edges turn golden and crisp; set aside.",
+        "minutes": 6
+      },
+      {
+        "section": "Toss in glossy Tangra chilli glaze",
+        "text": "In a hot wok with 1 tbsp oil, flash-saute minced garlic, ginger, onion petals, and capsicum for 2 minutes. Stir in chilli sauce, ketchup, soy sauce, vinegar, salt, pepper, and cornflour slurry; toss momos on high heat until coated and garnish with spring onion.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Works equally well with veg, paneer, or chicken momos."
+  },
+  {
     "id": "static-1432",
     "name": "Chilli Garlic Veg Chowmin / Burnt Garlic Noodles (Crispy Golden Garlic & Dry Red Chilli Noodles)",
     "category": "Snacks",
@@ -22765,6 +23134,65 @@
       }
     ],
     "notes": "Kolkata Tangra-style Indo-Chinese favorite; add 1/2 cup stock and extra cornflour slurry if you prefer a gravy version."
+  },
+  {
+    "id": "static-1928",
+    "name": "Chingri / Prawn Steamed Momo (Juicy Hand-Minced Prawn, Ginger & Spring Onion Dumplings)",
+    "category": "Starters",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "shelled deveined prawns (finely chopped by knife)",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spring onion & coriander",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & minced garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "light soy sauce & lemon juice",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season hand-chopped prawn filling",
+        "text": "Finely chop cleaned prawns with a sharp knife until coarse-minced, then toss with spring onion, coriander, ginger, garlic, soy sauce, lemon juice, black pepper, 1 tsp oil, and salt.",
+        "minutes": 12
+      },
+      {
+        "section": "Wrap and steam gently",
+        "text": "Fill thin maida wrappers with 1 tbsp prawn mixture, pleat cleanly, and steam for 10–11 minutes (do not over-steam so prawns stay juicy and tender).",
+        "minutes": 11
+      }
+    ],
+    "notes": "Hand-chopping prawns gives bouncy dim-sum-style texture without a food processor."
   },
   {
     "id": "static-1101",
@@ -31761,6 +32189,65 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1929",
+    "name": "Egg Bhurji Momo (Spiced Scrambled Egg & Spring Onion Steamed Dumplings)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "eggs",
+        "quantity": "3",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, green chilli & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger & garlic",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & soy sauce",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook soft spiced egg scramble",
+        "text": "Saute onion, ginger, garlic, and green chilli in oil for 2 minutes; scramble in beaten eggs with black pepper, soy sauce, and salt into fine soft curds, then fold in spring onion and cool slightly.",
+        "minutes": 6
+      },
+      {
+        "section": "Fill wrappers and steam",
+        "text": "Spoon cooled egg bhurji into thin rolled maida rounds, pleat to seal, and steam for 10–12 minutes.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Quick high-protein momo filling that cooks fast because the egg is already scrambled."
+  },
+  {
     "id": "static-0734",
     "name": "Egg Bhurji Sandwich",
     "category": "Sandwich",
@@ -35215,6 +35702,65 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1930",
+    "name": "Fish Momo (Bhetki / Boneless Fish, Ginger & Coriander Steamed Dumplings)",
+    "category": "Starters",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "boneless bhetki or white fish fillet (finely minced by knife)",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, green chilli & coriander",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & minced garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "lime juice & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard or vegetable oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare aromatic fish filling",
+        "text": "Finely chop boneless fish fillets with a knife, then mix with onion, green chilli, coriander, ginger, garlic, lime juice, black pepper, oil, and salt.",
+        "minutes": 12
+      },
+      {
+        "section": "Shape and steam",
+        "text": "Wrap 1 tbsp fish filling in thin maida circles, pleat tightly, and steam over boiling water for 11–12 minutes.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Delicate Bengali-Himalayan fusion; serve with tomato-chilli dip or kasundi."
+  },
+  {
     "id": "static-0013",
     "name": "Fish Roe Fry",
     "category": "Fish Roe",
@@ -35512,6 +36058,65 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1931",
+    "name": "Fried Veg Momo (Golden Crispy Deep-Fried Cabbage & Carrot Dumplings)",
+    "category": "Snacks",
+    "region": "Tibetan",
+    "prepMinutes": 25,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely grated cabbage & carrot",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger, garlic & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fill and seal veg momos",
+        "text": "Squeeze water from grated cabbage and carrot, toss with onion, spring onion, ginger, garlic, green chilli, soy sauce, pepper, and salt. Roll thin maida circles, fill, and seal edges firmly.",
+        "minutes": 15
+      },
+      {
+        "section": "Deep-fry until crisp golden",
+        "text": "Fry in medium-hot oil in batches for 5–6 minutes, turning occasionally, until crisp and golden brown all over.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Keep oil at medium heat so the pleated wrapper cooks crisp without blistering."
   },
   {
     "id": "static-1345",
@@ -39082,6 +39687,65 @@
       }
     ],
     "notes": "Serve hot with sweet chilli dipping sauce or hot garlic sauce."
+  },
+  {
+    "id": "static-1932",
+    "name": "Gondhoraj Chicken Momo (Kolkata-Style Aromatic Gondhoraj Lime Steamed Chicken Dumplings)",
+    "category": "Starters",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced boneless chicken",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "gondhoraj lime zest (finely grated) & juice",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "gondhoraj lime leaves (finely shredded, optional)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger & green chilli",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & butter",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Infuse chicken filling with Gondhoraj",
+        "text": "Mix minced chicken with grated Gondhoraj zest, juice, shredded lime leaves, finely chopped onion, ginger, green chilli, black pepper, softened butter, and salt.",
+        "minutes": 12
+      },
+      {
+        "section": "Wrap and steam aromatic momos",
+        "text": "Fill thin maida discs, pleat tightly, and steam for 14–15 minutes over boiling water (place a Gondhoraj leaf in the steaming water for extra aroma).",
+        "minutes": 15
+      }
+    ],
+    "notes": "Kolkata favourite; grate only the green outer zest of Gondhoraj lime to avoid bitterness."
   },
   {
     "id": "static-0825",
@@ -51852,6 +52516,65 @@
     "notes": "Toasted poppy seeds form a crunchy, nutty crust around the fried potatoes."
   },
   {
+    "id": "static-1933",
+    "name": "Kurkure Veg Momo (Extra-Crunchy Crushed Cornflakes-Coated Fried Momos)",
+    "category": "Starters",
+    "region": "Indo-Chinese",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "steamed veg momos",
+        "quantity": "10",
+        "unit": ""
+      },
+      {
+        "name": "plain cornflakes (hand-crushed coarsely)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "maida & cornflour mix",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri red chilli powder & garlic powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala (for dusting)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Batter-dip and coat in crushed cornflakes",
+        "text": "Whisk maida, cornflour, chilli powder, garlic powder, salt, and water into a smooth slurry. Dip each steamed momo into the slurry, then roll thoroughly in hand-crushed cornflakes.",
+        "minutes": 10
+      },
+      {
+        "section": "Fry until ultra-crunchy",
+        "text": "Deep-fry in medium-hot oil for 3–4 minutes until golden and crackling crisp. Dust with chaat masala and serve hot.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Crush cornflakes inside a clean bag with a rolling pin—no grinder needed."
+  },
+  {
     "id": "static-1778",
     "name": "Kurkuri Besan Bhindi / Rajasthani Besan Wali Bhindi (Crispy Gram Flour & Fennel-Spiced Okra Stir-Fry)",
     "category": "Vegetable",
@@ -63111,6 +63834,60 @@
     "notes": "Umami-rich vegetarian chowmin featuring tender button mushrooms and crunchy baby corn."
   },
   {
+    "id": "static-1934",
+    "name": "Mushroom & Spring Onion Momo (Juicy Hand-Chopped Button Mushroom Steamed Dumplings)",
+    "category": "Snacks",
+    "region": "Tibetan",
+    "prepMinutes": 25,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "button mushrooms (wiped clean & finely chopped)",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spring onion & garlic",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Saute mushroom moisture off",
+        "text": "Saute finely chopped mushrooms and garlic in butter/oil on high heat for 4 minutes until excess mushroom water evaporates; stir in soy sauce, black pepper, salt, and spring onion, then cool.",
+        "minutes": 6
+      },
+      {
+        "section": "Pleat and steam",
+        "text": "Fill thin maida wrappers with the savoury mushroom mix, pleat tightly, and steam for 10–12 minutes.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Quick high-heat sauteing concentrates umami flavour and stops mushrooms from making wrappers soggy."
+  },
+  {
     "id": "static-0720",
     "name": "Mushroom Cheese Sandwich",
     "category": "Sandwich",
@@ -70475,6 +71252,65 @@
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1935",
+    "name": "Paneer Steamed Momo (Spiced Crumbled Cottage Cheese, Cabbage & Ginger Dumplings)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh paneer (hand-crumbled)",
+        "quantity": "150 g",
+        "unit": ""
+      },
+      {
+        "name": "finely grated cabbage & chopped onion",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger, minced garlic & green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander & oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix spiced paneer stuffing",
+        "text": "Squeeze moisture from grated cabbage and combine with hand-crumbled paneer, onion, ginger, garlic, green chilli, coriander, soy sauce, black pepper, 1 tsp oil, and salt.",
+        "minutes": 10
+      },
+      {
+        "section": "Wrap and steam",
+        "text": "Roll thin maida rounds, spoon paneer stuffing in the center, pleat tightly, and steam over boiling water for 12 minutes.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Rich vegetarian protein-packed momo popular across Indian street stalls."
   },
   {
     "id": "static-1920",
@@ -87701,6 +88537,60 @@
     "notes": "Marinating squeezed soya chunks in yogurt and biryani masala ensures they soak up deep flavor instead of tasting bland."
   },
   {
+    "id": "static-1936",
+    "name": "Soya Keema Momo (Protein-Rich Spiced Soya Granule Steamed Dumplings)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "soya granules (soaked in hot salted water & squeezed dry)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger & garlic",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce, garam masala & black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season soya granule filling",
+        "text": "Saute chopped onion, ginger, and garlic in oil for 3 minutes; stir in squeezed soya granules, soy sauce, black pepper, garam masala, and salt, and cook 3 minutes until flavourful.",
+        "minutes": 6
+      },
+      {
+        "section": "Pleat and steam",
+        "text": "Fill thin maida discs with cooled soya stuffing, pleat tightly, and steam for 12 minutes.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Budget-friendly, high-protein vegetarian momo using ready soya granules."
+  },
+  {
     "id": "static-1628",
     "name": "Soya Keema Paratha (Spiced Nutrela Soya Granules Stuffed High-Protein Paratha)",
     "category": "Bread",
@@ -90389,6 +91279,70 @@
       }
     ],
     "notes": "Smoky, succulent North Indian starter that cooks in minutes."
+  },
+  {
+    "id": "static-1937",
+    "name": "Tandoori Tawa Momo (Smoky Spiced Curd-Marinated Pan-Charred Momos)",
+    "category": "Starters",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "steamed veg, paneer, or chicken momos",
+        "quantity": "10",
+        "unit": ""
+      },
+      {
+        "name": "thick curd (hand-whisked)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "roasted besan (gram flour)",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "Kashmiri chilli, garam masala & kasuri methi",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & minced garlic",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala, butter & lemon juice",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Coat steamed momos in tandoori marinade",
+        "text": "Whisk thick curd, roasted besan, 1 tbsp mustard oil, ginger, garlic, Kashmiri chilli, garam masala, kasuri methi, and salt; coat steamed momos evenly and rest 10 minutes.",
+        "minutes": 12
+      },
+      {
+        "section": "Pan-char on hot tawa",
+        "text": "Roast marinated momos on a hot buttered/oiled tawa, turning until lightly charred and smoky on all sides. Dust with chaat masala and squeeze fresh lemon juice.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Delivers Delhi-style tandoori momo flavour using just a flat stovetop tawa."
   },
   {
     "id": "static-1529",
@@ -94103,6 +95057,60 @@
     "notes": "Classic Indo-Chinese vegetable fried rice that pairs with Chilli Chicken, Chilli Paneer, or Veg Manchurian."
   },
   {
+    "id": "static-1938",
+    "name": "Veg Kothey Momo (Crispy Bottom Pan-Fried Vegetable Dumplings)",
+    "category": "Snacks",
+    "region": "Nepali",
+    "prepMinutes": 25,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely grated cabbage & carrot",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spring onion & ginger-garlic",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for pan-searing)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Shape crescent veg kothey",
+        "text": "Squeeze grated cabbage and carrot dry, mix with spring onion, ginger, garlic, soy sauce, pepper, 1 tsp oil, and salt. Wrap in thin maida discs and pleat into flat-bottomed crescents.",
+        "minutes": 15
+      },
+      {
+        "section": "Sear crisp and steam in skillet",
+        "text": "Sear flat bottoms in an oiled skillet for 3 minutes until golden, pour 1/3 cup water around the pan, cover, and steam 8 minutes until water dries up and bases stay crisp.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Crunchy pan-fried base with soft steamed pleats in a single covered skillet."
+  },
+  {
     "id": "static-1434",
     "name": "Veg Manchurian Chowmin / Manchurian Noodles (Street-Style Veg Chowmin Tossed with Crispy Manchurian Balls)",
     "category": "Snacks",
@@ -94214,6 +95222,70 @@
       }
     ],
     "notes": "Street-style Indo-Chinese fried rice tossed directly with juicy, crispy vegetable Manchurian balls."
+  },
+  {
+    "id": "static-1939",
+    "name": "Veg Steamed Momo (Classic Darjeeling Cabbage, Carrot & Ginger Dumplings)",
+    "category": "Snacks",
+    "region": "Tibetan",
+    "prepMinutes": 25,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely grated cabbage",
+        "quantity": "1.25 cups",
+        "unit": ""
+      },
+      {
+        "name": "finely grated carrot",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced ginger & garlic",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & crushed black pepper",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "vegetable oil or butter",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare smooth dough and dry veg filling",
+        "text": "Knead maida with a pinch of salt, 1 tsp oil, and water into a smooth dough; rest 15 minutes. Squeeze excess water from grated cabbage and carrot by hand, then toss with onion, spring onion, ginger, garlic, soy sauce, black pepper, remaining oil, and salt.",
+        "minutes": 15
+      },
+      {
+        "section": "Roll thin, pleat, and steam",
+        "text": "Roll dough into thin 3-inch circles, place 1 tbsp filling in the center, pleat edges neatly to seal, and steam in a greased steamer over boiling water for 12–14 minutes until translucent and tender.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Classic Darjeeling-style veg momo; serve hot with clear vegetable soup and chilli-garlic dip."
   },
   {
     "id": "static-1821",
