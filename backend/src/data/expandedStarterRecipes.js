@@ -3551,6 +3551,90 @@ const definitions = [
     "notes": "High-protein homestyle Bengali soya-potato curry."
   },
   {
+    "id": "static-1904",
+    "name": "Aloo Stuffed Bread Pakora (Classic Street-Style Spiced Potato Bread Fritters)",
+    "category": "Fritters",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (white or brown)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled potatoes (mashed by hand)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "rice flour (for crispness)",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chillies & grated ginger",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain (carom seeds)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, red chilli, coriander & amchur powder",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "garam masala",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "pinch of baking soda",
+        "quantity": "1/8 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced potato stuffing and besan batter",
+        "text": "Mix mashed boiled potatoes with grated ginger, green chillies, coriander, amchur, red chilli, coriander powder, garam masala, and salt. In another bowl, whisk besan, rice flour, ajwain, turmeric, baking soda, salt, and water by hand into a smooth medium-thick coating batter.",
+        "minutes": 10
+      },
+      {
+        "section": "Stuff, dip, and fry crisp triangles",
+        "text": "Spread the potato masala between two bread slices, press gently, and slice diagonally into triangles. Dip each triangle completely in the besan batter and fry in hot oil on medium heat until puffed and golden brown.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Adding 1 tbsp rice flour to the besan batter keeps the crust crisp and less oily."
+  },
+  {
     "id": "static-0925",
     "name": "Aloo Tikki",
     "category": "Starters",
@@ -8978,6 +9062,75 @@ const definitions = [
     "notes": "Classic Bengali evening snack ('chira-badam bhaja') served alongside hot milk tea or black tea."
   },
   {
+    "id": "static-1905",
+    "name": "Bengali Dim Pauruti Chop / Egg Stuffed Bread Pakora (Spiced Boiled Egg & Potato Bread Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "hard-boiled eggs (halved lengthwise)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potato",
+        "quantity": "1 large",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & green chillies",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "bhaja masala (roasted cumin-coriander-chilli)",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric & kalonji (nigella seeds)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard or vegetable oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season potato and nestle egg halves",
+        "text": "Mix mashed potato with chopped onion, green chillies, bhaja masala, and salt. Spread a layer on a bread slice, place a boiled egg half cut-side down, cover with a thin layer of potato and a second bread slice, and cut in half.",
+        "minutes": 10
+      },
+      {
+        "section": "Coat in spiced besan and fry",
+        "text": "Whisk besan with turmeric, kalonji, salt, and water into a thick batter. Dip each stuffed bread sandwich and fry in hot oil until deep golden. Sprinkle black salt and serve with kasundi.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Kolkata telebhaja-style fusion of dim-er chop and bread pakora."
+  },
+  {
     "id": "static-1361",
     "name": "Bengali Goja / Misti Gaja (Flaky Ghee-Shortened Sweet Pastry Cubes in Sugar Glaze)",
     "category": "Sweets",
@@ -13526,6 +13679,70 @@ const definitions = [
     "notes": "Classic Kolkata sweet-shop ('mishtir dokan') large triangular flaky savory pastry."
   },
   {
+    "id": "static-1906",
+    "name": "Bread Aloo Chop (Kolkata-Style Crisp Spiced Potato & Roasted Masala Bread Patties)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (edges trimmed)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "roasted peanuts (crushed)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated ginger & chopped green chillies",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "bhaja masala & turmeric",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour) & rice flour",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare potato filling and wrap in dampened bread",
+        "text": "Mix mashed potatoes with crushed peanuts, ginger, green chillies, bhaja masala, and salt. Briefly dip each bread slice in water, press flat between palms to squeeze dry, place 2 tbsp filling in the center, and shape into a flat oval chop.",
+        "minutes": 10
+      },
+      {
+        "section": "Dip in besan batter and fry",
+        "text": "Coat each bread chop in a light besan-rice flour batter seasoned with turmeric and salt, then fry in hot oil until crisp and golden brown.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Serve hot with puffed rice (muri), sliced onion, and kasundi."
+  },
+  {
     "id": "static-0967",
     "name": "Bread and Butter",
     "category": "Breakfast",
@@ -13761,6 +13978,203 @@ const definitions = [
     "notes": "Instant, elegant party sweet mimicking traditional cham cham using milk-bread and rich khoya."
   },
   {
+    "id": "static-1907",
+    "name": "Bread Cheese Pakora (Melted Cheese & Spiced Potato Stuffed Besan Bread Triangles)",
+    "category": "Fritters",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "cheese slices or hand-grated cheese",
+        "quantity": "2 slices",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potato",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum & green chilli",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oregano, chilli flakes & chaat masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain & turmeric",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Layer potato and cheese inside bread",
+        "text": "Mix mashed potato with chopped capsicum, green chilli, oregano, chilli flakes, chaat masala, and salt. Spread onto bread slices, place cheese in the center so edges stay sealed, top with another slice, and cut into triangles.",
+        "minutes": 10
+      },
+      {
+        "section": "Batter-dip and fry golden",
+        "text": "Dip triangles in spiced besan batter (besan, ajwain, turmeric, salt, water) and fry on medium-high heat until crisp golden so the cheese melts inside without leaking.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Keep cheese slightly away from the bread edges so it stays sealed while frying."
+  },
+  {
+    "id": "static-1908",
+    "name": "Bread Cutlet / Crisp Crumb-Coated Vegetable & Bread Patties",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (crumbled by hand)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "finely grated carrot & chopped beans/peas",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger & green chilli",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "garam masala, chaat masala & red chilli powder",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "fine suji (semolina, for outer crust)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for shallow or deep frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Bind crumbled bread and vegetables",
+        "text": "Lightly sprinkle water on hand-crumbled bread, then knead with mashed potatoes, grated carrot, peas, onion, ginger, green chilli, spices, and salt into a firm dough. Shape into oval cutlets.",
+        "minutes": 10
+      },
+      {
+        "section": "Roll in suji and crisp-fry",
+        "text": "Coat each cutlet evenly in dry fine suji and shallow- or deep-fry in hot oil until crunchy and golden brown.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Hand-crumbling bread and coating in fine suji gives bakery-style crunch with zero mixer."
+  },
+  {
+    "id": "static-1909",
+    "name": "Bread Fingers / Crispy Spiced Besan-Coated Bread Strips",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (cut into 4 strips each)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "rice flour",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped coriander & green chilli",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain, turmeric & Kashmiri chilli powder",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala (for dusting)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced coating batter",
+        "text": "Whisk besan, rice flour, ajwain, turmeric, chilli powder, chopped coriander, green chilli, salt, and water into a smooth medium batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip strips and fry crisp",
+        "text": "Dip each bread strip into the batter, let excess drip off, and fry in hot oil until crisp and golden. Drain and dust with chaat masala.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Quick tea-time snack ready in 20 minutes; great for using day-old bread."
+  },
+  {
     "id": "static-1647",
     "name": "Bread Gulab Jamun (Instant Melt-in-Mouth Bread & Khoya Jamuns in Cardamom Syrup)",
     "category": "Sweets",
@@ -13877,6 +14291,70 @@ const definitions = [
       }
     ],
     "notes": "A celebrated South Indian wedding feast dessert with a rich, caramelized nutty flavor."
+  },
+  {
+    "id": "static-1910",
+    "name": "Bread Keema-Style Soya Pakora (Spiced Minced Soya Granule Stuffed Bread Fritters)",
+    "category": "Fritters",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "soya granules (soaked in hot water & squeezed dry)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger & garlic",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "garam masala, cumin & Kashmiri chilli powder",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain & turmeric",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for sauteing & frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook dry spiced soya keema",
+        "text": "Saute chopped onion, ginger, and garlic in 1 tbsp oil until golden; add squeezed soya granules, garam masala, cumin, chilli powder, and salt, and cook 5 minutes until dry and aromatic.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff bread, coat, and fry",
+        "text": "Sandwich the soya stuffing between bread slices, halve diagonally, dip in seasoned besan batter, and fry until crisp and golden.",
+        "minutes": 10
+      }
+    ],
+    "notes": "High-protein vegetarian bread pakora using ready soya granules—no grinder needed."
   },
   {
     "id": "static-1649",
@@ -13997,6 +14475,198 @@ const definitions = [
     "notes": "An ingenious instant take on traditional malpua, producing melt-in-mouth soft centers with crispy lacy edges."
   },
   {
+    "id": "static-1911",
+    "name": "Bread Medu Vada (Instant Crisp Spiced Bread, Suji & Curd Doughnut Fritters)",
+    "category": "Fritters",
+    "region": "South Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (crumbled finely by hand)",
+        "quantity": "5",
+        "unit": ""
+      },
+      {
+        "name": "fine suji (semolina) & rice flour",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "thick curd",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger, curry leaves & green chilli",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "cumin seeds & crushed black pepper",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead instant bread vada dough",
+        "text": "Combine hand-crumbled bread, suji, rice flour, curd, onion, ginger, curry leaves, green chilli, cumin, black pepper, and salt. Let rest 8 minutes until soft and pliable.",
+        "minutes": 10
+      },
+      {
+        "section": "Shape rings and fry crisp",
+        "text": "With wet hands, shape small patties with a thumbhole in the center and fry on medium heat until crisp and golden brown.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Instant crispy vada without soaking or grinding urad dal."
+  },
+  {
+    "id": "static-1912",
+    "name": "Bread Pakora (Plain Crisp Ajwain-Spiced Besan Coated Bread Triangles)",
+    "category": "Fritters",
+    "region": "North Indian",
+    "prepMinutes": 8,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (cut diagonally into triangles)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "rice flour",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain (carom seeds)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "turmeric & red chilli powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chilli & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "pinch of baking soda",
+        "quantity": "1/8 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk smooth ajwain besan batter",
+        "text": "Whisk besan, rice flour, ajwain, turmeric, chilli powder, green chilli, coriander, baking soda, salt, and water into a smooth flowing batter.",
+        "minutes": 5
+      },
+      {
+        "section": "Dip and fry golden",
+        "text": "Dip each bread triangle quickly in the batter (do not soak) and fry in medium-hot oil until puffed, crisp, and golden. Serve hot with chai and ketchup.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Quickest unstuffed monsoon tea-time bread pakora."
+  },
+  {
+    "id": "static-1913",
+    "name": "Bread Poha Pakora (Crunchy Flattened Rice & Crumbled Bread Onion Fritters)",
+    "category": "Fritters",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (crumbled by hand)",
+        "quantity": "3",
+        "unit": ""
+      },
+      {
+        "name": "poha (flattened rice, rinsed & drained soft)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "thinly sliced onion",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped green chilli, ginger & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cumin seeds, turmeric & red chilli powder",
+        "quantity": "1.25 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix bread, poha, and onion",
+        "text": "Mash softened drained poha with crumbled bread, sliced onion, besan, green chilli, ginger, coriander, spices, and salt until it binds into rough clusters.",
+        "minutes": 8
+      },
+      {
+        "section": "Fry crunchy fritters",
+        "text": "Drop bite-sized portions into hot oil and fry on medium heat until deeply crisp and golden brown.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Poha gives an extra lacy crunch to the outside of each pakora."
+  },
+  {
     "id": "static-1651",
     "name": "Bread Rasmalai (Instant Soft Bread Discs in Saffron Cardamom Rabdi)",
     "category": "Sweets",
@@ -14049,6 +14719,129 @@ const definitions = [
       }
     ],
     "notes": "A 15-minute dessert marvel that perfectly replicates authentic royal rasmalai without curdling chhena."
+  },
+  {
+    "id": "static-1914",
+    "name": "Bread Roll (Crispy Spiced Potato & Green Pea Stuffed Rolled Bread Cylinders)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (crusts trimmed)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "boiled green peas",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, ginger & green chilli",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "amchur, roasted cumin, red chilli & garam masala",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped fresh coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare stuffing and roll sealed cylinders",
+        "text": "Mix mashed potatoes, peas, onion, ginger, green chilli, coriander, spices, and salt; shape into 4 oblong logs. Dip each trimmed bread slice briefly in water, press dry between palms, place a potato log inside, and roll/pinch edges tightly to seal.",
+        "minutes": 12
+      },
+      {
+        "section": "Fry until golden and crisp",
+        "text": "Let rolled bread cylinders air-dry 5 minutes, then fry in medium-hot oil until deeply golden and crisp all around.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Air-drying the shaped rolls for 5 minutes makes them crisp up with minimal oil absorption."
+  },
+  {
+    "id": "static-1915",
+    "name": "Bread Upma Pakora / Crisp Crumbled Bread & Onion Bhajji",
+    "category": "Fritters",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (torn into tiny bits)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion",
+        "quantity": "1 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan & rice flour mix",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped curry leaves, green chilli & coriander",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "fennel or cumin seeds & red chilli powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix crunchy bread-onion bhajji dough",
+        "text": "Toss torn bread bits with chopped onion, besan, rice flour, curry leaves, green chilli, coriander, cumin, chilli powder, salt, and just enough water (2–3 tbsp) to bind.",
+        "minutes": 6
+      },
+      {
+        "section": "Deep-fry crisp clusters",
+        "text": "Drop loose spoonfuls into hot oil and fry on medium heat until crisp and golden brown.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Zero-waste snack for turning leftover bread slices and crusts into crunchy bhajjis."
   },
   {
     "id": "static-1708",
@@ -21362,6 +22155,70 @@ const definitions = [
       }
     ],
     "notes": "A beloved Kolkata street fusion combining Tangra-style dry Chilli Chicken with a flaky Kathi Roll."
+  },
+  {
+    "id": "static-1916",
+    "name": "Chilli Garlic Bread Pakora (Tangra-Style Spicy Garlic & Capsicum Stuffed Bread Fritters)",
+    "category": "Fritters",
+    "region": "Indo-Chinese",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potato",
+        "quantity": "1 large",
+        "unit": ""
+      },
+      {
+        "name": "finely minced garlic & ginger",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum & spring onion",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "red chilli sauce & dark soy sauce",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "besan & cornflour mix",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make Indo-Chinese chilli garlic filling",
+        "text": "Saute minced garlic, ginger, capsicum, and spring onion in 1 tsp oil for 2 minutes; mix with mashed potato, chilli sauce, soy sauce, pepper, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff bread and fry crisp",
+        "text": "Sandwich the filling between bread slices, cut diagonally, dip in a crisp besan-cornflour batter, and fry until golden.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Crisp Indo-Chinese twist on classic bread pakora."
   },
   {
     "id": "static-1692",
@@ -42998,6 +43855,70 @@ const definitions = [
     "notes": "Classic Bengali fair ('mela') and Rathayatra sweet pastry prized for its delicate crispness."
   },
   {
+    "id": "static-1917",
+    "name": "Jodhpur Mirchi Bread Pakora (Stuffed Green Chilli & Spiced Potato Bread Fritters)",
+    "category": "Fritters",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "mild thick green chillies (bhavnagri, deseeded & chopped)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "crushed coriander seeds, fennel & amchur",
+        "quantity": "2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "asafoetida (hing), ajwain & turmeric",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare Rajasthani mirchi-aloo masala",
+        "text": "Temper hing, crushed coriander seeds, and fennel in 1 tsp oil; toss in chopped mild green chillies for 2 minutes, then mash in potatoes, amchur, black salt, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff, coat in besan, and fry",
+        "text": "Stuff between bread slices, slice into triangles, dip in ajwain-turmeric besan batter, and fry until puffed and golden.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Inspired by Jodhpur's iconic mirchi vada combined with crispy bread pakora."
+  },
+  {
     "id": "static-0842",
     "name": "Jolbhora Sandesh",
     "category": "Sweets",
@@ -45925,6 +46846,70 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1918",
+    "name": "Kasundi Aloo Bread Pakora (Bengali Mustard-Sauce & Spiced Potato Bread Fritters)",
+    "category": "Fritters",
+    "region": "Bengali",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "Bengali kasundi (fermented mustard sauce)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & green chillies",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "besan & rice flour mix",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "kalonji, turmeric & bhaja masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Spread kasundi and potato filling",
+        "text": "Spread a thin layer of kasundi on the inside of each bread slice, layer with mashed potato seasoned with onion, green chillies, bhaja masala, and salt, close, and cut diagonally.",
+        "minutes": 8
+      },
+      {
+        "section": "Dip in kalonji besan batter and fry",
+        "text": "Coat each triangle in besan-rice flour batter spiced with kalonji, turmeric, and salt, then fry until golden and crisp.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Kasundi inside the sandwich adds a punchy Bengali mustard zing to every bite."
   },
   {
     "id": "static-1883",
@@ -63621,6 +64606,65 @@ const definitions = [
     "notes": "Traditional Bengali puja bhog and Ashtami luchi accompaniment without onion or garlic."
   },
   {
+    "id": "static-1919",
+    "name": "No-Fry Tawa Bread Pakora (Shallow-Crisped Besan-Coated Stuffed Bread Triangles)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potato",
+        "quantity": "1 large",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, green chilli & coriander",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "ajwain, turmeric, red chilli & chaat masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee (for tawa toasting)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stuff bread and coat thinly",
+        "text": "Sandwich spiced mashed potato between bread slices and cut diagonally. Whisk besan with ajwain, turmeric, chilli, salt, and water into a light batter.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-crisp on hot tawa",
+        "text": "Coat each triangle lightly with batter and toast on a lightly oiled hot tawa on medium-low heat for 3–4 minutes per side until crisp, cooked through, and golden.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Low-oil everyday alternative to deep-fried bread pakora."
+  },
+  {
     "id": "static-0834",
     "name": "Nolen Gur Payesh",
     "category": "Sweets",
@@ -69431,6 +70475,70 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1920",
+    "name": "Paneer Stuffed Bread Pakora (Halwai-Style Spiced Cottage Cheese Slice Bread Fritters)",
+    "category": "Fritters",
+    "region": "Punjabi",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "paneer (cut into 2 thin slabs)",
+        "quantity": "120 g",
+        "unit": ""
+      },
+      {
+        "name": "besan (gram flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "rice flour",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala, Kashmiri chilli & roasted cumin powder",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ajwain, turmeric & pinch of baking soda",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt & black salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Season paneer slab and sandwich",
+        "text": "Rub paneer slabs on both sides with chaat masala, Kashmiri chilli, cumin powder, and black salt. Sandwich each slab between two bread slices and cut diagonally into triangles.",
+        "minutes": 8
+      },
+      {
+        "section": "Coat in halwai batter and fry",
+        "text": "Dip each paneer bread triangle in smooth ajwain-spiced besan batter and fry in medium-hot oil until golden, puffed, and crisp.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Rich Punjabi halwai-style snack; serve hot with tamarind-jaggery relish or ketchup."
   },
   {
     "id": "static-1899",
@@ -88598,6 +89706,70 @@ const definitions = [
       }
     ],
     "notes": "Tangy, glossy Indo-Chinese prawn dish great with steamed or fried rice."
+  },
+  {
+    "id": "static-1921",
+    "name": "Sweet Corn & Cheese Bread Roll (Crispy Spiced Corn-Cheese Stuffed Bread Rolls)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (crusts trimmed)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "boiled sweet corn kernels (roughly chopped)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated cheese",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potato (for binding)",
+        "quantity": "1 small",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum & green chilli",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "black pepper, oregano & chaat masala",
+        "quantity": "1.25 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare corn-cheese stuffing and roll",
+        "text": "Mix roughly chopped boiled corn, grated cheese, mashed potato, capsicum, green chilli, oregano, black pepper, chaat masala, and salt. Dampen trimmed bread slices lightly, press flat, add stuffing, and roll tightly to seal.",
+        "minutes": 12
+      },
+      {
+        "section": "Fry golden crisp",
+        "text": "Fry the sealed rolls in medium-hot oil until crisp and golden brown all over. Drain and serve hot.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Roughly chopping the corn kernels prevents them from popping in hot oil."
   },
   {
     "id": "static-1451",

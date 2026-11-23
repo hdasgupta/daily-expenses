@@ -825,3 +825,9 @@
 
 - **Expense Location Storage (`public.expenses.location_id`)**: Added `location_id` column migration (`schemaSql.js` + idempotent `ensureExpenseLocationSchema` in `expenseModel.js`), persisted it in `createExpense`/`updateExpense`, and joined `public.marketing_locations` to return `location_name` in expense listings.
 - **Nearest GPS Location Field (`Expense.jsx`)**: Added a **Location** dropdown right after **Date of expense** that automatically selects the nearest shopping location using GPS (with an **Auto GPS** refresh button, distance/match hint, prefill carry-over from Marketing List, and display on recorded expense cards).
+
+---
+
+## 84. Bread Pakora & Crisp Bread Snack Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **18 Bread Pakora & Bread Fritter Varieties (`static-1904`–`static-1921`)**: Added **Aloo Stuffed Bread Pakora**, **Bengali Dim Pauruti Chop / Egg Stuffed Bread Pakora**, **Bread Aloo Chop**, **Bread Cheese Pakora**, **Bread Cutlet**, **Bread Fingers**, **Bread Keema-Style Soya Pakora**, **Bread Medu Vada**, **Bread Pakora (Plain)**, **Bread Poha Pakora**, **Bread Roll**, **Bread Upma Pakora**, **Chilli Garlic Bread Pakora**, **Jodhpur Mirchi Bread Pakora**, **Kasundi Aloo Bread Pakora**, **No-Fry Tawa Bread Pakora**, **Paneer Stuffed Bread Pakora**, and **Sweet Corn & Cheese Bread Roll** (canonical categories/regions, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1654**).
