@@ -267,19 +267,48 @@ function getEffectiveRowApproximateCost(row, allRows, allUnits) {
   return null;
 }
 
-function findMostUsedUnitIdForItem(itemId, itemName, categoryId, rows, units) {
+function pickMostFrequentKey(statsMap) {
+  let bestKey = "";
+  let best = null;
+  for (const [key, info] of statsMap.entries()) {
+    if (
+      !best ||
+      info.count > best.count ||
+      (info.count === best.count && info.latestDate > best.latestDate) ||
+      (info.count === best.count && info.latestDate === best.latestDate && info.latestId > best.latestId)
+    ) {
+      best = info;
+      bestKey = key;
+    }
+  }
+  return bestKey;
+}
+
+function recordFreq(statsMap, key, rowDate, rowId) {
+  const existing = statsMap.get(key);
+  if (!existing) {
+    statsMap.set(key, { count: 1, latestDate: rowDate, latestId: rowId });
+  } else {
+    existing.count += 1;
+    if (rowDate > existing.latestDate || (rowDate === existing.latestDate && rowId > existing.latestId)) {
+      existing.latestDate = rowDate;
+      existing.latestId = rowId;
+    }
+  }
+}
+
+function findMostUsedDefaultsForItem(itemId, itemName, categoryId, rows, units) {
   const validUnitIds = new Set((units || []).map((u) => String(u.id)));
   const cleanItemId = String(itemId || "").trim();
   const cleanName = String(itemName || "").trim().toLowerCase();
   const cleanCatId = String(categoryId || "").trim();
-  if (!cleanItemId && !cleanName) return "";
+  if (!cleanItemId && !cleanName) return { unitId: "", quantity: "" };
 
-  const stats = new Map();
+  const matchedRows = [];
+  const unitStats = new Map();
+
   for (const row of rows || []) {
     if (row.status === "removed") continue;
-    const uid = row.unit_id != null && row.unit_id !== "" ? String(row.unit_id) : "";
-    if (!uid || !validUnitIds.has(uid)) continue;
-
     const idMatch = cleanItemId && row.item_id != null && String(row.item_id) === cleanItemId;
     const nameMatch =
       !idMatch &&
@@ -291,32 +320,33 @@ function findMostUsedUnitIdForItem(itemId, itemName, categoryId, rows, units) {
 
     const rowDate = String(row.purchase_date || "").slice(0, 10);
     const rowId = Number(row.id || 0);
-    const existing = stats.get(uid);
-    if (!existing) {
-      stats.set(uid, { count: 1, latestDate: rowDate, latestId: rowId });
-    } else {
-      existing.count += 1;
-      if (rowDate > existing.latestDate || (rowDate === existing.latestDate && rowId > existing.latestId)) {
-        existing.latestDate = rowDate;
-        existing.latestId = rowId;
-      }
+    const uid = row.unit_id != null && row.unit_id !== "" ? String(row.unit_id) : "";
+    const qtyNum = Number(row.quantity);
+    const cleanQty = Number.isFinite(qtyNum) && qtyNum > 0 ? String(Number(qtyNum.toFixed(4))) : "";
+
+    matchedRows.push({ uid, cleanQty, rowDate, rowId });
+    if (uid && validUnitIds.has(uid)) {
+      recordFreq(unitStats, uid, rowDate, rowId);
     }
   }
 
-  let bestUnitId = "";
-  let best = null;
-  for (const [uid, info] of stats.entries()) {
-    if (
-      !best ||
-      info.count > best.count ||
-      (info.count === best.count && info.latestDate > best.latestDate) ||
-      (info.count === best.count && info.latestDate === best.latestDate && info.latestId > best.latestId)
-    ) {
-      best = info;
-      bestUnitId = uid;
+  const bestUnitId = pickMostFrequentKey(unitStats);
+
+  // Pick the most frequently used quantity for the chosen unit first so units & quantities stay consistent
+  const qtyStatsForUnit = new Map();
+  const qtyStatsAll = new Map();
+  for (const entry of matchedRows) {
+    if (!entry.cleanQty) continue;
+    recordFreq(qtyStatsAll, entry.cleanQty, entry.rowDate, entry.rowId);
+    if (bestUnitId && entry.uid === bestUnitId) {
+      recordFreq(qtyStatsForUnit, entry.cleanQty, entry.rowDate, entry.rowId);
     }
   }
-  return bestUnitId;
+
+  const bestQuantity =
+    pickMostFrequentKey(qtyStatsForUnit) || pickMostFrequentKey(qtyStatsAll) || "";
+
+  return { unitId: bestUnitId, quantity: bestQuantity };
 }
 
 export default function MarketingList({ navigate }) {
@@ -845,12 +875,13 @@ export default function MarketingList({ navigate }) {
       if (key === "itemId") {
         const picked = items.find((item) => String(item.id) === String(value));
         const nextItemName = picked?.name || current.itemName;
-        const mostUsedUnitId = value
-          ? findMostUsedUnitIdForItem(value, nextItemName, current.categoryId, rows, units)
-          : "";
+        const defaults = value
+          ? findMostUsedDefaultsForItem(value, nextItemName, current.categoryId, rows, units)
+          : { unitId: "", quantity: "" };
         itemPatch = {
           itemName: nextItemName,
-          ...(mostUsedUnitId ? { unitId: mostUsedUnitId } : {}),
+          ...(defaults.unitId ? { unitId: defaults.unitId } : {}),
+          ...(defaults.quantity ? { quantity: defaults.quantity } : {}),
         };
       }
 

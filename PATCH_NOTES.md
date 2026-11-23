@@ -812,3 +812,9 @@
 ## 81. Auto-Select Most Frequently Used Unit on Item Selection in Marketing List (`MarketingList.jsx`)
 
 - **Historical Unit Auto-Selection (`findMostUsedUnitIdForItem`)**: When selecting an item from the **Known item** dropdown in `frontend/src/pages/MarketingList.jsx`, the form now automatically selects that item's most frequently used unit from non-removed marketing list history (breaking ties by most recent date) and immediately recalculates the approximate cost using that unit.
+
+---
+
+## 82. Auto-Select Most Frequently Used Quantity on Item Selection in Marketing List (`MarketingList.jsx`)
+
+- **Historical Quantity & Unit Auto-Selection (`findMostUsedDefaultsForItem`)**: Extended item selection on `frontend/src/pages/MarketingList.jsx` so choosing an item from **Known item** automatically populates both its most frequently used **Unit** and its most frequently used **Quantity** (matched consistently to that unit, breaking ties by most recent date), and immediately calculates the matching approximate cost.
