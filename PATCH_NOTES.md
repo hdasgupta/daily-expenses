@@ -837,3 +837,9 @@
 ## 85. Momo Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
 
 - **18 Momo Varieties (`static-1922`–`static-1939`)**: Added **Veg Steamed Momo**, **Chicken Steamed Momo**, **Gondhoraj Chicken Momo**, **Paneer Steamed Momo**, **Cheese & Corn Momo**, **Atta Veg Momo**, **Veg Kothey Momo**, **Chicken Kothey Momo**, **Chicken Jhol Momo**, **Chilli Garlic Pan-Tossed Momo**, **Kurkure Veg Momo**, **Tandoori Tawa Momo**, **Fried Veg Momo**, **Chingri / Prawn Steamed Momo**, **Fish Momo**, **Egg Bhurji Momo**, **Mushroom & Spring Onion Momo**, and **Soya Keema Momo** (canonical categories/regions, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1672**).
+
+---
+
+## 86. Pitha / Pithe Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **18 Traditional Pitha Varieties (`static-1940`–`static-1957`)**: Added **Bhapa Pitha**, **Chitoi Pitha**, **Dudh Chitoi Pitha**, **Narkel Patisapta**, **Kheer Patisapta**, **Teler Pitha / Pua Pitha**, **Bhaja Puli Pithe**, **Choshir Payesh / Chushi Pitha**, **Muger Puli**, **Saru Chakli Pitha**, **Nokshi Pitha**, **Pakon Pitha**, **Mera Pitha**, **Ranga Aloor Puli**, **Assamese Til Pitha**, **Arisha Pitha**, **Enduri Pitha**, and **Kakra Pitha** (canonical categories/regions, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1690**).

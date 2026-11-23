@@ -5277,6 +5277,60 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1940",
+    "name": "Arisha Pitha / Odia Rice-Jaggery Sesame Sweet Discs (Crispy & Soft Fried Festive Pitha)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "white sesame seeds",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee or oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "1/2 cup",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make jaggery syrup and rice-flour dough",
+        "text": "Melt grated jaggery in 1/2 cup water and boil 4–5 minutes until a soft-ball syrup forms. Lower heat and stir in fine rice flour and cardamom powder continuously with a wooden spoon until a smooth, non-sticky dough forms.",
+        "minutes": 10
+      },
+      {
+        "section": "Coat with sesame and fry",
+        "text": "Grease palms with ghee, flatten lemon-sized dough balls into 3-inch discs, press white sesame seeds onto both sides, and fry in medium-hot oil/ghee until deep golden brown.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Using store-bought fine rice flour keeps this festive pitha completely manual without soaking or grinding."
+  },
+  {
     "id": "static-1158",
     "name": "Assamese Maasor Dimo Tenga (Assamese Tangy Tomato & Lemon Fish Egg Curry)",
     "category": "Fish Roe",
@@ -5403,6 +5457,50 @@
       }
     ],
     "notes": "Rice flour gives Assamese Maasor Konir Bora its signature light crunch."
+  },
+  {
+    "id": "static-1941",
+    "name": "Assamese Til Pitha (Roasted Rice-Flour Crepes Stuffed with Black Sesame & Jaggery)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine sticky or gobindobhog rice flour",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "black sesame seeds (til)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "water (for sprinkling)",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare sesame-jaggery filling and moistened flour",
+        "text": "Dry-roast black sesame seeds in a pan until aromatic, cool slightly, and crush coarsely by hand with a rolling pin, then mix with grated jaggery. Sprinkle warm water sparingly into rice flour and rub between palms until damp like breadcrumbs.",
+        "minutes": 10
+      },
+      {
+        "section": "Roast crisp on dry tawa and roll",
+        "text": "Heat a flat iron or non-stick tawa on low flame. Spread 2 tbsp damp rice flour into a thin 5-inch disc, cook 1 minute until set, spoon sesame-jaggery filling down the center, and roll into a crisp cylinder on the tawa.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Dry-tawa roasting with zero oil creates the signature papery crunch of Assamese Bihu Til Pitha."
   },
   {
     "id": "static-0860",
@@ -10214,6 +10312,60 @@
     "notes": "Quick 15-minute vegetarian street-style savory French toast loved for breakfast or tiffin boxes."
   },
   {
+    "id": "static-1942",
+    "name": "Bhaja Puli Pithe (Crispy Golden Fried Coconut-Jaggery Stuffed Rice Dumplings)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1.25 cups",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (date palm jaggery)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook coconut-gur pur and knead rice dough",
+        "text": "Cook grated coconut with nolen gur in a kadhai on low heat for 8 minutes until sticky and glossy; add cardamom powder and cool. Boil 1.5 cups water with a pinch of salt, stir in rice flour, cover 5 minutes, and knead while warm into a smooth dough.",
+        "minutes": 15
+      },
+      {
+        "section": "Shape half-moons and fry crisp",
+        "text": "Flatten small dough balls into discs, fill with coconut pur, fold into half-moons, crimp edges firmly, and fry in medium-hot oil until golden and crisp.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Crimp the edges tightly so the molten jaggery-coconut filling stays sealed inside."
+  },
+  {
     "id": "static-1408",
     "name": "Bhakarwadi (Crispy Spiral Namkeen Rolls Stuffed with Coconut, Sesame & Poppy Masala)",
     "category": "Snacks",
@@ -10468,6 +10620,55 @@
       }
     ],
     "notes": "Traditional Bengali steamed delicacy; grind mustard with a pinch of salt and green chilli to prevent bitterness."
+  },
+  {
+    "id": "static-1943",
+    "name": "Bhapa Pitha / Vapa Pitha (Bengali Steamed Rice-Cake Stuffed with Coconut & Nolen Gur)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "patali nolen gur (finely grated/broken)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "lukewarm water",
+        "quantity": "6–7 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Moisten and sieve rice flour",
+        "text": "Sprinkle lukewarm salted water gradually into rice flour and rub by hand until damp enough to hold shape when pressed in your fist, yet crumbly. Pass through a coarse strainer.",
+        "minutes": 10
+      },
+      {
+        "section": "Layer in small bowl and steam",
+        "text": "In a small bowl, layer damp rice flour, grated patali gur, and grated coconut, then cover with another layer of rice flour without pressing too hard. Wrap the bowl in a damp muslin cloth, invert over a steaming kettle/pot rim, remove the bowl gently, and steam covered for 4–5 minutes per pitha.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Winter Bengali street and home classic; serve warm with extra melted nolen gur."
   },
   {
     "id": "static-1781",
@@ -25956,6 +26157,55 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1944",
+    "name": "Chitoi Pitha (Porous Bengali Stovetop Rice-Flour Pancakes)",
+    "category": "Breakfast",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 18,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "lukewarm water",
+        "quantity": "1.75 cups",
+        "unit": ""
+      },
+      {
+        "name": "pinch of baking powder (or eno, optional for pores)",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil (for greasing pan)",
+        "quantity": "1 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk smooth pouring batter",
+        "text": "Whisk fine rice flour, salt, and lukewarm water by hand until completely lump-free and pouring-consistency; rest 15 minutes, then stir in baking powder.",
+        "minutes": 10
+      },
+      {
+        "section": "Cook covered on hot heavy pan",
+        "text": "Heat a lightly greased appam pan or small heavy cast-iron kadhai. Pour a ladle of batter, immediately cover tightly with a lid, and cook on medium-low heat for 3–4 minutes until puffed, porous, and crisp underneath.",
+        "minutes": 16
+      }
+    ],
+    "notes": "Serve hot with nolen gur, bhapa dim, or spicy dhonepata-shorshe bharta."
+  },
+  {
     "id": "static-0888",
     "name": "Chocolate Barfi",
     "category": "Sweets",
@@ -26642,6 +26892,60 @@
       }
     ],
     "notes": "The hearty Bengal gram cousin of Radhaballabhi, popular for Sunday winter breakfasts."
+  },
+  {
+    "id": "static-1945",
+    "name": "Choshir Payesh / Chushi Pitha (Hand-Rolled Rice-Flour Pearls in Nolen Gur Milk)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "full-cream milk",
+        "quantity": "1 litre",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (date palm jaggery)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "bay leaf & green cardamom pods (crushed)",
+        "quantity": "3",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Hand-roll tiny choshi pearls",
+        "text": "Boil 1 cup water with a pinch of salt and ghee, stir in rice flour, cover 5 minutes, and knead smooth. Pinch tiny rice-grain-sized bits and roll between palms into tapered 1/2-inch pearls; dry on a plate dusted with rice flour.",
+        "minutes": 25
+      },
+      {
+        "section": "Simmer in thickened milk and gur",
+        "text": "Boil milk with bay leaf and cardamom until reduced by a quarter. Drop in the choshi pearls gently and simmer 10 minutes until cooked and thickened. Turn off heat, wait 2 minutes, and stir in nolen gur.",
+        "minutes": 22
+      }
+    ],
+    "notes": "Adding nolen gur off the heat prevents the milk from curdling."
   },
   {
     "id": "static-1279",
@@ -31536,6 +31840,55 @@
     "notes": "Crisp, travel-friendly dry kachori filled with a sweet, tangy, and nutty masala."
   },
   {
+    "id": "static-1946",
+    "name": "Dudh Chitoi Pitha (Soaked Porous Rice Cakes in Thickened Nolen Gur & Cardamom Milk)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "freshly made Chitoi Pitha",
+        "quantity": "8",
+        "unit": ""
+      },
+      {
+        "name": "full-cream milk",
+        "quantity": "1 litre",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (date palm jaggery)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut (optional)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "crushed green cardamom & bay leaf",
+        "quantity": "3",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced nolen gur milk",
+        "text": "Simmer milk with bay leaf, cardamom, and optional grated coconut for 15 minutes until slightly thickened. Remove from heat, cool slightly for 2 minutes, and dissolve nolen gur.",
+        "minutes": 18
+      },
+      {
+        "section": "Soak warm Chitoi Pitha",
+        "text": "Submerge warm porous Chitoi Pithas into the warm sweetened milk, cover, and let soak 2–3 hours (or overnight in cool weather) until soft and saturated with rabri-like gur milk.",
+        "minutes": 5
+      }
+    ],
+    "notes": "The porous chitoi sponges up the fragrant nolen gur milk completely."
+  },
+  {
     "id": "static-1880",
     "name": "Dudh Muri with Gur & Banana (Warm Milk, Jaggery & Puffed Rice Tiffin)",
     "category": "Breakfast",
@@ -34923,6 +35276,65 @@
       }
     ],
     "notes": "Traditional Bengali home-made festive sweet prepared for Bijoya Dashami and weddings."
+  },
+  {
+    "id": "static-1947",
+    "name": "Enduri Pitha / Haladi Patra Pitha (Odia Turmeric-Leaf Steamed Coconut-Chhena Cakes)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1.25 cups",
+        "unit": ""
+      },
+      {
+        "name": "fine suji or urad flour (for softness)",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh chhena (crumbled cottage cheese)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery & crushed black pepper/cardamom",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh turmeric leaves (or banana leaves)",
+        "quantity": "8",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare coconut-chhena stuffing and batter",
+        "text": "Cook grated coconut, chhena, jaggery, and cardamom in a pan for 5 minutes until thick; cool. Whisk rice flour, suji, salt, and warm water into a thick spreadable batter.",
+        "minutes": 12
+      },
+      {
+        "section": "Spread on turmeric leaves and steam",
+        "text": "Spread 2 tbsp batter along the center of a washed turmeric leaf, place 1 tbsp coconut-chhena filling, fold the leaf in half, and steam over boiling water for 12–15 minutes until firm and fragrant.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Turmeric leaves impart an unmistakable earthy aroma during steaming."
   },
   {
     "id": "static-0783",
@@ -45762,6 +46174,65 @@
     "notes": "Showstopping Diwali and festive confection pairing smooth cashew katli with vibrant pistachio filling."
   },
   {
+    "id": "static-1948",
+    "name": "Kakra Pitha (Crispy Odia Semolina & Coconut-Jaggery Stuffed Fried Fritters)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine suji (semolina)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "sugar or grated jaggery",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "fennel seeds & cardamom powder",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "oil (for deep frying)",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make suji dough and coconut-fennel stuffing",
+        "text": "Cook grated coconut with half the jaggery, fennel, and cardamom for 6 minutes until sticky. Boil 2 cups water with remaining sugar/jaggery and ghee, slowly whisk in suji while stirring briskly until a smooth soft dough forms; cool slightly and knead.",
+        "minutes": 12
+      },
+      {
+        "section": "Stuff, flatten, and fry golden",
+        "text": "Form greased-hand cups from the suji dough, stuff with coconut pur, seal into smooth flat rounds, and fry on medium heat until crisp and golden brown.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Crisp outside and soft inside; stays tender even after cooling."
+  },
+  {
     "id": "static-1639",
     "name": "Kakro Chaukani / Cucumber Chukauni (Refreshing Nepali Cucumber & Spiced Yogurt Salad)",
     "category": "Side Dish",
@@ -49290,6 +49761,60 @@
       }
     ],
     "notes": "Iconic Bengali dual-textured sweet revealing a juicy mini rasgulla inside a rich khoya shell."
+  },
+  {
+    "id": "static-1949",
+    "name": "Kheer Patisapta (Bengali Thin Crepes Filled with Thickened Milk Khoya & Nolen Gur)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "fine suji (semolina) & rice flour",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "milk (for batter)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated khoya / mawa (or thickened milk kheer)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (date palm jaggery)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder & ghee",
+        "quantity": "1 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare smooth crepe batter and kheer filling",
+        "text": "Whisk maida, suji, rice flour, 2 tbsp nolen gur, and milk into a thin lump-free batter; rest 20 minutes. Simmer grated khoya with remaining nolen gur and cardamom for 5 minutes until thick and creamy.",
+        "minutes": 15
+      },
+      {
+        "section": "Cook thin crepes and roll",
+        "text": "Spread a thin ladle of batter on a lightly ghee-brushed non-stick tawa, cook 1 minute on low heat, place a line of kheer filling along one edge, and roll neatly.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Keep tawa temperature low so the crepes stay pale, soft, and never stick."
   },
   {
     "id": "static-1372",
@@ -60015,6 +60540,55 @@
     "notes": "The legendary royal sweet kachori invented in Jodhpur, Rajasthan."
   },
   {
+    "id": "static-1950",
+    "name": "Mera Pitha (Sylheti-Bengali Steamed Jaggery & Coconut Rice-Flour Dumplings)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare jaggery-coconut rice dough",
+        "text": "Boil water with grated jaggery, coconut, and salt until jaggery melts; stir in rice flour on low heat to form a cohesive dough. Cover 5 minutes, then knead smooth while warm.",
+        "minutes": 12
+      },
+      {
+        "section": "Shape rounded cones and steam",
+        "text": "Roll dough into smooth round or slightly conical balls by hand and steam in a greased steamer over boiling water for 15–18 minutes until firm and glossy.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Traditional Sylheti winter pitha enjoyed warm with a drizzle of ghee."
+  },
+  {
     "id": "static-1769",
     "name": "Methi Besan Chilla (Fresh Fenugreek Leaves, Garlic & Gram Flour Winter Savory Crepes)",
     "category": "Breakfast",
@@ -62998,6 +63572,60 @@
     "notes": "Named after its honeycomb ('mouchak') cross-section of golden boondi and white khoya-chhena."
   },
   {
+    "id": "static-1951",
+    "name": "Muger Puli / Moong Dal Puli Pithe (Golden Fried Yellow Moong-Rice Dumplings in Gur Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "split yellow moong dal (boiled soft & mashed)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fine rice flour & maida",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut & nolen gur (for stuffing)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "sugar & jaggery (for light soaking syrup)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom pods & oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make moong dal dough and coconut pur",
+        "text": "Boil moong dal until completely soft and mash smooth with a fork. Stir into boiling salted water with rice flour and maida to form a soft dough. Cook coconut and nolen gur into sticky pur; boil syrup with 1 cup water and cardamom.",
+        "minutes": 15
+      },
+      {
+        "section": "Stuff, fry golden, and dip in syrup",
+        "text": "Shape small discs, stuff with coconut pur, seal into pulis, fry on medium heat until crisp golden, and soak in warm syrup for 15 minutes.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Moong dal makes the outer shell melt-in-the-mouth soft after soaking in syrup."
+  },
+  {
     "id": "static-1175",
     "name": "Mughlai Paratha (Kolkata Cabin-Style Egg & Spiced Keema Stuffed Paratha)",
     "category": "Bread",
@@ -65024,6 +65652,60 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1952",
+    "name": "Narkel Patisapta (Classic Bengali Crepes Stuffed with Coconut & Nolen Gur)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "fine rice flour & fine suji",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "milk (or milk-water mix)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (date palm jaggery)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder & ghee",
+        "quantity": "1 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook coconut pur and rest batter",
+        "text": "Simmer grated coconut with nolen gur and cardamom for 8–10 minutes until sticky. Whisk maida, rice flour, suji, 2 tbsp nolen gur, and milk into a smooth thin batter; rest 20 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Make crepes and roll with coconut",
+        "text": "Brush a tawa lightly with ghee, spread a thin circle of batter, cook 1 minute, spoon coconut pur along one side, and roll neatly.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Iconic Poush Sankranti Bengali pitha; serve warm or at room temperature."
+  },
+  {
     "id": "static-1619",
     "name": "Narkel Porota (Bengali Sweet Grated Coconut & Jaggery Stuffed Paratha)",
     "category": "Bread",
@@ -65440,6 +66122,55 @@
       }
     ],
     "notes": "Low-oil everyday alternative to deep-fried bread pakora."
+  },
+  {
+    "id": "static-1953",
+    "name": "Nokshi Pitha / Nakshi Pitha (Ornamental Hand-Carved Crisp Rice-Flour Pitha in Gur Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 20,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "boiled water & pinch of salt",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "jaggery or sugar (for syrup)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom pods",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead dough and carve floral patterns",
+        "text": "Stir rice flour into boiling salted water, cover 5 minutes, and knead smooth. Roll 1/4-inch thick, cut into rounds or leaves, brush lightly with oil, and carve geometric or floral motifs using a toothpick/clean bamboo skewer.",
+        "minutes": 25
+      },
+      {
+        "section": "Double-fry crisp and coat in syrup",
+        "text": "Fry on medium-low heat until crisp pale gold (or fry twice for extra crunch), then dip briefly in warm thick jaggery-cardamom syrup and drain.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Traditional Bangladeshi-Bengali artistic pitha prized for its intricate hand-carved motifs."
   },
   {
     "id": "static-0834",
@@ -68564,6 +69295,60 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1954",
+    "name": "Pakon Pitha (Bengali Crisp Patterned Moong Dal & Rice-Flour Pitha in Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 22,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "yellow moong dal (dry-roasted, boiled soft & mashed)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fine rice flour & maida",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "jaggery or sugar (for syrup)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom pods & oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead moong-rice dough and imprint designs",
+        "text": "Mix smooth mashed moong dal with rice flour, maida, ghee, salt, and warm water into a pliable dough. Roll thick discs and press fork or skewer patterns on top.",
+        "minutes": 20
+      },
+      {
+        "section": "Fry crisp and soak briefly in syrup",
+        "text": "Fry on medium-low heat until deep golden and crisp, then dip into warm spiced jaggery/sugar syrup for 5 minutes before serving.",
+        "minutes": 18
+      }
+    ],
+    "notes": "Dry-roasting the moong dal before boiling gives a rich nutty aroma."
   },
   {
     "id": "static-0437",
@@ -83376,6 +84161,55 @@
     "notes": "Traditional Bengali winter sweet transforming earthy sweet potatoes into melt-in-the-mouth pantuas."
   },
   {
+    "id": "static-1955",
+    "name": "Ranga Aloor Puli / Sweet Potato Pitha (Soft Sweet-Potato & Rice-Flour Dumplings in Syrup)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 22,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "sweet potatoes (ranga aloo, boiled & mashed smooth)",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "maida & fine rice flour",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated coconut & jaggery (for stuffing)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "sugar & water (for light syrup)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder & oil (for frying)",
+        "quantity": "as needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead sweet potato dough and stuff",
+        "text": "Knead mashed boiled sweet potato with maida, rice flour, and a pinch of cardamom into a soft dough. Stuff small discs with coconut-jaggery pur and seal into smooth ovals or half-moons.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry golden and soak in syrup",
+        "text": "Fry in medium-hot oil until golden brown, then soak in warm cardamom-sugar syrup for 20 minutes until soft and juicy.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Ranga aloor puli stays pillowy-soft even at room temperature."
+  },
+  {
     "id": "static-1668",
     "name": "Rasbari (Delicate Nepali Spongy Cottage Cheese Balls in Cardamom Syrup)",
     "category": "Sweets",
@@ -85900,6 +86734,60 @@
       }
     ],
     "notes": "Twin specialty to Sorbhaja from Krishnanagar, revered for its delicate sheets of slow-simmered milk cream."
+  },
+  {
+    "id": "static-1956",
+    "name": "Saru Chakli Pitha (Paper-Thin Bengali Stovetop Rice Crepes for Nolen Gur)",
+    "category": "Breakfast",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1.25 cups",
+        "unit": ""
+      },
+      {
+        "name": "urad dal flour (or besan, for crispness)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "fennel seeds (mouri, crushed lightly)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee (for brushing tawa)",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk thin flowing batter",
+        "text": "Whisk fine rice flour, urad flour, crushed fennel seeds, salt, and water into a thin, watery dosa-like batter; rest 20 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Swirl paper-thin crepes on tawa",
+        "text": "Heat a lightly greased flat tawa, pour a ladle of thin batter and swirl quickly into a paper-thin circle, cook 1–2 minutes until edges lift and turn lacy, fold, and serve hot with liquid nolen gur.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Light, lacy Bengali breakfast or winter dinner pitha ready in minutes using fine rice flour."
   },
   {
     "id": "static-1588",
@@ -92177,6 +93065,70 @@
       }
     ],
     "notes": "Classic Kolkata telebhaja-muri pairing for tea-time."
+  },
+  {
+    "id": "static-1957",
+    "name": "Teler Pitha / Pua Pitha (Bengali Fluffy Deep-Fried Nolen Gur & Rice-Flour Fritters)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 16,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fine rice flour",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "maida (all-purpose flour)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fine suji (semolina)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "nolen gur (or cane jaggery, melted)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "fennel seeds (mouri)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "lukewarm milk or water",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "oil (for deep frying)",
+        "quantity": "as needed",
+        "unit": ""
+      },
+      {
+        "name": "pinch of salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Beat and rest pua batter",
+        "text": "Whisk rice flour, maida, suji, melted nolen gur, fennel seeds, salt, and lukewarm milk/water thoroughly for 3–4 minutes until smooth and ribbon-like; rest 25 minutes.",
+        "minutes": 15
+      },
+      {
+        "section": "Fry into puffed golden puas",
+        "text": "Heat oil in a deep kadhai on medium flame. Pour one ladle of batter into the center and splash hot oil gently over the top with a slotted spoon until it puffs up like a poori and turns deep golden brown.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Beating the batter well traps air so every teler pitha puffs up hollow and crisp-edged."
   },
   {
     "id": "static-1669",
