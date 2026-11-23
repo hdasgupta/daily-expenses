@@ -843,3 +843,9 @@
 ## 86. Pitha / Pithe Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
 
 - **18 Traditional Pitha Varieties (`static-1940`–`static-1957`)**: Added **Bhapa Pitha**, **Chitoi Pitha**, **Dudh Chitoi Pitha**, **Narkel Patisapta**, **Kheer Patisapta**, **Teler Pitha / Pua Pitha**, **Bhaja Puli Pithe**, **Choshir Payesh / Chushi Pitha**, **Muger Puli**, **Saru Chakli Pitha**, **Nokshi Pitha**, **Pakon Pitha**, **Mera Pitha**, **Ranga Aloor Puli**, **Assamese Til Pitha**, **Arisha Pitha**, **Enduri Pitha**, and **Kakra Pitha** (canonical categories/regions, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1690**).
+
+---
+
+## 87. Laddoo Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **18 Laddoo Varieties (`static-1958`–`static-1975`)**: Added **Alsi ke Laddoo**, **Badam & Pista Laddoo**, **Chana Dal / Magad ke Laddoo**, **Churmure / Murmura Laddoo**, **Daliya Laddoo**, **Dry Fruit & Khajoor Laddoo**, **Gajar Laddoo**, **Gond ke Laddoo**, **Kaju Rose Laddoo**, **Makhana & Peanut Jaggery Laddoo**, **Malai Paneer Laddoo**, **Methi Dana Laddoo**, **Moong Dal Laddoo**, **Oats & Peanut Jaggery Laddoo**, **Poha & Jaggery Laddoo**, **Ragi / Nachni Laddoo**, **Sattu Laddoo**, and **Singdana / Mungfali Laddoo** (canonical tags, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1708**).

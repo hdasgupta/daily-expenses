@@ -3910,6 +3910,60 @@ const definitions = [
     "notes": "Classic Bengali winter and festive side dish for luchi, porota, or khichuri."
   },
   {
+    "id": "static-1958",
+    "name": "Alsi ke Laddoo (Roasted Flaxseed, Wheat & Jaggery Winter Laddoo)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "flaxseeds (alsi, dry-roasted & hand-crushed with rolling pin)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat flour (atta)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped almonds & cashews",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom & dry ginger powder (sonth)",
+        "quantity": "1 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast flaxseeds and whole wheat flour",
+        "text": "Dry-roast flaxseeds on low heat until they pop, cool, and crush coarsely on a board with a rolling pin. In the same kadhai, roast whole wheat flour in ghee on low flame for 12 minutes until nutty and golden.",
+        "minutes": 15
+      },
+      {
+        "section": "Bind with melted jaggery",
+        "text": "Toss in crushed flaxseeds, chopped nuts, cardamom, and sonth. Turn off heat, mix in grated jaggery until melted from the residual warmth, and roll into firm round laddoos while warm.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Crushing roasted flaxseeds under a rolling pin releases their nutty oils without needing a grinder."
+  },
+  {
     "id": "static-1570",
     "name": "Alu Kochuri (Kolkata Sweet-Shop Spiced Mashed Potato Stuffed Kochuri)",
     "category": "Bread",
@@ -5722,6 +5776,60 @@ const definitions = [
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1959",
+    "name": "Badam & Pista Laddoo (Chopped Almond, Pistachio & Jaggery Energy Laddoo)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "almonds (finely chopped by knife)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "pistachios (finely chopped)",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "white sesame seeds",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast nuts and sesame",
+        "text": "Roast finely chopped almonds, pistachios, and sesame seeds in 1 tsp ghee on low heat for 4 minutes until crisp and fragrant; transfer to a plate.",
+        "minutes": 5
+      },
+      {
+        "section": "Coat in jaggery syrup and shape",
+        "text": "Melt jaggery with remaining ghee and 1 tbsp water until bubbling. Stir in the toasted nuts and cardamom, cool 2 minutes, and roll with greased palms into bite-sized laddoos.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Crunchy, nut-rich laddoo made entirely with a knife and pan."
   },
   {
     "id": "static-0876",
@@ -16759,6 +16867,55 @@ const definitions = [
     "notes": "A wholesome protein-rich variation of Palpali Chukauni pairing nutty chickpeas with tangy tempered curd."
   },
   {
+    "id": "static-1960",
+    "name": "Chana Dal Laddoo / Magad ke Laddoo (Roasted Gram-Flour, Ghee & Cardamom Laddoo)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "coarse besan (mota besan / chana flour)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "powdered sugar or bura",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped cashews & melon seeds (magaj)",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast coarse besan in ghee",
+        "text": "Heat ghee in a heavy kadhai and roast coarse besan on low flame for 15–18 minutes, stirring continuously, until deeply aromatic and golden brown. Sprinkle 1 tbsp water at the end for extra graininess and stir dry.",
+        "minutes": 18
+      },
+      {
+        "section": "Fold in sugar, nuts, and roll",
+        "text": "Cool until comfortably warm to touch, then mix in powdered sugar/bura, roasted melon seeds, cashews, and cardamom. Shape firmly into smooth round laddoos.",
+        "minutes": 8
+      }
+    ],
+    "notes": "A splash of water into hot roasted besan creates traditional danedar Magad texture."
+  },
+  {
     "id": "static-1404",
     "name": "Chana Jor Garam (Spiced Flattened Black Chickpea Namkeen)",
     "category": "Snacks",
@@ -27002,6 +27159,55 @@ const definitions = [
     "notes": "No Kolkata phuchka outing is complete without a bowl of tangy, crunchy Churmur served in a sal-leaf bowl."
   },
   {
+    "id": "static-1961",
+    "name": "Churmure / Murmura Laddoo (Crispy Puffed Rice & Jaggery Laddoo)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "crisp puffed rice (muri / murmura)",
+        "quantity": "4 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "dry ginger or cardamom powder (optional)",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp murmura and boil jaggery syrup",
+        "text": "Dry-roast puffed rice 2 minutes in a wide kadhai until extra crisp; set aside. Melt jaggery with 2 tbsp water and ghee in the kadhai, boiling 4–5 minutes until a drop forms a firm ball in cold water.",
+        "minutes": 8
+      },
+      {
+        "section": "Toss and shape quickly with wet palms",
+        "text": "Turn off heat, fold in crisp murmura and spice quickly until coated. Dip palms lightly in water and press into round laddoos while still warm.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Work swiftly while the jaggery-coated murmura is warm so the laddoos hold together cleanly."
+  },
+  {
     "id": "static-1693",
     "name": "Classic Baked Macaroni and Cheese (Creamy Cheddar & Crispy Breadcrumb Mac & Cheese)",
     "category": "Pasta",
@@ -30218,6 +30424,60 @@ const definitions = [
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1962",
+    "name": "Daliya Laddoo (Ghee-Roasted Broken Wheat, Nuts & Jaggery Laddoo)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 22,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "fine broken wheat (daliya)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped almonds, cashews & raisins",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast daliya in ghee",
+        "text": "Roast broken wheat in ghee on low-medium heat for 10–12 minutes until light golden and fragrant. Add 1/2 cup hot water, cover, and steam 5 minutes until tender and fluffy.",
+        "minutes": 16
+      },
+      {
+        "section": "Bind with jaggery syrup",
+        "text": "Melt jaggery with 1/4 cup water until syrupy, stir into the cooked daliya with nuts, raisins, and cardamom, and cook 3 minutes until it leaves the pan. Cool slightly and roll into laddoos.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Wholesome, fibre-rich sweet made from everyday broken wheat."
+  },
+  {
     "id": "static-1166",
     "name": "Data Aloo Diye Macher Dimer Chorchori (Drumstick, Potato & Fish Egg Chorchori)",
     "category": "Fish Roe",
@@ -31784,6 +32044,60 @@ const definitions = [
       }
     ],
     "notes": "Extra-fluffy, protein-packed Kolkata double egg kathi roll."
+  },
+  {
+    "id": "static-1963",
+    "name": "Dry Fruit & Khajoor Laddoo (Chopped Dates, Figs & Roasted Nut Sugar-Free Laddoo)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "soft seedless dates (khajoor, finely chopped)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "dried figs (anjeer, finely chopped, optional)",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped almonds, cashews, walnuts & pistachios",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "white sesame or poppy seeds",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast nuts and soften chopped dates",
+        "text": "Roast chopped nuts and sesame/poppy seeds in 1 tsp ghee for 4 minutes until crunchy; set aside. In the remaining ghee, warm finely chopped dates and figs on low heat for 4–5 minutes, mashing with a spoon until soft and sticky.",
+        "minutes": 9
+      },
+      {
+        "section": "Knead and roll laddoos",
+        "text": "Fold roasted nuts and cardamom into the warm date paste, knead lightly once cool enough to handle, and roll into smooth nut-studded laddoos.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Naturally sweetened without refined sugar or jaggery; chopping dates finely replaces any food processor."
   },
   {
     "id": "static-1409",
@@ -37842,6 +38156,60 @@ const definitions = [
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1964",
+    "name": "Gajar Laddoo (Slow-Simmered Grated Carrot, Khoya & Coconut Laddoo)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "red or orange carrots (peeled & finely grated)",
+        "quantity": "2.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated khoya / mawa (or milk powder)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "desiccated or fresh grated coconut",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "sugar or jaggery",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder & chopped cashews",
+        "quantity": "2 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook grated carrots in ghee",
+        "text": "Saute finely grated carrots in ghee on medium heat for 10–12 minutes until tender and moisture evaporates.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold in sugar, khoya, and roll",
+        "text": "Add sugar and cook 5 minutes until glossy and dry; mix in grated khoya, coconut, cardamom, and cashews, cooking 4 minutes until mixture binds together. Cool slightly and shape into laddoos.",
+        "minutes": 12
+      }
+    ],
+    "notes": "All the richness of gajar halwa in convenient hand-rolled laddoos."
+  },
+  {
     "id": "static-1608",
     "name": "Gajar Paratha (Spiced Grated Red Carrot & Green Chilli Stuffed Paratha)",
     "category": "Bread",
@@ -40099,6 +40467,60 @@ const definitions = [
       }
     ],
     "notes": "Serve hot with sweet chilli dipping sauce or hot garlic sauce."
+  },
+  {
+    "id": "static-1965",
+    "name": "Gond ke Laddoo (Edible Gum, Whole Wheat, Nuts & Jaggery Winter Laddoo)",
+    "category": "Sweets",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 22,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "edible gum (gond crystals)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat flour (atta)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "2/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped almonds, cashews & raisins",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "dry ginger powder (sonth) & cardamom powder",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Puff gond and roast wheat flour",
+        "text": "Fry gond crystals in 3 tbsp hot ghee in small batches on low-medium heat until they puff up crisp; drain and crush coarsely with the flat bottom of a steel katori/bowl. In remaining ghee, slow-roast atta for 12–14 minutes until golden and fragrant.",
+        "minutes": 18
+      },
+      {
+        "section": "Combine with jaggery and roll",
+        "text": "Mix crushed puffed gond, chopped nuts, sonth, and cardamom into the hot roasted atta. Turn off heat, stir in grated jaggery until melted, and roll into round laddoos while warm.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Crushing puffed gond with a steel katori gives classic crunchy pockets without a mixer."
   },
   {
     "id": "static-1932",
@@ -46172,6 +46594,60 @@ const definitions = [
       }
     ],
     "notes": "Showstopping Diwali and festive confection pairing smooth cashew katli with vibrant pistachio filling."
+  },
+  {
+    "id": "static-1966",
+    "name": "Kaju Rose Laddoo (Hand-Crushed Cashew, Gulkand & Rosewater Laddoo)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "cashews (finely chopped & crushed with rolling pin)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "gulkand (rose petal preserve)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "powdered sugar or condensed milk",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "desiccated coconut",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder & rosewater",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast crushed cashews and coconut",
+        "text": "Warm ghee in a pan on very low heat and toast finely chopped/crushed cashews and desiccated coconut for 3 minutes without browning.",
+        "minutes": 5
+      },
+      {
+        "section": "Bind with gulkand and shape",
+        "text": "Stir in powdered sugar (or condensed milk), gulkand, cardamom, and rosewater on low heat for 3 minutes until cohesive. Cool slightly and roll into fragrant laddoos.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Festive rose-scented mithai with a chewy gulkand-cashew bite."
   },
   {
     "id": "static-1948",
@@ -56764,6 +57240,60 @@ const definitions = [
     "notes": "Sweet and savory modern festive kochuri popular across North and West India."
   },
   {
+    "id": "static-1967",
+    "name": "Makhana & Peanut Jaggery Laddoo (Ghee-Roasted Fox Nut & Crushed Peanut Laddoo)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 14,
+    "servings": 5,
+    "ingredients": [
+      {
+        "name": "fox nuts (makhana, roasted & crushed by rolling pin)",
+        "quantity": "2 cups",
+        "unit": ""
+      },
+      {
+        "name": "roasted peanuts (skinned & coarsely crushed)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "white sesame seeds",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp-roast makhana, peanuts, and sesame",
+        "text": "Roast makhana in 1 tbsp ghee on low heat for 6–7 minutes until brittle, cool, and crush coarsely inside a cloth with a rolling pin. Toast sesame seeds and mix with crushed makhana and peanuts.",
+        "minutes": 10
+      },
+      {
+        "section": "Bind in jaggery syrup",
+        "text": "Melt jaggery with remaining ghee and 2 tbsp water until soft-ball stage, toss in the makhana-peanut mix and cardamom, and roll into laddoos while warm.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Light, crunchy calcium-rich laddoo great for fasting days and tea-time."
+  },
+  {
     "id": "static-1190",
     "name": "Malabar Parotta (Kerala Flaky Layered Coin Parotta)",
     "category": "Bread",
@@ -56973,6 +57503,55 @@ const definitions = [
       }
     ],
     "notes": "Always pour the hot gravy over the fragile Malai Koftas at serving time rather than boiling them in the pot."
+  },
+  {
+    "id": "static-1968",
+    "name": "Malai Paneer Laddoo (Soft Crumbled Chhena, Milk & Cardamom Laddoo)",
+    "category": "Sweets",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "fresh paneer or chhena (finely grated/kneaded by hand)",
+        "quantity": "200 g",
+        "unit": ""
+      },
+      {
+        "name": "condensed milk (or milk + sugar)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped pistachios & saffron strands",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead paneer smooth and simmer with condensed milk",
+        "text": "Mash fresh paneer/chhena with the heel of your palm for 3–4 minutes until creamy. Cook in a greased non-stick pan with condensed milk on low flame for 6–8 minutes, stirring constantly, until thick and leaving the sides.",
+        "minutes": 12
+      },
+      {
+        "section": "Shape delicate malai laddoos",
+        "text": "Fold in cardamom powder, cool until warm, roll into smooth white laddoos, and garnish each with chopped pistachios and saffron.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Melt-in-the-mouth Bengali sandesh-style malai laddoo ready in 25 minutes."
   },
   {
     "id": "static-1567",
@@ -60732,6 +61311,60 @@ const definitions = [
     "notes": "Wholesome steamed Gujarati snack that uses very little oil while packing fresh greens and gram flour."
   },
   {
+    "id": "static-1969",
+    "name": "Methi Dana Laddoo (Traditional Winter Fenugreek, Wheat & Jaggery Laddoo)",
+    "category": "Sweets",
+    "region": "Rajasthani",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "fenugreek seeds (methi, soaked in milk & dried or crushed)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "whole wheat flour (atta)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "edible gum (gond, puffed & crushed)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "dry ginger powder (sonth) & chopped nuts",
+        "quantity": "1/3 cup",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soften methi and roast atta in ghee",
+        "text": "Dry-roast methi seeds lightly and crush coarsely with a rolling pin (or soak in warm milk 1 hour to reduce bitterness). Slow-roast whole wheat flour in ghee for 12–14 minutes until golden.",
+        "minutes": 16
+      },
+      {
+        "section": "Mix jaggery, gond, and shape",
+        "text": "Add crushed methi, puffed gond, chopped nuts, and sonth; remove from heat, stir in grated jaggery until melted, and roll into small winter laddoos.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Traditional warming winter tonic laddoo; sonth and jaggery balance the methi bitterness."
+  },
+  {
     "id": "static-1756",
     "name": "Methi Gatta ki Sabzi (Fresh Fenugreek & Besan Dumplings in Spiced Marwari Gravy)",
     "category": "Curry",
@@ -63049,6 +63682,55 @@ const definitions = [
       }
     ],
     "notes": "A softer, aromatic homestyle Bengali counterpart to Rajasthani khasta kachori."
+  },
+  {
+    "id": "static-1970",
+    "name": "Moong Dal Laddoo (Slow-Roasted Yellow Moong Flour, Ghee & Cardamom Laddoo)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "yellow moong dal flour (besan-fine moong atta)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "powdered sugar or grated jaggery",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "chopped almonds & pistachios",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast moong flour in ghee",
+        "text": "Heat ghee in a heavy kadhai and roast yellow moong flour on low flame for 15 minutes, stirring continuously, until golden and aromatic.",
+        "minutes": 15
+      },
+      {
+        "section": "Cool slightly, sweeten, and roll",
+        "text": "Remove from heat, let cool until warm, mix in powdered sugar/jaggery, chopped nuts, and cardamom, and roll firmly into round laddoos.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Light, digestible protein-rich laddoo using ready moong dal flour without soaking or grinding."
   },
   {
     "id": "static-0170",
@@ -66461,6 +67143,60 @@ const definitions = [
       }
     ],
     "notes": "High-fiber, low-glycemic breakfast combining soluble beta-glucan fiber from oats with plant protein from besan."
+  },
+  {
+    "id": "static-1971",
+    "name": "Oats & Peanut Jaggery Laddoo (Toasted Rolled Oats, Crushed Peanuts & Gur Laddoo)",
+    "category": "Sweets",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "rolled or quick oats",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "roasted peanuts (coarsely crushed)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "desiccated coconut",
+        "quantity": "1/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "2/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toast oats and coconut",
+        "text": "Dry-roast oats and desiccated coconut on low-medium heat for 6 minutes until crisp and nutty; crush slightly by hand once cool enough.",
+        "minutes": 6
+      },
+      {
+        "section": "Bind with jaggery and ghee",
+        "text": "Melt jaggery with ghee and 2 tbsp water until bubbling, toss in toasted oats, coconut, crushed peanuts, and cardamom, and shape into warm laddoos.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Quick fibre-rich snack laddoo for breakfast or afternoon tiffin."
   },
   {
     "id": "static-1620",
@@ -77214,6 +77950,55 @@ const definitions = [
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-1972",
+    "name": "Poha & Jaggery Laddoo / Avalakki Laddoo (Roasted Flattened Rice, Coconut & Gur Laddoo)",
+    "category": "Sweets",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "thin or thick poha (flattened rice, dry-roasted & hand-crushed)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "2/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chopped cashews, raisins & cardamom powder",
+        "quantity": "3 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast and crush poha",
+        "text": "Dry-roast poha on low heat for 5 minutes until crisp, cool briefly, and crush coarsely by hand or rolling pin. Toast cashews, raisins, and coconut in 1 tbsp ghee.",
+        "minutes": 8
+      },
+      {
+        "section": "Melt jaggery and roll",
+        "text": "Melt jaggery with 2 tbsp water until syrupy, fold in crushed poha, coconut, nuts, remaining ghee, and cardamom, and roll into laddoos while warm.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Krishna Janmashtami-style Avalakki laddoo made without any mixer."
+  },
+  {
     "id": "static-1626",
     "name": "Poha Paratha (Spiced Softened Flattened Rice, Potato & Herb Stuffed Paratha)",
     "category": "Bread",
@@ -83088,6 +83873,55 @@ const definitions = [
     "notes": "Iconic Bengali festive stuffed puri scented with roasted fennel (mouri), ginger, and hing."
   },
   {
+    "id": "static-1973",
+    "name": "Ragi / Nachni Laddoo (Roasted Finger Millet, Ghee, Jaggery & Sesame Laddoo)",
+    "category": "Sweets",
+    "region": "Maharashtrian",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 5,
+    "ingredients": [
+      {
+        "name": "ragi (finger millet / nachni) flour",
+        "quantity": "1.25 cups",
+        "unit": ""
+      },
+      {
+        "name": "desi ghee",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "white sesame seeds & chopped peanuts",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow-roast ragi flour in ghee",
+        "text": "Heat ghee in a kadhai and roast ragi flour on low heat for 8–10 minutes until nutty and aromatic; toast sesame seeds and chopped peanuts alongside for the last 2 minutes.",
+        "minutes": 12
+      },
+      {
+        "section": "Fold in jaggery and shape",
+        "text": "Turn off heat, mix in finely grated jaggery and cardamom so the jaggery melts into the warm flour, and roll into iron-rich round laddoos.",
+        "minutes": 6
+      }
+    ],
+    "notes": "Calcium- and iron-rich Maharashtrian Nachni laddoo ready in 25 minutes."
+  },
+  {
     "id": "static-0822",
     "name": "Ragi Malt",
     "category": "Beverage",
@@ -86854,6 +87688,55 @@ const definitions = [
     "notes": "Pungent and protein-packed street food staple in Kolkata, Howrah, and across the Bengal-Bihar border."
   },
   {
+    "id": "static-1974",
+    "name": "Sattu Laddoo (No-Cook Roasted Chana Sattu, Ghee & Jaggery Protein Laddoo)",
+    "category": "Sweets",
+    "region": "Bihari",
+    "prepMinutes": 10,
+    "cookMinutes": 3,
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "roasted chana sattu (Bengal gram flour)",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "finely grated jaggery or powdered sugar",
+        "quantity": "2/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "melted desi ghee",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped almonds or cashews",
+        "quantity": "2 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Warm ghee and mix with sattu",
+        "text": "Combine sattu, finely grated jaggery (or powdered sugar), cardamom powder, and chopped nuts in a bowl. Pour warm melted ghee gradually and rub well by hand until the mixture holds together when pressed.",
+        "minutes": 8
+      },
+      {
+        "section": "Shape into smooth laddoos",
+        "text": "Press firmly between palms to form smooth, firm round sattu laddoos.",
+        "minutes": 5
+      }
+    ],
+    "notes": "Virtually no-cook high-protein laddoo since sattu is already pre-roasted."
+  },
+  {
     "id": "static-1178",
     "name": "Sattu Paratha (Bihari Spiced Roasted Gram Flour Stuffed Paratha)",
     "category": "Bread",
@@ -88789,6 +89672,55 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-1975",
+    "name": "Singdana / Mungfali Laddoo (Roasted Crushed Peanut & Jaggery Chikki Laddoo)",
+    "category": "Sweets",
+    "region": "Maharashtrian",
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "raw peanuts",
+        "quantity": "1.5 cups",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery (gur)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "water",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast, skin, and coarsely crush peanuts",
+        "text": "Dry-roast peanuts on low-medium heat for 8 minutes until crunchy, cool slightly, rub skins off by hand, and crush coarsely under a rolling pin.",
+        "minutes": 10
+      },
+      {
+        "section": "Coat in jaggery syrup and roll",
+        "text": "Boil jaggery with 2 tbsp water and ghee until soft-crack stage, toss in crushed peanuts and cardamom, and roll into round laddoos with lightly greased palms while warm.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Classic crispy peanut-jaggery laddoo made with just a kadhai and rolling pin."
   },
   {
     "id": "static-0839",
