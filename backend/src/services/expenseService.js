@@ -112,6 +112,9 @@ function normalizeExpense(input, userId) {
     totalCost,
     expenseType: input.expenseType === "online" ? "online" : "cash",
     comment: optionalText(input.comment),
+    locationId: /^\d+$/.test(String(input.locationId || "").trim())
+      ? String(input.locationId).trim()
+      : null,
     userId,
   };
 }

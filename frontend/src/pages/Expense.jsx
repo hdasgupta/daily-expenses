@@ -1,6 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronLeft, ChevronRight, Eye, FileUp, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Eye, FileUp, LocateFixed, Plus, RotateCcw, Trash2, UploadCloud, X } from "lucide-react";
 import { api } from "../lib/api";
+import {
+  describeAutoMatchReason,
+  fetchLocationsWithGps,
+  formatLocationOptionLabel,
+  getCurrentGpsPosition,
+  isValidCoordinates,
+  pickBestLocation,
+  recordLocationSelection,
+} from "../lib/locationTracker";
 import Pagination from "../components/Pagination";
 import { formatDateKolkata, formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
@@ -620,9 +629,10 @@ function asArray(value) {
   return [];
 }
 
-function emptyForm(date = today()) {
+function emptyForm(date = today(), locationId = "") {
   return {
     expenseDate: date,
+    locationId,
     categoryId: "",
     itemId: TOTAL_ITEM,
     otherItem: "",
@@ -750,6 +760,12 @@ export default function Expense() {
   const [form, setForm] = useState(emptyForm());
   const [editingId, setEditingId] = useState(null);
 
+  const [locations, setLocations] = useState([]);
+  const [currentCoords, setCurrentCoords] = useState(null);
+  const [autoLocationHint, setAutoLocationHint] = useState("");
+  const [detectingGps, setDetectingGps] = useState(false);
+  const userChoseLocationRef = useRef(false);
+  const defaultLocationIdRef = useRef("");
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [units, setUnits] = useState([]);
@@ -857,7 +873,7 @@ export default function Expense() {
   );
 
   const loadMeta = async () => {
-    const [categoryData, unitData, survivorData] = await Promise.all([
+    const [categoryData, unitData, survivorData, locBundle] = await Promise.all([
       api("/meta/categories", {
         loadingMessage: "Loading expense categories…",
       }),
@@ -867,16 +883,94 @@ export default function Expense() {
       api("/meta/survivors", {
         loadingMessage: "Loading survivors…",
       }),
+      fetchLocationsWithGps({ silent: true, fastInitial: true }).catch(() => ({ locations: [] })),
     ]);
 
-    /*
-     * Metadata endpoints normally return arrays. Accept arrays as well as
-     * paginated { rows }, { data }, or { items } responses so an API-shape
-     * difference can never cause a .map() runtime error in this page.
-     */
     setCategories(asArray(categoryData));
     setUnits(asArray(unitData));
     setSurvivors(asArray(survivorData));
+
+    const locList = asArray(locBundle?.locations);
+    setLocations(locList);
+    if (isValidCoordinates(locBundle?.coords)) {
+      setCurrentCoords(locBundle.coords);
+    }
+    if (locBundle?.bestLocation) {
+      defaultLocationIdRef.current = String(locBundle.bestLocation.id);
+      setForm((current) => {
+        if (current.locationId || userChoseLocationRef.current) return current;
+        setAutoLocationHint(describeAutoMatchReason(locBundle.bestLocation));
+        return { ...current, locationId: String(locBundle.bestLocation.id) };
+      });
+    }
+
+    // Refine nearest location with live GPS in the background
+    getCurrentGpsPosition({ timeout: 6000 })
+      .then(async (liveCoords) => {
+        if (!isValidCoordinates(liveCoords)) return;
+        setCurrentCoords(liveCoords);
+        try {
+          const refreshed = await fetchLocationsWithGps({ coords: liveCoords, silent: true });
+          if (Array.isArray(refreshed?.locations) && refreshed.locations.length) {
+            setLocations(refreshed.locations);
+            if (refreshed.bestLocation) {
+              defaultLocationIdRef.current = String(refreshed.bestLocation.id);
+              if (!userChoseLocationRef.current) {
+                setForm((current) => ({
+                  ...current,
+                  locationId: String(refreshed.bestLocation.id),
+                }));
+                setAutoLocationHint(describeAutoMatchReason(refreshed.bestLocation));
+              }
+            }
+          }
+        } catch {
+          const localRefined = pickBestLocation(locList, liveCoords);
+          if (localRefined.bestLocation) {
+            setLocations(localRefined.locations);
+            defaultLocationIdRef.current = String(localRefined.bestLocation.id);
+            if (!userChoseLocationRef.current) {
+              setForm((current) => ({
+                ...current,
+                locationId: String(localRefined.bestLocation.id),
+              }));
+              setAutoLocationHint(describeAutoMatchReason(localRefined.bestLocation));
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  };
+
+  const handleAutoDetectLocation = async () => {
+    setDetectingGps(true);
+    try {
+      const coords = await getCurrentGpsPosition({
+        timeout: 8000,
+        maximumAge: 0,
+        enableHighAccuracy: true,
+      });
+      setCurrentCoords(coords);
+      const refreshed = await fetchLocationsWithGps({ coords, silent: true });
+      const locList = Array.isArray(refreshed?.locations) ? refreshed.locations : locations;
+      setLocations(locList);
+      const best = refreshed?.bestLocation || pickBestLocation(locList, coords).bestLocation;
+      if (best) {
+        userChoseLocationRef.current = false;
+        defaultLocationIdRef.current = String(best.id);
+        updateField("locationId", String(best.id));
+        setAutoLocationHint(describeAutoMatchReason(best));
+      }
+    } catch {
+      const fallback = pickBestLocation(locations, currentCoords);
+      if (fallback?.bestLocation) {
+        setLocations(fallback.locations);
+        updateField("locationId", String(fallback.bestLocation.id));
+        setAutoLocationHint(describeAutoMatchReason(fallback.bestLocation));
+      }
+    } finally {
+      setDetectingGps(false);
+    }
   };
 
   const loadItems = async (selectedCategory) => {
@@ -966,7 +1060,7 @@ export default function Expense() {
     setEditingId(null);
     setDate(prefill.expenseDate || today());
     setForm({
-      ...emptyForm(prefill.expenseDate || today()),
+      ...emptyForm(prefill.expenseDate || today(), String(prefill.locationId || defaultLocationIdRef.current || "")),
       categoryId: String(prefill.categoryId || ""),
       itemId: prefill.marketingItemIds
         ? TOTAL_ITEM
@@ -1128,7 +1222,7 @@ export default function Expense() {
     setEditingId(null);
     setDate(savedDate);
     setPage(1);
-    setForm(emptyForm(savedDate));
+    setForm(emptyForm(savedDate, form.locationId || defaultLocationIdRef.current || ""));
     resetProofInput();
 
     await loadExpenses(1, savedDate);
@@ -1138,8 +1232,11 @@ export default function Expense() {
     setEditingId(row.id);
     setDate(row.expense_date.slice(0, 10));
 
+    userChoseLocationRef.current = Boolean(row.location_id);
+    setAutoLocationHint("");
     setForm({
       expenseDate: row.expense_date.slice(0, 10),
+      locationId: row.location_id ? String(row.location_id) : "",
       categoryId: String(row.category_id),
       itemId: row.item_id ? String(row.item_id) : row.other_item ? OTHER_ITEM : TOTAL_ITEM,
       otherItem: row.other_item || "",
@@ -1260,6 +1357,57 @@ export default function Expense() {
               <ChevronRight size={14} />
             </button>
           </div>
+        </label>
+
+        <label>
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 8,
+            }}
+          >
+            <span>Location</span>
+            <button
+              type="button"
+              className="secondary"
+              style={{ padding: "2px 8px", fontSize: 11.5 }}
+              onClick={handleAutoDetectLocation}
+              disabled={detectingGps || !locations.length}
+              title="Auto-select nearest location using GPS"
+            >
+              <LocateFixed size={13} />
+              {detectingGps ? "Locating…" : "Auto GPS"}
+            </button>
+          </span>
+          <select
+            value={form.locationId}
+            onChange={(e) => {
+              const val = e.target.value;
+              userChoseLocationRef.current = Boolean(val);
+              setAutoLocationHint("");
+              updateField("locationId", val);
+              if (val) {
+                void recordLocationSelection(val, {
+                  coords: currentCoords,
+                  source: "expense_select",
+                });
+              }
+            }}
+          >
+            <option value="">Choose location (optional)</option>
+            {locations.map((loc) => (
+              <option key={loc.id} value={loc.id}>
+                {formatLocationOptionLabel(loc)}
+              </option>
+            ))}
+          </select>
+          {autoLocationHint ? (
+            <small className="field-note" style={{ color: "var(--primary)" }}>
+              {autoLocationHint}
+            </small>
+          ) : null}
         </label>
 
         <label>
@@ -1624,6 +1772,7 @@ export default function Expense() {
               <strong>
                 {formatExpenseDate(row.expense_date)} · ₹{Number(row.total_cost).toFixed(2)} ·{" "}
                 {row.category} · {row.item || row.other_item || "Total"}
+                {row.location_name ? ` · ${row.location_name}` : ""}
               </strong>
 
               {row.quantity !== null && row.quantity !== undefined && row.quantity !== "" ? (

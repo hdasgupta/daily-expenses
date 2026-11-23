@@ -1109,6 +1109,7 @@ export default function MarketingList({ navigate }) {
       "marketing-purchase-prefill",
       JSON.stringify({
         marketingItemIds: selectedPendingRows.map((row) => String(row.id)),
+        locationId: String(first.location_id || form.locationId || ""),
         categoryId: String(first.category_id || ""),
         expenseDate: String(form.purchaseDate || todayKolkata()).slice(0, 10),
         comment: `Marketing list items:\n${comment}`,

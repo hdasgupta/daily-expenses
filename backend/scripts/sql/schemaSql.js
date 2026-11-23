@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS public.expenses (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE public.expenses ADD COLUMN IF NOT EXISTS location_id BIGINT;
 CREATE TABLE IF NOT EXISTS public.expense_shares (
   id BIGSERIAL PRIMARY KEY,
   expense_id BIGINT NOT NULL REFERENCES public.expenses(id) ON DELETE CASCADE,

@@ -9,7 +9,22 @@ const sortSql = {
   expense_type: "e.expense_type",
 };
 
+let expenseLocationSchemaPromise = null;
+
+export async function ensureExpenseLocationSchema() {
+  if (!expenseLocationSchemaPromise) {
+    expenseLocationSchemaPromise = q(
+      `ALTER TABLE public.expenses ADD COLUMN IF NOT EXISTS location_id BIGINT`,
+    ).catch((err) => {
+      expenseLocationSchemaPromise = null;
+      console.error("Failed to ensure public.expenses.location_id column", err);
+    });
+  }
+  await expenseLocationSchemaPromise;
+}
+
 export async function listExpenses({ date, page, pageSize, search, sortColumn, sortDirection }) {
+  await ensureExpenseLocationSchema();
   const sort = sortSql[sortColumn] || "e.id";
   const dir = sortDirection === "asc" ? "ASC" : "DESC";
   const like = `%${search || ""}%`;
@@ -28,11 +43,13 @@ export async function listExpenses({ date, page, pageSize, search, sortColumn, s
 }
 
 export async function findExpense(id) {
+  await ensureExpenseLocationSchema();
   const result = await q(expenseSql.find, [id]);
   return result.rows[0] || null;
 }
 
 export async function createExpense(client, data) {
+  await ensureExpenseLocationSchema();
   const result = await client.query(expenseSql.create, [
     data.expenseDate,
     data.categoryId,
@@ -44,11 +61,13 @@ export async function createExpense(client, data) {
     data.expenseType,
     data.comment,
     data.userId,
+    data.locationId || null,
   ]);
   return result.rows[0].id;
 }
 
 export async function updateExpense(client, id, data) {
+  await ensureExpenseLocationSchema();
   const result = await client.query(expenseSql.update, [
     data.expenseDate,
     data.categoryId,
@@ -59,6 +78,7 @@ export async function updateExpense(client, id, data) {
     data.totalCost,
     data.expenseType,
     data.comment,
+    data.locationId || null,
     id,
   ]);
   return result.rows[0]?.id || null;

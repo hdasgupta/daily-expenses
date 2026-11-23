@@ -818,3 +818,10 @@
 ## 82. Auto-Select Most Frequently Used Quantity on Item Selection in Marketing List (`MarketingList.jsx`)
 
 - **Historical Quantity & Unit Auto-Selection (`findMostUsedDefaultsForItem`)**: Extended item selection on `frontend/src/pages/MarketingList.jsx` so choosing an item from **Known item** automatically populates both its most frequently used **Unit** and its most frequently used **Quantity** (matched consistently to that unit, breaking ties by most recent date), and immediately calculates the matching approximate cost.
+
+---
+
+## 83. Location Field with Nearest GPS Default on Add Expenses Page (`Expense.jsx`, `expenseSql.js`, `expenseModel.js`, `expenseService.js`, `schemaSql.js`)
+
+- **Expense Location Storage (`public.expenses.location_id`)**: Added `location_id` column migration (`schemaSql.js` + idempotent `ensureExpenseLocationSchema` in `expenseModel.js`), persisted it in `createExpense`/`updateExpense`, and joined `public.marketing_locations` to return `location_name` in expense listings.
+- **Nearest GPS Location Field (`Expense.jsx`)**: Added a **Location** dropdown right after **Date of expense** that automatically selects the nearest shopping location using GPS (with an **Auto GPS** refresh button, distance/match hint, prefill carry-over from Marketing List, and display on recorded expense cards).
