@@ -267,6 +267,58 @@ function getEffectiveRowApproximateCost(row, allRows, allUnits) {
   return null;
 }
 
+function findMostUsedUnitIdForItem(itemId, itemName, categoryId, rows, units) {
+  const validUnitIds = new Set((units || []).map((u) => String(u.id)));
+  const cleanItemId = String(itemId || "").trim();
+  const cleanName = String(itemName || "").trim().toLowerCase();
+  const cleanCatId = String(categoryId || "").trim();
+  if (!cleanItemId && !cleanName) return "";
+
+  const stats = new Map();
+  for (const row of rows || []) {
+    if (row.status === "removed") continue;
+    const uid = row.unit_id != null && row.unit_id !== "" ? String(row.unit_id) : "";
+    if (!uid || !validUnitIds.has(uid)) continue;
+
+    const idMatch = cleanItemId && row.item_id != null && String(row.item_id) === cleanItemId;
+    const nameMatch =
+      !idMatch &&
+      cleanName &&
+      String(row.item_name || "").trim().toLowerCase() === cleanName &&
+      (!cleanCatId || String(row.category_id || "") === cleanCatId);
+
+    if (!idMatch && !nameMatch) continue;
+
+    const rowDate = String(row.purchase_date || "").slice(0, 10);
+    const rowId = Number(row.id || 0);
+    const existing = stats.get(uid);
+    if (!existing) {
+      stats.set(uid, { count: 1, latestDate: rowDate, latestId: rowId });
+    } else {
+      existing.count += 1;
+      if (rowDate > existing.latestDate || (rowDate === existing.latestDate && rowId > existing.latestId)) {
+        existing.latestDate = rowDate;
+        existing.latestId = rowId;
+      }
+    }
+  }
+
+  let bestUnitId = "";
+  let best = null;
+  for (const [uid, info] of stats.entries()) {
+    if (
+      !best ||
+      info.count > best.count ||
+      (info.count === best.count && info.latestDate > best.latestDate) ||
+      (info.count === best.count && info.latestDate === best.latestDate && info.latestId > best.latestId)
+    ) {
+      best = info;
+      bestUnitId = uid;
+    }
+  }
+  return bestUnitId;
+}
+
 export default function MarketingList({ navigate }) {
   const [rows, setRows] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -789,15 +841,23 @@ export default function MarketingList({ navigate }) {
     }
 
     setForm((current) => {
+      let itemPatch = {};
+      if (key === "itemId") {
+        const picked = items.find((item) => String(item.id) === String(value));
+        const nextItemName = picked?.name || current.itemName;
+        const mostUsedUnitId = value
+          ? findMostUsedUnitIdForItem(value, nextItemName, current.categoryId, rows, units)
+          : "";
+        itemPatch = {
+          itemName: nextItemName,
+          ...(mostUsedUnitId ? { unitId: mostUsedUnitId } : {}),
+        };
+      }
+
       const next = {
         ...current,
         [key]: value,
-        ...(key === "itemId"
-          ? {
-              itemName:
-                items.find((item) => String(item.id) === String(value))?.name || current.itemName,
-            }
-          : {}),
+        ...itemPatch,
       };
 
       if (

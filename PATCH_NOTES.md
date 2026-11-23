@@ -806,3 +806,9 @@
 ## 80. Marketing List Known Item Latest 1-Unit Approx. Price in Dropdown (`MarketingList.jsx`)
 
 - **Latest Unit Approximate Price (`₹X/unit`)**: Extended the **Known item** dropdown options in `frontend/src/pages/MarketingList.jsx` to show each item's latest approximate 1-unit price alongside its order count (e.g., `Potatoes (14) · ₹30/kg`), automatically converting grams (`g`/`gm`) to **kg** and millilitres (`ml`) to **L**, preferring the currently selected location when available, and keeping `form.itemName` strictly clean (`item.name`).
+
+---
+
+## 81. Auto-Select Most Frequently Used Unit on Item Selection in Marketing List (`MarketingList.jsx`)
+
+- **Historical Unit Auto-Selection (`findMostUsedUnitIdForItem`)**: When selecting an item from the **Known item** dropdown in `frontend/src/pages/MarketingList.jsx`, the form now automatically selects that item's most frequently used unit from non-removed marketing list history (breaking ties by most recent date) and immediately recalculates the approximate cost using that unit.
