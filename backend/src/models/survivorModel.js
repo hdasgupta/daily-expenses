@@ -53,7 +53,41 @@ export async function updateSurvivor(id, data) {
 export async function deleteSurvivor(id) {
   await q(survivorSql.delete, [id]);
 }
-export async function listSurvivorsForMeta() {
-  const result = await q(survivorSql.meta);
-  return result.rows;
+export async function listSurvivorsForMeta(locationId = "") {
+  const cleanLocId = /^\d+$/.test(String(locationId || "").trim())
+    ? String(locationId).trim()
+    : "";
+
+  if (!cleanLocId) {
+    const result = await q(survivorSql.meta);
+    return result.rows;
+  }
+
+  try {
+    const result = await q(
+      `WITH loc_usage AS (
+         SELECT es.survivor_id,
+                COUNT(DISTINCT e.id)::int AS usage_count,
+                MAX(e.expense_date) AS last_used_date
+           FROM public.expense_shares es
+           JOIN public.expenses e ON e.id = es.expense_id
+           LEFT JOIN public.marketing_list_items m ON m.expense_id = e.id
+          WHERE COALESCE(e.location_id, m.location_id) = $1::bigint
+          GROUP BY es.survivor_id
+       )
+       SELECT s.id,
+              s.full_name,
+              COALESCE(u.usage_count, 0)::int AS usage_count
+         FROM public.survivors s
+         LEFT JOIN loc_usage u ON u.survivor_id = s.id
+        ORDER BY COALESCE(u.usage_count, 0) DESC,
+                 u.last_used_date DESC NULLS LAST,
+                 s.full_name ASC`,
+      [cleanLocId],
+    );
+    return result.rows;
+  } catch {
+    const result = await q(survivorSql.meta);
+    return result.rows;
+  }
 }

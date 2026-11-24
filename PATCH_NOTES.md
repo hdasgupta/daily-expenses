@@ -849,3 +849,10 @@
 ## 87. Laddoo Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
 
 - **18 Laddoo Varieties (`static-1958`–`static-1975`)**: Added **Alsi ke Laddoo**, **Badam & Pista Laddoo**, **Chana Dal / Magad ke Laddoo**, **Churmure / Murmura Laddoo**, **Daliya Laddoo**, **Dry Fruit & Khajoor Laddoo**, **Gajar Laddoo**, **Gond ke Laddoo**, **Kaju Rose Laddoo**, **Makhana & Peanut Jaggery Laddoo**, **Malai Paneer Laddoo**, **Methi Dana Laddoo**, **Moong Dal Laddoo**, **Oats & Peanut Jaggery Laddoo**, **Poha & Jaggery Laddoo**, **Ragi / Nachni Laddoo**, **Sattu Laddoo**, and **Singdana / Mungfali Laddoo** (canonical tags, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1708**).
+
+---
+
+## 88. Location-Based Survivor Sorting on Add Expenses Page (`Expense.jsx`, `survivorModel.js`, `survivorController.js`)
+
+- **Mostly-Used Survivors First (`GET /api/meta/survivors?locationId=...`)**: Extended `listSurvivorsForMeta(locationId)` in `backend/src/models/survivorModel.js` to rank survivors by expense share frequency at the selected location (`COALESCE(e.location_id, m.location_id)`), placing the most frequently used survivors for that location on top followed by the remaining survivors alphabetically.
+- **Dynamic Refresh & Auto-Pick on Add Survivor (`Expense.jsx`)**: Whenever the selected Location changes (including GPS auto-selection), `Expense.jsx` refreshes the survivor list so both the Survivor dropdowns and clicking **Add survivor** prioritize the most frequently used survivors for that location.

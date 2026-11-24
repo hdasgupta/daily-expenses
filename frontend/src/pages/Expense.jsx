@@ -1049,6 +1049,23 @@ export default function Expense() {
   }, []);
 
   useEffect(() => {
+    let active = true;
+    const qs = form.locationId
+      ? `?locationId=${encodeURIComponent(form.locationId)}`
+      : "";
+    api(`/meta/survivors${qs}`, { silent: true })
+      .then((data) => {
+        if (!active) return;
+        const list = asArray(data);
+        if (list.length) setSurvivors(list);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [form.locationId]);
+
+  useEffect(() => {
     if (!categories.length || !units.length) return;
     let prefill;
     try {

@@ -35,7 +35,7 @@ export async function remove(req, res) {
   res.json({ ok: true });
 }
 export async function meta(req, res) {
-  res.json(await listSurvivorsForMeta());
+  res.json(await listSurvivorsForMeta(req.query.locationId));
 }
 export async function pincode(req, res) {
   res.json(await lookupPincode(req.params.pincode));
