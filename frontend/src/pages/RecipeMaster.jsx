@@ -579,6 +579,12 @@ export default function RecipeMaster() {
     return () => window.removeEventListener("app:voice-action", onVoice);
   }, []);
 
+  const [category, setCategory] = useState("All");
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [ingredientSearch, setIngredientSearch] = useState("");
+  const [ingredientDropdownOpen, setIngredientDropdownOpen] = useState(false);
+  const ingredientPickerRef = useRef(null);
+
   useEffect(() => {
     if (!ingredientDropdownOpen) return undefined;
     const handleOutsideClick = (event) => {
@@ -589,11 +595,6 @@ export default function RecipeMaster() {
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [ingredientDropdownOpen]);
-  const [category, setCategory] = useState("All");
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [ingredientSearch, setIngredientSearch] = useState("");
-  const [ingredientDropdownOpen, setIngredientDropdownOpen] = useState(false);
-  const ingredientPickerRef = useRef(null);
   const [sortColumn, setSortColumn] = useState("usageCount");
   const [sortDirection, setSortDirection] = useState("desc");
   const [visibleCount, setVisibleCount] = useState(30);

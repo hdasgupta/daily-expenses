@@ -899,3 +899,6 @@
 ## 93. Vite 8 Build Fix & Cache-Busting Headers
 - **`frontend/vite.config.js`**: Converted `rollupOptions.output.manualChunks` from object form to function form (`manualChunks(id)`) for full compatibility with Vite 8 (Rolldown), preventing build failures on Vercel/CI.
 - **`frontend/vercel.json`**: Added `Cache-Control: no-cache, no-store, must-revalidate` for `/` and `/index.html`, and immutable long-term caching for `/assets/*`, ensuring deployed frontend updates reflect immediately without stale HTML caching.
+
+## 94. RecipeMaster TDZ Initialization Fix
+- **`frontend/src/pages/RecipeMaster.jsx`**: Moved the outside-click `useEffect` for `ingredientDropdownOpen` below the `useState`/`useRef` declarations of `ingredientDropdownOpen` and `ingredientPickerRef`, resolving `ReferenceError: Cannot access 'F' before initialization`.
