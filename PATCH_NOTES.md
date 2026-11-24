@@ -929,3 +929,6 @@
   - Split remaining ` + ` combined entries (such as `Poppy Seeds + Mustard`, `Milk + Water`, `Ghee + Oil`) into separate ingredient rows.
   - Stripped trailing purpose qualifiers (`for Marinade`, `for Gattas`, `for Thickening`, etc.) before quantity extraction so embedded amounts like `1 Tsp Besan` and `Besan (1 Tbsp) for Marinade` separate cleanly into `quantity`/`unit` and canonical `Besan (Gram Flour)` / `All-Purpose Flour (Maida)`.
   - Reduced unique standardized ingredient names to 2241 across all 1,724 recipes.
+
+## 100. Recipe Master — Strict All-Ingredients Matching
+- **`frontend/src/lib/recipeSearch.js`**: Updated `searchAndRankRecipes` so when one or more ingredients are selected in **Recipe Master**, only recipes containing **all** selected ingredients are shown (prioritizing exact 1:1 ingredient sets first, then already-cooked matches, then remaining matches).

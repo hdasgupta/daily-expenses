@@ -156,16 +156,15 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
       continue;
     }
 
-    // Ingredient filter check
+    // Ingredient filter check: require ALL selected ingredients
     let ingredientMatch = null;
     if (hasIngredientFilter) {
       const matchedNames = matchRecipeIngredients(r, normalizedSelected);
-      if (matchedNames.length === 0) {
+      if (matchedNames.length < normalizedSelected.length) {
         continue;
       }
       const usageCount = getUsageCount ? getUsageCount(r) : Number(r.usageCount || 0);
-      const isExact = matchedNames.length === normalizedSelected.length;
-      const tier = isExact ? 1 : usageCount > 0 ? 2 : 3;
+      const tier = 1;
       const extraCount = Math.max(0, r._ingredientCount - matchedNames.length);
       ingredientMatch = {
         tier,
