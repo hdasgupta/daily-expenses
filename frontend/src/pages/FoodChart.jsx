@@ -25,6 +25,7 @@ import {
   recordLocationSelection,
 } from "../lib/locationTracker";
 import ConfirmDialog from "../components/ConfirmDialog";
+import AddIngredientToMarketingModal from "../components/AddIngredientToMarketingModal";
 import { formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import "./dietChart.css";
@@ -185,164 +186,6 @@ function RecipeViewer({ entry, recipe, onClose, onAddIngredient }) {
   );
 }
 
-function AddIngredientToMarketing({
-  ingredient,
-  categories,
-  locations,
-  defaultLocationId,
-  units,
-  onClose,
-  onSubmit,
-  saving,
-}) {
-  const [form, setForm] = useState({
-    purchaseDate: todayKolkata(),
-    locationId: "",
-    categoryId: "",
-    itemName: ingredient?.name || "",
-    quantity: ingredient?.quantity || "",
-    unitId: "",
-  });
-
-  useEffect(() => {
-    const ingredientUnit = String(ingredient?.unit || "")
-      .trim()
-      .toLowerCase();
-    const matchedUnit = units.find(
-      (unit) =>
-        String(unit.name || "")
-          .trim()
-          .toLowerCase() === ingredientUnit,
-    );
-    const recommendedLoc =
-      locations.find((loc) => String(loc.id) === String(defaultLocationId)) ||
-      locations.find((loc) => loc.auto_recommended) ||
-      locations[0];
-
-    setForm((current) => ({
-      ...current,
-      locationId: current.locationId || (recommendedLoc ? String(recommendedLoc.id) : ""),
-      itemName: ingredient?.name || "",
-      quantity: ingredient?.quantity || "",
-      unitId: matchedUnit ? String(matchedUnit.id) : "",
-    }));
-  }, [ingredient, units, locations, defaultLocationId]);
-
-  if (!ingredient) return null;
-
-  return (
-    <div
-      className="diet-modal-backdrop diet-marketing-modal-backdrop"
-      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
-    >
-      <form
-        className="diet-modal diet-marketing-modal"
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSubmit(form);
-        }}
-      >
-        <header>
-          <div>
-            <h2>Add ingredient to marketing list</h2>
-            <p className="diet-muted">Choose the shopping date, location and category.</p>
-          </div>
-          <button type="button" className="icon-button" onClick={onClose} aria-label="Close">
-            <X size={18} />
-          </button>
-        </header>
-        <label>
-          <span>
-            <CalendarDays size={15} /> Marketing date
-          </span>
-          <input
-            required
-            type="date"
-            value={form.purchaseDate}
-            onChange={(e) => setForm((f) => ({ ...f, purchaseDate: e.target.value }))}
-          />
-        </label>
-        <label>
-          <span>
-            <MapPin size={15} /> Marketing location
-          </span>
-          <select
-            required
-            value={form.locationId}
-            onChange={(e) => setForm((f) => ({ ...f, locationId: e.target.value }))}
-          >
-            <option value="">Choose location</option>
-            {locations.map((location) => (
-              <option key={location.id} value={location.id}>
-                {formatLocationOptionLabel(location)}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Item category
-          <select
-            required
-            value={form.categoryId}
-            onChange={(e) => setForm((f) => ({ ...f, categoryId: e.target.value }))}
-          >
-            <option value="">Choose category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Selected ingredient
-          <input
-            required
-            maxLength={200}
-            value={form.itemName}
-            onChange={(e) => setForm((f) => ({ ...f, itemName: e.target.value }))}
-          />
-        </label>
-        <div className="diet-form-grid">
-          <label>
-            Quantity
-            <input
-              type="number"
-              min="0"
-              step="any"
-              placeholder="e.g. 2"
-              value={form.quantity}
-              onChange={(e) => setForm((f) => ({ ...f, quantity: e.target.value }))}
-            />
-          </label>
-          <label>
-            Unit
-            <select
-              value={form.unitId}
-              onChange={(e) => setForm((f) => ({ ...f, unitId: e.target.value }))}
-            >
-              <option value="">Choose unit (optional)</option>
-              {units.map((unit) => (
-                <option key={unit.id} value={unit.id}>
-                  {unit.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <footer>
-          <button type="button" className="diet-secondary" onClick={onClose}>
-            Cancel
-          </button>
-          <button type="submit" className="diet-primary" disabled={saving}>
-            <ShoppingBasket size={16} />
-            {saving ? "Adding…" : "Add to marketing list"}
-          </button>
-        </footer>
-      </form>
-    </div>
-  );
-}
 
 export default function FoodChart() {
   const [date, setDate] = useState(todayKolkata());
@@ -367,6 +210,7 @@ export default function FoodChart() {
   const [marketingCategories, setMarketingCategories] = useState([]);
   const [marketingLocations, setMarketingLocations] = useState([]);
   const [marketingUnits, setMarketingUnits] = useState([]);
+  const [marketingHistoryRows, setMarketingHistoryRows] = useState([]);
   const [addIngredient, setAddIngredient] = useState(null);
   const [addingToMarketing, setAddingToMarketing] = useState(false);
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
@@ -671,14 +515,20 @@ export default function FoodChart() {
   const openAddIngredient = async (ingredient) => {
     setAddIngredient({ ...ingredient, name: String(ingredient?.name || "").trim() });
     try {
-      const [categoriesResult, locBundle, unitsResult] = await Promise.all([
+      const [categoriesResult, locBundle, unitsResult, historyResult] = await Promise.all([
         api("/meta/categories"),
         fetchLocationsWithGps({ coords: currentCoords, silent: true }),
         api("/meta/units"),
+        marketingHistoryRows.length
+          ? Promise.resolve(marketingHistoryRows)
+          : api("/marketing-list", { silent: true }).catch(() => []),
       ]);
       setMarketingCategories(Array.isArray(categoriesResult) ? categoriesResult : []);
       setMarketingLocations(Array.isArray(locBundle?.locations) ? locBundle.locations : locations);
       setMarketingUnits(Array.isArray(unitsResult) ? unitsResult : []);
+      if (Array.isArray(historyResult)) {
+        setMarketingHistoryRows(historyResult);
+      }
     } catch (e) {
       showToast("error", e.message || "Unable to load marketing categories, locations and units.");
     }
@@ -698,14 +548,18 @@ export default function FoodChart() {
       const coords = isValidCoordinates(currentCoords)
         ? currentCoords
         : await getCurrentGpsPosition({ timeout: 2500 });
-      await api("/marketing-list", {
+      const created = await api("/marketing-list", {
         method: "POST",
         body: JSON.stringify({
           categoryId: formValues.categoryId,
-          itemId: "",
+          itemId: String(formValues.itemId || ""),
           itemName,
           quantity: formValues.quantity === "" ? "" : String(formValues.quantity),
           unitId: String(formValues.unitId || ""),
+          approximateCost:
+            formValues.approximateCost === "" || formValues.approximateCost == null
+              ? ""
+              : String(formValues.approximateCost),
           purchaseDate: formValues.purchaseDate,
           locationId: formValues.locationId,
           latitude: coords ? coords.latitude : null,
@@ -713,6 +567,9 @@ export default function FoodChart() {
         }),
         silentToast: true,
       });
+      if (created && created.id) {
+        setMarketingHistoryRows((prev) => [created, ...prev]);
+      }
       void recordLocationSelection(formValues.locationId, {
         coords,
         source: "food_chart_ingredient",
@@ -1137,12 +994,13 @@ export default function FoodChart() {
         onClose={() => setViewer(null)}
         onAddIngredient={openAddIngredient}
       />
-      <AddIngredientToMarketing
+      <AddIngredientToMarketingModal
         ingredient={addIngredient}
         categories={marketingCategories}
         locations={marketingLocations}
         defaultLocationId={locationId}
         units={marketingUnits}
+        marketingRows={marketingHistoryRows}
         onClose={() => setAddIngredient(null)}
         onSubmit={addIngredientToMarketing}
         saving={addingToMarketing}

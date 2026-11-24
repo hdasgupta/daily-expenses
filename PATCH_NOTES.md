@@ -932,3 +932,10 @@
 
 ## 100. Recipe Master — Strict All-Ingredients Matching
 - **`frontend/src/lib/recipeSearch.js`**: Updated `searchAndRankRecipes` so when one or more ingredients are selected in **Recipe Master**, only recipes containing **all** selected ingredients are shown (prioritizing exact 1:1 ingredient sets first, then already-cooked matches, then remaining matches).
+
+## 101. Recipe Master & Food Chart — Auto-Detect Category, History Quantity/Unit & Approx Price
+- **`frontend/src/lib/marketingHistory.js` & `frontend/src/components/AddIngredientToMarketingModal.jsx`**:
+  - Added shared `inferHistoryDefaultsForItem` and `calculateApproximateCostFromHistory` helpers.
+  - When adding an ingredient to the marketing list from **Recipe Master** or **Food Chart**, the modal automatically detects the **Category** (from purchase history first, with smart keyword fallback for new items), fills **Quantity** and **Unit** from most-used history (falling back to recipe defaults), and adds an **Approx. price (₹)** field auto-calculated from history with unit conversion (`g <-> kg`, `ml <-> L`, `dozen <-> pcs`).
+- **`frontend/src/pages/RecipeMaster.jsx` & `frontend/src/pages/FoodChart.jsx`**:
+  - Replaced inline ingredient modals with `AddIngredientToMarketingModal`, fetching `/marketing-list` history and submitting `itemId` and `approximateCost`.
