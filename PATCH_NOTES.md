@@ -863,3 +863,9 @@
 
 - **Context-Aware Request Labels (`inferLoadingMessage`)**: Updated `frontend/src/lib/api.js` so every API call (Marketing List, Add Expenses, Food Chart, Recipes, Price Trend, Dashboard, Reports, Job Status, Bulk Upload, Auth, Metadata) displays a clear operation-specific message instead of a generic `"Please wait…"`.
 - **Live Step-by-Step Progress (`Loader.jsx`)**: Upgraded the loading overlay to display progressive multi-step status statements (`Step 1/3` → `Step 2/3` → `Step 3/3` with elapsed seconds and active task count) tailored to PDF generation, file uploads, login/server wake-up, and database queries.
+
+---
+
+## 90. Sooji Sandwich Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
+
+- **16 Sooji Sandwich Varieties (`static-1976`–`static-1991`)**: Added both breadless tawa/toaster sooji sandwiches and crispy sooji-crusted bread toasts — **Instant Breadless Sooji Sandwich**, **Aloo Masala Sooji Sandwich**, **Cheese & Corn Sooji Sandwich**, **Paneer Bhurji Sooji Sandwich**, **Hara Bhara Spinach & Pea Sooji Sandwich**, **Pepper & Mustard Tadka Sooji Sandwich**, **Classic Sooji Malai Toast**, **Curd & Veggie Sooji Toast**, **Achari Sooji Toast Sandwich**, **Egg & Sooji Masala Toast**, **Garlic Herb Sooji Bread Sandwich**, **Oats & Sooji Vegetable Toast**, **Onion, Tomato & Green Chilli Sooji Toast**, **Pizza-Style Sooji Bread Toast**, **Schezwan Veggie Sooji Sandwich**, and **Sweet Coconut & Jaggery Sooji Toast** (canonical tags, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1724**).

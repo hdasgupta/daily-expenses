@@ -556,6 +556,70 @@ const definitions = [
     "notes": "Pungent mustard oil and freshly crushed panch-phoron/achari spices give this curry a bold pickle-like tang."
   },
   {
+    "id": "static-1976",
+    "name": "Achari Sooji Toast Sandwich (Pickled Spice Semolina & Curd Vegetable Bread Toast)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina / rava)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "thick curd (whisked by hand)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, capsicum & tomato",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "mango pickle masala oil",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard seeds & curry leaves (optional)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil (for toasting)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare achari sooji topping",
+        "text": "Mix fine sooji, whisked curd, mango pickle masala oil, chopped onion, capsicum, tomato, and salt with 2–3 tbsp water into a thick spreadable paste; rest 8 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Spread on bread and tawa-toast crisp",
+        "text": "Spread the achari sooji mix evenly on one side of each bread slice. Heat butter/oil on a flat tawa, place slices sooji-side down, cook 3–4 minutes on medium-low heat until golden crisp, then flip and toast the other side 2 minutes.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Resting the sooji for 8 minutes softens the grains so they toast crisp instead of gritty."
+  },
+  {
     "id": "static-1189",
     "name": "Ajwain Paratha (Carom Seed Layered Flaky Paratha)",
     "category": "Bread",
@@ -2305,6 +2369,70 @@ const definitions = [
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1977",
+    "name": "Aloo Masala Sooji Sandwich (Breadless Crisp Semolina Sandwich Stuffed with Spiced Potato)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "fine sooji (semolina / rava)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "thick curd",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled mashed potatoes",
+        "quantity": "2 medium",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, green chilli & coriander",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, cumin & chaat masala",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "eno or baking soda",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee (for tawa)",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make sooji batter and spiced potato patties",
+        "text": "Whisk sooji, curd, salt, and 1/2 cup water into a thick batter; rest 10 minutes. Mix mashed potatoes with onion, green chilli, coriander, turmeric, cumin, chaat masala, and salt; shape into 2 thin flat patties.",
+        "minutes": 12
+      },
+      {
+        "section": "Layer and cook on covered tawa",
+        "text": "Stir baking soda into the batter. Pour a thin layer on a greased hot tawa/toast maker, place a potato patty in the center, cover with more batter, and cook covered on low heat 4 minutes per side until golden and crisp. Slice into triangles.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Completely breadless crispy sandwich made with just a covered pan or sandwich toaster."
   },
   {
     "id": "static-1226",
@@ -17525,6 +17653,75 @@ const definitions = [
     "notes": "Finely chopping the corn by knife ensures smooth pleating and even melting."
   },
   {
+    "id": "static-1978",
+    "name": "Cheese & Corn Sooji Sandwich (No-Bread Crispy Rava Toast with Melted Cheese & Sweet Corn)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "curd (whisked)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled sweet corn kernels (roughly chopped)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated processed cheese",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum & spring onion",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "oregano, chilli flakes & black pepper",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "baking soda",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rest sooji batter and mix corn-cheese filling",
+        "text": "Whisk sooji, curd, salt, and 1/2 cup water into a thick batter; rest 10 minutes. Mix chopped boiled corn, grated cheese, capsicum, spring onion, oregano, chilli flakes, and pepper.",
+        "minutes": 12
+      },
+      {
+        "section": "Cook stuffed breadless sandwich",
+        "text": "Fold baking soda into batter. Spread half in a buttered pan/toaster, top with corn-cheese mix, cover with remaining batter, and cook covered on low heat 4 minutes per side until crisp and golden.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Gooey melted cheese and sweet corn sealed inside a crunchy golden sooji crust."
+  },
+  {
     "id": "static-0928",
     "name": "Cheese Balls",
     "category": "Starters",
@@ -27597,6 +27794,75 @@ const definitions = [
     "notes": "A rustic Italian pasta-stew; cooking the small ditalini directly in the rich tomato-bean broth yields concentrated, heartwarming flavor."
   },
   {
+    "id": "static-1979",
+    "name": "Classic Sooji Malai Toast / Rava Malai Bread Sandwich (Creamy Semolina & Veggie Pan Toast)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh malai (milk cream)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "milk",
+        "quantity": "2–3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, tomato & capsicum",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chilli & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & chaat masala",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee or butter",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix creamy malai-sooji spread",
+        "text": "Whisk fresh malai with sooji and milk into a thick paste, fold in chopped onion, tomato, capsicum, green chilli, coriander, black pepper, and salt, and rest 10 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Toast malai-side down until crisp",
+        "text": "Spread generously on bread slices. Place malai-side down on a warm tawa (no extra oil needed as malai releases ghee), cook 3–4 minutes on low heat until golden, flip and toast 2 minutes, then dust with chaat masala.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Beloved North Indian home breakfast toast; malai creates a rich buttery crunch."
+  },
+  {
     "id": "static-1695",
     "name": "Classic Spaghetti Aglio e Olio (Garlic, Olive Oil & Red Pepper Flakes Spaghetti)",
     "category": "Pasta",
@@ -29753,6 +30019,70 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1980",
+    "name": "Curd & Veggie Sooji Toast (Crispy Semolina, Whisked Curd & Capsicum Bread Toast)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices (white or multigrain)",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "thick curd",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely grated carrot & chopped capsicum",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & green chilli",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "crushed black pepper & roasted cumin powder",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rest curd-sooji vegetable spread",
+        "text": "Whisk curd and sooji together, fold in grated carrot, capsicum, onion, green chilli, pepper, cumin, and salt, and rest 10 minutes so the sooji swells.",
+        "minutes": 10
+      },
+      {
+        "section": "Toast on buttered tawa",
+        "text": "Spread evenly onto bread slices, place topping-side down on a buttered hot tawa, toast on medium-low heat 3–4 minutes until golden, flip and crisp the bottom 2 minutes.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Lighter everyday alternative to malai toast using fresh whisked curd."
   },
   {
     "id": "static-0639",
@@ -32476,6 +32806,65 @@ const definitions = [
       }
     ],
     "notes": "One-pan breakfast skillet ready straight from the stovetop."
+  },
+  {
+    "id": "static-1981",
+    "name": "Egg & Sooji Masala Toast (Protein-Rich Semolina, Beaten Egg & Onion Pan Sandwich)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "eggs (beaten)",
+        "quantity": "2",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, green chilli & coriander",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, red chilli & black pepper",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Whisk egg-sooji masala batter",
+        "text": "Beat eggs with sooji, 2 tbsp water, onion, green chilli, coriander, turmeric, chilli, pepper, and salt; rest 5 minutes.",
+        "minutes": 6
+      },
+      {
+        "section": "Coat and tawa-toast",
+        "text": "Dip or spoon the mixture onto bread slices and toast on an oiled hot tawa 3 minutes per side until puffed, golden, and crisp.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Crispier, heartier twist on masala egg French toast."
   },
   {
     "id": "static-0047",
@@ -38588,6 +38977,70 @@ const definitions = [
     "notes": "Brief parboiling gives a tender interior and crisp buttery exterior."
   },
   {
+    "id": "static-1982",
+    "name": "Garlic Herb Sooji Bread Sandwich (Tawa-Crisped Garlic-Butter Semolina Toast)",
+    "category": "Sandwich",
+    "region": "Continental",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "thick curd or milk",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely minced garlic",
+        "quantity": "1.5 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oregano, chilli flakes & chopped coriander/parsley",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum & sweet corn",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "softened butter",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix garlic-herb sooji spread",
+        "text": "Combine sooji, curd/milk, minced garlic, half the softened butter, oregano, chilli flakes, coriander, capsicum, corn, and salt; rest 8 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Toast crisp in remaining butter",
+        "text": "Spread on bread slices and toast topping-side down in butter on a low-medium tawa until golden and fragrant, then crisp the underside.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Garlic-bread flavour with a crunchy toasted semolina crust."
+  },
+  {
     "id": "static-1187",
     "name": "Garlic Lachha Paratha (Crispy Garlic & Butter Layered Paratha)",
     "category": "Bread",
@@ -41913,6 +42366,70 @@ const definitions = [
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
   },
   {
+    "id": "static-1983",
+    "name": "Hara Bhara Spinach & Pea Sooji Sandwich (No-Bread Palak-Matar Semolina Tawa Sandwich)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "curd (whisked)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped spinach (palak)",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "boiled green peas (mashed coarsely with fork)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "minced ginger, green chilli & chaat masala",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "baking soda",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Fold palak and mashed peas into sooji batter",
+        "text": "Whisk sooji, curd, salt, and 1/2 cup water; rest 10 minutes. Fold in finely chopped spinach, fork-mashed peas, ginger, green chilli, chaat masala, and baking soda.",
+        "minutes": 12
+      },
+      {
+        "section": "Cook covered and slice into sandwiches",
+        "text": "Pour into a greased pan or sandwich maker, cook covered on low heat 4–5 minutes per side until crisp green-gold, and cut into triangles.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Iron-rich green breakfast sandwich with zero bread or blender."
+  },
+  {
     "id": "static-1740",
     "name": "Harey Chane O Palang Shaker Khichuri / Palak Dal Khichdi (Spinach, Green Chickpea & Garlic-Ghee Khichdi)",
     "category": "Rice",
@@ -44319,6 +44836,70 @@ const definitions = [
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1984",
+    "name": "Instant Breadless Sooji Sandwich (Tawa-Toasted Fluffy Curd & Semolina Triangle Sandwich)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "fine sooji (semolina / rava)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh curd (whisked)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, tomato, capsicum & grated carrot",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chilli & coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "mustard seeds & curry leaves (optional tadka)",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "eno fruit salt or baking soda",
+        "quantity": "1/2 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Rest veggie-sooji batter",
+        "text": "Mix sooji, curd, chopped vegetables, green chilli, coriander, salt, and 1/2 cup water into a thick batter; rest 10 minutes. Stir in eno/baking soda just before cooking.",
+        "minutes": 12
+      },
+      {
+        "section": "Crisp in pan or sandwich maker",
+        "text": "Heat oil (and optional mustard-curry leaf tadka) in a small pan or sandwich toaster. Pour batter, cover, and cook 4 minutes per side on low heat until golden and spongy inside. Cut into sandwich triangles.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Classic no-bread suji sandwich—crispy outside, soft and fluffy inside."
   },
   {
     "id": "static-1817",
@@ -67199,6 +67780,65 @@ const definitions = [
     "notes": "Quick fibre-rich snack laddoo for breakfast or afternoon tiffin."
   },
   {
+    "id": "static-1985",
+    "name": "Oats & Sooji Vegetable Toast (Wholesome Semolina, Rolled Oats & Carrot Tawa Sandwich)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "multigrain or whole wheat bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "quick rolled oats",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "curd (whisked)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely grated carrot, chopped onion & capsicum",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "black pepper, roasted cumin & salt",
+        "quantity": "to taste",
+        "unit": ""
+      },
+      {
+        "name": "oil or butter",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak oats and sooji in curd",
+        "text": "Mix sooji, quick oats, whisked curd, vegetables, pepper, cumin, and salt; rest 10 minutes until oats and sooji soften.",
+        "minutes": 10
+      },
+      {
+        "section": "Spread and toast crisp",
+        "text": "Spread on bread slices and toast topping-side down on a lightly oiled tawa for 3–4 minutes, then flip and crisp the other side.",
+        "minutes": 10
+      }
+    ],
+    "notes": "High-fibre morning toast combining oats and semolina."
+  },
+  {
     "id": "static-1620",
     "name": "Oats Paratha (Spiced Rolled Oats & Vegetable Stuffed Paratha)",
     "category": "Bread",
@@ -69063,6 +69703,70 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-1986",
+    "name": "Onion, Tomato & Green Chilli Sooji Toast (Desi Street-Style Rava Bread Sandwich)",
+    "category": "Sandwich",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "curd or milk",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped red onion & deseeded tomato",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped green chillies & fresh coriander",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "chaat masala & Kashmiri red chilli powder",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spicy rava-onion mix",
+        "text": "Combine sooji, curd/milk, 2 tbsp water, onion, tomato, green chillies, coriander, chilli powder, and salt; rest 8 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Pan-toast until crisp golden",
+        "text": "Spread onto bread slices, toast topping-side down in butter on medium-low heat until golden, flip to crisp the bottom, and sprinkle with chaat masala.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Quick 20-minute street-style rava toast with pantry staples."
   },
   {
     "id": "static-0756",
@@ -71516,6 +72220,70 @@ const definitions = [
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1987",
+    "name": "Paneer Bhurji Sooji Sandwich (Crispy Semolina Sandwich Stuffed with Spiced Crumbled Paneer)",
+    "category": "Sandwich",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "curd (whisked)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "fresh paneer (hand-crumbled)",
+        "quantity": "120 g",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion, capsicum & green chilli",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "turmeric, pav bhaji or garam masala & chaat masala",
+        "quantity": "1.25 tsp",
+        "unit": ""
+      },
+      {
+        "name": "baking soda",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "butter or oil",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make sooji batter and spiced paneer bhurji",
+        "text": "Whisk sooji, curd, salt, and 1/2 cup water; rest 10 minutes. Saute onion, capsicum, and green chilli in 1 tsp oil for 2 minutes, toss in crumbled paneer, spices, and salt, and cook 2 minutes.",
+        "minutes": 12
+      },
+      {
+        "section": "Layer and toast breadless sandwich",
+        "text": "Stir baking soda into batter. Spread half on a greased pan/sandwich maker, layer paneer bhurji in the center, cover with remaining batter, and cook covered 4 minutes per side until crisp golden.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Protein-packed breadless sandwich with crisp semolina crust and soft paneer filling."
   },
   {
     "id": "static-1765",
@@ -75656,6 +76424,70 @@ const definitions = [
     "notes": "Light, wholesome, and easy-to-digest Bengali raw papaya fry."
   },
   {
+    "id": "static-1988",
+    "name": "Pepper & Mustard Tadka Sooji Sandwich (South Indian-Style Curry Leaf & Rava Tawa Sandwich)",
+    "category": "Sandwich",
+    "region": "South Indian",
+    "prepMinutes": 12,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "fine sooji (bombay rava)",
+        "quantity": "1 cup",
+        "unit": ""
+      },
+      {
+        "name": "curd (whisked)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "mustard seeds & urad dal",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "curry leaves (finely torn) & chopped green chilli",
+        "quantity": "1 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped onion & grated carrot",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "coarsely crushed black pepper & baking soda",
+        "quantity": "3/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or ghee",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare tempered rava batter",
+        "text": "Crackle mustard seeds, urad dal, curry leaves, and green chilli in 1 tsp oil; pour over rested sooji-curd-vegetable batter along with crushed black pepper and baking soda.",
+        "minutes": 10
+      },
+      {
+        "section": "Toast covered into crisp squares/triangles",
+        "text": "Cook covered in an oiled pan or sandwich toaster on low heat 4 minutes per side until crisp and aromatic.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Aromatic South Indian upma-style tempering inside a crisp tawa sandwich."
+  },
+  {
     "id": "static-0771",
     "name": "Peppermint Herbal Tea",
     "category": "Tea",
@@ -77850,6 +78682,70 @@ const definitions = [
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1989",
+    "name": "Pizza-Style Sooji Bread Toast (Crispy Semolina Crust with Oregano, Capsicum & Cheese)",
+    "category": "Sandwich",
+    "region": "Fusion",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "thick curd",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "tomato ketchup or pizza sauce",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "finely chopped capsicum, onion & sweet corn",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated mozzarella or processed cheese",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "oregano, chilli flakes & butter",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix pizza-sooji topping",
+        "text": "Combine sooji, curd, ketchup, capsicum, onion, corn, grated cheese, oregano, chilli flakes, and salt; rest 8 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Toast on buttered tawa",
+        "text": "Spread on bread slices and toast topping-side down in butter on low heat 3–4 minutes until crisp and cheesy, then toast the bottom 2 minutes.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Kid-favourite crunchy pizza toast made on a flat tawa with zero oven."
   },
   {
     "id": "static-0932",
@@ -88366,6 +89262,70 @@ const definitions = [
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-1990",
+    "name": "Schezwan Veggie Sooji Sandwich (Spicy Indo-Chinese Semolina & Cabbage Tawa Toast)",
+    "category": "Sandwich",
+    "region": "Indo-Chinese",
+    "prepMinutes": 12,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/2 cup",
+        "unit": ""
+      },
+      {
+        "name": "curd",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "finely shredded cabbage, carrot & spring onion",
+        "quantity": "3/4 cup",
+        "unit": ""
+      },
+      {
+        "name": "minced garlic, chilli flakes & tomato ketchup",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "soy sauce & black pepper",
+        "quantity": "1 tsp",
+        "unit": ""
+      },
+      {
+        "name": "oil or butter",
+        "quantity": "2 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spicy Indo-Chinese sooji spread",
+        "text": "Mix sooji, curd, cabbage, carrot, spring onion, minced garlic, chilli flakes, ketchup, soy sauce, pepper, and salt with 2 tbsp water; rest 8 minutes.",
+        "minutes": 10
+      },
+      {
+        "section": "Tawa-toast until crunchy",
+        "text": "Spread on bread slices and toast topping-side down in oil/butter on medium-low heat for 3–4 minutes, then flip and crisp the other side.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Bold garlic-chilli Indo-Chinese flavours on crisp toasted bread."
+  },
+  {
     "id": "static-1314",
     "name": "Seem Fry / Sheem Bhaja (Bengali Winter Flat Broad Beans Pan-Fry)",
     "category": "Vegetable",
@@ -92416,6 +93376,65 @@ const definitions = [
       }
     ],
     "notes": "Tangy, glossy Indo-Chinese prawn dish great with steamed or fried rice."
+  },
+  {
+    "id": "static-1991",
+    "name": "Sweet Coconut & Jaggery Sooji Toast (Cardamom Semolina & Grated Coconut Breakfast Toast)",
+    "category": "Sandwich",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "bread slices",
+        "quantity": "4",
+        "unit": ""
+      },
+      {
+        "name": "fine sooji (semolina)",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "milk or fresh malai",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "freshly grated coconut",
+        "quantity": "1/3 cup",
+        "unit": ""
+      },
+      {
+        "name": "grated jaggery or sugar",
+        "quantity": "3 tbsp",
+        "unit": ""
+      },
+      {
+        "name": "cardamom powder",
+        "quantity": "1/4 tsp",
+        "unit": ""
+      },
+      {
+        "name": "ghee",
+        "quantity": "1.5 tbsp",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Mix sweet coconut-sooji spread",
+        "text": "Combine sooji, milk/malai, grated coconut, jaggery/sugar, and cardamom powder; rest 8 minutes until thick and spreadable.",
+        "minutes": 8
+      },
+      {
+        "section": "Toast in ghee until caramelised",
+        "text": "Spread on bread slices and toast topping-side down in melted ghee on low heat for 3 minutes until golden and caramelised, then toast the underside 2 minutes.",
+        "minutes": 8
+      }
+    ],
+    "notes": "Sweet breakfast toast reminiscent of coconut-jaggery pitha on crisp bread."
   },
   {
     "id": "static-1921",
