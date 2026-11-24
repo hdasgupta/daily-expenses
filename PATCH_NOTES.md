@@ -902,3 +902,8 @@
 
 ## 94. RecipeMaster TDZ Initialization Fix
 - **`frontend/src/pages/RecipeMaster.jsx`**: Moved the outside-click `useEffect` for `ingredientDropdownOpen` below the `useState`/`useRef` declarations of `ingredientDropdownOpen` and `ingredientPickerRef`, resolving `ReferenceError: Cannot access 'F' before initialization`.
+
+## 95. Standardized Ingredient Names & Removed Duplicates Across Recipes
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Standardized all ingredient names across all 1,724 recipes (consistent Title Case, canonicalized spelling/plural/alias variants such as `Maida` -> `All-Purpose Flour (Maida)`, `Besan` -> `Besan (Gram Flour)`, `Suji/Rava/Sooji` -> `Sooji (Semolina)`, `Desi Ghee` -> `Ghee`, `Onions` -> `Onion`, `Potatoes` -> `Potato`, `Tomatoes` -> `Tomato`, `Green Chillies` -> `Green Chilli`, stripped trailing prep/optional qualifiers).
+  - Eliminated all 86 case-variant duplicate groups and deduplicated identical standardized ingredients within any recipe (collapsing 4,456 raw ingredient names down to 4,138 unique canonical names).
