@@ -295,7 +295,7 @@ const definitions = [
         "unit": "g"
       },
       {
-        "name": "Achari Masala (Fennel, Mustard, Nigella, Fenugreek & Cumin Seeds, Coarsely Crushed)",
+        "name": "Achari Masala",
         "quantity": "1.5",
         "unit": "tbsp"
       },
@@ -5507,7 +5507,7 @@ const definitions = [
     "servings": 6,
     "ingredients": [
       {
-        "name": "Flaxseeds (Alsi, Dry-roasted & Hand-crushed with Rolling Pin)",
+        "name": "Flaxseeds (Alsi)",
         "quantity": "1/2 cup",
         "unit": ""
       },
@@ -5991,7 +5991,7 @@ const definitions = [
         "unit": "pcs"
       },
       {
-        "name": "Small Prawns (Chingri, Shelled, Deveined & Finely Chopped)",
+        "name": "Prawns (Chingri)",
         "quantity": "200",
         "unit": "g"
       },
@@ -12749,7 +12749,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Arbi (Taro Root / Colocasia, Boiled 80%, Peeled & Sliced)",
+        "name": "Arbi (Taro Root)",
         "quantity": "350",
         "unit": "g"
       },
@@ -13095,7 +13095,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Bitter Gourds (Karela, Scraped & Salted 15 Mins)",
+        "name": "Bitter Gourd (Karela)",
         "quantity": "300",
         "unit": "g"
       },
@@ -13342,7 +13342,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Ripe Tomatoes (Finely Chopped & Juicy)",
+        "name": "Tomato",
         "quantity": "2",
         "unit": "medium"
       },
@@ -19533,7 +19533,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poha (Flattened Rice, Rinsed & Drained Soft)",
+        "name": "Poha (Flattened Rice)",
         "quantity": "1/2 cup",
         "unit": ""
       },
@@ -20820,7 +20820,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Firm Green Bell Peppers (Capsicum, Deseeded & Cut into Thick Rings or Wedges)",
+        "name": "Green Bell Pepper (Capsicum)",
         "quantity": "2",
         "unit": "medium"
       },
@@ -21796,7 +21796,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Chatpate Masala (Chaat Masala, Roasted Cumin, Black Salt & Timur)",
+        "name": "Chatpate Masala",
         "quantity": "1.5",
         "unit": "tsp"
       },
@@ -30308,11 +30308,6 @@ const definitions = [
       },
       {
         "name": "Garlic",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "(Divided for Frying & Tossing)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -54343,7 +54338,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Green Chillies (Slit & Salted)",
+        "name": "Green Chilli",
         "quantity": "As needed",
         "unit": ""
       },
@@ -59928,7 +59923,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Mild Thick Green Chillies (Bhavnagri, Deseeded & Chopped)",
+        "name": "Bhavnagri Green Chilli",
         "quantity": "2",
         "unit": ""
       },
@@ -61516,7 +61511,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Cashews (Finely Chopped & Crushed with Rolling Pin)",
+        "name": "Cashews",
         "quantity": "1 cup",
         "unit": ""
       },
@@ -63375,7 +63370,7 @@ const definitions = [
         "unit": "g"
       },
       {
-        "name": "Vangi Bath Masala Powder (Coriander, Chana-urad Dal, Cinnamon, Cloves, Dry Coconut & Red Chilli)",
+        "name": "Vangi Bath Masala Powder",
         "quantity": "2.5",
         "unit": "tbsp"
       },
@@ -65335,7 +65330,7 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Jaggery (Melted in 1/4 Cup Warm Water & Strained)",
+        "name": "Jaggery (Gur)",
         "quantity": "1/2",
         "unit": "cup"
       },
@@ -67814,7 +67809,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Bengali Bhaja Masala (Roasted Cumin, Coriander & Dry Red Chilli Powder)",
+        "name": "Bengali Bhaja Masala",
         "quantity": "1",
         "unit": "tbsp"
       },
@@ -68580,7 +68575,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Fresh Coriander Leaves (Washed, Dried & Finely Chopped)",
+        "name": "Coriander Leaves",
         "quantity": "2",
         "unit": "cups"
       },
@@ -70651,7 +70646,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Tender Okra (Bhindi, Washed, Wiped Dry & Slit Lengthwise)",
+        "name": "Okra (Bhindi)",
         "quantity": "350",
         "unit": "g"
       },
@@ -75009,7 +75004,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Basmati or Ambemohar/kolam Rice (Washed & Soaked 15 Mins)",
+        "name": "Basmati Rice",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -75430,12 +75425,12 @@ const definitions = [
     "servings": 5,
     "ingredients": [
       {
-        "name": "Fox Nuts (Makhana, Roasted & Crushed By Rolling Pin)",
+        "name": "Fox Nuts (Makhana)",
         "quantity": "2 cups",
         "unit": ""
       },
       {
-        "name": "Peanuts (Skinned & Coarsely Crushed)",
+        "name": "Peanuts",
         "quantity": "1/2 cup",
         "unit": ""
       },
@@ -76037,7 +76032,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Besan (Gram Flour, for Nutty Golden Color & Softness)",
+        "name": "Besan (Gram Flour)",
         "quantity": "2",
         "unit": "tbsp"
       },
@@ -76564,7 +76559,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Spiced Papads (Roasted & Broken into Pieces)",
+        "name": "Papad",
         "quantity": "3",
         "unit": "pcs"
       },
@@ -80526,7 +80521,7 @@ const definitions = [
     "servings": 8,
     "ingredients": [
       {
-        "name": "Fenugreek Seeds (Methi, Soaked in Milk & Dried or Crushed)",
+        "name": "Fenugreek Seeds (Methi)",
         "quantity": "2 tbsp",
         "unit": ""
       },
@@ -80541,7 +80536,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Edible Gum (Gond, Puffed & Crushed)",
+        "name": "Edible Gum (Gond)",
         "quantity": "2 tbsp",
         "unit": ""
       },
@@ -80783,7 +80778,7 @@ const definitions = [
         "unit": "cups"
       },
       {
-        "name": "Fresh Methi (Fenugreek) Leaves (Washed & Chopped)",
+        "name": "Methi (Fenugreek) Leaves",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -80986,7 +80981,7 @@ const definitions = [
         "unit": "pcs"
       },
       {
-        "name": "Fenugreek Seeds (Methi Dana, Boiled 7–8 Mins in Water & Drained)",
+        "name": "Fenugreek Seeds (Methi)",
         "quantity": "2",
         "unit": "tbsp"
       },
@@ -81924,7 +81919,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Large Bhavnagari Green Chillies (Slit & Deseeded)",
+        "name": "Bhavnagri Green Chilli",
         "quantity": "6",
         "unit": "pcs"
       },
@@ -85834,7 +85829,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Button Mushrooms (Wiped Clean & Finely Chopped)",
+        "name": "Button Mushrooms",
         "quantity": "200 g",
         "unit": ""
       },
@@ -86828,7 +86823,7 @@ const definitions = [
     "servings": 6,
     "ingredients": [
       {
-        "name": "Fine Besan (Gram Flour, Lightly Dry-roasted & Sifted)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1",
         "unit": "cup"
       },
@@ -92176,7 +92171,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Yellow Moong Dal (Dry-roasted, Boiled Soft & Mashed)",
+        "name": "Yellow Moong Dal",
         "quantity": "1/2 cup",
         "unit": ""
       },
@@ -92309,7 +92304,7 @@ const definitions = [
         "unit": "cups"
       },
       {
-        "name": "Fresh Spinach (Palak, Blanched & Pureed or Finely Shredded)",
+        "name": "Spinach (Palak)",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -92591,7 +92586,7 @@ const definitions = [
         "unit": "cups"
       },
       {
-        "name": "Fresh Spinach Leaves (Palak, Blanched & Pureed with 1 Green Chilli)",
+        "name": "Spinach (Palak)",
         "quantity": "2",
         "unit": "cups"
       },
@@ -94689,7 +94684,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Kasuri Methi (Roasted & Crushed)",
+        "name": "Kasuri Methi",
         "quantity": "As needed",
         "unit": ""
       },
@@ -97513,7 +97508,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Spiced Urad/moong Papads (Roasted Crisp & Broken into Bite-sized Shards)",
+        "name": "Papad",
         "quantity": "4",
         "unit": "pcs"
       },
@@ -97795,7 +97790,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Sun-dried Lentil Dumplings (Bori, Fried & Crushed)",
+        "name": "Biulir Daler Bori",
         "quantity": "6",
         "unit": "pcs"
       },
@@ -98162,7 +98157,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Papads (Fried or Roasted & Broken into Large Pieces)",
+        "name": "Papad",
         "quantity": "3",
         "unit": "pcs"
       },
@@ -103410,7 +103405,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Thin or Thick Poha (Flattened Rice, Dry-roasted & Hand-crushed)",
+        "name": "Poha (Flattened Rice)",
         "quantity": "1.5 cups",
         "unit": ""
       },
@@ -112162,7 +112157,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Spiced Rajasthani Moong/urad Papads (Roasted or Fried & Broken into Triangles)",
+        "name": "Papad",
         "quantity": "4",
         "unit": "large"
       },
@@ -113075,7 +113070,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Sweet Potatoes (Ranga Aloo, Boiled & Mashed Smooth)",
+        "name": "Sweet Potato (Shakarkandi)",
         "quantity": "2 medium",
         "unit": ""
       },
@@ -115214,7 +115209,7 @@ const definitions = [
     "servings": 6,
     "ingredients": [
       {
-        "name": "Sabudana (Tapioca Pearls, Washed & Soaked Overnight in 1 Cup Water)",
+        "name": "Sabudana (Tapioca Pearls)",
         "quantity": "1",
         "unit": "cup"
       },
@@ -115273,7 +115268,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Sabudana (Tapioca Pearls, Washed & Soaked 4–5 Hrs Until Fluffy)",
+        "name": "Sabudana (Tapioca Pearls)",
         "quantity": "1",
         "unit": "cup"
       },
@@ -119032,7 +119027,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Okra (Bhindi, Slit & Lightly Sauteed)",
+        "name": "Okra (Bhindi)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -119146,7 +119141,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Peppery Sindhi Urad Papads (Roasted or Fried & Quartered)",
+        "name": "Papad",
         "quantity": "4",
         "unit": "pcs"
       },
@@ -120257,7 +120252,7 @@ const definitions = [
         "unit": "cups"
       },
       {
-        "name": "Soya Chunks (Meal Maker, Boiled 5 Mins & Squeezed Dry)",
+        "name": "Soya Chunks",
         "quantity": "1",
         "unit": "cup"
       },

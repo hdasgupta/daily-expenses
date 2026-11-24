@@ -918,3 +918,8 @@
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Grouped closely related ingredient variants (size, freshness, cut, fat/liquid qualifiers, and regional/spelling equivalents such as `Red/Large/Small Onion` -> `Onion`, `Ripe Tomato` -> `Tomato`, `Baby/Mashed/Aloo Potato` -> `Potato`, `Fresh/Sour/Thick Curd` -> `Curd (Yogurt)`, `Fresh/Cow-milk Chhena` -> `Chhena (Cottage Cheese)`, `Khoya/Mawa` -> `Khoya (Mawa)`, `Prawns` variants -> `Prawns (Chingri)`, `Black Peppercorns/Cracked Pepper` -> `Black Pepper`, etc.) into single canonical names.
   - Stripped stray leading connectors (`&`, `Pinch of`, `With`) and trailing garnish/optional suffixes, reducing unique ingredient names from 2515 to 2346.
+
+## 98. Removed All Remaining '&' Prep Clauses from Ingredient Names
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Cleaned all 45 remaining ingredient entries containing `&` inside parenthetical prep/spice descriptions (e.g., `Flaxseeds (Alsi)`, `Prawns (Chingri)`, `Poha (Flattened Rice)`, `Sabudana (Tapioca Pearls)`, `Spinach (Palak)`, `Papad`, `Tomato`, `Green Chilli`) and removed stray note-only entries.
+  - Zero ingredient names now contain `&` (2315 unique standardized ingredient names across all 1,724 recipes).
