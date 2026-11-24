@@ -913,3 +913,8 @@
   - Split combined multi-ingredient entries (separated by `&`, `,`, `, and`, or `and` outside parentheses) into individual ingredient rows while keeping prep phrases intact.
   - Extracted quantities and units embedded inside ingredient names (both leading amounts like `1 tsp Ghee` and trailing parenthetical amounts like `Sugar (0.5 tsp)` or `Green Chillies (3)`) into their `quantity` and `unit` fields.
   - Deduplicated any repeated ingredients per recipe (10376 -> 16559 entries, 2515 unique standardized ingredient names).
+
+## 97. Grouped Very Similar Ingredients Across Recipes
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Grouped closely related ingredient variants (size, freshness, cut, fat/liquid qualifiers, and regional/spelling equivalents such as `Red/Large/Small Onion` -> `Onion`, `Ripe Tomato` -> `Tomato`, `Baby/Mashed/Aloo Potato` -> `Potato`, `Fresh/Sour/Thick Curd` -> `Curd (Yogurt)`, `Fresh/Cow-milk Chhena` -> `Chhena (Cottage Cheese)`, `Khoya/Mawa` -> `Khoya (Mawa)`, `Prawns` variants -> `Prawns (Chingri)`, `Black Peppercorns/Cracked Pepper` -> `Black Pepper`, etc.) into single canonical names.
+  - Stripped stray leading connectors (`&`, `Pinch of`, `With`) and trailing garnish/optional suffixes, reducing unique ingredient names from 2515 to 2346.
