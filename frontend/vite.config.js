@@ -58,11 +58,19 @@ export default defineConfig({
     target: "es2020",
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom"],
-          charts: ["recharts"],
-          icons: ["lucide-react"],
-          capacitor: ["@capacitor/core", "@capacitor/filesystem", "@capacitor/share"],
+        manualChunks(id) {
+          if (id.includes("node_modules/react-dom") || id.includes("node_modules/react/")) {
+            return "react-vendor";
+          }
+          if (id.includes("node_modules/recharts")) {
+            return "charts";
+          }
+          if (id.includes("node_modules/lucide-react")) {
+            return "icons";
+          }
+          if (id.includes("node_modules/@capacitor/")) {
+            return "capacitor";
+          }
         },
       },
     },

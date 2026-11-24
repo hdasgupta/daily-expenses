@@ -895,3 +895,7 @@
 - **`frontend/src/pages/RecipeMaster.jsx` & `frontend/src/pages/dietChart.css`**:
   - Added a searchable multi-select **Ingredients** picker with removable ingredient chips, dropdown options, and clear action.
   - Added color-coded match badges (`Exact match`, `Cooked match`, `Partial match`) on matching recipe rows.
+
+## 93. Vite 8 Build Fix & Cache-Busting Headers
+- **`frontend/vite.config.js`**: Converted `rollupOptions.output.manualChunks` from object form to function form (`manualChunks(id)`) for full compatibility with Vite 8 (Rolldown), preventing build failures on Vercel/CI.
+- **`frontend/vercel.json`**: Added `Cache-Control: no-cache, no-store, must-revalidate` for `/` and `/index.html`, and immutable long-term caching for `/assets/*`, ensuring deployed frontend updates reflect immediately without stale HTML caching.
