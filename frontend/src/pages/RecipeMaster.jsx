@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
+import { indexRecipes, extractCategories, extractIngredients, searchAndRankRecipes } from "../lib/recipeSearch";
 import {
   BookOpen,
   CalendarClock,
@@ -578,7 +578,22 @@ export default function RecipeMaster() {
     window.addEventListener("app:voice-action", onVoice);
     return () => window.removeEventListener("app:voice-action", onVoice);
   }, []);
+
+  useEffect(() => {
+    if (!ingredientDropdownOpen) return undefined;
+    const handleOutsideClick = (event) => {
+      if (ingredientPickerRef.current && !ingredientPickerRef.current.contains(event.target)) {
+        setIngredientDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [ingredientDropdownOpen]);
   const [category, setCategory] = useState("All");
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [ingredientSearch, setIngredientSearch] = useState("");
+  const [ingredientDropdownOpen, setIngredientDropdownOpen] = useState(false);
+  const ingredientPickerRef = useRef(null);
   const [sortColumn, setSortColumn] = useState("usageCount");
   const [sortDirection, setSortDirection] = useState("desc");
   const [visibleCount, setVisibleCount] = useState(30);
@@ -628,6 +643,23 @@ export default function RecipeMaster() {
 
   const indexedRecipes = useMemo(() => indexRecipes(recipes), [recipes]);
   const categoryList = useMemo(() => extractCategories(recipes), [recipes]);
+  const ingredientOptions = useMemo(() => extractIngredients(recipes), [recipes]);
+  const filteredIngredientOptions = useMemo(() => {
+    const selectedSet = new Set(selectedIngredients.map((item) => item.toLowerCase()));
+    const term = String(ingredientSearch || "")
+      .trim()
+      .toLowerCase();
+    const matches = [];
+    for (let i = 0; i < ingredientOptions.length; i++) {
+      const ing = ingredientOptions[i];
+      if (selectedSet.has(ing.toLowerCase())) continue;
+      if (!term || ing.toLowerCase().includes(term)) {
+        matches.push(ing);
+        if (matches.length >= 40) break;
+      }
+    }
+    return matches;
+  }, [ingredientOptions, selectedIngredients, ingredientSearch]);
 
   const getRecipeUsageCount = useCallback(
     (recipe) => {
@@ -642,11 +674,20 @@ export default function RecipeMaster() {
     return searchAndRankRecipes(indexedRecipes, {
       query,
       category,
+      selectedIngredients,
       sortColumn,
       sortDirection,
       getUsageCount: getRecipeUsageCount,
     });
-  }, [indexedRecipes, query, category, sortColumn, sortDirection, getRecipeUsageCount]);
+  }, [
+    indexedRecipes,
+    query,
+    category,
+    selectedIngredients,
+    sortColumn,
+    sortDirection,
+    getRecipeUsageCount,
+  ]);
 
   const visibleRecipes = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
 
@@ -681,9 +722,26 @@ export default function RecipeMaster() {
     setVisibleCount(30);
   };
 
+  const handleToggleIngredient = (ingredientName) => {
+    const normalized = String(ingredientName || "").trim();
+    if (!normalized) return;
+    setSelectedIngredients((prev) => {
+      const exists = prev.some((item) => item.toLowerCase() === normalized.toLowerCase());
+      if (exists) {
+        return prev.filter((item) => item.toLowerCase() !== normalized.toLowerCase());
+      }
+      return [...prev, normalized];
+    });
+    setIngredientSearch("");
+    setVisibleCount(30);
+  };
+
   const handleClearFilters = () => {
     setQuery("");
     setCategory("All");
+    setSelectedIngredients([]);
+    setIngredientSearch("");
+    setIngredientDropdownOpen(false);
     setVisibleCount(30);
   };
 
@@ -864,6 +922,71 @@ export default function RecipeMaster() {
             {filtered.length} {filtered.length === 1 ? "recipe" : "recipes"}
           </span>
         </label>
+        <div className="diet-ingredient-picker" ref={ingredientPickerRef}>
+          <div className="diet-ingredient-input-row">
+            <ShoppingBasket size={16} />
+            <input
+              type="text"
+              value={ingredientSearch}
+              onFocus={() => setIngredientDropdownOpen(true)}
+              onChange={(e) => {
+                setIngredientSearch(e.target.value);
+                setIngredientDropdownOpen(true);
+              }}
+              placeholder="Choose ingredients (e.g., Potato, Onion, Sooji)…"
+              aria-label="Filter recipes by ingredients"
+            />
+            {selectedIngredients.length > 0 && (
+              <button
+                type="button"
+                className="diet-clear-filters-btn"
+                onClick={() => {
+                  setSelectedIngredients([]);
+                  setIngredientSearch("");
+                  setVisibleCount(30);
+                }}
+              >
+                Clear ({selectedIngredients.length})
+              </button>
+            )}
+          </div>
+          {selectedIngredients.length > 0 && (
+            <div className="diet-ingredient-chips">
+              {selectedIngredients.map((ing) => (
+                <span key={ing} className="diet-ingredient-chip">
+                  {ing}
+                  <button
+                    type="button"
+                    aria-label={`Remove ${ing}`}
+                    onClick={() => handleToggleIngredient(ing)}
+                  >
+                    <X size={13} />
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
+          {ingredientDropdownOpen && (
+            <div className="diet-ingredient-dropdown">
+              {filteredIngredientOptions.length > 0 ? (
+                filteredIngredientOptions.map((ing) => (
+                  <button
+                    key={ing}
+                    type="button"
+                    className="diet-ingredient-option"
+                    onClick={() => handleToggleIngredient(ing)}
+                  >
+                    <Plus size={14} /> {ing}
+                  </button>
+                ))
+              ) : (
+                <span className="diet-muted" style={{ fontSize: "0.82rem", padding: "4px 6px" }}>
+                  No matching ingredients
+                </span>
+              )}
+            </div>
+          )}
+        </div>
         <div className="diet-category-chips">
           {categoryList.map((cat) => (
             <button
@@ -881,10 +1004,13 @@ export default function RecipeMaster() {
             Showing <strong>{visibleRecipes.length}</strong> of <strong>{filtered.length}</strong>{" "}
             {filtered.length === 1 ? "recipe" : "recipes"}
             {category !== "All" ? ` in ${category}` : ""}
+            {selectedIngredients.length > 0
+              ? ` with ${selectedIngredients.join(", ")}`
+              : ""}
             {query ? ` matching "${query}"` : ""}
           </span>
           <div className="diet-sort-bar">
-            {(query || category !== "All") && (
+            {(query || category !== "All" || selectedIngredients.length > 0) && (
               <button type="button" className="diet-clear-filters-btn" onClick={handleClearFilters}>
                 Clear filters
               </button>
@@ -941,6 +1067,25 @@ export default function RecipeMaster() {
                           Used {usageCount}x
                         </span>
                       )}
+                      {recipe._ingredientMatch && (
+                        <span
+                          className={`diet-match-badge diet-match-badge--${
+                            recipe._ingredientMatch.tier === 1
+                              ? "exact"
+                              : recipe._ingredientMatch.tier === 2
+                                ? "cooked"
+                                : "partial"
+                          }`}
+                          style={{ marginLeft: 6 }}
+                          title={`Matched: ${recipe._ingredientMatch.matchedNames.join(", ")}`}
+                        >
+                          {recipe._ingredientMatch.tier === 1
+                            ? `Exact match (${recipe._ingredientMatch.matchedCount}/${recipe._ingredientMatch.totalSelected})`
+                            : recipe._ingredientMatch.tier === 2
+                              ? `Cooked match (${recipe._ingredientMatch.matchedCount}/${recipe._ingredientMatch.totalSelected})`
+                              : `Partial match (${recipe._ingredientMatch.matchedCount}/${recipe._ingredientMatch.totalSelected})`}
+                        </span>
+                      )}
                     </span>
                   </div>
                   <div className="diet-actions">
@@ -968,7 +1113,7 @@ export default function RecipeMaster() {
             })}
             {!filtered.length && (
               <div className="diet-empty">
-                {query || category !== "All"
+                {query || category !== "All" || selectedIngredients.length > 0
                   ? "No recipes match your search criteria."
                   : "No recipes found in the static catalogue."}
               </div>

@@ -884,3 +884,14 @@
   - Batched permission/role/role-permission seed inserts into 3 `UNNEST` queries and skipped `bcrypt.hash` when the admin account already exists.
   - Added `ETag` / `304 Not Modified` support, pre-computed lowercase recipe names, and partition-based sorting in `listRecipes`.
   - Added missing PostgreSQL indexes on `expenses`, `marketing_list_items`, and `food_chart_entries`.
+
+## 92. Recipe Master — Multi-Ingredient Matching & Tiered Ranking
+- **`frontend/src/lib/recipeSearch.js`**:
+  - Added `extractIngredients(recipes)` and pre-indexed `_ingredientNamesLower` / `_ingredientNamesSet` in `indexRecipes`.
+  - Updated `searchAndRankRecipes` to accept `selectedIngredients` and rank matching recipes in 3 strict tiers:
+    1. **Exact matching** (all selected ingredients present; exact 1:1 ingredient set and cooked exact matches prioritized first).
+    2. **Already cooked matching recipes** (`usageCount > 0` with partial ingredient matches, sorted by matched count then usage count).
+    3. **Remaining matching recipes** (partial ingredient matches not yet cooked, sorted by matched count then total ingredient count).
+- **`frontend/src/pages/RecipeMaster.jsx` & `frontend/src/pages/dietChart.css`**:
+  - Added a searchable multi-select **Ingredients** picker with removable ingredient chips, dropdown options, and clear action.
+  - Added color-coded match badges (`Exact match`, `Cooked match`, `Partial match`) on matching recipe rows.

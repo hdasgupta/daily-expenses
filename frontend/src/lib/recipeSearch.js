@@ -1,7 +1,7 @@
 /**
  * High-performance, intelligent recipe indexing and search engine.
  * Pre-indexes recipe tokens for sub-millisecond multi-token search,
- * semantic relevance scoring, and category filtering.
+ * semantic relevance scoring, ingredient matching, and category filtering.
  */
 
 /**
@@ -39,6 +39,8 @@ export function indexRecipes(recipes = []) {
       _nameLower: nameLower,
       _categoryLower: categoryLower,
       _regionLower: regionLower,
+      _ingredientNamesLower: ingredientNames,
+      _ingredientNamesSet: new Set(ingredientNames),
       _ingredientsText: ingredientsText,
       _combinedText: combinedText,
       _totalMinutes: prepMinutes + cookMinutes,
@@ -63,13 +65,54 @@ export function extractCategories(recipes = []) {
 }
 
 /**
+ * Extracts all unique ingredient names sorted alphabetically.
+ * @param {Array} recipes
+ * @returns {Array<string>} list of ingredient names
+ */
+export function extractIngredients(recipes = []) {
+  const byLower = new Map();
+  for (const r of recipes) {
+    const ingredients = Array.isArray(r?.ingredients) ? r.ingredients : [];
+    for (const ing of ingredients) {
+      const raw = String(ing?.name || "").trim();
+      if (!raw) continue;
+      const lower = raw.toLowerCase();
+      if (!byLower.has(lower)) {
+        byLower.set(lower, raw);
+      }
+    }
+  }
+  return Array.from(byLower.values()).sort((a, b) => a.localeCompare(b));
+}
+
+function matchRecipeIngredients(recipe, selectedIngredients) {
+  const matchedNames = [];
+  const namesSet = recipe._ingredientNamesSet;
+  const namesList = recipe._ingredientNamesLower || [];
+
+  for (let i = 0; i < selectedIngredients.length; i++) {
+    const sel = selectedIngredients[i];
+    const matched =
+      (namesSet && namesSet.has(sel.lower)) ||
+      namesList.some((ing) => ing.includes(sel.lower));
+    if (matched) {
+      matchedNames.push(sel.label);
+    }
+  }
+
+  return matchedNames;
+}
+
+/**
  * Searches and ranks recipes with multi-token matching, relevance scoring,
+ * ingredient matching (exact -> already cooked -> remaining),
  * category filtering, and sorting (default: most used recipes on top).
  *
  * @param {Array} indexedRecipes
  * @param {Object} options
  * @param {string} options.query - search text
  * @param {string} options.category - active category filter ("All" or specific category)
+ * @param {Array<string>} options.selectedIngredients - selected ingredient filters
  * @param {string} options.sortColumn - column to sort by ("usageCount", "name", "totalTime", "ingredientCount")
  * @param {string} options.sortDirection - "desc" (most used on top) or "asc"
  * @param {Function} options.getUsageCount - function(recipe) returning total usage count
@@ -79,6 +122,7 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
   const {
     query = "",
     category = "All",
+    selectedIngredients = [],
     sortColumn = "usageCount",
     sortDirection = "desc",
     getUsageCount = null,
@@ -91,6 +135,16 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
   const isCategoryFilterActive = activeCategory && activeCategory !== "All";
   const catLower = activeCategory.toLowerCase();
 
+  const normalizedSelected = Array.isArray(selectedIngredients)
+    ? selectedIngredients
+        .map((label) => ({
+          label: String(label || "").trim(),
+          lower: String(label || "").trim().toLowerCase(),
+        }))
+        .filter((item) => item.lower.length > 0)
+    : [];
+  const hasIngredientFilter = normalizedSelected.length > 0;
+
   // Step 1: Filter and score
   const matches = [];
 
@@ -102,9 +156,34 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
       continue;
     }
 
-    // If no search query, match all within the category
+    // Ingredient filter check
+    let ingredientMatch = null;
+    if (hasIngredientFilter) {
+      const matchedNames = matchRecipeIngredients(r, normalizedSelected);
+      if (matchedNames.length === 0) {
+        continue;
+      }
+      const usageCount = getUsageCount ? getUsageCount(r) : Number(r.usageCount || 0);
+      const isExact = matchedNames.length === normalizedSelected.length;
+      const tier = isExact ? 1 : usageCount > 0 ? 2 : 3;
+      const extraCount = Math.max(0, r._ingredientCount - matchedNames.length);
+      ingredientMatch = {
+        tier,
+        matchedCount: matchedNames.length,
+        totalSelected: normalizedSelected.length,
+        extraCount,
+        usageCount,
+        matchedNames,
+      };
+    }
+
+    // If no search query, match all within the category/ingredient filter
     if (!tokens.length) {
-      matches.push({ recipe: r, score: 0 });
+      matches.push({
+        recipe: ingredientMatch ? { ...r, _ingredientMatch: ingredientMatch } : r,
+        score: 0,
+        ingredientMatch,
+      });
       continue;
     }
 
@@ -161,13 +240,52 @@ export function searchAndRankRecipes(indexedRecipes = [], options = {}) {
       score += Math.max(0, 50 - Math.floor(r._nameLower.length / 2));
     }
 
-    matches.push({ recipe: r, score });
+    matches.push({
+      recipe: ingredientMatch ? { ...r, _ingredientMatch: ingredientMatch } : r,
+      score,
+      ingredientMatch,
+    });
   }
 
   // Step 2: Sort
   const dirMultiplier = sortDirection === "desc" ? -1 : 1;
 
   matches.sort((a, b) => {
+    // When ingredients are selected:
+    // Tier 1: Exact matching (all selected ingredients)
+    // Tier 2: Already cooked matching recipes (usageCount > 0)
+    // Tier 3: Remaining matching recipes
+    if (hasIngredientFilter && a.ingredientMatch && b.ingredientMatch) {
+      const am = a.ingredientMatch;
+      const bm = b.ingredientMatch;
+      if (am.tier !== bm.tier) {
+        return am.tier - bm.tier;
+      }
+      if (am.tier === 1) {
+        // Exact 1:1 ingredient set match (0 extra ingredients) on top
+        const aExactSet = am.extraCount === 0 ? 0 : 1;
+        const bExactSet = bm.extraCount === 0 ? 0 : 1;
+        if (aExactSet !== bExactSet) return aExactSet - bExactSet;
+        // Already cooked exact matches before uncooked exact matches
+        const aCooked = am.usageCount > 0 ? 0 : 1;
+        const bCooked = bm.usageCount > 0 ? 0 : 1;
+        if (aCooked !== bCooked) return aCooked - bCooked;
+        if (am.extraCount !== bm.extraCount) return am.extraCount - bm.extraCount;
+        if (am.usageCount !== bm.usageCount) return bm.usageCount - am.usageCount;
+      } else {
+        // Tier 2 & Tier 3: more matched ingredients first
+        if (am.matchedCount !== bm.matchedCount) {
+          return bm.matchedCount - am.matchedCount;
+        }
+        if (am.usageCount !== bm.usageCount) {
+          return bm.usageCount - am.usageCount;
+        }
+        if (am.extraCount !== bm.extraCount) {
+          return am.extraCount - bm.extraCount;
+        }
+      }
+    }
+
     // If a search query is active and user has not explicitly requested a non-default sort,
     // match relevance score is primary!
     if (tokens.length > 0 && (!sortColumn || sortColumn === "usageCount")) {
