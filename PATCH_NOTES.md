@@ -923,3 +923,9 @@
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Cleaned all 45 remaining ingredient entries containing `&` inside parenthetical prep/spice descriptions (e.g., `Flaxseeds (Alsi)`, `Prawns (Chingri)`, `Poha (Flattened Rice)`, `Sabudana (Tapioca Pearls)`, `Spinach (Palak)`, `Papad`, `Tomato`, `Green Chilli`) and removed stray note-only entries.
   - Zero ingredient names now contain `&` (2315 unique standardized ingredient names across all 1,724 recipes).
+
+## 99. Split '+' Combined Ingredients & Standardized Besan/Maida Variants
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Split remaining ` + ` combined entries (such as `Poppy Seeds + Mustard`, `Milk + Water`, `Ghee + Oil`) into separate ingredient rows.
+  - Stripped trailing purpose qualifiers (`for Marinade`, `for Gattas`, `for Thickening`, etc.) before quantity extraction so embedded amounts like `1 Tsp Besan` and `Besan (1 Tbsp) for Marinade` separate cleanly into `quantity`/`unit` and canonical `Besan (Gram Flour)` / `All-Purpose Flour (Maida)`.
+  - Reduced unique standardized ingredient names to 2241 across all 1,724 recipes.

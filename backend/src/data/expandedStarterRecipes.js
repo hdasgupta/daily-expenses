@@ -4549,7 +4549,7 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -5843,9 +5843,9 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "2 Tbsp Cornflour",
-        "quantity": "As needed",
-        "unit": ""
+        "name": "Cornflour",
+        "quantity": "2",
+        "unit": "tbsp"
       },
       {
         "name": "Cabbage",
@@ -5908,7 +5908,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Deep-frying Noodles",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -6224,7 +6224,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Ground to Fine Flour",
+        "name": "Ground",
         "quantity": "As needed",
         "unit": ""
       },
@@ -8536,7 +8536,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Ghee or Oil for Slow Deep-frying",
+        "name": "Ghee or Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -9621,7 +9621,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Kalo Jeere",
+        "name": "Nigella Seeds (Kalo Jeere)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -9843,7 +9843,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Super-fine Sieved Gram Flour (Besan)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -10193,7 +10193,7 @@ const definitions = [
         "unit": "cups"
       },
       {
-        "name": "Pure Desi Ghee (Melted, for Brushing Layers)",
+        "name": "Pure Desi Ghee (Melted)",
         "quantity": "0.5",
         "unit": "cup"
       },
@@ -11115,7 +11115,7 @@ const definitions = [
         "unit": "tsp"
       },
       {
-        "name": "Sugar (a Pinch, for Rich Caramelization)",
+        "name": "Sugar (a Pinch)",
         "quantity": "0.5",
         "unit": "tsp"
       },
@@ -12665,7 +12665,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Fine Besan (Gram Flour, Sifted)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.25",
         "unit": "cups"
       },
@@ -12838,7 +12838,7 @@ const definitions = [
     "servings": 3,
     "ingredients": [
       {
-        "name": "Fine Besan (Gram Flour)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.25",
         "unit": "cups"
       },
@@ -13031,9 +13031,14 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Full-cream Milk + Water",
-        "quantity": "2",
-        "unit": "cups"
+        "name": "Milk",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Sugar (or Jaggery Powder)",
@@ -13337,7 +13342,7 @@ const definitions = [
     "servings": 2,
     "ingredients": [
       {
-        "name": "Fine Besan (Gram Flour)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1",
         "unit": "cup"
       },
@@ -13861,7 +13866,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -13906,7 +13911,7 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Oil for Shortening",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -14198,7 +14203,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "1",
         "unit": "tbsp"
       },
@@ -14609,11 +14614,6 @@ const definitions = [
       },
       {
         "name": "Salt",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "Oil",
         "quantity": "As needed",
         "unit": ""
       }
@@ -15890,7 +15890,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Fine Besan",
+        "name": "Besan (Gram Flour)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -17994,11 +17994,6 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "(Or 4 Cloves Garlic for Garlic-style)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
         "name": "Red Chilli",
         "quantity": "2",
         "unit": "pcs"
@@ -18862,7 +18857,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Fine Suji (Semolina, for Outer Crust)",
+        "name": "Fine Suji (Semolina)",
         "quantity": "3 tbsp",
         "unit": ""
       },
@@ -19000,7 +18995,7 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Milk (to Knead Soft Dough)",
+        "name": "Milk",
         "quantity": "5",
         "unit": "tbsp"
       },
@@ -19331,7 +19326,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Ghee for Shallow Frying",
+        "name": "Ghee",
         "quantity": "0.5",
         "unit": "cup"
       }
@@ -19943,11 +19938,6 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "(Stalks Reserved for Stock)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
         "name": "Garlic",
         "quantity": "As needed",
         "unit": ""
@@ -20230,11 +20220,6 @@ const definitions = [
       },
       {
         "name": "Garlic",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "(Divided)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -20540,7 +20525,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Sea Salt for Boiling Water",
+        "name": "Sea Salt",
         "quantity": "1",
         "unit": "tbsp"
       }
@@ -20934,7 +20919,7 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Sugar (Divided: 4 Tbsp for Caramel, 4 Tbsp for Pudding)",
+        "name": "Sugar (Divided: 4 Tbsp for Caramel)",
         "quantity": "0.5",
         "unit": "cup"
       },
@@ -21944,7 +21929,7 @@ const definitions = [
     "servings": 6,
     "ingredients": [
       {
-        "name": "Coarse Besan (Mota Besan / Chana Flour)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.5 cups",
         "unit": ""
       },
@@ -22151,9 +22136,14 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Paneer or Drained Fresh Chhena (250g) + Boiled Mashed Potato",
-        "quantity": "1",
-        "unit": "pcs"
+        "name": "Paneer or Drained Fresh Chhena",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Boiled Mashed Potato",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Raisins",
@@ -22260,7 +22250,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Semolina (Suji) for Binding",
+        "name": "Semolina (Suji)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -23770,9 +23760,14 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Coconut Milk (1 Cup) + Water",
-        "quantity": "2",
+        "name": "Coconut Milk",
+        "quantity": "1",
         "unit": "cup"
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Brinji Leaf (Bay Leaf)",
@@ -24087,7 +24082,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -24181,7 +24176,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Ghee for Shallow-frying",
+        "name": "Ghee",
         "quantity": "0.75",
         "unit": "cup"
       }
@@ -24413,7 +24408,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Milk (to Knead Smooth Pipeable Dough)",
+        "name": "Milk",
         "quantity": "3",
         "unit": "tbsp"
       },
@@ -25228,7 +25223,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Stir-frying",
+        "name": "Cooking Oil",
         "quantity": "3",
         "unit": "tbsp"
       }
@@ -26665,7 +26660,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Refined Oil for Tawa Frying",
+        "name": "Refined Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -32573,7 +32568,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -35798,7 +35793,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -36281,7 +36276,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Basil Pesto for Serving",
+        "name": "Basil Pesto",
         "quantity": "As needed",
         "unit": ""
       }
@@ -36414,7 +36409,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Parmesan for Serving",
+        "name": "Parmesan",
         "quantity": "As needed",
         "unit": ""
       },
@@ -36572,7 +36567,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Salt for Pasta Water",
+        "name": "Salt",
         "quantity": "1",
         "unit": "tbsp"
       }
@@ -37414,7 +37409,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Tempering",
+        "name": "Cooking Oil",
         "quantity": "2",
         "unit": "tbsp"
       }
@@ -38771,7 +38766,7 @@ const definitions = [
         "unit": "pc"
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -38811,11 +38806,6 @@ const definitions = [
     "ingredients": [
       {
         "name": "Split Yellow Moong Dal",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "3 Hours with Pinch of Baking Soda",
         "quantity": "As needed",
         "unit": ""
       },
@@ -39302,7 +39292,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Black Mustard Paste",
+        "name": "Mustard Paste (Shorshe)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -39539,9 +39529,9 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "1 Tsp Besan",
-        "quantity": "As needed",
-        "unit": ""
+        "name": "Besan (Gram Flour)",
+        "quantity": "1",
+        "unit": "tsp"
       },
       {
         "name": "Cumin Seeds (Jeera)",
@@ -39990,7 +39980,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -40340,7 +40330,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Fresh Coriander for Topping",
+        "name": "Fresh Coriander",
         "quantity": "As needed",
         "unit": ""
       }
@@ -40484,11 +40474,6 @@ const definitions = [
       },
       {
         "name": "Cooking Oil",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "Ghee for Deep/shallow Frying",
         "quantity": "As needed",
         "unit": ""
       },
@@ -41118,11 +41103,6 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "(Plus Optional 150g Spiced Mutton Keema)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
         "name": "Onion",
         "quantity": "As needed",
         "unit": ""
@@ -41173,7 +41153,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -41371,7 +41351,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -41657,7 +41637,7 @@ const definitions = [
         "unit": "pcs"
       },
       {
-        "name": "Char Magaj (Melon Seeds, 1.5 Tbsp) Ground to a Smooth Paste",
+        "name": "Char Magaj (Melon Seeds, 1.5 Tbsp) Ground",
         "quantity": "As needed",
         "unit": ""
       },
@@ -41830,7 +41810,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Fine Gram Flour (Besan) for Red",
+        "name": "Fine Gram Flour (Besan)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -42369,7 +42349,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Slow Deep-frying",
+        "name": "Cooking Oil",
         "quantity": "2",
         "unit": "cups"
       }
@@ -43928,7 +43908,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Tawa Frying",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -45265,7 +45245,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Tawa Frying",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -45443,7 +45423,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Tawa Frying",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -45794,7 +45774,7 @@ const definitions = [
     "servings": 2,
     "ingredients": [
       {
-        "name": "Maida (All-purpose Flour) for Flaky Laccha Paratha",
+        "name": "Maida (All-purpose Flour)",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -45844,7 +45824,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Refined Oil for Shallow Frying",
+        "name": "Refined Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -47557,11 +47537,6 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "(Half for Boras, Half for Gravy)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
         "name": "Tomato",
         "quantity": "1",
         "unit": "medium"
@@ -48850,7 +48825,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Rice Flour (Chaler Guro) for Extra Crunch",
+        "name": "Rice Flour (Chaler Guro)",
         "quantity": "2",
         "unit": "tbsp"
       },
@@ -48860,7 +48835,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -49359,7 +49334,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "White Poppy Seeds (Posto) for Tossing",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "1",
         "unit": "tbsp"
       },
@@ -50006,7 +49981,7 @@ const definitions = [
         "unit": "medium"
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -50233,7 +50208,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Coarse Gram Flour (Dardara Besan)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -51723,7 +51698,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Bhujia Sev for Topping",
+        "name": "Bhujia Sev",
         "quantity": "As needed",
         "unit": ""
       },
@@ -54341,11 +54316,6 @@ const definitions = [
         "name": "Green Chilli",
         "quantity": "As needed",
         "unit": ""
-      },
-      {
-        "name": "Oil",
-        "quantity": "As needed",
-        "unit": ""
       }
     ],
     "steps": [
@@ -54481,7 +54451,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Fine Besan (Gram Flour, Sifted)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1",
         "unit": "cup"
       },
@@ -54921,7 +54891,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Water (to Dissolve Jaggery)",
+        "name": "Water",
         "quantity": "1",
         "unit": "cup"
       },
@@ -55523,7 +55493,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Green Chillies (3) Ground to a Paste",
+        "name": "Green Chillies (3) Ground",
         "quantity": "As needed",
         "unit": ""
       },
@@ -56741,7 +56711,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -58720,8 +58690,13 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Sour Curd (Dahi) + 3/4 Cup Water",
-        "quantity": "1/2",
+        "name": "Sour Curd (Dahi)",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "3/4",
         "unit": "cup"
       },
       {
@@ -59810,7 +59785,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Kalo Jeere",
+        "name": "Nigella Seeds (Kalo Jeere)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -60899,7 +60874,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Kalo Jeere",
+        "name": "Nigella Seeds (Kalo Jeere)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -61758,7 +61733,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Ground to a Coarse Powder",
+        "name": "Ground",
         "quantity": "As needed",
         "unit": ""
       },
@@ -62729,7 +62704,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -63430,8 +63405,13 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Sesame Oil or Groundnut Oil + 1 Tbsp Ghee",
-        "quantity": "3.5",
+        "name": "Sesame Oil or Groundnut Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Ghee",
+        "quantity": "1",
         "unit": "tbsp"
       },
       {
@@ -65675,7 +65655,7 @@ const definitions = [
     "servings": 4,
     "ingredients": [
       {
-        "name": "Fine Besan (Gram Flour, Sifted)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.5",
         "unit": "cups"
       },
@@ -65814,7 +65794,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       }
@@ -65903,7 +65883,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Slow Frying",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -65957,7 +65937,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -66429,7 +66409,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Black Chickpeas (Kala Chana, Soaked) or Green Peas",
+        "name": "Black Chickpeas (Kala Chana) or Green Peas",
         "quantity": "0.25",
         "unit": "cup"
       },
@@ -66741,7 +66721,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Tamarind Pulp or Lemon Juice (to Neutralize Itchiness)",
+        "name": "Tamarind Pulp or Lemon Juice",
         "quantity": "1.5",
         "unit": "tbsp"
       },
@@ -67359,7 +67339,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -67458,7 +67438,7 @@ const definitions = [
         "unit": "pcs"
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -67517,7 +67497,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Potatoes (with Skin) for Street-style Aloor Torkari",
+        "name": "Potatoes (with Skin)",
         "quantity": "3",
         "unit": "medium"
       },
@@ -67547,12 +67527,12 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
       {
-        "name": "Mustard Oil for Curry",
+        "name": "Mustard Oil",
         "quantity": "As needed",
         "unit": ""
       }
@@ -67745,7 +67725,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Shallow Frying",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -67923,7 +67903,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Shallow Frying",
+        "name": "Cooking Oil",
         "quantity": "4",
         "unit": "tbsp"
       },
@@ -67977,9 +67957,9 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "1 Tsp Oil",
-        "quantity": "As needed",
-        "unit": ""
+        "name": "Cooking Oil",
+        "quantity": "1",
+        "unit": "tsp"
       },
       {
         "name": "Egg",
@@ -68052,12 +68032,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Peanuts for Street-style Topping",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "Cooking Oil",
+        "name": "Peanuts",
         "quantity": "As needed",
         "unit": ""
       },
@@ -68215,7 +68190,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -69699,7 +69674,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Mustard Oil for Shallow Frying",
+        "name": "Mustard Oil",
         "quantity": "4",
         "unit": "tbsp"
       }
@@ -70800,7 +70775,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -72571,7 +72546,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Besan (Gram Flour, to Absorb Juices)",
+        "name": "Besan (Gram Flour)",
         "quantity": "3",
         "unit": "tbsp"
       },
@@ -73187,7 +73162,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -73872,7 +73847,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "In Warm Water for Pulp",
+        "name": "In Warm Water",
         "quantity": "As needed",
         "unit": ""
       },
@@ -74807,7 +74782,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -74965,8 +74940,13 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Smoking-hot Oil or Ghee (3 Tbsp for Dough) + Oil",
-        "quantity": "for frying",
+        "name": "Smoking-hot Oil or Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
         "unit": ""
       },
       {
@@ -75381,7 +75361,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -75953,11 +75933,6 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "(Half Roasted with Coconut)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
         "name": "Malvani Masala",
         "quantity": "1.5",
         "unit": "tbsp"
@@ -76131,9 +76106,14 @@ const definitions = [
         "unit": "medium"
       },
       {
-        "name": "Maida or Half Maida + Half Whole Wheat Flour",
-        "quantity": "1.5",
-        "unit": "cups"
+        "name": "Maida or Half Maida",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Half Whole Wheat Flour",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Curd (Yogurt)",
@@ -76156,9 +76136,14 @@ const definitions = [
         "unit": "tsp"
       },
       {
-        "name": "Desi Ghee (for Kneading) + Oil",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Ghee",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Salt",
@@ -76827,7 +76812,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -78009,7 +77994,7 @@ const definitions = [
         "unit": "tsp"
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -80027,7 +80012,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Besan (Gram Flour, 1 Tbsp for Body)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1",
         "unit": "tbsp"
       },
@@ -80689,11 +80674,6 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "(Or 3 Tbsp Kasuri Methi)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
         "name": "Onion-cashew-melon Seed Paste",
         "quantity": "0.75",
         "unit": "cup"
@@ -81036,7 +81016,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Amchur (Dry Mango Powder) or Raisins (to Balance Methi)",
+        "name": "Amchur (Dry Mango Powder) or Raisins",
         "quantity": "1",
         "unit": "tsp"
       },
@@ -81924,7 +81904,7 @@ const definitions = [
         "unit": "pcs"
       },
       {
-        "name": "Besan (Gram Flour, for Coating Batter)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1.25",
         "unit": "cups"
       },
@@ -83237,7 +83217,7 @@ const definitions = [
     "servings": 6,
     "ingredients": [
       {
-        "name": "Coarse Gram Flour (Besan)",
+        "name": "Besan (Gram Flour)",
         "quantity": "2",
         "unit": "cups"
       },
@@ -83775,7 +83755,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -84431,7 +84411,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -84668,7 +84648,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Shallow Frying",
+        "name": "Cooking Oil",
         "quantity": "4",
         "unit": "tbsp"
       },
@@ -85474,7 +85454,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -86095,9 +86075,14 @@ const definitions = [
         "unit": "large"
       },
       {
-        "name": "Thick Coconut Milk + Warm Water",
-        "quantity": "3.5",
-        "unit": "cups"
+        "name": "Thick Coconut Milk",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Warm Water",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Curd (Yogurt)",
@@ -86784,9 +86769,9 @@ const definitions = [
         "unit": "tsp"
       },
       {
-        "name": "Oil (1 Tbsp for Batter) + Oil",
-        "quantity": "for frying",
-        "unit": ""
+        "name": "Cooking Oil",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Salt",
@@ -87030,7 +87015,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       }
@@ -87557,7 +87542,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Melon Seeds",
+        "name": "Melon Seeds (Magaj)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -89237,7 +89222,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -89336,7 +89321,7 @@ const definitions = [
         "unit": "tsp"
       },
       {
-        "name": "Demerara Sugar for Crunchy Topping",
+        "name": "Demerara Sugar",
         "quantity": "1",
         "unit": "tbsp"
       }
@@ -89400,7 +89385,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Lemon Juice (to Remove Acridity)",
+        "name": "Lemon Juice",
         "quantity": "1",
         "unit": "tbsp"
       },
@@ -89415,7 +89400,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Kalo Jeere",
+        "name": "Nigella Seeds (Kalo Jeere)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -93284,7 +93269,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Besan (Gram Flour, for Thickening)",
+        "name": "Besan (Gram Flour)",
         "quantity": "2",
         "unit": "tbsp"
       },
@@ -93294,7 +93279,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -93858,7 +93843,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Posto",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -93868,7 +93853,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Mustard Oil for Pan-frying",
+        "name": "Mustard Oil",
         "quantity": "4",
         "unit": "tbsp"
       }
@@ -95144,9 +95129,19 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Tomato Puree (0.5 Cup) + Tomato Ketchup (1 Tbsp) + Vinegar/lemon Juice",
+        "name": "Tomato Puree",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tomato Ketchup",
         "quantity": "1",
-        "unit": "tsp"
+        "unit": "tbsp"
+      },
+      {
+        "name": "Vinegar/lemon Juice",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Cumin Seeds (Jeera)",
@@ -95451,9 +95446,14 @@ const definitions = [
         "unit": "L"
       },
       {
-        "name": "Cashews (15) + Melon Seeds",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Cashews",
+        "quantity": "15",
+        "unit": "pcs"
+      },
+      {
+        "name": "Melon Seeds (Magaj)",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Pureed",
@@ -96075,7 +96075,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Cornflour Slurry (2 Tbsp Cornflour + 3 Tbsp Water) for Sealing",
+        "name": "Cornflour Slurry",
         "quantity": "2",
         "unit": "tbsp"
       },
@@ -96164,9 +96164,14 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Black Mustard Paste (2 Tbsp) + Poppy Seed Paste",
-        "quantity": "1.5",
+        "name": "Mustard Paste (Shorshe)",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Poppy Seed Paste (Posto)",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Coconut",
@@ -97123,9 +97128,9 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Besan (1 Tbsp) for Marinade",
-        "quantity": "As needed",
-        "unit": ""
+        "name": "Besan (Gram Flour)",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Tandoori Masala",
@@ -98108,7 +98113,12 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Besan or Maida Paste (for Sealing) + Mustard Oil",
+        "name": "Besan or Maida Paste",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Mustard Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -101005,7 +101015,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -102731,7 +102741,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -103992,7 +104002,7 @@ const definitions = [
         "unit": "g"
       },
       {
-        "name": "Rice Flour (Chaler Guro) for Binding",
+        "name": "Rice Flour (Chaler Guro)",
         "quantity": "1.5",
         "unit": "tbsp"
       },
@@ -104047,11 +104057,6 @@ const definitions = [
       },
       {
         "name": "White Poppy Seeds (Posto)",
-        "quantity": "As needed",
-        "unit": ""
-      },
-      {
-        "name": "Ground Thick with Green Chillies",
         "quantity": "As needed",
         "unit": ""
       },
@@ -104642,7 +104647,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "+ Sliced Rings for Topping",
+        "name": "+ Sliced Rings",
         "quantity": "As needed",
         "unit": ""
       },
@@ -105885,7 +105890,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -107686,7 +107691,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -110550,7 +110555,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -110639,7 +110644,12 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Black Mustard Seeds + Poppy Seeds (Posto)",
+        "name": "Mustard Seeds",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -110733,7 +110743,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seed Paste",
+        "name": "Poppy Seed Paste (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -111544,7 +111554,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -111795,7 +111805,7 @@ const definitions = [
         "unit": "cups"
       },
       {
-        "name": "Besan (Gram Flour, for Gattas)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1",
         "unit": "cup"
       },
@@ -112167,7 +112177,7 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Besan (Gram Flour, to Stabilize Curd)",
+        "name": "Besan (Gram Flour)",
         "quantity": "1",
         "unit": "tsp"
       },
@@ -113425,7 +113435,7 @@ const definitions = [
         "unit": "tbsp"
       },
       {
-        "name": "Coconut Oil for Shallow Frying",
+        "name": "Coconut Oil",
         "quantity": "3",
         "unit": "tbsp"
       },
@@ -113563,7 +113573,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Coconut Oil or Vegetable Oil for Shallow Frying",
+        "name": "Coconut Oil or Vegetable Oil",
         "quantity": "3",
         "unit": "tbsp"
       },
@@ -115426,7 +115436,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Water for Boiling Sago",
+        "name": "Water",
         "quantity": "4",
         "unit": "cups"
       },
@@ -115441,11 +115451,6 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Water for Jaggery Syrup",
-        "quantity": "0.25",
-        "unit": "cup"
-      },
-      {
         "name": "Cardamom Powder",
         "quantity": "0.25",
         "unit": "tsp"
@@ -115456,7 +115461,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Fresh Mango Slices for Serving",
+        "name": "Fresh Mango Slices",
         "quantity": "As needed",
         "unit": ""
       }
@@ -115510,9 +115515,14 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seed Paste (1.5 Tbsp) + Ginger Paste",
-        "quantity": "1",
-        "unit": "tsp"
+        "name": "Poppy Seed Paste (Posto)",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger Paste",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Nigella Seeds (Kalo Jeere)",
@@ -116170,7 +116180,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Urad Dal Flour (or Besan, for Crispness)",
+        "name": "Urad Dal Flour (or Besan)",
         "quantity": "2 tbsp",
         "unit": ""
       },
@@ -116279,7 +116289,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -116516,7 +116526,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -118227,7 +118237,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "to taste",
         "unit": ""
       },
@@ -118676,7 +118686,12 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Black Mustard Seeds (2 Tbsp) + Poppy Seeds (1 Tbsp) Soaked",
+        "name": "Mustard Seeds",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Poppy Seeds (1 Tbsp) Soaked",
         "quantity": "As needed",
         "unit": ""
       },
@@ -119728,7 +119743,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Pure Ghee for Shallow/deep Frying",
+        "name": "Pure Ghee",
         "quantity": "1",
         "unit": "cup"
       }
@@ -121760,7 +121775,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Poppy Seeds (Posto)",
+        "name": "White Poppy Seeds (Posto)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -123368,7 +123383,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -124195,9 +124210,14 @@ const definitions = [
         "unit": "cup"
       },
       {
-        "name": "Buttermilk or Whisked Curd + Water",
-        "quantity": "2.5",
-        "unit": "cups"
+        "name": "Buttermilk or Whisked Curd",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Onion",
@@ -125057,7 +125077,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Kalo Jeere",
+        "name": "Nigella Seeds (Kalo Jeere)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -125549,7 +125569,7 @@ const definitions = [
     "servings": 6,
     "ingredients": [
       {
-        "name": "Gram Flour (Besan) for Fine Sev",
+        "name": "Besan (Gram Flour)",
         "quantity": "As needed",
         "unit": ""
       },
@@ -125782,7 +125802,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Torn to Release Oil",
+        "name": "Torn",
         "quantity": "As needed",
         "unit": ""
       },
@@ -128563,7 +128583,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Frying Manchurian Balls",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -128677,7 +128697,7 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil for Frying Manchurian Balls",
+        "name": "Cooking Oil",
         "quantity": "As needed",
         "unit": ""
       },
@@ -129773,9 +129793,9 @@ const definitions = [
         "unit": ""
       },
       {
-        "name": "Oil (1 Tbsp for Batter) + Oil",
-        "quantity": "for frying",
-        "unit": ""
+        "name": "Cooking Oil",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Coriander Leaves",
