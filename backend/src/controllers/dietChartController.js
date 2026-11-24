@@ -7,14 +7,15 @@ const staticRecipes = JSON.parse(
   readFileSync(new URL("../data/recipes.json", import.meta.url), "utf8"),
 );
 const staticRecipesById = new Map(staticRecipes.map((r) => [String(r.id), r]));
-const staticRecipesByName = new Map(
-  staticRecipes.map((r) => [
-    String(r.name || "")
-      .trim()
-      .toLowerCase(),
-    r,
-  ]),
+const staticRecipesLowerNames = staticRecipes.map((r) =>
+  String(r.name || "")
+    .trim()
+    .toLowerCase(),
 );
+const staticRecipesByName = new Map(
+  staticRecipes.map((r, idx) => [staticRecipesLowerNames[idx], r]),
+);
+const STATIC_RECIPES_VERSION = `${staticRecipes.length}-${staticRecipes[staticRecipes.length - 1]?.id || "0"}`;
 
 function normalizeRecipeSnapshot(snapshot, recipeId = null) {
   let parsed = snapshot;
@@ -70,12 +71,17 @@ export async function listRecipes(req, res) {
       [userId],
     );
 
+    let signatureHash = 0;
     const byId = new Map();
     const byName = new Map();
 
     for (const row of usageResult.rows) {
       const total = Number(row.total_count || 0);
       const userCount = Number(row.user_count || 0);
+      const sig = `${row.recipe_id}|${row.recipe_name}|${total}|${userCount}`;
+      for (let i = 0; i < sig.length; i += 1) {
+        signatureHash = ((signatureHash << 5) - signatureHash + sig.charCodeAt(i)) | 0;
+      }
       if (row.recipe_id) {
         const prev = byId.get(row.recipe_id) || { total: 0, user: 0 };
         byId.set(row.recipe_id, { total: prev.total + total, user: prev.user + userCount });
@@ -86,29 +92,42 @@ export async function listRecipes(req, res) {
       }
     }
 
-    const enriched = staticRecipes.map((recipe) => {
+    const etag = `W/"recipes-${STATIC_RECIPES_VERSION}-${userId || "anon"}-${usageResult.rows.length}-${signatureHash >>> 0}"`;
+    res.set("ETag", etag);
+    if (req.headers["if-none-match"] === etag) {
+      return res.status(304).end();
+    }
+
+    const used = [];
+    const unused = [];
+
+    for (let i = 0; i < staticRecipes.length; i += 1) {
+      const recipe = staticRecipes[i];
       const idStats = byId.get(String(recipe.id)) || { total: 0, user: 0 };
-      const nameStats = byName.get(
-        String(recipe.name || "")
-          .trim()
-          .toLowerCase(),
-      ) || { total: 0, user: 0 };
+      const nameStats = byName.get(staticRecipesLowerNames[i]) || { total: 0, user: 0 };
       const usageCount = Math.max(idStats.total, nameStats.total);
       const userUsageCount = Math.max(idStats.user, nameStats.user);
-      return {
+      const item = {
         ...recipe,
         usageCount,
         userUsageCount,
       };
-    });
+      if (usageCount > 0 || userUsageCount > 0) {
+        used.push(item);
+      } else {
+        unused.push(item);
+      }
+    }
 
-    enriched.sort((a, b) => {
-      if (b.usageCount !== a.usageCount) return b.usageCount - a.usageCount;
-      if (b.userUsageCount !== a.userUsageCount) return b.userUsageCount - a.userUsageCount;
-      return String(a.name || "").localeCompare(String(b.name || ""));
-    });
+    if (used.length > 1) {
+      used.sort((a, b) => {
+        if (b.usageCount !== a.usageCount) return b.usageCount - a.usageCount;
+        if (b.userUsageCount !== a.userUsageCount) return b.userUsageCount - a.userUsageCount;
+        return String(a.name || "").localeCompare(String(b.name || ""));
+      });
+    }
 
-    return res.json(enriched);
+    return res.json(used.length ? [...used, ...unused] : unused);
   } catch {
     return res.json(staticRecipes);
   }

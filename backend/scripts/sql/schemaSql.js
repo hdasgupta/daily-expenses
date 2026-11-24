@@ -323,4 +323,12 @@ CREATE TABLE IF NOT EXISTS public.food_chart_entries (
 );
 ALTER TABLE public.food_chart_entries ADD COLUMN IF NOT EXISTS location_id BIGINT REFERENCES public.marketing_locations(id) ON DELETE SET NULL;
 CREATE INDEX IF NOT EXISTS idx_food_chart_user_date_location ON public.food_chart_entries(user_id, chart_date, location_id, meal, sort_order, id);
+CREATE INDEX IF NOT EXISTS idx_food_chart_date_location ON public.food_chart_entries(chart_date, location_id);
+CREATE INDEX IF NOT EXISTS idx_expenses_location_id ON public.expenses(location_id);
+CREATE INDEX IF NOT EXISTS idx_expenses_category_id ON public.expenses(category_id);
+CREATE INDEX IF NOT EXISTS idx_expenses_item_id ON public.expenses(item_id);
+CREATE INDEX IF NOT EXISTS idx_expenses_date_id_desc ON public.expenses(expense_date DESC, id DESC);
+CREATE INDEX IF NOT EXISTS idx_marketing_list_item_status ON public.marketing_list_items(item_id, status);
+CREATE INDEX IF NOT EXISTS idx_marketing_list_location_date ON public.marketing_list_items(location_id, purchase_date DESC);
+CREATE INDEX IF NOT EXISTS idx_marketing_list_expense_id ON public.marketing_list_items(expense_id) WHERE expense_id IS NOT NULL;
 `;

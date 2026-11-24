@@ -31,28 +31,48 @@ const rolePermissions = {
 };
 
 export async function seedApplication() {
-  // Always ensure the complete permission catalogue exists.
-  for (const permission of permissions) {
-    await q(bootstrapSql.insertPermission, [permission]);
-  }
+  // Batch-ensure permissions, roles, and role-permission mappings in 3 queries
+  // instead of 31 sequential round-trips on every cold start.
+  await q(
+    `INSERT INTO public.permissions (code)
+     SELECT DISTINCT UNNEST($1::text[])
+     ON CONFLICT (code) DO NOTHING`,
+    [permissions],
+  );
 
-  // Always ensure all supported roles exist.
-  for (const role of Object.keys(rolePermissions)) {
-    await q(bootstrapSql.insertRole, [role]);
-  }
+  const roles = Object.keys(rolePermissions);
+  await q(
+    `INSERT INTO public.roles (name)
+     SELECT DISTINCT UNNEST($1::text[])
+     ON CONFLICT (name) DO NOTHING`,
+    [roles],
+  );
 
-  // Always repair/complete role-permission mappings.
-  // This is intentionally run on every startup so databases created before
-  // the permission system was introduced are brought up to date.
+  const pairRoles = [];
+  const pairCodes = [];
   for (const [role, codes] of Object.entries(rolePermissions)) {
     for (const code of codes) {
-      await q(bootstrapSql.linkRolePermission, [role, code]);
+      pairRoles.push(role);
+      pairCodes.push(code);
     }
   }
+  await q(
+    `INSERT INTO public.role_permissions (role_id, permission_id)
+     SELECT r.id, p.id
+     FROM UNNEST($1::text[], $2::text[]) AS pair(role_name, perm_code)
+     JOIN public.roles r ON r.name = pair.role_name
+     JOIN public.permissions p ON p.code = pair.perm_code
+     ON CONFLICT (role_id, permission_id) DO NOTHING`,
+    [pairRoles, pairCodes],
+  );
 
-  // Create the administrator only when the account does not already exist.
-  // Existing users and their passwords/roles are preserved.
-  const hash = await bcrypt.hash(env.adminPassword, 12);
-
-  await q(bootstrapSql.seedAdmin, [env.adminEmail, hash]);
+  // Skip expensive bcrypt hashing when the admin account already exists.
+  const existingAdmin = await q(
+    `SELECT 1 FROM public.users WHERE email = $1 LIMIT 1`,
+    [env.adminEmail],
+  );
+  if (existingAdmin.rowCount === 0) {
+    const hash = await bcrypt.hash(env.adminPassword, 12);
+    await q(bootstrapSql.seedAdmin, [env.adminEmail, hash]);
+  }
 }

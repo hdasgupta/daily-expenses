@@ -869,3 +869,18 @@
 ## 90. Sooji Sandwich Recipe Catalogue Expansion (`recipes.json`, `expandedStarterRecipes.js`)
 
 - **16 Sooji Sandwich Varieties (`static-1976`–`static-1991`)**: Added both breadless tawa/toaster sooji sandwiches and crispy sooji-crusted bread toasts — **Instant Breadless Sooji Sandwich**, **Aloo Masala Sooji Sandwich**, **Cheese & Corn Sooji Sandwich**, **Paneer Bhurji Sooji Sandwich**, **Hara Bhara Spinach & Pea Sooji Sandwich**, **Pepper & Mustard Tadka Sooji Sandwich**, **Classic Sooji Malai Toast**, **Curd & Veggie Sooji Toast**, **Achari Sooji Toast Sandwich**, **Egg & Sooji Masala Toast**, **Garlic Herb Sooji Bread Sandwich**, **Oats & Sooji Vegetable Toast**, **Onion, Tomato & Green Chilli Sooji Toast**, **Pizza-Style Sooji Bread Toast**, **Schezwan Veggie Sooji Sandwich**, and **Sweet Coconut & Jaggery Sooji Toast** (canonical tags, manual preparation only, no beef, sorted alphabetically A–Z; total recipes: **1724**).
+
+## 91. Full-Stack Performance & Bundle Optimization (Zero Feature Changes)
+- **Frontend Route & Component Code Splitting (`frontend/src/App.jsx`, `frontend/src/components/Layout.jsx`, `frontend/vite.config.js`)**:
+  - Converted all 16 authenticated page components to `React.lazy(...)` with `<Suspense>` fallbacks inside `RouteErrorBoundary`, keeping `Login` eager for fast initial render.
+  - Deferred `VoiceAssistant` via `React.lazy(...)` in `Layout.jsx` so voice engine code is loaded asynchronously off the critical path.
+  - Added Vite `manualChunks` (`react-vendor`, `charts`, `icons`, `capacitor`) and `build.target: "es2020"` for better long-term caching and smaller chunks.
+- **API Request Deduplication & Metadata Caching (`frontend/src/lib/api.js`)**:
+  - Deduplicated concurrent identical `GET` requests in flight.
+  - Added short-lived in-memory caching for `/recipes` (5 min TTL, auto-invalidated on `/food-chart` or `/recipes` mutations) and `/meta/categories`, `/meta/units`, `/marketing-locations` (30s TTL, auto-invalidated on metadata mutations).
+- **Backend Gzip Compression (`backend/src/middleware/compression.js`, `backend/src/server.js`)**:
+  - Added zero-dependency `node:zlib` gzip response compression for JSON/text payloads ≥ 1 KB (shrinking the 2.8 MB `/api/recipes` payload and large report responses).
+- **Backend Cold-Start & Recipe Catalogue Optimization (`backend/src/services/bootstrapService.js`, `backend/src/controllers/dietChartController.js`, `backend/scripts/sql/schemaSql.js`)**:
+  - Batched permission/role/role-permission seed inserts into 3 `UNNEST` queries and skipped `bcrypt.hash` when the admin account already exists.
+  - Added `ETag` / `304 Not Modified` support, pre-computed lowercase recipe names, and partition-based sorting in `listRecipes`.
+  - Added missing PostgreSQL indexes on `expenses`, `marketing_list_items`, and `food_chart_entries`.

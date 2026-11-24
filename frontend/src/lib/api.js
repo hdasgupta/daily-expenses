@@ -81,6 +81,63 @@ const TRANSIENT_STATUS_CODES = new Set([502, 503, 504]);
 
 const DEFAULT_RETRY_DELAYS_MS = [1000, 2000, 4000];
 
+// Deduplicate concurrent identical GET requests and cache static/semi-static metadata.
+const inFlightGetRequests = new Map();
+const responseCache = new Map();
+const MAX_RESPONSE_CACHE_ENTRIES = 40;
+
+function getCacheTtlMs(path, options) {
+  if (options.noCache || options.cache === false) return 0;
+  const cleanPath = String(path || "").split("?")[0].toLowerCase();
+  if (cleanPath === "/recipes") return 5 * 60 * 1000;
+  if (
+    cleanPath === "/meta/categories" ||
+    cleanPath === "/meta/units" ||
+    cleanPath === "/marketing-locations"
+  ) {
+    return 30 * 1000;
+  }
+  return 0;
+}
+
+function invalidateCacheForMutation(path) {
+  const cleanPath = String(path || "").split("?")[0].toLowerCase();
+  if (cleanPath.startsWith("/auth/")) {
+    responseCache.clear();
+    return;
+  }
+  if (cleanPath.startsWith("/food-chart") || cleanPath.startsWith("/recipes")) {
+    for (const key of responseCache.keys()) {
+      if (key.includes(":/recipes")) responseCache.delete(key);
+    }
+  }
+  if (
+    cleanPath.startsWith("/meta") ||
+    cleanPath.startsWith("/categories") ||
+    cleanPath.startsWith("/units") ||
+    cleanPath.startsWith("/marketing-locations") ||
+    cleanPath.startsWith("/bulk-upload")
+  ) {
+    for (const key of responseCache.keys()) {
+      if (
+        key.includes(":/meta/categories") ||
+        key.includes(":/meta/units") ||
+        key.includes(":/marketing-locations")
+      ) {
+        responseCache.delete(key);
+      }
+    }
+  }
+}
+
+function cloneCachedData(data) {
+  if (data === null || typeof data !== "object") return data;
+  if (typeof structuredClone === "function") {
+    return structuredClone(data);
+  }
+  return JSON.parse(JSON.stringify(data));
+}
+
 export function showToast(type, message) {
   window.dispatchEvent(
     new CustomEvent("app:toast", {
@@ -234,23 +291,64 @@ export async function api(path, options = {}) {
     );
   }
 
+  const method = String(options.method || "GET").toUpperCase();
+  const isGet = method === "GET" && !isFormData && !options.signal;
+  const cacheKey = isGet ? `${token || "anon"}:${path}` : null;
+  const cacheTtlMs = isGet ? getCacheTtlMs(path, options) : 0;
+
   try {
-    const { retryTransient, transientRetries, ...requestOptions } = options;
+    if (cacheKey && cacheTtlMs > 0) {
+      const cached = responseCache.get(cacheKey);
+      if (cached && cached.expiresAt > Date.now()) {
+        return cloneCachedData(cached.data);
+      }
+      if (cached) {
+        responseCache.delete(cacheKey);
+      }
+    }
 
-    const response = await fetchWithTransientRetry(
-      `${baseUrl}${path}`,
-      {
-        ...requestOptions,
-        headers,
-      },
-      path,
-      {
-        retryTransient,
-        transientRetries,
-      },
-    );
+    const { retryTransient, transientRetries, noCache, cache, ...requestOptions } = options;
 
-    const text = await response.text();
+    const executeRequest = async () => {
+      const response = await fetchWithTransientRetry(
+        `${baseUrl}${path}`,
+        {
+          ...requestOptions,
+          headers,
+        },
+        path,
+        {
+          retryTransient,
+          transientRetries,
+        },
+      );
+
+      const text = await response.text();
+      return {
+        ok: response.ok,
+        status: response.status,
+        text,
+      };
+    };
+
+    let result;
+    if (cacheKey) {
+      let pending = inFlightGetRequests.get(cacheKey);
+      if (!pending) {
+        pending = executeRequest().finally(() => {
+          inFlightGetRequests.delete(cacheKey);
+        });
+        inFlightGetRequests.set(cacheKey, pending);
+      }
+      result = await pending;
+    } else {
+      result = await executeRequest();
+      if (["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
+        invalidateCacheForMutation(path);
+      }
+    }
+
+    const { ok, status, text } = result;
 
     let data = null;
 
@@ -272,8 +370,9 @@ export async function api(path, options = {}) {
       );
     }
 
-    if (!response.ok) {
-      if (response.status === 401) {
+    if (!ok) {
+      if (status === 401) {
+        responseCache.clear();
         window.dispatchEvent(
           new CustomEvent("app:auth-expired", {
             detail: { token },
@@ -281,7 +380,18 @@ export async function api(path, options = {}) {
         );
       }
 
-      throw new Error(data?.error || `Request failed (${response.status})`);
+      throw new Error(data?.error || `Request failed (${status})`);
+    }
+
+    if (cacheKey && cacheTtlMs > 0) {
+      if (responseCache.size >= MAX_RESPONSE_CACHE_ENTRIES) {
+        const oldestKey = responseCache.keys().next().value;
+        if (oldestKey) responseCache.delete(oldestKey);
+      }
+      responseCache.set(cacheKey, {
+        data: cloneCachedData(data),
+        expiresAt: Date.now() + cacheTtlMs,
+      });
     }
 
     if (options.toast) {

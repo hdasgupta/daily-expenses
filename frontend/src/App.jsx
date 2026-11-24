@@ -1,25 +1,26 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import Layout, { getNavigationItems } from "./components/Layout";
 import Loader from "./components/Loader";
 import Toast from "./components/Toast";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import Login from "./pages/Login";
-import Expense from "./pages/Expense";
-import Survivors from "./pages/Survivors";
-import CategoriesItems from "./pages/CategoriesItems";
-import Units from "./pages/Units";
-import BulkUpload from "./pages/BulkUpload";
-import Reports from "./pages/Reports";
-import Dashboard from "./pages/Dashboard";
-import PriceTrend from "./pages/PriceTrend";
-import DashboardDetail from "./pages/DashboardDetail";
-import DashboardDrilldown from "./pages/DashboardDrilldown";
-import Users from "./pages/Users";
-import JobStatus from "./pages/JobStatus";
-import MarketingList from "./pages/MarketingList";
-import MarketingLocations from "./pages/MarketingLocations";
-import FoodChart from "./pages/FoodChart";
-import RecipeMaster from "./pages/RecipeMaster";
+
+const Expense = lazy(() => import("./pages/Expense"));
+const Survivors = lazy(() => import("./pages/Survivors"));
+const CategoriesItems = lazy(() => import("./pages/CategoriesItems"));
+const Units = lazy(() => import("./pages/Units"));
+const BulkUpload = lazy(() => import("./pages/BulkUpload"));
+const Reports = lazy(() => import("./pages/Reports"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const PriceTrend = lazy(() => import("./pages/PriceTrend"));
+const DashboardDetail = lazy(() => import("./pages/DashboardDetail"));
+const DashboardDrilldown = lazy(() => import("./pages/DashboardDrilldown"));
+const Users = lazy(() => import("./pages/Users"));
+const JobStatus = lazy(() => import("./pages/JobStatus"));
+const MarketingList = lazy(() => import("./pages/MarketingList"));
+const MarketingLocations = lazy(() => import("./pages/MarketingLocations"));
+const FoodChart = lazy(() => import("./pages/FoodChart"));
+const RecipeMaster = lazy(() => import("./pages/RecipeMaster"));
 import { api } from "./lib/api";
 import {
   clearAccounts,
@@ -1016,7 +1017,15 @@ export default function App() {
         addAccount={addAccount}
       >
         <RouteErrorBoundary>
-          <Component type={route?.type} navigate={navigate} user={user} />
+          <Suspense
+            fallback={
+              <div className="card" style={{ padding: "24px", textAlign: "center" }}>
+                Loading page…
+              </div>
+            }
+          >
+            <Component type={route?.type} navigate={navigate} user={user} />
+          </Suspense>
         </RouteErrorBoundary>
       </Layout>
     </>

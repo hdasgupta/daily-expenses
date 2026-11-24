@@ -6,6 +6,7 @@ import { seedApplication } from "./services/bootstrapService.js";
 import { createRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 import { requestLogger } from "./middleware/requestLogger.js";
+import { compressionMiddleware } from "./middleware/compression.js";
 import { startEmailSchedulers, reconcileStaleEmailExecutions } from "../scripts/scheduler.js";
 import {
   startScheduledReportScheduler,
@@ -59,6 +60,7 @@ app.use(
   }),
 );
 
+app.use(compressionMiddleware);
 app.use(express.json({ limit: "10mb" }));
 app.use(requestLogger);
 

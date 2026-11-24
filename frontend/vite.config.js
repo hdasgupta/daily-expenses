@@ -54,6 +54,19 @@ export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(resolveAutoIncrementVersion()),
   },
+  build: {
+    target: "es2020",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "react-vendor": ["react", "react-dom"],
+          charts: ["recharts"],
+          icons: ["lucide-react"],
+          capacitor: ["@capacitor/core", "@capacitor/filesystem", "@capacitor/share"],
+        },
+      },
+    },
+  },
   server: {
     host: "0.0.0.0",
     port: 5173,
