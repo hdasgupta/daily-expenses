@@ -907,3 +907,9 @@
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Standardized all ingredient names across all 1,724 recipes (consistent Title Case, canonicalized spelling/plural/alias variants such as `Maida` -> `All-Purpose Flour (Maida)`, `Besan` -> `Besan (Gram Flour)`, `Suji/Rava/Sooji` -> `Sooji (Semolina)`, `Desi Ghee` -> `Ghee`, `Onions` -> `Onion`, `Potatoes` -> `Potato`, `Tomatoes` -> `Tomato`, `Green Chillies` -> `Green Chilli`, stripped trailing prep/optional qualifiers).
   - Eliminated all 86 case-variant duplicate groups and deduplicated identical standardized ingredients within any recipe (collapsing 4,456 raw ingredient names down to 4,138 unique canonical names).
+
+## 96. Split Combined Ingredients & Separate Embedded Quantities
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Split combined multi-ingredient entries (separated by `&`, `,`, `, and`, or `and` outside parentheses) into individual ingredient rows while keeping prep phrases intact.
+  - Extracted quantities and units embedded inside ingredient names (both leading amounts like `1 tsp Ghee` and trailing parenthetical amounts like `Sugar (0.5 tsp)` or `Green Chillies (3)`) into their `quantity` and `unit` fields.
+  - Deduplicated any repeated ingredients per recipe (10376 -> 16559 entries, 2515 unique standardized ingredient names).
