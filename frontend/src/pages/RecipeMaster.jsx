@@ -389,7 +389,27 @@ function AddToFoodChartModal({ recipe, locations, onClose, onSubmit, saving, err
   );
 }
 
-export default function RecipeMaster() {
+const RECIPE_MASTER_PREFS_KEY = "recipe-master-user-prefs-v1";
+
+function readLocalRecipeMasterPrefs(userId) {
+  try {
+    const raw = localStorage.getItem(`${RECIPE_MASTER_PREFS_KEY}:${userId || "anon"}`);
+    const parsed = raw ? JSON.parse(raw) : null;
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeLocalRecipeMasterPrefs(userId, prefs) {
+  try {
+    localStorage.setItem(`${RECIPE_MASTER_PREFS_KEY}:${userId || "anon"}`, JSON.stringify(prefs));
+  } catch {
+    // Ignore storage quota errors
+  }
+}
+
+export default function RecipeMaster({ user }) {
   const [recipes, setRecipes] = useState([]);
   const [localUsage, setLocalUsage] = useState(readLocalRecipeUsage);
   const [loading, setLoading] = useState(true);
@@ -451,6 +471,68 @@ export default function RecipeMaster() {
   const [chartError, setChartError] = useState("");
   const [locations, setLocations] = useState([]);
   const sentinelRef = useRef(null);
+  const prefsHydratedRef = useRef(false);
+  const hasVoiceSearchOnMountRef = useRef(Boolean(query));
+
+  // Hydrate saved search text, selected ingredients, and category for the user
+  useEffect(() => {
+    let active = true;
+    const localPrefs = readLocalRecipeMasterPrefs(user?.id);
+    if (localPrefs) {
+      if (!hasVoiceSearchOnMountRef.current && typeof localPrefs.searchText === "string") {
+        setQuery(localPrefs.searchText);
+      }
+      if (Array.isArray(localPrefs.selectedIngredients)) {
+        setSelectedIngredients(localPrefs.selectedIngredients);
+      }
+      if (typeof localPrefs.category === "string" && localPrefs.category) {
+        setCategory(localPrefs.category);
+      }
+    }
+
+    api("/recipe-master/preferences", { silent: true })
+      .then((prefs) => {
+        if (!active || !prefs || typeof prefs !== "object") return;
+        if (!hasVoiceSearchOnMountRef.current && typeof prefs.searchText === "string") {
+          setQuery(prefs.searchText);
+        }
+        if (Array.isArray(prefs.selectedIngredients)) {
+          setSelectedIngredients(prefs.selectedIngredients);
+        }
+        if (typeof prefs.category === "string" && prefs.category) {
+          setCategory(prefs.category);
+        }
+        writeLocalRecipeMasterPrefs(user?.id, prefs);
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (active) prefsHydratedRef.current = true;
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [user?.id]);
+
+  // Persist search text, selected ingredients, and category whenever changed
+  useEffect(() => {
+    if (!prefsHydratedRef.current) return undefined;
+    const payload = {
+      searchText: query,
+      selectedIngredients,
+      category,
+    };
+    writeLocalRecipeMasterPrefs(user?.id, payload);
+    const timer = setTimeout(() => {
+      api("/recipe-master/preferences", {
+        method: "PUT",
+        body: JSON.stringify(payload),
+        silent: true,
+        silentToast: true,
+      }).catch(() => {});
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [query, selectedIngredients, category, user?.id]);
 
   useEffect(() => {
     let active = true;

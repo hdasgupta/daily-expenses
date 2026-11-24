@@ -1,3 +1,4 @@
+import { q } from "../db/index.js";
 import { login, requestPasswordReset, resetPassword } from "../services/authService.js";
 
 export async function loginController(req, res) {
@@ -30,5 +31,15 @@ export function meController(req, res) {
     email: req.user.email,
     role: req.user.role,
     permissions: req.user.permissions,
+    lastOpenedPath: req.user.last_opened_path || null,
   });
+}
+
+export async function updateLastPageController(req, res) {
+  const rawPath = String(req.body?.path || "").trim();
+  if (!rawPath || !rawPath.startsWith("/") || rawPath === "/" || rawPath.length > 300) {
+    return res.status(400).json({ error: "Valid authenticated path is required" });
+  }
+  await q(`UPDATE public.users SET last_opened_path = $1 WHERE id = $2`, [rawPath, req.user.id]);
+  return res.json({ ok: true, lastOpenedPath: rawPath });
 }

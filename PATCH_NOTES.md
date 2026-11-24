@@ -939,3 +939,11 @@
   - When adding an ingredient to the marketing list from **Recipe Master** or **Food Chart**, the modal automatically detects the **Category** (from purchase history first, with smart keyword fallback for new items), fills **Quantity** and **Unit** from most-used history (falling back to recipe defaults), and adds an **Approx. price (₹)** field auto-calculated from history with unit conversion (`g <-> kg`, `ml <-> L`, `dozen <-> pcs`).
 - **`frontend/src/pages/RecipeMaster.jsx` & `frontend/src/pages/FoodChart.jsx`**:
   - Replaced inline ingredient modals with `AddIngredientToMarketingModal`, fetching `/marketing-list` history and submitting `itemId` and `approximateCost`.
+
+## 102. Cross-Device User Persistence — Recipe Master Filters & Last Opened Page
+- **Per-User Last Opened Page (`backend/scripts/sql/schemaSql.js`, `userSql.js`, `authController.js`, `routes/index.js`, `frontend/src/App.jsx`)**:
+  - Added `public.users.last_opened_path`, included `lastOpenedPath` in `GET /api/me`, and added `PUT /api/me/last-page`.
+  - `App.jsx` now persists the user's latest opened page to the server on navigation and automatically opens that latest page on login or root (`/`) load from any device or browser.
+- **Per-User Recipe Master Search & Ingredients (`backend/scripts/sql/schemaSql.js`, `dietChartController.js`, `routes/index.js`, `frontend/src/pages/RecipeMaster.jsx`)**:
+  - Added `public.recipe_master_user_preferences` with `GET/PUT /api/recipe-master/preferences`.
+  - `RecipeMaster.jsx` restores and persists the user's `searchText`, `selectedIngredients`, and `category` across sessions and devices.

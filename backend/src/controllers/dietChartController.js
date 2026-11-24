@@ -331,3 +331,58 @@ export async function resetFoodChartEntries(req, res) {
 
   res.json({ ok: true, deletedCount: result.rowCount });
 }
+
+export async function getRecipeMasterPreferences(req, res) {
+  res.set("Cache-Control", "private, no-cache");
+  const userId = req.user?.id;
+  if (!userId) {
+    return res.json({ searchText: "", selectedIngredients: [], category: "All" });
+  }
+  try {
+    const result = await q(
+      `SELECT search_text, selected_ingredients, category
+         FROM public.recipe_master_user_preferences
+        WHERE user_id = $1`,
+      [userId],
+    );
+    const row = result.rows[0];
+    return res.json({
+      searchText: String(row?.search_text || ""),
+      selectedIngredients: Array.isArray(row?.selected_ingredients)
+        ? row.selected_ingredients.map((item) => String(item || "").trim()).filter(Boolean)
+        : [],
+      category: String(row?.category || "All") || "All",
+    });
+  } catch {
+    return res.json({ searchText: "", selectedIngredients: [], category: "All" });
+  }
+}
+
+export async function saveRecipeMasterPreferences(req, res) {
+  const userId = req.user?.id;
+  if (!userId) {
+    return res.status(401).json({ error: "Authentication required" });
+  }
+  const searchText = String(req.body?.searchText || "").slice(0, 200);
+  const selectedIngredients = Array.isArray(req.body?.selectedIngredients)
+    ? req.body.selectedIngredients
+        .map((item) => String(item || "").trim())
+        .filter(Boolean)
+        .slice(0, 50)
+    : [];
+  const category = String(req.body?.category || "All").trim().slice(0, 100) || "All";
+
+  await q(
+    `INSERT INTO public.recipe_master_user_preferences
+       (user_id, search_text, selected_ingredients, category, updated_at)
+     VALUES ($1, $2, $3::jsonb, $4, now())
+     ON CONFLICT (user_id) DO UPDATE
+       SET search_text = EXCLUDED.search_text,
+           selected_ingredients = EXCLUDED.selected_ingredients,
+           category = EXCLUDED.category,
+           updated_at = now()`,
+    [userId, searchText, JSON.stringify(selectedIngredients), category],
+  );
+
+  return res.json({ searchText, selectedIngredients, category });
+}

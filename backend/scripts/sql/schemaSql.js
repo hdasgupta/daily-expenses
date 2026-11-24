@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS public.expenses (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE public.users ADD COLUMN IF NOT EXISTS last_opened_path TEXT;
 ALTER TABLE public.expenses ADD COLUMN IF NOT EXISTS location_id BIGINT;
 CREATE TABLE IF NOT EXISTS public.expense_shares (
   id BIGSERIAL PRIMARY KEY,
@@ -201,6 +202,13 @@ CREATE TABLE IF NOT EXISTS public.dashboard_user_filters (
 CREATE TABLE IF NOT EXISTS public.report_user_preferences (
   user_id BIGINT PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
   config JSONB NOT NULL DEFAULT '{}'::jsonb,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS public.recipe_master_user_preferences (
+  user_id BIGINT PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
+  search_text TEXT NOT NULL DEFAULT '',
+  selected_ingredients JSONB NOT NULL DEFAULT '[]'::jsonb,
+  category VARCHAR(100) NOT NULL DEFAULT 'All',
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE TABLE IF NOT EXISTS public.price_trend_user_preferences (

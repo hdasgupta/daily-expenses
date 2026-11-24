@@ -76,11 +76,14 @@ export function createRouter(maxUploadBytes) {
   router.post("/auth/request-reset", authController.requestResetController);
   router.post("/auth/reset-password", authController.resetPasswordController);
   router.get("/me", auth, authController.meController);
+  router.put("/me/last-page", auth, authController.updateLastPageController);
 
   router.get("/pagination/:module", auth, paginationController.get);
   router.put("/pagination/:module", auth, paginationController.save);
 
   router.get("/meta/categories", auth, masterDataController.metaCategories);
+  router.get("/recipe-master/preferences", auth, dietChartController.getRecipeMasterPreferences);
+  router.put("/recipe-master/preferences", auth, dietChartController.saveRecipeMasterPreferences);
   router.get("/recipes", auth, dietChartController.listRecipes);
   router.post("/recipes", auth, dietChartController.createRecipe);
   router.put("/recipes/:id", auth, dietChartController.updateRecipe);

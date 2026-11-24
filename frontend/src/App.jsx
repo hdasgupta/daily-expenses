@@ -178,7 +178,26 @@ function getStoredAuthenticatedPath() {
   }
 }
 
-function storeAuthenticatedPath(path) {
+let lastSyncedServerPath = "";
+
+function syncLastOpenedPageToServer(path) {
+  const normalizedPath = String(path || "").trim();
+  if (!normalizedPath || normalizedPath === "/" || !localStorage.getItem("token")) {
+    return;
+  }
+  if (lastSyncedServerPath === normalizedPath) {
+    return;
+  }
+  lastSyncedServerPath = normalizedPath;
+  api("/me/last-page", {
+    method: "PUT",
+    body: JSON.stringify({ path: normalizedPath }),
+    silent: true,
+    silentToast: true,
+  }).catch(() => {});
+}
+
+function storeAuthenticatedPath(path, syncServer = true) {
   try {
     const normalizedPath = String(path || "").trim();
 
@@ -187,6 +206,9 @@ function storeAuthenticatedPath(path) {
     }
 
     localStorage.setItem(LAST_AUTHENTICATED_PATH_KEY, normalizedPath);
+    if (syncServer) {
+      syncLastOpenedPageToServer(normalizedPath);
+    }
   } catch {
     // Ignore storage failures.
   }
@@ -397,7 +419,7 @@ export default function App() {
    * being used.
    */
   useEffect(() => {
-    if (!user || !isCapacitorNative()) {
+    if (!user) {
       return;
     }
 
@@ -567,8 +589,8 @@ export default function App() {
            * authenticated route if the
            * application was recreated at /.
            */
-          if (isCapacitorNative() && normalizePath(window.location.pathname) === "/") {
-            const savedPath = getStoredAuthenticatedPath();
+          if (normalizePath(window.location.pathname) === "/") {
+            const savedPath = String(normalized?.lastOpenedPath || "").trim() || getStoredAuthenticatedPath();
 
             if (savedPath && savedPath !== "/") {
               const [savedRawPath] = savedPath.split("?");
@@ -580,6 +602,7 @@ export default function App() {
               const savedPermissions = normalizePermissions(normalized?.permissions);
 
               if (savedRoute && savedPermissions.includes(savedRoute.permission)) {
+                lastSyncedServerPath = savedPath;
                 window.history.replaceState({}, "", savedPath);
 
                 setPath(normalizedSavedPath);
@@ -756,18 +779,28 @@ export default function App() {
 
     const requestedAllowed = requestedRoute && nextPermissions.includes(requestedRoute.permission);
 
+    const serverSavedPath = String(normalizedUser?.lastOpenedPath || "").trim() || getStoredAuthenticatedPath();
+    const [serverRawPath] = String(serverSavedPath || "").split("?");
+    const normalizedServerPath = normalizePath(serverRawPath);
+    const serverSavedRoute =
+      serverSavedPath && serverSavedPath !== "/" ? routeForPath(normalizedServerPath) : null;
+    const serverSavedAllowed =
+      serverSavedRoute && nextPermissions.includes(serverSavedRoute.permission);
+
     const fallback = getNavigationItems(nextPermissions)[0]?.path;
 
-    const destination = requestedAllowed ? requestedPath : fallback;
+    const destination = requestedAllowed
+      ? requestedPath
+      : serverSavedAllowed
+        ? serverSavedPath
+        : fallback;
 
     if (destination) {
       window.history.replaceState({}, "", destination);
 
-      setPath(destination);
+      setPath(normalizePath(String(destination).split("?")[0]));
 
-      if (isCapacitorNative()) {
-        storeAuthenticatedPath(destination);
-      }
+      storeAuthenticatedPath(destination);
     }
   };
 
@@ -788,9 +821,7 @@ export default function App() {
 
     setPath(target);
 
-    if (isCapacitorNative()) {
-      storeAuthenticatedPath(url);
-    }
+    storeAuthenticatedPath(url);
   };
 
   const logout = () => {

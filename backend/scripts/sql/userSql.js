@@ -6,6 +6,7 @@ export const userSql = {
       u.full_name,
       u.password_hash,
       u.is_disabled,
+      u.last_opened_path,
       r.name AS role,
       COALESCE(
         ARRAY_AGG(p.code ORDER BY p.code)
@@ -30,6 +31,7 @@ export const userSql = {
       u.full_name,
       u.password_hash,
       u.is_disabled,
+      u.last_opened_path,
       r.name AS role,
       COALESCE(
         ARRAY_AGG(p.code ORDER BY p.code)
