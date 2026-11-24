@@ -140,6 +140,63 @@ async function fetchWithTransientRetry(url, fetchOptions, path, options) {
   return lastResponse;
 }
 
+function inferLoadingMessage(path, method = "GET") {
+  const cleanPath = String(path || "").split("?")[0].toLowerCase();
+  const verb = String(method || "GET").toUpperCase();
+
+  if (cleanPath.startsWith("/auth/login")) return "Verifying credentials & signing in…";
+  if (cleanPath.startsWith("/auth/")) return "Updating authentication…";
+  if (cleanPath.startsWith("/marketing-list")) {
+    if (verb === "POST") return "Saving item to marketing list…";
+    if (verb === "PUT") return "Updating marketing list item…";
+    if (verb === "DELETE") return "Removing marketing list item…";
+    return "Fetching marketing list items…";
+  }
+  if (cleanPath.startsWith("/marketing-locations")) {
+    return verb === "GET" ? "Loading shopping locations…" : "Saving shopping location…";
+  }
+  if (cleanPath.startsWith("/expenses")) {
+    if (cleanPath.includes("/proof")) return "Uploading expense proof document…";
+    if (verb === "POST") return "Saving expense & survivor shares…";
+    if (verb === "PUT") return "Updating expense record…";
+    if (verb === "DELETE") return "Deleting expense record…";
+    return "Loading expenses for selected date…";
+  }
+  if (cleanPath.startsWith("/food-chart")) {
+    if (verb === "POST") return "Adding recipe to food chart…";
+    if (verb === "PUT") return "Updating food chart servings…";
+    if (verb === "DELETE") return "Clearing food chart entries…";
+    return "Loading planned meals for food chart…";
+  }
+  if (cleanPath.startsWith("/recipes")) {
+    if (verb === "GET") return "Loading recipe catalogue…";
+    return "Saving recipe changes…";
+  }
+  if (cleanPath.startsWith("/price-trend")) {
+    return "Calculating 1-unit approximate price trend…";
+  }
+  if (cleanPath.startsWith("/dashboard")) {
+    return "Aggregating dashboard totals & charts…";
+  }
+  if (cleanPath.startsWith("/reports/export-pdf")) return "Generating PDF report…";
+  if (cleanPath.startsWith("/reports/email-pdf")) return "Generating & emailing report PDF…";
+  if (cleanPath.startsWith("/reports")) {
+    return verb === "POST" ? "Running report query…" : "Loading saved report settings…";
+  }
+  if (cleanPath.startsWith("/scheduled-reports")) {
+    return verb === "GET" ? "Loading scheduled report jobs…" : "Updating scheduled report job…";
+  }
+  if (cleanPath.startsWith("/job-status")) return "Checking scheduled jobs & execution history…";
+  if (cleanPath.startsWith("/bulk-upload")) return "Processing bulk upload file…";
+  if (cleanPath.startsWith("/meta/categories")) return "Loading categories…";
+  if (cleanPath.startsWith("/meta/items")) return "Loading items for category…";
+  if (cleanPath.startsWith("/meta/units")) return "Loading measurement units…";
+  if (cleanPath.startsWith("/meta/survivors")) return "Loading survivors…";
+  if (cleanPath.startsWith("/users")) return "Managing user accounts…";
+  if (cleanPath.startsWith("/survivors")) return "Updating survivor records…";
+  return verb === "GET" ? "Fetching data from server…" : "Saving changes to server…";
+}
+
 export async function api(path, options = {}) {
   const token = localStorage.getItem("token");
 
@@ -164,10 +221,14 @@ export async function api(path, options = {}) {
   const showLoader = !options.silent;
 
   if (showLoader) {
+    const resolvedMessage =
+      options.loadingMessage || inferLoadingMessage(path, options.method);
     window.dispatchEvent(
       new CustomEvent("app:api:start", {
         detail: {
-          message: options.loadingMessage || "Please wait…",
+          message: resolvedMessage,
+          path,
+          method: options.method || "GET",
         },
       }),
     );

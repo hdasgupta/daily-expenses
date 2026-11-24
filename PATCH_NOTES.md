@@ -856,3 +856,10 @@
 
 - **Mostly-Used Survivors First (`GET /api/meta/survivors?locationId=...`)**: Extended `listSurvivorsForMeta(locationId)` in `backend/src/models/survivorModel.js` to rank survivors by expense share frequency at the selected location (`COALESCE(e.location_id, m.location_id)`), placing the most frequently used survivors for that location on top followed by the remaining survivors alphabetically.
 - **Dynamic Refresh & Auto-Pick on Add Survivor (`Expense.jsx`)**: Whenever the selected Location changes (including GPS auto-selection), `Expense.jsx` refreshes the survivor list so both the Survivor dropdowns and clicking **Add survivor** prioritize the most frequently used survivors for that location.
+
+---
+
+## 89. Meaningful Progressive Waiting Step Statements (`Loader.jsx`, `api.js`, `styles.css`)
+
+- **Context-Aware Request Labels (`inferLoadingMessage`)**: Updated `frontend/src/lib/api.js` so every API call (Marketing List, Add Expenses, Food Chart, Recipes, Price Trend, Dashboard, Reports, Job Status, Bulk Upload, Auth, Metadata) displays a clear operation-specific message instead of a generic `"Please wait…"`.
+- **Live Step-by-Step Progress (`Loader.jsx`)**: Upgraded the loading overlay to display progressive multi-step status statements (`Step 1/3` → `Step 2/3` → `Step 3/3` with elapsed seconds and active task count) tailored to PDF generation, file uploads, login/server wake-up, and database queries.
