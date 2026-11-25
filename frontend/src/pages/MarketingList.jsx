@@ -1405,20 +1405,35 @@ export default function MarketingList({ navigate }) {
         </label>
         <label>
           Category
-          <select
-            value={form.categoryId}
-            onChange={(event) => {
-              change("categoryId", event.target.value);
-              setPage(1);
-            }}
-          >
-            <option value="">Choose category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+          <div className="marketing-category-row">
+            <select
+              value={form.categoryId}
+              onChange={(event) => {
+                change("categoryId", event.target.value);
+                setPage(1);
+              }}
+            >
+              <option value="">Choose category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              className="secondary marketing-category-reset-btn"
+              disabled={!form.categoryId}
+              onClick={() => {
+                change("categoryId", "");
+                setPage(1);
+              }}
+              title="Reset category"
+              aria-label="Reset category"
+            >
+              <RotateCcw size={14} /> Reset
+            </button>
+          </div>
         </label>
         <label>
           Known item

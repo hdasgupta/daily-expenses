@@ -968,3 +968,6 @@
 
 ## 107. Marketing List — Fix Undefined `locMatch` Crash on New Items
 - **`frontend/src/pages/MarketingList.jsx` (`isBetterCandidate`)**: Added `if (!next) return false;` guard before accessing `next.locMatch`, fixing `Cannot read properties of undefined (reading 'locMatch')` when an item has no ID-matched price history (`idLatest` is `undefined`) while `nameLatest` is present.
+
+## 108. Marketing List — Category Reset Button
+- **`frontend/src/pages/MarketingList.jsx` & `frontend/src/pages/marketing.css`**: Added a **Reset** button (`marketing-category-reset-btn`) directly beside the **Category** dropdown to clear the selected category (`change("categoryId", "")`) and reset pagination to page 1.

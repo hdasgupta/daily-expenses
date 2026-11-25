@@ -1145,3 +1145,22 @@
 .marketing-list-page .marketing-selected-cost-banner strong {
   color: var(--success, #188a55);
 }
+
+.marketing-list-page .marketing-category-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.marketing-list-page .marketing-category-row select {
+  flex: 1;
+  min-width: 0;
+}
+.marketing-list-page .marketing-category-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 9px 11px;
+  font-size: 13px;
+  white-space: nowrap;
+}
