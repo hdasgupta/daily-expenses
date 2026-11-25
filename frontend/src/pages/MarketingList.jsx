@@ -1423,13 +1423,30 @@ export default function MarketingList({ navigate }) {
             <button
               type="button"
               className="secondary marketing-category-reset-btn"
-              disabled={!form.categoryId}
+              disabled={
+                !form.categoryId &&
+                !form.itemId &&
+                !form.itemName &&
+                !form.quantity &&
+                !form.unitId &&
+                !form.approximateCost
+              }
               onClick={() => {
-                change("categoryId", "");
+                userEditedCostRef.current = false;
+                setAutoCostHint("");
+                setForm((current) => ({
+                  ...current,
+                  categoryId: "",
+                  itemId: "",
+                  itemName: "",
+                  quantity: "",
+                  unitId: "",
+                  approximateCost: "",
+                }));
                 setPage(1);
               }}
-              title="Reset category"
-              aria-label="Reset category"
+              title="Reset category, item, quantity, unit and approx. price"
+              aria-label="Reset category, item, quantity, unit and approx. price"
             >
               <RotateCcw size={14} /> Reset
             </button>

@@ -971,3 +971,6 @@
 
 ## 108. Marketing List — Category Reset Button
 - **`frontend/src/pages/MarketingList.jsx` & `frontend/src/pages/marketing.css`**: Added a **Reset** button (`marketing-category-reset-btn`) directly beside the **Category** dropdown to clear the selected category (`change("categoryId", "")`) and reset pagination to page 1.
+
+## 109. Marketing List — Category Reset Also Clears Item, Quantity, Unit & Approx Price
+- **`frontend/src/pages/MarketingList.jsx`**: Updated the **Reset** button beside **Category** so clicking it clears `categoryId`, `itemId`, `itemName`, `quantity`, `unitId`, `approximateCost`, and `autoCostHint` (while preserving `purchaseDate` and `locationId`) and resets pagination to page 1.
