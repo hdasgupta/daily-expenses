@@ -947,3 +947,9 @@
 - **Per-User Recipe Master Search & Ingredients (`backend/scripts/sql/schemaSql.js`, `dietChartController.js`, `routes/index.js`, `frontend/src/pages/RecipeMaster.jsx`)**:
   - Added `public.recipe_master_user_preferences` with `GET/PUT /api/recipe-master/preferences`.
   - `RecipeMaster.jsx` restores and persists the user's `searchText`, `selectedIngredients`, and `category` across sessions and devices.
+
+## 103. Added 18 Cake Recipes & 'Cake' Category Tag
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Added 18 diverse **Cake** recipes (`static-1992`–`static-2009`, all using `"category": "Cake"`), including Almond & Cardamom Semolina Cake, Banana Walnut Atta Cake, Biscuit Chocolate Cake, Carrot Spiced Cake, Chocolate Fudge Cake, Vanilla Sponge Cake, Coconut & Jaggery Steamed Cake, Coffee Walnut Cake, Condensed Milk Pound Cake, Dates & Walnut Cake, Eggless Black Forest Cake, Tutti Frutti Tea Cake, Lemon & Poppy Seed Cake, Mango Semolina Cake, Marble Zebra Cake, Nolen Gur & Chhena Cake, Orange Almond Cake, and Pineapple Upside-Down Skillet Cake.
+  - All cake recipes are designed for manual stovetop cooker/kadhai/skillet/steamer preparation without an oven, electric mixer, or blender, bringing the alphabetically sorted catalogue to 1742 total recipes.
+  - **Recipe Master** automatically surfaces **Cake** as a category filter chip/tag via `extractCategories(recipes)`.

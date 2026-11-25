@@ -884,6 +884,75 @@
     "notes": "Digestive, aromatic everyday Indian breakfast paratha."
   },
   {
+    "id": "static-1992",
+    "name": "Almond & Cardamom Semolina Cake (Badam Sooji Cooker Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 40,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Sooji (Semolina)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Almonds",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cardamom Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Whisk curd, powdered sugar, and cooking oil by hand until smooth. Fold in sooji, milk, and cardamom powder, then rest 15 minutes so the semolina softens."
+      },
+      {
+        "section": "Cook",
+        "minutes": 40,
+        "text": "Preheat a heavy pressure cooker (without whistle or gasket) with a salt bed and wire stand on medium-low heat for 10 minutes. Fold baking powder and baking soda into the batter, pour into a greased tin topped with sliced almonds, and bake covered on low heat for 35-40 minutes until a toothpick comes out clean."
+      }
+    ],
+    "notes": "Eggless stovetop cooker cake with soft, nutty crumb; no oven or electric mixer required."
+  },
+  {
     "id": "static-1231",
     "name": "Aloo Baingan Masala (Homestyle Potato & Brinjal Curry)",
     "category": "Vegetable",
@@ -8787,6 +8856,75 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1993",
+    "name": "Banana Walnut Whole Wheat Cake (Atta Kela Kadhai Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 40,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Ripe Banana",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Whole Wheat Flour (Atta)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Jaggery (Gur)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Cinnamon Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Mash ripe bananas thoroughly with a fork in a bowl. Whisk in grated jaggery, cooking oil, and milk until smooth."
+      },
+      {
+        "section": "Cook",
+        "minutes": 40,
+        "text": "Sift in whole wheat flour, cinnamon, baking powder, and baking soda; fold gently with chopped walnuts. Bake inside a preheated heavy-bottomed covered kadhai on a wire stand over low flame for 35-40 minutes."
+      }
+    ],
+    "notes": "Wholesome refined-sugar-free cake made manually with a fork and stovetop kadhai."
+  },
+  {
     "id": "static-1240",
     "name": "Banarasi Dum Aloo (Stuffed Potatoes in Rich Tomato-Fennel-Cashew Gravy)",
     "category": "Vegetable",
@@ -15960,6 +16098,60 @@
     "notes": "Authentic Rajasthani moth-bean bhujia with signature warming clove and black-pepper notes."
   },
   {
+    "id": "static-1994",
+    "name": "Biscuit Chocolate Cake (No-Bake / Steamed Parle-G & Bourbon Pan Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Chocolate Biscuits",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cocoa Powder",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Fruit Salt (Eno)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Place biscuits in a zip bag or bowl and crush finely with a rolling pin. Whisk with warm milk, sugar, cocoa powder, and melted butter into a lump-free ribbon batter."
+      },
+      {
+        "section": "Cook",
+        "minutes": 30,
+        "text": "Stir in fruit salt gently, pour into a greased steel/aluminium tin, and bake in a preheated covered kadhai on low heat for 25-30 minutes until set."
+      }
+    ],
+    "notes": "Budget-friendly hostel/community cake requiring no blender or oven."
+  },
+  {
     "id": "static-1734",
     "name": "Bisi Bele Bath (Karnataka Spiced Toor Dal, Tamarind & Vegetable Rice Khichdi)",
     "category": "Rice",
@@ -21001,6 +21193,75 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-1995",
+    "name": "Carrot & Cinnamon Spiced Cake (Gajar Cooker Cake)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 20,
+    "cookMinutes": 40,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Carrot",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cinnamon Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Finely grate carrots using a box grater. Whisk curd, sugar, and cooking oil in a mixing bowl, then fold in sifted flour, cinnamon, baking powder, baking soda, grated carrots, and raisins."
+      },
+      {
+        "section": "Cook",
+        "minutes": 40,
+        "text": "Transfer to a greased cake tin and bake in a preheated pressure cooker (without whistle/gasket) on a wire stand over low flame for 38-40 minutes."
+      }
+    ],
+    "notes": "Moist spiced carrot cake baked gently on the stovetop."
   },
   {
     "id": "static-0806",
@@ -35069,6 +35330,75 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-1996",
+    "name": "Chocolate Fudge Pan Cake (Eggless Kadhai Chocolate Cake)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cocoa Powder",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Vanilla Essence",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1",
+        "unit": "pinch"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Mix milk and lemon juice and let sit 5 minutes to curdle. Whisk in sugar, cooking oil, and vanilla essence by hand, then sift in flour, cocoa powder, baking soda, and salt."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Pour into a greased pan and bake inside a preheated covered kadhai on a stand over low flame for 32-35 minutes until a skewer comes out with moist crumbs."
+      }
+    ],
+    "notes": "Rich eggless chocolate sponge made in one bowl with a hand whisk."
+  },
+  {
     "id": "static-0796",
     "name": "Chocolate Milkshake",
     "category": "Beverage",
@@ -36592,6 +36922,70 @@
     "notes": "The pure essence of Neapolitan cuisine; the slow infusion of garlic without browning preserves its sweet, fragrant aroma."
   },
   {
+    "id": "static-1997",
+    "name": "Classic Vanilla Sponge Cake (Eggless Cooker Sponge Cake)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Vanilla Essence",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Whisk curd and powdered sugar until dissolved, then stir in cooking oil and vanilla essence. Sift in maida, baking powder, and baking soda, adding milk a spoonful at a time to form a smooth batter."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Bake in a greased tin inside a preheated pressure cooker (no whistle/gasket) on low flame for 35 minutes."
+      }
+    ],
+    "notes": "Light, fluffy everyday tea-time vanilla sponge cake."
+  },
+  {
     "id": "static-1712",
     "name": "Clear Vegetable Wonton Soup (Delicate Sesame Ginger Broth with Steamed Vegetable Dumplings)",
     "category": "Soup",
@@ -36723,6 +37117,70 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-1998",
+    "name": "Coconut & Jaggery Steamed Cake (Narkel Gur Bhapa Cake)",
+    "category": "Cake",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Rice Flour",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sooji (Semolina)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Coconut",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Jaggery (Gur)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cardamom Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Warm milk gently and dissolve grated jaggery. Whisk in rice flour, sooji, grated coconut, cardamom powder, and melted ghee; rest 10 minutes then fold in baking powder."
+      },
+      {
+        "section": "Cook",
+        "minutes": 25,
+        "text": "Pour into a greased steel bowl and steam covered over boiling water in a kadhai/steamer for 22-25 minutes until firm and springy."
+      }
+    ],
+    "notes": "Aromatic Bengali steamed cake inspired by bhapa pitha."
   },
   {
     "id": "static-0886",
@@ -37025,6 +37483,75 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-1999",
+    "name": "Coffee & Walnut Marble Cake (Kadhai Coffee Walnut Cake)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Instant Coffee Powder",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Dissolve instant coffee in 2 tbsp warm milk. Cream softened butter and sugar by hand, whisk in curd and remaining milk, and sift in flour, baking powder, and baking soda."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Stir coffee solution and crushed walnuts into the batter, pour into a greased tin, and bake in a preheated covered kadhai on low heat for 35 minutes."
+      }
+    ],
+    "notes": "Fragrant coffee-walnut cake with a rich buttery crumb."
+  },
+  {
     "id": "static-1675",
     "name": "Coffee Caramel Pudding / Espresso Caramel Custard (Rich Coffee-Infused Steamed Caramel Pudding)",
     "category": "Sweets",
@@ -37195,6 +37722,65 @@
       }
     ],
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
+  },
+  {
+    "id": "static-2000",
+    "name": "Condensed Milk Pound Cake (Milkmaid Cooker Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Condensed Milk",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Vanilla Essence",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 10,
+        "text": "Whisk melted butter and condensed milk until creamy. Sift in maida, baking powder, and baking soda, folding gently with milk and vanilla essence."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Bake in a greased tin inside a preheated pressure cooker (no whistle/gasket) on a stand over low flame for 35 minutes."
+      }
+    ],
+    "notes": "Rich, golden-crusted eggless pound cake with no added sugar."
   },
   {
     "id": "static-0718",
@@ -40254,6 +40840,70 @@
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-2001",
+    "name": "Dates & Walnut Jaggery Cake (Khejur Gur Atta Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 40,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Dates",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Whole Wheat Flour (Atta)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Jaggery (Gur)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Chop pitted dates finely and soak in hot milk for 20 minutes, then mash thoroughly with a fork or potato masher into a thick puree."
+      },
+      {
+        "section": "Cook",
+        "minutes": 40,
+        "text": "Whisk in oil and jaggery, then fold in whole wheat flour, baking powder, baking soda, and chopped walnuts. Bake in a preheated covered kadhai on low heat for 38-40 minutes."
+      }
+    ],
+    "notes": "Soaking dates in hot milk allows manual mashing without a mixer-grinder."
   },
   {
     "id": "static-1699",
@@ -46344,6 +46994,144 @@
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-2002",
+    "name": "Eggless Black Forest Cake (Chocolate Sponge with Cream & Cherries)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 30,
+    "cookMinutes": 35,
+    "servings": 10,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cocoa Powder",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cherries",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Dark Chocolate",
+        "quantity": "50",
+        "unit": "g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Whisk curd, sugar, and oil; sift in maida, cocoa, baking powder, and baking soda into a smooth chocolate batter."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Bake in a preheated cooker on low heat for 35 minutes. Cool completely, slice horizontally with a serrated knife, brush with cherry syrup, whip chilled cream by hand over an ice bowl, layer with chopped cherries, and garnish with grated dark chocolate."
+      }
+    ],
+    "notes": "Celebration layer cake assembled completely by hand without electric beaters."
+  },
+  {
+    "id": "static-2003",
+    "name": "Eggless Fruit & Tutti Frutti Tea Cake (Bakery-Style Kadhai Plum Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 38,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Tutti Frutti",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Vanilla Essence",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Toss tutti frutti with 1 tbsp dry maida so they stay suspended. Whisk melted butter, powdered sugar, milk, and vanilla, then fold in flour, baking powder, baking soda, and tutti frutti."
+      },
+      {
+        "section": "Cook",
+        "minutes": 38,
+        "text": "Bake in a greased loaf or round tin inside a preheated covered kadhai on a stand over low flame for 35-38 minutes."
+      }
+    ],
+    "notes": "Classic Indian bakery-style Britannia tutti frutti tea cake."
   },
   {
     "id": "static-1678",
@@ -72655,6 +73443,70 @@
     "notes": "Created in 1858 by Bhim Chandra Nag in Kolkata in honor of Lady Canning."
   },
   {
+    "id": "static-2004",
+    "name": "Lemon & Poppy Seed Glazed Cake (Gondhoraj Lebu Posto Cooker Cake)",
+    "category": "Cake",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Gondhoraj Lemon Juice",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "White Poppy Seeds (Posto)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Whisk curd, sugar, cooking oil, grated lemon zest, and 2 tbsp Gondhoraj lemon juice. Fold in maida, baking powder, baking soda, and whole poppy seeds."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Bake in a preheated cooker on low heat for 35 minutes. Stir 2 tbsp powdered sugar with 1 tbsp lemon juice and drizzle over the warm cake."
+      }
+    ],
+    "notes": "Zesty Bengali-inspired citrus cake with crunchy poppy seeds."
+  },
+  {
     "id": "static-0764",
     "name": "Lemon Black Tea",
     "category": "Tea",
@@ -76270,6 +77122,65 @@
     "notes": "Pairs beautifully with neer dosa, kori rotti, or boiled red rice."
   },
   {
+    "id": "static-2005",
+    "name": "Mango & Cardamom Semolina Cake (Aam Sooji Steamed Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Ripe Mango",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Sooji (Semolina)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cardamom Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Press ripe mango flesh through a fine wire sieve with a spoon to get smooth pulp without a blender. Whisk pulp with sugar, oil, milk, sooji, and cardamom; rest 15 minutes."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Fold in baking powder and bake or steam covered in a preheated kadhai on low heat for 35 minutes until golden and set."
+      }
+    ],
+    "notes": "Silky mango pulp extracted manually through a sieve."
+  },
+  {
     "id": "static-0871",
     "name": "Mango Kulfi",
     "category": "Sweets",
@@ -76840,6 +77751,75 @@
       }
     ],
     "notes": "The holy grail of North Kolkata cabin snacks, popular at tea shops and evening gatherings."
+  },
+  {
+    "id": "static-2006",
+    "name": "Marble Zebra Cake (Vanilla & Cocoa Swirl Cooker Cake)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 20,
+    "cookMinutes": 38,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cocoa Powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Vanilla Essence",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Prepare a smooth vanilla batter by whisking curd, sugar, oil, milk, vanilla, maida, baking powder, and baking soda. Divide into two bowls and stir cocoa powder plus 1 tbsp milk into one half."
+      },
+      {
+        "section": "Cook",
+        "minutes": 38,
+        "text": "Spoon alternating dollops of vanilla and chocolate batter into the center of a greased tin to form zebra rings, draw toothpick spokes if desired, and bake in a preheated cooker for 35-38 minutes."
+      }
+    ],
+    "notes": "Eye-catching striped zebra cake with zero special equipment."
   },
   {
     "id": "static-0286",
@@ -88086,6 +89066,70 @@
     "notes": "Traditional Bangladeshi-Bengali artistic pitha prized for its intricate hand-carved motifs."
   },
   {
+    "id": "static-2007",
+    "name": "Nolen Gur & Chhena Baked Cake (Bengali Date-Palm Jaggery Cottage Cheese Cake)",
+    "category": "Cake",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Chhena (Cottage Cheese)",
+        "quantity": "250",
+        "unit": "g"
+      },
+      {
+        "name": "Jaggery (Gur)",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Sooji (Semolina)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Cardamom Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Knead fresh chhena with the heel of your palm for 5 minutes until creamy and smooth. Work in nolen gur (date-palm jaggery), sooji, milk, ghee, cardamom, cashews, and raisins."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Press into a ghee-greased tin lined with banana leaf or parchment and bake in a preheated covered kadhai on low heat for 35 minutes until caramelized on the edges."
+      }
+    ],
+    "notes": "Inspired by Odia Chhena Poda & Bengali Nolen Gur Sandesh."
+  },
+  {
     "id": "static-0834",
     "name": "Nolen Gur Payesh",
     "category": "Sweets",
@@ -91135,6 +92179,65 @@
       }
     ],
     "notes": "Bright and invigorating dessert balancing sweet creamy milk custard with the zesty, floral acidity of freshly picked oranges."
+  },
+  {
+    "id": "static-2008",
+    "name": "Orange Zest & Almond Sponge Cake (Komola Lebu Kadhai Cake)",
+    "category": "Cake",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fresh Orange Juice",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Almonds",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Hand-squeeze fresh oranges for juice and finely grate the outer peel for zest. Whisk orange juice, zest, sugar, and oil, then sift in maida, baking powder, and baking soda."
+      },
+      {
+        "section": "Cook",
+        "minutes": 35,
+        "text": "Scatter chopped almonds on top and bake in a preheated covered kadhai on low heat for 35 minutes."
+      }
+    ],
+    "notes": "Bright citrus sponge using hand-squeezed orange juice."
   },
   {
     "id": "static-0801",
@@ -102862,6 +103965,75 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-2009",
+    "name": "Pineapple Upside-Down Skillet Cake (Caramelized Pan Pineapple Cake)",
+    "category": "Cake",
+    "region": "Continental",
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Pineapple Slices",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Milk",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Cherries",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Melt 2 tbsp butter and 3 tbsp sugar directly in a heavy non-stick skillet until golden caramel forms; arrange pineapple slices and cherries over the caramel."
+      },
+      {
+        "section": "Cook",
+        "minutes": 30,
+        "text": "Whisk remaining butter, sugar, curd, milk, maida, baking powder, and baking soda into a smooth batter, pour gently over the pineapple, cover tightly, and cook on the lowest flame (over a tawa diffuser) for 25-30 minutes before flipping onto a plate."
+      }
+    ],
+    "notes": "Caramelized skillet cake cooked directly on the stovetop."
   },
   {
     "id": "static-1644",
