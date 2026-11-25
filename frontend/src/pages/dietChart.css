@@ -174,7 +174,18 @@
   border-color: var(--border, #d9dde3);
 }
 .icon-button.danger {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
   color: #c43b3b;
+}
+.icon-button.danger:hover {
+  background: rgba(220, 38, 38, 0.12);
+  border-color: rgba(220, 38, 38, 0.3);
 }
 .diet-empty {
   margin: 0;
@@ -428,9 +439,13 @@
   .diet-actions {
     gap: 0;
   }
-  .icon-button {
+  .icon-button,
+  .icon-button.danger {
     width: 32px;
     height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0;
   }
 }
 @media (max-width: 420px) {

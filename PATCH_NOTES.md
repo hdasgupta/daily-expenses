@@ -961,3 +961,7 @@
 - **`frontend/src/pages/MarketingList.jsx` (`buySelected`) & `frontend/src/pages/Expense.jsx`**:
   - When purchasing a single item from the Marketing List (`selectedPendingRows.length === 1`), `marketing-purchase-prefill` now passes `marketingItemId`, `itemId`, `itemName`, `quantity`, and `unitId` so **Add Expense** automatically fills the Item (known item or Other item), Quantity, and Unit alongside Date, Location, Category, and Comment.
   - Multi-item bulk purchases (`> 1` item) continue to use `TOTAL_ITEM` with the itemized comment.
+
+## 106. Food Chart Remove Button Size & Marketing List Reddish Remove Buttons
+- **`frontend/src/pages/dietChart.css`**: Normalized `.icon-button.danger` (`padding: 0`, `35px × 35px` desktop / `32px × 32px` mobile, transparent background) so global `.danger` padding from `styles.css` no longer enlarges the Food Chart remove button.
+- **`frontend/src/pages/marketing.css`**: Styled `.marketing-item-remove-icon` with a reddish tint/border and `.marketing-bulk-remove-btn` with a solid reddish fill (`#dc2626`) for clear visual contrast in both light and dark modes.
