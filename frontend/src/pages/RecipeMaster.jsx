@@ -8,6 +8,7 @@ import {
   Clock3,
   MapPin,
   Plus,
+  RefreshCw,
   Search,
   ShoppingBasket,
   X,
@@ -413,6 +414,7 @@ export default function RecipeMaster({ user }) {
   const [recipes, setRecipes] = useState([]);
   const [localUsage, setLocalUsage] = useState(readLocalRecipeUsage);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState(() => {
     try {
@@ -534,22 +536,18 @@ export default function RecipeMaster({ user }) {
     return () => clearTimeout(timer);
   }, [query, selectedIngredients, category, user?.id]);
 
-  useEffect(() => {
-    let active = true;
-    api("/recipes")
-      .then((result) => {
-        if (active) setRecipes(Array.isArray(result) ? result : []);
-      })
-      .catch((e) => {
-        if (active) setError(e.message || "Unable to load recipes");
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-
-    fetchLocationsWithGps({ silent: true })
-      .then((locBundle) => {
-        if (!active) return;
+  const loadRecipesData = useCallback(async ({ bypassCache = false, showSuccessToast = false } = {}) => {
+    if (bypassCache) {
+      setRefreshing(true);
+    }
+    setError("");
+    try {
+      const [recipesResult, locBundle] = await Promise.all([
+        api("/recipes", bypassCache ? { noCache: true } : {}),
+        fetchLocationsWithGps({ silent: true }).catch(() => null),
+      ]);
+      setRecipes(Array.isArray(recipesResult) ? recipesResult : []);
+      if (locBundle) {
         if (isValidCoordinates(locBundle?.coords)) {
           setCurrentCoords(locBundle.coords);
         }
@@ -557,13 +555,25 @@ export default function RecipeMaster({ user }) {
           setLocations(locBundle.locations);
           setMarketingLocations(locBundle.locations);
         }
-      })
-      .catch(() => {});
-
-    return () => {
-      active = false;
-    };
+      }
+      if (showSuccessToast) {
+        showToast("success", "Recipes refreshed.");
+      }
+    } catch (e) {
+      const msg = e.message || "Unable to load recipes";
+      setError(msg);
+      if (showSuccessToast) {
+        showToast("error", msg);
+      }
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
   }, []);
+
+  useEffect(() => {
+    void loadRecipesData();
+  }, [loadRecipesData]);
 
   const indexedRecipes = useMemo(() => indexRecipes(recipes), [recipes]);
   const categoryList = useMemo(() => extractCategories(recipes), [recipes]);
@@ -833,6 +843,20 @@ export default function RecipeMaster({ user }) {
       <div className="diet-page-heading">
         <div>
           <h1>Recipe Master</h1>
+        </div>
+        <div className="diet-heading-actions">
+          <button
+            type="button"
+            className="diet-secondary"
+            style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+            disabled={loading || refreshing}
+            onClick={() => void loadRecipesData({ bypassCache: true, showSuccessToast: true })}
+            title="Refresh recipes"
+            aria-label="Refresh recipes"
+          >
+            <RefreshCw size={15} className={refreshing ? "spin" : ""} />
+            {refreshing ? "Refreshing…" : "Refresh"}
+          </button>
         </div>
       </div>
       {error && <div className="diet-error">{error}</div>}
