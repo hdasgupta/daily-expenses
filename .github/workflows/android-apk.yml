@@ -153,20 +153,79 @@ jobs:
           echo "Verified APK:"
           ls -lh "$APK_PATH"
 
+      - name: Upload APK workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-expenses-${{ env.VERSION_NAME }}-apk
+          path: ${{ env.APK_PATH }}
+          retention-days: 30
+
       - name: Create GitHub Release and upload APK
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Creating release v${VERSION_NAME}"
+          TAG="v${VERSION_NAME}"
+          echo "Creating release ${TAG}"
           echo "Uploading APK: ${APK_PATH}"
 
-          gh release create "v${VERSION_NAME}" \
-            "${APK_PATH}" \
-            --repo "${{ github.repository }}" \
-            --title "Daily Expenses v${VERSION_NAME}" \
-            --generate-notes
+          # Retry release creation (handles transient GitHub API HTTP 500s & re-runs)
+          RELEASE_READY=false
+          for attempt in 1 2 3 4; do
+            if gh release view "${TAG}" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+              echo "Release ${TAG} already exists."
+              RELEASE_READY=true
+              break
+            fi
 
-          echo "Release created successfully."
+            if [ "$attempt" -le 2 ]; then
+              if gh release create "${TAG}" \
+                --repo "${{ github.repository }}" \
+                --title "Daily Expenses ${TAG}" \
+                --generate-notes; then
+                RELEASE_READY=true
+                break
+              fi
+            else
+              # Fallback without --generate-notes in case GitHub's notes generator caused HTTP 500
+              if gh release create "${TAG}" \
+                --repo "${{ github.repository }}" \
+                --title "Daily Expenses ${TAG}" \
+                --notes "Automated Android APK release ${TAG}"; then
+                RELEASE_READY=true
+                break
+              fi
+            fi
+
+            SLEEP_SEC=$((attempt * 10))
+            echo "Release creation attempt ${attempt} failed; retrying in ${SLEEP_SEC}s..."
+            sleep "${SLEEP_SEC}"
+          done
+
+          if [ "$RELEASE_READY" != "true" ]; then
+            echo "Failed to create or locate GitHub Release ${TAG} after retries."
+            exit 1
+          fi
+
+          # Retry APK upload separately with --clobber
+          UPLOADED=false
+          for attempt in 1 2 3 4; do
+            if gh release upload "${TAG}" "${APK_PATH}" \
+              --repo "${{ github.repository }}" \
+              --clobber; then
+              UPLOADED=true
+              break
+            fi
+            SLEEP_SEC=$((attempt * 10))
+            echo "APK upload attempt ${attempt} failed; retrying in ${SLEEP_SEC}s..."
+            sleep "${SLEEP_SEC}"
+          done
+
+          if [ "$UPLOADED" != "true" ]; then
+            echo "Failed to upload APK to release ${TAG} after retries."
+            exit 1
+          fi
+
+          echo "Release ${TAG} created and APK uploaded successfully."
 
       - name: Remove release keystore
         if: always()
