@@ -1105,15 +1105,33 @@ export default function MarketingList({ navigate }) {
         return `• ${row.item_name}${quantity}${approxText}`;
       })
       .join("\n");
+    const isSingle = selectedPendingRows.length === 1;
     localStorage.setItem(
       "marketing-purchase-prefill",
-      JSON.stringify({
-        marketingItemIds: selectedPendingRows.map((row) => String(row.id)),
-        locationId: String(first.location_id || form.locationId || ""),
-        categoryId: String(first.category_id || ""),
-        expenseDate: String(form.purchaseDate || todayKolkata()).slice(0, 10),
-        comment: `Marketing list items:\n${comment}`,
-      }),
+      JSON.stringify(
+        isSingle
+          ? {
+              marketingItemId: String(first.id),
+              locationId: String(first.location_id || form.locationId || ""),
+              categoryId: String(first.category_id || ""),
+              itemId: String(first.item_id || ""),
+              itemName: String(first.item_name || ""),
+              quantity: formatQuantityInputValue(first.quantity),
+              unitId: String(first.unit_id || ""),
+              expenseDate: String(first.purchase_date || form.purchaseDate || todayKolkata()).slice(
+                0,
+                10,
+              ),
+              comment: `Marketing list item:\n${comment}`,
+            }
+          : {
+              marketingItemIds: selectedPendingRows.map((row) => String(row.id)),
+              locationId: String(first.location_id || form.locationId || ""),
+              categoryId: String(first.category_id || ""),
+              expenseDate: String(form.purchaseDate || todayKolkata()).slice(0, 10),
+              comment: `Marketing list items:\n${comment}`,
+            },
+      ),
     );
     navigate("/add-expense");
   };

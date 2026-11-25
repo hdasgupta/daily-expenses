@@ -1076,19 +1076,24 @@ export default function Expense() {
     if (!prefill?.marketingItemId && !Array.isArray(prefill?.marketingItemIds)) return;
     setEditingId(null);
     setDate(prefill.expenseDate || today());
+    const isMultiBulk =
+      Array.isArray(prefill.marketingItemIds) && prefill.marketingItemIds.length > 1;
     setForm({
-      ...emptyForm(prefill.expenseDate || today(), String(prefill.locationId || defaultLocationIdRef.current || "")),
+      ...emptyForm(
+        prefill.expenseDate || today(),
+        String(prefill.locationId || defaultLocationIdRef.current || ""),
+      ),
       categoryId: String(prefill.categoryId || ""),
-      itemId: prefill.marketingItemIds
+      itemId: isMultiBulk
         ? TOTAL_ITEM
         : String(prefill.itemId || (prefill.itemName ? OTHER_ITEM : TOTAL_ITEM)),
-      otherItem: prefill.marketingItemIds
+      otherItem: isMultiBulk
         ? ""
         : prefill.itemId
           ? ""
           : String(prefill.itemName || ""),
-      quantity: prefill.marketingItemIds ? "" : (prefill.quantity ?? ""),
-      unitId: prefill.marketingItemIds ? "" : String(prefill.unitId || ""),
+      quantity: isMultiBulk ? "" : (prefill.quantity ?? ""),
+      unitId: isMultiBulk ? "" : String(prefill.unitId || ""),
       comment: String(prefill.comment || ""),
     });
     resetProofInput();

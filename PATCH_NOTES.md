@@ -956,3 +956,8 @@
 
 ## 104. Recipe Master — Refresh Button
 - **`frontend/src/pages/RecipeMaster.jsx`**: Added a **Refresh** button in the page heading that reloads `/recipes` with `{ noCache: true }` and refreshes GPS-sorted locations, showing a confirmation toast on completion.
+
+## 105. Single-Item Marketing Purchase Prefills Item, Quantity & Unit in Add Expense
+- **`frontend/src/pages/MarketingList.jsx` (`buySelected`) & `frontend/src/pages/Expense.jsx`**:
+  - When purchasing a single item from the Marketing List (`selectedPendingRows.length === 1`), `marketing-purchase-prefill` now passes `marketingItemId`, `itemId`, `itemName`, `quantity`, and `unitId` so **Add Expense** automatically fills the Item (known item or Other item), Quantity, and Unit alongside Date, Location, Category, and Comment.
+  - Multi-item bulk purchases (`> 1` item) continue to use `TOTAL_ITEM` with the itemized comment.
