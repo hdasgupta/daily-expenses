@@ -724,6 +724,7 @@ export default function MarketingList({ navigate }) {
     };
 
     const isBetterCandidate = (next, current) => {
+      if (!next) return false;
       if (!current) return true;
       if (next.locMatch !== current.locMatch) return next.locMatch > current.locMatch;
       const dateCmp = next.date.localeCompare(current.date);

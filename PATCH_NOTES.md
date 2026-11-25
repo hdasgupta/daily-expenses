@@ -965,3 +965,6 @@
 ## 106. Food Chart Remove Button Size & Marketing List Reddish Remove Buttons
 - **`frontend/src/pages/dietChart.css`**: Normalized `.icon-button.danger` (`padding: 0`, `35px × 35px` desktop / `32px × 32px` mobile, transparent background) so global `.danger` padding from `styles.css` no longer enlarges the Food Chart remove button.
 - **`frontend/src/pages/marketing.css`**: Styled `.marketing-item-remove-icon` with a reddish tint/border and `.marketing-bulk-remove-btn` with a solid reddish fill (`#dc2626`) for clear visual contrast in both light and dark modes.
+
+## 107. Marketing List — Fix Undefined `locMatch` Crash on New Items
+- **`frontend/src/pages/MarketingList.jsx` (`isBetterCandidate`)**: Added `if (!next) return false;` guard before accessing `next.locMatch`, fixing `Cannot read properties of undefined (reading 'locMatch')` when an item has no ID-matched price history (`idLatest` is `undefined`) while `nameLatest` is present.
