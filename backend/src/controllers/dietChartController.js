@@ -458,57 +458,78 @@ export async function autoAddFoodChartRecipes(req, res) {
           END ASC,
           COUNT(*) FILTER (WHERE $3 <> '' AND location_id = NULLIF($3, '')::bigint) DESC,
           COUNT(*) DESC,
-          MAX(chart_date) DESC
-        LIMIT 1`,
+          MAX(chart_date) DESC`,
       [date, meal, locationId, minCount],
     );
 
-    const best = histRes.rows[0];
-    if (!best) {
+    const allMatches = histRes.rows || [];
+    const locMatches = locationId
+      ? allMatches.filter((row) => Number(row.loc_count || 0) >= minCount)
+      : [];
+    const selectedMatches = locMatches.length > 0 ? locMatches : allMatches;
+
+    if (!selectedMatches.length) {
       noHistory.push(meal);
       continue;
     }
 
-    const canonicalSnapshot =
-      (best.snap_id && staticRecipesById.get(String(best.snap_id))) ||
-      (best.snap_name_lower && staticRecipesByName.get(best.snap_name_lower)) ||
-      normalizeRecipeSnapshot(best.latest_snapshot, null);
-
-    if (!canonicalSnapshot || !canonicalSnapshot.name) {
-      noHistory.push(meal);
-      continue;
-    }
-
-    const servings = Math.max(
-      0.25,
-      Number(best.avg_servings) || Number(canonicalSnapshot.servings) || 2,
-    );
     const orderRes = await q(
       "SELECT COALESCE(MAX(sort_order),-1)+1 AS n FROM public.food_chart_entries WHERE chart_date=$1::date AND meal=$2",
       [date, meal],
     );
+    let nextSortOrder = Number(orderRes.rows[0]?.n || 0);
+    const seenNamesInMeal = new Set();
+    let mealAddedCount = 0;
 
-    await q(
-      `INSERT INTO public.food_chart_entries(user_id,chart_date,meal,location_id,recipe_id,recipe_snapshot,servings,sort_order)
-       VALUES($1,$2::date,$3,NULLIF($4,'')::bigint,NULL,$5::jsonb,$6,$7)`,
-      [
-        req.user.id,
-        date,
+    for (const match of selectedMatches) {
+      const canonicalSnapshot =
+        (match.snap_id && staticRecipesById.get(String(match.snap_id))) ||
+        (match.snap_name_lower && staticRecipesByName.get(match.snap_name_lower)) ||
+        normalizeRecipeSnapshot(match.latest_snapshot, null);
+
+      if (!canonicalSnapshot || !canonicalSnapshot.name) {
+        continue;
+      }
+
+      const normName = String(canonicalSnapshot.name).trim().toLowerCase();
+      if (seenNamesInMeal.has(normName)) {
+        continue;
+      }
+      seenNamesInMeal.add(normName);
+
+      const servings = Math.max(
+        0.25,
+        Number(match.avg_servings) || Number(canonicalSnapshot.servings) || 2,
+      );
+
+      await q(
+        `INSERT INTO public.food_chart_entries(user_id,chart_date,meal,location_id,recipe_id,recipe_snapshot,servings,sort_order)
+         VALUES($1,$2::date,$3,NULLIF($4,'')::bigint,NULL,$5::jsonb,$6,$7)`,
+        [
+          req.user.id,
+          date,
+          meal,
+          locationId,
+          JSON.stringify(canonicalSnapshot),
+          servings,
+          nextSortOrder,
+        ],
+      );
+      nextSortOrder += 1;
+      mealAddedCount += 1;
+
+      added.push({
         meal,
-        locationId,
-        JSON.stringify(canonicalSnapshot),
+        recipeName: canonicalSnapshot.name,
+        count: Number(match.loc_count >= minCount ? match.loc_count : match.total_count),
+        totalCount: Number(match.total_count),
         servings,
-        orderRes.rows[0].n,
-      ],
-    );
+      });
+    }
 
-    added.push({
-      meal,
-      recipeName: canonicalSnapshot.name,
-      count: Number(best.loc_count >= minCount ? best.loc_count : best.total_count),
-      totalCount: Number(best.total_count),
-      servings,
-    });
+    if (mealAddedCount === 0) {
+      noHistory.push(meal);
+    }
   }
 
   if (locationId) {
