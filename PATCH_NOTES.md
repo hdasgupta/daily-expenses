@@ -994,3 +994,6 @@
   - Selects the maximum-used recipe with at least `5` historical uses (`HAVING COUNT(*) >= 5`), preferring location-specific history when a location is selected, and schedules it with its average historical servings.
 - **`frontend/src/pages/FoodChart.jsx`**:
   - Added an **Auto Add Recipe** button beside **Add Recipe** that triggers `POST /api/food-chart/auto-add`, reloads the chart, and displays a toast summary of added recipes.
+
+## 114. Food Chart — Disable Auto Add Recipe When Date & Location Already Have Recipes
+- **`frontend/src/pages/FoodChart.jsx`**: Disabled the **Auto Add Recipe** button (`hasRecipesForSelectedDateAndLocation`) whenever at least one recipe is already scheduled for the selected date and location.

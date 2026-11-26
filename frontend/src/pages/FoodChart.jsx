@@ -678,6 +678,9 @@ export default function FoodChart() {
   }, [load]);
 
   const mealFor = (entry) => entry.meal;
+  const hasRecipesForSelectedDateAndLocation = entries.some(
+    (entry) => !locationId || !entry.locationId || String(entry.locationId) === String(locationId),
+  );
 
   return (
     <main className="diet-page">
@@ -701,9 +704,13 @@ export default function FoodChart() {
           <button
             type="button"
             className="diet-secondary"
-            disabled={autoAdding || loading}
+            disabled={autoAdding || loading || hasRecipesForSelectedDateAndLocation}
             onClick={() => void handleAutoAddRecipes()}
-            title="Auto-add the most frequently used recipe (5+ uses) for each empty meal on this weekday"
+            title={
+              hasRecipesForSelectedDateAndLocation
+                ? "Auto Add Recipe is disabled because recipes are already added for this date and location"
+                : "Auto-add the most frequently used recipe (5+ uses) for each empty meal on this weekday"
+            }
           >
             <Sparkles size={16} /> {autoAdding ? "Auto adding…" : "Auto Add Recipe"}
           </button>
