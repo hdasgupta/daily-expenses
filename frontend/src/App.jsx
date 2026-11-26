@@ -5,23 +5,57 @@ import Toast from "./components/Toast";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import Login from "./pages/Login";
 
-const Expense = lazy(() => import("./pages/Expense"));
-const Survivors = lazy(() => import("./pages/Survivors"));
-const CategoriesItems = lazy(() => import("./pages/CategoriesItems"));
-const Units = lazy(() => import("./pages/Units"));
-const BulkUpload = lazy(() => import("./pages/BulkUpload"));
-const Reports = lazy(() => import("./pages/Reports"));
-const Dashboard = lazy(() => import("./pages/Dashboard"));
-const PriceTrend = lazy(() => import("./pages/PriceTrend"));
-const OrderFrequency = lazy(() => import("./pages/OrderFrequency"));
-const DashboardDetail = lazy(() => import("./pages/DashboardDetail"));
-const DashboardDrilldown = lazy(() => import("./pages/DashboardDrilldown"));
-const Users = lazy(() => import("./pages/Users"));
-const JobStatus = lazy(() => import("./pages/JobStatus"));
-const MarketingList = lazy(() => import("./pages/MarketingList"));
-const MarketingLocations = lazy(() => import("./pages/MarketingLocations"));
-const FoodChart = lazy(() => import("./pages/FoodChart"));
-const RecipeMaster = lazy(() => import("./pages/RecipeMaster"));
+const CHUNK_RELOAD_KEY = "daily-expenses:chunk-reload-at";
+
+function isChunkLoadError(error) {
+  const msg = String(error?.message || error || "").toLowerCase();
+  return (
+    msg.includes("failed to fetch dynamically imported module") ||
+    msg.includes("importing a module script failed") ||
+    msg.includes("error loading dynamically imported module") ||
+    msg.includes("loading chunk")
+  );
+}
+
+function lazyWithRetry(importer) {
+  return lazy(async () => {
+    try {
+      return await importer();
+    } catch (error) {
+      if (isChunkLoadError(error) && typeof window !== "undefined") {
+        try {
+          const lastReload = Number(sessionStorage.getItem(CHUNK_RELOAD_KEY) || 0);
+          if (!lastReload || Date.now() - lastReload > 10000) {
+            sessionStorage.setItem(CHUNK_RELOAD_KEY, String(Date.now()));
+            window.location.reload();
+            return new Promise(() => {});
+          }
+        } catch {
+          // Fall through and let RouteErrorBoundary display Reload button
+        }
+      }
+      throw error;
+    }
+  });
+}
+
+const Expense = lazyWithRetry(() => import("./pages/Expense"));
+const Survivors = lazyWithRetry(() => import("./pages/Survivors"));
+const CategoriesItems = lazyWithRetry(() => import("./pages/CategoriesItems"));
+const Units = lazyWithRetry(() => import("./pages/Units"));
+const BulkUpload = lazyWithRetry(() => import("./pages/BulkUpload"));
+const Reports = lazyWithRetry(() => import("./pages/Reports"));
+const Dashboard = lazyWithRetry(() => import("./pages/Dashboard"));
+const PriceTrend = lazyWithRetry(() => import("./pages/PriceTrend"));
+const OrderFrequency = lazyWithRetry(() => import("./pages/OrderFrequency"));
+const DashboardDetail = lazyWithRetry(() => import("./pages/DashboardDetail"));
+const DashboardDrilldown = lazyWithRetry(() => import("./pages/DashboardDrilldown"));
+const Users = lazyWithRetry(() => import("./pages/Users"));
+const JobStatus = lazyWithRetry(() => import("./pages/JobStatus"));
+const MarketingList = lazyWithRetry(() => import("./pages/MarketingList"));
+const MarketingLocations = lazyWithRetry(() => import("./pages/MarketingLocations"));
+const FoodChart = lazyWithRetry(() => import("./pages/FoodChart"));
+const RecipeMaster = lazyWithRetry(() => import("./pages/RecipeMaster"));
 import { api } from "./lib/api";
 import {
   clearAccounts,

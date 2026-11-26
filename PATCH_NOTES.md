@@ -1028,3 +1028,6 @@
   - Added `GET /api/dashboard/filter-presets`, `POST /api/dashboard/filter-presets`, and `DELETE /api/dashboard/filter-presets/:id`.
 - **Frontend (`DashboardDetail.jsx`)**:
   - Added a **Saved Filter Presets** bar inside the Dashboard Detail filter card allowing users to save current Category & Survivor selections with a name, restore any saved preset on any Dashboard Detail page, or delete a preset.
+
+## 122. Auto-Recover From Stale Dynamic Chunk Errors After Deploy
+- **`frontend/src/App.jsx` (`lazyWithRetry`)**: Wrapped all lazy-loaded page imports with `lazyWithRetry`, automatically triggering a one-time `window.location.reload()` (guarded by a 10s `sessionStorage` timestamp) whenever a stale browser tab encounters `Failed to fetch dynamically imported module` after a new Vercel deployment.
