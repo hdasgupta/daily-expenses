@@ -1034,3 +1034,6 @@
 
 ## 123. DashboardDetail — Fix Missing Preset State Declarations
 - **`frontend/src/pages/DashboardDetail.jsx`**: Added the missing `useState` declarations for `filterPresets`, `selectedPresetId`, `presetName`, and `savingPreset`, resolving `ReferenceError: selectedPresetId is not defined`.
+
+## 124. Daily Dashboard Details — Short Weekday Name in Bar Chart Dates
+- **`frontend/src/pages/DashboardDetail.jsx` (`prettyValue`)**: Added `weekday: "short"` when formatting `date` columns so daily dashboard bar charts, tooltips, and summary rows display the short weekday (e.g., `Thu, 26 Nov 2026`).

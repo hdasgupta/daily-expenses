@@ -53,6 +53,7 @@ function prettyValue(value, column) {
     }
 
     return new Intl.DateTimeFormat("en-IN", {
+      ...(column === "date" ? { weekday: "short" } : {}),
       day: "2-digit",
       month: "short",
       year: "numeric",
