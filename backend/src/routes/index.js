@@ -240,6 +240,24 @@ export function createRouter(maxUploadBytes) {
     permit("dashboard"),
     dashboardController.saveFilters,
   );
+  router.get(
+    "/dashboard/filter-presets",
+    auth,
+    permit("dashboard"),
+    dashboardController.listFilterPresets,
+  );
+  router.post(
+    "/dashboard/filter-presets",
+    auth,
+    permit("dashboard"),
+    dashboardController.saveFilterPreset,
+  );
+  router.delete(
+    "/dashboard/filter-presets/:id",
+    auth,
+    permit("dashboard"),
+    dashboardController.deleteFilterPreset,
+  );
 
   router.get("/job-status", auth, permit("job-status"), jobStatusController.status);
   router.get("/scheduled-reports", auth, permit("job-status"), scheduledReportController.list);

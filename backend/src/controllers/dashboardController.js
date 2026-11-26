@@ -1,7 +1,10 @@
 import { buildDashboard } from "../services/dashboardService.js";
 import { runDashboardReport } from "../services/dashboardReportService.js";
 import {
+  deleteUserDashboardFilterPreset,
   getUserDashboardFilters,
+  listUserDashboardFilterPresets,
+  saveUserDashboardFilterPreset,
   saveUserDashboardFilters,
 } from "../services/dashboardFilterService.js";
 
@@ -23,4 +26,16 @@ export async function getFilters(req, res) {
 
 export async function saveFilters(req, res) {
   res.json(await saveUserDashboardFilters(req.user.id, req.params.reportKey, req.body || {}));
+}
+
+export async function listFilterPresets(req, res) {
+  res.json(await listUserDashboardFilterPresets(req.user.id));
+}
+
+export async function saveFilterPreset(req, res) {
+  res.json(await saveUserDashboardFilterPreset(req.user.id, req.body || {}));
+}
+
+export async function deleteFilterPreset(req, res) {
+  res.json(await deleteUserDashboardFilterPreset(req.user.id, req.params.id));
 }

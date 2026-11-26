@@ -8,6 +8,8 @@ import {
   Filter,
   RefreshCw,
   RotateCcw,
+  Save,
+  Trash2,
   Search,
   Tags,
   Users,
@@ -754,6 +756,14 @@ export default function DashboardDetail({ navigate, user }) {
     setSurvivorFilters(cached.survivors);
     load();
 
+    api("/dashboard/filter-presets", { silent: true })
+      .then((list) => {
+        if (!cancelled) {
+          setFilterPresets(Array.isArray(list) ? list : []);
+        }
+      })
+      .catch(() => {});
+
     if (report) {
       api(`/dashboard/filters/${encodeURIComponent(report.key)}`, { silent: true })
         .then((saved) => {
@@ -805,6 +815,56 @@ export default function DashboardDetail({ navigate, user }) {
         silent: true,
       }).catch(() => {});
     }, 250);
+  };
+
+  const handleApplyPreset = (presetId) => {
+    setSelectedPresetId(presetId);
+    const chosen = filterPresets.find((p) => String(p.id) === String(presetId));
+    if (!chosen) return;
+    const nextCategories = Array.isArray(chosen.categories) ? chosen.categories.map(String) : [];
+    const nextSurvivors = Array.isArray(chosen.survivors) ? chosen.survivors.map(String) : [];
+    setCategoryFilters(nextCategories);
+    setSurvivorFilters(nextSurvivors);
+    setPresetName(chosen.name || "");
+    persistFilters(nextCategories, nextSurvivors);
+  };
+
+  const handleSavePreset = async (event) => {
+    event.preventDefault();
+    const cleanName = String(presetName || "").trim();
+    if (!cleanName || savingPreset) return;
+    setSavingPreset(true);
+    try {
+      const saved = await api("/dashboard/filter-presets", {
+        method: "POST",
+        body: JSON.stringify({
+          name: cleanName,
+          categories: categoryFilters,
+          survivors: survivorFilters,
+        }),
+        toast: { type: "success", message: `Saved filter "${cleanName}".` },
+      });
+      if (saved && saved.id) {
+        setFilterPresets((prev) => {
+          const filtered = prev.filter((p) => String(p.id) !== String(saved.id) && p.name !== saved.name);
+          return [...filtered, saved].sort((a, b) => a.name.localeCompare(b.name));
+        });
+        setSelectedPresetId(String(saved.id));
+      }
+    } finally {
+      setSavingPreset(false);
+    }
+  };
+
+  const handleDeletePreset = async () => {
+    if (!selectedPresetId) return;
+    const target = filterPresets.find((p) => String(p.id) === String(selectedPresetId));
+    await api(`/dashboard/filter-presets/${encodeURIComponent(selectedPresetId)}`, {
+      method: "DELETE",
+      toast: { type: "success", message: `Removed filter "${target?.name || "preset"}".` },
+    });
+    setFilterPresets((prev) => prev.filter((p) => String(p.id) !== String(selectedPresetId)));
+    setSelectedPresetId("");
   };
 
   const handleCategoryFiltersChange = (nextCategories) => {
@@ -1072,6 +1132,73 @@ export default function DashboardDetail({ navigate, user }) {
             selectedIds={survivorFilters}
             onChange={handleSurvivorFiltersChange}
           />
+        </div>
+
+        <div
+          className="dashboard-detail-preset-bar"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            alignItems: "center",
+            marginTop: "12px",
+            paddingTop: "12px",
+            borderTop: "1px solid var(--line, #d6e4ef)",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", flex: "1 1 220px" }}>
+            <select
+              value={selectedPresetId}
+              onChange={(e) => handleApplyPreset(e.target.value)}
+              aria-label="Restore saved filter preset"
+              style={{ flex: 1, minWidth: 0 }}
+            >
+              <option value="">Restore saved filter…</option>
+              {filterPresets.map((preset) => (
+                <option key={preset.id} value={preset.id}>
+                  {preset.name} ({preset.categories?.length || 0} cat, {preset.survivors?.length || 0} surv)
+                </option>
+              ))}
+            </select>
+            {selectedPresetId ? (
+              <button
+                type="button"
+                className="secondary"
+                onClick={handleDeletePreset}
+                title="Delete selected filter preset"
+                aria-label="Delete selected filter preset"
+                style={{ padding: "8px 10px", color: "var(--danger, #dc2626)" }}
+              >
+                <Trash2 size={15} />
+              </button>
+            ) : null}
+          </div>
+
+          <form
+            onSubmit={handleSavePreset}
+            style={{ display: "flex", alignItems: "center", gap: "6px", flex: "1 1 260px" }}
+          >
+            <input
+              type="text"
+              maxLength={150}
+              value={presetName}
+              onChange={(e) => setPresetName(e.target.value)}
+              placeholder="Save filter name (e.g. Food & Medicine)…"
+              aria-label="Filter preset name"
+              style={{ flex: 1, minWidth: 0 }}
+            />
+            <button
+              type="submit"
+              className="secondary"
+              disabled={
+                savingPreset ||
+                !String(presetName || "").trim() ||
+                (categoryFilters.length === 0 && survivorFilters.length === 0)
+              }
+            >
+              <Save size={15} /> {savingPreset ? "Saving…" : "Save filter"}
+            </button>
+          </form>
         </div>
       </div>
 

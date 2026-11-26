@@ -191,6 +191,16 @@ ALTER TABLE public.scheduled_report_jobs
   ADD COLUMN IF NOT EXISTS created_by_user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL;
 ALTER TABLE public.scheduled_report_jobs
   ADD COLUMN IF NOT EXISTS filters JSONB NOT NULL DEFAULT '{}'::jsonb;
+CREATE TABLE IF NOT EXISTS public.dashboard_filter_presets (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  name VARCHAR(150) NOT NULL,
+  categories JSONB NOT NULL DEFAULT '[]'::jsonb,
+  survivors JSONB NOT NULL DEFAULT '[]'::jsonb,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(user_id, name)
+);
 CREATE TABLE IF NOT EXISTS public.dashboard_user_filters (
   user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   report_key VARCHAR(100) NOT NULL,

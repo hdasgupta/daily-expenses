@@ -1021,3 +1021,10 @@
 
 ## 120. Order Frequency — Include Only Purchased Items
 - **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**: Changed the `marketing_list_items` filter from `m.status <> 'removed'` to `m.status = 'purchased'` so unpurchased (`pending`) items are excluded from all weekly order frequency calculations, charts, and stats.
+
+## 121. Dashboard Details — Shared Named Category & Survivor Filter Presets
+- **Backend (`dashboardFilterService.js`, `dashboardController.js`, `routes/index.js`, `schemaSql.js`)**:
+  - Added `public.dashboard_filter_presets` storing named Category & Survivor filter presets per user (`user_id`, `name`, `categories`, `survivors`) shared across all Dashboard Detail reports.
+  - Added `GET /api/dashboard/filter-presets`, `POST /api/dashboard/filter-presets`, and `DELETE /api/dashboard/filter-presets/:id`.
+- **Frontend (`DashboardDetail.jsx`)**:
+  - Added a **Saved Filter Presets** bar inside the Dashboard Detail filter card allowing users to save current Category & Survivor selections with a name, restore any saved preset on any Dashboard Detail page, or delete a preset.
