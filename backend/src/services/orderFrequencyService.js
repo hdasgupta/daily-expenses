@@ -221,15 +221,22 @@ export async function getItemOrderFrequency({
   const todayIso = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(
     new Date(),
   );
+  const [ty, tm, td] = todayIso.split("-").map(Number);
+  const todayUtc = Date.UTC(ty, tm - 1, td);
+
+  // Sum days only across weeks where the item was actually purchased
   let totalDays = 0;
-  if (firstOrderDate && /^\d{4}-\d{2}-\d{2}$/.test(firstOrderDate)) {
-    const [fy, fm, fd] = firstOrderDate.split("-").map(Number);
-    const [ty, tm, td] = todayIso.split("-").map(Number);
-    const firstUtc = Date.UTC(fy, fm - 1, fd);
-    const todayUtc = Date.UTC(ty, tm - 1, td);
-    totalDays = Math.max(1, Math.floor((todayUtc - firstUtc) / 86400000) + 1);
+  for (const w of allWeeks) {
+    const [wy, wm, wd] = w.weekStart.split("-").map(Number);
+    const weekStartUtc = Date.UTC(wy, wm - 1, wd);
+    if (weekStartUtc > todayUtc) continue;
+    const daysInWeek = Math.min(7, Math.floor((todayUtc - weekStartUtc) / 86400000) + 1);
+    totalDays += Math.max(1, daysInWeek);
   }
-  // Formula: (Total quantity item ordered / total number of days till date from first order) * 7
+  if (totalDays === 0 && activeWeekCount > 0) {
+    totalDays = activeWeekCount * 7;
+  }
+  // Formula: (Total quantity item ordered / total days in purchased weeks) * 7
   const avgPerWeek =
     totalDays > 0 && totalOrdered > 0 ? Number(((totalOrdered / totalDays) * 7).toFixed(2)) : 0;
   const latestWeekAmount = weeks.length ? weeks[0].totalQuantity : 0;

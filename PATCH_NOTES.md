@@ -1043,3 +1043,7 @@
   - Resolved `__APP_VERSION__` from the latest Git commit timestamp (`git log -1 --format=%ct`) formatted in IST (`Asia/Kolkata`) as `YYYY.MM.DD.HH.mm` (e.g., `2026.11.26.21.39`), with current IST time as fallback.
 - **`.github/workflows/android-apk.yml`**:
   - Computed the exact same `YYYY.MM.DD.HH.mm` commit-timestamp `VERSION_NAME` before building the frontend and Android APK, exporting `VITE_APP_VERSION` to Vite and `-PAPP_VERSION_NAME` to Gradle (with epoch-minutes `VERSION_CODE` so `versionCode` remains a valid monotonically increasing 32-bit integer).
+
+## 126. Order Frequency — Exclude Unpurchased Weeks' Days from Weekly Calculation
+- **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**:
+  - Updated `totalDays` so it sums days only for weeks in which the item was actually purchased (`7` days per completed purchased week, or days elapsed so far in the current purchased week), excluding skipped weeks with zero purchases.

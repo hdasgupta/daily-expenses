@@ -461,10 +461,10 @@ export default function OrderFrequency({ user }) {
               <div className="summary-card dashboard-summary-card">
                 <span>Weekly frequency</span>
                 <strong>{formatAmount(summary.avgPerWeek, data.unitName)}</strong>
-                {summary.firstOrderDate ? (
+                {summary.totalDays > 0 ? (
                   <small className="muted" style={{ fontSize: "0.76rem", marginTop: 2 }}>
-                    Since {summary.firstOrderDate} ({summary.totalDays}{" "}
-                    {summary.totalDays === 1 ? "day" : "days"})
+                    {summary.activeWeeks} purchased {summary.activeWeeks === 1 ? "week" : "weeks"} ·{" "}
+                    {summary.totalDays} {summary.totalDays === 1 ? "day" : "days"}
                   </small>
                 ) : null}
               </div>
