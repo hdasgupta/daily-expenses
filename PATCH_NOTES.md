@@ -1047,3 +1047,8 @@
 ## 126. Order Frequency — Exclude Unpurchased Weeks' Days from Weekly Calculation
 - **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**:
   - Updated `totalDays` so it sums days only for weeks in which the item was actually purchased (`7` days per completed purchased week, or days elapsed so far in the current purchased week), excluding skipped weeks with zero purchases.
+
+## 127. GitHub Actions Android Build — Maven Central 429 Mirror & Cache Fix
+- **`.github/workflows/android-apk.yml`**:
+  - Added `~/.gradle/init.d/mirrors.gradle` to prepend Google's Maven Central mirrors for all projects (including `:capacitor-android` `buildscript` dependencies) so Gradle avoids `repo.maven.apache.org` `429 Too Many Requests`.
+  - Added `actions/cache@v4` for `~/.gradle/caches` and `~/.gradle/wrapper`, `--max-workers=2`, and a 3-attempt retry loop around `./gradlew assembleRelease`.

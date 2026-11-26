@@ -28,12 +28,49 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
+      - name: Calculate unified commit version (YYYY.MM.DD.HH.mm IST)
+        run: |
+          VERSION_INFO=$(node -e '
+            const { execSync } = require("node:child_process");
+            let epochSec = Math.floor(Date.now() / 1000);
+            try {
+              const out = execSync("git log -1 --format=%ct").toString().trim();
+              const parsed = Number.parseInt(out, 10);
+              if (Number.isFinite(parsed) && parsed > 0) epochSec = parsed;
+            } catch {}
+            const parts = new Intl.DateTimeFormat("en-GB", {
+              timeZone: "Asia/Kolkata",
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            }).formatToParts(new Date(epochSec * 1000));
+            const map = Object.fromEntries(parts.map((p) => [p.type, p.value]));
+            const hour = map.hour === "24" ? "00" : map.hour;
+            const versionName = `${map.year}.${map.month}.${map.day}.${hour}.${map.minute}`;
+            const versionCode = Math.floor(epochSec / 60);
+            console.log(`${versionName}|${versionCode}`);
+          ')
+          VERSION_NAME="${VERSION_INFO%%|*}"
+          VERSION_CODE="${VERSION_INFO##*|}"
+
+          echo "VERSION_NAME=${VERSION_NAME}" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=${VERSION_CODE}" >> "$GITHUB_ENV"
+          echo "VITE_APP_VERSION=${VERSION_NAME}" >> "$GITHUB_ENV"
+
+          echo "Unified versionName (web & Android): ${VERSION_NAME}"
+          echo "Android versionCode (epoch minutes): ${VERSION_CODE}"
+
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
 
       - name: Build frontend
         working-directory: frontend
+        env:
+          VITE_APP_VERSION: ${{ env.VERSION_NAME }}
         run: npm run build
 
       - name: Setup Java
@@ -79,19 +116,44 @@ jobs:
         working-directory: frontend
         run: npx cap sync android
 
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('frontend/android/**/*.gradle*', 'frontend/android/gradle/wrapper/gradle-wrapper.properties', 'frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Configure Gradle Maven Central mirrors (avoid 429 rate limits)
+        run: |
+          mkdir -p ~/.gradle/init.d
+          cat << 'GRADLE_INIT' > ~/.gradle/init.d/mirrors.gradle
+          allprojects {
+              buildscript {
+                  repositories {
+                      def m1 = maven { url 'https://maven-central.storage-download.googleapis.com/maven2/' }
+                      def m2 = maven { url 'https://maven-central.storage-download.googleapis.com/repos/central/data/' }
+                      remove(m1)
+                      remove(m2)
+                      addFirst(m2)
+                      addFirst(m1)
+                  }
+              }
+              repositories {
+                  def m1 = maven { url 'https://maven-central.storage-download.googleapis.com/maven2/' }
+                  def m2 = maven { url 'https://maven-central.storage-download.googleapis.com/repos/central/data/' }
+                  remove(m1)
+                  remove(m2)
+                  addFirst(m2)
+                  addFirst(m1)
+              }
+          }
+          GRADLE_INIT
+
       - name: Make Gradle executable
         run: chmod +x frontend/android/gradlew
-
-      - name: Calculate Android version
-        run: |
-          VERSION_CODE="${{ github.run_number }}"
-          VERSION_NAME="1.${VERSION_CODE}"
-
-          echo "VERSION_CODE=${VERSION_CODE}" >> "$GITHUB_ENV"
-          echo "VERSION_NAME=${VERSION_NAME}" >> "$GITHUB_ENV"
-
-          echo "Android versionCode: ${VERSION_CODE}"
-          echo "Android versionName: ${VERSION_NAME}"
 
       - name: Decode release keystore
         env:
@@ -109,15 +171,28 @@ jobs:
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          ./gradlew assembleRelease --no-daemon --stacktrace \
-            -Pkotlin_version="2.0.21" \
-            -PkotlinVersion="2.0.21" \
-            -PAPP_VERSION_CODE="$VERSION_CODE" \
-            -PAPP_VERSION_NAME="$VERSION_NAME" \
-            -Pandroid.injected.signing.store.file="$GITHUB_WORKSPACE/frontend/android/app/release.keystore" \
-            -Pandroid.injected.signing.store.password="$ANDROID_KEYSTORE_PASSWORD" \
-            -Pandroid.injected.signing.key.alias="$ANDROID_KEY_ALIAS" \
-            -Pandroid.injected.signing.key.password="$ANDROID_KEY_PASSWORD"
+          BUILT=false
+          for attempt in 1 2 3; do
+            if ./gradlew assembleRelease --no-daemon --max-workers=2 --stacktrace \
+              -Pkotlin_version="2.0.21" \
+              -PkotlinVersion="2.0.21" \
+              -PAPP_VERSION_CODE="$VERSION_CODE" \
+              -PAPP_VERSION_NAME="$VERSION_NAME" \
+              -Pandroid.injected.signing.store.file="$GITHUB_WORKSPACE/frontend/android/app/release.keystore" \
+              -Pandroid.injected.signing.store.password="$ANDROID_KEYSTORE_PASSWORD" \
+              -Pandroid.injected.signing.key.alias="$ANDROID_KEY_ALIAS" \
+              -Pandroid.injected.signing.key.password="$ANDROID_KEY_PASSWORD"; then
+              BUILT=true
+              break
+            fi
+            SLEEP_SEC=$((attempt * 15))
+            echo "Gradle build attempt ${attempt} failed; retrying in ${SLEEP_SEC}s..."
+            sleep "${SLEEP_SEC}"
+          done
+          if [ "$BUILT" != "true" ]; then
+            echo "Gradle assembleRelease failed after 3 attempts."
+            exit 1
+          fi
 
       - name: Locate and rename APK
         run: |
