@@ -211,6 +211,14 @@ CREATE TABLE IF NOT EXISTS public.recipe_master_user_preferences (
   category VARCHAR(100) NOT NULL DEFAULT 'All',
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+CREATE TABLE IF NOT EXISTS public.order_frequency_user_preferences (
+  user_id BIGINT PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
+  location_id VARCHAR(50) NOT NULL DEFAULT '',
+  category_id VARCHAR(50) NOT NULL DEFAULT '',
+  item_id VARCHAR(50) NOT NULL DEFAULT '',
+  unit_id VARCHAR(50) NOT NULL DEFAULT '',
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS public.price_trend_user_preferences (
   user_id BIGINT PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
   location_id VARCHAR(50) NOT NULL DEFAULT '',

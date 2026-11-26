@@ -9,6 +9,7 @@ import * as userController from "../controllers/userController.js";
 import * as reportController from "../controllers/reportController.js";
 import * as dashboardController from "../controllers/dashboardController.js";
 import * as priceTrendController from "../controllers/priceTrendController.js";
+import * as orderFrequencyController from "../controllers/orderFrequencyController.js";
 import * as bulkUploadController from "../controllers/bulkUploadController.js";
 import * as jobStatusController from "../controllers/jobStatusController.js";
 import * as scheduledReportController from "../controllers/scheduledReportController.js";
@@ -212,6 +213,19 @@ export function createRouter(maxUploadBytes) {
     auth,
     permit("dashboard"),
     priceTrendController.savePreferences,
+  );
+  router.get("/order-frequency", auth, permit("dashboard"), orderFrequencyController.getOrderFrequency);
+  router.get(
+    "/order-frequency/preferences",
+    auth,
+    permit("dashboard"),
+    orderFrequencyController.getPreferences,
+  );
+  router.put(
+    "/order-frequency/preferences",
+    auth,
+    permit("dashboard"),
+    orderFrequencyController.savePreferences,
   );
   router.post("/dashboard/query", auth, permit("dashboard"), dashboardController.queryReport);
   router.get(

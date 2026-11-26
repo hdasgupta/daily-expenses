@@ -5,6 +5,7 @@ const VoiceAssistant = lazy(() => import("./VoiceAssistant"));
 import {
   ChevronDown,
   ClipboardList,
+  BarChart3,
   BookOpen,
   Utensils,
   Database,
@@ -76,6 +77,13 @@ const navItems = [
     path: "/price-trend",
     label: "Price Trend",
     icon: TrendingUp,
+    permission: "dashboard",
+  },
+  {
+    group: "Manipulation",
+    path: "/order-frequency",
+    label: "Order Frequency",
+    icon: BarChart3,
     permission: "dashboard",
   },
   {

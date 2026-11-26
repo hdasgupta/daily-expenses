@@ -232,6 +232,9 @@ function inferLoadingMessage(path, method = "GET") {
   if (cleanPath.startsWith("/price-trend")) {
     return "Calculating 1-unit approximate price trend…";
   }
+  if (cleanPath.startsWith("/order-frequency")) {
+    return "Calculating weekly order frequency…";
+  }
   if (cleanPath.startsWith("/dashboard")) {
     return "Aggregating dashboard totals & charts…";
   }

@@ -1003,3 +1003,10 @@
 
 ## 116. Food Chart — Today Button Between Previous & Next Date
 - **`frontend/src/pages/FoodChart.jsx`**: Added a **Today** button between **Previous date** and **Next date** to reset the selected Food Chart date back to today (`todayKolkata()`), automatically disabled when today is already selected.
+
+## 117. Order Frequency Page Under Manipulation
+- **Backend (`orderFrequencyService.js`, `orderFrequencyController.js`, `routes/index.js`, `schemaSql.js`)**:
+  - Added `GET /api/order-frequency` aggregating weekly ordered quantities (`DATE_TRUNC('week', purchase_date)`) from `marketing_list_items` with unit conversion (`g/kg`, `ml/L`, `dozen/pcs`) and summary KPIs (`avgPerWeek`, `latestWeekAmount`, `totalOrdered`, `totalOrders`, `minWeekAmount`, `maxWeekAmount`).
+  - Added `public.order_frequency_user_preferences` with `GET/PUT /api/order-frequency/preferences`.
+- **Frontend (`OrderFrequency.jsx`, `App.jsx`, `Layout.jsx`, `api.js`)**:
+  - Added **Order Frequency** (`/order-frequency`) under **Manipulation** with Location (GPS auto-select), Category, Item, Smart Unit, KPI summary cards, a weekly Recharts bar chart, and a weekly breakdown table.

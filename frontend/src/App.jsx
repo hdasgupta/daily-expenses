@@ -13,6 +13,7 @@ const BulkUpload = lazy(() => import("./pages/BulkUpload"));
 const Reports = lazy(() => import("./pages/Reports"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const PriceTrend = lazy(() => import("./pages/PriceTrend"));
+const OrderFrequency = lazy(() => import("./pages/OrderFrequency"));
 const DashboardDetail = lazy(() => import("./pages/DashboardDetail"));
 const DashboardDrilldown = lazy(() => import("./pages/DashboardDrilldown"));
 const Users = lazy(() => import("./pages/Users"));
@@ -69,6 +70,10 @@ const routes = {
   },
   "/price-trend": {
     component: PriceTrend,
+    permission: "dashboard",
+  },
+  "/order-frequency": {
+    component: OrderFrequency,
     permission: "dashboard",
   },
   "/add-user": {
