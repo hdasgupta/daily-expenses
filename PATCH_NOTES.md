@@ -1000,3 +1000,6 @@
 
 ## 115. Food Chart — Auto Add All Matching Recipes (>=5 Uses) Per Meal Timing
 - **`backend/src/controllers/dietChartController.js` (`autoAddFoodChartRecipes`)**: Removed `LIMIT 1` so every recipe meeting the `>= 5` historical uses threshold for that weekday and meal timing is added (preferring all location-matched recipes when `locationId` has `>= 5` matches, and deduplicating by canonical recipe name).
+
+## 116. Food Chart — Today Button Between Previous & Next Date
+- **`frontend/src/pages/FoodChart.jsx`**: Added a **Today** button between **Previous date** and **Next date** to reset the selected Food Chart date back to today (`todayKolkata()`), automatically disabled when today is already selected.

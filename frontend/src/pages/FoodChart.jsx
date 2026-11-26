@@ -747,6 +747,15 @@ export default function FoodChart() {
           <button
             type="button"
             className="diet-secondary date-nav-btn"
+            disabled={date === todayKolkata()}
+            onClick={() => setDate(todayKolkata())}
+            title="Reset date to today"
+          >
+            <span>Today</span>
+          </button>
+          <button
+            type="button"
+            className="diet-secondary date-nav-btn"
             onClick={() => setDate((current) => shiftIsoDate(current || todayKolkata(), 1))}
           >
             <span>Next date</span>
