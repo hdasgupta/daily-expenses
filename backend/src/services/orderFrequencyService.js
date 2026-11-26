@@ -141,7 +141,7 @@ export async function getItemOrderFrequency({
        LEFT JOIN public.units u ON u.id = m.unit_id
        LEFT JOIN public.units pu ON pu.id = m.purchased_unit_id
       WHERE ($1 = '' OR m.location_id = NULLIF($1, '')::bigint)
-        AND m.status <> 'removed'
+        AND m.status = 'purchased'
         AND (
           m.item_id = $2::bigint
           OR (

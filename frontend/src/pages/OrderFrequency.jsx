@@ -338,7 +338,7 @@ export default function OrderFrequency({ user }) {
             <BarChart3 size={22} /> Order Frequency
           </h1>
           <p className="muted">
-            Track weekly ordered quantities per item from your Marketing List history.
+            Track weekly purchased quantities per item from your Marketing List history.
           </p>
         </div>
         <div className="action-row">
@@ -552,7 +552,7 @@ export default function OrderFrequency({ user }) {
         </>
       ) : (
         <div className="empty-card">
-          No marketing list orders found for {data?.itemName || "this item"} in{" "}
+          No purchased marketing list orders found for {data?.itemName || "this item"} in{" "}
           {data?.locationName || "selected location"} with a convertible {data?.unitName || "unit"}.
         </div>
       )}

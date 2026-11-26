@@ -1018,3 +1018,6 @@
 
 ## 119. Order Frequency — Convert Sub-Unit Kilogram/Litre Values to Grams/Millilitres
 - **`frontend/src/pages/OrderFrequency.jsx`**: Updated `formatAmount` (used across KPI cards, chart labels, chart tooltips, and weekly breakdown table) so values greater than `0` and less than `1` in Kilogram or Litre automatically convert to `g` or `ml` (`value * 1000`).
+
+## 120. Order Frequency — Include Only Purchased Items
+- **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**: Changed the `marketing_list_items` filter from `m.status <> 'removed'` to `m.status = 'purchased'` so unpurchased (`pending`) items are excluded from all weekly order frequency calculations, charts, and stats.
