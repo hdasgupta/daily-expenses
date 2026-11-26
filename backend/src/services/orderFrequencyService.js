@@ -223,14 +223,16 @@ export async function getItemOrderFrequency({
   );
   const [ty, tm, td] = todayIso.split("-").map(Number);
   const todayUtc = Date.UTC(ty, tm - 1, td);
+  const todayDow = new Date(todayUtc).getUTCDay(); // 0 = Sun .. 6 = Sat
+  const endSaturdayUtc = todayUtc + (6 - todayDow) * 86400000;
 
-  // Sum days only across weeks where the item was actually purchased
+  // Sum days only across weeks where the item was actually purchased, up to current/upcoming Saturday
   let totalDays = 0;
   for (const w of allWeeks) {
     const [wy, wm, wd] = w.weekStart.split("-").map(Number);
     const weekStartUtc = Date.UTC(wy, wm - 1, wd);
-    if (weekStartUtc > todayUtc) continue;
-    const daysInWeek = Math.min(7, Math.floor((todayUtc - weekStartUtc) / 86400000) + 1);
+    if (weekStartUtc > endSaturdayUtc) continue;
+    const daysInWeek = Math.min(7, Math.floor((endSaturdayUtc - weekStartUtc) / 86400000) + 1);
     totalDays += Math.max(1, daysInWeek);
   }
   if (totalDays === 0 && activeWeekCount > 0) {

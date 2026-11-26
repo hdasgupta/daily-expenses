@@ -1055,3 +1055,6 @@
 
 ## 128. Order Frequency — Sunday-to-Saturday Conventional Weeks
 - **`backend/src/services/orderFrequencyService.js`**: Changed weekly grouping from ISO Monday–Sunday (`DATE_TRUNC('week', m.purchase_date)`) to conventional Sunday–Saturday (`(DATE_TRUNC('week', (m.purchase_date + INTERVAL '1 day'))::date - 1)`), updating weekly chart buckets, breakdown ranges, and active-week day counts (`totalDays` and `avgPerWeek`) accordingly.
+
+## 129. Order Frequency — Use Current/Upcoming Saturday as Cutoff Day
+- **`backend/src/services/orderFrequencyService.js`**: Updated `totalDays` cutoff from `today` to the current or upcoming Saturday (`endSaturdayUtc`), so every purchased Sunday–Saturday week up to and including the current week counts all 7 days in `(totalOrdered / totalDays) * 7`.
