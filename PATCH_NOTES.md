@@ -982,3 +982,8 @@
 
 ## 111. Price Trend — Include Only Purchased Items in Chart & Stats
 - **`backend/src/services/priceTrendService.js` (`getItemPriceTrend`)**: Changed the marketing list query filter from `m.status <> 'removed'` to `m.status = 'purchased'` so unpurchased (`pending`) items are excluded from both the Price Trend chart and summary statistics.
+
+## 112. Unlink Marketing List Items Back to Pending When Linked Expense Is Deleted
+- **`backend/scripts/sql/schemaSql.js` (`marketing_mark_expense_removed` trigger)**:
+  - Updated the `AFTER DELETE ON public.expenses` trigger so deleting an expense resets linked `marketing_list_items` to `status = 'pending'` and clears `expense_id`, `expense_price`, `purchased_quantity`, and `purchased_unit_id` (instead of marking them `'removed'`), making them editable and linkable to a new expense again.
+  - Also restores any previously orphaned `'removed'` or missing-expense `'purchased'` rows back to `'pending'` on startup.

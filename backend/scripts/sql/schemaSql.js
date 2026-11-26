@@ -273,14 +273,34 @@ ALTER TABLE public.marketing_list_items ADD COLUMN IF NOT EXISTS approximate_cos
 CREATE INDEX IF NOT EXISTS idx_marketing_list_date_status ON public.marketing_list_items(purchase_date,status);
 CREATE OR REPLACE FUNCTION public.marketing_mark_expense_removed() RETURNS trigger AS $$
 BEGIN
-  UPDATE public.marketing_list_items SET status='removed', expense_id=NULL, updated_at=now()
-   WHERE expense_id=OLD.id AND status='purchased';
+  UPDATE public.marketing_list_items
+     SET status = 'pending',
+         expense_id = NULL,
+         expense_price = NULL,
+         purchased_quantity = NULL,
+         purchased_unit_id = NULL,
+         updated_at = now()
+   WHERE expense_id = OLD.id
+     AND status IN ('purchased', 'removed');
   RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;
 DROP TRIGGER IF EXISTS trg_marketing_expense_removed ON public.expenses;
 CREATE TRIGGER trg_marketing_expense_removed AFTER DELETE ON public.expenses
 FOR EACH ROW EXECUTE FUNCTION public.marketing_mark_expense_removed();
+UPDATE public.marketing_list_items m
+   SET status = 'pending',
+       expense_id = NULL,
+       expense_price = NULL,
+       purchased_quantity = NULL,
+       purchased_unit_id = NULL,
+       updated_at = now()
+ WHERE m.status = 'removed'
+    OR (
+      m.status = 'purchased'
+      AND m.expense_id IS NOT NULL
+      AND NOT EXISTS (SELECT 1 FROM public.expenses e WHERE e.id = m.expense_id)
+    );
 CREATE TABLE IF NOT EXISTS public.password_otps (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,
