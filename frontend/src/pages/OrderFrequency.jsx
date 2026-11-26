@@ -20,10 +20,27 @@ import {
   pickBestLocation,
 } from "../lib/locationTracker";
 
+const KG_UNIT_NAMES = new Set(["kg", "kgs", "kilo", "kilos", "kilogram", "kilograms"]);
+const LITRE_UNIT_NAMES = new Set(["l", "ltr", "ltrs", "liter", "liters", "litre", "litres"]);
+
 function formatAmount(value, unitName = "") {
-  const num = Number(value || 0);
-  const formatted = Number.isInteger(num) ? String(num) : num.toFixed(2);
-  return unitName ? `${formatted} ${unitName}` : formatted;
+  let num = Number(value || 0);
+  let displayUnit = String(unitName || "").trim();
+  const normUnit = displayUnit.toLowerCase().replace(/[^a-z]/g, "");
+
+  if (num > 0 && num < 1) {
+    if (KG_UNIT_NAMES.has(normUnit)) {
+      num = num * 1000;
+      displayUnit = "g";
+    } else if (LITRE_UNIT_NAMES.has(normUnit)) {
+      num = num * 1000;
+      displayUnit = "ml";
+    }
+  }
+
+  const rounded = Number(num.toFixed(2));
+  const formatted = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2);
+  return displayUnit ? `${formatted} ${displayUnit}` : formatted;
 }
 
 function prefStorageKey(userId) {
@@ -462,7 +479,7 @@ export default function OrderFrequency({ user }) {
               <div className="summary-card dashboard-summary-card">
                 <span>Min / Max week</span>
                 <strong>
-                  {formatAmount(summary.minWeekAmount)} /{" "}
+                  {formatAmount(summary.minWeekAmount, data.unitName)} /{" "}
                   {formatAmount(summary.maxWeekAmount, data.unitName)}
                 </strong>
               </div>
@@ -499,7 +516,7 @@ export default function OrderFrequency({ user }) {
                     <LabelList
                       dataKey="totalQuantity"
                       position="top"
-                      formatter={(val) => `${val}`}
+                      formatter={(val) => formatAmount(val, data.unitName)}
                     />
                   </Bar>
                 </BarChart>

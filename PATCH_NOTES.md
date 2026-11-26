@@ -1015,3 +1015,6 @@
 - **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**:
   - Updated `avgPerWeek` (Weekly frequency) calculation to `(totalOrdered / totalDays) * 7` where `totalDays` is the inclusive number of days from `firstOrderDate` to today (`Asia/Kolkata`).
   - Displayed `firstOrderDate` and `totalDays` beneath the **Weekly frequency** KPI card.
+
+## 119. Order Frequency — Convert Sub-Unit Kilogram/Litre Values to Grams/Millilitres
+- **`frontend/src/pages/OrderFrequency.jsx`**: Updated `formatAmount` (used across KPI cards, chart labels, chart tooltips, and weekly breakdown table) so values greater than `0` and less than `1` in Kilogram or Litre automatically convert to `g` or `ml` (`value * 1000`).
