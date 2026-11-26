@@ -1052,3 +1052,6 @@
 - **`.github/workflows/android-apk.yml`**:
   - Added `~/.gradle/init.d/mirrors.gradle` to prepend Google's Maven Central mirrors for all projects (including `:capacitor-android` `buildscript` dependencies) so Gradle avoids `repo.maven.apache.org` `429 Too Many Requests`.
   - Added `actions/cache@v4` for `~/.gradle/caches` and `~/.gradle/wrapper`, `--max-workers=2`, and a 3-attempt retry loop around `./gradlew assembleRelease`.
+
+## 128. Order Frequency — Sunday-to-Saturday Conventional Weeks
+- **`backend/src/services/orderFrequencyService.js`**: Changed weekly grouping from ISO Monday–Sunday (`DATE_TRUNC('week', m.purchase_date)`) to conventional Sunday–Saturday (`(DATE_TRUNC('week', (m.purchase_date + INTERVAL '1 day'))::date - 1)`), updating weekly chart buckets, breakdown ranges, and active-week day counts (`totalDays` and `avgPerWeek`) accordingly.

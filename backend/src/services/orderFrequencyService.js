@@ -129,7 +129,7 @@ export async function getItemOrderFrequency({
   const rowsRes = await q(
     `SELECT m.id,
             m.purchase_date::text AS order_date,
-            DATE_TRUNC('week', m.purchase_date)::date::text AS week_start,
+            (DATE_TRUNC('week', (m.purchase_date + INTERVAL '1 day'))::date - 1)::text AS week_start,
             m.status,
             m.quantity,
             m.unit_id,
