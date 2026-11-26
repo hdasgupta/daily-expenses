@@ -1037,3 +1037,9 @@
 
 ## 124. Daily Dashboard Details — Short Weekday Name in Bar Chart Dates
 - **`frontend/src/pages/DashboardDetail.jsx` (`prettyValue`)**: Added `weekday: "short"` when formatting `date` columns so daily dashboard bar charts, tooltips, and summary rows display the short weekday (e.g., `Thu, 26 Nov 2026`).
+
+## 125. Unified Commit-Timestamp Versioning (`YYYY.MM.DD.HH.mm`) for Web & Android
+- **`frontend/vite.config.js` & `frontend/scripts/bump-version.mjs`**:
+  - Resolved `__APP_VERSION__` from the latest Git commit timestamp (`git log -1 --format=%ct`) formatted in IST (`Asia/Kolkata`) as `YYYY.MM.DD.HH.mm` (e.g., `2026.11.26.21.39`), with current IST time as fallback.
+- **`.github/workflows/android-apk.yml`**:
+  - Computed the exact same `YYYY.MM.DD.HH.mm` commit-timestamp `VERSION_NAME` before building the frontend and Android APK, exporting `VITE_APP_VERSION` to Vite and `-PAPP_VERSION_NAME` to Gradle (with epoch-minutes `VERSION_CODE` so `versionCode` remains a valid monotonically increasing 32-bit integer).
