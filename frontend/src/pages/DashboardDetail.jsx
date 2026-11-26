@@ -708,6 +708,10 @@ export default function DashboardDetail({ navigate, user }) {
   const [survivorFilters, setSurvivorFilters] = useState(
     () => readCachedDashboardFilters(user?.id, reportKey).survivors,
   );
+  const [filterPresets, setFilterPresets] = useState([]);
+  const [selectedPresetId, setSelectedPresetId] = useState("");
+  const [presetName, setPresetName] = useState("");
+  const [savingPreset, setSavingPreset] = useState(false);
 
   const [scheduleOpen, setScheduleOpen] = useState(false);
 

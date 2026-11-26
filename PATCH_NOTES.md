@@ -1031,3 +1031,6 @@
 
 ## 122. Auto-Recover From Stale Dynamic Chunk Errors After Deploy
 - **`frontend/src/App.jsx` (`lazyWithRetry`)**: Wrapped all lazy-loaded page imports with `lazyWithRetry`, automatically triggering a one-time `window.location.reload()` (guarded by a 10s `sessionStorage` timestamp) whenever a stale browser tab encounters `Failed to fetch dynamically imported module` after a new Vercel deployment.
+
+## 123. DashboardDetail — Fix Missing Preset State Declarations
+- **`frontend/src/pages/DashboardDetail.jsx`**: Added the missing `useState` declarations for `filterPresets`, `selectedPresetId`, `presetName`, and `savingPreset`, resolving `ReferenceError: selectedPresetId is not defined`.
