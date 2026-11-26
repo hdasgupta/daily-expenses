@@ -386,3 +386,147 @@ export async function saveRecipeMasterPreferences(req, res) {
 
   return res.json({ searchText, selectedIngredients, category });
 }
+
+const WEEKDAY_NAMES = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const MEAL_ORDER = ["Breakfast", "Lunch", "Evening Snacks", "Dinner"];
+
+export async function autoAddFoodChartRecipes(req, res) {
+  const b = req.body || {};
+  const date = String(b.date || "").slice(0, 10);
+  const locationId = /^\d+$/.test(String(b.locationId || "").trim())
+    ? String(b.locationId).trim()
+    : "";
+  const minCount = Math.max(1, Number.parseInt(b.minCount, 10) || 5);
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return res.status(400).json({ error: "A valid chart date is required" });
+  }
+
+  const parsedDate = new Date(`${date}T00:00:00Z`);
+  const weekdayName = WEEKDAY_NAMES[parsedDate.getUTCDay()] || "this weekday";
+
+  // Check which meals already have at least one recipe on this date & location
+  const existingRes = await q(
+    `SELECT DISTINCT meal
+       FROM public.food_chart_entries
+      WHERE chart_date = $1::date
+        AND ($2 = '' OR location_id = NULLIF($2, '')::bigint OR location_id IS NULL)`,
+    [date, locationId],
+  );
+  const existingMeals = new Set((existingRes.rows || []).map((r) => r.meal));
+
+  const added = [];
+  const skippedExisting = [];
+  const noHistory = [];
+
+  for (const meal of MEAL_ORDER) {
+    if (existingMeals.has(meal)) {
+      skippedExisting.push(meal);
+      continue;
+    }
+
+    const histRes = await q(
+      `SELECT COALESCE(recipe_snapshot->>'id', '') AS snap_id,
+              LOWER(TRIM(COALESCE(recipe_snapshot->>'name', ''))) AS snap_name_lower,
+              COUNT(*)::int AS total_count,
+              COUNT(*) FILTER (
+                WHERE $3 <> '' AND location_id = NULLIF($3, '')::bigint
+              )::int AS loc_count,
+              ROUND(AVG(servings)::numeric, 2) AS avg_servings,
+              (ARRAY_AGG(recipe_snapshot ORDER BY chart_date DESC, id DESC))[1] AS latest_snapshot
+         FROM public.food_chart_entries
+        WHERE EXTRACT(DOW FROM chart_date::date) = EXTRACT(DOW FROM $1::date)
+          AND meal = $2
+          AND chart_date <> $1::date
+          AND COALESCE(recipe_snapshot->>'name', '') <> ''
+        GROUP BY COALESCE(recipe_snapshot->>'id', ''),
+                 LOWER(TRIM(COALESCE(recipe_snapshot->>'name', '')))
+       HAVING COUNT(*) >= $4
+        ORDER BY
+          CASE
+            WHEN ($3 <> '' AND COUNT(*) FILTER (WHERE location_id = NULLIF($3, '')::bigint) >= $4)
+              THEN 0
+            ELSE 1
+          END ASC,
+          COUNT(*) FILTER (WHERE $3 <> '' AND location_id = NULLIF($3, '')::bigint) DESC,
+          COUNT(*) DESC,
+          MAX(chart_date) DESC
+        LIMIT 1`,
+      [date, meal, locationId, minCount],
+    );
+
+    const best = histRes.rows[0];
+    if (!best) {
+      noHistory.push(meal);
+      continue;
+    }
+
+    const canonicalSnapshot =
+      (best.snap_id && staticRecipesById.get(String(best.snap_id))) ||
+      (best.snap_name_lower && staticRecipesByName.get(best.snap_name_lower)) ||
+      normalizeRecipeSnapshot(best.latest_snapshot, null);
+
+    if (!canonicalSnapshot || !canonicalSnapshot.name) {
+      noHistory.push(meal);
+      continue;
+    }
+
+    const servings = Math.max(
+      0.25,
+      Number(best.avg_servings) || Number(canonicalSnapshot.servings) || 2,
+    );
+    const orderRes = await q(
+      "SELECT COALESCE(MAX(sort_order),-1)+1 AS n FROM public.food_chart_entries WHERE chart_date=$1::date AND meal=$2",
+      [date, meal],
+    );
+
+    await q(
+      `INSERT INTO public.food_chart_entries(user_id,chart_date,meal,location_id,recipe_id,recipe_snapshot,servings,sort_order)
+       VALUES($1,$2::date,$3,NULLIF($4,'')::bigint,NULL,$5::jsonb,$6,$7)`,
+      [
+        req.user.id,
+        date,
+        meal,
+        locationId,
+        JSON.stringify(canonicalSnapshot),
+        servings,
+        orderRes.rows[0].n,
+      ],
+    );
+
+    added.push({
+      meal,
+      recipeName: canonicalSnapshot.name,
+      count: Number(best.loc_count >= minCount ? best.loc_count : best.total_count),
+      totalCount: Number(best.total_count),
+      servings,
+    });
+  }
+
+  if (locationId) {
+    void recordLocationGpsSelection({
+      locationId,
+      userId: req.user?.id,
+      latitude: b.latitude ?? b.lat,
+      longitude: b.longitude ?? b.lng,
+      source: "food_chart_auto_add",
+    });
+  }
+
+  return res.json({
+    date,
+    weekdayName,
+    minCount,
+    added,
+    skippedExisting,
+    noHistory,
+  });
+}

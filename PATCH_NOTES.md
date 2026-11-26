@@ -987,3 +987,10 @@
 - **`backend/scripts/sql/schemaSql.js` (`marketing_mark_expense_removed` trigger)**:
   - Updated the `AFTER DELETE ON public.expenses` trigger so deleting an expense resets linked `marketing_list_items` to `status = 'pending'` and clears `expense_id`, `expense_price`, `purchased_quantity`, and `purchased_unit_id` (instead of marking them `'removed'`), making them editable and linkable to a new expense again.
   - Also restores any previously orphaned `'removed'` or missing-expense `'purchased'` rows back to `'pending'` on startup.
+
+## 113. Food Chart — Auto Add Recipe by Weekday & Meal History (Min Count 5)
+- **`backend/src/controllers/dietChartController.js` & `backend/src/routes/index.js`**:
+  - Added `POST /api/food-chart/auto-add` (`autoAddFoodChartRecipes`), which inspects historical `food_chart_entries` matching the target date's weekday (`EXTRACT(DOW FROM chart_date::date)`) and each empty meal timing (`Breakfast`, `Lunch`, `Evening Snacks`, `Dinner`).
+  - Selects the maximum-used recipe with at least `5` historical uses (`HAVING COUNT(*) >= 5`), preferring location-specific history when a location is selected, and schedules it with its average historical servings.
+- **`frontend/src/pages/FoodChart.jsx`**:
+  - Added an **Auto Add Recipe** button beside **Add Recipe** that triggers `POST /api/food-chart/auto-add`, reloads the chart, and displays a toast summary of added recipes.

@@ -11,6 +11,7 @@ import {
   RotateCcw,
   Search,
   ShoppingBasket,
+  Sparkles,
   Trash2,
   X,
 } from "lucide-react";
@@ -215,6 +216,7 @@ export default function FoodChart() {
   const [addingToMarketing, setAddingToMarketing] = useState(false);
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
   const [resetting, setResetting] = useState(false);
+  const [autoAdding, setAutoAdding] = useState(false);
   const [reloadTick, setReloadTick] = useState(0);
   const load = useCallback(() => setReloadTick((t) => t + 1), []);
   const userChoseLocationRef = useRef(false);
@@ -586,6 +588,51 @@ export default function FoodChart() {
   const selectedLocationName =
     locations.find((loc) => String(loc.id) === String(locationId))?.name || "All locations";
 
+  const handleAutoAddRecipes = async () => {
+    if (autoAdding) return;
+    setAutoAdding(true);
+    setError("");
+    try {
+      const coords = isValidCoordinates(currentCoords)
+        ? currentCoords
+        : await getCurrentGpsPosition({ timeout: 2500 });
+      if (isValidCoordinates(coords)) {
+        setCurrentCoords(coords);
+      }
+      const res = await api("/food-chart/auto-add", {
+        method: "POST",
+        body: JSON.stringify({
+          date,
+          locationId,
+          minCount: 5,
+          latitude: coords ? coords.latitude : null,
+          longitude: coords ? coords.longitude : null,
+        }),
+        silentToast: true,
+      });
+      await load();
+      const addedList = Array.isArray(res?.added) ? res.added : [];
+      const weekday = res?.weekdayName || "this weekday";
+      if (addedList.length > 0) {
+        const summary = addedList.map((item) => `${item.meal}: ${item.recipeName}`).join(", ");
+        showToast("success", `Auto-added ${addedList.length} ${addedList.length === 1 ? "recipe" : "recipes"} for ${weekday} (${summary}).`);
+      } else if (Array.isArray(res?.skippedExisting) && res.skippedExisting.length === 4) {
+        showToast("information", `All 4 meal timings already have recipes for ${date}.`);
+      } else {
+        showToast(
+          "information",
+          `No historical recipes with at least 5 uses found for ${weekday} in the empty meal timings.`,
+        );
+      }
+    } catch (e) {
+      const msg = e.message || "Unable to auto-add recipes for this date.";
+      setError(msg);
+      showToast("error", msg);
+    } finally {
+      setAutoAdding(false);
+    }
+  };
+
   const confirmResetFoodChart = async () => {
     if (resetting) return;
     setResetting(true);
@@ -650,6 +697,15 @@ export default function FoodChart() {
             }}
           >
             <Plus size={17} /> Add Recipe
+          </button>
+          <button
+            type="button"
+            className="diet-secondary"
+            disabled={autoAdding || loading}
+            onClick={() => void handleAutoAddRecipes()}
+            title="Auto-add the most frequently used recipe (5+ uses) for each empty meal on this weekday"
+          >
+            <Sparkles size={16} /> {autoAdding ? "Auto adding…" : "Auto Add Recipe"}
           </button>
           <button
             type="button"
