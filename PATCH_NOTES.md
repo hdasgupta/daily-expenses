@@ -974,3 +974,11 @@
 
 ## 109. Marketing List — Category Reset Also Clears Item, Quantity, Unit & Approx Price
 - **`frontend/src/pages/MarketingList.jsx`**: Updated the **Reset** button beside **Category** so clicking it clears `categoryId`, `itemId`, `itemName`, `quantity`, `unitId`, `approximateCost`, and `autoCostHint` (while preserving `purchaseDate` and `locationId`) and resets pagination to page 1.
+
+## 110. GitHub Actions Android Release — HTTP 500 Retry & Fallback Fix
+- **`.github/workflows/android-apk.yml`**:
+  - Added `actions/upload-artifact@v4` so the signed APK is always preserved on the workflow run even if GitHub Releases has a transient outage.
+  - Split `gh release create` and `gh release upload --clobber` with 4-attempt retry/backoff, `gh release view` idempotency for re-runs, and fallback `--notes` if `--generate-notes` triggers a GitHub API HTTP 500.
+
+## 111. Price Trend — Include Only Purchased Items in Chart & Stats
+- **`backend/src/services/priceTrendService.js` (`getItemPriceTrend`)**: Changed the marketing list query filter from `m.status <> 'removed'` to `m.status = 'purchased'` so unpurchased (`pending`) items are excluded from both the Price Trend chart and summary statistics.

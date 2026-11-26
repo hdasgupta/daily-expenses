@@ -113,7 +113,7 @@ export async function getItemPriceTrend({
          LEFT JOIN public.units u ON u.id = m.unit_id
          LEFT JOIN public.marketing_locations ml ON ml.id = m.location_id
         WHERE m.location_id = $1::bigint
-          AND m.status <> 'removed'
+          AND m.status = 'purchased'
           AND (
             m.item_id = $2::bigint
             OR (
@@ -138,7 +138,7 @@ export async function getItemPriceTrend({
          FROM public.marketing_list_items m
          LEFT JOIN public.units u ON u.id = m.unit_id
          LEFT JOIN public.marketing_locations ml ON ml.id = m.location_id
-        WHERE m.status <> 'removed'
+        WHERE m.status = 'purchased'
           AND (
             m.item_id = $1::bigint
             OR (
