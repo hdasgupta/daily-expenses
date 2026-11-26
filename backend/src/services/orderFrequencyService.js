@@ -161,6 +161,7 @@ export async function getItemOrderFrequency({
   const byWeek = new Map();
   let totalOrdered = 0;
   let totalOrders = 0;
+  let firstOrderDate = "";
 
   for (const row of rowsRes.rows || []) {
     const usePurchased =
@@ -178,8 +179,13 @@ export async function getItemOrderFrequency({
     );
     if (!converted || !Number.isFinite(converted) || converted <= 0) continue;
 
+    const orderDate = String(row.order_date || "").slice(0, 10);
     const weekStart = String(row.week_start || "").slice(0, 10);
     if (!weekStart) continue;
+
+    if (orderDate && (!firstOrderDate || orderDate < firstOrderDate)) {
+      firstOrderDate = orderDate;
+    }
 
     totalOrdered += converted;
     totalOrders += 1;
@@ -212,8 +218,20 @@ export async function getItemOrderFrequency({
   const weeks = allWeeks.slice(0, 12);
 
   const activeWeekCount = allWeeks.length;
+  const todayIso = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(
+    new Date(),
+  );
+  let totalDays = 0;
+  if (firstOrderDate && /^\d{4}-\d{2}-\d{2}$/.test(firstOrderDate)) {
+    const [fy, fm, fd] = firstOrderDate.split("-").map(Number);
+    const [ty, tm, td] = todayIso.split("-").map(Number);
+    const firstUtc = Date.UTC(fy, fm - 1, fd);
+    const todayUtc = Date.UTC(ty, tm - 1, td);
+    totalDays = Math.max(1, Math.floor((todayUtc - firstUtc) / 86400000) + 1);
+  }
+  // Formula: (Total quantity item ordered / total number of days till date from first order) * 7
   const avgPerWeek =
-    activeWeekCount > 0 ? Number((totalOrdered / activeWeekCount).toFixed(2)) : 0;
+    totalDays > 0 && totalOrdered > 0 ? Number(((totalOrdered / totalDays) * 7).toFixed(2)) : 0;
   const latestWeekAmount = weeks.length ? weeks[0].totalQuantity : 0;
   const maxWeekAmount = allWeeks.length
     ? Math.max(...allWeeks.map((w) => w.totalQuantity))
@@ -230,6 +248,8 @@ export async function getItemOrderFrequency({
     weeks,
     summary: {
       avgPerWeek,
+      firstOrderDate,
+      totalDays,
       latestWeekAmount,
       totalOrdered: Number(totalOrdered.toFixed(2)),
       totalOrders,

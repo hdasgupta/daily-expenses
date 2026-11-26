@@ -442,8 +442,14 @@ export default function OrderFrequency({ user }) {
           {summary ? (
             <div className="price-trend-kpis">
               <div className="summary-card dashboard-summary-card">
-                <span>Avg ordered / week</span>
+                <span>Weekly frequency</span>
                 <strong>{formatAmount(summary.avgPerWeek, data.unitName)}</strong>
+                {summary.firstOrderDate ? (
+                  <small className="muted" style={{ fontSize: "0.76rem", marginTop: 2 }}>
+                    Since {summary.firstOrderDate} ({summary.totalDays}{" "}
+                    {summary.totalDays === 1 ? "day" : "days"})
+                  </small>
+                ) : null}
               </div>
               <div className="summary-card dashboard-summary-card">
                 <span>Latest week ordered</span>

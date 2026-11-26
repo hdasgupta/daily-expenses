@@ -1010,3 +1010,8 @@
   - Added `public.order_frequency_user_preferences` with `GET/PUT /api/order-frequency/preferences`.
 - **Frontend (`OrderFrequency.jsx`, `App.jsx`, `Layout.jsx`, `api.js`)**:
   - Added **Order Frequency** (`/order-frequency`) under **Manipulation** with Location (GPS auto-select), Category, Item, Smart Unit, KPI summary cards, a weekly Recharts bar chart, and a weekly breakdown table.
+
+## 118. Order Frequency — Weekly Formula `(Total Qty / Days Since First Order) * 7`
+- **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**:
+  - Updated `avgPerWeek` (Weekly frequency) calculation to `(totalOrdered / totalDays) * 7` where `totalDays` is the inclusive number of days from `firstOrderDate` to today (`Asia/Kolkata`).
+  - Displayed `firstOrderDate` and `totalDays` beneath the **Weekly frequency** KPI card.
