@@ -985,3 +985,66 @@ export async function sendScheduledEmail(req, res) {
     throw error;
   }
 }
+
+let weeklyAcceptancesTableReadyPromise = null;
+
+async function ensureWeeklyAcceptancesTable() {
+  if (!weeklyAcceptancesTableReadyPromise) {
+    weeklyAcceptancesTableReadyPromise = q(
+      `CREATE TABLE IF NOT EXISTS public.marketing_weekly_alert_acceptances (
+        user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+        week_start DATE NOT NULL,
+        location_key VARCHAR(50) NOT NULL DEFAULT '',
+        item_key VARCHAR(250) NOT NULL,
+        accepted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+        PRIMARY KEY (user_id, week_start, location_key, item_key)
+      )`,
+    ).catch((err) => {
+      weeklyAcceptancesTableReadyPromise = null;
+      console.error("Failed to ensure marketing_weekly_alert_acceptances", err);
+    });
+  }
+  await weeklyAcceptancesTableReadyPromise;
+}
+
+export async function listWeeklyAlertAcceptances(req, res) {
+  await ensureWeeklyAcceptancesTable();
+  const weekStart = String(req.query.weekStart || "").slice(0, 10);
+  const locationKey = /^\d+$/.test(String(req.query.locationId || "").trim())
+    ? String(req.query.locationId).trim()
+    : "";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(weekStart)) {
+    return res.json({ acceptedKeys: [] });
+  }
+  const result = await q(
+    `SELECT item_key
+       FROM public.marketing_weekly_alert_acceptances
+      WHERE user_id = $1
+        AND week_start = $2::date
+        AND location_key = $3`,
+    [req.user.id, weekStart, locationKey],
+  );
+  return res.json({
+    acceptedKeys: (result.rows || []).map((r) => String(r.item_key || "")).filter(Boolean),
+  });
+}
+
+export async function acceptWeeklyAlert(req, res) {
+  await ensureWeeklyAcceptancesTable();
+  const weekStart = String(req.body?.weekStart || "").slice(0, 10);
+  const locationKey = /^\d+$/.test(String(req.body?.locationId || "").trim())
+    ? String(req.body.locationId).trim()
+    : "";
+  const itemKey = String(req.body?.itemKey || "").trim().slice(0, 250);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(weekStart) || !itemKey) {
+    return res.status(400).json({ error: "weekStart and itemKey are required" });
+  }
+  await q(
+    `INSERT INTO public.marketing_weekly_alert_acceptances (user_id, week_start, location_key, item_key, accepted_at)
+     VALUES ($1, $2::date, $3, $4, now())
+     ON CONFLICT (user_id, week_start, location_key, item_key)
+     DO UPDATE SET accepted_at = now()`,
+    [req.user.id, weekStart, locationKey, itemKey],
+  );
+  return res.json({ ok: true, itemKey });
+}

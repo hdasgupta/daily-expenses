@@ -267,6 +267,14 @@ CREATE INDEX IF NOT EXISTS idx_marketing_location_gps_logs_loc
   ON public.marketing_location_gps_logs(location_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_marketing_location_gps_logs_user
   ON public.marketing_location_gps_logs(user_id, created_at DESC);
+CREATE TABLE IF NOT EXISTS public.marketing_weekly_alert_acceptances (
+  user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+  week_start DATE NOT NULL,
+  location_key VARCHAR(50) NOT NULL DEFAULT '',
+  item_key VARCHAR(250) NOT NULL,
+  accepted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, week_start, location_key, item_key)
+);
 CREATE TABLE IF NOT EXISTS public.marketing_list_items (
   id BIGSERIAL PRIMARY KEY,
   category_id BIGINT REFERENCES public.categories(id) ON DELETE SET NULL,

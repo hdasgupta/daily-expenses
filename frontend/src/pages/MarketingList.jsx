@@ -512,6 +512,7 @@ export default function MarketingList({ navigate }) {
   const [weeklyAuditOpen, setWeeklyAuditOpen] = useState(false);
   const [weeklyQtyEdits, setWeeklyQtyEdits] = useState({});
   const [auditBusyId, setAuditBusyId] = useState(null);
+  const [acceptedWeeklyKeys, setAcceptedWeeklyKeys] = useState([]);
   const [targetDate, setTargetDate] = useState("");
   const [changingDate, setChangingDate] = useState(false);
   const userChoseLocationRef = useRef(false);
@@ -934,13 +935,60 @@ export default function MarketingList({ navigate }) {
   const safePage = Math.min(page, pageCount);
   const visibleRows = filteredRows.slice((safePage - 1) * pageSize, safePage * pageSize);
   const pendingFilteredRows = filteredRows.filter((row) => row.status === "pending");
-  const weeklyAudit = useMemo(() => {
+  const rawWeeklyAudit = useMemo(() => {
     const targetDate =
       form.purchaseDate && form.purchaseDate >= getSundayToSaturdayBounds(todayKolkata()).weekStart
         ? form.purchaseDate
         : todayKolkata();
     return analyzeWeeklyDuplicatesAndOverOrders(rows, units, targetDate, form.locationId);
   }, [rows, units, form.purchaseDate, form.locationId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!rawWeeklyAudit.weekStart) return undefined;
+    const qs = new URLSearchParams({ weekStart: rawWeeklyAudit.weekStart });
+    if (form.locationId) qs.set("locationId", String(form.locationId));
+    api(`/marketing-list/weekly-acceptances?${qs.toString()}`, { silent: true })
+      .then((res) => {
+        if (!cancelled) {
+          setAcceptedWeeklyKeys(Array.isArray(res?.acceptedKeys) ? res.acceptedKeys : []);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [rawWeeklyAudit.weekStart, form.locationId]);
+
+  const weeklyAudit = useMemo(() => {
+    const acceptedSet = new Set(acceptedWeeklyKeys);
+    return {
+      ...rawWeeklyAudit,
+      alerts: rawWeeklyAudit.alerts.filter((alert) => !acceptedSet.has(alert.key)),
+    };
+  }, [rawWeeklyAudit, acceptedWeeklyKeys]);
+
+  const handleAcceptWeeklyAlert = async (alert) => {
+    if (!alert?.key || !weeklyAudit.weekStart) return;
+    setAuditBusyId(`accept:${alert.key}`);
+    setError("");
+    try {
+      await api("/marketing-list/weekly-acceptances", {
+        method: "POST",
+        body: JSON.stringify({
+          weekStart: weeklyAudit.weekStart,
+          locationId: String(form.locationId || ""),
+          itemKey: alert.key,
+        }),
+        toast: { type: "success", message: `Accepted ${alert.itemName} for this week.` },
+      });
+      setAcceptedWeeklyKeys((prev) => (prev.includes(alert.key) ? prev : [...prev, alert.key]));
+    } catch (e) {
+      setError(e.message || "Unable to accept weekly alert");
+    } finally {
+      setAuditBusyId(null);
+    }
+  };
 
   const handleAuditQtySave = async (row) => {
     const nextQty = weeklyQtyEdits[String(row.id)];
@@ -2401,6 +2449,15 @@ export default function MarketingList({ navigate }) {
                             {alert.unitName}/wk)
                           </span>
                         )}
+                        <button
+                          type="button"
+                          className="secondary marketing-audit-accept-btn"
+                          disabled={auditBusyId === `accept:${alert.key}`}
+                          onClick={() => void handleAcceptWeeklyAlert(alert)}
+                          title="Accept this duplicate/over-order so it will not be shown again for this week"
+                        >
+                          <Check size={13} /> Accept
+                        </button>
                       </div>
                     </div>
                     <div className="marketing-weekly-audit-sub">

@@ -1084,3 +1084,9 @@
 - **`frontend/src/pages/MarketingList.jsx` & `frontend/src/pages/marketing.css`**:
   - Added `getSundayToSaturdayBounds` and `analyzeWeeklyDuplicatesAndOverOrders` checking the current/upcoming Sunday–Saturday week for duplicate entries (`>= 2` orders in the week) and over-ordered quantities (`> 125%` of the item's continuous Sunday–Saturday weekly purchase average).
   - Added a **Weekly Check** button (showing the alert count when issues exist) that opens a popup modal listing all duplicate and over-ordered items with inline quantity editing (**Save**) and **Remove** actions for pending items.
+
+## 135. Marketing List — Accept Button for Weekly Duplicate & Over-Order Alerts
+- **Backend (`schemaSql.js`, `marketingController.js`, `routes/index.js`)**:
+  - Added `public.marketing_weekly_alert_acceptances` and `GET/POST /api/marketing-list/weekly-acceptances` to persist accepted duplicate/over-order alerts per user, week (`week_start`), location, and item.
+- **Frontend (`MarketingList.jsx`, `marketing.css`)**:
+  - Added an **Accept** button on each flagged item in the Weekly Check popup; once accepted, that item is permanently hidden from the duplicate/over-order list and badge count for that week.

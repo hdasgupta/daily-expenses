@@ -99,6 +99,16 @@ export function createRouter(maxUploadBytes) {
   router.delete("/food-chart/:id", auth, dietChartController.removeFoodChartEntry);
 
   router.get("/marketing-list", auth, marketingController.listItems);
+  router.get(
+    "/marketing-list/weekly-acceptances",
+    auth,
+    marketingController.listWeeklyAlertAcceptances,
+  );
+  router.post(
+    "/marketing-list/weekly-acceptances",
+    auth,
+    marketingController.acceptWeeklyAlert,
+  );
   router.post("/marketing-list", auth, marketingController.createItem);
   router.put("/marketing-list/:id", auth, marketingController.updateItem);
   router.delete("/marketing-list/:id", auth, marketingController.removeItem);

@@ -1257,3 +1257,21 @@
   width: 78px;
   padding: 6px 8px;
 }
+
+.marketing-list-page .marketing-audit-accept-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  color: #15803d;
+  border-color: rgba(22, 163, 74, 0.4);
+  background: rgba(22, 163, 74, 0.1);
+}
+.marketing-list-page .marketing-audit-accept-btn:hover {
+  background: #16a34a;
+  color: #fff;
+  border-color: #16a34a;
+}
