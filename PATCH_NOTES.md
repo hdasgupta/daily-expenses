@@ -1115,3 +1115,8 @@
     - **Luchi** (Bengali moyan maida puffed bread; Stuffed Luchi with spiced green pea filling; Masala Luchi with kalo jeere).
     - **Poori** (stiff atta + sooji dough; Stuffed Poori with spiced urad dal filling; Masala Poori with ajwain & kasuri methi).
     - **Phulka / Chapati / Roti** (distinct oil-free direct-flame phulka vs. dry-tawa chapati/roti, plus real paneer-potato-onion stuffing for Stuffed Chapati/Phulka/Roti).
+
+## 140. Added 16 Jhuri Bhaja, Chanachur, Gathiya & Namkeen Recipes
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Added 16 crispy namkeen/farsan recipes (`static-2026`–`static-2041`), including Badam & Curry Leaf Jhuri Aloo Bhaja, Bombay/Madras Mixture, Chakli/Murukku, Chana Dal Namkeen, Chana Jor Garam, Chhena & Aloo Jhuri Bhaja, Fafda Gathiya, Kaju & Poha Dry Fruit Chanachur, Kara/Masala Boondi, Makhana & Peanut Dry Namkeen, Methi Vanela Gathiya, Moong Dal Namkeen, Muri & Chira Masala Chanachur, Nylon Tikha Gathiya, Palak Sev, and Masala Namakpara.
+  - All recipes use standardized ingredients and manual stovetop/kadhai/grater/press preparation without blenders or ovens, bringing the alphabetically sorted catalogue to 1774 total recipes.

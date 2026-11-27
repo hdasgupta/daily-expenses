@@ -8138,6 +8138,70 @@
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-2026",
+    "name": "Badam & Curry Leaf Jhuri Aloo Bhaja (Festive Bengali Cashew-Peanut Potato Sticks)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "15",
+        "unit": "leaves"
+      },
+      {
+        "name": "Dry Red Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Grate & Dry",
+        "minutes": 20,
+        "text": "Peel potatoes and grate into long matchstick strands using a coarse box grater (or slice very fine juliennes). Rinse in cold water 3 times until water runs clear, then pat completely dry on a clean towel."
+      },
+      {
+        "section": "Crisp Fry",
+        "minutes": 20,
+        "text": "Deep-fry potato strands in small batches on medium-high heat until golden and shattering crisp; drain on paper. Fry peanuts, cashews, dry red chillies, and curry leaves until crisp, then toss everything with black salt and regular salt."
+      }
+    ],
+    "notes": "Thoroughly drying the rinsed potato strands guarantees non-soggy, crunchy jhuri bhaja."
+  },
+  {
     "id": "static-1959",
     "name": "Badam & Pista Laddoo (Chopped Almond, Pistachio & Jaggery Energy Laddoo)",
     "category": "Sweets",
@@ -17335,6 +17399,85 @@
     "notes": "Royal zamindari monsoon delicacy where spiced minced mutton is cooked directly inside the fragrant rice and lentil pot."
   },
   {
+    "id": "static-2027",
+    "name": "Bombay Mixture / Madras Mixture (South Indian Boondi, Sev & Curry Leaf Namkeen)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice Flour",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Roasted Chana Dal",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "20",
+        "unit": "leaves"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sev & Boondi",
+        "minutes": 25,
+        "text": "Make a smooth besan-rice flour batter with turmeric and salt; drop through a perforated ladle into hot oil for crisp boondi. Knead remaining besan with 1 tbsp hot oil, hing, and water; press through a manual sev sancha into hot oil and fry crisp."
+      },
+      {
+        "section": "Toss Mixture",
+        "minutes": 10,
+        "text": "Fry peanuts, cashews, roasted chana dal, and curry leaves until crisp. Crush sev lightly and toss with boondi, nuts, red chilli powder, and salt."
+      }
+    ],
+    "notes": "Classic South Indian tea-time mixture made manually with a perforated ladle and sev press."
+  },
+  {
     "id": "static-0712",
     "name": "Bombay Toast Sandwich",
     "category": "Sandwich",
@@ -21787,6 +21930,75 @@
     "notes": "Buttery, crunchy spiral chakli studded with sesame and cumin seeds."
   },
   {
+    "id": "static-2028",
+    "name": "Chakli / Murukku (Crisp Rice & Urad Dal Spiral Namkeen)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Rice Flour",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Sesame Seeds",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Seeds (Jeera)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Mix rice flour, besan, softened butter, sesame seeds, cumin seeds, hing, red chilli powder, and salt. Knead with warm water into a smooth, soft dough."
+      },
+      {
+        "section": "Press & Fry",
+        "minutes": 25,
+        "text": "Load dough into a manual star-nozzle chakli press, pipe spirals onto greased parchment squares, slide into medium-hot oil, and fry until golden and crisp."
+      }
+    ],
+    "notes": "Crunchy spiral namkeen that stays fresh in an airtight jar for weeks."
+  },
+  {
     "id": "static-1369",
     "name": "Chaler Naru (Bengali Toasted Rice Flour, Coconut & Jaggery Ladoo)",
     "category": "Sweets",
@@ -22633,6 +22845,129 @@
       }
     ],
     "notes": "A splash of water into hot roasted besan creates traditional danedar Magad texture."
+  },
+  {
+    "id": "static-2029",
+    "name": "Chana Dal Namkeen / Dalmoth (Crisp Fried Split Bengal Gram)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Chana Dal",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak & Dry",
+        "minutes": 20,
+        "text": "Soak chana dal with baking soda for 4 hours, rinse well, drain, and spread on a clean cotton cloth for 30 minutes until surface-dry."
+      },
+      {
+        "section": "Fry & Spice",
+        "minutes": 20,
+        "text": "Deep-fry dried dal in a wire strainer lowered into hot oil until it floats and turns light crisp. Drain on paper and toss warm with black salt, regular salt, amchur, red chilli powder, and roasted cumin powder."
+      }
+    ],
+    "notes": "Tangy, crunchy packet-style chana dal namkeen."
+  },
+  {
+    "id": "static-2030",
+    "name": "Chana Jor Garam (Pressed Crisp Spiced Black Gram Flakes)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Black Chickpeas (Kala Chana)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Boil & Flatten",
+        "minutes": 25,
+        "text": "Soak kala chana overnight and boil until just tender (not split). Drain warm and press each chickpea flat between a board and the flat bottom of a steel bowl or rolling pin, then air-dry 2 hours."
+      },
+      {
+        "section": "Fry & Toss",
+        "minutes": 20,
+        "text": "Deep-fry flattened chana in hot oil for 2 minutes until crisp and puffed, drain, and toss with chaat masala, black salt, red chilli powder, amchur, and salt."
+      }
+    ],
+    "notes": "Serve plain as crisp namkeen or topped with chopped onion, tomato, coriander, and lemon juice."
   },
   {
     "id": "static-1404",
@@ -25087,6 +25422,70 @@
       }
     ],
     "notes": "Festive Bengali sweet-and-savory breakfast paratha showcasing fresh milk chhena."
+  },
+  {
+    "id": "static-2031",
+    "name": "Chhena & Aloo Jhuri Bhaja (Crisp Cottage Cheese & Potato Shavings Mix)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "12",
+        "unit": "leaves"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Grate peeled potatoes into thin strands, rinse clear, and pat dry. Cut firm paneer into tiny matchstick strips and pat dry."
+      },
+      {
+        "section": "Fry & Toss",
+        "minutes": 20,
+        "text": "Fry potato strands until crisp golden, then fry paneer strips until golden and peanuts with curry leaves until aromatic. Toss together with black salt, roasted cumin powder, and regular salt."
+      }
+    ],
+    "notes": "Protein-rich festive Bengali jhuri bhaja variation."
   },
   {
     "id": "static-1655",
@@ -48563,6 +48962,65 @@
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
   },
   {
+    "id": "static-2032",
+    "name": "Fafda Gathiya (Gujarati Crisp Flat Besan Strips)",
+    "category": "Snacks",
+    "region": "Gujarati",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "6",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Sift besan with turmeric, crushed ajwain, baking soda, salt, and 2 tbsp oil. Knead with minimal water into a smooth, semi-firm dough and rest 15 minutes."
+      },
+      {
+        "section": "Stretch & Fry",
+        "minutes": 20,
+        "text": "Place a small dough log on a wooden board and smear-stretch it forward with the heel of your palm into a thin ribbon; lift gently with a flat knife and fry on medium heat until crisp. Fry slit green chillies alongside."
+      }
+    ],
+    "notes": "Authentic Gujarati fafda served with fried salted green chillies."
+  },
+  {
     "id": "static-0728",
     "name": "Falafel Sandwich",
     "category": "Sandwich",
@@ -62828,6 +63286,80 @@
     "notes": "Serve hot with garlic naan, tandoori roti, or jeera rice."
   },
   {
+    "id": "static-2033",
+    "name": "Kaju & Poha Dry Fruit Chanachur (Royal Bengali Sweet-Spicy Mixture)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Poha (Flattened Rice)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan Sev",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Raisins",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "15",
+        "unit": "leaves"
+      },
+      {
+        "name": "Powdered Sugar",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Crisp Fry",
+        "minutes": 20,
+        "text": "Fry thick poha in a wire strainer lowered into hot oil until puffed and crisp; drain well. Fry cashews, peanuts, raisins (until plump), and curry leaves separately."
+      },
+      {
+        "section": "Toss",
+        "minutes": 5,
+        "text": "Combine fried poha, besan sev, cashews, peanuts, raisins, and curry leaves with powdered sugar, chaat masala, and black salt."
+      }
+    ],
+    "notes": "Sweet, tangy, and nutty festive Bengali chanachur."
+  },
+  {
     "id": "static-1809",
     "name": "Kaju Ghee Rice / Nei Choru (Malabar-Style Ghee-Roasted Cashews, Golden Raisins, Crispy Shallots & Whole Spice Rice)",
     "category": "Rice",
@@ -64606,6 +65138,75 @@
       }
     ],
     "notes": "Also known as Vazhakkai Bajji in South India and Kanchkolar Beguni in Bengali homes."
+  },
+  {
+    "id": "static-2034",
+    "name": "Kara Boondi / Masala Boondi (Spiced Crispy Gram Flour Pearls)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Rice Flour",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "15",
+        "unit": "leaves"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Batter",
+        "minutes": 10,
+        "text": "Whisk besan, rice flour, turmeric, hing, and salt with water by hand into a smooth flowing batter (ribbons should drop cleanly from a spoon)."
+      },
+      {
+        "section": "Drop & Fry",
+        "minutes": 20,
+        "text": "Pour batter over a slotted/perforated ladle held above hot oil so round pearls drop and fry crisp. Drain, fry peanuts and curry leaves, and toss with red chilli powder."
+      }
+    ],
+    "notes": "Great as a standalone tea snack or base for chanachur and raita."
   },
   {
     "id": "static-1380",
@@ -77137,6 +77738,65 @@
     "notes": "Sweet and savory modern festive kochuri popular across North and West India."
   },
   {
+    "id": "static-2035",
+    "name": "Makhana & Peanut Dry Namkeen (Roasted Fox Nut & Curry Leaf Crunch)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Fox Nuts (Makhana)",
+        "quantity": "3",
+        "unit": "cup"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "12",
+        "unit": "leaves"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "1.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Slow Roast",
+        "minutes": 15,
+        "text": "Dry-roast makhana in a heavy kadhai on low heat for 10 minutes until crunchy when crushed between fingers; set aside. Roast peanuts and curry leaves in ghee until crisp."
+      },
+      {
+        "section": "Season",
+        "minutes": 2,
+        "text": "Toss roasted makhana, peanuts, and curry leaves with black pepper, chaat masala, and black salt while warm."
+      }
+    ],
+    "notes": "Healthy, light, low-oil crunchy namkeen."
+  },
+  {
     "id": "static-1967",
     "name": "Makhana & Peanut Jaggery Laddoo (Ghee-Roasted Fox Nut & Crushed Peanut Laddoo)",
     "category": "Sweets",
@@ -80507,6 +81167,70 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-2041",
+    "name": "Masala Namakpara (Crisp Cumin-Ajwain Diamond Bites)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Sooji (Semolina)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Seeds (Jeera)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Stiff Dough",
+        "minutes": 15,
+        "text": "Rub ghee into maida, sooji, ajwain, cumin seeds, crushed black pepper, and salt until crumbly. Knead with minimal water into a stiff dough and rest 15 minutes."
+      },
+      {
+        "section": "Cut & Fry",
+        "minutes": 20,
+        "text": "Roll into medium-thin sheets, cut into diamond strips with a knife, and deep-fry on low-medium heat until flaky and golden crisp."
+      }
+    ],
+    "notes": "Crisp tea-time jar snack."
+  },
+  {
     "id": "static-0937",
     "name": "Masala Omelette",
     "category": "Breakfast",
@@ -83665,6 +84389,65 @@
     "notes": "Kneading with yogurt gives Methi Thepla a multi-day shelf life—ideal for travel and tiffins."
   },
   {
+    "id": "static-2036",
+    "name": "Methi Vanela Gathiya (Gujarati Hand-Rolled Fenugreek & Pepper Gathiya)",
+    "category": "Snacks",
+    "region": "Gujarati",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Kasuri Methi",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Rub 3 tbsp oil, crushed black pepper, ajwain, crushed kasuri methi, baking soda, and salt into besan. Knead into a soft, smooth dough and rest 15 minutes."
+      },
+      {
+        "section": "Hand-Roll & Fry",
+        "minutes": 20,
+        "text": "Pinch small pieces and roll with your palm on a wooden board into thick cylindrical sticks (vanela). Fry on medium-low heat until crisp and light golden."
+      }
+    ],
+    "notes": "Requires no sev press—shaped completely by hand."
+  },
+  {
     "id": "static-1717",
     "name": "Mexican Tortilla Soup (Spiced Black Bean, Roasted Corn & Tomato Broth with Crispy Tortilla Strips)",
     "category": "Soup",
@@ -86295,6 +87078,55 @@
     "notes": "Light, digestible protein-rich laddoo using ready moong dal flour without soaking or grinding."
   },
   {
+    "id": "static-2037",
+    "name": "Moong Dal Namkeen (Crispy Split Yellow Lentil Crunch)",
+    "category": "Snacks",
+    "region": "Rajasthani",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Yellow Moong Dal",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Soak & Dry",
+        "minutes": 20,
+        "text": "Soak yellow moong dal for 3 hours, drain thoroughly, and spread on a clean towel for 30 minutes until completely dry to the touch."
+      },
+      {
+        "section": "Fry & Salt",
+        "minutes": 20,
+        "text": "Fry dried dal in a mesh strainer submerged in hot oil until golden, floating, and crisp. Drain on paper towels and toss warm with regular salt, black salt, and chaat masala."
+      }
+    ],
+    "notes": "Light, crispy tea-time lentil snack."
+  },
+  {
     "id": "static-0170",
     "name": "Moong Dal Punjabi Style",
     "category": "Side Dish",
@@ -87933,6 +88765,75 @@
       }
     ],
     "notes": "Classic evening snack served across heritage tea stalls and cabins in Shyambazar and College Street."
+  },
+  {
+    "id": "static-2038",
+    "name": "Muri & Chira Masala Chanachur (Light Puffed-Flattened Rice Mixture)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "Puffed Rice (Muri)",
+        "quantity": "3",
+        "unit": "cup"
+      },
+      {
+        "name": "Poha (Flattened Rice)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan Sev",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "15",
+        "unit": "leaves"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Mustard Oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Roast",
+        "minutes": 15,
+        "text": "Heat mustard oil in a wide kadhai, fry peanuts and curry leaves until crisp, add turmeric, red chilli powder, and thick poha, roasting on low heat 5 minutes until crunchy."
+      },
+      {
+        "section": "Combine",
+        "minutes": 5,
+        "text": "Fold in crisp muri, besan sev, and black salt; toss gently for 2 minutes until warm and evenly spiced."
+      }
+    ],
+    "notes": "Low-oil Bengali muri-chira chanachur ideal for daily evening snacks."
   },
   {
     "id": "static-1884",
@@ -90950,6 +91851,65 @@
       }
     ],
     "notes": "Essential companion to Koraishutir Kochuri at every Bengali winter picnic and feast."
+  },
+  {
+    "id": "static-2039",
+    "name": "Nylon Tikha Gathiya (Spicy Red Chilli & Garlic Besan Gathiya)",
+    "category": "Snacks",
+    "region": "Gujarati",
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "1.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Crush garlic cloves to a fine paste with a mortar/rolling pin and steep in 1/4 cup water, then strain. Knead besan with red chilli powder, turmeric, ajwain, salt, 2 tbsp oil, and strained garlic water into a soft dough."
+      },
+      {
+        "section": "Press & Fry",
+        "minutes": 20,
+        "text": "Press through a medium-hole gathiya disc into hot oil and fry until crisp and deep golden."
+      }
+    ],
+    "notes": "Strained garlic water infuses flavor without clogging the gathiya press."
   },
   {
     "id": "static-1767",
@@ -95807,6 +96767,60 @@
       }
     ],
     "notes": "Adding 2 tbsp fine semolina keeps Palak Puris puffed and crisp for longer."
+  },
+  {
+    "id": "static-2040",
+    "name": "Palak Sev (Crispy Spinach & Besan Namkeen)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Spinach (Palak)",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      {
+        "section": "Spinach Dough",
+        "minutes": 20,
+        "text": "Blanch spinach leaves 2 minutes, cool, and press through a fine wire sieve with a spoon to get smooth green puree without a blender. Knead besan with spinach puree, ajwain, black pepper, 2 tbsp oil, and salt."
+      },
+      {
+        "section": "Press & Fry",
+        "minutes": 20,
+        "text": "Press through a fine sev mould into medium-hot oil and fry 2 minutes until crisp without browning."
+      }
+    ],
+    "notes": "Vibrant green crunchy sev made without a mixer-grinder."
   },
   {
     "id": "static-1720",
