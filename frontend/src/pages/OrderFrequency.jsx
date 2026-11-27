@@ -463,8 +463,9 @@ export default function OrderFrequency({ user }) {
                 <strong>{formatAmount(summary.avgPerWeek, data.unitName)}</strong>
                 {summary.totalDays > 0 ? (
                   <small className="muted" style={{ fontSize: "0.76rem", marginTop: 2 }}>
-                    {summary.activeWeeks} purchased {summary.activeWeeks === 1 ? "week" : "weeks"} ·{" "}
-                    {summary.totalDays} {summary.totalDays === 1 ? "day" : "days"}
+                    {summary.totalDays} continuous {summary.totalDays === 1 ? "day" : "days"} (
+                    {Math.round(summary.totalDays / 7)}{" "}
+                    {Math.round(summary.totalDays / 7) === 1 ? "week" : "weeks"})
                   </small>
                 ) : null}
               </div>

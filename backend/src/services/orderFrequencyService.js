@@ -226,19 +226,15 @@ export async function getItemOrderFrequency({
   const todayDow = new Date(todayUtc).getUTCDay(); // 0 = Sun .. 6 = Sat
   const endSaturdayUtc = todayUtc + (6 - todayDow) * 86400000;
 
-  // Sum days only across weeks where the item was actually purchased, up to current/upcoming Saturday
+  // Continuous days from first order's Sunday (weekStart) through current/upcoming Saturday
   let totalDays = 0;
-  for (const w of allWeeks) {
-    const [wy, wm, wd] = w.weekStart.split("-").map(Number);
-    const weekStartUtc = Date.UTC(wy, wm - 1, wd);
-    if (weekStartUtc > endSaturdayUtc) continue;
-    const daysInWeek = Math.min(7, Math.floor((endSaturdayUtc - weekStartUtc) / 86400000) + 1);
-    totalDays += Math.max(1, daysInWeek);
+  if (allWeeks.length > 0) {
+    const earliestWeekStart = allWeeks[allWeeks.length - 1].weekStart;
+    const [fy, fm, fd] = earliestWeekStart.split("-").map(Number);
+    const firstWeekStartUtc = Date.UTC(fy, fm - 1, fd);
+    totalDays = Math.max(7, Math.floor((endSaturdayUtc - firstWeekStartUtc) / 86400000) + 1);
   }
-  if (totalDays === 0 && activeWeekCount > 0) {
-    totalDays = activeWeekCount * 7;
-  }
-  // Formula: (Total quantity item ordered / total days in purchased weeks) * 7
+  // Formula: (Total quantity item ordered / continuous days from first Sunday to current/upcoming Saturday) * 7
   const avgPerWeek =
     totalDays > 0 && totalOrdered > 0 ? Number(((totalOrdered / totalDays) * 7).toFixed(2)) : 0;
   const latestWeekAmount = weeks.length ? weeks[0].totalQuantity : 0;

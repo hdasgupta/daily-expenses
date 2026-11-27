@@ -1058,3 +1058,7 @@
 
 ## 129. Order Frequency — Use Current/Upcoming Saturday as Cutoff Day
 - **`backend/src/services/orderFrequencyService.js`**: Updated `totalDays` cutoff from `today` to the current or upcoming Saturday (`endSaturdayUtc`), so every purchased Sunday–Saturday week up to and including the current week counts all 7 days in `(totalOrdered / totalDays) * 7`.
+
+## 130. Order Frequency — Continuous Days from First Sunday to Current/Upcoming Saturday
+- **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**:
+  - Updated `totalDays` to count continuous calendar days from the first order's Sunday (`firstWeekStartUtc`) through the current or upcoming Saturday (`endSaturdayUtc`) without skipping middle weeks.
