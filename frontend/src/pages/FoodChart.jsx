@@ -217,6 +217,13 @@ export default function FoodChart() {
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [autoAdding, setAutoAdding] = useState(false);
+  const [weeklyAutoAdding, setWeeklyAutoAdding] = useState(false);
+  const [weekStatus, setWeekStatus] = useState({
+    weekStart: "",
+    weekEnd: "",
+    isEmpty: false,
+    loading: false,
+  });
   const [reloadTick, setReloadTick] = useState(0);
   const load = useCallback(() => setReloadTick((t) => t + 1), []);
   const userChoseLocationRef = useRef(false);
@@ -588,6 +595,72 @@ export default function FoodChart() {
   const selectedLocationName =
     locations.find((loc) => String(loc.id) === String(locationId))?.name || "All locations";
 
+  const refreshWeekStatus = useCallback(async () => {
+    if (!date) return;
+    setWeekStatus((prev) => ({ ...prev, loading: true }));
+    try {
+      const qs = new URLSearchParams({ date });
+      if (locationId) qs.set("locationId", String(locationId));
+      const res = await api(`/food-chart/week-status?${qs.toString()}`, { silent: true });
+      setWeekStatus({
+        weekStart: res?.weekStart || "",
+        weekEnd: res?.weekEnd || "",
+        isEmpty: Boolean(res?.isEmpty),
+        loading: false,
+      });
+    } catch {
+      setWeekStatus((prev) => ({ ...prev, isEmpty: false, loading: false }));
+    }
+  }, [date, locationId]);
+
+  useEffect(() => {
+    void refreshWeekStatus();
+  }, [refreshWeekStatus, entries.length]);
+
+  const handleWeeklyAutoAddRecipes = async () => {
+    if (weeklyAutoAdding || !weekStatus.isEmpty) return;
+    setWeeklyAutoAdding(true);
+    setError("");
+    try {
+      const coords = isValidCoordinates(currentCoords)
+        ? currentCoords
+        : await getCurrentGpsPosition({ timeout: 2500 });
+      if (isValidCoordinates(coords)) {
+        setCurrentCoords(coords);
+      }
+      const res = await api("/food-chart/auto-add-week", {
+        method: "POST",
+        body: JSON.stringify({
+          date,
+          locationId,
+          latitude: coords ? coords.latitude : null,
+          longitude: coords ? coords.longitude : null,
+        }),
+        silentToast: true,
+      });
+      await load();
+      await refreshWeekStatus();
+      const addedCount = Number(res?.addedCount || 0);
+      if (addedCount > 0) {
+        showToast(
+          "success",
+          `Weekly Auto Add Recipe: added ${addedCount} ${addedCount === 1 ? "recipe" : "recipes"} for ${res.weekStart} to ${res.weekEnd}.`,
+        );
+      } else {
+        showToast(
+          "information",
+          `No historical recipes found to fill the week (${res?.weekStart || ""} to ${res?.weekEnd || ""}).`,
+        );
+      }
+    } catch (e) {
+      const msg = e.message || "Unable to weekly auto-add recipes.";
+      setError(msg);
+      showToast("error", msg);
+    } finally {
+      setWeeklyAutoAdding(false);
+    }
+  };
+
   const handleAutoAddRecipes = async () => {
     if (autoAdding) return;
     setAutoAdding(true);
@@ -724,6 +797,39 @@ export default function FoodChart() {
             <RotateCcw size={16} /> {resetting ? "Resetting…" : "Reset"}
           </button>
         </div>
+      </div>
+      <div
+        className="diet-weekly-auto-bar"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "8px",
+          marginBottom: "8px",
+        }}
+      >
+        <button
+          type="button"
+          className="diet-secondary"
+          disabled={weeklyAutoAdding || weekStatus.loading || loading || !weekStatus.isEmpty}
+          onClick={() => void handleWeeklyAutoAddRecipes()}
+          title={
+            weekStatus.isEmpty
+              ? `Fill Sunday–Saturday (${weekStatus.weekStart} to ${weekStatus.weekEnd}) from history & Marketing List ingredients`
+              : `Disabled: ${weekStatus.weekStart || "This week"} – ${weekStatus.weekEnd || ""} already has recipes`
+          }
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+        >
+          <Sparkles size={15} />
+          {weeklyAutoAdding ? "Adding week…" : "Weekly Auto Add Recipe"}
+        </button>
+        {weekStatus.weekStart && weekStatus.weekEnd ? (
+          <span className="diet-muted" style={{ fontSize: "0.82rem" }}>
+            Week (Sun–Sat): {weekStatus.weekStart} to {weekStatus.weekEnd}
+            {weekStatus.isEmpty ? " · Empty" : " · Has recipes"}
+          </span>
+        ) : null}
       </div>
       <div className="diet-date-bar">
         <CalendarDays size={18} />

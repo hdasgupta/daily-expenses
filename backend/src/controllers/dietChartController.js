@@ -551,3 +551,253 @@ export async function autoAddFoodChartRecipes(req, res) {
     noHistory,
   });
 }
+
+function getSundayToSaturdayBounds(dateStr) {
+  const [y, m, d] = String(dateStr).split("-").map(Number);
+  const utc = Date.UTC(y, m - 1, d);
+  const dow = new Date(utc).getUTCDay(); // 0 = Sun .. 6 = Sat
+  const weekDates = [];
+  for (let i = 0; i < 7; i += 1) {
+    const dt = new Date(utc + (i - dow) * 86400000);
+    weekDates.push(dt.toISOString().slice(0, 10));
+  }
+  return {
+    weekStart: weekDates[0],
+    weekEnd: weekDates[6],
+    weekDates,
+  };
+}
+
+function countMatchedAvailableIngredients(recipe, availableTokens) {
+  if (!availableTokens.size || !Array.isArray(recipe?.ingredients)) {
+    return { matched: 0, ratio: 0 };
+  }
+  let matched = 0;
+  const total = recipe.ingredients.length || 1;
+  for (const ing of recipe.ingredients) {
+    const ingName = String(ing?.name || "")
+      .trim()
+      .toLowerCase();
+    if (!ingName) continue;
+    let found = availableTokens.has(ingName);
+    if (!found) {
+      for (const avail of availableTokens) {
+        if (ingName.includes(avail) || avail.includes(ingName)) {
+          found = true;
+          break;
+        }
+      }
+    }
+    if (found) matched += 1;
+  }
+  return { matched, ratio: matched / total };
+}
+
+export async function getFoodChartWeekStatus(req, res) {
+  res.set("Cache-Control", "private, no-cache");
+  const date = String(req.query.date || "").slice(0, 10);
+  const locationId = /^\d+$/.test(String(req.query.locationId || "").trim())
+    ? String(req.query.locationId).trim()
+    : "";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return res.status(400).json({ error: "A valid chart date is required" });
+  }
+
+  const { weekStart, weekEnd } = getSundayToSaturdayBounds(date);
+  const countRes = await q(
+    `SELECT COUNT(*)::int AS cnt
+       FROM public.food_chart_entries
+      WHERE chart_date BETWEEN $1::date AND $2::date
+        AND ($3 = '' OR location_id = NULLIF($3, '')::bigint OR location_id IS NULL)`,
+    [weekStart, weekEnd, locationId],
+  );
+  const count = Number(countRes.rows[0]?.cnt || 0);
+  return res.json({
+    weekStart,
+    weekEnd,
+    count,
+    isEmpty: count === 0,
+  });
+}
+
+export async function autoAddWeeklyFoodChartRecipes(req, res) {
+  const b = req.body || {};
+  const date = String(b.date || "").slice(0, 10);
+  const locationId = /^\d+$/.test(String(b.locationId || "").trim())
+    ? String(b.locationId).trim()
+    : "";
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return res.status(400).json({ error: "A valid chart date is required" });
+  }
+
+  const { weekStart, weekEnd, weekDates } = getSundayToSaturdayBounds(date);
+
+  const existingRes = await q(
+    `SELECT COUNT(*)::int AS cnt
+       FROM public.food_chart_entries
+      WHERE chart_date BETWEEN $1::date AND $2::date
+        AND ($3 = '' OR location_id = NULLIF($3, '')::bigint OR location_id IS NULL)`,
+    [weekStart, weekEnd, locationId],
+  );
+  if (Number(existingRes.rows[0]?.cnt || 0) > 0) {
+    return res.status(409).json({
+      error: `Food chart for ${weekStart} to ${weekEnd} already has recipes.`,
+    });
+  }
+
+  // Fetch available/planned/purchased ingredients from Marketing List around this week
+  const mktRes = await q(
+    `SELECT DISTINCT LOWER(TRIM(COALESCE(m.item_name, i.name, ''))) AS ing_name
+       FROM public.marketing_list_items m
+       LEFT JOIN public.items i ON i.id = m.item_id
+      WHERE m.status <> 'removed'
+        AND m.purchase_date BETWEEN ($1::date - INTERVAL '7 days') AND $2::date
+        AND ($3 = '' OR m.location_id = NULLIF($3, '')::bigint OR m.location_id IS NULL)
+        AND COALESCE(m.item_name, i.name, '') <> ''`,
+    [weekStart, weekEnd, locationId],
+  );
+  const availableTokens = new Set(
+    (mktRes.rows || []).map((r) => String(r.ing_name || "").trim()).filter(Boolean),
+  );
+
+  // Fetch historical weekday + meal usage outside this target week
+  const histRes = await q(
+    `SELECT EXTRACT(DOW FROM chart_date::date)::int AS dow,
+            meal,
+            COALESCE(recipe_snapshot->>'id', '') AS snap_id,
+            LOWER(TRIM(COALESCE(recipe_snapshot->>'name', ''))) AS snap_name_lower,
+            COUNT(*)::int AS total_count,
+            COUNT(*) FILTER (
+              WHERE $3 <> '' AND location_id = NULLIF($3, '')::bigint
+            )::int AS loc_count,
+            ROUND(AVG(servings)::numeric, 2) AS avg_servings,
+            (ARRAY_AGG(recipe_snapshot ORDER BY chart_date DESC, id DESC))[1] AS latest_snapshot
+       FROM public.food_chart_entries
+      WHERE NOT (chart_date BETWEEN $1::date AND $2::date)
+        AND COALESCE(recipe_snapshot->>'name', '') <> ''
+      GROUP BY EXTRACT(DOW FROM chart_date::date)::int,
+               meal,
+               COALESCE(recipe_snapshot->>'id', ''),
+               LOWER(TRIM(COALESCE(recipe_snapshot->>'name', '')))`,
+    [weekStart, weekEnd, locationId],
+  );
+
+  // Group history by "dow|meal"
+  const histBySlot = new Map();
+  for (const row of histRes.rows || []) {
+    const key = `${row.dow}|${row.meal}`;
+    if (!histBySlot.has(key)) histBySlot.set(key, []);
+    histBySlot.get(key).push(row);
+  }
+
+  let addedCount = 0;
+  const addedByDay = [];
+
+  for (let dow = 0; dow < 7; dow += 1) {
+    const targetDate = weekDates[dow];
+    const dayAdded = [];
+
+    for (const meal of MEAL_ORDER) {
+      const candidates = histBySlot.get(`${dow}|${meal}`) || [];
+      if (!candidates.length) continue;
+
+      const enriched = [];
+      for (const c of candidates) {
+        const canonicalSnapshot =
+          (c.snap_id && staticRecipesById.get(String(c.snap_id))) ||
+          (c.snap_name_lower && staticRecipesByName.get(c.snap_name_lower)) ||
+          normalizeRecipeSnapshot(c.latest_snapshot, null);
+        if (!canonicalSnapshot || !canonicalSnapshot.name) continue;
+
+        const { matched, ratio } = countMatchedAvailableIngredients(
+          canonicalSnapshot,
+          availableTokens,
+        );
+        const locCount = Number(c.loc_count || 0);
+        const totalCount = Number(c.total_count || 0);
+        const score =
+          (locCount >= 5 ? 1000 : locCount * 20) +
+          totalCount * 8 +
+          matched * 30 +
+          ratio * 50;
+
+        enriched.push({
+          row: c,
+          snapshot: canonicalSnapshot,
+          locCount,
+          totalCount,
+          matchedIngredients: matched,
+          score,
+        });
+      }
+
+      if (!enriched.length) continue;
+
+      // Sort by combined history + marketing-list ingredient availability score
+      enriched.sort((a, b) => b.score - a.score);
+
+      // Prefer all recipes with >= 5 uses at this location (or overall), else pick top-scoring match
+      const locHigh = locationId ? enriched.filter((e) => e.locCount >= 5) : [];
+      const anyHigh = enriched.filter((e) => e.totalCount >= 5);
+      const chosenList = locHigh.length ? locHigh : anyHigh.length ? anyHigh : [enriched[0]];
+
+      const seenNames = new Set();
+      let sortOrder = 0;
+
+      for (const item of chosenList) {
+        const normName = String(item.snapshot.name).trim().toLowerCase();
+        if (seenNames.has(normName)) continue;
+        seenNames.add(normName);
+
+        const servings = Math.max(
+          0.25,
+          Number(item.row.avg_servings) || Number(item.snapshot.servings) || 2,
+        );
+
+        await q(
+          `INSERT INTO public.food_chart_entries(user_id,chart_date,meal,location_id,recipe_id,recipe_snapshot,servings,sort_order)
+           VALUES($1,$2::date,$3,NULLIF($4,'')::bigint,NULL,$5::jsonb,$6,$7)`,
+          [
+            req.user.id,
+            targetDate,
+            meal,
+            locationId,
+            JSON.stringify(item.snapshot),
+            servings,
+            sortOrder,
+          ],
+        );
+        sortOrder += 1;
+        addedCount += 1;
+        dayAdded.push({
+          meal,
+          recipeName: item.snapshot.name,
+          matchedIngredients: item.matchedIngredients,
+        });
+      }
+    }
+
+    if (dayAdded.length) {
+      addedByDay.push({ date: targetDate, recipes: dayAdded });
+    }
+  }
+
+  if (locationId) {
+    void recordLocationGpsSelection({
+      locationId,
+      userId: req.user?.id,
+      latitude: b.latitude ?? b.lat,
+      longitude: b.longitude ?? b.lng,
+      source: "food_chart_weekly_auto_add",
+    });
+  }
+
+  return res.json({
+    weekStart,
+    weekEnd,
+    addedCount,
+    availableIngredientCount: availableTokens.size,
+    addedByDay,
+  });
+}

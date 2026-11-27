@@ -1072,3 +1072,10 @@
 ## 132. Marketing List & Add Expense — Sort Items by Most Ordered First
 - **`backend/scripts/sql/masterDataSql.js` (`metaItems`)**: Updated `GET /api/meta/items/:categoryId` to sort items by `marketing_list_items` order count descending, then `expenses` count descending, then alphabetically by name.
 - **`frontend/src/pages/MarketingList.jsx`**: Sorted the Known item dropdown by `itemOrderMeta(item).count` descending (most ordered first, then less ordered, then alphabetical).
+
+## 133. Food Chart — Weekly Auto Add Recipe (Sunday–Saturday)
+- **Backend (`dietChartController.js`, `routes/index.js`)**:
+  - Added `GET /api/food-chart/week-status` returning whether the Sunday–Saturday week containing `date` is empty for the selected location.
+  - Added `POST /api/food-chart/auto-add-week` (`autoAddWeeklyFoodChartRecipes`) filling the entire Sunday–Saturday week by combining weekday+meal history with available/planned ingredients from `marketing_list_items`.
+- **Frontend (`FoodChart.jsx`)**:
+  - Added **Weekly Auto Add Recipe** directly above the date field, enabled only when the selected Sunday–Saturday week's food chart is empty.

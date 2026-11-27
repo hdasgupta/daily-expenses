@@ -92,6 +92,8 @@ export function createRouter(maxUploadBytes) {
   router.get("/food-chart", auth, dietChartController.listFoodChart);
   router.post("/food-chart", auth, dietChartController.addFoodChartEntry);
   router.post("/food-chart/auto-add", auth, dietChartController.autoAddFoodChartRecipes);
+  router.get("/food-chart/week-status", auth, dietChartController.getFoodChartWeekStatus);
+  router.post("/food-chart/auto-add-week", auth, dietChartController.autoAddWeeklyFoodChartRecipes);
   router.put("/food-chart/:id", auth, dietChartController.updateFoodChartEntry);
   router.delete("/food-chart", auth, dietChartController.resetFoodChartEntries);
   router.delete("/food-chart/:id", auth, dietChartController.removeFoodChartEntry);
