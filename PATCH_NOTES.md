@@ -1094,3 +1094,8 @@
 ## 136. Marketing List — Track Accepted Quantity for Weekly Duplicate & Over-Order Alerts
 - **`backend/scripts/sql/schemaSql.js`, `marketingController.js`, `frontend/src/pages/MarketingList.jsx`**:
   - Added `accepted_qty` and `accepted_count` to `public.marketing_weekly_alert_acceptances` so accepted duplicate/over-order warnings stay suppressed for the accepted quantity and entry count, while re-alerting if additional quantity or new orders are added later in the week.
+
+## 137. Added 16 Samosa Varieties to Recipe Master
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Added 16 diverse Samosa recipes (`static-2010`–`static-2025`), including Aloo Matar Punjabi Samosa, Atta Tawa Samosa, Beetroot & Peanut Samosa, Bread Samosa, Chana Dal Irani Patti Samosa, Cheese & Sweet Corn Samosa, Chicken Keema Samosa, Chinese Noodles Samosa, Egg Bhurji Samosa, Fulkopi Shingara, Matar Paneer Samosa, Kolkata Hing Aloo Samosa, Mawa & Dry Fruit Sweet Samosa, Moong Dal Dry Mini Samosa, Onion & Poha Patti Samosa, and Soya Keema Masala Samosa.
+  - All recipes use standardized ingredient names and manual stovetop/tawa/kadhai preparation without blenders, mixers, grinders, or ovens, bringing the alphabetically sorted catalogue to 1758 total recipes.

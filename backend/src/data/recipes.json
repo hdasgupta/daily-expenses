@@ -3437,6 +3437,90 @@
     "notes": "A wholesome winter favorite combining soft potatoes with sweet green peas."
   },
   {
+    "id": "static-2010",
+    "name": "Aloo Matar Punjabi Samosa (Classic Spiced Potato & Green Pea Samosa)",
+    "category": "Snacks",
+    "region": "Punjabi",
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coriander Seeds",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Rub ghee, carom seeds, and salt into maida until crumbly, then knead a stiff dough with minimal water and rest 20 minutes. Boil and roughly mash potatoes with boiled green peas, crushed coriander seeds, minced ginger, chopped green chilli, amchur, and garam masala."
+      },
+      {
+        "section": "Cook",
+        "minutes": 25,
+        "text": "Roll oval rotis, cut in half, shape into cones, fill with potato-pea masala, seal edges with water, and deep-fry on low-medium heat until golden and blister-free crisp."
+      }
+    ],
+    "notes": "Low-heat frying ensures a flaky, crisp Punjabi halwai-style crust."
+  },
+  {
     "id": "static-1228",
     "name": "Aloo Methi (Fresh Fenugreek Leaves & Crispy Potato Stir-Fry)",
     "category": "Vegetable",
@@ -7733,6 +7817,80 @@
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
   },
   {
+    "id": "static-2011",
+    "name": "Atta Tawa Samosa (Whole Wheat Pan-Crisped Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Whole Wheat Flour (Atta)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Potato",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cumin Seeds (Jeera)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Knead a firm whole wheat dough with ghee, ajwain, and salt. Temper cumin seeds in 1 tsp oil, saute finely chopped onion, and fold in boiled mashed potatoes, turmeric, red chilli powder, and salt."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Shape stuffed flat triangles, brush lightly with oil, and slow-toast on a heavy cast-iron tawa (or covered pan) turning every 2 minutes until crisp and golden on all sides."
+      }
+    ],
+    "notes": "Low-oil whole wheat samosa cooked on a stovetop tawa without an oven."
+  },
+  {
     "id": "static-1922",
     "name": "Atta Veg Momo (Whole Wheat Steamed Vegetable Dumplings)",
     "category": "Snacks",
@@ -10448,6 +10606,75 @@
       }
     ],
     "notes": "Classic Old Delhi and Mathura street breakfast served with spicy hing-wale aloo sabzi."
+  },
+  {
+    "id": "static-2012",
+    "name": "Beetroot & Peanut Masala Samosa (Ruby Vegetable Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Beetroot",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Panch Phoron",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Prepare stiff samosa dough with maida, 3 tbsp oil, and salt. Saute grated beetroot with panch phoron and grated ginger until dry, then mix with boiled mashed potato, roasted crushed peanuts, and coriander leaves."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Fill into dough cones, seal with water, and fry over medium-low heat until crisp golden brown."
+      }
+    ],
+    "notes": "Vibrant Bengali-chop inspired beetroot-peanut filling inside a crisp samosa shell."
   },
   {
     "id": "static-1011",
@@ -19943,6 +20170,70 @@
     "notes": "Air-drying the shaped rolls for 5 minutes makes them crisp up with minimal oil absorption."
   },
   {
+    "id": "static-2013",
+    "name": "Bread Samosa (Instant Stuffed Sandwich-Bread Cone Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "Bread Slices",
+        "quantity": "6",
+        "unit": "slices"
+      },
+      {
+        "name": "Potato",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 15,
+        "text": "Trim bread crusts and flatten each slice thin with a rolling pin. Mix boiled mashed potato with peas, chopped green chilli, chaat masala, and salt. Mix maida with water into a thick sealing paste."
+      },
+      {
+        "section": "Cook",
+        "minutes": 15,
+        "text": "Cut flattened bread diagonally, roll into cones using maida paste, stuff with potato filling, seal edges, and shallow- or deep-fry until golden crisp."
+      }
+    ],
+    "notes": "No-dough instant samosa ready in 30 minutes."
+  },
+  {
     "id": "static-1915",
     "name": "Bread Upma Pakora / Crisp Crumbled Bread & Onion Bhajji",
     "category": "Fritters",
@@ -22181,6 +22472,75 @@
     "notes": "A wholesome protein-rich variation of Palpali Chukauni pairing nutty chickpeas with tangy tempered curd."
   },
   {
+    "id": "static-2014",
+    "name": "Chana Dal & Spiced Onion Samosa (Irani Patti Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Chana Dal",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Poha (Flattened Rice)",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Soak chana dal 1 hour and boil until tender yet firm (not mushy); drain dry. Toss dal with finely chopped onion, dry crushed poha (to absorb moisture), coriander leaves, cumin powder, red chilli powder, and salt."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Roll thin maida pattis, toast 10 seconds on a warm tawa, fold into triangular pockets stuffed with dal-onion mix, seal with flour paste, and fry crisp."
+      }
+    ],
+    "notes": "Crushed poha keeps the onion-dal filling dry and crunchy."
+  },
+  {
     "id": "static-1960",
     "name": "Chana Dal Laddoo / Magad ke Laddoo (Roasted Gram-Flour, Ghee & Cardamom Laddoo)",
     "category": "Sweets",
@@ -23226,6 +23586,70 @@
       }
     ],
     "notes": "Gooey melted cheese and sweet corn sealed inside a crunchy golden sooji crust."
+  },
+  {
+    "id": "static-2015",
+    "name": "Cheese & Sweet Corn Samosa (Crispy Corn-Cheese Patti Samosa)",
+    "category": "Snacks",
+    "region": "Continental",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Sweet Corn",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Cheese",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Oregano",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Boil sweet corn kernels and coarsely crush half of them with a rolling pin or masher. Mix with grated cheese, chopped green chilli, black pepper, oregano, and salt."
+      },
+      {
+        "section": "Cook",
+        "minutes": 15,
+        "text": "Shape thin maida sheets into triangular patti samosas, fill with corn-cheese mixture, seal tightly with flour paste, and fry on medium heat until golden."
+      }
+    ],
+    "notes": "Crowd-favorite fusion samosa with gooey melted cheese."
   },
   {
     "id": "static-0928",
@@ -27780,6 +28204,80 @@
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-2016",
+    "name": "Chicken Keema Samosa (Spiced Minced Chicken & Mint Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Chicken Keema",
+        "quantity": "300",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mint Leaves (Pudina)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Cook minced chicken with ginger-garlic paste, chopped onion, red chilli powder, garam masala, and salt in 1 tbsp oil until completely dry; cool and fold in chopped mint and coriander leaves."
+      },
+      {
+        "section": "Cook",
+        "minutes": 25,
+        "text": "Fill into thin samosa pattis or dough cones, seal tightly, and deep-fry on medium heat until crisp golden brown."
+      }
+    ],
+    "notes": "Ensure the keema filling is completely dry before stuffing so the crust stays crisp."
+  },
+  {
     "id": "static-1736",
     "name": "Chicken Khichuri / Murgir Mangshor Khichuri (Homestyle Spiced Chicken, Potato & Moong-Masoor Dal Khichuri)",
     "category": "Rice",
@@ -31230,6 +31728,80 @@
       }
     ],
     "notes": "Kolkata Tangra-style Indo-Chinese favorite; add 1/2 cup stock and extra cornflour slurry if you prefer a gravy version."
+  },
+  {
+    "id": "static-2017",
+    "name": "Chinese Noodles Samosa (Indo-Chinese Chowmein Stuffed Samosa)",
+    "category": "Snacks",
+    "region": "Chinese",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Hakka Noodles",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Cabbage",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Capsicum",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Red Chilli Sauce",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Boil and drain noodles, then stir-fry on high heat with shredded cabbage, carrot, capsicum, soy sauce, red chilli sauce, black pepper, and salt until dry."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Fill cooled noodle stir-fry into samosa cones, seal edges with flour paste, and fry until golden and crunchy."
+      }
+    ],
+    "notes": "Popular street-style Indo-Chinese snack."
   },
   {
     "id": "static-1928",
@@ -44034,6 +44606,75 @@
     "notes": "Quick high-protein momo filling that cooks fast because the egg is already scrambled."
   },
   {
+    "id": "static-2018",
+    "name": "Egg Bhurji Samosa (Spiced Scrambled Egg & Onion Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Egg",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Saute finely chopped onion and green chilli, pour in beaten eggs with turmeric, garam masala, and salt, and scramble into a dry bhurji; stir in coriander leaves."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Stuff into samosa cones or pattis, seal with water/flour paste, and fry over medium heat until golden brown."
+      }
+    ],
+    "notes": "High-protein evening snack using simple pantry ingredients."
+  },
+  {
     "id": "static-0734",
     "name": "Egg Bhurji Sandwich",
     "category": "Sandwich",
@@ -49330,6 +49971,80 @@
       }
     ],
     "notes": "Keep oil at medium heat so the pleated wrapper cooks crisp without blistering."
+  },
+  {
+    "id": "static-2019",
+    "name": "Fulkopi Shingara (Bengali Winter Cauliflower & Peanut Samosa)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 25,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Cauliflower",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Panch Phoron",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Cut cauliflower into tiny florets and potato into small cubes. Temper panch phoron in oil, saute ginger, cauliflower, and potato with turmeric and salt until tender and dry, then finish with roasted peanuts and Bengali garam masala."
+      },
+      {
+        "section": "Cook",
+        "minutes": 25,
+        "text": "Knead maida with ghee and salt, shape traditional Bengali shingara cones, fill with cauliflower-potato masala, pinch pleats at the top, and fry slowly on low heat."
+      }
+    ],
+    "notes": "Classic Kolkata winter tea-time shingara."
   },
   {
     "id": "static-1345",
@@ -68251,6 +68966,70 @@
     "notes": "Famous North Kolkata heritage cabin delicacy derived from the 'Coverage' cutlet."
   },
   {
+    "id": "static-2021",
+    "name": "Kolkata Hing Aloo Samosa (Asafoetida Spiced Mini Samosa)",
+    "category": "Snacks",
+    "region": "Bengali",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Potato",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Knead maida with kalo jeere, 3 tbsp oil, and salt. Temper hing in 1 tsp oil and toss with cubed boiled potatoes, green chilli, roasted cumin powder, and salt."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Stuff into mini shingara cones and fry on low heat until golden and crisp."
+      }
+    ],
+    "notes": "Aromatic hing-infused filling inspired by Kolkata kachori stalls."
+  },
+  {
     "id": "static-1289",
     "name": "Kolkata Hing-er Kachori & Aloor Torkari (Club Kachori with Spiced Potato Curry)",
     "category": "Breakfast",
@@ -80874,6 +81653,75 @@
     "notes": "An everyday Indian household favorite that goes equally well with jeera rice, chapati, or poori."
   },
   {
+    "id": "static-2020",
+    "name": "Matar Paneer Samosa (Spiced Green Pea & Cottage Cheese Samosa)",
+    "category": "Snacks",
+    "region": "North Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Cumin Seeds (Jeera)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Crumble or finely dice paneer. Saute cumin seeds, minced ginger, and boiled green peas, then toss in paneer, coriander powder, amchur, and salt until dry."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Stuff into samosa dough cones, seal edges, and deep-fry on low-medium flame until golden crisp."
+      }
+    ],
+    "notes": "Rich protein-packed vegetarian samosa."
+  },
+  {
     "id": "static-1183",
     "name": "Matar Paratha (Spiced Green Peas Stuffed Paratha)",
     "category": "Bread",
@@ -81124,6 +81972,70 @@
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-2022",
+    "name": "Mawa & Dry Fruit Sweet Samosa (Khoya Festive Samosa)",
+    "category": "Sweets",
+    "region": "North Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Khoya (Mawa)",
+        "quantity": "200",
+        "unit": "g"
+      },
+      {
+        "name": "Powdered Sugar",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Almonds",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Raisins",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cardamom Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Roast crumbled khoya on low heat 4 minutes until aromatic, cool, and mix with powdered sugar, finely chopped almonds, cashews, raisins, and cardamom powder."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Knead maida with 3 tbsp melted ghee, form small cones stuffed with khoya-nut filling, seal with water, and fry on low heat in ghee until crisp golden."
+      }
+    ],
+    "notes": "Crisp festive sweet samosa (can also be dipped briefly in warm cardamom sugar syrup)."
   },
   {
     "id": "static-1580",
@@ -84551,6 +85463,75 @@
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
+  },
+  {
+    "id": "static-2023",
+    "name": "Moong Dal Dry Mini Samosa (Halwai Crispy Spiced Lentil Samosa)",
+    "category": "Snacks",
+    "region": "Rajasthani",
+    "prepMinutes": 30,
+    "cookMinutes": 25,
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Yellow Moong Dal",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel Seeds",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coriander Seeds",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 30,
+        "text": "Soak moong dal 2 hours, drain completely, and crush coarsely by hand with a rolling pin on a board. Dry-roast with crushed fennel, coriander seeds, hing, red chilli powder, amchur, and salt until dry and crumbly."
+      },
+      {
+        "section": "Cook",
+        "minutes": 25,
+        "text": "Fill into small stiff maida cones, seal well, and slow-fry on low heat until deeply crisp so they stay crunchy for days."
+      }
+    ],
+    "notes": "Long-shelf-life dry namkeen mini samosa prepared without an electric grinder."
   },
   {
     "id": "static-0110",
@@ -91677,6 +92658,75 @@
       }
     ],
     "notes": "Sweet sauteed onions contrast wonderfully with bold cracked black pepper."
+  },
+  {
+    "id": "static-2024",
+    "name": "Onion & Poha Patti Samosa (Hyderabadi Irani Pyaz Samosa)",
+    "category": "Snacks",
+    "region": "South Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Poha (Flattened Rice)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 20,
+        "text": "Finely chop onions and toss with thick poha (dry, unrinsed, lightly crushed by hand), chopped green chilli, coriander leaves, cumin powder, red chilli powder, and salt."
+      },
+      {
+        "section": "Cook",
+        "minutes": 15,
+        "text": "Fold thin par-cooked maida pattis into crisp triangles with onion-poha filling, seal with flour paste, and fry golden."
+      }
+    ],
+    "notes": "Classic Hyderabad Irani cafe-style crunchy onion samosa."
   },
   {
     "id": "static-0975",
@@ -121532,6 +122582,75 @@
       }
     ],
     "notes": "Marinating squeezed soya chunks in yogurt and biryani masala ensures they soak up deep flavor instead of tasting bland."
+  },
+  {
+    "id": "static-2025",
+    "name": "Soya Keema Masala Samosa (High-Protein Spiced Soya Granule Samosa)",
+    "category": "Snacks",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 20,
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "2",
+        "unit": "cup"
+      },
+      {
+        "name": "Soya Granules",
+        "quantity": "1",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prep",
+        "minutes": 25,
+        "text": "Boil soya granules 5 minutes, drain, and squeeze dry in a clean cloth. Saute chopped onion and ginger-garlic paste, then stir-fry squeezed soya, green peas, turmeric, garam masala, and salt until completely dry."
+      },
+      {
+        "section": "Cook",
+        "minutes": 20,
+        "text": "Fill into samosa cones, seal edges, and deep-fry over low-medium heat until golden crisp."
+      }
+    ],
+    "notes": "Nutritious vegetarian keema-style samosa."
   },
   {
     "id": "static-1936",
