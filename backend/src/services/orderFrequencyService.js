@@ -331,3 +331,42 @@ export async function saveUserOrderFrequencyPreferences(userId, payload = {}) {
     preferences: { locationId, categoryId, itemId, unitId },
   };
 }
+
+export async function getItemsWithOrderFrequencyData({ categoryId = "", locationId = "" }) {
+  const cleanCategoryId = /^\d+$/.test(String(categoryId || "").trim())
+    ? String(categoryId).trim()
+    : "";
+  const cleanLocationId = /^\d+$/.test(String(locationId || "").trim())
+    ? String(locationId).trim()
+    : "";
+
+  if (!cleanCategoryId) {
+    return [];
+  }
+
+  const res = await q(
+    `SELECT i.id, i.name
+       FROM public.items i
+      WHERE i.category_id = $1::bigint
+        AND EXISTS (
+          SELECT 1
+            FROM public.marketing_list_items m
+           WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint)
+             AND m.status = 'purchased'
+             AND (
+               (m.quantity IS NOT NULL AND m.quantity > 0)
+               OR (m.purchased_quantity IS NOT NULL AND m.purchased_quantity > 0)
+             )
+             AND (
+               m.item_id = i.id
+               OR (
+                 m.category_id = i.category_id
+                 AND lower(trim(m.item_name)) = lower(trim(i.name))
+               )
+             )
+        )
+      ORDER BY LOWER(i.name) ASC, i.id ASC`,
+    [cleanCategoryId, cleanLocationId],
+  );
+  return res.rows || [];
+}

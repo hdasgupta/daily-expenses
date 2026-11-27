@@ -196,6 +196,7 @@ export function createRouter(maxUploadBytes) {
 
   router.get("/dashboard/overview", auth, permit("dashboard"), dashboardController.overview);
   router.get("/price-trend", auth, permit("dashboard"), priceTrendController.getPriceTrend);
+  router.get("/price-trend/items", auth, permit("dashboard"), priceTrendController.getItemsWithData);
   router.get(
     "/price-trend/smart-unit",
     auth,
@@ -215,6 +216,7 @@ export function createRouter(maxUploadBytes) {
     priceTrendController.savePreferences,
   );
   router.get("/order-frequency", auth, permit("dashboard"), orderFrequencyController.getOrderFrequency);
+  router.get("/order-frequency/items", auth, permit("dashboard"), orderFrequencyController.getItemsWithData);
   router.get(
     "/order-frequency/preferences",
     auth,

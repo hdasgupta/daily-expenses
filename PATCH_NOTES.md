@@ -1062,3 +1062,9 @@
 ## 130. Order Frequency — Continuous Days from First Sunday to Current/Upcoming Saturday
 - **`backend/src/services/orderFrequencyService.js` & `frontend/src/pages/OrderFrequency.jsx`**:
   - Updated `totalDays` to count continuous calendar days from the first order's Sunday (`firstWeekStartUtc`) through the current or upcoming Saturday (`endSaturdayUtc`) without skipping middle weeks.
+
+## 131. Price Trend & Order Frequency — Hide Items Without Data
+- **Backend (`priceTrendService.js`, `priceTrendController.js`, `orderFrequencyService.js`, `orderFrequencyController.js`, `routes/index.js`)**:
+  - Added `GET /api/price-trend/items` and `GET /api/order-frequency/items` returning only items in the selected category (and location, if selected) that have at least one qualifying `purchased` record in `marketing_list_items`.
+- **Frontend (`PriceTrend.jsx`, `OrderFrequency.jsx`)**:
+  - Updated the Item dropdown loader to query the new filtered endpoints whenever `categoryId` or `locationId` changes, omitting items with no data.

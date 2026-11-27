@@ -191,7 +191,10 @@ export default function OrderFrequency({ user }) {
       return undefined;
     }
 
-    api(`/meta/items/${categoryId}`, { silent: true })
+    const qs = new URLSearchParams({ categoryId: String(categoryId) });
+    if (locationId) qs.set("locationId", String(locationId));
+
+    api(`/order-frequency/items?${qs.toString()}`, { silent: true })
       .then((list) => {
         if (cancelled) return;
         const arr = Array.isArray(list) ? list : [];
@@ -203,6 +206,7 @@ export default function OrderFrequency({ user }) {
           setItemId(String(pendingId));
         } else if (!arr.some((it) => String(it.id) === String(itemId))) {
           setItemId("");
+          setUnitId("");
         }
       })
       .catch(() => {
@@ -212,7 +216,7 @@ export default function OrderFrequency({ user }) {
     return () => {
       cancelled = true;
     };
-  }, [categoryId]);
+  }, [categoryId, locationId]);
 
   // Auto-select smart unit when item changes (if no unit is already chosen)
   useEffect(() => {

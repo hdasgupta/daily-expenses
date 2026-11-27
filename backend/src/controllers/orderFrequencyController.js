@@ -1,5 +1,6 @@
 import {
   getItemOrderFrequency,
+  getItemsWithOrderFrequencyData,
   getUserOrderFrequencyPreferences,
   saveUserOrderFrequencyPreferences,
 } from "../services/orderFrequencyService.js";
@@ -22,4 +23,12 @@ export async function getPreferences(req, res) {
 export async function savePreferences(req, res) {
   const data = await saveUserOrderFrequencyPreferences(req.user.id, req.body || {});
   res.json(data);
+}
+
+export async function getItemsWithData(req, res) {
+  const rows = await getItemsWithOrderFrequencyData({
+    categoryId: req.query.categoryId,
+    locationId: req.query.locationId,
+  });
+  res.json(rows);
 }

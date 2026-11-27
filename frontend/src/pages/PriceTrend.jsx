@@ -203,7 +203,10 @@ export default function PriceTrend({ user }) {
     const expectedItemId = pendingRestoredItemIdRef.current;
     pendingRestoredItemIdRef.current = "";
 
-    api(`/meta/items/${encodeURIComponent(categoryId)}`, { silent: true })
+    const qs = new URLSearchParams({ categoryId: String(categoryId) });
+    if (locationId) qs.set("locationId", String(locationId));
+
+    api(`/price-trend/items?${qs.toString()}`, { silent: true })
       .then((list) => {
         if (cancelled) return;
         const arr = Array.isArray(list) ? list : [];
@@ -212,6 +215,7 @@ export default function PriceTrend({ user }) {
           setItemId(String(expectedItemId));
         } else if (itemId && !arr.some((i) => String(i.id) === String(itemId))) {
           setItemId("");
+          setUnitId("");
         }
       })
       .catch(() => {
@@ -221,7 +225,7 @@ export default function PriceTrend({ user }) {
     return () => {
       cancelled = true;
     };
-  }, [categoryId]);
+  }, [categoryId, locationId]);
 
   const selectSmartUnitForItem = async (targetItemId, targetCategoryId, targetLocationId) => {
     if (!targetItemId) return;

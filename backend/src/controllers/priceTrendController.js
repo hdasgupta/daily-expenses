@@ -1,5 +1,6 @@
 import {
   getItemPriceTrend,
+  getItemsWithPriceTrendData,
   getSmartUnitForItem,
   getUserPriceTrendPreferences,
   saveUserPriceTrendPreferences,
@@ -32,4 +33,12 @@ export async function getPreferences(req, res) {
 
 export async function savePreferences(req, res) {
   res.json(await saveUserPriceTrendPreferences(req.user.id, req.body || {}));
+}
+
+export async function getItemsWithData(req, res) {
+  const rows = await getItemsWithPriceTrendData({
+    categoryId: req.query.categoryId,
+    locationId: req.query.locationId,
+  });
+  res.json(rows);
 }
