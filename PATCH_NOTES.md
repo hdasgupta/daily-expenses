@@ -1079,3 +1079,8 @@
   - Added `POST /api/food-chart/auto-add-week` (`autoAddWeeklyFoodChartRecipes`) filling the entire Sunday–Saturday week by combining weekday+meal history with available/planned ingredients from `marketing_list_items`.
 - **Frontend (`FoodChart.jsx`)**:
   - Added **Weekly Auto Add Recipe** directly above the date field, enabled only when the selected Sunday–Saturday week's food chart is empty.
+
+## 134. Marketing List — Weekly (Sunday–Saturday) Duplicate & Over-Order Check Popup
+- **`frontend/src/pages/MarketingList.jsx` & `frontend/src/pages/marketing.css`**:
+  - Added `getSundayToSaturdayBounds` and `analyzeWeeklyDuplicatesAndOverOrders` checking the current/upcoming Sunday–Saturday week for duplicate entries (`>= 2` orders in the week) and over-ordered quantities (`> 125%` of the item's continuous Sunday–Saturday weekly purchase average).
+  - Added a **Weekly Check** button (showing the alert count when issues exist) that opens a popup modal listing all duplicate and over-ordered items with inline quantity editing (**Save**) and **Remove** actions for pending items.

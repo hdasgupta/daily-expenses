@@ -1164,3 +1164,96 @@
   font-size: 13px;
   white-space: nowrap;
 }
+
+.marketing-list-page .marketing-weekly-check-btn.has-alerts {
+  border-color: #d97706;
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.14);
+}
+.marketing-list-page .marketing-weekly-audit-dialog {
+  max-width: 680px;
+  width: min(94vw, 680px);
+  text-align: left;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.marketing-list-page .marketing-weekly-audit-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.marketing-list-page .marketing-weekly-audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.marketing-list-page .marketing-weekly-audit-group {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--soft);
+}
+.marketing-list-page .marketing-weekly-audit-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.marketing-list-page .marketing-weekly-audit-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.marketing-list-page .marketing-audit-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.marketing-list-page .marketing-audit-badge.duplicate {
+  background: rgba(220, 38, 38, 0.14);
+  color: #dc2626;
+}
+.marketing-list-page .marketing-audit-badge.over-order {
+  background: rgba(245, 158, 11, 0.18);
+  color: #b45309;
+}
+.marketing-list-page .marketing-weekly-audit-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 4px 0 8px;
+}
+.marketing-list-page .marketing-weekly-audit-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.marketing-list-page .marketing-weekly-audit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--card, #fff);
+  border: 1px solid var(--line);
+}
+.marketing-list-page .marketing-weekly-audit-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+.marketing-list-page .marketing-weekly-audit-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.marketing-list-page .marketing-weekly-audit-controls input {
+  width: 78px;
+  padding: 6px 8px;
+}

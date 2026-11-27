@@ -1,7 +1,9 @@
 import "./marketing.css";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
+  AlertTriangle,
   Calendar,
+  Check,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
@@ -349,6 +351,139 @@ function findMostUsedDefaultsForItem(itemId, itemName, categoryId, rows, units) 
   return { unitId: bestUnitId, quantity: bestQuantity };
 }
 
+function getSundayToSaturdayBounds(isoDate) {
+  const clean = String(isoDate || todayKolkata()).slice(0, 10);
+  const match = clean.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return { weekStart: clean, weekEnd: clean };
+  const utc = Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  const dow = new Date(utc).getUTCDay(); // 0 = Sun .. 6 = Sat
+  const weekStart = new Date(utc - dow * 86400000).toISOString().slice(0, 10);
+  const weekEnd = new Date(utc + (6 - dow) * 86400000).toISOString().slice(0, 10);
+  return { weekStart, weekEnd };
+}
+
+function analyzeWeeklyDuplicatesAndOverOrders(allRows, allUnits, targetDate, locationId) {
+  const { weekStart, weekEnd } = getSundayToSaturdayBounds(targetDate);
+  const cleanLoc = String(locationId || "").trim();
+
+  const weekRows = (allRows || []).filter((row) => {
+    if (row.status === "removed") return false;
+    const d = String(row.purchase_date || "").slice(0, 10);
+    if (d < weekStart || d > weekEnd) return false;
+    if (cleanLoc && row.location_id != null && String(row.location_id) !== cleanLoc) return false;
+    return true;
+  });
+
+  const groups = new Map();
+  for (const row of weekRows) {
+    const key =
+      row.item_id != null && row.item_id !== ""
+        ? `id:${row.item_id}`
+        : `name:${String(row.item_name || "").trim().toLowerCase()}`;
+    if (!groups.has(key)) {
+      groups.set(key, {
+        key,
+        itemId: row.item_id != null ? String(row.item_id) : "",
+        itemName: row.item_name || "Item",
+        entries: [],
+      });
+    }
+    groups.get(key).entries.push(row);
+  }
+
+  const [wsY, wsM, wsD] = weekStart.split("-").map(Number);
+  const prevSatUtc = Date.UTC(wsY, wsM - 1, wsD) - 86400000;
+
+  const alerts = [];
+  for (const group of groups.values()) {
+    const isDuplicate = group.entries.length >= 2;
+
+    const refEntry = group.entries.find((e) => e.unit_id) || group.entries[0];
+    const targetUnitId = String(refEntry?.unit_id || "");
+    const targetUnitObj = (allUnits || []).find((u) => String(u.id) === targetUnitId);
+    const targetUnitName = refEntry?.unit_name || targetUnitObj?.name || "";
+
+    let weekTotalQty = 0;
+    for (const entry of group.entries) {
+      const usePurchased =
+        entry.status === "purchased" && Number(entry.purchased_quantity) > 0 && entry.purchased_unit_id;
+      const qty = Number(usePurchased ? entry.purchased_quantity : entry.quantity);
+      if (!Number.isFinite(qty) || qty <= 0) continue;
+      const srcUnitId = String(usePurchased ? entry.purchased_unit_id : entry.unit_id || "");
+      const srcUnitName = usePurchased ? entry.purchased_unit_name || "" : entry.unit_name || "";
+      const ratio =
+        targetUnitId && srcUnitId
+          ? computeUnitConversionRatio(srcUnitId, srcUnitName, targetUnitId, targetUnitName)
+          : 1;
+      if (ratio !== null) {
+        weekTotalQty += qty * ratio;
+      }
+    }
+
+    let histTotalQty = 0;
+    let earliestHistWeekStart = "";
+    const groupNameLower = String(group.itemName || "").trim().toLowerCase();
+
+    for (const row of allRows || []) {
+      if (row.status !== "purchased") continue;
+      const d = String(row.purchase_date || "").slice(0, 10);
+      if (!d || d >= weekStart) continue;
+      if (cleanLoc && row.location_id != null && String(row.location_id) !== cleanLoc) continue;
+
+      const rowItemId = row.item_id != null ? String(row.item_id) : "";
+      const rowNameLower = String(row.item_name || "").trim().toLowerCase();
+      const matches =
+        (group.itemId && rowItemId && group.itemId === rowItemId) ||
+        (groupNameLower && rowNameLower && groupNameLower === rowNameLower);
+      if (!matches) continue;
+
+      const usePurchased = Number(row.purchased_quantity) > 0 && row.purchased_unit_id;
+      const qty = Number(usePurchased ? row.purchased_quantity : row.quantity);
+      if (!Number.isFinite(qty) || qty <= 0) continue;
+      const srcUnitId = String(usePurchased ? row.purchased_unit_id : row.unit_id || "");
+      const srcUnitName = usePurchased ? row.purchased_unit_name || "" : row.unit_name || "";
+      const ratio =
+        targetUnitId && srcUnitId
+          ? computeUnitConversionRatio(srcUnitId, srcUnitName, targetUnitId, targetUnitName)
+          : 1;
+      if (ratio === null) continue;
+
+      histTotalQty += qty * ratio;
+      const { weekStart: hwStart } = getSundayToSaturdayBounds(d);
+      if (!earliestHistWeekStart || hwStart < earliestHistWeekStart) {
+        earliestHistWeekStart = hwStart;
+      }
+    }
+
+    let usualWeeklyQty = 0;
+    if (histTotalQty > 0 && earliestHistWeekStart) {
+      const [hy, hm, hd] = earliestHistWeekStart.split("-").map(Number);
+      const firstSunUtc = Date.UTC(hy, hm - 1, hd);
+      const continuousDays = Math.max(7, Math.floor((prevSatUtc - firstSunUtc) / 86400000) + 1);
+      usualWeeklyQty = (histTotalQty / continuousDays) * 7;
+    }
+
+    const isOverOrder =
+      usualWeeklyQty > 0 && weekTotalQty > usualWeeklyQty * 1.25;
+    const excessPct =
+      usualWeeklyQty > 0 ? Math.round(((weekTotalQty - usualWeeklyQty) / usualWeeklyQty) * 100) : 0;
+
+    if (isDuplicate || isOverOrder) {
+      alerts.push({
+        ...group,
+        isDuplicate,
+        isOverOrder,
+        weekTotalQty: Number(weekTotalQty.toFixed(2)),
+        usualWeeklyQty: Number(usualWeeklyQty.toFixed(2)),
+        excessPct,
+        unitName: targetUnitName,
+      });
+    }
+  }
+
+  return { weekStart, weekEnd, alerts };
+}
+
 export default function MarketingList({ navigate }) {
   const [rows, setRows] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -374,6 +509,9 @@ export default function MarketingList({ navigate }) {
   const [pendingBulkRemoval, setPendingBulkRemoval] = useState(false);
   const [removingBulk, setRemovingBulk] = useState(false);
   const [changeDateModalOpen, setChangeDateModalOpen] = useState(false);
+  const [weeklyAuditOpen, setWeeklyAuditOpen] = useState(false);
+  const [weeklyQtyEdits, setWeeklyQtyEdits] = useState({});
+  const [auditBusyId, setAuditBusyId] = useState(null);
   const [targetDate, setTargetDate] = useState("");
   const [changingDate, setChangingDate] = useState(false);
   const userChoseLocationRef = useRef(false);
@@ -796,6 +934,61 @@ export default function MarketingList({ navigate }) {
   const safePage = Math.min(page, pageCount);
   const visibleRows = filteredRows.slice((safePage - 1) * pageSize, safePage * pageSize);
   const pendingFilteredRows = filteredRows.filter((row) => row.status === "pending");
+  const weeklyAudit = useMemo(() => {
+    const targetDate =
+      form.purchaseDate && form.purchaseDate >= getSundayToSaturdayBounds(todayKolkata()).weekStart
+        ? form.purchaseDate
+        : todayKolkata();
+    return analyzeWeeklyDuplicatesAndOverOrders(rows, units, targetDate, form.locationId);
+  }, [rows, units, form.purchaseDate, form.locationId]);
+
+  const handleAuditQtySave = async (row) => {
+    const nextQty = weeklyQtyEdits[String(row.id)];
+    if (nextQty === undefined || nextQty === "" || Number(nextQty) < 0) return;
+    setAuditBusyId(String(row.id));
+    setError("");
+    try {
+      await api(`/marketing-list/${row.id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          categoryId: String(row.category_id || ""),
+          itemId: String(row.item_id || ""),
+          itemName: row.item_name || "",
+          quantity: String(nextQty),
+          unitId: String(row.unit_id || ""),
+          approximateCost:
+            row.approximate_cost != null && row.approximate_cost !== ""
+              ? String(row.approximate_cost)
+              : "",
+          purchaseDate: String(row.purchase_date || "").slice(0, 10),
+          locationId: String(row.location_id || ""),
+        }),
+        toast: { type: "success", message: `Updated quantity for ${row.item_name}.` },
+      });
+      await load();
+    } catch (e) {
+      setError(e.message || "Unable to update quantity");
+    } finally {
+      setAuditBusyId(null);
+    }
+  };
+
+  const handleAuditRemove = async (row) => {
+    setAuditBusyId(String(row.id));
+    setError("");
+    try {
+      await api(`/marketing-list/${row.id}`, {
+        method: "DELETE",
+        toast: { type: "success", message: `Removed ${row.item_name}.` },
+      });
+      await load();
+    } catch (e) {
+      setError(e.message || "Unable to remove item");
+    } finally {
+      setAuditBusyId(null);
+    }
+  };
+
   const selectedPendingRows = useMemo(
     () => pendingFilteredRows.filter((row) => selectedIds.includes(String(row.id))),
     [pendingFilteredRows, selectedIds],
@@ -1533,6 +1726,25 @@ export default function MarketingList({ navigate }) {
             <RotateCcw size={15} />
             {detectingGps ? "Resetting…" : "Reset"}
           </button>
+          <button
+            type="button"
+            className={`secondary marketing-weekly-check-btn${weeklyAudit.alerts.length > 0 ? " has-alerts" : ""}`}
+            onClick={() => {
+              const initEdits = {};
+              for (const alert of weeklyAudit.alerts) {
+                for (const entry of alert.entries) {
+                  initEdits[String(entry.id)] = formatQuantityInputValue(entry.quantity);
+                }
+              }
+              setWeeklyQtyEdits(initEdits);
+              setWeeklyAuditOpen(true);
+            }}
+            title={`Check duplicates & over-orders for ${weeklyAudit.weekStart} to ${weeklyAudit.weekEnd}`}
+          >
+            <AlertTriangle size={15} />
+            Weekly Check
+            {weeklyAudit.alerts.length > 0 ? ` (${weeklyAudit.alerts.length})` : ""}
+          </button>
           {editing && (
             <button type="button" onClick={resetForm}>
               Cancel
@@ -2131,6 +2343,144 @@ export default function MarketingList({ navigate }) {
                 {changingDate ? "Moving items…" : "Change Date"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {weeklyAuditOpen && (
+        <div
+          className="marketing-confirm-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget && !auditBusyId) {
+              setWeeklyAuditOpen(false);
+            }
+          }}
+        >
+          <div
+            className="marketing-confirm-dialog marketing-weekly-audit-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="marketing-weekly-audit-title"
+          >
+            <div className="marketing-weekly-audit-header">
+              <div>
+                <h2 id="marketing-weekly-audit-title">Weekly Duplicate & Over-Order Check</h2>
+                <p className="muted" style={{ margin: "4px 0 0" }}>
+                  Sunday–Saturday: <strong>{displayDate(weeklyAudit.weekStart)}</strong> to{" "}
+                  <strong>{displayDate(weeklyAudit.weekEnd)}</strong>
+                </p>
+              </div>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => setWeeklyAuditOpen(false)}
+                style={{ padding: "6px 10px" }}
+              >
+                Close
+              </button>
+            </div>
+
+            {weeklyAudit.alerts.length === 0 ? (
+              <div className="empty-card" style={{ margin: "14px 0" }}>
+                No duplicate or over-ordered items found for this week.
+              </div>
+            ) : (
+              <div className="marketing-weekly-audit-list">
+                {weeklyAudit.alerts.map((alert) => (
+                  <div className="marketing-weekly-audit-group" key={alert.key}>
+                    <div className="marketing-weekly-audit-group-head">
+                      <strong>{alert.itemName}</strong>
+                      <div className="marketing-weekly-audit-badges">
+                        {alert.isDuplicate && (
+                          <span className="marketing-audit-badge duplicate">
+                            Duplicate ({alert.entries.length}x)
+                          </span>
+                        )}
+                        {alert.isOverOrder && (
+                          <span className="marketing-audit-badge over-order">
+                            Over-Order (+{alert.excessPct}% vs {alert.usualWeeklyQty}{" "}
+                            {alert.unitName}/wk)
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="marketing-weekly-audit-sub">
+                      Week total: <strong>{alert.weekTotalQty} {alert.unitName}</strong>
+                      {alert.usualWeeklyQty > 0
+                        ? ` · Usual weekly avg: ${alert.usualWeeklyQty} ${alert.unitName}`
+                        : ""}
+                    </div>
+                    <div className="marketing-weekly-audit-entries">
+                      {alert.entries.map((entry) => {
+                        const isPending = entry.status === "pending";
+                        const busy = auditBusyId === String(entry.id);
+                        return (
+                          <div className="marketing-weekly-audit-row" key={entry.id}>
+                            <div className="marketing-weekly-audit-meta">
+                              <span>{displayDate(entry.purchase_date)}</span>
+                              <span className="muted">
+                                {entry.location_name || "No location"} ·{" "}
+                                {isPending ? "Pending" : "Purchased"}
+                              </span>
+                            </div>
+                            {isPending ? (
+                              <div className="marketing-weekly-audit-controls">
+                                <input
+                                  type="number"
+                                  min="0"
+                                  step="any"
+                                  value={
+                                    weeklyQtyEdits[String(entry.id)] ??
+                                    formatQuantityInputValue(entry.quantity)
+                                  }
+                                  onChange={(e) =>
+                                    setWeeklyQtyEdits((prev) => ({
+                                      ...prev,
+                                      [String(entry.id)]: e.target.value,
+                                    }))
+                                  }
+                                  disabled={busy}
+                                  aria-label={`Quantity for ${entry.item_name}`}
+                                />
+                                <span className="muted" style={{ fontSize: "12px" }}>
+                                  {entry.unit_name || ""}
+                                </span>
+                                <button
+                                  type="button"
+                                  className="secondary"
+                                  disabled={busy}
+                                  onClick={() => void handleAuditQtySave(entry)}
+                                  title="Save quantity"
+                                  style={{ padding: "6px 9px" }}
+                                >
+                                  <Check size={14} /> Save
+                                </button>
+                                <button
+                                  type="button"
+                                  className="marketing-item-remove-icon"
+                                  disabled={busy}
+                                  onClick={() => void handleAuditRemove(entry)}
+                                  title="Remove item"
+                                  aria-label={`Remove ${entry.item_name}`}
+                                >
+                                  <Trash2 size={15} />
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="marketing-weekly-audit-controls">
+                                <span>
+                                  {entry.purchased_quantity || entry.quantity}{" "}
+                                  {entry.purchased_unit_name || entry.unit_name || ""}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
