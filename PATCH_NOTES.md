@@ -1099,3 +1099,7 @@
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Added 16 diverse Samosa recipes (`static-2010`–`static-2025`), including Aloo Matar Punjabi Samosa, Atta Tawa Samosa, Beetroot & Peanut Samosa, Bread Samosa, Chana Dal Irani Patti Samosa, Cheese & Sweet Corn Samosa, Chicken Keema Samosa, Chinese Noodles Samosa, Egg Bhurji Samosa, Fulkopi Shingara, Matar Paneer Samosa, Kolkata Hing Aloo Samosa, Mawa & Dry Fruit Sweet Samosa, Moong Dal Dry Mini Samosa, Onion & Poha Patti Samosa, and Soya Keema Masala Samosa.
   - All recipes use standardized ingredient names and manual stovetop/tawa/kadhai preparation without blenders, mixers, grinders, or ovens, bringing the alphabetically sorted catalogue to 1758 total recipes.
+
+## 138. Corrected 13 Stuffed Paratha Recipes (Ingredients & Stuffing Steps)
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Replaced generic 4-ingredient bread placeholders on all 13 stuffed paratha recipes (`Aloo Paratha`, `Masala Aloo Paratha`, `Stuffed Aloo Paratha`, `Tawa Aloo Paratha`, `Whole Wheat Aloo Paratha`, `Gobi Paratha`, `Masala Gobi Paratha`, `Stuffed Gobi Paratha`, `Tawa Gobi Paratha`, `Whole Wheat Gobi Paratha`, `Stuffed Methi Paratha`, `Stuffed Lachha Paratha`, and `Stuffed Paratha`) with authentic stuffing ingredients and explicit dough-stuffing, pleating/sealing, rolling, and tawa-roasting steps.

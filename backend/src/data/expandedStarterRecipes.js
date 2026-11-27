@@ -4059,46 +4059,86 @@ const definitions = [
     "name": "Aloo Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, 1 tsp oil, and water into a soft dough; rest 15 minutes. Boil, peel, and mash potatoes smoothly with finely chopped onion, green chilli, grated ginger, coriander leaves, cumin powder, amchur, red chilli powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Divide dough into balls, flatten each into a small disc, place a generous ball of potato stuffing in the center, gather and pinch the pleats to seal tightly, dust with flour, and roll evenly into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa until bubbles appear, flip, brush with ghee or oil on both sides, and press edges gently until crisp and golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -54367,46 +54407,86 @@ const definitions = [
     "name": "Gobi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Cauliflower",
+        "quantity": "2",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, and water into a soft dough; rest 15 minutes. Finely grate raw cauliflower florets using a box grater, squeeze out excess water if damp, and toss with grated ginger, chopped green chilli, coriander leaves, ajwain, cumin powder, red chilli powder, amchur, and salt (add salt just before stuffing)."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Roll a dough ball into a small circle, place spiced cauliflower stuffing in the center, pleat and seal the pouch securely, and roll gently without tearing."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Roast on a hot tawa, flipping and applying ghee or oil on both sides until crisp and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -78605,46 +78685,96 @@ const definitions = [
     "name": "Masala Aloo Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, 1 tsp oil, and water into a soft dough; rest 15 minutes. Boil, peel, and mash potatoes smoothly with finely chopped onion, green chilli, grated ginger, coriander leaves, cumin powder, amchur, red chilli powder, garam masala, and ajwain, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Divide dough into balls, flatten each into a small disc, place a generous ball of potato stuffing in the center, gather and pinch the pleats to seal tightly, dust with flour, and roll evenly into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa until bubbles appear, flip, brush with ghee or oil on both sides, and press edges gently until crisp and golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -79206,46 +79336,91 @@ const definitions = [
     "name": "Masala Gobi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Cauliflower",
+        "quantity": "2",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, and water into a soft dough; rest 15 minutes. Finely grate raw cauliflower florets using a box grater, squeeze out excess water if damp, and toss with grated ginger, chopped green chilli, coriander leaves, ajwain, cumin powder, red chilli powder, amchur, garam masala, and salt (add salt just before stuffing)."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Roll a dough ball into a small circle, place spiced cauliflower stuffing in the center, pleat and seal the pouch securely, and roll gently without tearing."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Roast on a hot tawa, flipping and applying ghee or oil on both sides until crisp and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124183,46 +124358,86 @@ const definitions = [
     "name": "Stuffed Aloo Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, 1 tsp oil, and water into a soft dough; rest 15 minutes. Boil, peel, and mash potatoes smoothly with finely chopped onion, green chilli, grated ginger, coriander leaves, cumin powder, amchur, red chilli powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Divide dough into balls, flatten each into a small disc, place a generous ball of potato stuffing in the center, gather and pinch the pleats to seal tightly, dust with flour, and roll evenly into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa until bubbles appear, flip, brush with ghee or oil on both sides, and press edges gently until crisp and golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124281,46 +124496,86 @@ const definitions = [
     "name": "Stuffed Gobi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Cauliflower",
+        "quantity": "2",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, and water into a soft dough; rest 15 minutes. Finely grate raw cauliflower florets using a box grater, squeeze out excess water if damp, and toss with grated ginger, chopped green chilli, coriander leaves, ajwain, cumin powder, red chilli powder, amchur, and salt (add salt just before stuffing)."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Roll a dough ball into a small circle, place spiced cauliflower stuffing in the center, pleat and seal the pouch securely, and roll gently without tearing."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Roast on a hot tawa, flipping and applying ghee or oil on both sides until crisp and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124379,46 +124634,76 @@ const definitions = [
     "name": "Stuffed Lachha Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
+        "quantity": "1.5",
+        "unit": "cup"
+      },
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Chilli",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "pcs"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "As needed",
+        "unit": ""
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
-        "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead atta, maida, salt, 1 tbsp ghee, and water into a pliable dough. Mix finely crumbled paneer with chopped coriander, green chilli, cumin powder, chaat masala, and salt for the layered stuffing."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Pleat",
+        "minutes": 10,
+        "text": "Roll dough thin, brush with ghee, scatter paneer stuffing evenly, fold accordion-style into pleated strips, coil into a spiral, and roll gently into a stuffed lachha paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa with ghee until crisp, flaky, and golden on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124477,46 +124762,81 @@ const definitions = [
     "name": "Stuffed Methi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Methi (Fenugreek) Leaves",
+        "quantity": "1.5",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Seeds (Jeera)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead atta, salt, and water into a soft dough. Saute cumin seeds, ginger, green chilli, and finely chopped methi leaves in 1 tsp oil until wilted; stir in dry-roasted besan, mashed boiled potato, turmeric, and salt to form a dry stuffing."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Place a portion of methi-potato stuffing in the center of a rolled dough disc, seal the pleats tightly, and roll out gently into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa with ghee or oil, turning until golden brown spots appear on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124575,46 +124895,81 @@ const definitions = [
     "name": "Stuffed Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Paneer",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead atta, salt, and water into a soft dough; rest 15 minutes. Combine mashed boiled potato, crumbled paneer, finely chopped onion, green chilli, coriander leaves, garam masala, amchur, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Place a portion of stuffing inside a flattened dough ball, pinch pleats together to seal completely, dust with flour, and roll into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Roast on a hot tawa with ghee or oil until crisp golden brown on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -126108,46 +126463,86 @@ const definitions = [
     "name": "Tawa Aloo Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, 1 tsp oil, and water into a soft dough; rest 15 minutes. Boil, peel, and mash potatoes smoothly with finely chopped onion, green chilli, grated ginger, coriander leaves, cumin powder, amchur, red chilli powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Divide dough into balls, flatten each into a small disc, place a generous ball of potato stuffing in the center, gather and pinch the pleats to seal tightly, dust with flour, and roll evenly into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa until bubbles appear, flip, brush with ghee or oil on both sides, and press edges gently until crisp and golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -126295,46 +126690,86 @@ const definitions = [
     "name": "Tawa Gobi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Cauliflower",
+        "quantity": "2",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, and water into a soft dough; rest 15 minutes. Finely grate raw cauliflower florets using a box grater, squeeze out excess water if damp, and toss with grated ginger, chopped green chilli, coriander leaves, ajwain, cumin powder, red chilli powder, amchur, and salt (add salt just before stuffing)."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Roll a dough ball into a small circle, place spiced cauliflower stuffing in the center, pleat and seal the pouch securely, and roll gently without tearing."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Roast on a hot tawa, flipping and applying ghee or oil on both sides until crisp and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -132349,46 +132784,86 @@ const definitions = [
     "name": "Whole Wheat Aloo Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Potato",
+        "quantity": "4",
+        "unit": "pcs"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, 1 tsp oil, and water into a soft dough; rest 15 minutes. Boil, peel, and mash potatoes smoothly with finely chopped onion, green chilli, grated ginger, coriander leaves, cumin powder, amchur, red chilli powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Divide dough into balls, flatten each into a small disc, place a generous ball of potato stuffing in the center, gather and pinch the pleats to seal tightly, dust with flour, and roll evenly into a stuffed paratha."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Cook on a hot tawa until bubbles appear, flip, brush with ghee or oil on both sides, and press edges gently until crisp and golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -132447,46 +132922,86 @@ const definitions = [
     "name": "Whole Wheat Gobi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Cauliflower",
+        "quantity": "2",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead whole wheat flour, salt, and water into a soft dough; rest 15 minutes. Finely grate raw cauliflower florets using a box grater, squeeze out excess water if damp, and toss with grated ginger, chopped green chilli, coriander leaves, ajwain, cumin powder, red chilli powder, amchur, and salt (add salt just before stuffing)."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Roll a dough ball into a small circle, place spiced cauliflower stuffing in the center, pleat and seal the pouch securely, and roll gently without tearing."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 10,
+        "text": "Roast on a hot tawa, flipping and applying ghee or oil on both sides until crisp and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
