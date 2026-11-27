@@ -1068,3 +1068,7 @@
   - Added `GET /api/price-trend/items` and `GET /api/order-frequency/items` returning only items in the selected category (and location, if selected) that have at least one qualifying `purchased` record in `marketing_list_items`.
 - **Frontend (`PriceTrend.jsx`, `OrderFrequency.jsx`)**:
   - Updated the Item dropdown loader to query the new filtered endpoints whenever `categoryId` or `locationId` changes, omitting items with no data.
+
+## 132. Marketing List & Add Expense — Sort Items by Most Ordered First
+- **`backend/scripts/sql/masterDataSql.js` (`metaItems`)**: Updated `GET /api/meta/items/:categoryId` to sort items by `marketing_list_items` order count descending, then `expenses` count descending, then alphabetically by name.
+- **`frontend/src/pages/MarketingList.jsx`**: Sorted the Known item dropdown by `itemOrderMeta(item).count` descending (most ordered first, then less ordered, then alphabetical).

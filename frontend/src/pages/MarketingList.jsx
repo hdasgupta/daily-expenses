@@ -1456,8 +1456,17 @@ export default function MarketingList({ navigate }) {
           Known item
           <select value={form.itemId} onChange={(event) => change("itemId", event.target.value)}>
             <option value="">Custom / type item name</option>
-            {items.map((item) => {
-              const meta = itemOrderMeta(item);
+            {[...items]
+              .sort((a, b) => {
+                const countDiff = itemOrderMeta(b).count - itemOrderMeta(a).count;
+                if (countDiff !== 0) return countDiff;
+                const serverDiff =
+                  Number(b.order_count || 0) - Number(a.order_count || 0);
+                if (serverDiff !== 0) return serverDiff;
+                return String(a.name || "").localeCompare(String(b.name || ""));
+              })
+              .map((item) => {
+                const meta = itemOrderMeta(item);
               return (
                 <option key={item.id} value={item.id}>
                   {item.name} ({meta.count})

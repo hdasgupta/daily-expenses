@@ -19,6 +19,26 @@ export const masterDataSql = {
   addUnit: "INSERT INTO public.units(name) VALUES($1) RETURNING id,name",
   updateUnit: "UPDATE public.units SET name=$1,updated_at=now() WHERE id=$2 RETURNING id,name",
   deleteUnit: "DELETE FROM public.units WHERE id=$1",
-  metaItems: "SELECT id,name FROM public.items WHERE category_id=$1 ORDER BY name",
+  metaItems: `
+    SELECT i.id,
+           i.name,
+           COALESCE(m.order_count, 0)::int AS order_count,
+           COALESCE(e.expense_count, 0)::int AS expense_count
+      FROM public.items i
+      LEFT JOIN (
+        SELECT item_id, COUNT(*)::int AS order_count
+          FROM public.marketing_list_items
+         WHERE status <> 'removed' AND item_id IS NOT NULL
+         GROUP BY item_id
+      ) m ON m.item_id = i.id
+      LEFT JOIN (
+        SELECT item_id, COUNT(*)::int AS expense_count
+          FROM public.expenses
+         WHERE item_id IS NOT NULL
+         GROUP BY item_id
+      ) e ON e.item_id = i.id
+     WHERE i.category_id = $1
+     ORDER BY COALESCE(m.order_count, 0) DESC, COALESCE(e.expense_count, 0) DESC, LOWER(i.name) ASC, i.id ASC
+  `,
   metaUnits: "SELECT id,name FROM public.units ORDER BY name",
 };
