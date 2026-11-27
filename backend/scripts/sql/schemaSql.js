@@ -272,9 +272,13 @@ CREATE TABLE IF NOT EXISTS public.marketing_weekly_alert_acceptances (
   week_start DATE NOT NULL,
   location_key VARCHAR(50) NOT NULL DEFAULT '',
   item_key VARCHAR(250) NOT NULL,
+  accepted_qty NUMERIC(14,4) NOT NULL DEFAULT 0,
+  accepted_count INTEGER NOT NULL DEFAULT 0,
   accepted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   PRIMARY KEY (user_id, week_start, location_key, item_key)
 );
+ALTER TABLE public.marketing_weekly_alert_acceptances ADD COLUMN IF NOT EXISTS accepted_qty NUMERIC(14,4) NOT NULL DEFAULT 0;
+ALTER TABLE public.marketing_weekly_alert_acceptances ADD COLUMN IF NOT EXISTS accepted_count INTEGER NOT NULL DEFAULT 0;
 CREATE TABLE IF NOT EXISTS public.marketing_list_items (
   id BIGSERIAL PRIMARY KEY,
   category_id BIGINT REFERENCES public.categories(id) ON DELETE SET NULL,

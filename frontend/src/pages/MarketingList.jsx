@@ -512,7 +512,7 @@ export default function MarketingList({ navigate }) {
   const [weeklyAuditOpen, setWeeklyAuditOpen] = useState(false);
   const [weeklyQtyEdits, setWeeklyQtyEdits] = useState({});
   const [auditBusyId, setAuditBusyId] = useState(null);
-  const [acceptedWeeklyKeys, setAcceptedWeeklyKeys] = useState([]);
+  const [acceptedWeeklyMap, setAcceptedWeeklyMap] = useState({});
   const [targetDate, setTargetDate] = useState("");
   const [changingDate, setChangingDate] = useState(false);
   const userChoseLocationRef = useRef(false);
@@ -951,7 +951,9 @@ export default function MarketingList({ navigate }) {
     api(`/marketing-list/weekly-acceptances?${qs.toString()}`, { silent: true })
       .then((res) => {
         if (!cancelled) {
-          setAcceptedWeeklyKeys(Array.isArray(res?.acceptedKeys) ? res.acceptedKeys : []);
+          const map =
+            res?.acceptances && typeof res.acceptances === "object" ? res.acceptances : {};
+          setAcceptedWeeklyMap(map);
         }
       })
       .catch(() => {});
@@ -961,12 +963,18 @@ export default function MarketingList({ navigate }) {
   }, [rawWeeklyAudit.weekStart, form.locationId]);
 
   const weeklyAudit = useMemo(() => {
-    const acceptedSet = new Set(acceptedWeeklyKeys);
     return {
       ...rawWeeklyAudit,
-      alerts: rawWeeklyAudit.alerts.filter((alert) => !acceptedSet.has(alert.key)),
+      alerts: rawWeeklyAudit.alerts.filter((alert) => {
+        const acc = acceptedWeeklyMap[alert.key];
+        if (!acc) return true;
+        // Hide warning as long as current quantity & entry count do not exceed what was accepted
+        const qtyUnchanged = Number(alert.weekTotalQty || 0) <= Number(acc.acceptedQty || 0) + 0.0001;
+        const countUnchanged = alert.entries.length <= Number(acc.acceptedCount || 0);
+        return !(qtyUnchanged && countUnchanged);
+      }),
     };
-  }, [rawWeeklyAudit, acceptedWeeklyKeys]);
+  }, [rawWeeklyAudit, acceptedWeeklyMap]);
 
   const handleAcceptWeeklyAlert = async (alert) => {
     if (!alert?.key || !weeklyAudit.weekStart) return;
@@ -979,10 +987,18 @@ export default function MarketingList({ navigate }) {
           weekStart: weeklyAudit.weekStart,
           locationId: String(form.locationId || ""),
           itemKey: alert.key,
+          acceptedQty: alert.weekTotalQty,
+          acceptedCount: alert.entries.length,
         }),
-        toast: { type: "success", message: `Accepted ${alert.itemName} for this week.` },
+        toast: { type: "success", message: `Accepted ${alert.itemName} (${alert.weekTotalQty} ${alert.unitName}).` },
       });
-      setAcceptedWeeklyKeys((prev) => (prev.includes(alert.key) ? prev : [...prev, alert.key]));
+      setAcceptedWeeklyMap((prev) => ({
+        ...prev,
+        [alert.key]: {
+          acceptedQty: alert.weekTotalQty,
+          acceptedCount: alert.entries.length,
+        },
+      }));
     } catch (e) {
       setError(e.message || "Unable to accept weekly alert");
     } finally {

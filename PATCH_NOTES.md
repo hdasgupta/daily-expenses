@@ -1090,3 +1090,7 @@
   - Added `public.marketing_weekly_alert_acceptances` and `GET/POST /api/marketing-list/weekly-acceptances` to persist accepted duplicate/over-order alerts per user, week (`week_start`), location, and item.
 - **Frontend (`MarketingList.jsx`, `marketing.css`)**:
   - Added an **Accept** button on each flagged item in the Weekly Check popup; once accepted, that item is permanently hidden from the duplicate/over-order list and badge count for that week.
+
+## 136. Marketing List — Track Accepted Quantity for Weekly Duplicate & Over-Order Alerts
+- **`backend/scripts/sql/schemaSql.js`, `marketingController.js`, `frontend/src/pages/MarketingList.jsx`**:
+  - Added `accepted_qty` and `accepted_count` to `public.marketing_weekly_alert_acceptances` so accepted duplicate/over-order warnings stay suppressed for the accepted quantity and entry count, while re-alerting if additional quantity or new orders are added later in the week.

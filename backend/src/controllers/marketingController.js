@@ -996,9 +996,13 @@ async function ensureWeeklyAcceptancesTable() {
         week_start DATE NOT NULL,
         location_key VARCHAR(50) NOT NULL DEFAULT '',
         item_key VARCHAR(250) NOT NULL,
+        accepted_qty NUMERIC(14,4) NOT NULL DEFAULT 0,
+        accepted_count INTEGER NOT NULL DEFAULT 0,
         accepted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
         PRIMARY KEY (user_id, week_start, location_key, item_key)
-      )`,
+      );
+      ALTER TABLE public.marketing_weekly_alert_acceptances ADD COLUMN IF NOT EXISTS accepted_qty NUMERIC(14,4) NOT NULL DEFAULT 0;
+      ALTER TABLE public.marketing_weekly_alert_acceptances ADD COLUMN IF NOT EXISTS accepted_count INTEGER NOT NULL DEFAULT 0;`,
     ).catch((err) => {
       weeklyAcceptancesTableReadyPromise = null;
       console.error("Failed to ensure marketing_weekly_alert_acceptances", err);
@@ -1014,19 +1018,28 @@ export async function listWeeklyAlertAcceptances(req, res) {
     ? String(req.query.locationId).trim()
     : "";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(weekStart)) {
-    return res.json({ acceptedKeys: [] });
+    return res.json({ acceptedKeys: [], acceptances: {} });
   }
   const result = await q(
-    `SELECT item_key
+    `SELECT item_key, accepted_qty, accepted_count
        FROM public.marketing_weekly_alert_acceptances
       WHERE user_id = $1
         AND week_start = $2::date
         AND location_key = $3`,
     [req.user.id, weekStart, locationKey],
   );
-  return res.json({
-    acceptedKeys: (result.rows || []).map((r) => String(r.item_key || "")).filter(Boolean),
-  });
+  const acceptances = {};
+  const acceptedKeys = [];
+  for (const row of result.rows || []) {
+    const key = String(row.item_key || "");
+    if (!key) continue;
+    acceptedKeys.push(key);
+    acceptances[key] = {
+      acceptedQty: Number(row.accepted_qty || 0),
+      acceptedCount: Number(row.accepted_count || 0),
+    };
+  }
+  return res.json({ acceptedKeys, acceptances });
 }
 
 export async function acceptWeeklyAlert(req, res) {
@@ -1036,15 +1049,17 @@ export async function acceptWeeklyAlert(req, res) {
     ? String(req.body.locationId).trim()
     : "";
   const itemKey = String(req.body?.itemKey || "").trim().slice(0, 250);
+  const acceptedQty = Math.max(0, Number(req.body?.acceptedQty || 0));
+  const acceptedCount = Math.max(0, Number.parseInt(req.body?.acceptedCount, 10) || 0);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(weekStart) || !itemKey) {
     return res.status(400).json({ error: "weekStart and itemKey are required" });
   }
   await q(
-    `INSERT INTO public.marketing_weekly_alert_acceptances (user_id, week_start, location_key, item_key, accepted_at)
-     VALUES ($1, $2::date, $3, $4, now())
+    `INSERT INTO public.marketing_weekly_alert_acceptances (user_id, week_start, location_key, item_key, accepted_qty, accepted_count, accepted_at)
+     VALUES ($1, $2::date, $3, $4, $5, $6, now())
      ON CONFLICT (user_id, week_start, location_key, item_key)
-     DO UPDATE SET accepted_at = now()`,
-    [req.user.id, weekStart, locationKey, itemKey],
+     DO UPDATE SET accepted_qty = EXCLUDED.accepted_qty, accepted_count = EXCLUDED.accepted_count, accepted_at = now()`,
+    [req.user.id, weekStart, locationKey, itemKey, acceptedQty, acceptedCount],
   );
-  return res.json({ ok: true, itemKey });
+  return res.json({ ok: true, itemKey, acceptedQty, acceptedCount });
 }
