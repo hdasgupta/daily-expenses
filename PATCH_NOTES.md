@@ -1103,3 +1103,15 @@
 ## 138. Corrected 13 Stuffed Paratha Recipes (Ingredients & Stuffing Steps)
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Replaced generic 4-ingredient bread placeholders on all 13 stuffed paratha recipes (`Aloo Paratha`, `Masala Aloo Paratha`, `Stuffed Aloo Paratha`, `Tawa Aloo Paratha`, `Whole Wheat Aloo Paratha`, `Gobi Paratha`, `Masala Gobi Paratha`, `Stuffed Gobi Paratha`, `Tawa Gobi Paratha`, `Whole Wheat Gobi Paratha`, `Stuffed Methi Paratha`, `Stuffed Lachha Paratha`, and `Stuffed Paratha`) with authentic stuffing ingredients and explicit dough-stuffing, pleating/sealing, rolling, and tawa-roasting steps.
+
+## 139. Differentiated All 46 Bread & Stuffed Bread Recipes (Naan, Kulcha, Paratha, Luchi, Poori, Roti)
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Replaced all 46 remaining generic 4-ingredient bread placeholders with authentic, distinct recipes for each bread type and modifier:
+    - **Naan** (leavened yogurt-milk-baking powder/soda maida dough, garlic/kalo jeere, tawa + flame blistered; Stuffed Naan with paneer-potato filling).
+    - **Kulcha** (soft curd-leavened dough, Amritsari potato-onion-paneer-anardana/amchur stuffing for Stuffed Kulcha, steam-puffed tawa cook).
+    - **Lachha Paratha** (ghee-brushed accordion-pleated spiral layers; Masala Lachha with spice layers).
+    - **Methi Paratha** (fresh fenugreek leaves, besan, curd, ajwain, ginger-chilli).
+    - **Paratha** (triangular ghee-folded layers; Masala Paratha with spiced dough).
+    - **Luchi** (Bengali moyan maida puffed bread; Stuffed Luchi with spiced green pea filling; Masala Luchi with kalo jeere).
+    - **Poori** (stiff atta + sooji dough; Stuffed Poori with spiced urad dal filling; Masala Poori with ajwain & kasuri methi).
+    - **Phulka / Chapati / Roti** (distinct oil-free direct-flame phulka vs. dry-tawa chapati/roti, plus real paneer-potato-onion stuffing for Stuffed Chapati/Phulka/Roti).

@@ -23267,46 +23267,46 @@ const definitions = [
     "name": "Chapati",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, salt, and water into a soft, supple dough for chapati; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into equal balls and roll into thin, even rounds dusted with dry atta."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 12,
+        "text": "Cook on a hot dry iron tawa, flipping twice and pressing gently with a clean folded cotton cloth until evenly puffed with golden-brown specks; brush with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -70478,46 +70478,71 @@ const definitions = [
     "name": "Kulcha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.33",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Baking Powder",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Kulcha Dough",
+        "minutes": 20,
+        "text": "Combine all-purpose flour (maida), baking powder, baking soda, sugar, salt, curd, and warm water into a soft, sticky-free dough; rest covered 45 minutes."
       },
       {
         "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "minutes": 5,
+        "text": "Divide into balls, sprinkle ajwain and chopped coriander leaves on top, and roll into thick round or oval discs."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 10,
+        "text": "Cook on a medium-hot tawa with a splash of water on the pan edge and cover briefly to steam-puff, then finish with butter on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -72530,46 +72555,51 @@ const definitions = [
     "name": "Lachha Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Knead all-purpose flour (maida), ajwain, salt, 1 tbsp ghee, and water into a smooth dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Pleat & Coil",
+        "minutes": 10,
+        "text": "Roll into a thin large roti, brush generously with ghee, sprinkle dry flour, fold back and forth in narrow accordion pleats, and roll into a tight pinwheel coil."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Flatten and roll gently, then roast on a medium-hot tawa with ghee until golden and crisp, crushing lightly between palms to fluff the flaky layers."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -79050,46 +79080,61 @@ const definitions = [
     "name": "Masala Chapati",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Spiced Dough",
+        "minutes": 15,
+        "text": "Mix atta, ajwain, turmeric, red chilli powder, cumin powder, salt, and water into a soft, pliable dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Roll & Roast",
+        "minutes": 15,
+        "text": "Roll into thin round chapatis, cook on a hot dry tawa (and puff over direct flame if making phulka), and finish with a light brush of ghee."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -79755,46 +79800,86 @@ const definitions = [
     "name": "Masala Kulcha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.33",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Baking Powder",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri Methi",
         "quantity": "1",
         "unit": "tbsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Kulcha Dough",
+        "minutes": 15,
+        "text": "Knead all-purpose flour (maida), baking powder, baking soda, sugar, salt, curd, and water into a soft dough; rest 45 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Spice & Roll",
+        "minutes": 5,
+        "text": "Roll into medium discs and press ajwain, crushed kasuri methi, chaat masala, red chilli powder, and coriander leaves onto the surface."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 15,
+        "text": "Cook on a hot tawa covered for 1 minute to puff, then flip and roast with butter until golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -79957,46 +80042,71 @@ const definitions = [
     "name": "Masala Lachha Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri Methi",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Knead all-purpose flour (maida), ajwain, salt, 1 tbsp ghee, and water into a smooth, pliable dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Masala Layering",
+        "minutes": 10,
+        "text": "Roll dough thin, brush generously with ghee, dust with red chilli powder, cumin powder, chaat masala, kasuri methi, and dry flour, then pleat accordion-style and coil into a spiral."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Roll coiled spiral gently and roast on a hot tawa with ghee until crisp, flaky masala layers separate."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80065,46 +80175,66 @@ const definitions = [
     "name": "Masala Luchi",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Ghee",
+        "quantity": "2",
+        "unit": "tbsp"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Sugar",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Spiced Dough",
+        "minutes": 15,
+        "text": "Mix all-purpose flour (maida), ghee, kalo jeere, ajwain, turmeric, sugar, and salt; knead into a firm, smooth dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into small marble-sized balls, grease lightly with oil, and roll into thin 4-inch circles."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Fry",
+        "minutes": 10,
+        "text": "Deep-fry one by one in hot oil, gently pressing with a slotted spoon until puffed and crisp."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80114,46 +80244,86 @@ const definitions = [
     "name": "Masala Methi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Methi (Fenugreek) Leaves",
+        "quantity": "1.5",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Methi Dough",
+        "minutes": 15,
+        "text": "Wash and finely chop fresh methi leaves. Mix whole wheat flour, besan, ajwain, turmeric, grated ginger, chopped green chilli, salt, curd, and methi leaves; knead with minimal water into a soft dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into balls and roll into medium-thin round parathas dusted with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, flipping and brushing with oil or ghee until crisp golden spots appear on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80247,46 +80417,91 @@ const definitions = [
     "name": "Masala Naan",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.25",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4",
+        "unit": "cloves"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Leavened Dough",
+        "minutes": 15,
+        "text": "Mix all-purpose flour (maida), baking powder, baking soda, sugar, and salt. Knead with curd and warm milk into a soft dough; rest covered 1 hour."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Masala Topping",
+        "minutes": 5,
+        "text": "Roll oval naans and press minced garlic, nigella seeds, chopped coriander, red chilli powder, and chaat masala onto the top surface."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Flame Bake",
+        "minutes": 15,
+        "text": "Wet the underside with water, place onto a hot iron tawa until puffed, invert the tawa over open flame to roast golden-brown blisters, and brush with melted butter."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80458,46 +80673,71 @@ const definitions = [
     "name": "Masala Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Spiced Dough",
+        "minutes": 15,
+        "text": "Mix atta, ajwain, red chilli powder, cumin powder, turmeric, chopped coriander, salt, and 1 tbsp ghee; knead with water into a soft dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Fold Layers",
+        "minutes": 5,
+        "text": "Roll a dough ball, brush with ghee, fold in half, brush again, and fold into a layered triangle before rolling out."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Roast on a hot tawa with ghee on both sides until flaky and golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80566,46 +80806,61 @@ const definitions = [
     "name": "Masala Phulka",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Spiced Dough",
+        "minutes": 15,
+        "text": "Mix atta, ajwain, turmeric, red chilli powder, cumin powder, salt, and water into a soft, pliable dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Roll & Roast",
+        "minutes": 15,
+        "text": "Roll into thin round phulkas, cook on a hot dry tawa (and puff over direct flame if making phulka), and finish with a light brush of ghee."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80615,46 +80870,61 @@ const definitions = [
     "name": "Masala Poori",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Sooji (Semolina)",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri Methi",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Spiced Stiff Dough",
+        "minutes": 15,
+        "text": "Mix atta, sooji, ajwain, turmeric, red chilli powder, crushed kasuri methi, salt, and 1 tbsp oil; knead into a stiff dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Roll & Fry",
+        "minutes": 15,
+        "text": "Roll small oil-greased balls into 4-inch circles and deep-fry in hot oil until puffed and golden crisp."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -80738,46 +81008,61 @@ const definitions = [
     "name": "Masala Roti",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Spiced Dough",
+        "minutes": 15,
+        "text": "Mix atta, ajwain, turmeric, red chilli powder, cumin powder, salt, and water into a soft, pliable dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
-      },
-      {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Roll & Roast",
+        "minutes": 15,
+        "text": "Roll into thin round rotis, cook on a hot dry tawa (and puff over direct flame if making phulka), and finish with a light brush of ghee."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -83127,46 +83412,76 @@ const definitions = [
     "name": "Methi Paratha (Homestyle)",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Methi (Fenugreek) Leaves",
+        "quantity": "1.5",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Methi Dough",
+        "minutes": 15,
+        "text": "Wash and finely chop fresh methi leaves. Mix whole wheat flour, besan, ajwain, turmeric, grated ginger, chopped green chilli, salt, curd, and methi leaves; knead with minimal water into a soft dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into balls and roll into medium-thin round parathas dusted with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, flipping and brushing with oil or ghee until crisp golden spots appear on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -88993,46 +89308,81 @@ const definitions = [
     "name": "Naan (Homestyle)",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.25",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2",
+        "unit": "cloves"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Leavened Dough",
+        "minutes": 20,
+        "text": "Mix all-purpose flour (maida), baking powder, baking soda, sugar, and salt. Knead with curd, milk, and 1 tbsp butter into a smooth, soft dough; rest covered 1 hour."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll & Top",
+        "minutes": 5,
+        "text": "Roll portions into teardrop shapes, pressing nigella seeds, minced garlic, and coriander leaves lightly onto the top."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Flame Bake",
+        "minutes": 10,
+        "text": "Brush the underside with water, stick onto a hot iron tawa until bubbles form, invert tawa over direct flame for smoky charred spots, and finish with butter."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -100569,46 +100919,46 @@ const definitions = [
     "name": "Paratha (Homestyle)",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Mix whole wheat flour, salt, and 1 tsp ghee; add water gradually and knead into a smooth, soft dough. Rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Triangular Fold",
+        "minutes": 5,
+        "text": "Roll each ball into a small circle, brush with ghee, fold in half, brush again, fold into a triangle, and roll evenly."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, brushing with ghee after flipping, pressing edges lightly until crisp layered golden spots form."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -103850,46 +104200,46 @@ const definitions = [
     "name": "Phulka (Homestyle)",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Oil-Free Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, a pinch of salt, and lukewarm water into a very soft, smooth dough; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll Thin",
+        "minutes": 5,
+        "text": "Roll small balls into thin, even circles dusted lightly with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Direct Flame Puff",
+        "minutes": 10,
+        "text": "Cook on a hot dry tawa for 15 seconds until tiny bubbles appear, flip for 20 seconds, then transfer directly onto open gas flame with tongs so the phulka puffs into a sphere; brush lightly with ghee."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -106034,46 +106384,46 @@ const definitions = [
     "name": "Poori (Homestyle)",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Sooji (Semolina)",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Stiff Dough",
+        "minutes": 15,
+        "text": "Mix whole wheat flour, 1 tbsp sooji (for lasting crispness), salt, and 1 tbsp oil; knead with minimal water into a stiff dough and rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into small balls, coat lightly with oil, and roll into even 4-inch discs."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Deep Fry",
+        "minutes": 10,
+        "text": "Deep-fry in hot oil, nudging gently with a slotted spoon until puffed and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -117359,46 +117709,46 @@ const definitions = [
     "name": "Roti (Homestyle)",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, salt, and water into a soft, supple dough for roti; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into equal balls and roll into thin, even rounds dusted with dry atta."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 12,
+        "text": "Cook on a hot dry iron tawa, flipping twice and pressing gently with a clean folded cotton cloth until evenly puffed with golden-brown specks; brush with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124447,46 +124797,76 @@ const definitions = [
     "name": "Stuffed Chapati",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "75",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead atta, salt, and water into a soft dough; rest 15 minutes. Mix mashed boiled potato, crumbled paneer, finely chopped onion, green chilli, coriander leaves, cumin powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Stuff filling into flattened dough balls, pinch pleats to seal tightly, dust with atta, and roll gently into thin stuffed chapatis."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 10,
+        "text": "Cook on a dry hot tawa, flipping once light brown spots appear, pressing gently with a folded cloth until cooked through; brush lightly with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124585,46 +124965,101 @@ const definitions = [
     "name": "Stuffed Kulcha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.33",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Baking Powder",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "75",
+        "unit": "g"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Seeds",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.75",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Kulcha Dough",
+        "minutes": 15,
+        "text": "Knead all-purpose flour (maida), baking powder, baking soda, sugar, salt, curd, and 1 tbsp melted butter into a very soft, pillowy dough; rest 45 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Amritsari Stuffing",
+        "minutes": 10,
+        "text": "Mash boiled potatoes with finely chopped onion, grated paneer, green chilli, crushed coriander seeds, amchur, and coriander leaves. Stuff inside dough balls, seal pleats, sprinkle ajwain and coriander, and roll gently."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Crisp",
+        "minutes": 15,
+        "text": "Cook on a hot tawa (or covered skillet) with butter on both sides until puffed, crisp outside, and soft inside."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124713,46 +125148,76 @@ const definitions = [
     "name": "Stuffed Luchi",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Ghee",
+        "quantity": "2",
+        "unit": "tbsp"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Sugar",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Ginger",
         "quantity": "1",
-        "unit": "tbsp"
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Roasted Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Peas Stuffing",
+        "minutes": 25,
+        "text": "Rub ghee, sugar, and salt into all-purpose flour (maida), then knead a smooth dough. Boil green peas and mash coarsely by hand with a masher; saute with hing, grated ginger, green chilli, roasted cumin powder, and salt until dry."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Place a small ball of spiced pea stuffing inside each dough portion, seal pleats tightly, and roll gently into puffed-size discs without tearing."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Deep Fry",
+        "minutes": 10,
+        "text": "Deep-fry in hot oil (or shallow-fry on a hot tawa) pressing gently with a slotted spoon until puffed and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124846,46 +125311,96 @@ const definitions = [
     "name": "Stuffed Naan",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.25",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "100",
+        "unit": "g"
+      },
+      {
+        "name": "Potato",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Leavened Dough",
+        "minutes": 15,
+        "text": "Mix all-purpose flour (maida), baking powder, baking soda, sugar, and salt. Knead with curd, warm milk, and 1 tbsp melted butter into a soft, elastic dough; cover and rest 1 hour to leaven."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuffing & Shaping",
+        "minutes": 10,
+        "text": "Combine grated paneer, boiled mashed potato, chopped green chilli, coriander leaves, garam masala, and salt. Stuff filling inside dough balls, seal pleats, sprinkle nigella seeds and coriander, and roll into thick oval stuffed naans."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Flame Bake",
+        "minutes": 15,
+        "text": "Brush the back of the naan with water, stick it onto a hot iron tawa until bubbles rise, invert the tawa directly over medium flame to blister and char the top, and brush generously with butter."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -124979,46 +125494,76 @@ const definitions = [
     "name": "Stuffed Phulka",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "75",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead atta, salt, and water into a soft dough; rest 15 minutes. Mix mashed boiled potato, crumbled paneer, finely chopped onion, green chilli, coriander leaves, cumin powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Stuff filling into flattened dough balls, pinch pleats to seal tightly, dust with atta, and roll gently into thin stuffed phulkas."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 10,
+        "text": "Cook on a dry hot tawa, flipping once light brown spots appear, pressing gently with a folded cloth until cooked through; brush lightly with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -125028,46 +125573,76 @@ const definitions = [
     "name": "Stuffed Poori",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 20,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Sooji (Semolina)",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Urad Dal",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Fennel Seeds",
         "quantity": "1",
-        "unit": "tbsp"
+        "unit": "tsp"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Amchur (Dry Mango Powder)",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Dal Stuffing",
+        "minutes": 25,
+        "text": "Knead atta, sooji, salt, and 1 tbsp oil into a stiff dough. Soak urad dal 2 hours, boil tender, mash coarsely by hand, and dry-roast with crushed fennel seeds, hing, ginger, red chilli powder, amchur, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Stuff 1 tsp dal filling inside small dough balls, seal tightly, and roll with a drop of oil into 4-inch pooris."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Fry",
+        "minutes": 10,
+        "text": "Deep-fry in hot oil until puffed and crisp golden brown."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -125077,46 +125652,76 @@ const definitions = [
     "name": "Stuffed Roti",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "75",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "1",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough & Stuffing",
+        "minutes": 20,
+        "text": "Knead atta, salt, and water into a soft dough; rest 15 minutes. Mix mashed boiled potato, crumbled paneer, finely chopped onion, green chilli, coriander leaves, cumin powder, and salt."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Stuff & Roll",
+        "minutes": 10,
+        "text": "Stuff filling into flattened dough balls, pinch pleats to seal tightly, dust with atta, and roll gently into thin stuffed rotis."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 10,
+        "text": "Cook on a dry hot tawa, flipping once light brown spots appear, pressing gently with a folded cloth until cooked through; brush lightly with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -126552,46 +127157,41 @@ const definitions = [
     "name": "Tawa Chapati",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, salt, and water into a soft, supple dough for chapati; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into equal balls and roll into thin, even rounds dusted with dry atta."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 12,
+        "text": "Cook on a hot dry iron tawa, flipping twice and pressing gently with a clean folded cotton cloth until evenly puffed with golden-brown specks; brush with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -126779,46 +127379,71 @@ const definitions = [
     "name": "Tawa Kulcha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.33",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Baking Powder",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Kulcha Dough",
+        "minutes": 20,
+        "text": "Combine all-purpose flour (maida), baking powder, baking soda, sugar, salt, curd, and warm water into a soft, sticky-free dough; rest covered 45 minutes."
       },
       {
         "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "minutes": 5,
+        "text": "Divide into balls, sprinkle ajwain and chopped coriander leaves on top, and roll into thick round or oval discs."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 10,
+        "text": "Cook on a medium-hot tawa with a splash of water on the pan edge and cover briefly to steam-puff, then finish with butter on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -126828,46 +127453,51 @@ const definitions = [
     "name": "Tawa Lachha Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Knead all-purpose flour (maida), ajwain, salt, 1 tbsp ghee, and water into a smooth dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Pleat & Coil",
+        "minutes": 10,
+        "text": "Roll into a thin large roti, brush generously with ghee, sprinkle dry flour, fold back and forth in narrow accordion pleats, and roll into a tight pinwheel coil."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Flatten and roll gently, then roast on a medium-hot tawa with ghee until golden and crisp, crushing lightly between palms to fluff the flaky layers."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -126877,46 +127507,51 @@ const definitions = [
     "name": "Tawa Luchi",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Ghee",
+        "quantity": "2",
+        "unit": "tbsp"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Sugar",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Moyan Dough",
+        "minutes": 15,
+        "text": "Rub ghee, sugar, and salt into all-purpose flour (maida) thoroughly (moyan), then knead with water into a smooth, non-sticky dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Roll small oil-greased dough balls into thin, even 4-inch circles without using dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Puff",
+        "minutes": 10,
+        "text": "Cook on a hot oiled tawa pressing with a cloth until puffed."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -127040,46 +127675,76 @@ const definitions = [
     "name": "Tawa Methi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Methi (Fenugreek) Leaves",
+        "quantity": "1.5",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Methi Dough",
+        "minutes": 15,
+        "text": "Wash and finely chop fresh methi leaves. Mix whole wheat flour, besan, ajwain, turmeric, grated ginger, chopped green chilli, salt, curd, and methi leaves; knead with minimal water into a soft dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into balls and roll into medium-thin round parathas dusted with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, flipping and brushing with oil or ghee until crisp golden spots appear on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -127089,46 +127754,81 @@ const definitions = [
     "name": "Tawa Naan",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "All-Purpose Flour (Maida)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.25",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2",
+        "unit": "cloves"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Leavened Dough",
+        "minutes": 20,
+        "text": "Mix all-purpose flour (maida), baking powder, baking soda, sugar, and salt. Knead with curd, milk, and 1 tbsp butter into a smooth, soft dough; rest covered 1 hour."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll & Top",
+        "minutes": 5,
+        "text": "Roll portions into teardrop shapes, pressing nigella seeds, minced garlic, and coriander leaves lightly onto the top."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Flame Bake",
+        "minutes": 10,
+        "text": "Brush the underside with water, stick onto a hot iron tawa until bubbles form, invert tawa over direct flame for smoky charred spots, and finish with butter."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -127138,46 +127838,46 @@ const definitions = [
     "name": "Tawa Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Mix whole wheat flour, salt, and 1 tsp ghee; add water gradually and knead into a smooth, soft dough. Rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Triangular Fold",
+        "minutes": 5,
+        "text": "Roll each ball into a small circle, brush with ghee, fold in half, brush again, fold into a triangle, and roll evenly."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, brushing with ghee after flipping, pressing edges lightly until crisp layered golden spots form."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -127187,46 +127887,41 @@ const definitions = [
     "name": "Tawa Phulka",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Oil-Free Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, a pinch of salt, and lukewarm water into a very soft, smooth dough; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll Thin",
+        "minutes": 5,
+        "text": "Roll small balls into thin, even circles dusted lightly with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Direct Flame Puff",
+        "minutes": 10,
+        "text": "Cook on a hot dry tawa for 15 seconds until tiny bubbles appear, flip for 20 seconds, then transfer directly onto open gas flame with tongs so the phulka puffs into a sphere; brush lightly with ghee."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -127236,46 +127931,46 @@ const definitions = [
     "name": "Tawa Poori",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Sooji (Semolina)",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Stiff Dough",
+        "minutes": 15,
+        "text": "Mix whole wheat flour, 1 tbsp sooji (for lasting crispness), salt, and 1 tbsp oil; knead with minimal water into a stiff dough and rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into small balls, coat lightly with oil, and roll into even 4-inch discs."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Puff",
+        "minutes": 10,
+        "text": "Cook on a hot oiled tawa pressing gently until puffed."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -127285,46 +127980,41 @@ const definitions = [
     "name": "Tawa Roti",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, salt, and water into a soft, supple dough for roti; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into equal balls and roll into thin, even rounds dusted with dry atta."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 12,
+        "text": "Cook on a hot dry iron tawa, flipping twice and pressing gently with a clean folded cotton cloth until evenly puffed with golden-brown specks; brush with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -132873,46 +133563,46 @@ const definitions = [
     "name": "Whole Wheat Chapati",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, salt, and water into a soft, supple dough for chapati; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into equal balls and roll into thin, even rounds dusted with dry atta."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 12,
+        "text": "Cook on a hot dry iron tawa, flipping twice and pressing gently with a clean folded cotton cloth until evenly puffed with golden-brown specks; brush with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133011,46 +133701,71 @@ const definitions = [
     "name": "Whole Wheat Kulcha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.33",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Baking Powder",
+        "quantity": "0.75",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Kulcha Dough",
+        "minutes": 20,
+        "text": "Combine whole wheat flour (atta), baking powder, baking soda, sugar, salt, curd, and warm water into a soft, sticky-free dough; rest covered 45 minutes."
       },
       {
         "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "minutes": 5,
+        "text": "Divide into balls, sprinkle ajwain and chopped coriander leaves on top, and roll into thick round or oval discs."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Cook",
+        "minutes": 10,
+        "text": "Cook on a medium-hot tawa with a splash of water on the pan edge and cover briefly to steam-puff, then finish with butter on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133060,46 +133775,51 @@ const definitions = [
     "name": "Whole Wheat Lachha Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 25,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour (atta), ajwain, salt, 1 tbsp ghee, and water into a smooth dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Pleat & Coil",
+        "minutes": 10,
+        "text": "Roll into a thin large roti, brush generously with ghee, sprinkle dry flour, fold back and forth in narrow accordion pleats, and roll into a tight pinwheel coil."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Flatten and roll gently, then roast on a medium-hot tawa with ghee until golden and crisp, crushing lightly between palms to fluff the flaky layers."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133109,46 +133829,51 @@ const definitions = [
     "name": "Whole Wheat Luchi",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Ghee",
+        "quantity": "2",
+        "unit": "tbsp"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Sugar",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Moyan Dough",
+        "minutes": 15,
+        "text": "Rub ghee, sugar, and salt into whole wheat flour (atta) thoroughly (moyan), then knead with water into a smooth, non-sticky dough; rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Roll small oil-greased dough balls into thin, even 4-inch circles without using dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Deep Fry",
+        "minutes": 10,
+        "text": "Slide into hot oil and press gently with a slotted spoon until each luchi puffs into a white-gold balloon; drain immediately."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133158,46 +133883,76 @@ const definitions = [
     "name": "Whole Wheat Methi Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Methi (Fenugreek) Leaves",
+        "quantity": "1.5",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Curd (Yogurt)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Carom Seeds (Ajwain)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
         "unit": "tsp"
       },
       {
         "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "quantity": "As needed",
+        "unit": ""
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.75",
+        "unit": "tsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Methi Dough",
+        "minutes": 15,
+        "text": "Wash and finely chop fresh methi leaves. Mix whole wheat flour, besan, ajwain, turmeric, grated ginger, chopped green chilli, salt, curd, and methi leaves; knead with minimal water into a soft dough."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into balls and roll into medium-thin round parathas dusted with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, flipping and brushing with oil or ghee until crisp golden spots appear on both sides."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133207,46 +133962,81 @@ const definitions = [
     "name": "Whole Wheat Naan",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Curd (Yogurt)",
+        "quantity": "0.25",
+        "unit": "cup"
       },
       {
-        "name": "Salt",
-        "quantity": "1/2",
+        "name": "Milk",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Baking Soda",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Sugar",
         "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Nigella Seeds (Kalo Jeere)",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
         "unit": "tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2",
+        "unit": "cloves"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Leavened Dough",
+        "minutes": 20,
+        "text": "Mix whole wheat flour (atta), baking powder, baking soda, sugar, and salt. Knead with curd, milk, and 1 tbsp butter into a smooth, soft dough; rest covered 1 hour."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll & Top",
+        "minutes": 5,
+        "text": "Roll portions into teardrop shapes, pressing nigella seeds, minced garlic, and coriander leaves lightly onto the top."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Flame Bake",
+        "minutes": 10,
+        "text": "Brush the underside with water, stick onto a hot iron tawa until bubbles form, invert tawa over direct flame for smoky charred spots, and finish with butter."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133256,46 +134046,46 @@ const definitions = [
     "name": "Whole Wheat Paratha",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "3",
+        "unit": "tbsp"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
-      },
-      {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Dough",
+        "minutes": 15,
+        "text": "Mix whole wheat flour, salt, and 1 tsp ghee; add water gradually and knead into a smooth, soft dough. Rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Triangular Fold",
+        "minutes": 5,
+        "text": "Roll each ball into a small circle, brush with ghee, fold in half, brush again, fold into a triangle, and roll evenly."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 15,
+        "text": "Cook on a hot tawa, brushing with ghee after flipping, pressing edges lightly until crisp layered golden spots form."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133305,46 +134095,46 @@ const definitions = [
     "name": "Whole Wheat Phulka",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Oil-Free Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, a pinch of salt, and lukewarm water into a very soft, smooth dough; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll Thin",
+        "minutes": 5,
+        "text": "Roll small balls into thin, even circles dusted lightly with dry flour."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa & Direct Flame Puff",
+        "minutes": 10,
+        "text": "Cook on a hot dry tawa for 15 seconds until tiny bubbles appear, flip for 20 seconds, then transfer directly onto open gas flame with tongs so the phulka puffs into a sphere; brush lightly with ghee."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133354,46 +134144,46 @@ const definitions = [
     "name": "Whole Wheat Poori",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
-        "name": "Water",
-        "quantity": "as needed",
-        "unit": ""
+        "name": "Sooji (Semolina)",
+        "quantity": "1",
+        "unit": "tbsp"
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.5",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
-        "quantity": "1",
-        "unit": "tbsp"
+        "name": "Cooking Oil",
+        "quantity": "As needed",
+        "unit": ""
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Stiff Dough",
+        "minutes": 15,
+        "text": "Mix whole wheat flour, 1 tbsp sooji (for lasting crispness), salt, and 1 tbsp oil; knead with minimal water into a stiff dough and rest 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into small balls, coat lightly with oil, and roll into even 4-inch discs."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Deep Fry",
+        "minutes": 10,
+        "text": "Deep-fry in hot oil, nudging gently with a slotted spoon until puffed and golden."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
@@ -133403,46 +134193,46 @@ const definitions = [
     "name": "Whole Wheat Roti",
     "category": "Bread",
     "region": "Indian",
-    "prepMinutes": 10,
-    "cookMinutes": 25,
+    "prepMinutes": 15,
+    "cookMinutes": 12,
     "servings": 2,
     "ingredients": [
       {
-        "name": "Flour",
+        "name": "Whole Wheat Flour (Atta)",
         "quantity": "2",
-        "unit": "cups"
+        "unit": "cup"
       },
       {
         "name": "Water",
-        "quantity": "as needed",
+        "quantity": "As needed",
         "unit": ""
       },
       {
         "name": "Salt",
-        "quantity": "1/2",
+        "quantity": "0.25",
         "unit": "tsp"
       },
       {
-        "name": "Oil or Ghee",
+        "name": "Ghee",
         "quantity": "1",
         "unit": "tbsp"
       }
     ],
     "steps": [
       {
-        "section": "Make dough",
-        "text": "Mix flour and salt; add water gradually and knead to a soft dough. Rest covered.",
-        "minutes": 15
+        "section": "Soft Dough",
+        "minutes": 15,
+        "text": "Knead whole wheat flour, salt, and water into a soft, supple dough for roti; rest covered 15 minutes."
       },
       {
-        "section": "Shape",
-        "text": "Divide into portions and roll or shape according to the bread style.",
-        "minutes": 10
+        "section": "Roll",
+        "minutes": 5,
+        "text": "Divide into equal balls and roll into thin, even rounds dusted with dry atta."
       },
       {
-        "section": "Cook",
-        "text": "Cook on a hot tawa or fry as appropriate, turning until cooked and golden.",
-        "minutes": 10
+        "section": "Tawa Roast",
+        "minutes": 12,
+        "text": "Cook on a hot dry iron tawa, flipping twice and pressing gently with a clean folded cotton cloth until evenly puffed with golden-brown specks; brush with ghee if desired."
       }
     ],
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
