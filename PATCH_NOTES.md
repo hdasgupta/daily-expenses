@@ -1165,3 +1165,9 @@
   - Added `other:<name>` support in `/price-trend/items`, `/order-frequency/items`, `/price-trend`, `/order-frequency`, `/price-trend/smart-unit`, and user preferences so custom items recorded via **Other** (`expenses.other_item` or `marketing_list_items.item_name` without an `items.id`) also appear in the item dropdowns and compute trends/frequencies.
 - **`backend/src/controllers/priceTrendController.js` & `backend/src/controllers/orderFrequencyController.js`**:
   - Added `Cache-Control: private, no-cache` on `getItemsWithData` responses so newly added expenses appear immediately.
+
+## 150. Prevent Blank Web Screen (Root Error Boundary & React Vendor Chunk Fix)
+- **`frontend/vite.config.js`**:
+  - Included `node_modules/scheduler/` inside the `react-vendor` manual chunk to prevent circular chunk initialization between `react-dom` and `index`.
+- **`frontend/src/main.jsx`**:
+  - Added a top-level `AppErrorBoundary` around `<App />` with **Reload** and **Reset & Home** actions so any root-level render or chunk error displays a clear recovery card instead of a blank page.
