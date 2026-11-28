@@ -1147,3 +1147,7 @@
 ## 145. Price Trend & Order Frequency — Include Un-tagged (`location_id IS NULL`) Direct Expenses
 - **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
   - Included unlinked `public.expenses` rows where `e.location_id IS NULL` when a location is selected (since direct/older expenses may not have a `location_id`), and tightened the anti-join to `m.expense_id = e.id AND m.status = 'purchased'`.
+
+## 146. Backfill Blank/NULL Locations to Ajodhya, Howrah
+- **`backend/src/services/bootstrapService.js`**:
+  - Added `backfillMissingLocationsToAjodhyaHowrah()` inside `seedApplication()` so on startup any rows with `location_id IS NULL` in `public.expenses`, `public.marketing_list_items`, and `public.food_chart_entries` are automatically assigned to **Ajodhya, Howrah** (creating the location if absent).

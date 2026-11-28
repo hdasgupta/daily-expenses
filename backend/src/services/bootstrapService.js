@@ -75,4 +75,45 @@ export async function seedApplication() {
     const hash = await bcrypt.hash(env.adminPassword, 12);
     await q(bootstrapSql.seedAdmin, [env.adminEmail, hash]);
   }
+  await backfillMissingLocationsToAjodhyaHowrah();
+}
+
+async function backfillMissingLocationsToAjodhyaHowrah() {
+  let locRes = await q(
+    `SELECT id
+       FROM public.marketing_locations
+      WHERE LOWER(TRIM(name)) = 'ajodhya, howrah'
+         OR (LOWER(name) LIKE '%ajodhya%' AND LOWER(name) LIKE '%howrah%')
+      ORDER BY CASE WHEN LOWER(TRIM(name)) = 'ajodhya, howrah' THEN 0 ELSE 1 END, id ASC
+      LIMIT 1`,
+  );
+
+  let locationId = locRes.rows[0]?.id || null;
+  if (!locationId) {
+    const inserted = await q(
+      `INSERT INTO public.marketing_locations (name)
+       VALUES ('Ajodhya, Howrah')
+       ON CONFLICT (name) DO NOTHING
+       RETURNING id`,
+    );
+    locationId = inserted.rows[0]?.id || null;
+    if (!locationId) {
+      locRes = await q(
+        `SELECT id FROM public.marketing_locations WHERE LOWER(TRIM(name)) = 'ajodhya, howrah' LIMIT 1`,
+      );
+      locationId = locRes.rows[0]?.id || null;
+    }
+  }
+
+  if (!locationId) return;
+
+  await Promise.all([
+    q(`UPDATE public.expenses SET location_id = $1 WHERE location_id IS NULL`, [locationId]),
+    q(`UPDATE public.marketing_list_items SET location_id = $1 WHERE location_id IS NULL`, [
+      locationId,
+    ]),
+    q(`UPDATE public.food_chart_entries SET location_id = $1 WHERE location_id IS NULL`, [
+      locationId,
+    ]),
+  ]);
 }
