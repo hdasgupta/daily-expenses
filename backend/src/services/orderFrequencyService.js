@@ -88,7 +88,11 @@ export async function getItemOrderFrequency({
   const cleanCategoryId = /^\d+$/.test(String(categoryId || "").trim())
     ? String(categoryId).trim()
     : "";
-  const cleanItemId = /^\d+$/.test(String(itemId || "").trim()) ? String(itemId).trim() : "";
+  const rawItemId = String(itemId || "").trim();
+  const isOtherItem = rawItemId.startsWith("other:") && rawItemId.slice(6).trim().length > 0;
+  const cleanItemId = /^\d+$/.test(rawItemId) ? rawItemId : isOtherItem ? rawItemId : "";
+  const otherItemName = isOtherItem ? rawItemId.slice(6).trim() : "";
+  const numericItemId = /^\d+$/.test(rawItemId) ? rawItemId : "0";
   const cleanUnitId = /^\d+$/.test(String(unitId || "").trim()) ? String(unitId).trim() : "";
   const cleanLocationId = /^\d+$/.test(String(locationId || "").trim())
     ? String(locationId).trim()
@@ -100,21 +104,30 @@ export async function getItemOrderFrequency({
     throw err;
   }
 
-  const [itemRes, unitRes, locRes] = await Promise.all([
-    q(
-      `SELECT i.id, i.name, c.name AS category_name
-         FROM public.items i
-         JOIN public.categories c ON c.id = i.category_id
-        WHERE i.id = $1 AND i.category_id = $2`,
-      [cleanItemId, cleanCategoryId],
-    ),
+  const [itemRes, catRes, unitRes, locRes] = await Promise.all([
+    isOtherItem
+      ? Promise.resolve({ rows: [] })
+      : q(
+          `SELECT i.id, i.name, c.name AS category_name
+             FROM public.items i
+             JOIN public.categories c ON c.id = i.category_id
+            WHERE i.id = $1 AND i.category_id = $2`,
+          [numericItemId, cleanCategoryId],
+        ),
+    isOtherItem
+      ? q(`SELECT id, name FROM public.categories WHERE id = $1`, [cleanCategoryId])
+      : Promise.resolve({ rows: [] }),
     q(`SELECT id, name FROM public.units WHERE id = $1`, [cleanUnitId]),
     cleanLocationId
       ? q(`SELECT id, name FROM public.marketing_locations WHERE id = $1`, [cleanLocationId])
       : Promise.resolve({ rows: [] }),
   ]);
 
-  const itemRow = itemRes.rows[0];
+  const itemRow = isOtherItem
+    ? catRes.rows[0]
+      ? { id: cleanItemId, name: otherItemName, category_name: catRes.rows[0].name }
+      : null
+    : itemRes.rows[0];
   const unitRow = unitRes.rows[0];
   if (!itemRow || !unitRow) {
     const err = new Error("Selected item or unit was not found.");
@@ -156,7 +169,7 @@ export async function getItemOrderFrequency({
           )
         ORDER BY m.purchase_date DESC, m.id DESC
         LIMIT 500`,
-      [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName],
+      [cleanLocationId, numericItemId, cleanCategoryId, targetItemName],
     ),
     q(
       `SELECT e.id,
@@ -176,7 +189,7 @@ export async function getItemOrderFrequency({
             e.item_id = $2::bigint
             OR (
               e.category_id = $3::bigint
-              AND e.item_id IS NULL
+              AND (e.item_id IS NULL OR $2::bigint = 0)
               AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim($4))
             )
           )
@@ -191,7 +204,7 @@ export async function getItemOrderFrequency({
           )
         ORDER BY e.expense_date DESC, e.id DESC
         LIMIT 500`,
-      [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName],
+      [cleanLocationId, numericItemId, cleanCategoryId, targetItemName],
     ),
   ]);
   const combinedRows = [...(rowsRes.rows || []), ...(expenseRowsRes.rows || [])];
@@ -349,7 +362,8 @@ export async function saveUserOrderFrequencyPreferences(userId, payload = {}) {
   const cleanId = (v) => (/^\d+$/.test(String(v || "").trim()) ? String(v).trim() : "");
   const locationId = cleanId(payload.locationId);
   const categoryId = cleanId(payload.categoryId);
-  const itemId = cleanId(payload.itemId);
+  const rawItem = String(payload.itemId || "").trim();
+  const itemId = /^\d+$/.test(rawItem) || rawItem.startsWith("other:") ? rawItem : "";
   const unitId = cleanId(payload.unitId);
 
   await q(
@@ -383,38 +397,74 @@ export async function getItemsWithOrderFrequencyData({ categoryId = "", location
   }
 
   const res = await q(
-    `SELECT i.id, i.name
-       FROM public.items i
-      WHERE i.category_id = $1::bigint
-        AND (
-          EXISTS (
-            SELECT 1
-              FROM public.marketing_list_items m
-             WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint OR m.location_id IS NULL)
-               AND m.status <> 'removed'
-               AND (
-                 m.item_id = i.id
-                 OR (
-                   m.category_id = i.category_id
-                   AND lower(trim(m.item_name)) = lower(trim(i.name))
+    `WITH catalog_items AS (
+       SELECT i.id::text AS id, i.name
+         FROM public.items i
+        WHERE i.category_id = $1::bigint
+          AND (
+            EXISTS (
+              SELECT 1
+                FROM public.marketing_list_items m
+               WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint OR m.location_id IS NULL)
+                 AND m.status <> 'removed'
+                 AND (
+                   m.item_id = i.id
+                   OR (
+                     m.category_id = i.category_id
+                     AND lower(trim(m.item_name)) = lower(trim(i.name))
+                   )
                  )
-               )
-          )
-          OR EXISTS (
-            SELECT 1
-              FROM public.expenses e
-             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint OR e.location_id IS NULL)
-               AND (
-                 e.item_id = i.id
-                 OR (
-                   e.category_id = i.category_id
-                   AND e.item_id IS NULL
-                   AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim(i.name))
+            )
+            OR EXISTS (
+              SELECT 1
+                FROM public.expenses e
+               WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint OR e.location_id IS NULL)
+                 AND (
+                   e.item_id = i.id
+                   OR (
+                     e.category_id = i.category_id
+                     AND e.item_id IS NULL
+                     AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim(i.name))
+                   )
                  )
-               )
+            )
           )
+     ),
+     custom_items AS (
+       SELECT DISTINCT ON (lower(trim(name)))
+              ('other:' || trim(name)) AS id,
+              trim(name) AS name
+         FROM (
+           SELECT e.other_item AS name
+             FROM public.expenses e
+            WHERE e.category_id = $1::bigint
+              AND e.item_id IS NULL
+              AND trim(COALESCE(e.other_item, '')) <> ''
+              AND ($2 = '' OR e.location_id = NULLIF($2, '')::bigint OR e.location_id IS NULL)
+           UNION ALL
+           SELECT m.item_name AS name
+             FROM public.marketing_list_items m
+            WHERE m.category_id = $1::bigint
+              AND m.item_id IS NULL
+              AND m.status <> 'removed'
+              AND trim(COALESCE(m.item_name, '')) <> ''
+              AND ($2 = '' OR m.location_id = NULLIF($2, '')::bigint OR m.location_id IS NULL)
+         ) raw_custom
+        WHERE NOT EXISTS (
+          SELECT 1
+            FROM public.items i
+           WHERE i.category_id = $1::bigint
+             AND lower(trim(i.name)) = lower(trim(raw_custom.name))
         )
-      ORDER BY LOWER(i.name) ASC, i.id ASC`,
+        ORDER BY lower(trim(name)), trim(name)
+     )
+     SELECT id, name
+       FROM (
+         SELECT id, name FROM catalog_items
+         UNION ALL
+         SELECT id, name FROM custom_items
+       ) combined
+      ORDER BY LOWER(name) ASC, id ASC`,
     [cleanCategoryId, cleanLocationId],
   );
   return res.rows || [];

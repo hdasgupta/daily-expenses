@@ -1159,3 +1159,9 @@
 ## 148. Price Trend & Order Frequency — Show All Items Present in Marketing List or Expenses
 - **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
   - Broadened `getItemsWithPriceTrendData` and `getItemsWithOrderFrequencyData` so the item dropdowns on **Price Trend** and **Order Frequency** include any item present in either `public.marketing_list_items` (non-removed) or `public.expenses`.
+
+## 149. Price Trend & Order Frequency — Support Custom `other_item` Expenses & Disable HTTP Cache on Item Lists
+- **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
+  - Added `other:<name>` support in `/price-trend/items`, `/order-frequency/items`, `/price-trend`, `/order-frequency`, `/price-trend/smart-unit`, and user preferences so custom items recorded via **Other** (`expenses.other_item` or `marketing_list_items.item_name` without an `items.id`) also appear in the item dropdowns and compute trends/frequencies.
+- **`backend/src/controllers/priceTrendController.js` & `backend/src/controllers/orderFrequencyController.js`**:
+  - Added `Cache-Control: private, no-cache` on `getItemsWithData` responses so newly added expenses appear immediately.

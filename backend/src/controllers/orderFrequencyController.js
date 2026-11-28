@@ -26,6 +26,7 @@ export async function savePreferences(req, res) {
 }
 
 export async function getItemsWithData(req, res) {
+  res.set("Cache-Control", "private, no-cache");
   const rows = await getItemsWithOrderFrequencyData({
     categoryId: req.query.categoryId,
     locationId: req.query.locationId,
