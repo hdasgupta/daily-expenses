@@ -1120,3 +1120,8 @@
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Added 16 crispy namkeen/farsan recipes (`static-2026`–`static-2041`), including Badam & Curry Leaf Jhuri Aloo Bhaja, Bombay/Madras Mixture, Chakli/Murukku, Chana Dal Namkeen, Chana Jor Garam, Chhena & Aloo Jhuri Bhaja, Fafda Gathiya, Kaju & Poha Dry Fruit Chanachur, Kara/Masala Boondi, Makhana & Peanut Dry Namkeen, Methi Vanela Gathiya, Moong Dal Namkeen, Muri & Chira Masala Chanachur, Nylon Tikha Gathiya, Palak Sev, and Masala Namakpara.
   - All recipes use standardized ingredients and manual stovetop/kadhai/grater/press preparation without blenders or ovens, bringing the alphabetically sorted catalogue to 1774 total recipes.
+
+## 141. Added 14 Egg Mughlai Paratha & Stuffed Envelope Paratha Recipes
+- **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
+  - Added 14 Kolkata cabin-style and regional Mughlai/folded egg paratha recipes (`static-2042`–`static-2055`), including Egg Mughlai Paratha / Dim Mughlai Porota, Double Egg Cheese Mughlai Paratha, Atta Egg Mughlai Paratha, Egg Aloo Mughlai Paratha, Egg Paneer Mughlai Paratha, Egg Soya Keema Mughlai Paratha, Egg Prawns Mughlai Paratha, Egg Mutton Liver (Mete) Mughlai Paratha, Veg Mughlai Paratha (Chhena & Potato), Baida Roti (Mumbai Egg Keema Pocket), Egg Baida Roti, Murtabak (Egg & Spiced Keema Folded Paratha), Egg Bhurji Mughlai Paratha, and Egg Sweet Corn & Capsicum Mughlai Paratha.
+  - All recipes use standardized ingredient names and manual stovetop/tawa/kadhai preparation without blenders, mixers, grinders, or ovens, bringing the alphabetically sorted catalogue to 1788 total recipes.

@@ -7808,6 +7808,90 @@ const definitions = [
     "notes": "Dry-tawa roasting with zero oil creates the signature papery crunch of Assamese Bihu Til Pitha."
   },
   {
+    "id": "static-2044",
+    "name": "Atta Egg Mughlai Paratha (Healthy Whole Wheat Tawa-Fried Egg, Onion & Herb Envelope Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "Whole Wheat Flour (Atta)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "2.5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead soft whole-wheat dough",
+        "text": "Knead atta with 1 tsp oil, salt, and water into a soft, elastic dough and rest covered for 15 minutes so it rolls thin without tearing.",
+        "minutes": 5
+      },
+      {
+        "section": "Whisk vegetable-egg filling",
+        "text": "Beat eggs with finely chopped onion, deseeded chopped tomato, green chillies, coriander leaves, roasted cumin powder, garam masala, black pepper, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Fold parcel and tawa-roast with minimal oil",
+        "text": "Roll dough thin, spoon egg mixture in the middle, and fold all four sides into a square packet. Cook on a hot tawa on medium-low heat, drizzling 1 tbsp oil per paratha around the edges until golden, crisp, and cooked through inside.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Lighter whole-wheat tawa version of Egg Mughlai Paratha suitable for everyday meals."
+  },
+  {
     "id": "static-0860",
     "name": "Atta Ladoo",
     "category": "Sweets",
@@ -8357,6 +8441,95 @@ const definitions = [
       }
     ],
     "notes": "Use potable water and fresh ingredients. Refrigerate dairy-based drinks promptly; sweeten to taste."
+  },
+  {
+    "id": "static-2051",
+    "name": "Baida Roti / Mumbai Street Egg Keema Mughlai Envelope (Crispy Tawa-Fried Spiced Chicken Keema & Egg Pocket)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Chicken Keema",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Mint Leaves (Pudina)",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook dry spiced chicken keema",
+        "text": "Sauté finely chopped onion and ginger-garlic paste in 1 tbsp oil, add chicken keema, cumin powder, garam masala, and salt, and cook on medium-high heat until completely dry and browned; cool.",
+        "minutes": 10
+      },
+      {
+        "section": "Fill thin stretched roti with keema and egg",
+        "text": "Roll rested maida dough paper-thin on an oiled surface. Mix cooled keema with beaten eggs, green chillies, chopped coriander, and mint leaves. Pour in the center and fold all four sides into a flat square pocket.",
+        "minutes": 6
+      },
+      {
+        "section": "Tawa-fry crisp in ghee or oil",
+        "text": "Transfer to a large flat tawa with 1.5 tbsp ghee or oil per pocket and cook on medium-low heat 4 minutes per side until crisp, puffed, and golden. Cut into squares and serve with green mint chutney and lemon wedges.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Mumbai's famous Mohammed Ali Road Baida Roti—essentially Mumbai's cousin to Kolkata's Mughlai Paratha, cooked on a wide tawa."
   },
   {
     "id": "static-1466",
@@ -43615,6 +43788,90 @@ const definitions = [
     "notes": "Starter recipe: adjust spice, liquid and cooking time to suit the ingredient and your taste."
   },
   {
+    "id": "static-2043",
+    "name": "Double Egg Cheese Mughlai Paratha (Crispy Folded Maida Envelope Stuffed with Spiced Egg & Melted Cheese)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Processed Cheese",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Toast Crumbs / Biscuit Powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare resting dough and cheesy egg mix",
+        "text": "Knead maida with 1 tbsp oil, salt, and water into a smooth dough and rest 20 minutes. Beat 4 eggs with finely chopped onion, green chillies, coriander, biscuit powder, black pepper, chaat masala, and a light pinch of salt (accounting for salty cheese).",
+        "minutes": 8
+      },
+      {
+        "section": "Layer cheese and egg inside thin sheet",
+        "text": "Roll each dough ball paper-thin on an oiled surface, pour half the spiced egg mixture in the center, scatter hand-grated processed cheese over it, and fold all four edges into a sealed rectangular packet.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry until crisp and gooey",
+        "text": "Shallow-fry on medium-low heat in a flat pan for 4-5 minutes each side until the crust is golden-blistered and the cheese melts into the fluffy egg core. Slice into squares and serve immediately.",
+        "minutes": 14
+      }
+    ],
+    "notes": "Popular Kolkata street-food upgrade combining crispy Mughlai crust with a molten cheese-egg center."
+  },
+  {
     "id": "static-1857",
     "name": "Double Egg Gobi Roll (Double Anda Spiced Cauliflower Kathi Roll)",
     "category": "Snacks",
@@ -44518,6 +44775,169 @@ const definitions = [
     "notes": "Crispier, heartier twist on masala egg French toast."
   },
   {
+    "id": "static-2045",
+    "name": "Egg Aloo Mughlai Paratha (Kolkata Street-Style Spiced Mashed Potato & Egg Stuffed Envelope Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2",
+        "unit": "medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali Bhaja Masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toast Crumbs / Biscuit Powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced mashed potato and egg mix",
+        "text": "Boil and hand-mash potatoes smoothly. Mix with sautéed or raw finely chopped onion, green chillies, grated ginger, coriander leaves, Bengali bhaja masala, and salt. Beat eggs separately with biscuit powder and a pinch of salt.",
+        "minutes": 10
+      },
+      {
+        "section": "Fill and seal Mughlai envelope",
+        "text": "Roll rested maida dough into a large thin sheet on an oiled board, spread a thin layer of spiced potato mash in the center, pour beaten egg over it, and fold all four flaps neatly to seal.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry until crisp and golden",
+        "text": "Slide seam-side down into medium-hot oil in a flat pan and fry slowly for 4-5 minutes per side until flaky and golden brown. Cut into quarters and serve with kasundi or ketchup.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Hearty Kolkata para-stall style Mughlai where spiced potato acts as a flavorful bed that keeps the egg neatly inside."
+  },
+  {
+    "id": "static-2052",
+    "name": "Egg Baida Roti (Mumbai Street-Style Crispy Egg, Onion, Coriander & Garam Masala Tawa Pocket)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or Oil",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead maida dough and whisk egg mix",
+        "text": "Knead maida with 1 tbsp oil, salt, and water into a soft dough and rest 20 minutes. Whisk eggs with finely chopped onion, green chillies, coriander leaves, garam masala, turmeric, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Stretch thin and fold on oiled board",
+        "text": "Roll dough paper-thin, pour half the egg mixture into the center, and quickly fold all four flaps inward into a neat square envelope.",
+        "minutes": 4
+      },
+      {
+        "section": "Tawa-fry until golden and crisp",
+        "text": "Cook on a flat tawa with ghee or oil on medium-low heat for 4 minutes per side until puffed and crisp. Sprinkle chaat masala, cut into squares, and serve with pudina chutney.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Fast, no-meat Mumbai street-style Egg Baida Roti with bright coriander-garam-masala flavor."
+  },
+  {
     "id": "static-0047",
     "name": "Egg Bhuna",
     "category": "Egg",
@@ -45043,6 +45463,95 @@ const definitions = [
       }
     ],
     "notes": "Quick high-protein momo filling that cooks fast because the egg is already scrambled."
+  },
+  {
+    "id": "static-2054",
+    "name": "Egg Bhurji Mughlai Paratha (Spiced Scrambled Egg, Tomato & Coriander Folded Crispy Envelope Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 20,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "4",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kashmiri Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Make soft spiced egg bhurji filling",
+        "text": "Sauté onion, ginger, green chillies, and tomato in 1 tbsp oil with turmeric, Kashmiri chilli powder, garam masala, and salt. Scramble 3 eggs into a soft, moist bhurji and finish with coriander; cool slightly. Beat the 4th egg separately as binder.",
+        "minutes": 8
+      },
+      {
+        "section": "Stuff and fold leak-proof Mughlai packet",
+        "text": "Roll rested maida dough very thin, spoon the egg bhurji in the center, drizzle 1-2 tbsp beaten raw egg over it (to bind the bhurji inside), and fold all four sides into a tight envelope.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry crisp on both sides",
+        "text": "Shallow-fry in medium-hot oil for 3-4 minutes per side until golden and crisp. Cut into squares and serve hot with ketchup or green chutney.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Foolproof home-cook technique: pre-cooking 3 eggs as bhurji prevents liquid egg from spilling while folding."
   },
   {
     "id": "static-2018",
@@ -46891,6 +47400,268 @@ const definitions = [
     "notes": "Starter quantities are approximate; cook poultry, eggs and seafood thoroughly and refrigerate perishable fillings promptly."
   },
   {
+    "id": "static-2042",
+    "name": "Egg Mughlai Paratha / Dim Mughlai Porota (Classic Kolkata Cabin-Style Double Egg & Biscuit-Crumb Envelope Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Toast Crumbs / Biscuit Powder",
+        "quantity": "3",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Bengali Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Knead and rest soft maida dough",
+        "text": "Rub 1.5 tbsp oil and a pinch of salt into maida, knead with water into a soft pliable dough, coat lightly with oil, and rest covered for 25 minutes.",
+        "minutes": 8
+      },
+      {
+        "section": "Whisk egg and biscuit-crumb filling",
+        "text": "Hand-whisk eggs in a bowl with finely chopped onion, green chillies, finely grated ginger, chopped coriander leaves, crushed toast or cream-cracker biscuit powder (to soak excess moisture), Bengali garam masala, black pepper, and salt.",
+        "minutes": 5
+      },
+      {
+        "section": "Stretch thin, fold envelope, and shallow-fry",
+        "text": "Roll a dough ball on an oiled board into a paper-thin 11-inch square/circle, spoon half the egg mixture into the center, and fold all four flaps inward into a tight rectangular envelope. Slide seam-side down into medium-hot oil in a flat pan and shallow-fry 4-5 minutes per side until puffed, crisp, and golden brown. Cut into squares and serve hot with kosha aloor dom and salad.",
+        "minutes": 15
+      }
+    ],
+    "notes": "Classic meatless Kolkata cabin-style Dim Mughlai Porota; biscuit powder thickens the beaten egg so it never leaks out while folding."
+  },
+  {
+    "id": "static-2049",
+    "name": "Egg Mutton Liver (Mete) Mughlai Paratha (Kolkata Cabin-Style Spiced Goat Liver & Egg Stuffed Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 18,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Mutton Liver (Mete)",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bengali Garam Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toast Crumbs / Biscuit Powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "5",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook dry spiced minced mutton liver",
+        "text": "Finely mince mutton liver with a sharp knife. Sauté with chopped onion, ginger-garlic paste, cumin powder, black pepper, garam masala, and salt in 1 tbsp oil until cooked dry and aromatic; let cool.",
+        "minutes": 10
+      },
+      {
+        "section": "Combine with egg and fold envelope",
+        "text": "Beat eggs with cooled liver keema, green chillies, biscuit powder, and a pinch of salt. Roll rested maida dough paper-thin, pour filling into the center, and fold all four edges into a neat parcel.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry until golden and flaky",
+        "text": "Fry in medium-hot oil for 5 minutes per side until the outer crust is blistered and crisp and the egg-liver filling is cooked through. Serve hot with aloor dom.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Old-school Kolkata cabin delicacy prized for its rich, savory mete-egg filling."
+  },
+  {
+    "id": "static-2046",
+    "name": "Egg Paneer Mughlai Paratha (Spiced Grated Paneer, Egg & Herb Stuffed Crispy Envelope Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Kashmiri Red Chilli Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Kasuri Methi",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Toss spiced paneer and beat eggs",
+        "text": "Hand-grate paneer finely and toss in a dry pan for 2 minutes with 1 tsp oil, chopped onion, grated ginger, Kashmiri chilli powder, garam masala, crushed kasuri methi, and salt; cool slightly. Whisk eggs with green chillies, coriander, and a pinch of salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Assemble and fold thin dough envelope",
+        "text": "Roll rested maida dough very thin on an oiled surface, combine the cooled paneer with the beaten egg, spoon into the center, and fold all four edges into a tight square parcel.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry crisp on medium heat",
+        "text": "Shallow-fry seam-side down first in medium-hot oil for 4-5 minutes per side until golden and crisp. Cut into squares and serve with mint chutney and onion salad.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Rich, protein-packed egg and paneer Mughlai paratha with aromatic kasuri methi."
+  },
+  {
     "id": "static-1264",
     "name": "Egg Paneer Roll (Kolkata Street-Style Anda Paneer Kathi Roll)",
     "category": "Snacks",
@@ -47495,6 +48266,95 @@ const definitions = [
     "notes": "Rich Kolkata street roll pairing a golden fried egg paratha with spicy masala prawns."
   },
   {
+    "id": "static-2048",
+    "name": "Egg Prawns Mughlai Paratha / Chingri Mughlai Porota (Spiced Chopped Prawn & Egg Stuffed Kolkata Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 30,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Prawns (Chingri)",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "0.25",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bengali Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Toast Crumbs / Biscuit Powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté finely chopped spiced prawns",
+        "text": "Clean, devein, and finely chop prawns with a knife. Stir-fry in 1 tbsp oil with ginger-garlic paste, turmeric, half the onion, and salt for 3-4 minutes until dry and cooked; cool.",
+        "minutes": 8
+      },
+      {
+        "section": "Mix with egg and fold Mughlai parcel",
+        "text": "Beat eggs with cooled prawns, remaining chopped onion, green chillies, coriander, biscuit powder, Bengali garam masala, and salt. Spoon onto a paper-thin maida sheet and fold all four edges to enclose.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry crisp golden brown",
+        "text": "Shallow-fry in medium-hot oil for 4-5 minutes per side until crisp and golden. Cut into squares and serve with Bengali kasundi and cucumber-onion salad.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Coastal Bengali twist on cabin Mughlai paratha with juicy minced chingri and fluffy egg."
+  },
+  {
     "id": "static-1261",
     "name": "Egg Roll (Kolkata Street-Style Flaky Laccha Paratha Egg Roll)",
     "category": "Snacks",
@@ -47636,6 +48496,179 @@ const definitions = [
       }
     ],
     "notes": "Starter recipe: adjust seasoning and quantities to taste."
+  },
+  {
+    "id": "static-2047",
+    "name": "Egg Soya Keema Mughlai Paratha (Spiced Soya Granules & Double Egg Stuffed Crispy Mughlai Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 30,
+    "cookMinutes": 16,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Soya Granules",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Cook dry spiced soya keema",
+        "text": "Soak soya granules in hot salted water for 10 minutes, squeeze completely dry by hand, and sauté with half the chopped onion, ginger-garlic paste, cumin, coriander, garam masala, and salt until dry and crumbly; cool completely.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold soya-egg filling in thin dough",
+        "text": "Mix cooled soya keema into beaten eggs with remaining raw chopped onion, green chillies, and coriander. Spoon onto a paper-thin rolled maida sheet and fold all four sides into a sealed rectangular envelope.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry until crisp and puffed",
+        "text": "Fry in medium-hot oil in a flat pan for 4-5 minutes per side until golden and flaky. Cut into squares and serve hot with aloor torkari or ketchup.",
+        "minutes": 12
+      }
+    ],
+    "notes": "Gives the exact meaty texture and spice profile of cabin-style keema Mughlai using soya granules and eggs."
+  },
+  {
+    "id": "static-2055",
+    "name": "Egg Sweet Corn & Capsicum Mughlai Paratha (Crunchy Sweet Corn, Bell Pepper & Spiced Egg Folded Paratha)",
+    "category": "Bread",
+    "region": "Indian",
+    "prepMinutes": 25,
+    "cookMinutes": 14,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Sweet Corn Kernels",
+        "quantity": "0.5",
+        "unit": "cup"
+      },
+      {
+        "name": "Capsicum",
+        "quantity": "0.33",
+        "unit": "cup"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Toast Crumbs / Biscuit Powder",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.75",
+        "unit": "tsp"
+      },
+      {
+        "name": "Chaat Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare crunchy corn-capsicum egg mix",
+        "text": "Boil sweet corn kernels for 4 minutes and drain dry. Beat eggs with boiled corn, finely chopped capsicum, onion, green chillies, biscuit powder, black pepper, chaat masala, and salt.",
+        "minutes": 8
+      },
+      {
+        "section": "Fold into thin maida envelope",
+        "text": "Roll rested maida dough paper-thin on an oiled surface, spoon half the corn-egg mixture in the center, and fold all four edges cleanly into a square parcel.",
+        "minutes": 5
+      },
+      {
+        "section": "Shallow-fry until golden and crisp",
+        "text": "Shallow-fry seam-side down first in medium-hot oil for 4-5 minutes per side until puffed and crisp. Cut into squares and serve hot.",
+        "minutes": 11
+      }
+    ],
+    "notes": "Sweet-savory crunch from boiled corn and capsicum inside a classic crisp Mughlai crust."
   },
   {
     "id": "static-0285",
@@ -88942,6 +89975,90 @@ const definitions = [
       }
     ],
     "notes": "This is a starter recipe outline; traditional sweets vary by region. Adjust proportions and method to the preferred household style."
+  },
+  {
+    "id": "static-2053",
+    "name": "Murtabak / Egg & Spiced Keema Folded Paratha (South Indian & Malay-Style Crispy Layered Egg-Stuffed Pocket)",
+    "category": "Bread",
+    "region": "South Indian",
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Egg",
+        "quantity": "3",
+        "unit": "pcs"
+      },
+      {
+        "name": "Chicken Keema",
+        "quantity": "150",
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1",
+        "unit": "large"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1",
+        "unit": "small"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "8",
+        "unit": "leaves"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "1",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Curry Powder / Garam Masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Ghee or Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Sauté curry-leaf keema filling",
+        "text": "Cook chicken keema in 1 tbsp oil with half the onion, ginger-garlic paste, chopped curry leaves, curry powder/garam masala, and salt until dry; cool.",
+        "minutes": 10
+      },
+      {
+        "section": "Fold stretched dough around egg-keema mix",
+        "text": "Roll rested oiled dough balls as thin as possible. Whisk eggs with remaining onion, finely chopped tomato, green chillies, cooled keema, and salt. Spoon into center and fold into a flat square parcel.",
+        "minutes": 6
+      },
+      {
+        "section": "Pan-fry on flat tawa",
+        "text": "Cook on a flat tawa with ghee or oil on medium-low heat for 4-5 minutes per side until golden and flaky. Cut into squares and serve with salna or pickled onions.",
+        "minutes": 12
+      }
+    ],
+    "notes": "South Indian and Southeast Asian cousin of Mughlai Paratha infused with curry leaves and curry powder."
   },
   {
     "id": "static-1445",
@@ -133155,6 +134272,95 @@ const definitions = [
       }
     ],
     "notes": "Street-style Indo-Chinese fried rice tossed directly with juicy, crispy vegetable Manchurian balls."
+  },
+  {
+    "id": "static-2050",
+    "name": "Veg Mughlai Paratha / Chhena & Potato Mughlai Paratha (Eggless Kolkata-Style Spiced Chhena, Pea & Potato Envelope Paratha)",
+    "category": "Bread",
+    "region": "Bengali",
+    "prepMinutes": 25,
+    "cookMinutes": 15,
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour (Maida)",
+        "quantity": "1.5",
+        "unit": "cups"
+      },
+      {
+        "name": "Chhena",
+        "quantity": "0.75",
+        "unit": "cup"
+      },
+      {
+        "name": "Potato",
+        "quantity": "1",
+        "unit": "medium"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "0.25",
+        "unit": "cup"
+      },
+      {
+        "name": "Besan (Gram Flour)",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Green Chilli",
+        "quantity": "2",
+        "unit": "pcs"
+      },
+      {
+        "name": "Bengali Bhaja Masala",
+        "quantity": "1",
+        "unit": "tsp"
+      },
+      {
+        "name": "Bengali Garam Masala",
+        "quantity": "0.5",
+        "unit": "tsp"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "4",
+        "unit": "tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste",
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "section": "Prepare spiced chhena-aloo filling",
+        "text": "Dry-roast besan in a pan for 2 minutes until nutty. Sauté grated ginger, green chillies, boiled crushed green peas, crumbled chhena, mashed boiled potato, roasted besan, bhaja masala, garam masala, coriander, and salt into a moist, cohesive filling; cool.",
+        "minutes": 10
+      },
+      {
+        "section": "Stretch thin and fold square envelope",
+        "text": "Roll rested maida dough into a large thin sheet, spread half the chhena-potato filling into a neat square in the center, and fold all four flaps over, sealing edges lightly with water.",
+        "minutes": 6
+      },
+      {
+        "section": "Shallow-fry crisp golden brown",
+        "text": "Shallow-fry seam-side down first in medium-hot oil for 4 minutes per side until flaky and golden. Cut into squares and serve with aloor dom and tomato-date chutney.",
+        "minutes": 10
+      }
+    ],
+    "notes": "Traditional eggless Bengali Veg Mughlai Paratha where roasted besan and chhena mimic the rich, fluffy bite of egg."
   },
   {
     "id": "static-1939",
