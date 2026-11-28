@@ -1367,6 +1367,19 @@ export default function Expense() {
             <button
               type="button"
               className="secondary date-nav-btn"
+              disabled={form.expenseDate === today()}
+              onClick={() => {
+                const target = today();
+                setDate(target);
+                updateField("expenseDate", target);
+              }}
+              title="Reset date to today"
+            >
+              <span>Today</span>
+            </button>
+            <button
+              type="button"
+              className="secondary date-nav-btn"
               disabled={!form.expenseDate || form.expenseDate >= today()}
               onClick={() => {
                 const candidate = shiftIsoDate(form.expenseDate || today(), 1);

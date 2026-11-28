@@ -1151,3 +1151,7 @@
 ## 146. Backfill Blank/NULL Locations to Ajodhya, Howrah
 - **`backend/src/services/bootstrapService.js`**:
   - Added `backfillMissingLocationsToAjodhyaHowrah()` inside `seedApplication()` so on startup any rows with `location_id IS NULL` in `public.expenses`, `public.marketing_list_items`, and `public.food_chart_entries` are automatically assigned to **Ajodhya, Howrah** (creating the location if absent).
+
+## 147. Add Expense Page — Add Today Button Between Previous & Next Date
+- **`frontend/src/pages/Expense.jsx`**:
+  - Added a **Today** button between **Previous date** and **Next date** to reset `expenseDate` and the active expense list date to `today()` (disabled when already on today).
