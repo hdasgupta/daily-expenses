@@ -126,44 +126,81 @@ export async function getItemOrderFrequency({
   const targetItemName = itemRow.name;
   const locationName = locRes.rows[0]?.name || "All locations";
 
-  const rowsRes = await q(
-    `SELECT m.id,
-            m.purchase_date::text AS order_date,
-            (DATE_TRUNC('week', (m.purchase_date + INTERVAL '1 day'))::date - 1)::text AS week_start,
-            m.status,
-            m.quantity,
-            m.unit_id,
-            u.name AS unit_name,
-            m.purchased_quantity,
-            m.purchased_unit_id,
-            pu.name AS purchased_unit_name
-       FROM public.marketing_list_items m
-       LEFT JOIN public.units u ON u.id = m.unit_id
-       LEFT JOIN public.units pu ON pu.id = m.purchased_unit_id
-      WHERE ($1 = '' OR m.location_id = NULLIF($1, '')::bigint)
-        AND m.status = 'purchased'
-        AND (
-          m.item_id = $2::bigint
-          OR (
-            m.category_id = $3::bigint
-            AND lower(trim(m.item_name)) = lower(trim($4))
+  const [rowsRes, expenseRowsRes] = await Promise.all([
+    q(
+      `SELECT m.id,
+              m.purchase_date::text AS order_date,
+              (DATE_TRUNC('week', (m.purchase_date + INTERVAL '1 day'))::date - 1)::text AS week_start,
+              m.status,
+              m.quantity,
+              m.unit_id,
+              u.name AS unit_name,
+              m.purchased_quantity,
+              m.purchased_unit_id,
+              pu.name AS purchased_unit_name
+         FROM public.marketing_list_items m
+         LEFT JOIN public.units u ON u.id = m.unit_id
+         LEFT JOIN public.units pu ON pu.id = m.purchased_unit_id
+        WHERE ($1 = '' OR m.location_id = NULLIF($1, '')::bigint)
+          AND m.status = 'purchased'
+          AND (
+            m.item_id = $2::bigint
+            OR (
+              m.category_id = $3::bigint
+              AND lower(trim(m.item_name)) = lower(trim($4))
+            )
           )
-        )
-        AND (
-          (m.quantity IS NOT NULL AND m.quantity > 0)
-          OR (m.purchased_quantity IS NOT NULL AND m.purchased_quantity > 0)
-        )
-      ORDER BY m.purchase_date DESC, m.id DESC
-      LIMIT 500`,
-    [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName],
-  );
+          AND (
+            (m.quantity IS NOT NULL AND m.quantity > 0)
+            OR (m.purchased_quantity IS NOT NULL AND m.purchased_quantity > 0)
+          )
+        ORDER BY m.purchase_date DESC, m.id DESC
+        LIMIT 500`,
+      [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName],
+    ),
+    q(
+      `SELECT e.id,
+              e.expense_date::text AS order_date,
+              (DATE_TRUNC('week', (e.expense_date + INTERVAL '1 day'))::date - 1)::text AS week_start,
+              'purchased' AS status,
+              e.quantity,
+              e.unit_id,
+              u.name AS unit_name,
+              e.quantity AS purchased_quantity,
+              e.unit_id AS purchased_unit_id,
+              u.name AS purchased_unit_name
+         FROM public.expenses e
+         LEFT JOIN public.units u ON u.id = e.unit_id
+        WHERE ($1 = '' OR e.location_id = NULLIF($1, '')::bigint)
+          AND (
+            e.item_id = $2::bigint
+            OR (
+              e.category_id = $3::bigint
+              AND e.item_id IS NULL
+              AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim($4))
+            )
+          )
+          AND e.quantity IS NOT NULL
+          AND e.quantity > 0
+          AND e.unit_id IS NOT NULL
+          AND NOT EXISTS (
+            SELECT 1
+              FROM public.marketing_list_items m
+             WHERE m.expense_id = e.id
+          )
+        ORDER BY e.expense_date DESC, e.id DESC
+        LIMIT 500`,
+      [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName],
+    ),
+  ]);
+  const combinedRows = [...(rowsRes.rows || []), ...(expenseRowsRes.rows || [])];
 
   const byWeek = new Map();
   let totalOrdered = 0;
   let totalOrders = 0;
   let firstOrderDate = "";
 
-  for (const row of rowsRes.rows || []) {
+  for (const row of combinedRows) {
     const usePurchased =
       row.status === "purchased" && Number(row.purchased_quantity) > 0 && row.purchased_unit_id;
     const srcQty = usePurchased ? row.purchased_quantity : row.quantity;
@@ -348,22 +385,45 @@ export async function getItemsWithOrderFrequencyData({ categoryId = "", location
     `SELECT i.id, i.name
        FROM public.items i
       WHERE i.category_id = $1::bigint
-        AND EXISTS (
-          SELECT 1
-            FROM public.marketing_list_items m
-           WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint)
-             AND m.status = 'purchased'
-             AND (
-               (m.quantity IS NOT NULL AND m.quantity > 0)
-               OR (m.purchased_quantity IS NOT NULL AND m.purchased_quantity > 0)
-             )
-             AND (
-               m.item_id = i.id
-               OR (
-                 m.category_id = i.category_id
-                 AND lower(trim(m.item_name)) = lower(trim(i.name))
+        AND (
+          EXISTS (
+            SELECT 1
+              FROM public.marketing_list_items m
+             WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint)
+               AND m.status = 'purchased'
+               AND (
+                 (m.quantity IS NOT NULL AND m.quantity > 0)
+                 OR (m.purchased_quantity IS NOT NULL AND m.purchased_quantity > 0)
                )
-             )
+               AND (
+                 m.item_id = i.id
+                 OR (
+                   m.category_id = i.category_id
+                   AND lower(trim(m.item_name)) = lower(trim(i.name))
+                 )
+               )
+          )
+          OR EXISTS (
+            SELECT 1
+              FROM public.expenses e
+             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint)
+               AND e.quantity IS NOT NULL
+               AND e.quantity > 0
+               AND e.unit_id IS NOT NULL
+               AND NOT EXISTS (
+                 SELECT 1
+                   FROM public.marketing_list_items m
+                  WHERE m.expense_id = e.id
+               )
+               AND (
+                 e.item_id = i.id
+                 OR (
+                   e.category_id = i.category_id
+                   AND e.item_id IS NULL
+                   AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim(i.name))
+                 )
+               )
+          )
         )
       ORDER BY LOWER(i.name) ASC, i.id ASC`,
     [cleanCategoryId, cleanLocationId],

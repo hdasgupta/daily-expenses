@@ -1138,3 +1138,8 @@
 - **`frontend/src/pages/MarketingList.jsx` & `frontend/src/pages/marketing.css`**:
   - Added `purchasedCost` and `purchasedItemCount` to `filteredCostSummary` (deduplicating shared `expense_id` totals so bulk-purchased items are never double-counted).
   - Rendered a green **Purchased cost (filtered)** summary banner directly beside **Total cost (filtered)** whenever viewing an old or current date (`purchaseDate <= todayKolkata()`).
+
+## 144. Price Trend & Order Frequency — Include Unlinked Individual Expense Purchases
+- **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
+  - Included individual purchases recorded directly in `public.expenses` (where no `marketing_list_items.expense_id` link exists, preventing any double-counting) in both **Price Trend** (`Direct Expense` source) and **Order Frequency** calculations.
+  - Updated `getItemsWithPriceTrendData` and `getItemsWithOrderFrequencyData` so items purchased directly via Expenses without a Marketing List entry also appear in the item dropdowns.

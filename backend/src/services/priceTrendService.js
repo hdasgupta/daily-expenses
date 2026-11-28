@@ -157,7 +157,73 @@ export async function getItemPriceTrend({
     ? [cleanLocationId, cleanItemId, cleanCategoryId, targetItemName]
     : [cleanItemId, cleanCategoryId, targetItemName];
 
-  const marketingRes = await q(marketingQuery, marketingParams);
+  const expenseQuery = cleanLocationId
+    ? `SELECT e.id,
+              e.expense_date::text AS price_date,
+              e.total_cost AS approx_price,
+              e.quantity,
+              e.unit_id,
+              u.name AS unit_name,
+              ml.name AS location_name
+         FROM public.expenses e
+         LEFT JOIN public.units u ON u.id = e.unit_id
+         LEFT JOIN public.marketing_locations ml ON ml.id = e.location_id
+        WHERE e.location_id = $1::bigint
+          AND (
+            e.item_id = $2::bigint
+            OR (
+              e.category_id = $3::bigint
+              AND e.item_id IS NULL
+              AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim($4))
+            )
+          )
+          AND e.total_cost IS NOT NULL
+          AND e.total_cost > 0
+          AND e.quantity IS NOT NULL
+          AND e.quantity > 0
+          AND e.unit_id IS NOT NULL
+          AND NOT EXISTS (
+            SELECT 1
+              FROM public.marketing_list_items m
+             WHERE m.expense_id = e.id
+          )
+        ORDER BY e.expense_date DESC, e.id DESC
+        LIMIT 100`
+    : `SELECT e.id,
+              e.expense_date::text AS price_date,
+              e.total_cost AS approx_price,
+              e.quantity,
+              e.unit_id,
+              u.name AS unit_name,
+              ml.name AS location_name
+         FROM public.expenses e
+         LEFT JOIN public.units u ON u.id = e.unit_id
+         LEFT JOIN public.marketing_locations ml ON ml.id = e.location_id
+        WHERE (
+            e.item_id = $1::bigint
+            OR (
+              e.category_id = $2::bigint
+              AND e.item_id IS NULL
+              AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim($3))
+            )
+          )
+          AND e.total_cost IS NOT NULL
+          AND e.total_cost > 0
+          AND e.quantity IS NOT NULL
+          AND e.quantity > 0
+          AND e.unit_id IS NOT NULL
+          AND NOT EXISTS (
+            SELECT 1
+              FROM public.marketing_list_items m
+             WHERE m.expense_id = e.id
+          )
+        ORDER BY e.expense_date DESC, e.id DESC
+        LIMIT 100`;
+
+  const [marketingRes, expenseRes] = await Promise.all([
+    q(marketingQuery, marketingParams),
+    q(expenseQuery, marketingParams),
+  ]);
 
   const candidates = [];
   for (const row of marketingRes.rows || []) {
@@ -183,6 +249,32 @@ export async function getItemPriceTrend({
       unitName: row.unit_name || targetUnitName,
       locationName: row.location_name || locationName,
       source: row.status === "purchased" ? "Purchased (Approx. price)" : "Pending (Approx. price)",
+    });
+  }
+
+  for (const row of expenseRes.rows || []) {
+    const convertedQty = convertQuantityToTargetUnit(
+      row.quantity,
+      row.unit_id,
+      row.unit_name,
+      cleanUnitId,
+      targetUnitName,
+    );
+    if (!convertedQty) continue;
+    const totalCost = Number(row.approx_price);
+    const unitPrice = Number((totalCost / convertedQty).toFixed(2));
+    if (!Number.isFinite(unitPrice) || unitPrice <= 0) continue;
+
+    candidates.push({
+      id: `exp-${row.id}`,
+      date: String(row.price_date || "").slice(0, 10),
+      sortId: Number(row.id) || 0,
+      unitPrice,
+      totalPrice: Number(totalCost.toFixed(2)),
+      quantity: Number(row.quantity),
+      unitName: row.unit_name || targetUnitName,
+      locationName: row.location_name || locationName,
+      source: "Direct Expense",
     });
   }
 
@@ -400,22 +492,47 @@ export async function getItemsWithPriceTrendData({ categoryId = "", locationId =
     `SELECT i.id, i.name
        FROM public.items i
       WHERE i.category_id = $1::bigint
-        AND EXISTS (
-          SELECT 1
-            FROM public.marketing_list_items m
-           WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint)
-             AND m.status = 'purchased'
-             AND m.approximate_cost IS NOT NULL
-             AND m.approximate_cost > 0
-             AND m.quantity IS NOT NULL
-             AND m.quantity > 0
-             AND (
-               m.item_id = i.id
-               OR (
-                 m.category_id = i.category_id
-                 AND lower(trim(m.item_name)) = lower(trim(i.name))
+        AND (
+          EXISTS (
+            SELECT 1
+              FROM public.marketing_list_items m
+             WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint)
+               AND m.status = 'purchased'
+               AND m.approximate_cost IS NOT NULL
+               AND m.approximate_cost > 0
+               AND m.quantity IS NOT NULL
+               AND m.quantity > 0
+               AND (
+                 m.item_id = i.id
+                 OR (
+                   m.category_id = i.category_id
+                   AND lower(trim(m.item_name)) = lower(trim(i.name))
+                 )
                )
-             )
+          )
+          OR EXISTS (
+            SELECT 1
+              FROM public.expenses e
+             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint)
+               AND e.total_cost IS NOT NULL
+               AND e.total_cost > 0
+               AND e.quantity IS NOT NULL
+               AND e.quantity > 0
+               AND e.unit_id IS NOT NULL
+               AND NOT EXISTS (
+                 SELECT 1
+                   FROM public.marketing_list_items m
+                  WHERE m.expense_id = e.id
+               )
+               AND (
+                 e.item_id = i.id
+                 OR (
+                   e.category_id = i.category_id
+                   AND e.item_id IS NULL
+                   AND lower(trim(COALESCE(e.other_item, ''))) = lower(trim(i.name))
+                 )
+               )
+          )
         )
       ORDER BY LOWER(i.name) ASC, i.id ASC`,
     [cleanCategoryId, cleanLocationId],
