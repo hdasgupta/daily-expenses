@@ -917,16 +917,32 @@ export default function MarketingList({ navigate }) {
   const filteredCostSummary = useMemo(() => {
     let totalCost = 0;
     let costItemCount = 0;
+    let purchasedCost = 0;
+    let purchasedItemCount = 0;
+    const seenExpenseIds = new Set();
     for (const row of filteredRows) {
       const approx = getEffectiveRowApproximateCost(row, rows, units);
       if (approx !== null && approx > 0) {
         totalCost += approx;
         costItemCount += 1;
       }
+      if (row.status === "purchased") {
+        purchasedItemCount += 1;
+        const rawExpensePrice = Number(row.expense_total_cost ?? row.expense_price ?? 0);
+        if (Number.isFinite(rawExpensePrice) && rawExpensePrice > 0) {
+          const expKey = row.expense_id ? String(row.expense_id) : null;
+          if (!expKey || !seenExpenseIds.has(expKey)) {
+            if (expKey) seenExpenseIds.add(expKey);
+            purchasedCost += rawExpensePrice;
+          }
+        }
+      }
     }
     return {
       totalCost,
       costItemCount,
+      purchasedCost,
+      purchasedItemCount,
     };
   }, [filteredRows, rows, units]);
 
@@ -1863,6 +1879,22 @@ export default function MarketingList({ navigate }) {
                 )}
               </div>
             </div>
+            {(!form.purchaseDate || String(form.purchaseDate).slice(0, 10) <= todayKolkata()) && (
+              <div
+                className="marketing-total-cost-banner marketing-purchased-cost-banner"
+                aria-live="polite"
+              >
+                <CheckCircle2 size={16} />
+                <div className="marketing-total-cost-copy">
+                  <span>Purchased cost (filtered)</span>
+                  <strong>₹{filteredCostSummary.purchasedCost.toFixed(2)}</strong>
+                  <small>
+                    {filteredCostSummary.purchasedItemCount} of {filteredRows.length}{" "}
+                    {filteredRows.length === 1 ? "item" : "items"} purchased
+                  </small>
+                </div>
+              </div>
+            )}
             {selectedPendingRows.length > 0 && (
               <div
                 className="marketing-total-cost-banner marketing-selected-cost-banner"

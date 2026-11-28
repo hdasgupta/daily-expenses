@@ -1133,3 +1133,8 @@
   - Enforced HTTP `403` read-only protection on all create, update, delete, proof-upload, mark-purchased, bulk-remove, bulk-change-date, reset, and auto-add endpoints when the target or existing entry date is 1 week old or older.
 - **`frontend/src/pages/MarketingList.jsx`, `Expense.jsx`, & `FoodChart.jsx`**:
   - Displayed a read-only lock banner on dates that are 1 week old or older and disabled add, edit, delete, purchase, proof-upload, reset, and auto-add controls for locked dates/rows while keeping viewing and receipt previewing available.
+
+## 143. Marketing List — Show Purchased Cost Beside Total Cost for Past & Current Dates
+- **`frontend/src/pages/MarketingList.jsx` & `frontend/src/pages/marketing.css`**:
+  - Added `purchasedCost` and `purchasedItemCount` to `filteredCostSummary` (deduplicating shared `expense_id` totals so bulk-purchased items are never double-counted).
+  - Rendered a green **Purchased cost (filtered)** summary banner directly beside **Total cost (filtered)** whenever viewing an old or current date (`purchaseDate <= todayKolkata()`).

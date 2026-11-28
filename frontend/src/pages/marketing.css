@@ -1275,3 +1275,9 @@
   color: #fff;
   border-color: #16a34a;
 }
+
+.marketing-list-page .marketing-purchased-cost-banner {
+  border-color: color-mix(in srgb, #16a34a 36%, var(--line));
+  background: color-mix(in srgb, #16a34a 9%, var(--card, var(--surface, #fff)));
+  color: #15803d;
+}
