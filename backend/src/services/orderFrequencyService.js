@@ -171,7 +171,7 @@ export async function getItemOrderFrequency({
               u.name AS purchased_unit_name
          FROM public.expenses e
          LEFT JOIN public.units u ON u.id = e.unit_id
-        WHERE ($1 = '' OR e.location_id = NULLIF($1, '')::bigint)
+        WHERE ($1 = '' OR e.location_id = NULLIF($1, '')::bigint OR e.location_id IS NULL)
           AND (
             e.item_id = $2::bigint
             OR (
@@ -187,6 +187,7 @@ export async function getItemOrderFrequency({
             SELECT 1
               FROM public.marketing_list_items m
              WHERE m.expense_id = e.id
+               AND m.status = 'purchased'
           )
         ORDER BY e.expense_date DESC, e.id DESC
         LIMIT 500`,
@@ -406,7 +407,7 @@ export async function getItemsWithOrderFrequencyData({ categoryId = "", location
           OR EXISTS (
             SELECT 1
               FROM public.expenses e
-             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint)
+             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint OR e.location_id IS NULL)
                AND e.quantity IS NOT NULL
                AND e.quantity > 0
                AND e.unit_id IS NOT NULL
@@ -414,6 +415,7 @@ export async function getItemsWithOrderFrequencyData({ categoryId = "", location
                  SELECT 1
                    FROM public.marketing_list_items m
                   WHERE m.expense_id = e.id
+                    AND m.status = 'purchased'
                )
                AND (
                  e.item_id = i.id

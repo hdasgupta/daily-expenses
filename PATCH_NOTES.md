@@ -1143,3 +1143,7 @@
 - **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
   - Included individual purchases recorded directly in `public.expenses` (where no `marketing_list_items.expense_id` link exists, preventing any double-counting) in both **Price Trend** (`Direct Expense` source) and **Order Frequency** calculations.
   - Updated `getItemsWithPriceTrendData` and `getItemsWithOrderFrequencyData` so items purchased directly via Expenses without a Marketing List entry also appear in the item dropdowns.
+
+## 145. Price Trend & Order Frequency — Include Un-tagged (`location_id IS NULL`) Direct Expenses
+- **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
+  - Included unlinked `public.expenses` rows where `e.location_id IS NULL` when a location is selected (since direct/older expenses may not have a `location_id`), and tightened the anti-join to `m.expense_id = e.id AND m.status = 'purchased'`.

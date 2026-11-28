@@ -168,7 +168,7 @@ export async function getItemPriceTrend({
          FROM public.expenses e
          LEFT JOIN public.units u ON u.id = e.unit_id
          LEFT JOIN public.marketing_locations ml ON ml.id = e.location_id
-        WHERE e.location_id = $1::bigint
+        WHERE (e.location_id = $1::bigint OR e.location_id IS NULL)
           AND (
             e.item_id = $2::bigint
             OR (
@@ -186,6 +186,7 @@ export async function getItemPriceTrend({
             SELECT 1
               FROM public.marketing_list_items m
              WHERE m.expense_id = e.id
+               AND m.status = 'purchased'
           )
         ORDER BY e.expense_date DESC, e.id DESC
         LIMIT 100`
@@ -216,6 +217,7 @@ export async function getItemPriceTrend({
             SELECT 1
               FROM public.marketing_list_items m
              WHERE m.expense_id = e.id
+               AND m.status = 'purchased'
           )
         ORDER BY e.expense_date DESC, e.id DESC
         LIMIT 100`;
@@ -513,7 +515,7 @@ export async function getItemsWithPriceTrendData({ categoryId = "", locationId =
           OR EXISTS (
             SELECT 1
               FROM public.expenses e
-             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint)
+             WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint OR e.location_id IS NULL)
                AND e.total_cost IS NOT NULL
                AND e.total_cost > 0
                AND e.quantity IS NOT NULL
@@ -523,6 +525,7 @@ export async function getItemsWithPriceTrendData({ categoryId = "", locationId =
                  SELECT 1
                    FROM public.marketing_list_items m
                   WHERE m.expense_id = e.id
+                    AND m.status = 'purchased'
                )
                AND (
                  e.item_id = i.id
