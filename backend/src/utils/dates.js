@@ -70,3 +70,13 @@ export function formatDateTimeIndia(value) {
 export function monthStart(year, month) {
   return `${year}-${String(month).padStart(2, "0")}-01`;
 }
+
+export function oneWeekCutoffIso(timeZone = DEFAULT_TIME_ZONE) {
+  return dateMinusDays(7, timeZone);
+}
+
+export function isOneWeekOldOrOlder(value, timeZone = DEFAULT_TIME_ZONE) {
+  const iso = toIsoDateString(value, timeZone);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false;
+  return iso <= oneWeekCutoffIso(timeZone);
+}

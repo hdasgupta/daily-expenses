@@ -27,7 +27,7 @@ import {
 } from "../lib/locationTracker";
 import ConfirmDialog from "../components/ConfirmDialog";
 import AddIngredientToMarketingModal from "../components/AddIngredientToMarketingModal";
-import { formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
+import { formatLongDateWithWeekday, isOneWeekOldOrOlder, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import { indexRecipes, extractCategories, searchAndRankRecipes } from "../lib/recipeSearch";
 import "./dietChart.css";
 
@@ -190,6 +190,7 @@ function RecipeViewer({ entry, recipe, onClose, onAddIngredient }) {
 
 export default function FoodChart() {
   const [date, setDate] = useState(todayKolkata());
+  const isSelectedDateLocked = isOneWeekOldOrOlder(date);
   const [locationId, setLocationId] = useState("");
   const [locations, setLocations] = useState([]);
   const [currentCoords, setCurrentCoords] = useState(null);
@@ -777,7 +778,7 @@ export default function FoodChart() {
           <button
             type="button"
             className="diet-secondary"
-            disabled={autoAdding || loading || hasRecipesForSelectedDateAndLocation}
+            disabled={isSelectedDateLocked || autoAdding || loading || hasRecipesForSelectedDateAndLocation}
             onClick={() => void handleAutoAddRecipes()}
             title={
               hasRecipesForSelectedDateAndLocation
@@ -791,7 +792,7 @@ export default function FoodChart() {
             type="button"
             className="diet-secondary"
             onClick={() => setConfirmResetOpen(true)}
-            disabled={resetting || loading || !entries.length}
+            disabled={isSelectedDateLocked || resetting || loading || !entries.length}
             title="Remove all recipes in Breakfast, Lunch, Evening Snacks, and Dinner for the selected date and location"
           >
             <RotateCcw size={16} /> {resetting ? "Resetting…" : "Reset"}
@@ -812,7 +813,7 @@ export default function FoodChart() {
         <button
           type="button"
           className="diet-secondary"
-          disabled={weeklyAutoAdding || weekStatus.loading || loading || !weekStatus.isEmpty}
+          disabled={isSelectedDateLocked || weeklyAutoAdding || weekStatus.loading || loading || !weekStatus.isEmpty}
           onClick={() => void handleWeeklyAutoAddRecipes()}
           title={
             weekStatus.isEmpty
@@ -952,8 +953,13 @@ export default function FoodChart() {
                           <div className="diet-actions">
                             <button
                               className="icon-button"
-                              title="Edit servings"
+                              title={
+                                isSelectedDateLocked
+                                  ? "Locked: 1 week old or older"
+                                  : "Edit servings"
+                              }
                               aria-label="Edit servings"
+                              disabled={isSelectedDateLocked}
                               onClick={() => edit(entry)}
                             >
                               <Pencil size={18} />
@@ -968,8 +974,13 @@ export default function FoodChart() {
                             </button>
                             <button
                               className="icon-button danger"
-                              title="Remove from this day's chart"
+                              title={
+                                isSelectedDateLocked
+                                  ? "Locked: 1 week old or older"
+                                  : "Remove from this day's chart"
+                              }
                               aria-label="Remove recipe"
+                              disabled={isSelectedDateLocked}
                               onClick={() => remove(entry)}
                             >
                               <Trash2 size={18} />

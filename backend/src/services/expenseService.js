@@ -8,7 +8,7 @@ import {
   updateExpense,
 } from "../models/expenseModel.js";
 import { optionalText, positiveOrZero, requiredText } from "../utils/validation.js";
-import { todayIso } from "../utils/dates.js";
+import { isOneWeekOldOrOlder, todayIso } from "../utils/dates.js";
 
 function normalizeShares(totalCost, inputShares) {
   if (!Array.isArray(inputShares) || inputShares.length === 0) {
@@ -92,6 +92,11 @@ function normalizeExpense(input, userId) {
   if (!input.expenseDate) throw new Error("Expense date is required");
   if (String(input.expenseDate) > todayIso())
     throw new Error("Expense date cannot be in the future");
+  if (isOneWeekOldOrOlder(input.expenseDate)) {
+    const err = new Error("Expenses that are 1 week old or older cannot be edited.");
+    err.status = 403;
+    throw err;
+  }
   if (!input.categoryId) throw new Error("Category is required");
   if (input.itemId === "__other__") {
     if (!String(input.otherItem || "").trim()) throw new Error("Other item is required");

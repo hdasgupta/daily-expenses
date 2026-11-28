@@ -66,3 +66,13 @@ export function shiftIsoDate(value, deltaDays) {
     : new Date();
   return base.toISOString().slice(0, 10);
 }
+
+export function oneWeekCutoffKolkata() {
+  return shiftIsoDate(todayKolkata(), -7);
+}
+
+export function isOneWeekOldOrOlder(value) {
+  const match = String(value || "").match(/^(\d{4}-\d{2}-\d{2})/);
+  if (!match) return false;
+  return match[1] <= oneWeekCutoffKolkata();
+}

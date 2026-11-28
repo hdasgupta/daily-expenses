@@ -11,7 +11,7 @@ import {
   recordLocationSelection,
 } from "../lib/locationTracker";
 import Pagination from "../components/Pagination";
-import { formatDateKolkata, formatLongDateWithWeekday, shiftIsoDate, todayKolkata } from "../utils/dates.js";
+import { formatDateKolkata, formatLongDateWithWeekday, isOneWeekOldOrOlder, shiftIsoDate, todayKolkata } from "../utils/dates.js";
 import Modal from "../components/Modal";
 import ProofViewer from "../components/ProofViewer";
 import ConfirmDialog from "../components/ConfirmDialog";
@@ -1715,7 +1715,16 @@ export default function Expense() {
         ) : null}
 
         <div className="form-actions">
-          <button className="primary" type="submit">
+          <button
+            className="primary"
+            type="submit"
+            disabled={isSelectedDateLocked}
+            title={
+              isSelectedDateLocked
+                ? "Expenses that are 1 week old or older cannot be edited"
+                : undefined
+            }
+          >
             <UploadCloud size={18} />
 
             {editingId ? "Update expense" : "Add expense"}
@@ -1734,6 +1743,11 @@ export default function Expense() {
             <RotateCcw size={17} /> Reset
           </button>
         </div>
+        {isSelectedDateLocked && (
+          <div className="error-banner" style={{ marginTop: "8px" }}>
+            This date is 1 week old or older and is read-only. Adding, editing, uploading proof, or removing expenses is disabled.
+          </div>
+        )}
       </form>
 
       <div className="subheading" style={{ flexWrap: "wrap" }}>
@@ -1835,7 +1849,12 @@ export default function Expense() {
             <div className="row-actions">
               <button
                 className="icon-button soft"
-                title="Update expense"
+                title={
+                  isOneWeekOldOrOlder(row.expense_date)
+                    ? "Locked: 1 week old or older"
+                    : "Update expense"
+                }
+                disabled={isOneWeekOldOrOlder(row.expense_date)}
                 onClick={() => beginEdit(row)}
               >
                 <Edit3Icon />
@@ -1843,7 +1862,12 @@ export default function Expense() {
 
               <button
                 className="icon-button soft"
-                title="Upload proof"
+                title={
+                  isOneWeekOldOrOlder(row.expense_date)
+                    ? "Locked: 1 week old or older"
+                    : "Upload proof"
+                }
+                disabled={isOneWeekOldOrOlder(row.expense_date)}
                 onClick={() => {
                   setProofExpense(row);
                   setProofFile(null);
@@ -1864,7 +1888,12 @@ export default function Expense() {
 
               <button
                 className="icon-button danger-soft"
-                title="Remove expense"
+                title={
+                  isOneWeekOldOrOlder(row.expense_date)
+                    ? "Locked: 1 week old or older"
+                    : "Remove expense"
+                }
+                disabled={isOneWeekOldOrOlder(row.expense_date)}
                 onClick={() => setDeleteId(row.id)}
               >
                 <Trash2 size={17} />

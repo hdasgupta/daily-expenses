@@ -1,3 +1,4 @@
+import { isOneWeekOldOrOlder } from "../utils/dates.js";
 import { readFileSync } from "node:fs";
 import { q } from "../db/index.js";
 import { recordLocationGpsSelection } from "./marketingController.js";
@@ -204,6 +205,8 @@ export async function listFoodChart(req, res) {
   res.json(rows);
 }
 
+const ONE_WEEK_FOOD_CHART_LOCK_ERROR = "Food chart entries that are 1 week old or older cannot be edited.";
+
 export async function addFoodChartEntry(req, res) {
   const b = req.body || {};
   const date = String(b.date || "").slice(0, 10);
@@ -217,6 +220,9 @@ export async function addFoodChartEntry(req, res) {
     !b.recipeId
   ) {
     return res.status(400).json({ error: "Date, meal and recipe are required" });
+  }
+  if (isOneWeekOldOrOlder(date)) {
+    return res.status(403).json({ error: ONE_WEEK_FOOD_CHART_LOCK_ERROR });
   }
   const snapshot = staticRecipes.find((recipe) => String(recipe.id) === String(b.recipeId));
   if (!snapshot) {
@@ -280,6 +286,13 @@ export async function addFoodChartEntry(req, res) {
 export async function updateFoodChartEntry(req, res) {
   const servings = Math.max(0.25, Number(req.body?.servings) || 0);
   if (!servings) return res.status(400).json({ error: "A valid serving quantity is required" });
+  const existing = await q("SELECT chart_date FROM public.food_chart_entries WHERE id = $1", [
+    req.params.id,
+  ]);
+  if (!existing.rowCount) return res.status(404).json({ error: "Food chart entry not found" });
+  if (isOneWeekOldOrOlder(existing.rows[0].chart_date)) {
+    return res.status(403).json({ error: ONE_WEEK_FOOD_CHART_LOCK_ERROR });
+  }
   const result = await q(
     `UPDATE public.food_chart_entries
         SET servings = $2
@@ -296,6 +309,13 @@ export async function updateFoodChartEntry(req, res) {
 }
 
 export async function removeFoodChartEntry(req, res) {
+  const existing = await q("SELECT chart_date FROM public.food_chart_entries WHERE id = $1", [
+    req.params.id,
+  ]);
+  if (!existing.rowCount) return res.status(404).json({ error: "Food chart entry not found" });
+  if (isOneWeekOldOrOlder(existing.rows[0].chart_date)) {
+    return res.status(403).json({ error: ONE_WEEK_FOOD_CHART_LOCK_ERROR });
+  }
   const result = await q("DELETE FROM public.food_chart_entries WHERE id=$1 RETURNING id", [
     req.params.id,
   ]);
@@ -307,6 +327,9 @@ export async function resetFoodChartEntries(req, res) {
   const date = String(req.query?.date ?? req.body?.date ?? "").slice(0, 10);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
     return res.status(400).json({ error: "A valid date (YYYY-MM-DD) is required" });
+  }
+  if (isOneWeekOldOrOlder(date)) {
+    return res.status(403).json({ error: ONE_WEEK_FOOD_CHART_LOCK_ERROR });
   }
   const rawLocationId = String(req.query?.locationId ?? req.body?.locationId ?? "").trim();
   const locationId = /^\d+$/.test(rawLocationId) ? rawLocationId : "";
@@ -408,6 +431,9 @@ export async function autoAddFoodChartRecipes(req, res) {
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
     return res.status(400).json({ error: "A valid chart date is required" });
+  }
+  if (isOneWeekOldOrOlder(date)) {
+    return res.status(403).json({ error: ONE_WEEK_FOOD_CHART_LOCK_ERROR });
   }
 
   const parsedDate = new Date(`${date}T00:00:00Z`);
@@ -632,6 +658,9 @@ export async function autoAddWeeklyFoodChartRecipes(req, res) {
   }
 
   const { weekStart, weekEnd, weekDates } = getSundayToSaturdayBounds(date);
+  if (weekDates.some((d) => isOneWeekOldOrOlder(d))) {
+    return res.status(403).json({ error: ONE_WEEK_FOOD_CHART_LOCK_ERROR });
+  }
 
   const existingRes = await q(
     `SELECT COUNT(*)::int AS cnt

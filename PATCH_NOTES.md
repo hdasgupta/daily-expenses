@@ -1125,3 +1125,11 @@
 - **`backend/src/data/recipes.json` & `backend/src/data/expandedStarterRecipes.js`**:
   - Added 14 Kolkata cabin-style and regional Mughlai/folded egg paratha recipes (`static-2042`–`static-2055`), including Egg Mughlai Paratha / Dim Mughlai Porota, Double Egg Cheese Mughlai Paratha, Atta Egg Mughlai Paratha, Egg Aloo Mughlai Paratha, Egg Paneer Mughlai Paratha, Egg Soya Keema Mughlai Paratha, Egg Prawns Mughlai Paratha, Egg Mutton Liver (Mete) Mughlai Paratha, Veg Mughlai Paratha (Chhena & Potato), Baida Roti (Mumbai Egg Keema Pocket), Egg Baida Roti, Murtabak (Egg & Spiced Keema Folded Paratha), Egg Bhurji Mughlai Paratha, and Egg Sweet Corn & Capsicum Mughlai Paratha.
   - All recipes use standardized ingredient names and manual stovetop/tawa/kadhai preparation without blenders, mixers, grinders, or ovens, bringing the alphabetically sorted catalogue to 1788 total recipes.
+
+## 142. Lock 1-Week-Old Marketing List, Expenses & Food Chart Entries
+- **`backend/src/utils/dates.js` & `frontend/src/utils/dates.js`**:
+  - Added `oneWeekCutoffIso` / `oneWeekCutoffKolkata` and `isOneWeekOldOrOlder` using `Asia/Kolkata` (`date <= today - 7 days`).
+- **`backend/src/controllers/marketingController.js`, `expenseController.js`, `backend/src/services/expenseService.js`, & `backend/src/controllers/dietChartController.js`**:
+  - Enforced HTTP `403` read-only protection on all create, update, delete, proof-upload, mark-purchased, bulk-remove, bulk-change-date, reset, and auto-add endpoints when the target or existing entry date is 1 week old or older.
+- **`frontend/src/pages/MarketingList.jsx`, `Expense.jsx`, & `FoodChart.jsx`**:
+  - Displayed a read-only lock banner on dates that are 1 week old or older and disabled add, edit, delete, purchase, proof-upload, reset, and auto-add controls for locked dates/rows while keeping viewing and receipt previewing available.

@@ -31,7 +31,7 @@ import {
 import Pagination from "../components/Pagination";
 import ProofViewer from "../components/ProofViewer";
 import { usePagination } from "../hooks/usePagination";
-import { formatLongDateWithWeekday, todayKolkata } from "../utils/dates.js";
+import { formatLongDateWithWeekday, isOneWeekOldOrOlder, todayKolkata } from "../utils/dates.js";
 
 const empty = () => ({
   categoryId: "",
@@ -1777,7 +1777,16 @@ export default function MarketingList({ navigate }) {
           {autoCostHint && <small className="location-auto-hint">{autoCostHint}</small>}
         </label>
         <div className="marketing-list-form-actions">
-          <button className="primary" type="submit">
+          <button
+            className="primary"
+            type="submit"
+            disabled={isSelectedDateLocked}
+            title={
+              isSelectedDateLocked
+                ? "Marketing list items that are 1 week old or older cannot be edited"
+                : undefined
+            }
+          >
             {editing ? "Save changes" : "Add to marketing list"}
           </button>
           <button
@@ -1815,6 +1824,11 @@ export default function MarketingList({ navigate }) {
             </button>
           )}
         </div>
+        {isSelectedDateLocked && (
+          <div className="marketing-selection-hint" role="status" style={{ marginTop: "8px" }}>
+            This date is 1 week old or older and is read-only. You cannot add, edit, remove, or purchase items for this date.
+          </div>
+        )}
       </form>
 
       <section className="marketing-items-section" aria-labelledby="marketing-items-heading">
@@ -1906,6 +1920,7 @@ export default function MarketingList({ navigate }) {
                   : row.unit_name || "";
               const approxCost = getEffectiveRowApproximateCost(row, rows, units);
               const hasApproxCost = approxCost !== null && approxCost > 0;
+              const rowLocked = isOneWeekOldOrOlder(row.purchase_date);
               const isSelected = selectedIds.includes(String(row.id));
               return (
                 <article
@@ -1913,7 +1928,7 @@ export default function MarketingList({ navigate }) {
                   key={row.id}
                 >
                   <div className="marketing-item-card-top">
-                    {status === "pending" && canSelectMarketingItems && (
+                    {status === "pending" && !rowLocked && canSelectMarketingItems && (
                       <label
                         className="marketing-item-checkbox"
                         aria-label={`Select ${row.item_name}`}
@@ -1935,7 +1950,7 @@ export default function MarketingList({ navigate }) {
                       <h3>{row.item_name || "Unnamed item"}</h3>
                       <p>{row.category_name || "Uncategorized"}</p>
                     </div>
-                    {status === "pending" && (
+                    {status === "pending" && !rowLocked && (
                       <div className="marketing-item-icon-actions">
                         <button
                           type="button"
@@ -1956,6 +1971,11 @@ export default function MarketingList({ navigate }) {
                           <Trash2 size={16} />
                         </button>
                       </div>
+                    )}
+                    {status === "pending" && rowLocked && (
+                      <span className="marketing-readonly-label" title="1 week old or older">
+                        Read-only (1+ wk)
+                      </span>
                     )}
                     {status === "purchased" && (
                       <div className="marketing-item-icon-actions">

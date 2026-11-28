@@ -1,3 +1,4 @@
+import { isOneWeekOldOrOlder } from "../utils/dates.js";
 import crypto from "node:crypto";
 import { q } from "../db/index.js";
 import { env } from "../config/env.js";
@@ -360,11 +361,16 @@ export async function listItems(req, res) {
   res.json(result.rows);
 }
 
+const ONE_WEEK_MARKETING_LOCK_ERROR = "Marketing list items that are 1 week old or older cannot be edited.";
+
 export async function createItem(req, res) {
   await ensureMarketingItemCostSchema();
   const b = req.body || {};
   if (!String(b.itemName || "").trim() || !b.purchaseDate) {
     return res.status(400).json({ error: "Item name and purchase date are required" });
+  }
+  if (isOneWeekOldOrOlder(b.purchaseDate)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
   }
   let approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
   if (!approximateCost && b.autoCalculateCost !== false) {
@@ -407,15 +413,24 @@ export async function createItem(req, res) {
 export async function updateItem(req, res) {
   await ensureMarketingItemCostSchema();
   const b = req.body || {};
-  const existing = await q("SELECT status FROM public.marketing_list_items WHERE id=$1", [
+  const existing = await q("SELECT status, purchase_date FROM public.marketing_list_items WHERE id=$1", [
     req.params.id,
   ]);
   if (!existing.rowCount) return res.status(404).json({ error: "Marketing item not found" });
+  if (isOneWeekOldOrOlder(existing.rows[0].purchase_date)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
+  }
   if (existing.rows[0].status !== "pending") {
     return res.status(409).json({ error: "Purchased or removed items are read-only" });
   }
   if (!String(b.itemName || "").trim() || !b.purchaseDate) {
     return res.status(400).json({ error: "Item name and purchase date are required" });
+  }
+  if (isOneWeekOldOrOlder(b.purchaseDate)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
+  }
+  if (isOneWeekOldOrOlder(b.purchaseDate)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
   }
   let approximateCost = normalizeApproximateCost(b.approximateCost ?? b.approximate_cost);
   if (!approximateCost && b.autoCalculateCost !== false) {
@@ -456,16 +471,20 @@ export async function updateItem(req, res) {
 }
 
 export async function removeItem(req, res) {
+  const existing = await q(
+    "SELECT status, purchase_date FROM public.marketing_list_items WHERE id=$1",
+    [req.params.id],
+  );
+  if (!existing.rowCount) return res.status(404).json({ error: "Marketing item not found" });
+  if (isOneWeekOldOrOlder(existing.rows[0].purchase_date)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
+  }
   const result = await q(
     `DELETE FROM public.marketing_list_items
      WHERE id=$1 AND status='pending' RETURNING id`,
     [req.params.id],
   );
   if (!result.rowCount) {
-    const existing = await q("SELECT status FROM public.marketing_list_items WHERE id=$1", [
-      req.params.id,
-    ]);
-    if (!existing.rowCount) return res.status(404).json({ error: "Marketing item not found" });
     return res.status(409).json({
       error: "Purchased items cannot be deleted. Only pending items can be permanently deleted.",
     });
@@ -476,6 +495,15 @@ export async function removeItem(req, res) {
 export async function markPurchased(req, res) {
   await ensureMarketingItemCostSchema();
   const b = req.body || {};
+  const existing = await q("SELECT purchase_date FROM public.marketing_list_items WHERE id=$1", [
+    req.params.id,
+  ]);
+  if (!existing.rowCount) {
+    return res.status(404).json({ error: "Marketing item not found" });
+  }
+  if (isOneWeekOldOrOlder(existing.rows[0].purchase_date)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
+  }
   const r = await q(
     `UPDATE public.marketing_list_items
         SET status='purchased',
@@ -515,6 +543,13 @@ export async function markPurchasedBulk(req, res) {
   ];
   if (!ids.length || !b.expenseId) {
     return res.status(400).json({ error: "Item IDs and expense ID are required" });
+  }
+  const lockCheck = await q(
+    "SELECT id, purchase_date FROM public.marketing_list_items WHERE id = ANY($1::bigint[])",
+    [ids],
+  );
+  if (lockCheck.rows.some((row) => isOneWeekOldOrOlder(row.purchase_date))) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
   }
   const result = await q(
     `UPDATE public.marketing_list_items
@@ -556,6 +591,13 @@ export async function removeItemsBulk(req, res) {
   if (!ids.length) {
     return res.status(400).json({ error: "Item IDs are required" });
   }
+  const lockCheck = await q(
+    "SELECT id, purchase_date FROM public.marketing_list_items WHERE id = ANY($1::bigint[])",
+    [ids],
+  );
+  if (lockCheck.rows.some((row) => isOneWeekOldOrOlder(row.purchase_date))) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
+  }
   const result = await q(
     `DELETE FROM public.marketing_list_items
      WHERE id = ANY($1::bigint[]) AND status='pending'
@@ -582,6 +624,16 @@ export async function changeDateBulk(req, res) {
   const purchaseDate = String(b.purchaseDate || "").slice(0, 10);
   if (!ids.length || !/^\d{4}-\d{2}-\d{2}$/.test(purchaseDate)) {
     return res.status(400).json({ error: "Valid item IDs and purchase date are required" });
+  }
+  if (isOneWeekOldOrOlder(purchaseDate)) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
+  }
+  const lockCheck = await q(
+    "SELECT id, purchase_date FROM public.marketing_list_items WHERE id = ANY($1::bigint[])",
+    [ids],
+  );
+  if (lockCheck.rows.some((row) => isOneWeekOldOrOlder(row.purchase_date))) {
+    return res.status(403).json({ error: ONE_WEEK_MARKETING_LOCK_ERROR });
   }
   const result = await q(
     `UPDATE public.marketing_list_items
