@@ -776,6 +776,7 @@ export default function Expense() {
   const [dateTotalAmount, setDateTotalAmount] = useState(0);
 
   const [proofExpense, setProofExpense] = useState(null);
+  const isSelectedDateLocked = isOneWeekOldOrOlder(form.expenseDate || date);
   const [proofFile, setProofFile] = useState(null);
   const [proofViewerUrl, setProofViewerUrl] = useState("");
   const [deleteId, setDeleteId] = useState(null);

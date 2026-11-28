@@ -1481,7 +1481,9 @@ export default function MarketingList({ navigate }) {
     }
   };
 
+  const isSelectedDateLocked = isOneWeekOldOrOlder(form.purchaseDate);
   const canAddExpenseForSelectedDate =
+    !isSelectedDateLocked &&
     String(form.purchaseDate || "").slice(0, 10) <= todayKolkata();
 
   const canSelectMarketingItems = true;
