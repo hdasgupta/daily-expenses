@@ -1155,3 +1155,7 @@
 ## 147. Add Expense Page — Add Today Button Between Previous & Next Date
 - **`frontend/src/pages/Expense.jsx`**:
   - Added a **Today** button between **Previous date** and **Next date** to reset `expenseDate` and the active expense list date to `today()` (disabled when already on today).
+
+## 148. Price Trend & Order Frequency — Show All Items Present in Marketing List or Expenses
+- **`backend/src/services/priceTrendService.js` & `backend/src/services/orderFrequencyService.js`**:
+  - Broadened `getItemsWithPriceTrendData` and `getItemsWithOrderFrequencyData` so the item dropdowns on **Price Trend** and **Order Frequency** include any item present in either `public.marketing_list_items` (non-removed) or `public.expenses`.

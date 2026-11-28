@@ -498,12 +498,8 @@ export async function getItemsWithPriceTrendData({ categoryId = "", locationId =
           EXISTS (
             SELECT 1
               FROM public.marketing_list_items m
-             WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint)
-               AND m.status = 'purchased'
-               AND m.approximate_cost IS NOT NULL
-               AND m.approximate_cost > 0
-               AND m.quantity IS NOT NULL
-               AND m.quantity > 0
+             WHERE ($2 = '' OR m.location_id = NULLIF($2, '')::bigint OR m.location_id IS NULL)
+               AND m.status <> 'removed'
                AND (
                  m.item_id = i.id
                  OR (
@@ -516,17 +512,6 @@ export async function getItemsWithPriceTrendData({ categoryId = "", locationId =
             SELECT 1
               FROM public.expenses e
              WHERE ($2 = '' OR e.location_id = NULLIF($2, '')::bigint OR e.location_id IS NULL)
-               AND e.total_cost IS NOT NULL
-               AND e.total_cost > 0
-               AND e.quantity IS NOT NULL
-               AND e.quantity > 0
-               AND e.unit_id IS NOT NULL
-               AND NOT EXISTS (
-                 SELECT 1
-                   FROM public.marketing_list_items m
-                  WHERE m.expense_id = e.id
-                    AND m.status = 'purchased'
-               )
                AND (
                  e.item_id = i.id
                  OR (
